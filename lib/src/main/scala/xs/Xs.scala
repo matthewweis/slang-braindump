@@ -3,6 +3,7 @@
 package xs
 
 import org.sireum._
+import xs.Xs._
 
 object Xs {
 
@@ -130,7 +131,7 @@ object Xs {
 }
 
 @sig sealed trait GeneratedSources {
-  @pure def closure[T](closure: T => T): Fork[T]
+  @pure def closure[T](closure: T => T @pure): Fork[T]
   @pure def seeded[T](seed: T, generator: T => T @pure): Fork[T]
 }
 
@@ -150,7 +151,7 @@ object Xs {
 
 @datatype class CoreWrapperSources() extends WrapperSources {
   @pure override def array[T](array: ISZ[T]): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit) => (for (value <- array) yield cons(value)).asInstanceOf[Unit]))
+    CoreFork(CorePipes((cons: T => Unit @pure) => (for (value <- array) yield cons(value)).asInstanceOf[Unit]))
   }
 }
 
@@ -170,62 +171,62 @@ object Xs {
 @datatype class CoreCountableSources() extends CountableSources {
 
   @pure override def zero[T](): Fork[T] = {
-    CoreFork(CorePipes(Xs.fp.lift[T => Unit @pure, Unit](Xs.fp.unit())))
+    CoreFork(CorePipes(fp.lift[T => Unit @pure, Unit](fp.unit())))
   }
 
   @pure override def one[T](value: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(value)
-    }))
+    })))
   }
 
   @pure override def two[T](first: T, second: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(first)
       cons(second)
-    }))
+    })))
   }
 
   @pure override def three[T](first: T, second: T, third: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(first)
       cons(second)
       cons(third)
-    }))
+    })))
   }
 
   @pure override def four[T](first: T, second: T, third: T, fourth: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(first)
       cons(second)
       cons(third)
       cons(fourth)
-    }))
+    })))
   }
 
   @pure override def five[T](first: T, second: T, third: T, fourth: T, fifth: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(first)
       cons(second)
       cons(third)
       cons(fourth)
       cons(fifth)
-    }))
+    })))
   }
 
   @pure override def six[T](first: T, second: T, third: T, fourth: T, fifth: T, sixth: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(first)
       cons(second)
       cons(third)
       cons(fourth)
       cons(fifth)
       cons(sixth)
-    }))
+    })))
   }
 
   @pure override def seven[T](first: T, second: T, third: T, fourth: T, fifth: T, sixth: T, seventh: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(first)
       cons(second)
       cons(third)
@@ -233,11 +234,11 @@ object Xs {
       cons(fifth)
       cons(sixth)
       cons(seventh)
-    }))
+    })))
   }
 
   @pure override def eight[T](first: T, second: T, third: T, fourth: T, fifth: T, sixth: T, seventh: T, eighth: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(first)
       cons(second)
       cons(third)
@@ -246,11 +247,11 @@ object Xs {
       cons(sixth)
       cons(seventh)
       cons(eighth)
-    }))
+    })))
   }
 
   @pure override def nine[T](first: T, second: T, third: T, fourth: T, fifth: T, sixth: T, seventh: T, eighth: T, ninth: T): Fork[T] = {
-    CoreFork(CorePipes((cons: T => Unit @pure) => {
+    CoreFork(CorePipes(fp.identity[T => Unit @pure, Unit]((cons: T => Unit @pure) => {
       cons(first)
       cons(second)
       cons(third)
@@ -260,7 +261,7 @@ object Xs {
       cons(seventh)
       cons(eighth)
       cons(ninth)
-    }))
+    })))
   }
 
 }
@@ -287,7 +288,7 @@ object Xs {
 
 @datatype class CoreOps[T](@hidden pipe: Pipes[T]) extends Ops[T] {
   @pure override def map[R](mapper: T => R @pure): Ops[R] = {
-    return CoreOps(CorePipes((cons: R => Unit) => pipe.stage((e: T) => cons(mapper(e)))))
+    return CoreOps(CorePipes((cons: R => Unit @pure) => pipe.stage((e: T) => cons(mapper(e)))))
   }
 
   @pure override def sink: Sinks[T] = {
@@ -330,7 +331,7 @@ object Xs {
 
   @pure override def count(): Z = {
     val box = UnitBox(z"0")
-    pipe.consume(Xs.fp.lift(box.map(Xs.math.increase)))
+    pipe.consume(fp.lift(box.map(Xs.math.increase)))
     return box.get()
   }
 
@@ -338,9 +339,9 @@ object Xs {
 
 @sig trait Pipes[T] {
 
-  def stage: (T => Unit) => Unit
+  def stage: (T => Unit @pure) => Unit @pure
 
-  def consume(inner: T => Unit): Unit = {
+  def consume(inner: T => Unit @pure): Unit = {
     stage(inner)
   }
 
@@ -349,7 +350,7 @@ object Xs {
   }
 }
 
-@datatype class CorePipes[T](@hidden val stage: (T => Unit) => Unit) extends Pipes[T] {}
+@datatype class CorePipes[T](@hidden val stage: (T => Unit @pure) => Unit @pure) extends Pipes[T] {}
 
 @record class UnitBox[T](var data: T) {
   def get(): T = {

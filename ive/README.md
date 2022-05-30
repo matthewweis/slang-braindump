@@ -141,7 +141,7 @@ Note: Ensure CRLF encoding for .cmd files in .gitattributes. The template's line
 misaligned (due to escaped characters `\$` used throughout). The IVE's syntax highlighter will erroneously mark `$0` 
 as a Velocity template variable, despite the template being correct.
 
-## Scala Live Templates
+## Slang Live Templates
 
 ### Uncheck Defaults
 * Open preferences

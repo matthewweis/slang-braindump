@@ -1,0 +1,742 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/org/kohsuke/github/GitHubPageIterator.class
+  Last modified May 29, 2022; size 6529 bytes
+  SHA-256 checksum 429edef392fb1dfa5744f29cf30a9e1b5d2144bdab31b593559ecf5fbf20b63d
+  Compiled from "GitHubPageIterator.java"
+class org.kohsuke.github.GitHubPageIterator<T extends java.lang.Object> extends java.lang.Object implements java.util.Iterator<T>
+  minor version: 0
+  major version: 52
+  flags: (0x0020) ACC_SUPER
+  this_class: #16                         // org/kohsuke/github/GitHubPageIterator
+  super_class: #53                        // java/lang/Object
+  interfaces: 1, fields: 6, methods: 9, attributes: 4
+Constant pool:
+    #1 = Methodref          #53.#134      // java/lang/Object."<init>":()V
+    #2 = Fieldref           #16.#135      // org/kohsuke/github/GitHubPageIterator.finalResponse:Lorg/kohsuke/github/GitHubResponse;
+    #3 = String             #136          // GET
+    #4 = Methodref          #84.#137      // org/kohsuke/github/GitHubRequest.method:()Ljava/lang/String;
+    #5 = Methodref          #121.#138     // java/lang/String.equals:(Ljava/lang/Object;)Z
+    #6 = Class              #139          // java/lang/IllegalStateException
+    #7 = String             #140          // Request method \"GET\" is required for page iterator.
+    #8 = Methodref          #6.#141       // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+    #9 = Fieldref           #16.#142      // org/kohsuke/github/GitHubPageIterator.client:Lorg/kohsuke/github/GitHubClient;
+   #10 = Fieldref           #16.#143      // org/kohsuke/github/GitHubPageIterator.type:Ljava/lang/Class;
+   #11 = Fieldref           #16.#144      // org/kohsuke/github/GitHubPageIterator.nextRequest:Lorg/kohsuke/github/GitHubRequest;
+   #12 = Methodref          #84.#145      // org/kohsuke/github/GitHubRequest.toBuilder:()Lorg/kohsuke/github/GitHubRequest$Builder;
+   #13 = String             #146          // per_page
+   #14 = Methodref          #89.#147      // org/kohsuke/github/GitHubRequest$Builder.with:(Ljava/lang/String;I)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #15 = Methodref          #89.#148      // org/kohsuke/github/GitHubRequest$Builder.build:()Lorg/kohsuke/github/GitHubRequest;
+   #16 = Class              #149          // org/kohsuke/github/GitHubPageIterator
+   #17 = Methodref          #16.#150      // org/kohsuke/github/GitHubPageIterator."<init>":(Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class;Lorg/kohsuke/github/GitHubRequest;)V
+   #18 = Methodref          #16.#151      // org/kohsuke/github/GitHubPageIterator.fetch:()V
+   #19 = Fieldref           #16.#152      // org/kohsuke/github/GitHubPageIterator.next:Ljava/lang/Object;
+   #20 = Class              #153          // java/util/NoSuchElementException
+   #21 = Methodref          #20.#134      // java/util/NoSuchElementException."<init>":()V
+   #22 = Methodref          #16.#154      // org/kohsuke/github/GitHubPageIterator.hasNext:()Z
+   #23 = Class              #155          // org/kohsuke/github/GHException
+   #24 = String             #156          // Final response is not available until after iterator is done.
+   #25 = Methodref          #23.#141      // org/kohsuke/github/GHException."<init>":(Ljava/lang/String;)V
+   #26 = Methodref          #84.#157      // org/kohsuke/github/GitHubRequest.url:()Ljava/net/URL;
+   #27 = InvokeDynamic      #0:#163       // #0:apply:(Lorg/kohsuke/github/GitHubPageIterator;)Lorg/kohsuke/github/GitHubClient$BodyHandler;
+   #28 = Methodref          #82.#164      // org/kohsuke/github/GitHubClient.sendRequest:(Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubClient$BodyHandler;)Lorg/kohsuke/github/GitHubResponse;
+   #29 = Fieldref           #16.#165      // org/kohsuke/github/GitHubPageIterator.$assertionsDisabled:Z
+   #30 = Methodref          #114.#166     // org/kohsuke/github/GitHubResponse.body:()Ljava/lang/Object;
+   #31 = Class              #167          // java/lang/AssertionError
+   #32 = Methodref          #31.#134      // java/lang/AssertionError."<init>":()V
+   #33 = Methodref          #16.#168      // org/kohsuke/github/GitHubPageIterator.findNextURL:(Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubResponse;)Lorg/kohsuke/github/GitHubRequest;
+   #34 = Class              #169          // java/io/IOException
+   #35 = Class              #170          // java/lang/StringBuilder
+   #36 = Methodref          #35.#134      // java/lang/StringBuilder."<init>":()V
+   #37 = String             #171          // Failed to retrieve
+   #38 = Methodref          #35.#172      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #39 = Methodref          #35.#173      // java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+   #40 = Methodref          #35.#174      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #41 = Methodref          #23.#175      // org/kohsuke/github/GHException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+   #42 = String             #176          // Link
+   #43 = Methodref          #114.#177     // org/kohsuke/github/GitHubResponse.header:(Ljava/lang/String;)Ljava/lang/String;
+   #44 = String             #178          // ,
+   #45 = Methodref          #121.#179     // java/lang/String.split:(Ljava/lang/String;)[Ljava/lang/String;
+   #46 = String             #180          // rel=\"next\"
+   #47 = Methodref          #121.#181     // java/lang/String.endsWith:(Ljava/lang/String;)Z
+   #48 = Methodref          #121.#182     // java/lang/String.indexOf:(I)I
+   #49 = Methodref          #121.#183     // java/lang/String.substring:(II)Ljava/lang/String;
+   #50 = Methodref          #89.#184      // org/kohsuke/github/GitHubRequest$Builder.setRawUrlPath:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #51 = Methodref          #114.#185     // org/kohsuke/github/GitHubResponse.parseBody:(Lorg/kohsuke/github/connector/GitHubConnectorResponse;Ljava/lang/Class;)Ljava/lang/Object;
+   #52 = Methodref          #83.#186      // java/lang/Class.desiredAssertionStatus:()Z
+   #53 = Class              #187          // java/lang/Object
+   #54 = Class              #188          // java/util/Iterator
+   #55 = Utf8               client
+   #56 = Utf8               Lorg/kohsuke/github/GitHubClient;
+   #57 = Utf8               type
+   #58 = Utf8               Ljava/lang/Class;
+   #59 = Utf8               Signature
+   #60 = Utf8               Ljava/lang/Class<TT;>;
+   #61 = Utf8               next
+   #62 = Utf8               Ljava/lang/Object;
+   #63 = Utf8               TT;
+   #64 = Utf8               nextRequest
+   #65 = Utf8               Lorg/kohsuke/github/GitHubRequest;
+   #66 = Utf8               finalResponse
+   #67 = Utf8               Lorg/kohsuke/github/GitHubResponse;
+   #68 = Utf8               Lorg/kohsuke/github/GitHubResponse<TT;>;
+   #69 = Utf8               $assertionsDisabled
+   #70 = Utf8               Z
+   #71 = Utf8               <init>
+   #72 = Utf8               (Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class;Lorg/kohsuke/github/GitHubRequest;)V
+   #73 = Utf8               Code
+   #74 = Utf8               LineNumberTable
+   #75 = Utf8               LocalVariableTable
+   #76 = Utf8               this
+   #77 = Utf8               Lorg/kohsuke/github/GitHubPageIterator;
+   #78 = Utf8               request
+   #79 = Utf8               LocalVariableTypeTable
+   #80 = Utf8               Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+   #81 = Utf8               StackMapTable
+   #82 = Class              #189          // org/kohsuke/github/GitHubClient
+   #83 = Class              #190          // java/lang/Class
+   #84 = Class              #191          // org/kohsuke/github/GitHubRequest
+   #85 = Utf8               (Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class<TT;>;Lorg/kohsuke/github/GitHubRequest;)V
+   #86 = Utf8               create
+   #87 = Utf8               (Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class;Lorg/kohsuke/github/GitHubRequest;I)Lorg/kohsuke/github/GitHubPageIterator;
+   #88 = Utf8               builder
+   #89 = Class              #192          // org/kohsuke/github/GitHubRequest$Builder
+   #90 = Utf8               Builder
+   #91 = Utf8               InnerClasses
+   #92 = Utf8               Lorg/kohsuke/github/GitHubRequest$Builder;
+   #93 = Utf8               pageSize
+   #94 = Utf8               I
+   #95 = Utf8               Lorg/kohsuke/github/GitHubRequest$Builder<*>;
+   #96 = Utf8               <T:Ljava/lang/Object;>(Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class<TT;>;Lorg/kohsuke/github/GitHubRequest;I)Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+   #97 = Utf8               hasNext
+   #98 = Utf8               ()Z
+   #99 = Utf8               ()Ljava/lang/Object;
+  #100 = Utf8               result
+  #101 = Utf8               ()TT;
+  #102 = Utf8               RuntimeVisibleAnnotations
+  #103 = Utf8               Ljavax/annotation/Nonnull;
+  #104 = Utf8               ()Lorg/kohsuke/github/GitHubResponse;
+  #105 = Utf8               ()Lorg/kohsuke/github/GitHubResponse<TT;>;
+  #106 = Utf8               fetch
+  #107 = Utf8               ()V
+  #108 = Utf8               nextResponse
+  #109 = Utf8               e
+  #110 = Utf8               Ljava/io/IOException;
+  #111 = Utf8               url
+  #112 = Utf8               Ljava/net/URL;
+  #113 = Class              #193          // java/net/URL
+  #114 = Class              #194          // org/kohsuke/github/GitHubResponse
+  #115 = Utf8               findNextURL
+  #116 = Utf8               (Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubResponse;)Lorg/kohsuke/github/GitHubRequest;
+  #117 = Utf8               idx
+  #118 = Utf8               token
+  #119 = Utf8               Ljava/lang/String;
+  #120 = Utf8               link
+  #121 = Class              #195          // java/lang/String
+  #122 = Class              #196          // "[Ljava/lang/String;"
+  #123 = Utf8               Exceptions
+  #124 = Class              #197          // java/net/MalformedURLException
+  #125 = Utf8               (Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubResponse<TT;>;)Lorg/kohsuke/github/GitHubRequest;
+  #126 = Utf8               lambda$fetch$0
+  #127 = Utf8               (Lorg/kohsuke/github/connector/GitHubConnectorResponse;)Ljava/lang/Object;
+  #128 = Utf8               connectorResponse
+  #129 = Utf8               Lorg/kohsuke/github/connector/GitHubConnectorResponse;
+  #130 = Utf8               <clinit>
+  #131 = Utf8               <T:Ljava/lang/Object;>Ljava/lang/Object;Ljava/util/Iterator<TT;>;
+  #132 = Utf8               SourceFile
+  #133 = Utf8               GitHubPageIterator.java
+  #134 = NameAndType        #71:#107      // "<init>":()V
+  #135 = NameAndType        #66:#67       // finalResponse:Lorg/kohsuke/github/GitHubResponse;
+  #136 = Utf8               GET
+  #137 = NameAndType        #198:#199     // method:()Ljava/lang/String;
+  #138 = NameAndType        #200:#201     // equals:(Ljava/lang/Object;)Z
+  #139 = Utf8               java/lang/IllegalStateException
+  #140 = Utf8               Request method \"GET\" is required for page iterator.
+  #141 = NameAndType        #71:#202      // "<init>":(Ljava/lang/String;)V
+  #142 = NameAndType        #55:#56       // client:Lorg/kohsuke/github/GitHubClient;
+  #143 = NameAndType        #57:#58       // type:Ljava/lang/Class;
+  #144 = NameAndType        #64:#65       // nextRequest:Lorg/kohsuke/github/GitHubRequest;
+  #145 = NameAndType        #203:#204     // toBuilder:()Lorg/kohsuke/github/GitHubRequest$Builder;
+  #146 = Utf8               per_page
+  #147 = NameAndType        #205:#206     // with:(Ljava/lang/String;I)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #148 = NameAndType        #207:#208     // build:()Lorg/kohsuke/github/GitHubRequest;
+  #149 = Utf8               org/kohsuke/github/GitHubPageIterator
+  #150 = NameAndType        #71:#72       // "<init>":(Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class;Lorg/kohsuke/github/GitHubRequest;)V
+  #151 = NameAndType        #106:#107     // fetch:()V
+  #152 = NameAndType        #61:#62       // next:Ljava/lang/Object;
+  #153 = Utf8               java/util/NoSuchElementException
+  #154 = NameAndType        #97:#98       // hasNext:()Z
+  #155 = Utf8               org/kohsuke/github/GHException
+  #156 = Utf8               Final response is not available until after iterator is done.
+  #157 = NameAndType        #111:#209     // url:()Ljava/net/URL;
+  #158 = Utf8               BootstrapMethods
+  #159 = MethodHandle       6:#210        // REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #160 = MethodType         #211          //  (Ljava/lang/Object;)Ljava/lang/Object;
+  #161 = MethodHandle       7:#212        // REF_invokeSpecial org/kohsuke/github/GitHubPageIterator.lambda$fetch$0:(Lorg/kohsuke/github/connector/GitHubConnectorResponse;)Ljava/lang/Object;
+  #162 = MethodType         #127          //  (Lorg/kohsuke/github/connector/GitHubConnectorResponse;)Ljava/lang/Object;
+  #163 = NameAndType        #213:#216     // apply:(Lorg/kohsuke/github/GitHubPageIterator;)Lorg/kohsuke/github/GitHubClient$BodyHandler;
+  #164 = NameAndType        #217:#218     // sendRequest:(Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubClient$BodyHandler;)Lorg/kohsuke/github/GitHubResponse;
+  #165 = NameAndType        #69:#70       // $assertionsDisabled:Z
+  #166 = NameAndType        #219:#99      // body:()Ljava/lang/Object;
+  #167 = Utf8               java/lang/AssertionError
+  #168 = NameAndType        #115:#116     // findNextURL:(Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubResponse;)Lorg/kohsuke/github/GitHubRequest;
+  #169 = Utf8               java/io/IOException
+  #170 = Utf8               java/lang/StringBuilder
+  #171 = Utf8               Failed to retrieve
+  #172 = NameAndType        #220:#221     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #173 = NameAndType        #220:#222     // append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #174 = NameAndType        #223:#199     // toString:()Ljava/lang/String;
+  #175 = NameAndType        #71:#224      // "<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+  #176 = Utf8               Link
+  #177 = NameAndType        #225:#226     // header:(Ljava/lang/String;)Ljava/lang/String;
+  #178 = Utf8               ,
+  #179 = NameAndType        #227:#228     // split:(Ljava/lang/String;)[Ljava/lang/String;
+  #180 = Utf8               rel=\"next\"
+  #181 = NameAndType        #229:#230     // endsWith:(Ljava/lang/String;)Z
+  #182 = NameAndType        #231:#232     // indexOf:(I)I
+  #183 = NameAndType        #233:#234     // substring:(II)Ljava/lang/String;
+  #184 = NameAndType        #235:#236     // setRawUrlPath:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #185 = NameAndType        #237:#238     // parseBody:(Lorg/kohsuke/github/connector/GitHubConnectorResponse;Ljava/lang/Class;)Ljava/lang/Object;
+  #186 = NameAndType        #239:#98      // desiredAssertionStatus:()Z
+  #187 = Utf8               java/lang/Object
+  #188 = Utf8               java/util/Iterator
+  #189 = Utf8               org/kohsuke/github/GitHubClient
+  #190 = Utf8               java/lang/Class
+  #191 = Utf8               org/kohsuke/github/GitHubRequest
+  #192 = Utf8               org/kohsuke/github/GitHubRequest$Builder
+  #193 = Utf8               java/net/URL
+  #194 = Utf8               org/kohsuke/github/GitHubResponse
+  #195 = Utf8               java/lang/String
+  #196 = Utf8               [Ljava/lang/String;
+  #197 = Utf8               java/net/MalformedURLException
+  #198 = Utf8               method
+  #199 = Utf8               ()Ljava/lang/String;
+  #200 = Utf8               equals
+  #201 = Utf8               (Ljava/lang/Object;)Z
+  #202 = Utf8               (Ljava/lang/String;)V
+  #203 = Utf8               toBuilder
+  #204 = Utf8               ()Lorg/kohsuke/github/GitHubRequest$Builder;
+  #205 = Utf8               with
+  #206 = Utf8               (Ljava/lang/String;I)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #207 = Utf8               build
+  #208 = Utf8               ()Lorg/kohsuke/github/GitHubRequest;
+  #209 = Utf8               ()Ljava/net/URL;
+  #210 = Methodref          #240.#241     // java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #211 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #212 = Methodref          #16.#242      // org/kohsuke/github/GitHubPageIterator.lambda$fetch$0:(Lorg/kohsuke/github/connector/GitHubConnectorResponse;)Ljava/lang/Object;
+  #213 = Utf8               apply
+  #214 = Class              #243          // org/kohsuke/github/GitHubClient$BodyHandler
+  #215 = Utf8               BodyHandler
+  #216 = Utf8               (Lorg/kohsuke/github/GitHubPageIterator;)Lorg/kohsuke/github/GitHubClient$BodyHandler;
+  #217 = Utf8               sendRequest
+  #218 = Utf8               (Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubClient$BodyHandler;)Lorg/kohsuke/github/GitHubResponse;
+  #219 = Utf8               body
+  #220 = Utf8               append
+  #221 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #222 = Utf8               (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #223 = Utf8               toString
+  #224 = Utf8               (Ljava/lang/String;Ljava/lang/Throwable;)V
+  #225 = Utf8               header
+  #226 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #227 = Utf8               split
+  #228 = Utf8               (Ljava/lang/String;)[Ljava/lang/String;
+  #229 = Utf8               endsWith
+  #230 = Utf8               (Ljava/lang/String;)Z
+  #231 = Utf8               indexOf
+  #232 = Utf8               (I)I
+  #233 = Utf8               substring
+  #234 = Utf8               (II)Ljava/lang/String;
+  #235 = Utf8               setRawUrlPath
+  #236 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #237 = Utf8               parseBody
+  #238 = Utf8               (Lorg/kohsuke/github/connector/GitHubConnectorResponse;Ljava/lang/Class;)Ljava/lang/Object;
+  #239 = Utf8               desiredAssertionStatus
+  #240 = Class              #244          // java/lang/invoke/LambdaMetafactory
+  #241 = NameAndType        #245:#248     // metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #242 = NameAndType        #126:#127     // lambda$fetch$0:(Lorg/kohsuke/github/connector/GitHubConnectorResponse;)Ljava/lang/Object;
+  #243 = Utf8               org/kohsuke/github/GitHubClient$BodyHandler
+  #244 = Utf8               java/lang/invoke/LambdaMetafactory
+  #245 = Utf8               metafactory
+  #246 = Class              #250          // java/lang/invoke/MethodHandles$Lookup
+  #247 = Utf8               Lookup
+  #248 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #249 = Class              #251          // java/lang/invoke/MethodHandles
+  #250 = Utf8               java/lang/invoke/MethodHandles$Lookup
+  #251 = Utf8               java/lang/invoke/MethodHandles
+{
+  private final org.kohsuke.github.GitHubClient client;
+    descriptor: Lorg/kohsuke/github/GitHubClient;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.lang.Class<T> type;
+    descriptor: Ljava/lang/Class;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #60                          // Ljava/lang/Class<TT;>;
+
+  private T next;
+    descriptor: Ljava/lang/Object;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #63                          // TT;
+
+  private org.kohsuke.github.GitHubRequest nextRequest;
+    descriptor: Lorg/kohsuke/github/GitHubRequest;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GitHubResponse<T> finalResponse;
+    descriptor: Lorg/kohsuke/github/GitHubResponse;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #68                          // Lorg/kohsuke/github/GitHubResponse<TT;>;
+
+  static final boolean $assertionsDisabled;
+    descriptor: Z
+    flags: (0x1018) ACC_STATIC, ACC_FINAL, ACC_SYNTHETIC
+
+  private org.kohsuke.github.GitHubPageIterator(org.kohsuke.github.GitHubClient, java.lang.Class<T>, org.kohsuke.github.GitHubRequest);
+    descriptor: (Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class;Lorg/kohsuke/github/GitHubRequest;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aconst_null
+         6: putfield      #2                  // Field finalResponse:Lorg/kohsuke/github/GitHubResponse;
+         9: ldc           #3                  // String GET
+        11: aload_3
+        12: invokevirtual #4                  // Method org/kohsuke/github/GitHubRequest.method:()Ljava/lang/String;
+        15: invokevirtual #5                  // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        18: ifne          31
+        21: new           #6                  // class java/lang/IllegalStateException
+        24: dup
+        25: ldc           #7                  // String Request method \"GET\" is required for page iterator.
+        27: invokespecial #8                  // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        30: athrow
+        31: aload_0
+        32: aload_1
+        33: putfield      #9                  // Field client:Lorg/kohsuke/github/GitHubClient;
+        36: aload_0
+        37: aload_2
+        38: putfield      #10                 // Field type:Ljava/lang/Class;
+        41: aload_0
+        42: aload_3
+        43: putfield      #11                 // Field nextRequest:Lorg/kohsuke/github/GitHubRequest;
+        46: return
+      LineNumberTable:
+        line 54: 0
+        line 52: 4
+        line 55: 9
+        line 56: 21
+        line 59: 31
+        line 60: 36
+        line 61: 41
+        line 62: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      47     0  this   Lorg/kohsuke/github/GitHubPageIterator;
+            0      47     1 client   Lorg/kohsuke/github/GitHubClient;
+            0      47     2  type   Ljava/lang/Class;
+            0      47     3 request   Lorg/kohsuke/github/GitHubRequest;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      47     0  this   Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+            0      47     2  type   Ljava/lang/Class<TT;>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 31
+          locals = [ class org/kohsuke/github/GitHubPageIterator, class org/kohsuke/github/GitHubClient, class java/lang/Class, class org/kohsuke/github/GitHubRequest ]
+          stack = []
+    Signature: #85                          // (Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class<TT;>;Lorg/kohsuke/github/GitHubRequest;)V
+
+  static <T extends java.lang.Object> org.kohsuke.github.GitHubPageIterator<T> create(org.kohsuke.github.GitHubClient, java.lang.Class<T>, org.kohsuke.github.GitHubRequest, int);
+    descriptor: (Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class;Lorg/kohsuke/github/GitHubRequest;I)Lorg/kohsuke/github/GitHubPageIterator;
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=5, locals=5, args_size=4
+         0: iload_3
+         1: ifle          22
+         4: aload_2
+         5: invokevirtual #12                 // Method org/kohsuke/github/GitHubRequest.toBuilder:()Lorg/kohsuke/github/GitHubRequest$Builder;
+         8: ldc           #13                 // String per_page
+        10: iload_3
+        11: invokevirtual #14                 // Method org/kohsuke/github/GitHubRequest$Builder.with:(Ljava/lang/String;I)Lorg/kohsuke/github/GitHubRequest$Builder;
+        14: astore        4
+        16: aload         4
+        18: invokevirtual #15                 // Method org/kohsuke/github/GitHubRequest$Builder.build:()Lorg/kohsuke/github/GitHubRequest;
+        21: astore_2
+        22: new           #16                 // class org/kohsuke/github/GitHubPageIterator
+        25: dup
+        26: aload_0
+        27: aload_1
+        28: aload_2
+        29: invokespecial #17                 // Method "<init>":(Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class;Lorg/kohsuke/github/GitHubRequest;)V
+        32: areturn
+      LineNumberTable:
+        line 77: 0
+        line 78: 4
+        line 79: 16
+        line 82: 22
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           16       6     4 builder   Lorg/kohsuke/github/GitHubRequest$Builder;
+            0      33     0 client   Lorg/kohsuke/github/GitHubClient;
+            0      33     1  type   Ljava/lang/Class;
+            0      33     2 request   Lorg/kohsuke/github/GitHubRequest;
+            0      33     3 pageSize   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           16       6     4 builder   Lorg/kohsuke/github/GitHubRequest$Builder<*>;
+            0      33     1  type   Ljava/lang/Class<TT;>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 22 /* same */
+    Signature: #96                          // <T:Ljava/lang/Object;>(Lorg/kohsuke/github/GitHubClient;Ljava/lang/Class<TT;>;Lorg/kohsuke/github/GitHubRequest;I)Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+
+  public boolean hasNext();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #18                 // Method fetch:()V
+         4: aload_0
+         5: getfield      #19                 // Field next:Ljava/lang/Object;
+         8: ifnull        15
+        11: iconst_1
+        12: goto          16
+        15: iconst_0
+        16: ireturn
+      LineNumberTable:
+        line 89: 0
+        line 90: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lorg/kohsuke/github/GitHubPageIterator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 15 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public T next();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: invokespecial #18                 // Method fetch:()V
+         4: aload_0
+         5: getfield      #19                 // Field next:Ljava/lang/Object;
+         8: astore_1
+         9: aload_1
+        10: ifnonnull     21
+        13: new           #20                 // class java/util/NoSuchElementException
+        16: dup
+        17: invokespecial #21                 // Method java/util/NoSuchElementException."<init>":()V
+        20: athrow
+        21: aload_0
+        22: aconst_null
+        23: putfield      #19                 // Field next:Ljava/lang/Object;
+        26: aload_1
+        27: areturn
+      LineNumberTable:
+        line 100: 0
+        line 101: 4
+        line 102: 9
+        line 103: 13
+        line 105: 21
+        line 106: 26
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lorg/kohsuke/github/GitHubPageIterator;
+            9      19     1 result   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+            9      19     1 result   TT;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class java/lang/Object ]
+    Signature: #101                         // ()TT;
+    RuntimeVisibleAnnotations:
+      0: #103()
+        javax.annotation.Nonnull
+
+  public org.kohsuke.github.GitHubResponse<T> finalResponse();
+    descriptor: ()Lorg/kohsuke/github/GitHubResponse;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #22                 // Method hasNext:()Z
+         4: ifeq          17
+         7: new           #23                 // class org/kohsuke/github/GHException
+        10: dup
+        11: ldc           #24                 // String Final response is not available until after iterator is done.
+        13: invokespecial #25                 // Method org/kohsuke/github/GHException."<init>":(Ljava/lang/String;)V
+        16: athrow
+        17: aload_0
+        18: getfield      #2                  // Field finalResponse:Lorg/kohsuke/github/GitHubResponse;
+        21: areturn
+      LineNumberTable:
+        line 115: 0
+        line 116: 7
+        line 118: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lorg/kohsuke/github/GitHubPageIterator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 17 /* same */
+    Signature: #105                         // ()Lorg/kohsuke/github/GitHubResponse<TT;>;
+
+  private void fetch();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=3, args_size=1
+         0: aload_0
+         1: getfield      #19                 // Field next:Ljava/lang/Object;
+         4: ifnull        8
+         7: return
+         8: aload_0
+         9: getfield      #11                 // Field nextRequest:Lorg/kohsuke/github/GitHubRequest;
+        12: ifnonnull     16
+        15: return
+        16: aload_0
+        17: getfield      #11                 // Field nextRequest:Lorg/kohsuke/github/GitHubRequest;
+        20: invokevirtual #26                 // Method org/kohsuke/github/GitHubRequest.url:()Ljava/net/URL;
+        23: astore_1
+        24: aload_0
+        25: getfield      #9                  // Field client:Lorg/kohsuke/github/GitHubClient;
+        28: aload_0
+        29: getfield      #11                 // Field nextRequest:Lorg/kohsuke/github/GitHubRequest;
+        32: aload_0
+        33: invokedynamic #27,  0             // InvokeDynamic #0:apply:(Lorg/kohsuke/github/GitHubPageIterator;)Lorg/kohsuke/github/GitHubClient$BodyHandler;
+        38: invokevirtual #28                 // Method org/kohsuke/github/GitHubClient.sendRequest:(Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubClient$BodyHandler;)Lorg/kohsuke/github/GitHubResponse;
+        41: astore_2
+        42: getstatic     #29                 // Field $assertionsDisabled:Z
+        45: ifne          63
+        48: aload_2
+        49: invokevirtual #30                 // Method org/kohsuke/github/GitHubResponse.body:()Ljava/lang/Object;
+        52: ifnonnull     63
+        55: new           #31                 // class java/lang/AssertionError
+        58: dup
+        59: invokespecial #32                 // Method java/lang/AssertionError."<init>":()V
+        62: athrow
+        63: aload_0
+        64: aload_2
+        65: invokevirtual #30                 // Method org/kohsuke/github/GitHubResponse.body:()Ljava/lang/Object;
+        68: putfield      #19                 // Field next:Ljava/lang/Object;
+        71: aload_0
+        72: aload_0
+        73: aload_0
+        74: getfield      #11                 // Field nextRequest:Lorg/kohsuke/github/GitHubRequest;
+        77: aload_2
+        78: invokespecial #33                 // Method findNextURL:(Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubResponse;)Lorg/kohsuke/github/GitHubRequest;
+        81: putfield      #11                 // Field nextRequest:Lorg/kohsuke/github/GitHubRequest;
+        84: aload_0
+        85: getfield      #11                 // Field nextRequest:Lorg/kohsuke/github/GitHubRequest;
+        88: ifnonnull     96
+        91: aload_0
+        92: aload_2
+        93: putfield      #2                  // Field finalResponse:Lorg/kohsuke/github/GitHubResponse;
+        96: goto          128
+        99: astore_2
+       100: new           #23                 // class org/kohsuke/github/GHException
+       103: dup
+       104: new           #35                 // class java/lang/StringBuilder
+       107: dup
+       108: invokespecial #36                 // Method java/lang/StringBuilder."<init>":()V
+       111: ldc           #37                 // String Failed to retrieve
+       113: invokevirtual #38                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       116: aload_1
+       117: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       120: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       123: aload_2
+       124: invokespecial #41                 // Method org/kohsuke/github/GHException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+       127: athrow
+       128: return
+      Exception table:
+         from    to  target type
+            24    96    99   Class java/io/IOException
+      LineNumberTable:
+        line 135: 0
+        line 136: 7
+        line 137: 8
+        line 138: 15
+        line 140: 16
+        line 142: 24
+        line 144: 42
+        line 145: 63
+        line 146: 71
+        line 147: 84
+        line 148: 91
+        line 154: 96
+        line 150: 99
+        line 153: 100
+        line 155: 128
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           42      54     2 nextResponse   Lorg/kohsuke/github/GitHubResponse;
+          100      28     2     e   Ljava/io/IOException;
+            0     129     0  this   Lorg/kohsuke/github/GitHubPageIterator;
+           24     105     1   url   Ljava/net/URL;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           42      54     2 nextResponse   Lorg/kohsuke/github/GitHubResponse<TT;>;
+            0     129     0  this   Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+      StackMapTable: number_of_entries = 6
+        frame_type = 8 /* same */
+        frame_type = 7 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 46
+          locals = [ class java/net/URL, class org/kohsuke/github/GitHubResponse ]
+        frame_type = 250 /* chop */
+          offset_delta = 32
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 28 /* same */
+
+  private org.kohsuke.github.GitHubRequest findNextURL(org.kohsuke.github.GitHubRequest, org.kohsuke.github.GitHubResponse<T>) throws java.net.MalformedURLException;
+    descriptor: (Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubResponse;)Lorg/kohsuke/github/GitHubRequest;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=10, args_size=3
+         0: aconst_null
+         1: astore_3
+         2: aload_2
+         3: ldc           #42                 // String Link
+         5: invokevirtual #43                 // Method org/kohsuke/github/GitHubResponse.header:(Ljava/lang/String;)Ljava/lang/String;
+         8: astore        4
+        10: aload         4
+        12: ifnull        93
+        15: aload         4
+        17: ldc           #44                 // String ,
+        19: invokevirtual #45                 // Method java/lang/String.split:(Ljava/lang/String;)[Ljava/lang/String;
+        22: astore        5
+        24: aload         5
+        26: arraylength
+        27: istore        6
+        29: iconst_0
+        30: istore        7
+        32: iload         7
+        34: iload         6
+        36: if_icmpge     93
+        39: aload         5
+        41: iload         7
+        43: aaload
+        44: astore        8
+        46: aload         8
+        48: ldc           #46                 // String rel=\"next\"
+        50: invokevirtual #47                 // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+        53: ifeq          87
+        56: aload         8
+        58: bipush        62
+        60: invokevirtual #48                 // Method java/lang/String.indexOf:(I)I
+        63: istore        9
+        65: aload_1
+        66: invokevirtual #12                 // Method org/kohsuke/github/GitHubRequest.toBuilder:()Lorg/kohsuke/github/GitHubRequest$Builder;
+        69: aload         8
+        71: iconst_1
+        72: iload         9
+        74: invokevirtual #49                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+        77: invokevirtual #50                 // Method org/kohsuke/github/GitHubRequest$Builder.setRawUrlPath:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        80: invokevirtual #15                 // Method org/kohsuke/github/GitHubRequest$Builder.build:()Lorg/kohsuke/github/GitHubRequest;
+        83: astore_3
+        84: goto          93
+        87: iinc          7, 1
+        90: goto          32
+        93: aload_3
+        94: areturn
+      LineNumberTable:
+        line 162: 0
+        line 163: 2
+        line 164: 10
+        line 165: 15
+        line 166: 46
+        line 169: 56
+        line 170: 65
+        line 171: 84
+        line 165: 87
+        line 175: 93
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           65      22     9   idx   I
+           46      41     8 token   Ljava/lang/String;
+            0      95     0  this   Lorg/kohsuke/github/GitHubPageIterator;
+            0      95     1 nextRequest   Lorg/kohsuke/github/GitHubRequest;
+            0      95     2 nextResponse   Lorg/kohsuke/github/GitHubResponse;
+            2      93     3 result   Lorg/kohsuke/github/GitHubRequest;
+           10      85     4  link   Ljava/lang/String;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      95     0  this   Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+            0      95     2 nextResponse   Lorg/kohsuke/github/GitHubResponse<TT;>;
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 32
+          locals = [ class org/kohsuke/github/GitHubPageIterator, class org/kohsuke/github/GitHubRequest, class org/kohsuke/github/GitHubResponse, class org/kohsuke/github/GitHubRequest, class java/lang/String, class "[Ljava/lang/String;", int, int ]
+          stack = []
+        frame_type = 54 /* same */
+        frame_type = 248 /* chop */
+          offset_delta = 5
+    Exceptions:
+      throws java.net.MalformedURLException
+    Signature: #125                         // (Lorg/kohsuke/github/GitHubRequest;Lorg/kohsuke/github/GitHubResponse<TT;>;)Lorg/kohsuke/github/GitHubRequest;
+
+  private java.lang.Object lambda$fetch$0(org.kohsuke.github.connector.GitHubConnectorResponse) throws java.io.IOException;
+    descriptor: (Lorg/kohsuke/github/connector/GitHubConnectorResponse;)Ljava/lang/Object;
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: aload_0
+         2: getfield      #10                 // Field type:Ljava/lang/Class;
+         5: invokestatic  #51                 // Method org/kohsuke/github/GitHubResponse.parseBody:(Lorg/kohsuke/github/connector/GitHubConnectorResponse;Ljava/lang/Class;)Ljava/lang/Object;
+         8: areturn
+      LineNumberTable:
+        line 143: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GitHubPageIterator;
+            0       9     1 connectorResponse   Lorg/kohsuke/github/connector/GitHubConnectorResponse;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GitHubPageIterator<TT;>;
+    Exceptions:
+      throws java.io.IOException
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: ldc           #16                 // class org/kohsuke/github/GitHubPageIterator
+         2: invokevirtual #52                 // Method java/lang/Class.desiredAssertionStatus:()Z
+         5: ifne          12
+         8: iconst_1
+         9: goto          13
+        12: iconst_0
+        13: putstatic     #29                 // Field $assertionsDisabled:Z
+        16: return
+      LineNumberTable:
+        line 25: 0
+      StackMapTable: number_of_entries = 2
+        frame_type = 12 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+}
+Signature: #131                         // <T:Ljava/lang/Object;>Ljava/lang/Object;Ljava/util/Iterator<TT;>;
+SourceFile: "GitHubPageIterator.java"
+InnerClasses:
+  static #90= #89 of #84;                 // Builder=class org/kohsuke/github/GitHubRequest$Builder of class org/kohsuke/github/GitHubRequest
+  static #215= #214 of #82;               // BodyHandler=class org/kohsuke/github/GitHubClient$BodyHandler of class org/kohsuke/github/GitHubClient
+  public static final #247= #246 of #249; // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+BootstrapMethods:
+  0: #159 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #160 (Ljava/lang/Object;)Ljava/lang/Object;
+      #161 REF_invokeSpecial org/kohsuke/github/GitHubPageIterator.lambda$fetch$0:(Lorg/kohsuke/github/connector/GitHubConnectorResponse;)Ljava/lang/Object;
+      #162 (Lorg/kohsuke/github/connector/GitHubConnectorResponse;)Ljava/lang/Object;

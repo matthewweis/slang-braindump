@@ -1,0 +1,2030 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/kohsuke/github/GHPullRequest.class
+  Last modified May 29, 2022; size 15480 bytes
+  SHA-256 checksum 086e45858654fe710d6af4de8e02ecf10e1af225792f8a0bbe6973e52177a722
+  Compiled from "GHPullRequest.java"
+public class org.kohsuke.github.GHPullRequest extends org.kohsuke.github.GHIssue implements org.kohsuke.github.Refreshable
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #62                         // org/kohsuke/github/GHPullRequest
+  super_class: #133                       // org/kohsuke/github/GHIssue
+  interfaces: 1, fields: 23, methods: 48, attributes: 3
+Constant pool:
+    #1 = Methodref          #133.#315     // org/kohsuke/github/GHIssue."<init>":()V
+    #2 = Methodref          #62.#316      // org/kohsuke/github/GHPullRequest.wrap:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHIssue;
+    #3 = Fieldref           #62.#317      // org/kohsuke/github/GHPullRequest.owner:Lorg/kohsuke/github/GHRepository;
+    #4 = Methodref          #62.#318      // org/kohsuke/github/GHPullRequest.getUrl:()Ljava/net/URL;
+    #5 = String             #319          // Missing instance URL!
+    #6 = Methodref          #320.#321     // java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+    #7 = Class              #322          // java/net/URL
+    #8 = Methodref          #7.#323       // java/net/URL.toString:()Ljava/lang/String;
+    #9 = Methodref          #62.#324      // org/kohsuke/github/GHPullRequest.root:()Lorg/kohsuke/github/GitHub;
+   #10 = Methodref          #325.#326     // org/kohsuke/github/GitHub.getApiUrl:()Ljava/lang/String;
+   #11 = String             #327          //
+   #12 = Methodref          #68.#328      // java/lang/String.replace:(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+   #13 = String             #329          // /
+   #14 = Class              #330          // java/lang/CharSequence
+   #15 = Methodref          #331.#332     // org/apache/commons/lang3/StringUtils.prependIfMissing:(Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+   #16 = Class              #333          // java/lang/StringBuilder
+   #17 = Methodref          #16.#315      // java/lang/StringBuilder."<init>":()V
+   #18 = String             #334          // /repos/
+   #19 = Methodref          #16.#335      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #20 = Methodref          #336.#337     // org/kohsuke/github/GHRepository.getOwnerName:()Ljava/lang/String;
+   #21 = Methodref          #336.#338     // org/kohsuke/github/GHRepository.getName:()Ljava/lang/String;
+   #22 = String             #339          // /pulls/
+   #23 = Fieldref           #62.#340      // org/kohsuke/github/GHPullRequest.number:I
+   #24 = Methodref          #16.#341      // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+   #25 = Methodref          #16.#323      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #26 = Fieldref           #62.#342      // org/kohsuke/github/GHPullRequest.auto_merge:Lorg/kohsuke/github/GHPullRequest$AutoMerge;
+   #27 = Fieldref           #62.#343      // org/kohsuke/github/GHPullRequest.patch_url:Ljava/lang/String;
+   #28 = Methodref          #344.#345     // org/kohsuke/github/GitHubClient.parseURL:(Ljava/lang/String;)Ljava/net/URL;
+   #29 = Fieldref           #62.#346      // org/kohsuke/github/GHPullRequest.issue_url:Ljava/lang/String;
+   #30 = Fieldref           #62.#347      // org/kohsuke/github/GHPullRequest.base:Lorg/kohsuke/github/GHCommitPointer;
+   #31 = Fieldref           #62.#348      // org/kohsuke/github/GHPullRequest.head:Lorg/kohsuke/github/GHCommitPointer;
+   #32 = Methodref          #133.#349     // org/kohsuke/github/GHIssue.getUpdatedAt:()Ljava/util/Date;
+   #33 = Fieldref           #62.#350      // org/kohsuke/github/GHPullRequest.diff_url:Ljava/lang/String;
+   #34 = Fieldref           #62.#351      // org/kohsuke/github/GHPullRequest.merged_at:Ljava/lang/String;
+   #35 = Methodref          #344.#352     // org/kohsuke/github/GitHubClient.parseDate:(Ljava/lang/String;)Ljava/util/Date;
+   #36 = Methodref          #62.#353      // org/kohsuke/github/GHPullRequest.populate:()V
+   #37 = Fieldref           #62.#354      // org/kohsuke/github/GHPullRequest.merged_by:Lorg/kohsuke/github/GHUser;
+   #38 = Fieldref           #62.#355      // org/kohsuke/github/GHPullRequest.review_comments:I
+   #39 = Fieldref           #62.#356      // org/kohsuke/github/GHPullRequest.additions:I
+   #40 = Fieldref           #62.#357      // org/kohsuke/github/GHPullRequest.commits:I
+   #41 = Fieldref           #62.#358      // org/kohsuke/github/GHPullRequest.merged:Z
+   #42 = Fieldref           #62.#359      // org/kohsuke/github/GHPullRequest.maintainer_can_modify:Z
+   #43 = Fieldref           #62.#360      // org/kohsuke/github/GHPullRequest.draft:Z
+   #44 = Fieldref           #62.#361      // org/kohsuke/github/GHPullRequest.mergeable:Ljava/lang/Boolean;
+   #45 = Methodref          #62.#362      // org/kohsuke/github/GHPullRequest.refresh:(Ljava/lang/Object;)V
+   #46 = Fieldref           #62.#363      // org/kohsuke/github/GHPullRequest.deletions:I
+   #47 = Fieldref           #62.#364      // org/kohsuke/github/GHPullRequest.mergeable_state:Ljava/lang/String;
+   #48 = Fieldref           #62.#365      // org/kohsuke/github/GHPullRequest.changed_files:I
+   #49 = Fieldref           #62.#366      // org/kohsuke/github/GHPullRequest.merge_commit_sha:Ljava/lang/String;
+   #50 = Fieldref           #62.#367      // org/kohsuke/github/GHPullRequest.requested_reviewers:[Lorg/kohsuke/github/GHUser;
+   #51 = Methodref          #368.#369     // java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+   #52 = Methodref          #370.#371     // java/util/Collections.unmodifiableList:(Ljava/util/List;)Ljava/util/List;
+   #53 = Fieldref           #62.#372      // org/kohsuke/github/GHPullRequest.requested_teams:[Lorg/kohsuke/github/GHTeam;
+   #54 = Methodref          #62.#373      // org/kohsuke/github/GHPullRequest.refresh:()V
+   #55 = Methodref          #62.#374      // org/kohsuke/github/GHPullRequest.isOffline:()Z
+   #56 = Methodref          #325.#375     // org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+   #57 = Fieldref           #376.#377     // org/kohsuke/github/internal/Previews.SHADOW_CAT:Lorg/kohsuke/github/internal/Previews;
+   #58 = Methodref          #59.#378      // org/kohsuke/github/Requester.withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #59 = Class              #379          // org/kohsuke/github/Requester
+   #60 = Methodref          #59.#380      // org/kohsuke/github/Requester.setRawUrlPath:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #61 = Methodref          #59.#381      // org/kohsuke/github/Requester.fetchInto:(Ljava/lang/Object;)Ljava/lang/Object;
+   #62 = Class              #382          // org/kohsuke/github/GHPullRequest
+   #63 = Methodref          #62.#383      // org/kohsuke/github/GHPullRequest.wrapUp:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHPullRequest;
+   #64 = String             #384          // %s/files
+   #65 = Class              #385          // java/lang/Object
+   #66 = Methodref          #62.#386      // org/kohsuke/github/GHPullRequest.getApiRoute:()Ljava/lang/String;
+   #67 = Methodref          #68.#387      // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+   #68 = Class              #388          // java/lang/String
+   #69 = Methodref          #59.#389      // org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #70 = Class              #390          // "[Lorg/kohsuke/github/GHPullRequestFileDetail;"
+   #71 = Methodref          #59.#391      // org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+   #72 = String             #392          // %s/reviews
+   #73 = Class              #393          // "[Lorg/kohsuke/github/GHPullRequestReview;"
+   #74 = InvokeDynamic      #0:#399       // #0:accept:(Lorg/kohsuke/github/GHPullRequest;)Ljava/util/function/Consumer;
+   #75 = String             #400          // /comments
+   #76 = Class              #257          // "[Lorg/kohsuke/github/GHPullRequestReviewComment;"
+   #77 = InvokeDynamic      #1:#399       // #1:accept:(Lorg/kohsuke/github/GHPullRequest;)Ljava/util/function/Consumer;
+   #78 = String             #403          // %s/commits
+   #79 = Class              #404          // "[Lorg/kohsuke/github/GHPullRequestCommitDetail;"
+   #80 = InvokeDynamic      #2:#399       // #2:accept:(Lorg/kohsuke/github/GHPullRequest;)Ljava/util/function/Consumer;
+   #81 = Methodref          #62.#407      // org/kohsuke/github/GHPullRequest.createReview:(Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;Ljava/util/List;)Lorg/kohsuke/github/GHPullRequestReview;
+   #82 = Methodref          #62.#408      // org/kohsuke/github/GHPullRequest.createReview:()Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+   #83 = Methodref          #93.#409      // org/kohsuke/github/GHPullRequestReviewBuilder.body:(Ljava/lang/String;)Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+   #84 = InterfaceMethodref #288.#410     // java/util/List.iterator:()Ljava/util/Iterator;
+   #85 = InterfaceMethodref #268.#411     // java/util/Iterator.hasNext:()Z
+   #86 = InterfaceMethodref #268.#412     // java/util/Iterator.next:()Ljava/lang/Object;
+   #87 = Class              #413          // org/kohsuke/github/GHPullRequestReviewComment
+   #88 = Methodref          #87.#414      // org/kohsuke/github/GHPullRequestReviewComment.getBody:()Ljava/lang/String;
+   #89 = Methodref          #87.#415      // org/kohsuke/github/GHPullRequestReviewComment.getPath:()Ljava/lang/String;
+   #90 = Methodref          #87.#416      // org/kohsuke/github/GHPullRequestReviewComment.getPosition:()I
+   #91 = Methodref          #93.#417      // org/kohsuke/github/GHPullRequestReviewBuilder.comment:(Ljava/lang/String;Ljava/lang/String;I)Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+   #92 = Methodref          #93.#418      // org/kohsuke/github/GHPullRequestReviewBuilder.create:()Lorg/kohsuke/github/GHPullRequestReview;
+   #93 = Class              #419          // org/kohsuke/github/GHPullRequestReviewBuilder
+   #94 = Methodref          #93.#420      // org/kohsuke/github/GHPullRequestReviewBuilder."<init>":(Lorg/kohsuke/github/GHPullRequest;)V
+   #95 = String             #421          // POST
+   #96 = Methodref          #59.#422      // org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #97 = String             #253          // body
+   #98 = Methodref          #59.#423      // org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #99 = String             #424          // commit_id
+  #100 = String             #274          // path
+  #101 = String             #275          // position
+  #102 = Methodref          #59.#425      // org/kohsuke/github/Requester.with:(Ljava/lang/String;I)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #103 = Methodref          #59.#426      // org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+  #104 = Methodref          #87.#427      // org/kohsuke/github/GHPullRequestReviewComment.wrapUp:(Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReviewComment;
+  #105 = String             #278          // reviewers
+  #106 = Methodref          #62.#428      // org/kohsuke/github/GHPullRequest.getLogins:(Ljava/util/Collection;)Ljava/util/List;
+  #107 = Methodref          #59.#429      // org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #108 = String             #430          // /requested_reviewers
+  #109 = Methodref          #59.#431      // org/kohsuke/github/Requester.send:()V
+  #110 = Class              #432          // java/util/ArrayList
+  #111 = InterfaceMethodref #288.#433     // java/util/List.size:()I
+  #112 = Methodref          #110.#434     // java/util/ArrayList."<init>":(I)V
+  #113 = Class              #435          // org/kohsuke/github/GHTeam
+  #114 = Methodref          #113.#436     // org/kohsuke/github/GHTeam.getSlug:()Ljava/lang/String;
+  #115 = InterfaceMethodref #288.#437     // java/util/List.add:(Ljava/lang/Object;)Z
+  #116 = String             #438          // team_reviewers
+  #117 = String             #439          // PATCH
+  #118 = String             #147          // base
+  #119 = Fieldref           #376.#440     // org/kohsuke/github/internal/Previews.LYDIAN:Lorg/kohsuke/github/internal/Previews;
+  #120 = String             #441          // PUT
+  #121 = String             #442          // expected_head_sha
+  #122 = Methodref          #443.#444     // org/kohsuke/github/GHCommitPointer.getSha:()Ljava/lang/String;
+  #123 = String             #445          // /update-branch
+  #124 = Methodref          #62.#446      // org/kohsuke/github/GHPullRequest.merge:(Ljava/lang/String;Ljava/lang/String;)V
+  #125 = Methodref          #62.#447      // org/kohsuke/github/GHPullRequest.merge:(Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHPullRequest$MergeMethod;)V
+  #126 = String             #448          // commit_message
+  #127 = String             #273          // sha
+  #128 = String             #449          // merge_method
+  #129 = Methodref          #59.#450      // org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #130 = String             #451          // /merge
+  #131 = Methodref          #452.#453     // org/kohsuke/github/GHPullRequestCommitDetail.wrapUp:(Lorg/kohsuke/github/GHPullRequest;)V
+  #132 = Methodref          #454.#455     // org/kohsuke/github/GHPullRequestReview.wrapUp:(Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReview;
+  #133 = Class              #456          // org/kohsuke/github/GHIssue
+  #134 = Class              #457          // org/kohsuke/github/Refreshable
+  #135 = Class              #458          // org/kohsuke/github/GHPullRequest$AutoMerge
+  #136 = Utf8               AutoMerge
+  #137 = Utf8               InnerClasses
+  #138 = Class              #459          // org/kohsuke/github/GHPullRequest$MergeMethod
+  #139 = Utf8               MergeMethod
+  #140 = Utf8               COMMENTS_ACTION
+  #141 = Utf8               Ljava/lang/String;
+  #142 = Utf8               ConstantValue
+  #143 = Utf8               REQUEST_REVIEWERS
+  #144 = Utf8               patch_url
+  #145 = Utf8               diff_url
+  #146 = Utf8               issue_url
+  #147 = Utf8               base
+  #148 = Utf8               Lorg/kohsuke/github/GHCommitPointer;
+  #149 = Utf8               merged_at
+  #150 = Utf8               head
+  #151 = Utf8               merged_by
+  #152 = Utf8               Lorg/kohsuke/github/GHUser;
+  #153 = Utf8               review_comments
+  #154 = Utf8               I
+  #155 = Utf8               additions
+  #156 = Utf8               commits
+  #157 = Utf8               merged
+  #158 = Utf8               Z
+  #159 = Utf8               maintainer_can_modify
+  #160 = Utf8               draft
+  #161 = Utf8               mergeable
+  #162 = Utf8               Ljava/lang/Boolean;
+  #163 = Utf8               deletions
+  #164 = Utf8               mergeable_state
+  #165 = Utf8               changed_files
+  #166 = Utf8               merge_commit_sha
+  #167 = Utf8               auto_merge
+  #168 = Utf8               Lorg/kohsuke/github/GHPullRequest$AutoMerge;
+  #169 = Utf8               requested_reviewers
+  #170 = Utf8               [Lorg/kohsuke/github/GHUser;
+  #171 = Utf8               requested_teams
+  #172 = Utf8               [Lorg/kohsuke/github/GHTeam;
+  #173 = Utf8               <init>
+  #174 = Utf8               ()V
+  #175 = Utf8               Code
+  #176 = Utf8               LineNumberTable
+  #177 = Utf8               LocalVariableTable
+  #178 = Utf8               this
+  #179 = Utf8               Lorg/kohsuke/github/GHPullRequest;
+  #180 = Utf8               wrapUp
+  #181 = Utf8               (Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHPullRequest;
+  #182 = Utf8               owner
+  #183 = Utf8               Lorg/kohsuke/github/GHRepository;
+  #184 = Utf8               getApiRoute
+  #185 = Utf8               ()Ljava/lang/String;
+  #186 = Utf8               url
+  #187 = Utf8               Ljava/net/URL;
+  #188 = Utf8               StackMapTable
+  #189 = Utf8               getAutoMerge
+  #190 = Utf8               ()Lorg/kohsuke/github/GHPullRequest$AutoMerge;
+  #191 = Utf8               getPatchUrl
+  #192 = Utf8               ()Ljava/net/URL;
+  #193 = Utf8               getIssueUrl
+  #194 = Utf8               getBase
+  #195 = Utf8               ()Lorg/kohsuke/github/GHCommitPointer;
+  #196 = Utf8               getHead
+  #197 = Utf8               getIssueUpdatedAt
+  #198 = Utf8               ()Ljava/util/Date;
+  #199 = Utf8               Exceptions
+  #200 = Class              #460          // java/io/IOException
+  #201 = Utf8               Deprecated
+  #202 = Utf8               RuntimeVisibleAnnotations
+  #203 = Utf8               Ljava/lang/Deprecated;
+  #204 = Utf8               getDiffUrl
+  #205 = Utf8               getMergedAt
+  #206 = Utf8               getClosedBy
+  #207 = Utf8               ()Lorg/kohsuke/github/GHUser;
+  #208 = Utf8               getPullRequest
+  #209 = Class              #461          // org/kohsuke/github/GHIssue$PullRequest
+  #210 = Utf8               PullRequest
+  #211 = Utf8               ()Lorg/kohsuke/github/GHIssue$PullRequest;
+  #212 = Utf8               getMergedBy
+  #213 = Utf8               RuntimeInvisibleAnnotations
+  #214 = Utf8               Ledu/umd/cs/findbugs/annotations/SuppressFBWarnings;
+  #215 = Utf8               value
+  #216 = Utf8               EI_EXPOSE_REP
+  #217 = Utf8               justification
+  #218 = Utf8               Expected behavior
+  #219 = Utf8               getReviewComments
+  #220 = Utf8               ()I
+  #221 = Utf8               getAdditions
+  #222 = Utf8               getCommits
+  #223 = Utf8               isMerged
+  #224 = Utf8               ()Z
+  #225 = Utf8               canMaintainerModify
+  #226 = Utf8               isDraft
+  #227 = Utf8               getMergeable
+  #228 = Utf8               ()Ljava/lang/Boolean;
+  #229 = Utf8               getMergeableNoRefresh
+  #230 = Utf8               getDeletions
+  #231 = Utf8               getMergeableState
+  #232 = Utf8               getChangedFiles
+  #233 = Utf8               getMergeCommitSha
+  #234 = Utf8               getRequestedReviewers
+  #235 = Utf8               ()Ljava/util/List;
+  #236 = Utf8               Signature
+  #237 = Utf8               ()Ljava/util/List<Lorg/kohsuke/github/GHUser;>;
+  #238 = Utf8               getRequestedTeams
+  #239 = Utf8               ()Ljava/util/List<Lorg/kohsuke/github/GHTeam;>;
+  #240 = Utf8               populate
+  #241 = Utf8               refresh
+  #242 = Utf8               listFiles
+  #243 = Utf8               ()Lorg/kohsuke/github/PagedIterable;
+  #244 = Utf8               ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHPullRequestFileDetail;>;
+  #245 = Utf8               listReviews
+  #246 = Utf8               ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHPullRequestReview;>;
+  #247 = Utf8               listReviewComments
+  #248 = Utf8               ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHPullRequestReviewComment;>;
+  #249 = Utf8               listCommits
+  #250 = Utf8               ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHPullRequestCommitDetail;>;
+  #251 = Utf8               createReview
+  #252 = Utf8               (Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;[Lorg/kohsuke/github/GHPullRequestReviewComment;)Lorg/kohsuke/github/GHPullRequestReview;
+  #253 = Utf8               body
+  #254 = Utf8               event
+  #255 = Utf8               Lorg/kohsuke/github/GHPullRequestReviewState;
+  #256 = Utf8               comments
+  #257 = Utf8               [Lorg/kohsuke/github/GHPullRequestReviewComment;
+  #258 = Utf8               RuntimeVisibleParameterAnnotations
+  #259 = Utf8               Ljavax/annotation/CheckForNull;
+  #260 = Utf8               (Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;Ljava/util/List;)Lorg/kohsuke/github/GHPullRequestReview;
+  #261 = Utf8               c
+  #262 = Utf8               Lorg/kohsuke/github/GHPullRequestReviewComment;
+  #263 = Utf8               Ljava/util/List;
+  #264 = Utf8               b
+  #265 = Utf8               Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+  #266 = Utf8               LocalVariableTypeTable
+  #267 = Utf8               Ljava/util/List<Lorg/kohsuke/github/GHPullRequestReviewComment;>;
+  #268 = Class              #462          // java/util/Iterator
+  #269 = Utf8               (Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;Ljava/util/List<Lorg/kohsuke/github/GHPullRequestReviewComment;>;)Lorg/kohsuke/github/GHPullRequestReview;
+  #270 = Utf8               ()Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+  #271 = Utf8               createReviewComment
+  #272 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lorg/kohsuke/github/GHPullRequestReviewComment;
+  #273 = Utf8               sha
+  #274 = Utf8               path
+  #275 = Utf8               position
+  #276 = Utf8               requestReviewers
+  #277 = Utf8               (Ljava/util/List;)V
+  #278 = Utf8               reviewers
+  #279 = Utf8               Ljava/util/List<Lorg/kohsuke/github/GHUser;>;
+  #280 = Utf8               (Ljava/util/List<Lorg/kohsuke/github/GHUser;>;)V
+  #281 = Utf8               requestTeamReviewers
+  #282 = Utf8               team
+  #283 = Utf8               Lorg/kohsuke/github/GHTeam;
+  #284 = Utf8               teams
+  #285 = Utf8               teamReviewers
+  #286 = Utf8               Ljava/util/List<Lorg/kohsuke/github/GHTeam;>;
+  #287 = Utf8               Ljava/util/List<Ljava/lang/String;>;
+  #288 = Class              #463          // java/util/List
+  #289 = Utf8               (Ljava/util/List<Lorg/kohsuke/github/GHTeam;>;)V
+  #290 = Utf8               setBaseBranch
+  #291 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GHPullRequest;
+  #292 = Utf8               newBaseBranch
+  #293 = Utf8               updateBranch
+  #294 = Utf8               Lorg/kohsuke/github/Preview;
+  #295 = Utf8               Lorg/kohsuke/github/internal/Previews;
+  #296 = Utf8               LYDIAN
+  #297 = Utf8               merge
+  #298 = Utf8               (Ljava/lang/String;)V
+  #299 = Utf8               msg
+  #300 = Utf8               (Ljava/lang/String;Ljava/lang/String;)V
+  #301 = Utf8               (Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHPullRequest$MergeMethod;)V
+  #302 = Utf8               method
+  #303 = Utf8               Lorg/kohsuke/github/GHPullRequest$MergeMethod;
+  #304 = Utf8               lambda$listCommits$2
+  #305 = Utf8               (Lorg/kohsuke/github/GHPullRequestCommitDetail;)V
+  #306 = Utf8               item
+  #307 = Utf8               Lorg/kohsuke/github/GHPullRequestCommitDetail;
+  #308 = Utf8               lambda$listReviewComments$1
+  #309 = Utf8               (Lorg/kohsuke/github/GHPullRequestReviewComment;)V
+  #310 = Utf8               lambda$listReviews$0
+  #311 = Utf8               (Lorg/kohsuke/github/GHPullRequestReview;)V
+  #312 = Utf8               Lorg/kohsuke/github/GHPullRequestReview;
+  #313 = Utf8               SourceFile
+  #314 = Utf8               GHPullRequest.java
+  #315 = NameAndType        #173:#174     // "<init>":()V
+  #316 = NameAndType        #464:#465     // wrap:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHIssue;
+  #317 = NameAndType        #182:#183     // owner:Lorg/kohsuke/github/GHRepository;
+  #318 = NameAndType        #466:#192     // getUrl:()Ljava/net/URL;
+  #319 = Utf8               Missing instance URL!
+  #320 = Class              #467          // java/util/Objects
+  #321 = NameAndType        #468:#469     // requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  #322 = Utf8               java/net/URL
+  #323 = NameAndType        #470:#185     // toString:()Ljava/lang/String;
+  #324 = NameAndType        #471:#472     // root:()Lorg/kohsuke/github/GitHub;
+  #325 = Class              #473          // org/kohsuke/github/GitHub
+  #326 = NameAndType        #474:#185     // getApiUrl:()Ljava/lang/String;
+  #327 = Utf8
+  #328 = NameAndType        #475:#476     // replace:(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+  #329 = Utf8               /
+  #330 = Utf8               java/lang/CharSequence
+  #331 = Class              #477          // org/apache/commons/lang3/StringUtils
+  #332 = NameAndType        #478:#479     // prependIfMissing:(Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+  #333 = Utf8               java/lang/StringBuilder
+  #334 = Utf8               /repos/
+  #335 = NameAndType        #480:#481     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #336 = Class              #482          // org/kohsuke/github/GHRepository
+  #337 = NameAndType        #483:#185     // getOwnerName:()Ljava/lang/String;
+  #338 = NameAndType        #484:#185     // getName:()Ljava/lang/String;
+  #339 = Utf8               /pulls/
+  #340 = NameAndType        #485:#154     // number:I
+  #341 = NameAndType        #480:#486     // append:(I)Ljava/lang/StringBuilder;
+  #342 = NameAndType        #167:#168     // auto_merge:Lorg/kohsuke/github/GHPullRequest$AutoMerge;
+  #343 = NameAndType        #144:#141     // patch_url:Ljava/lang/String;
+  #344 = Class              #487          // org/kohsuke/github/GitHubClient
+  #345 = NameAndType        #488:#489     // parseURL:(Ljava/lang/String;)Ljava/net/URL;
+  #346 = NameAndType        #146:#141     // issue_url:Ljava/lang/String;
+  #347 = NameAndType        #147:#148     // base:Lorg/kohsuke/github/GHCommitPointer;
+  #348 = NameAndType        #150:#148     // head:Lorg/kohsuke/github/GHCommitPointer;
+  #349 = NameAndType        #490:#198     // getUpdatedAt:()Ljava/util/Date;
+  #350 = NameAndType        #145:#141     // diff_url:Ljava/lang/String;
+  #351 = NameAndType        #149:#141     // merged_at:Ljava/lang/String;
+  #352 = NameAndType        #491:#492     // parseDate:(Ljava/lang/String;)Ljava/util/Date;
+  #353 = NameAndType        #240:#174     // populate:()V
+  #354 = NameAndType        #151:#152     // merged_by:Lorg/kohsuke/github/GHUser;
+  #355 = NameAndType        #153:#154     // review_comments:I
+  #356 = NameAndType        #155:#154     // additions:I
+  #357 = NameAndType        #156:#154     // commits:I
+  #358 = NameAndType        #157:#158     // merged:Z
+  #359 = NameAndType        #159:#158     // maintainer_can_modify:Z
+  #360 = NameAndType        #160:#158     // draft:Z
+  #361 = NameAndType        #161:#162     // mergeable:Ljava/lang/Boolean;
+  #362 = NameAndType        #241:#493     // refresh:(Ljava/lang/Object;)V
+  #363 = NameAndType        #163:#154     // deletions:I
+  #364 = NameAndType        #164:#141     // mergeable_state:Ljava/lang/String;
+  #365 = NameAndType        #165:#154     // changed_files:I
+  #366 = NameAndType        #166:#141     // merge_commit_sha:Ljava/lang/String;
+  #367 = NameAndType        #169:#170     // requested_reviewers:[Lorg/kohsuke/github/GHUser;
+  #368 = Class              #494          // java/util/Arrays
+  #369 = NameAndType        #495:#496     // asList:([Ljava/lang/Object;)Ljava/util/List;
+  #370 = Class              #497          // java/util/Collections
+  #371 = NameAndType        #498:#499     // unmodifiableList:(Ljava/util/List;)Ljava/util/List;
+  #372 = NameAndType        #171:#172     // requested_teams:[Lorg/kohsuke/github/GHTeam;
+  #373 = NameAndType        #241:#174     // refresh:()V
+  #374 = NameAndType        #500:#224     // isOffline:()Z
+  #375 = NameAndType        #501:#502     // createRequest:()Lorg/kohsuke/github/Requester;
+  #376 = Class              #503          // org/kohsuke/github/internal/Previews
+  #377 = NameAndType        #504:#295     // SHADOW_CAT:Lorg/kohsuke/github/internal/Previews;
+  #378 = NameAndType        #505:#508     // withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #379 = Utf8               org/kohsuke/github/Requester
+  #380 = NameAndType        #509:#510     // setRawUrlPath:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #381 = NameAndType        #511:#512     // fetchInto:(Ljava/lang/Object;)Ljava/lang/Object;
+  #382 = Utf8               org/kohsuke/github/GHPullRequest
+  #383 = NameAndType        #180:#181     // wrapUp:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHPullRequest;
+  #384 = Utf8               %s/files
+  #385 = Utf8               java/lang/Object
+  #386 = NameAndType        #184:#185     // getApiRoute:()Ljava/lang/String;
+  #387 = NameAndType        #513:#514     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #388 = Utf8               java/lang/String
+  #389 = NameAndType        #515:#516     // withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #390 = Utf8               [Lorg/kohsuke/github/GHPullRequestFileDetail;
+  #391 = NameAndType        #517:#518     // toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+  #392 = Utf8               %s/reviews
+  #393 = Utf8               [Lorg/kohsuke/github/GHPullRequestReview;
+  #394 = Utf8               BootstrapMethods
+  #395 = MethodHandle       6:#519        // REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #396 = MethodType         #493          //  (Ljava/lang/Object;)V
+  #397 = MethodHandle       7:#520        // REF_invokeSpecial org/kohsuke/github/GHPullRequest.lambda$listReviews$0:(Lorg/kohsuke/github/GHPullRequestReview;)V
+  #398 = MethodType         #311          //  (Lorg/kohsuke/github/GHPullRequestReview;)V
+  #399 = NameAndType        #521:#522     // accept:(Lorg/kohsuke/github/GHPullRequest;)Ljava/util/function/Consumer;
+  #400 = Utf8               /comments
+  #401 = MethodHandle       7:#523        // REF_invokeSpecial org/kohsuke/github/GHPullRequest.lambda$listReviewComments$1:(Lorg/kohsuke/github/GHPullRequestReviewComment;)V
+  #402 = MethodType         #309          //  (Lorg/kohsuke/github/GHPullRequestReviewComment;)V
+  #403 = Utf8               %s/commits
+  #404 = Utf8               [Lorg/kohsuke/github/GHPullRequestCommitDetail;
+  #405 = MethodHandle       7:#524        // REF_invokeSpecial org/kohsuke/github/GHPullRequest.lambda$listCommits$2:(Lorg/kohsuke/github/GHPullRequestCommitDetail;)V
+  #406 = MethodType         #305          //  (Lorg/kohsuke/github/GHPullRequestCommitDetail;)V
+  #407 = NameAndType        #251:#260     // createReview:(Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;Ljava/util/List;)Lorg/kohsuke/github/GHPullRequestReview;
+  #408 = NameAndType        #251:#270     // createReview:()Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+  #409 = NameAndType        #253:#525     // body:(Ljava/lang/String;)Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+  #410 = NameAndType        #526:#527     // iterator:()Ljava/util/Iterator;
+  #411 = NameAndType        #528:#224     // hasNext:()Z
+  #412 = NameAndType        #529:#530     // next:()Ljava/lang/Object;
+  #413 = Utf8               org/kohsuke/github/GHPullRequestReviewComment
+  #414 = NameAndType        #531:#185     // getBody:()Ljava/lang/String;
+  #415 = NameAndType        #532:#185     // getPath:()Ljava/lang/String;
+  #416 = NameAndType        #533:#220     // getPosition:()I
+  #417 = NameAndType        #534:#535     // comment:(Ljava/lang/String;Ljava/lang/String;I)Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+  #418 = NameAndType        #536:#537     // create:()Lorg/kohsuke/github/GHPullRequestReview;
+  #419 = Utf8               org/kohsuke/github/GHPullRequestReviewBuilder
+  #420 = NameAndType        #173:#538     // "<init>":(Lorg/kohsuke/github/GHPullRequest;)V
+  #421 = Utf8               POST
+  #422 = NameAndType        #302:#510     // method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #423 = NameAndType        #539:#540     // with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #424 = Utf8               commit_id
+  #425 = NameAndType        #539:#541     // with:(Ljava/lang/String;I)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #426 = NameAndType        #542:#543     // fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+  #427 = NameAndType        #180:#544     // wrapUp:(Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReviewComment;
+  #428 = NameAndType        #545:#546     // getLogins:(Ljava/util/Collection;)Ljava/util/List;
+  #429 = NameAndType        #539:#547     // with:(Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #430 = Utf8               /requested_reviewers
+  #431 = NameAndType        #548:#174     // send:()V
+  #432 = Utf8               java/util/ArrayList
+  #433 = NameAndType        #549:#220     // size:()I
+  #434 = NameAndType        #173:#550     // "<init>":(I)V
+  #435 = Utf8               org/kohsuke/github/GHTeam
+  #436 = NameAndType        #551:#185     // getSlug:()Ljava/lang/String;
+  #437 = NameAndType        #552:#553     // add:(Ljava/lang/Object;)Z
+  #438 = Utf8               team_reviewers
+  #439 = Utf8               PATCH
+  #440 = NameAndType        #296:#295     // LYDIAN:Lorg/kohsuke/github/internal/Previews;
+  #441 = Utf8               PUT
+  #442 = Utf8               expected_head_sha
+  #443 = Class              #554          // org/kohsuke/github/GHCommitPointer
+  #444 = NameAndType        #555:#185     // getSha:()Ljava/lang/String;
+  #445 = Utf8               /update-branch
+  #446 = NameAndType        #297:#300     // merge:(Ljava/lang/String;Ljava/lang/String;)V
+  #447 = NameAndType        #297:#301     // merge:(Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHPullRequest$MergeMethod;)V
+  #448 = Utf8               commit_message
+  #449 = Utf8               merge_method
+  #450 = NameAndType        #539:#556     // with:(Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #451 = Utf8               /merge
+  #452 = Class              #557          // org/kohsuke/github/GHPullRequestCommitDetail
+  #453 = NameAndType        #180:#538     // wrapUp:(Lorg/kohsuke/github/GHPullRequest;)V
+  #454 = Class              #558          // org/kohsuke/github/GHPullRequestReview
+  #455 = NameAndType        #180:#559     // wrapUp:(Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReview;
+  #456 = Utf8               org/kohsuke/github/GHIssue
+  #457 = Utf8               org/kohsuke/github/Refreshable
+  #458 = Utf8               org/kohsuke/github/GHPullRequest$AutoMerge
+  #459 = Utf8               org/kohsuke/github/GHPullRequest$MergeMethod
+  #460 = Utf8               java/io/IOException
+  #461 = Utf8               org/kohsuke/github/GHIssue$PullRequest
+  #462 = Utf8               java/util/Iterator
+  #463 = Utf8               java/util/List
+  #464 = Utf8               wrap
+  #465 = Utf8               (Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHIssue;
+  #466 = Utf8               getUrl
+  #467 = Utf8               java/util/Objects
+  #468 = Utf8               requireNonNull
+  #469 = Utf8               (Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  #470 = Utf8               toString
+  #471 = Utf8               root
+  #472 = Utf8               ()Lorg/kohsuke/github/GitHub;
+  #473 = Utf8               org/kohsuke/github/GitHub
+  #474 = Utf8               getApiUrl
+  #475 = Utf8               replace
+  #476 = Utf8               (Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+  #477 = Utf8               org/apache/commons/lang3/StringUtils
+  #478 = Utf8               prependIfMissing
+  #479 = Utf8               (Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+  #480 = Utf8               append
+  #481 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #482 = Utf8               org/kohsuke/github/GHRepository
+  #483 = Utf8               getOwnerName
+  #484 = Utf8               getName
+  #485 = Utf8               number
+  #486 = Utf8               (I)Ljava/lang/StringBuilder;
+  #487 = Utf8               org/kohsuke/github/GitHubClient
+  #488 = Utf8               parseURL
+  #489 = Utf8               (Ljava/lang/String;)Ljava/net/URL;
+  #490 = Utf8               getUpdatedAt
+  #491 = Utf8               parseDate
+  #492 = Utf8               (Ljava/lang/String;)Ljava/util/Date;
+  #493 = Utf8               (Ljava/lang/Object;)V
+  #494 = Utf8               java/util/Arrays
+  #495 = Utf8               asList
+  #496 = Utf8               ([Ljava/lang/Object;)Ljava/util/List;
+  #497 = Utf8               java/util/Collections
+  #498 = Utf8               unmodifiableList
+  #499 = Utf8               (Ljava/util/List;)Ljava/util/List;
+  #500 = Utf8               isOffline
+  #501 = Utf8               createRequest
+  #502 = Utf8               ()Lorg/kohsuke/github/Requester;
+  #503 = Utf8               org/kohsuke/github/internal/Previews
+  #504 = Utf8               SHADOW_CAT
+  #505 = Utf8               withPreview
+  #506 = Class              #561          // org/kohsuke/github/GitHubRequest$Builder
+  #507 = Utf8               Builder
+  #508 = Utf8               (Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #509 = Utf8               setRawUrlPath
+  #510 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #511 = Utf8               fetchInto
+  #512 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #513 = Utf8               format
+  #514 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #515 = Utf8               withUrlPath
+  #516 = Utf8               (Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #517 = Utf8               toIterable
+  #518 = Utf8               (Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+  #519 = Methodref          #562.#563     // java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #520 = Methodref          #62.#564      // org/kohsuke/github/GHPullRequest.lambda$listReviews$0:(Lorg/kohsuke/github/GHPullRequestReview;)V
+  #521 = Utf8               accept
+  #522 = Utf8               (Lorg/kohsuke/github/GHPullRequest;)Ljava/util/function/Consumer;
+  #523 = Methodref          #62.#565      // org/kohsuke/github/GHPullRequest.lambda$listReviewComments$1:(Lorg/kohsuke/github/GHPullRequestReviewComment;)V
+  #524 = Methodref          #62.#566      // org/kohsuke/github/GHPullRequest.lambda$listCommits$2:(Lorg/kohsuke/github/GHPullRequestCommitDetail;)V
+  #525 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+  #526 = Utf8               iterator
+  #527 = Utf8               ()Ljava/util/Iterator;
+  #528 = Utf8               hasNext
+  #529 = Utf8               next
+  #530 = Utf8               ()Ljava/lang/Object;
+  #531 = Utf8               getBody
+  #532 = Utf8               getPath
+  #533 = Utf8               getPosition
+  #534 = Utf8               comment
+  #535 = Utf8               (Ljava/lang/String;Ljava/lang/String;I)Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+  #536 = Utf8               create
+  #537 = Utf8               ()Lorg/kohsuke/github/GHPullRequestReview;
+  #538 = Utf8               (Lorg/kohsuke/github/GHPullRequest;)V
+  #539 = Utf8               with
+  #540 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #541 = Utf8               (Ljava/lang/String;I)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #542 = Utf8               fetch
+  #543 = Utf8               (Ljava/lang/Class;)Ljava/lang/Object;
+  #544 = Utf8               (Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReviewComment;
+  #545 = Utf8               getLogins
+  #546 = Utf8               (Ljava/util/Collection;)Ljava/util/List;
+  #547 = Utf8               (Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #548 = Utf8               send
+  #549 = Utf8               size
+  #550 = Utf8               (I)V
+  #551 = Utf8               getSlug
+  #552 = Utf8               add
+  #553 = Utf8               (Ljava/lang/Object;)Z
+  #554 = Utf8               org/kohsuke/github/GHCommitPointer
+  #555 = Utf8               getSha
+  #556 = Utf8               (Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #557 = Utf8               org/kohsuke/github/GHPullRequestCommitDetail
+  #558 = Utf8               org/kohsuke/github/GHPullRequestReview
+  #559 = Utf8               (Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReview;
+  #560 = Class              #567          // org/kohsuke/github/GitHubRequest
+  #561 = Utf8               org/kohsuke/github/GitHubRequest$Builder
+  #562 = Class              #568          // java/lang/invoke/LambdaMetafactory
+  #563 = NameAndType        #569:#572     // metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #564 = NameAndType        #310:#311     // lambda$listReviews$0:(Lorg/kohsuke/github/GHPullRequestReview;)V
+  #565 = NameAndType        #308:#309     // lambda$listReviewComments$1:(Lorg/kohsuke/github/GHPullRequestReviewComment;)V
+  #566 = NameAndType        #304:#305     // lambda$listCommits$2:(Lorg/kohsuke/github/GHPullRequestCommitDetail;)V
+  #567 = Utf8               org/kohsuke/github/GitHubRequest
+  #568 = Utf8               java/lang/invoke/LambdaMetafactory
+  #569 = Utf8               metafactory
+  #570 = Class              #574          // java/lang/invoke/MethodHandles$Lookup
+  #571 = Utf8               Lookup
+  #572 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #573 = Class              #575          // java/lang/invoke/MethodHandles
+  #574 = Utf8               java/lang/invoke/MethodHandles$Lookup
+  #575 = Utf8               java/lang/invoke/MethodHandles
+{
+  private static final java.lang.String COMMENTS_ACTION;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String /comments
+
+  private static final java.lang.String REQUEST_REVIEWERS;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String /requested_reviewers
+
+  private java.lang.String patch_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String diff_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String issue_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GHCommitPointer base;
+    descriptor: Lorg/kohsuke/github/GHCommitPointer;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String merged_at;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GHCommitPointer head;
+    descriptor: Lorg/kohsuke/github/GHCommitPointer;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GHUser merged_by;
+    descriptor: Lorg/kohsuke/github/GHUser;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int review_comments;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int additions;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int commits;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean merged;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean maintainer_can_modify;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  boolean draft;
+    descriptor: Z
+    flags: (0x0000)
+
+  private java.lang.Boolean mergeable;
+    descriptor: Ljava/lang/Boolean;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int deletions;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String mergeable_state;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int changed_files;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String merge_commit_sha;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GHPullRequest$AutoMerge auto_merge;
+    descriptor: Lorg/kohsuke/github/GHPullRequest$AutoMerge;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GHUser[] requested_reviewers;
+    descriptor: [Lorg/kohsuke/github/GHUser;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GHTeam[] requested_teams;
+    descriptor: [Lorg/kohsuke/github/GHTeam;
+    flags: (0x0002) ACC_PRIVATE
+
+  public org.kohsuke.github.GHPullRequest();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method org/kohsuke/github/GHIssue."<init>":()V
+         4: return
+      LineNumberTable:
+        line 50: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  org.kohsuke.github.GHPullRequest wrapUp(org.kohsuke.github.GHRepository);
+    descriptor: (Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHPullRequest;
+    flags: (0x0000)
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #2                  // Method wrap:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHIssue;
+         5: pop
+         6: aload_0
+         7: areturn
+      LineNumberTable:
+        line 79: 0
+        line 80: 6
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0       8     1 owner   Lorg/kohsuke/github/GHRepository;
+
+  protected java.lang.String getApiRoute();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=2, args_size=1
+         0: aload_0
+         1: getfield      #3                  // Field owner:Lorg/kohsuke/github/GHRepository;
+         4: ifnonnull     46
+         7: aload_0
+         8: invokevirtual #4                  // Method getUrl:()Ljava/net/URL;
+        11: ldc           #5                  // String Missing instance URL!
+        13: invokestatic  #6                  // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+        16: checkcast     #7                  // class java/net/URL
+        19: astore_1
+        20: aload_1
+        21: invokevirtual #8                  // Method java/net/URL.toString:()Ljava/lang/String;
+        24: aload_0
+        25: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+        28: invokevirtual #10                 // Method org/kohsuke/github/GitHub.getApiUrl:()Ljava/lang/String;
+        31: ldc           #11                 // String
+        33: invokevirtual #12                 // Method java/lang/String.replace:(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+        36: ldc           #13                 // String /
+        38: iconst_0
+        39: anewarray     #14                 // class java/lang/CharSequence
+        42: invokestatic  #15                 // Method org/apache/commons/lang3/StringUtils.prependIfMissing:(Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+        45: areturn
+        46: new           #16                 // class java/lang/StringBuilder
+        49: dup
+        50: invokespecial #17                 // Method java/lang/StringBuilder."<init>":()V
+        53: ldc           #18                 // String /repos/
+        55: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        58: aload_0
+        59: getfield      #3                  // Field owner:Lorg/kohsuke/github/GHRepository;
+        62: invokevirtual #20                 // Method org/kohsuke/github/GHRepository.getOwnerName:()Ljava/lang/String;
+        65: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        68: ldc           #13                 // String /
+        70: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        73: aload_0
+        74: getfield      #3                  // Field owner:Lorg/kohsuke/github/GHRepository;
+        77: invokevirtual #21                 // Method org/kohsuke/github/GHRepository.getName:()Ljava/lang/String;
+        80: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        83: ldc           #22                 // String /pulls/
+        85: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        88: aload_0
+        89: getfield      #23                 // Field number:I
+        92: invokevirtual #24                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        95: invokevirtual #25                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        98: areturn
+      LineNumberTable:
+        line 85: 0
+        line 87: 7
+        line 88: 20
+        line 90: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      26     1   url   Ljava/net/URL;
+            0      99     0  this   Lorg/kohsuke/github/GHPullRequest;
+      StackMapTable: number_of_entries = 1
+        frame_type = 46 /* same */
+
+  public org.kohsuke.github.GHPullRequest$AutoMerge getAutoMerge();
+    descriptor: ()Lorg/kohsuke/github/GHPullRequest$AutoMerge;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #26                 // Field auto_merge:Lorg/kohsuke/github/GHPullRequest$AutoMerge;
+         4: areturn
+      LineNumberTable:
+        line 99: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public java.net.URL getPatchUrl();
+    descriptor: ()Ljava/net/URL;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #27                 // Field patch_url:Ljava/lang/String;
+         4: invokestatic  #28                 // Method org/kohsuke/github/GitHubClient.parseURL:(Ljava/lang/String;)Ljava/net/URL;
+         7: areturn
+      LineNumberTable:
+        line 108: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public java.net.URL getIssueUrl();
+    descriptor: ()Ljava/net/URL;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #29                 // Field issue_url:Ljava/lang/String;
+         4: invokestatic  #28                 // Method org/kohsuke/github/GitHubClient.parseURL:(Ljava/lang/String;)Ljava/net/URL;
+         7: areturn
+      LineNumberTable:
+        line 117: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public org.kohsuke.github.GHCommitPointer getBase();
+    descriptor: ()Lorg/kohsuke/github/GHCommitPointer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #30                 // Field base:Lorg/kohsuke/github/GHCommitPointer;
+         4: areturn
+      LineNumberTable:
+        line 126: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public org.kohsuke.github.GHCommitPointer getHead();
+    descriptor: ()Lorg/kohsuke/github/GHCommitPointer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #31                 // Field head:Lorg/kohsuke/github/GHCommitPointer;
+         4: areturn
+      LineNumberTable:
+        line 135: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public java.util.Date getIssueUpdatedAt() throws java.io.IOException;
+    descriptor: ()Ljava/util/Date;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #32                 // Method org/kohsuke/github/GHIssue.getUpdatedAt:()Ljava/util/Date;
+         4: areturn
+      LineNumberTable:
+        line 147: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #203()
+        java.lang.Deprecated
+
+  public java.net.URL getDiffUrl();
+    descriptor: ()Ljava/net/URL;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #33                 // Field diff_url:Ljava/lang/String;
+         4: invokestatic  #28                 // Method org/kohsuke/github/GitHubClient.parseURL:(Ljava/lang/String;)Ljava/net/URL;
+         7: areturn
+      LineNumberTable:
+        line 156: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public java.util.Date getMergedAt();
+    descriptor: ()Ljava/util/Date;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #34                 // Field merged_at:Ljava/lang/String;
+         4: invokestatic  #35                 // Method org/kohsuke/github/GitHubClient.parseDate:(Ljava/lang/String;)Ljava/util/Date;
+         7: areturn
+      LineNumberTable:
+        line 165: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public org.kohsuke.github.GHUser getClosedBy();
+    descriptor: ()Lorg/kohsuke/github/GHUser;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 170: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public org.kohsuke.github.GHIssue$PullRequest getPullRequest();
+    descriptor: ()Lorg/kohsuke/github/GHIssue$PullRequest;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 175: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public org.kohsuke.github.GHUser getMergedBy() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GHUser;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #37                 // Field merged_by:Lorg/kohsuke/github/GHUser;
+         8: areturn
+      LineNumberTable:
+        line 191: 0
+        line 192: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+    RuntimeInvisibleAnnotations:
+      0: #214(#215=[s#216],#217=s#218)
+        edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+          value=["EI_EXPOSE_REP"]
+          justification="Expected behavior"
+        )
+
+  public int getReviewComments() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #38                 // Field review_comments:I
+         8: ireturn
+      LineNumberTable:
+        line 203: 0
+        line 204: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public int getAdditions() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #39                 // Field additions:I
+         8: ireturn
+      LineNumberTable:
+        line 215: 0
+        line 216: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public int getCommits() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #40                 // Field commits:I
+         8: ireturn
+      LineNumberTable:
+        line 227: 0
+        line 228: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean isMerged() throws java.io.IOException;
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #41                 // Field merged:Z
+         8: ireturn
+      LineNumberTable:
+        line 239: 0
+        line 240: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean canMaintainerModify() throws java.io.IOException;
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #42                 // Field maintainer_can_modify:Z
+         8: ireturn
+      LineNumberTable:
+        line 251: 0
+        line 252: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean isDraft() throws java.io.IOException;
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #43                 // Field draft:Z
+         8: ireturn
+      LineNumberTable:
+        line 263: 0
+        line 264: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.Boolean getMergeable() throws java.io.IOException;
+    descriptor: ()Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: getfield      #44                 // Field mergeable:Ljava/lang/Boolean;
+         5: invokevirtual #45                 // Method refresh:(Ljava/lang/Object;)V
+         8: aload_0
+         9: getfield      #44                 // Field mergeable:Ljava/lang/Boolean;
+        12: areturn
+      LineNumberTable:
+        line 277: 0
+        line 278: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  java.lang.Boolean getMergeableNoRefresh() throws java.io.IOException;
+    descriptor: ()Ljava/lang/Boolean;
+    flags: (0x0000)
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #44                 // Field mergeable:Ljava/lang/Boolean;
+         4: areturn
+      LineNumberTable:
+        line 284: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #203()
+        java.lang.Deprecated
+
+  public int getDeletions() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #46                 // Field deletions:I
+         8: ireturn
+      LineNumberTable:
+        line 295: 0
+        line 296: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.String getMergeableState() throws java.io.IOException;
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #47                 // Field mergeable_state:Ljava/lang/String;
+         8: areturn
+      LineNumberTable:
+        line 307: 0
+        line 308: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public int getChangedFiles() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #48                 // Field changed_files:I
+         8: ireturn
+      LineNumberTable:
+        line 319: 0
+        line 320: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.String getMergeCommitSha() throws java.io.IOException;
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #36                 // Method populate:()V
+         4: aload_0
+         5: getfield      #49                 // Field merge_commit_sha:Ljava/lang/String;
+         8: areturn
+      LineNumberTable:
+        line 331: 0
+        line 332: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+
+  public java.util.List<org.kohsuke.github.GHUser> getRequestedReviewers() throws java.io.IOException;
+    descriptor: ()Ljava/util/List;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: getfield      #50                 // Field requested_reviewers:[Lorg/kohsuke/github/GHUser;
+         5: invokevirtual #45                 // Method refresh:(Ljava/lang/Object;)V
+         8: aload_0
+         9: getfield      #50                 // Field requested_reviewers:[Lorg/kohsuke/github/GHUser;
+        12: invokestatic  #51                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+        15: invokestatic  #52                 // Method java/util/Collections.unmodifiableList:(Ljava/util/List;)Ljava/util/List;
+        18: areturn
+      LineNumberTable:
+        line 343: 0
+        line 344: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+    Signature: #237                         // ()Ljava/util/List<Lorg/kohsuke/github/GHUser;>;
+
+  public java.util.List<org.kohsuke.github.GHTeam> getRequestedTeams() throws java.io.IOException;
+    descriptor: ()Ljava/util/List;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: getfield      #53                 // Field requested_teams:[Lorg/kohsuke/github/GHTeam;
+         5: invokevirtual #45                 // Method refresh:(Ljava/lang/Object;)V
+         8: aload_0
+         9: getfield      #53                 // Field requested_teams:[Lorg/kohsuke/github/GHTeam;
+        12: invokestatic  #51                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+        15: invokestatic  #52                 // Method java/util/Collections.unmodifiableList:(Ljava/util/List;)Ljava/util/List;
+        18: areturn
+      LineNumberTable:
+        line 355: 0
+        line 356: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+    Signature: #239                         // ()Ljava/util/List<Lorg/kohsuke/github/GHTeam;>;
+
+  private void populate() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #47                 // Field mergeable_state:Ljava/lang/String;
+         4: ifnull        8
+         7: return
+         8: aload_0
+         9: invokevirtual #54                 // Method refresh:()V
+        12: return
+      LineNumberTable:
+        line 366: 0
+        line 367: 7
+        line 368: 8
+        line 369: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lorg/kohsuke/github/GHPullRequest;
+      StackMapTable: number_of_entries = 1
+        frame_type = 8 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void refresh() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: invokevirtual #55                 // Method isOffline:()Z
+         4: ifeq          8
+         7: return
+         8: aload_0
+         9: invokevirtual #4                  // Method getUrl:()Ljava/net/URL;
+        12: astore_1
+        13: aload_1
+        14: ifnull        58
+        17: aload_0
+        18: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+        21: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+        24: getstatic     #57                 // Field org/kohsuke/github/internal/Previews.SHADOW_CAT:Lorg/kohsuke/github/internal/Previews;
+        27: invokevirtual #58                 // Method org/kohsuke/github/Requester.withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        30: checkcast     #59                 // class org/kohsuke/github/Requester
+        33: aload_1
+        34: invokevirtual #8                  // Method java/net/URL.toString:()Ljava/lang/String;
+        37: invokevirtual #60                 // Method org/kohsuke/github/Requester.setRawUrlPath:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        40: checkcast     #59                 // class org/kohsuke/github/Requester
+        43: aload_0
+        44: invokevirtual #61                 // Method org/kohsuke/github/Requester.fetchInto:(Ljava/lang/Object;)Ljava/lang/Object;
+        47: checkcast     #62                 // class org/kohsuke/github/GHPullRequest
+        50: aload_0
+        51: getfield      #3                  // Field owner:Lorg/kohsuke/github/GHRepository;
+        54: invokevirtual #63                 // Method wrapUp:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHPullRequest;
+        57: pop
+        58: return
+      LineNumberTable:
+        line 373: 0
+        line 374: 7
+        line 377: 8
+        line 378: 13
+        line 379: 17
+        line 381: 58
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      59     0  this   Lorg/kohsuke/github/GHPullRequest;
+           13      46     1   url   Ljava/net/URL;
+      StackMapTable: number_of_entries = 2
+        frame_type = 8 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 49
+          locals = [ class java/net/URL ]
+    Exceptions:
+      throws java.io.IOException
+
+  public org.kohsuke.github.PagedIterable<org.kohsuke.github.GHPullRequestFileDetail> listFiles();
+    descriptor: ()Lorg/kohsuke/github/PagedIterable;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #64                 // String %s/files
+         9: iconst_1
+        10: anewarray     #65                 // class java/lang/Object
+        13: dup
+        14: iconst_0
+        15: aload_0
+        16: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        19: aastore
+        20: invokestatic  #67                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        23: iconst_0
+        24: anewarray     #68                 // class java/lang/String
+        27: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        30: checkcast     #59                 // class org/kohsuke/github/Requester
+        33: ldc           #70                 // class "[Lorg/kohsuke/github/GHPullRequestFileDetail;"
+        35: aconst_null
+        36: invokevirtual #71                 // Method org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+        39: areturn
+      LineNumberTable:
+        line 392: 0
+        line 393: 16
+        line 394: 36
+        line 392: 39
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      40     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Signature: #244                         // ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHPullRequestFileDetail;>;
+
+  public org.kohsuke.github.PagedIterable<org.kohsuke.github.GHPullRequestReview> listReviews();
+    descriptor: ()Lorg/kohsuke/github/PagedIterable;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #72                 // String %s/reviews
+         9: iconst_1
+        10: anewarray     #65                 // class java/lang/Object
+        13: dup
+        14: iconst_0
+        15: aload_0
+        16: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        19: aastore
+        20: invokestatic  #67                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        23: iconst_0
+        24: anewarray     #68                 // class java/lang/String
+        27: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        30: checkcast     #59                 // class org/kohsuke/github/Requester
+        33: ldc           #73                 // class "[Lorg/kohsuke/github/GHPullRequestReview;"
+        35: aload_0
+        36: invokedynamic #74,  0             // InvokeDynamic #0:accept:(Lorg/kohsuke/github/GHPullRequest;)Ljava/util/function/Consumer;
+        41: invokevirtual #71                 // Method org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+        44: areturn
+      LineNumberTable:
+        line 403: 0
+        line 404: 16
+        line 405: 41
+        line 403: 44
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      45     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Signature: #246                         // ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHPullRequestReview;>;
+
+  public org.kohsuke.github.PagedIterable<org.kohsuke.github.GHPullRequestReviewComment> listReviewComments() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/PagedIterable;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: new           #16                 // class java/lang/StringBuilder
+        10: dup
+        11: invokespecial #17                 // Method java/lang/StringBuilder."<init>":()V
+        14: aload_0
+        15: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        18: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        21: ldc           #75                 // String /comments
+        23: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        26: invokevirtual #25                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        29: iconst_0
+        30: anewarray     #68                 // class java/lang/String
+        33: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        36: checkcast     #59                 // class org/kohsuke/github/Requester
+        39: ldc           #76                 // class "[Lorg/kohsuke/github/GHPullRequestReviewComment;"
+        41: aload_0
+        42: invokedynamic #77,  0             // InvokeDynamic #1:accept:(Lorg/kohsuke/github/GHPullRequest;)Ljava/util/function/Consumer;
+        47: invokevirtual #71                 // Method org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+        50: areturn
+      LineNumberTable:
+        line 416: 0
+        line 417: 15
+        line 418: 47
+        line 416: 50
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      51     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+    Signature: #248                         // ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHPullRequestReviewComment;>;
+
+  public org.kohsuke.github.PagedIterable<org.kohsuke.github.GHPullRequestCommitDetail> listCommits();
+    descriptor: ()Lorg/kohsuke/github/PagedIterable;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #78                 // String %s/commits
+         9: iconst_1
+        10: anewarray     #65                 // class java/lang/Object
+        13: dup
+        14: iconst_0
+        15: aload_0
+        16: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        19: aastore
+        20: invokestatic  #67                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        23: iconst_0
+        24: anewarray     #68                 // class java/lang/String
+        27: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        30: checkcast     #59                 // class org/kohsuke/github/Requester
+        33: ldc           #79                 // class "[Lorg/kohsuke/github/GHPullRequestCommitDetail;"
+        35: aload_0
+        36: invokedynamic #80,  0             // InvokeDynamic #2:accept:(Lorg/kohsuke/github/GHPullRequest;)Ljava/util/function/Consumer;
+        41: invokevirtual #71                 // Method org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+        44: areturn
+      LineNumberTable:
+        line 427: 0
+        line 428: 16
+        line 429: 41
+        line 427: 44
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      45     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Signature: #250                         // ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHPullRequestCommitDetail;>;
+
+  public org.kohsuke.github.GHPullRequestReview createReview(java.lang.String, org.kohsuke.github.GHPullRequestReviewState, org.kohsuke.github.GHPullRequestReviewComment...) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;[Lorg/kohsuke/github/GHPullRequestReviewComment;)Lorg/kohsuke/github/GHPullRequestReview;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #51                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+         7: invokevirtual #81                 // Method createReview:(Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;Ljava/util/List;)Lorg/kohsuke/github/GHPullRequestReview;
+        10: areturn
+      LineNumberTable:
+        line 450: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0      11     1  body   Ljava/lang/String;
+            0      11     2 event   Lorg/kohsuke/github/GHPullRequestReviewState;
+            0      11     3 comments   [Lorg/kohsuke/github/GHPullRequestReviewComment;
+    Exceptions:
+      throws java.io.IOException
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #203()
+        java.lang.Deprecated
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+      parameter 1:
+        0: #259()
+          javax.annotation.CheckForNull
+      parameter 2:
+
+  public org.kohsuke.github.GHPullRequestReview createReview(java.lang.String, org.kohsuke.github.GHPullRequestReviewState, java.util.List<org.kohsuke.github.GHPullRequestReviewComment>) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;Ljava/util/List;)Lorg/kohsuke/github/GHPullRequestReview;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=7, args_size=4
+         0: aload_0
+         1: invokevirtual #82                 // Method createReview:()Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+         4: aload_1
+         5: invokevirtual #83                 // Method org/kohsuke/github/GHPullRequestReviewBuilder.body:(Ljava/lang/String;)Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+         8: astore        4
+        10: aload_3
+        11: invokeinterface #84,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        16: astore        5
+        18: aload         5
+        20: invokeinterface #85,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        25: ifeq          64
+        28: aload         5
+        30: invokeinterface #86,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        35: checkcast     #87                 // class org/kohsuke/github/GHPullRequestReviewComment
+        38: astore        6
+        40: aload         4
+        42: aload         6
+        44: invokevirtual #88                 // Method org/kohsuke/github/GHPullRequestReviewComment.getBody:()Ljava/lang/String;
+        47: aload         6
+        49: invokevirtual #89                 // Method org/kohsuke/github/GHPullRequestReviewComment.getPath:()Ljava/lang/String;
+        52: aload         6
+        54: invokevirtual #90                 // Method org/kohsuke/github/GHPullRequestReviewComment.getPosition:()I
+        57: invokevirtual #91                 // Method org/kohsuke/github/GHPullRequestReviewBuilder.comment:(Ljava/lang/String;Ljava/lang/String;I)Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+        60: pop
+        61: goto          18
+        64: aload         4
+        66: invokevirtual #92                 // Method org/kohsuke/github/GHPullRequestReviewBuilder.create:()Lorg/kohsuke/github/GHPullRequestReview;
+        69: areturn
+      LineNumberTable:
+        line 471: 0
+        line 472: 10
+        line 473: 40
+        line 474: 61
+        line 475: 64
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           40      21     6     c   Lorg/kohsuke/github/GHPullRequestReviewComment;
+            0      70     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0      70     1  body   Ljava/lang/String;
+            0      70     2 event   Lorg/kohsuke/github/GHPullRequestReviewState;
+            0      70     3 comments   Ljava/util/List;
+           10      60     4     b   Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      70     3 comments   Ljava/util/List<Lorg/kohsuke/github/GHPullRequestReviewComment;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 18
+          locals = [ class org/kohsuke/github/GHPullRequestReviewBuilder, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 45
+    Exceptions:
+      throws java.io.IOException
+    Deprecated: true
+    Signature: #269                         // (Ljava/lang/String;Lorg/kohsuke/github/GHPullRequestReviewState;Ljava/util/List<Lorg/kohsuke/github/GHPullRequestReviewComment;>;)Lorg/kohsuke/github/GHPullRequestReview;
+    RuntimeVisibleAnnotations:
+      0: #203()
+        java.lang.Deprecated
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+      parameter 1:
+        0: #259()
+          javax.annotation.CheckForNull
+      parameter 2:
+
+  public org.kohsuke.github.GHPullRequestReviewBuilder createReview();
+    descriptor: ()Lorg/kohsuke/github/GHPullRequestReviewBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #93                 // class org/kohsuke/github/GHPullRequestReviewBuilder
+         3: dup
+         4: aload_0
+         5: invokespecial #94                 // Method org/kohsuke/github/GHPullRequestReviewBuilder."<init>":(Lorg/kohsuke/github/GHPullRequest;)V
+         8: areturn
+      LineNumberTable:
+        line 484: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHPullRequest;
+
+  public org.kohsuke.github.GHPullRequestReviewComment createReviewComment(java.lang.String, java.lang.String, java.lang.String, int) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lorg/kohsuke/github/GHPullRequestReviewComment;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=5, args_size=5
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #95                 // String POST
+         9: invokevirtual #96                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        12: checkcast     #59                 // class org/kohsuke/github/Requester
+        15: ldc           #97                 // String body
+        17: aload_1
+        18: invokevirtual #98                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        21: checkcast     #59                 // class org/kohsuke/github/Requester
+        24: ldc           #99                 // String commit_id
+        26: aload_2
+        27: invokevirtual #98                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        30: checkcast     #59                 // class org/kohsuke/github/Requester
+        33: ldc           #100                // String path
+        35: aload_3
+        36: invokevirtual #98                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        39: checkcast     #59                 // class org/kohsuke/github/Requester
+        42: ldc           #101                // String position
+        44: iload         4
+        46: invokevirtual #102                // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;I)Lorg/kohsuke/github/GitHubRequest$Builder;
+        49: checkcast     #59                 // class org/kohsuke/github/Requester
+        52: new           #16                 // class java/lang/StringBuilder
+        55: dup
+        56: invokespecial #17                 // Method java/lang/StringBuilder."<init>":()V
+        59: aload_0
+        60: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        63: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        66: ldc           #75                 // String /comments
+        68: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        71: invokevirtual #25                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        74: iconst_0
+        75: anewarray     #68                 // class java/lang/String
+        78: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        81: checkcast     #59                 // class org/kohsuke/github/Requester
+        84: ldc           #87                 // class org/kohsuke/github/GHPullRequestReviewComment
+        86: invokevirtual #103                // Method org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+        89: checkcast     #87                 // class org/kohsuke/github/GHPullRequestReviewComment
+        92: aload_0
+        93: invokevirtual #104                // Method org/kohsuke/github/GHPullRequestReviewComment.wrapUp:(Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReviewComment;
+        96: areturn
+      LineNumberTable:
+        line 504: 0
+        line 505: 9
+        line 506: 18
+        line 507: 27
+        line 508: 36
+        line 509: 46
+        line 510: 60
+        line 511: 86
+        line 512: 93
+        line 504: 96
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      97     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0      97     1  body   Ljava/lang/String;
+            0      97     2   sha   Ljava/lang/String;
+            0      97     3  path   Ljava/lang/String;
+            0      97     4 position   I
+    Exceptions:
+      throws java.io.IOException
+
+  public void requestReviewers(java.util.List<org.kohsuke.github.GHUser>) throws java.io.IOException;
+    descriptor: (Ljava/util/List;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #95                 // String POST
+         9: invokevirtual #96                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        12: checkcast     #59                 // class org/kohsuke/github/Requester
+        15: ldc           #105                // String reviewers
+        17: aload_1
+        18: invokestatic  #106                // Method getLogins:(Ljava/util/Collection;)Ljava/util/List;
+        21: invokevirtual #107                // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        24: checkcast     #59                 // class org/kohsuke/github/Requester
+        27: new           #16                 // class java/lang/StringBuilder
+        30: dup
+        31: invokespecial #17                 // Method java/lang/StringBuilder."<init>":()V
+        34: aload_0
+        35: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        38: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        41: ldc           #108                // String /requested_reviewers
+        43: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        46: invokevirtual #25                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        49: iconst_0
+        50: anewarray     #68                 // class java/lang/String
+        53: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        56: checkcast     #59                 // class org/kohsuke/github/Requester
+        59: invokevirtual #109                // Method org/kohsuke/github/Requester.send:()V
+        62: return
+      LineNumberTable:
+        line 524: 0
+        line 525: 9
+        line 526: 18
+        line 527: 35
+        line 528: 59
+        line 529: 62
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      63     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0      63     1 reviewers   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      63     1 reviewers   Ljava/util/List<Lorg/kohsuke/github/GHUser;>;
+    Exceptions:
+      throws java.io.IOException
+    Signature: #280                         // (Ljava/util/List<Lorg/kohsuke/github/GHUser;>;)V
+
+  public void requestTeamReviewers(java.util.List<org.kohsuke.github.GHTeam>) throws java.io.IOException;
+    descriptor: (Ljava/util/List;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=5, args_size=2
+         0: new           #110                // class java/util/ArrayList
+         3: dup
+         4: aload_1
+         5: invokeinterface #111,  1          // InterfaceMethod java/util/List.size:()I
+        10: invokespecial #112                // Method java/util/ArrayList."<init>":(I)V
+        13: astore_2
+        14: aload_1
+        15: invokeinterface #84,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        20: astore_3
+        21: aload_3
+        22: invokeinterface #85,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        27: ifeq          56
+        30: aload_3
+        31: invokeinterface #86,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        36: checkcast     #113                // class org/kohsuke/github/GHTeam
+        39: astore        4
+        41: aload_2
+        42: aload         4
+        44: invokevirtual #114                // Method org/kohsuke/github/GHTeam.getSlug:()Ljava/lang/String;
+        47: invokeinterface #115,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+        52: pop
+        53: goto          21
+        56: aload_0
+        57: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+        60: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+        63: ldc           #95                 // String POST
+        65: invokevirtual #96                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        68: checkcast     #59                 // class org/kohsuke/github/Requester
+        71: ldc           #116                // String team_reviewers
+        73: aload_2
+        74: invokevirtual #107                // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        77: checkcast     #59                 // class org/kohsuke/github/Requester
+        80: new           #16                 // class java/lang/StringBuilder
+        83: dup
+        84: invokespecial #17                 // Method java/lang/StringBuilder."<init>":()V
+        87: aload_0
+        88: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        91: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        94: ldc           #108                // String /requested_reviewers
+        96: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        99: invokevirtual #25                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       102: iconst_0
+       103: anewarray     #68                 // class java/lang/String
+       106: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+       109: checkcast     #59                 // class org/kohsuke/github/Requester
+       112: invokevirtual #109                // Method org/kohsuke/github/Requester.send:()V
+       115: return
+      LineNumberTable:
+        line 540: 0
+        line 541: 14
+        line 542: 41
+        line 543: 53
+        line 544: 56
+        line 545: 65
+        line 546: 74
+        line 547: 88
+        line 548: 112
+        line 549: 115
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           41      12     4  team   Lorg/kohsuke/github/GHTeam;
+            0     116     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0     116     1 teams   Ljava/util/List;
+           14     102     2 teamReviewers   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     116     1 teams   Ljava/util/List<Lorg/kohsuke/github/GHTeam;>;
+           14     102     2 teamReviewers   Ljava/util/List<Ljava/lang/String;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 21
+          locals = [ class java/util/List, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 34
+    Exceptions:
+      throws java.io.IOException
+    Signature: #289                         // (Ljava/util/List<Lorg/kohsuke/github/GHTeam;>;)V
+
+  public org.kohsuke.github.GHPullRequest setBaseBranch(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHPullRequest;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #117                // String PATCH
+         9: invokevirtual #96                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        12: checkcast     #59                 // class org/kohsuke/github/Requester
+        15: ldc           #118                // String base
+        17: aload_1
+        18: invokevirtual #98                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        21: checkcast     #59                 // class org/kohsuke/github/Requester
+        24: aload_0
+        25: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        28: iconst_0
+        29: anewarray     #68                 // class java/lang/String
+        32: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        35: checkcast     #59                 // class org/kohsuke/github/Requester
+        38: ldc           #62                 // class org/kohsuke/github/GHPullRequest
+        40: invokevirtual #103                // Method org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+        43: checkcast     #62                 // class org/kohsuke/github/GHPullRequest
+        46: areturn
+      LineNumberTable:
+        line 561: 0
+        line 562: 9
+        line 563: 18
+        line 564: 25
+        line 565: 40
+        line 561: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      47     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0      47     1 newBaseBranch   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void updateBranch() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: getstatic     #119                // Field org/kohsuke/github/internal/Previews.LYDIAN:Lorg/kohsuke/github/internal/Previews;
+        10: invokevirtual #58                 // Method org/kohsuke/github/Requester.withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        13: checkcast     #59                 // class org/kohsuke/github/Requester
+        16: ldc           #120                // String PUT
+        18: invokevirtual #96                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        21: checkcast     #59                 // class org/kohsuke/github/Requester
+        24: ldc           #121                // String expected_head_sha
+        26: aload_0
+        27: getfield      #31                 // Field head:Lorg/kohsuke/github/GHCommitPointer;
+        30: invokevirtual #122                // Method org/kohsuke/github/GHCommitPointer.getSha:()Ljava/lang/String;
+        33: invokevirtual #98                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        36: checkcast     #59                 // class org/kohsuke/github/Requester
+        39: new           #16                 // class java/lang/StringBuilder
+        42: dup
+        43: invokespecial #17                 // Method java/lang/StringBuilder."<init>":()V
+        46: aload_0
+        47: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        50: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        53: ldc           #123                // String /update-branch
+        55: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        58: invokevirtual #25                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        61: iconst_0
+        62: anewarray     #68                 // class java/lang/String
+        65: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        68: checkcast     #59                 // class org/kohsuke/github/Requester
+        71: invokevirtual #109                // Method org/kohsuke/github/Requester.send:()V
+        74: return
+      LineNumberTable:
+        line 576: 0
+        line 577: 10
+        line 578: 18
+        line 579: 30
+        line 580: 47
+        line 581: 71
+        line 582: 74
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      75     0  this   Lorg/kohsuke/github/GHPullRequest;
+    Exceptions:
+      throws java.io.IOException
+    RuntimeVisibleAnnotations:
+      0: #294(#215=[e#295.#296])
+        org.kohsuke.github.Preview(
+          value=[Lorg/kohsuke/github/internal/Previews;.LYDIAN]
+        )
+
+  public void merge(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: aconst_null
+         3: invokevirtual #124                // Method merge:(Ljava/lang/String;Ljava/lang/String;)V
+         6: return
+      LineNumberTable:
+        line 596: 0
+        line 597: 6
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0       7     1   msg   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void merge(java.lang.String, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aconst_null
+         4: invokevirtual #125                // Method merge:(Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHPullRequest$MergeMethod;)V
+         7: return
+      LineNumberTable:
+        line 613: 0
+        line 614: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0       8     1   msg   Ljava/lang/String;
+            0       8     2   sha   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void merge(java.lang.String, java.lang.String, org.kohsuke.github.GHPullRequest$MergeMethod) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHPullRequest$MergeMethod;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_0
+         1: invokevirtual #9                  // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #56                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #120                // String PUT
+         9: invokevirtual #96                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        12: checkcast     #59                 // class org/kohsuke/github/Requester
+        15: ldc           #126                // String commit_message
+        17: aload_1
+        18: invokevirtual #98                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        21: checkcast     #59                 // class org/kohsuke/github/Requester
+        24: ldc           #127                // String sha
+        26: aload_2
+        27: invokevirtual #98                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        30: checkcast     #59                 // class org/kohsuke/github/Requester
+        33: ldc           #128                // String merge_method
+        35: aload_3
+        36: invokevirtual #129                // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        39: checkcast     #59                 // class org/kohsuke/github/Requester
+        42: new           #16                 // class java/lang/StringBuilder
+        45: dup
+        46: invokespecial #17                 // Method java/lang/StringBuilder."<init>":()V
+        49: aload_0
+        50: invokevirtual #66                 // Method getApiRoute:()Ljava/lang/String;
+        53: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        56: ldc           #130                // String /merge
+        58: invokevirtual #19                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        61: invokevirtual #25                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        64: iconst_0
+        65: anewarray     #68                 // class java/lang/String
+        68: invokevirtual #69                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        71: checkcast     #59                 // class org/kohsuke/github/Requester
+        74: invokevirtual #109                // Method org/kohsuke/github/Requester.send:()V
+        77: return
+      LineNumberTable:
+        line 632: 0
+        line 633: 9
+        line 634: 18
+        line 635: 27
+        line 636: 36
+        line 637: 50
+        line 638: 74
+        line 639: 77
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      78     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0      78     1   msg   Ljava/lang/String;
+            0      78     2   sha   Ljava/lang/String;
+            0      78     3 method   Lorg/kohsuke/github/GHPullRequest$MergeMethod;
+    Exceptions:
+      throws java.io.IOException
+
+  private void lambda$listCommits$2(org.kohsuke.github.GHPullRequestCommitDetail);
+    descriptor: (Lorg/kohsuke/github/GHPullRequestCommitDetail;)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: aload_0
+         2: invokevirtual #131                // Method org/kohsuke/github/GHPullRequestCommitDetail.wrapUp:(Lorg/kohsuke/github/GHPullRequest;)V
+         5: return
+      LineNumberTable:
+        line 429: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0       6     1  item   Lorg/kohsuke/github/GHPullRequestCommitDetail;
+
+  private void lambda$listReviewComments$1(org.kohsuke.github.GHPullRequestReviewComment);
+    descriptor: (Lorg/kohsuke/github/GHPullRequestReviewComment;)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: aload_0
+         2: invokevirtual #104                // Method org/kohsuke/github/GHPullRequestReviewComment.wrapUp:(Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReviewComment;
+         5: pop
+         6: return
+      LineNumberTable:
+        line 418: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0       7     1  item   Lorg/kohsuke/github/GHPullRequestReviewComment;
+
+  private void lambda$listReviews$0(org.kohsuke.github.GHPullRequestReview);
+    descriptor: (Lorg/kohsuke/github/GHPullRequestReview;)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: aload_0
+         2: invokevirtual #132                // Method org/kohsuke/github/GHPullRequestReview.wrapUp:(Lorg/kohsuke/github/GHPullRequest;)Lorg/kohsuke/github/GHPullRequestReview;
+         5: pop
+         6: return
+      LineNumberTable:
+        line 405: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GHPullRequest;
+            0       7     1  item   Lorg/kohsuke/github/GHPullRequestReview;
+}
+SourceFile: "GHPullRequest.java"
+InnerClasses:
+  public static #136= #135 of #62;        // AutoMerge=class org/kohsuke/github/GHPullRequest$AutoMerge of class org/kohsuke/github/GHPullRequest
+  public static final #139= #138 of #62;  // MergeMethod=class org/kohsuke/github/GHPullRequest$MergeMethod of class org/kohsuke/github/GHPullRequest
+  public static #210= #209 of #133;       // PullRequest=class org/kohsuke/github/GHIssue$PullRequest of class org/kohsuke/github/GHIssue
+  static #507= #506 of #560;              // Builder=class org/kohsuke/github/GitHubRequest$Builder of class org/kohsuke/github/GitHubRequest
+  public static final #571= #570 of #573; // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+BootstrapMethods:
+  0: #395 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #396 (Ljava/lang/Object;)V
+      #397 REF_invokeSpecial org/kohsuke/github/GHPullRequest.lambda$listReviews$0:(Lorg/kohsuke/github/GHPullRequestReview;)V
+      #398 (Lorg/kohsuke/github/GHPullRequestReview;)V
+  1: #395 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #396 (Ljava/lang/Object;)V
+      #401 REF_invokeSpecial org/kohsuke/github/GHPullRequest.lambda$listReviewComments$1:(Lorg/kohsuke/github/GHPullRequestReviewComment;)V
+      #402 (Lorg/kohsuke/github/GHPullRequestReviewComment;)V
+  2: #395 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #396 (Ljava/lang/Object;)V
+      #405 REF_invokeSpecial org/kohsuke/github/GHPullRequest.lambda$listCommits$2:(Lorg/kohsuke/github/GHPullRequestCommitDetail;)V
+      #406 (Lorg/kohsuke/github/GHPullRequestCommitDetail;)V

@@ -1,0 +1,964 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/kohsuke/github/GHGist.class
+  Last modified May 29, 2022; size 6764 bytes
+  SHA-256 checksum 9e0715de1fe25a8cf45825ea750ce188bdc692958abb07d2ef089ed565462091
+  Compiled from "GHGist.java"
+public class org.kohsuke.github.GHGist extends org.kohsuke.github.GHObject
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #53                         // org/kohsuke/github/GHGist
+  super_class: #62                        // org/kohsuke/github/GHObject
+  interfaces: 0, fields: 12, methods: 25, attributes: 2
+Constant pool:
+    #1 = Methodref          #62.#163      // org/kohsuke/github/GHObject."<init>":()V
+    #2 = InterfaceMethodref #101.#164     // java/util/Map.entrySet:()Ljava/util/Set;
+    #3 = InterfaceMethodref #165.#166     // java/util/Set.iterator:()Ljava/util/Iterator;
+    #4 = InterfaceMethodref #102.#167     // java/util/Iterator.hasNext:()Z
+    #5 = InterfaceMethodref #102.#168     // java/util/Iterator.next:()Ljava/lang/Object;
+    #6 = Class              #169          // java/util/Map$Entry
+    #7 = InterfaceMethodref #6.#170       // java/util/Map$Entry.getValue:()Ljava/lang/Object;
+    #8 = Class              #171          // org/kohsuke/github/GHGistFile
+    #9 = InterfaceMethodref #6.#172       // java/util/Map$Entry.getKey:()Ljava/lang/Object;
+   #10 = Class              #173          // java/lang/String
+   #11 = Fieldref           #8.#174       // org/kohsuke/github/GHGistFile.fileName:Ljava/lang/String;
+   #12 = Methodref          #175.#176     // java/util/Collections.unmodifiableMap:(Ljava/util/Map;)Ljava/util/Map;
+   #13 = Fieldref           #53.#177      // org/kohsuke/github/GHGist.files:Ljava/util/Map;
+   #14 = Methodref          #100.#178     // org/kohsuke/github/GHUser.root:()Lorg/kohsuke/github/GitHub;
+   #15 = Methodref          #179.#180     // org/kohsuke/github/GitHub.getUser:(Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHUser;
+   #16 = Fieldref           #53.#181      // org/kohsuke/github/GHGist.owner:Lorg/kohsuke/github/GHUser;
+   #17 = Methodref          #53.#182      // org/kohsuke/github/GHGist.getGistId:()Ljava/lang/String;
+   #18 = Methodref          #183.#184     // java/lang/Long.parseLong:(Ljava/lang/String;)J
+   #19 = Fieldref           #53.#185      // org/kohsuke/github/GHGist.id:Ljava/lang/String;
+   #20 = Fieldref           #53.#186      // org/kohsuke/github/GHGist.forks_url:Ljava/lang/String;
+   #21 = Fieldref           #53.#187      // org/kohsuke/github/GHGist.commits_url:Ljava/lang/String;
+   #22 = Fieldref           #53.#188      // org/kohsuke/github/GHGist.git_pull_url:Ljava/lang/String;
+   #23 = Fieldref           #53.#189      // org/kohsuke/github/GHGist.git_push_url:Ljava/lang/String;
+   #24 = Fieldref           #53.#190      // org/kohsuke/github/GHGist.html_url:Ljava/lang/String;
+   #25 = Methodref          #191.#192     // org/kohsuke/github/GitHubClient.parseURL:(Ljava/lang/String;)Ljava/net/URL;
+   #26 = Fieldref           #53.#193      // org/kohsuke/github/GHGist._public:Z
+   #27 = Fieldref           #53.#194      // org/kohsuke/github/GHGist.description:Ljava/lang/String;
+   #28 = Fieldref           #53.#195      // org/kohsuke/github/GHGist.comments:I
+   #29 = Fieldref           #53.#196      // org/kohsuke/github/GHGist.comments_url:Ljava/lang/String;
+   #30 = InterfaceMethodref #101.#197     // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #31 = Class              #198          // java/lang/StringBuilder
+   #32 = Methodref          #31.#163      // java/lang/StringBuilder."<init>":()V
+   #33 = String             #199          // /gists/
+   #34 = Methodref          #31.#200      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #35 = Methodref          #31.#201      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #36 = Methodref          #202.#203     // org/apache/commons/lang3/StringUtils.isBlank:(Ljava/lang/CharSequence;)Z
+   #37 = String             #204          // /
+   #38 = Class              #205          // java/lang/CharSequence
+   #39 = Methodref          #202.#206     // org/apache/commons/lang3/StringUtils.prependIfMissing:(Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+   #40 = Methodref          #53.#178      // org/kohsuke/github/GHGist.root:()Lorg/kohsuke/github/GitHub;
+   #41 = Methodref          #179.#207     // org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+   #42 = String             #208          // PUT
+   #43 = Methodref          #44.#209      // org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #44 = Class              #210          // org/kohsuke/github/Requester
+   #45 = String             #143          // star
+   #46 = Methodref          #53.#211      // org/kohsuke/github/GHGist.getApiTailUrl:(Ljava/lang/String;)Ljava/lang/String;
+   #47 = Methodref          #44.#212      // org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #48 = Methodref          #44.#213      // org/kohsuke/github/Requester.send:()V
+   #49 = String             #214          // DELETE
+   #50 = Methodref          #44.#215      // org/kohsuke/github/Requester.fetchHttpStatusCode:()I
+   #51 = String             #216          // POST
+   #52 = String             #217          // forks
+   #53 = Class              #218          // org/kohsuke/github/GHGist
+   #54 = Methodref          #44.#219      // org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+   #55 = Class              #220          // "[Lorg/kohsuke/github/GHGist;"
+   #56 = Methodref          #44.#221      // org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+   #57 = Class              #222          // org/kohsuke/github/GHGistUpdater
+   #58 = Methodref          #57.#223      // org/kohsuke/github/GHGistUpdater."<init>":(Lorg/kohsuke/github/GHGist;)V
+   #59 = Methodref          #224.#225     // java/lang/Object.getClass:()Ljava/lang/Class;
+   #60 = Methodref          #10.#226      // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #61 = Methodref          #10.#227      // java/lang/String.hashCode:()I
+   #62 = Class              #228          // org/kohsuke/github/GHObject
+   #63 = Utf8               owner
+   #64 = Utf8               Lorg/kohsuke/github/GHUser;
+   #65 = Utf8               forks_url
+   #66 = Utf8               Ljava/lang/String;
+   #67 = Utf8               commits_url
+   #68 = Utf8               id
+   #69 = Utf8               git_pull_url
+   #70 = Utf8               git_push_url
+   #71 = Utf8               html_url
+   #72 = Utf8               _public
+   #73 = Utf8               Z
+   #74 = Utf8               RuntimeVisibleAnnotations
+   #75 = Utf8               Lcom/fasterxml/jackson/annotation/JsonProperty;
+   #76 = Utf8               value
+   #77 = Utf8               public
+   #78 = Utf8               description
+   #79 = Utf8               comments
+   #80 = Utf8               I
+   #81 = Utf8               comments_url
+   #82 = Utf8               files
+   #83 = Utf8               Ljava/util/Map;
+   #84 = Utf8               Signature
+   #85 = Utf8               Ljava/util/Map<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;
+   #86 = Utf8               <init>
+   #87 = Utf8               (Lorg/kohsuke/github/GHUser;Ljava/util/Map;)V
+   #88 = Utf8               Code
+   #89 = Utf8               LineNumberTable
+   #90 = Utf8               LocalVariableTable
+   #91 = Utf8               e
+   #92 = Utf8               Entry
+   #93 = Utf8               InnerClasses
+   #94 = Utf8               Ljava/util/Map$Entry;
+   #95 = Utf8               this
+   #96 = Utf8               Lorg/kohsuke/github/GHGist;
+   #97 = Utf8               LocalVariableTypeTable
+   #98 = Utf8               Ljava/util/Map$Entry<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;
+   #99 = Utf8               StackMapTable
+  #100 = Class              #229          // org/kohsuke/github/GHUser
+  #101 = Class              #230          // java/util/Map
+  #102 = Class              #231          // java/util/Iterator
+  #103 = Utf8               (Lorg/kohsuke/github/GHUser;Ljava/util/Map<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;)V
+  #104 = Utf8               Lcom/fasterxml/jackson/annotation/JsonCreator;
+  #105 = Utf8               RuntimeVisibleParameterAnnotations
+  #106 = Utf8               getId
+  #107 = Utf8               ()J
+  #108 = Utf8               Deprecated
+  #109 = Utf8               Ljava/lang/Deprecated;
+  #110 = Utf8               getGistId
+  #111 = Utf8               ()Ljava/lang/String;
+  #112 = Utf8               getOwner
+  #113 = Utf8               ()Lorg/kohsuke/github/GHUser;
+  #114 = Utf8               Exceptions
+  #115 = Class              #232          // java/io/IOException
+  #116 = Utf8               RuntimeInvisibleAnnotations
+  #117 = Utf8               Ledu/umd/cs/findbugs/annotations/SuppressFBWarnings;
+  #118 = Utf8               EI_EXPOSE_REP
+  #119 = Utf8               justification
+  #120 = Utf8               Expected behavior
+  #121 = Utf8               getForksUrl
+  #122 = Utf8               getCommitsUrl
+  #123 = Utf8               getGitPullUrl
+  #124 = Utf8               getGitPushUrl
+  #125 = Utf8               getHtmlUrl
+  #126 = Utf8               ()Ljava/net/URL;
+  #127 = Utf8               isPublic
+  #128 = Utf8               ()Z
+  #129 = Utf8               getDescription
+  #130 = Utf8               getCommentCount
+  #131 = Utf8               ()I
+  #132 = Utf8               getCommentsUrl
+  #133 = Utf8               getFile
+  #134 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GHGistFile;
+  #135 = Utf8               name
+  #136 = Utf8               getFiles
+  #137 = Utf8               ()Ljava/util/Map;
+  #138 = Utf8               ()Ljava/util/Map<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;
+  #139 = Utf8               getApiTailUrl
+  #140 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #141 = Utf8               tail
+  #142 = Utf8               result
+  #143 = Utf8               star
+  #144 = Utf8               ()V
+  #145 = Utf8               unstar
+  #146 = Utf8               isStarred
+  #147 = Utf8               fork
+  #148 = Utf8               ()Lorg/kohsuke/github/GHGist;
+  #149 = Utf8               listForks
+  #150 = Utf8               ()Lorg/kohsuke/github/PagedIterable;
+  #151 = Utf8               ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHGist;>;
+  #152 = Utf8               delete
+  #153 = Utf8               update
+  #154 = Utf8               ()Lorg/kohsuke/github/GHGistUpdater;
+  #155 = Utf8               equals
+  #156 = Utf8               (Ljava/lang/Object;)Z
+  #157 = Utf8               o
+  #158 = Utf8               Ljava/lang/Object;
+  #159 = Utf8               ghGist
+  #160 = Utf8               hashCode
+  #161 = Utf8               SourceFile
+  #162 = Utf8               GHGist.java
+  #163 = NameAndType        #86:#144      // "<init>":()V
+  #164 = NameAndType        #233:#234     // entrySet:()Ljava/util/Set;
+  #165 = Class              #235          // java/util/Set
+  #166 = NameAndType        #236:#237     // iterator:()Ljava/util/Iterator;
+  #167 = NameAndType        #238:#128     // hasNext:()Z
+  #168 = NameAndType        #239:#240     // next:()Ljava/lang/Object;
+  #169 = Utf8               java/util/Map$Entry
+  #170 = NameAndType        #241:#240     // getValue:()Ljava/lang/Object;
+  #171 = Utf8               org/kohsuke/github/GHGistFile
+  #172 = NameAndType        #242:#240     // getKey:()Ljava/lang/Object;
+  #173 = Utf8               java/lang/String
+  #174 = NameAndType        #243:#66      // fileName:Ljava/lang/String;
+  #175 = Class              #244          // java/util/Collections
+  #176 = NameAndType        #245:#246     // unmodifiableMap:(Ljava/util/Map;)Ljava/util/Map;
+  #177 = NameAndType        #82:#83       // files:Ljava/util/Map;
+  #178 = NameAndType        #247:#248     // root:()Lorg/kohsuke/github/GitHub;
+  #179 = Class              #249          // org/kohsuke/github/GitHub
+  #180 = NameAndType        #250:#251     // getUser:(Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHUser;
+  #181 = NameAndType        #63:#64       // owner:Lorg/kohsuke/github/GHUser;
+  #182 = NameAndType        #110:#111     // getGistId:()Ljava/lang/String;
+  #183 = Class              #252          // java/lang/Long
+  #184 = NameAndType        #253:#254     // parseLong:(Ljava/lang/String;)J
+  #185 = NameAndType        #68:#66       // id:Ljava/lang/String;
+  #186 = NameAndType        #65:#66       // forks_url:Ljava/lang/String;
+  #187 = NameAndType        #67:#66       // commits_url:Ljava/lang/String;
+  #188 = NameAndType        #69:#66       // git_pull_url:Ljava/lang/String;
+  #189 = NameAndType        #70:#66       // git_push_url:Ljava/lang/String;
+  #190 = NameAndType        #71:#66       // html_url:Ljava/lang/String;
+  #191 = Class              #255          // org/kohsuke/github/GitHubClient
+  #192 = NameAndType        #256:#257     // parseURL:(Ljava/lang/String;)Ljava/net/URL;
+  #193 = NameAndType        #72:#73       // _public:Z
+  #194 = NameAndType        #78:#66       // description:Ljava/lang/String;
+  #195 = NameAndType        #79:#80       // comments:I
+  #196 = NameAndType        #81:#66       // comments_url:Ljava/lang/String;
+  #197 = NameAndType        #258:#259     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #198 = Utf8               java/lang/StringBuilder
+  #199 = Utf8               /gists/
+  #200 = NameAndType        #260:#261     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #201 = NameAndType        #262:#111     // toString:()Ljava/lang/String;
+  #202 = Class              #263          // org/apache/commons/lang3/StringUtils
+  #203 = NameAndType        #264:#265     // isBlank:(Ljava/lang/CharSequence;)Z
+  #204 = Utf8               /
+  #205 = Utf8               java/lang/CharSequence
+  #206 = NameAndType        #266:#267     // prependIfMissing:(Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+  #207 = NameAndType        #268:#269     // createRequest:()Lorg/kohsuke/github/Requester;
+  #208 = Utf8               PUT
+  #209 = NameAndType        #270:#273     // method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #210 = Utf8               org/kohsuke/github/Requester
+  #211 = NameAndType        #139:#140     // getApiTailUrl:(Ljava/lang/String;)Ljava/lang/String;
+  #212 = NameAndType        #274:#275     // withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #213 = NameAndType        #276:#144     // send:()V
+  #214 = Utf8               DELETE
+  #215 = NameAndType        #277:#131     // fetchHttpStatusCode:()I
+  #216 = Utf8               POST
+  #217 = Utf8               forks
+  #218 = Utf8               org/kohsuke/github/GHGist
+  #219 = NameAndType        #278:#279     // fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+  #220 = Utf8               [Lorg/kohsuke/github/GHGist;
+  #221 = NameAndType        #280:#281     // toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+  #222 = Utf8               org/kohsuke/github/GHGistUpdater
+  #223 = NameAndType        #86:#282      // "<init>":(Lorg/kohsuke/github/GHGist;)V
+  #224 = Class              #283          // java/lang/Object
+  #225 = NameAndType        #284:#285     // getClass:()Ljava/lang/Class;
+  #226 = NameAndType        #155:#156     // equals:(Ljava/lang/Object;)Z
+  #227 = NameAndType        #160:#131     // hashCode:()I
+  #228 = Utf8               org/kohsuke/github/GHObject
+  #229 = Utf8               org/kohsuke/github/GHUser
+  #230 = Utf8               java/util/Map
+  #231 = Utf8               java/util/Iterator
+  #232 = Utf8               java/io/IOException
+  #233 = Utf8               entrySet
+  #234 = Utf8               ()Ljava/util/Set;
+  #235 = Utf8               java/util/Set
+  #236 = Utf8               iterator
+  #237 = Utf8               ()Ljava/util/Iterator;
+  #238 = Utf8               hasNext
+  #239 = Utf8               next
+  #240 = Utf8               ()Ljava/lang/Object;
+  #241 = Utf8               getValue
+  #242 = Utf8               getKey
+  #243 = Utf8               fileName
+  #244 = Utf8               java/util/Collections
+  #245 = Utf8               unmodifiableMap
+  #246 = Utf8               (Ljava/util/Map;)Ljava/util/Map;
+  #247 = Utf8               root
+  #248 = Utf8               ()Lorg/kohsuke/github/GitHub;
+  #249 = Utf8               org/kohsuke/github/GitHub
+  #250 = Utf8               getUser
+  #251 = Utf8               (Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHUser;
+  #252 = Utf8               java/lang/Long
+  #253 = Utf8               parseLong
+  #254 = Utf8               (Ljava/lang/String;)J
+  #255 = Utf8               org/kohsuke/github/GitHubClient
+  #256 = Utf8               parseURL
+  #257 = Utf8               (Ljava/lang/String;)Ljava/net/URL;
+  #258 = Utf8               get
+  #259 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #260 = Utf8               append
+  #261 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #262 = Utf8               toString
+  #263 = Utf8               org/apache/commons/lang3/StringUtils
+  #264 = Utf8               isBlank
+  #265 = Utf8               (Ljava/lang/CharSequence;)Z
+  #266 = Utf8               prependIfMissing
+  #267 = Utf8               (Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+  #268 = Utf8               createRequest
+  #269 = Utf8               ()Lorg/kohsuke/github/Requester;
+  #270 = Utf8               method
+  #271 = Class              #287          // org/kohsuke/github/GitHubRequest$Builder
+  #272 = Utf8               Builder
+  #273 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #274 = Utf8               withUrlPath
+  #275 = Utf8               (Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #276 = Utf8               send
+  #277 = Utf8               fetchHttpStatusCode
+  #278 = Utf8               fetch
+  #279 = Utf8               (Ljava/lang/Class;)Ljava/lang/Object;
+  #280 = Utf8               toIterable
+  #281 = Utf8               (Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+  #282 = Utf8               (Lorg/kohsuke/github/GHGist;)V
+  #283 = Utf8               java/lang/Object
+  #284 = Utf8               getClass
+  #285 = Utf8               ()Ljava/lang/Class;
+  #286 = Class              #288          // org/kohsuke/github/GitHubRequest
+  #287 = Utf8               org/kohsuke/github/GitHubRequest$Builder
+  #288 = Utf8               org/kohsuke/github/GitHubRequest
+{
+  final org.kohsuke.github.GHUser owner;
+    descriptor: Lorg/kohsuke/github/GHUser;
+    flags: (0x0010) ACC_FINAL
+
+  private java.lang.String forks_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String commits_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String id;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String git_pull_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String git_push_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String html_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean _public;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+    RuntimeVisibleAnnotations:
+      0: #75(#76=s#77)
+        com.fasterxml.jackson.annotation.JsonProperty(
+          value="public"
+        )
+
+  private java.lang.String description;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int comments;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String comments_url;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private final java.util.Map<java.lang.String, org.kohsuke.github.GHGistFile> files;
+    descriptor: Ljava/util/Map;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #85                          // Ljava/util/Map<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;
+
+  private org.kohsuke.github.GHGist(org.kohsuke.github.GHUser, java.util.Map<java.lang.String, org.kohsuke.github.GHGistFile>);
+    descriptor: (Lorg/kohsuke/github/GHUser;Ljava/util/Map;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=5, args_size=3
+         0: aload_0
+         1: invokespecial #1                  // Method org/kohsuke/github/GHObject."<init>":()V
+         4: aload_2
+         5: invokeinterface #2,  1            // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+        10: invokeinterface #3,  1            // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        15: astore_3
+        16: aload_3
+        17: invokeinterface #4,  1            // InterfaceMethod java/util/Iterator.hasNext:()Z
+        22: ifeq          62
+        25: aload_3
+        26: invokeinterface #5,  1            // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        31: checkcast     #6                  // class java/util/Map$Entry
+        34: astore        4
+        36: aload         4
+        38: invokeinterface #7,  1            // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        43: checkcast     #8                  // class org/kohsuke/github/GHGistFile
+        46: aload         4
+        48: invokeinterface #9,  1            // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        53: checkcast     #10                 // class java/lang/String
+        56: putfield      #11                 // Field org/kohsuke/github/GHGistFile.fileName:Ljava/lang/String;
+        59: goto          16
+        62: aload_0
+        63: aload_2
+        64: invokestatic  #12                 // Method java/util/Collections.unmodifiableMap:(Ljava/util/Map;)Ljava/util/Map;
+        67: putfield      #13                 // Field files:Ljava/util/Map;
+        70: aload_0
+        71: aload_1
+        72: invokevirtual #14                 // Method org/kohsuke/github/GHUser.root:()Lorg/kohsuke/github/GitHub;
+        75: aload_1
+        76: invokevirtual #15                 // Method org/kohsuke/github/GitHub.getUser:(Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHUser;
+        79: putfield      #16                 // Field owner:Lorg/kohsuke/github/GHUser;
+        82: return
+      LineNumberTable:
+        line 41: 0
+        line 42: 4
+        line 43: 36
+        line 44: 59
+        line 45: 62
+        line 46: 70
+        line 47: 82
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           36      23     4     e   Ljava/util/Map$Entry;
+            0      83     0  this   Lorg/kohsuke/github/GHGist;
+            0      83     1 owner   Lorg/kohsuke/github/GHUser;
+            0      83     2 files   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           36      23     4     e   Ljava/util/Map$Entry<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;
+            0      83     2 files   Ljava/util/Map<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/kohsuke/github/GHGist, class org/kohsuke/github/GHUser, class java/util/Map, class java/util/Iterator ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 45
+    Signature: #103                         // (Lorg/kohsuke/github/GHUser;Ljava/util/Map<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;)V
+    RuntimeVisibleAnnotations:
+      0: #104()
+        com.fasterxml.jackson.annotation.JsonCreator
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+        0: #75(#76=s#63)
+          com.fasterxml.jackson.annotation.JsonProperty(
+            value="owner"
+          )
+      parameter 1:
+        0: #75(#76=s#82)
+          com.fasterxml.jackson.annotation.JsonProperty(
+            value="files"
+          )
+
+  public long getId();
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #17                 // Method getGistId:()Ljava/lang/String;
+         4: invokestatic  #18                 // Method java/lang/Long.parseLong:(Ljava/lang/String;)J
+         7: lreturn
+      LineNumberTable:
+        line 60: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHGist;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #109()
+        java.lang.Deprecated
+
+  public java.lang.String getGistId();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #19                 // Field id:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 70: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public org.kohsuke.github.GHUser getOwner() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GHUser;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #16                 // Field owner:Lorg/kohsuke/github/GHUser;
+         4: areturn
+      LineNumberTable:
+        line 82: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+    Exceptions:
+      throws java.io.IOException
+    RuntimeInvisibleAnnotations:
+      0: #117(#76=[s#118],#119=s#120)
+        edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+          value=["EI_EXPOSE_REP"]
+          justification="Expected behavior"
+        )
+
+  public java.lang.String getForksUrl();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #20                 // Field forks_url:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 91: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public java.lang.String getCommitsUrl();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #21                 // Field commits_url:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 100: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public java.lang.String getGitPullUrl();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #22                 // Field git_pull_url:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 109: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public java.lang.String getGitPushUrl();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #23                 // Field git_push_url:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 118: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public java.net.URL getHtmlUrl();
+    descriptor: ()Ljava/net/URL;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #24                 // Field html_url:Ljava/lang/String;
+         4: invokestatic  #25                 // Method org/kohsuke/github/GitHubClient.parseURL:(Ljava/lang/String;)Ljava/net/URL;
+         7: areturn
+      LineNumberTable:
+        line 127: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHGist;
+
+  public boolean isPublic();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #26                 // Field _public:Z
+         4: ireturn
+      LineNumberTable:
+        line 136: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public java.lang.String getDescription();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #27                 // Field description:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 145: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public int getCommentCount();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #28                 // Field comments:I
+         4: ireturn
+      LineNumberTable:
+        line 154: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public java.lang.String getCommentsUrl();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #29                 // Field comments_url:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 163: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHGist;
+
+  public org.kohsuke.github.GHGistFile getFile(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHGistFile;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #13                 // Field files:Ljava/util/Map;
+         4: aload_1
+         5: invokeinterface #30,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        10: checkcast     #8                  // class org/kohsuke/github/GHGistFile
+        13: areturn
+      LineNumberTable:
+        line 174: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lorg/kohsuke/github/GHGist;
+            0      14     1  name   Ljava/lang/String;
+
+  public java.util.Map<java.lang.String, org.kohsuke.github.GHGistFile> getFiles();
+    descriptor: ()Ljava/util/Map;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field files:Ljava/util/Map;
+         4: invokestatic  #12                 // Method java/util/Collections.unmodifiableMap:(Ljava/util/Map;)Ljava/util/Map;
+         7: areturn
+      LineNumberTable:
+        line 183: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHGist;
+    Signature: #138                         // ()Ljava/util/Map<Ljava/lang/String;Lorg/kohsuke/github/GHGistFile;>;
+
+  java.lang.String getApiTailUrl(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x0000)
+    Code:
+      stack=4, locals=3, args_size=2
+         0: new           #31                 // class java/lang/StringBuilder
+         3: dup
+         4: invokespecial #32                 // Method java/lang/StringBuilder."<init>":()V
+         7: ldc           #33                 // String /gists/
+         9: invokevirtual #34                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        12: aload_0
+        13: getfield      #19                 // Field id:Ljava/lang/String;
+        16: invokevirtual #34                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        19: invokevirtual #35                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        22: astore_2
+        23: aload_1
+        24: invokestatic  #36                 // Method org/apache/commons/lang3/StringUtils.isBlank:(Ljava/lang/CharSequence;)Z
+        27: ifne          58
+        30: new           #31                 // class java/lang/StringBuilder
+        33: dup
+        34: invokespecial #32                 // Method java/lang/StringBuilder."<init>":()V
+        37: aload_2
+        38: invokevirtual #34                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        41: aload_1
+        42: ldc           #37                 // String /
+        44: iconst_0
+        45: anewarray     #38                 // class java/lang/CharSequence
+        48: invokestatic  #39                 // Method org/apache/commons/lang3/StringUtils.prependIfMissing:(Ljava/lang/String;Ljava/lang/CharSequence;[Ljava/lang/CharSequence;)Ljava/lang/String;
+        51: invokevirtual #34                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        54: invokevirtual #35                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        57: astore_2
+        58: aload_2
+        59: areturn
+      LineNumberTable:
+        line 187: 0
+        line 188: 23
+        line 189: 30
+        line 191: 58
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      60     0  this   Lorg/kohsuke/github/GHGist;
+            0      60     1  tail   Ljava/lang/String;
+           23      37     2 result   Ljava/lang/String;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 58
+          locals = [ class java/lang/String ]
+
+  public void star() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #40                 // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #41                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #42                 // String PUT
+         9: invokevirtual #43                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        12: checkcast     #44                 // class org/kohsuke/github/Requester
+        15: aload_0
+        16: ldc           #45                 // String star
+        18: invokevirtual #46                 // Method getApiTailUrl:(Ljava/lang/String;)Ljava/lang/String;
+        21: iconst_0
+        22: anewarray     #10                 // class java/lang/String
+        25: invokevirtual #47                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        28: checkcast     #44                 // class org/kohsuke/github/Requester
+        31: invokevirtual #48                 // Method org/kohsuke/github/Requester.send:()V
+        34: return
+      LineNumberTable:
+        line 201: 0
+        line 202: 34
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      35     0  this   Lorg/kohsuke/github/GHGist;
+    Exceptions:
+      throws java.io.IOException
+
+  public void unstar() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #40                 // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #41                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #49                 // String DELETE
+         9: invokevirtual #43                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        12: checkcast     #44                 // class org/kohsuke/github/Requester
+        15: aload_0
+        16: ldc           #45                 // String star
+        18: invokevirtual #46                 // Method getApiTailUrl:(Ljava/lang/String;)Ljava/lang/String;
+        21: iconst_0
+        22: anewarray     #10                 // class java/lang/String
+        25: invokevirtual #47                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        28: checkcast     #44                 // class org/kohsuke/github/Requester
+        31: invokevirtual #48                 // Method org/kohsuke/github/Requester.send:()V
+        34: return
+      LineNumberTable:
+        line 211: 0
+        line 212: 34
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      35     0  this   Lorg/kohsuke/github/GHGist;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean isStarred() throws java.io.IOException;
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #40                 // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #41                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: aload_0
+         8: ldc           #45                 // String star
+        10: invokevirtual #46                 // Method getApiTailUrl:(Ljava/lang/String;)Ljava/lang/String;
+        13: iconst_0
+        14: anewarray     #10                 // class java/lang/String
+        17: invokevirtual #47                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        20: checkcast     #44                 // class org/kohsuke/github/Requester
+        23: invokevirtual #50                 // Method org/kohsuke/github/Requester.fetchHttpStatusCode:()I
+        26: bipush        100
+        28: idiv
+        29: iconst_2
+        30: if_icmpne     37
+        33: iconst_1
+        34: goto          38
+        37: iconst_0
+        38: ireturn
+      LineNumberTable:
+        line 222: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      39     0  this   Lorg/kohsuke/github/GHGist;
+      StackMapTable: number_of_entries = 2
+        frame_type = 37 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+    Exceptions:
+      throws java.io.IOException
+
+  public org.kohsuke.github.GHGist fork() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GHGist;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #40                 // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #41                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #51                 // String POST
+         9: invokevirtual #43                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        12: checkcast     #44                 // class org/kohsuke/github/Requester
+        15: aload_0
+        16: ldc           #52                 // String forks
+        18: invokevirtual #46                 // Method getApiTailUrl:(Ljava/lang/String;)Ljava/lang/String;
+        21: iconst_0
+        22: anewarray     #10                 // class java/lang/String
+        25: invokevirtual #47                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        28: checkcast     #44                 // class org/kohsuke/github/Requester
+        31: ldc           #53                 // class org/kohsuke/github/GHGist
+        33: invokevirtual #54                 // Method org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+        36: checkcast     #53                 // class org/kohsuke/github/GHGist
+        39: areturn
+      LineNumberTable:
+        line 233: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      40     0  this   Lorg/kohsuke/github/GHGist;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.kohsuke.github.PagedIterable<org.kohsuke.github.GHGist> listForks();
+    descriptor: ()Lorg/kohsuke/github/PagedIterable;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #40                 // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #41                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: aload_0
+         8: ldc           #52                 // String forks
+        10: invokevirtual #46                 // Method getApiTailUrl:(Ljava/lang/String;)Ljava/lang/String;
+        13: iconst_0
+        14: anewarray     #10                 // class java/lang/String
+        17: invokevirtual #47                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        20: checkcast     #44                 // class org/kohsuke/github/Requester
+        23: ldc           #55                 // class "[Lorg/kohsuke/github/GHGist;"
+        25: aconst_null
+        26: invokevirtual #56                 // Method org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+        29: areturn
+      LineNumberTable:
+        line 242: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0  this   Lorg/kohsuke/github/GHGist;
+    Signature: #151                         // ()Lorg/kohsuke/github/PagedIterable<Lorg/kohsuke/github/GHGist;>;
+
+  public void delete() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #40                 // Method root:()Lorg/kohsuke/github/GitHub;
+         4: invokevirtual #41                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+         7: ldc           #49                 // String DELETE
+         9: invokevirtual #43                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        12: checkcast     #44                 // class org/kohsuke/github/Requester
+        15: new           #31                 // class java/lang/StringBuilder
+        18: dup
+        19: invokespecial #32                 // Method java/lang/StringBuilder."<init>":()V
+        22: ldc           #33                 // String /gists/
+        24: invokevirtual #34                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        27: aload_0
+        28: getfield      #19                 // Field id:Ljava/lang/String;
+        31: invokevirtual #34                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        34: invokevirtual #35                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        37: iconst_0
+        38: anewarray     #10                 // class java/lang/String
+        41: invokevirtual #47                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        44: checkcast     #44                 // class org/kohsuke/github/Requester
+        47: invokevirtual #48                 // Method org/kohsuke/github/Requester.send:()V
+        50: return
+      LineNumberTable:
+        line 252: 0
+        line 253: 50
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      51     0  this   Lorg/kohsuke/github/GHGist;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.kohsuke.github.GHGistUpdater update() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GHGistUpdater;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #57                 // class org/kohsuke/github/GHGistUpdater
+         3: dup
+         4: aload_0
+         5: invokespecial #58                 // Method org/kohsuke/github/GHGistUpdater."<init>":(Lorg/kohsuke/github/GHGist;)V
+         8: areturn
+      LineNumberTable:
+        line 263: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GHGist;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean equals(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: aload_1
+         2: if_acmpne     7
+         5: iconst_1
+         6: ireturn
+         7: aload_1
+         8: ifnull        22
+        11: aload_0
+        12: invokevirtual #59                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        15: aload_1
+        16: invokevirtual #59                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        19: if_acmpeq     24
+        22: iconst_0
+        23: ireturn
+        24: aload_1
+        25: checkcast     #53                 // class org/kohsuke/github/GHGist
+        28: astore_2
+        29: aload_0
+        30: getfield      #19                 // Field id:Ljava/lang/String;
+        33: aload_2
+        34: getfield      #19                 // Field id:Ljava/lang/String;
+        37: invokevirtual #60                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        40: ireturn
+      LineNumberTable:
+        line 268: 0
+        line 269: 5
+        line 270: 7
+        line 271: 22
+        line 272: 24
+        line 273: 29
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lorg/kohsuke/github/GHGist;
+            0      41     1     o   Ljava/lang/Object;
+           29      12     2 ghGist   Lorg/kohsuke/github/GHGist;
+      StackMapTable: number_of_entries = 3
+        frame_type = 7 /* same */
+        frame_type = 14 /* same */
+        frame_type = 1 /* same */
+
+  public int hashCode();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #19                 // Field id:Ljava/lang/String;
+         4: invokevirtual #61                 // Method java/lang/String.hashCode:()I
+         7: ireturn
+      LineNumberTable:
+        line 279: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHGist;
+}
+SourceFile: "GHGist.java"
+InnerClasses:
+  public static #92= #6 of #101;          // Entry=class java/util/Map$Entry of class java/util/Map
+  static #272= #271 of #286;              // Builder=class org/kohsuke/github/GitHubRequest$Builder of class org/kohsuke/github/GitHubRequest

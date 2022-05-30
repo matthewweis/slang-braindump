@@ -1,0 +1,851 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/zaxxer/nuprocess/NuProcessBuilder.class
+  Last modified May 29, 2022; size 6000 bytes
+  SHA-256 checksum c9965ac5021046369e569acd82d700449a952487df195dc2f6462b44f385b799
+  Compiled from "NuProcessBuilder.java"
+public class com.zaxxer.nuprocess.NuProcessBuilder
+  minor version: 0
+  major version: 51
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #60                         // com/zaxxer/nuprocess/NuProcessBuilder
+  super_class: #61                        // java/lang/Object
+  interfaces: 0, fields: 5, methods: 14, attributes: 2
+Constant pool:
+    #1 = Methodref          #61.#136      // java/lang/Object."<init>":()V
+    #2 = InterfaceMethodref #87.#137      // java/util/List.isEmpty:()Z
+    #3 = Class              #138          // java/lang/IllegalArgumentException
+    #4 = String             #139          // List of commands may not be null or empty
+    #5 = Methodref          #3.#140       // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+    #6 = Class              #141          // java/util/TreeMap
+    #7 = Methodref          #6.#142       // java/util/TreeMap."<init>":(Ljava/util/Map;)V
+    #8 = Fieldref           #60.#143      // com/zaxxer/nuprocess/NuProcessBuilder.environment:Ljava/util/TreeMap;
+    #9 = Class              #144          // java/util/ArrayList
+   #10 = Methodref          #9.#145       // java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+   #11 = Fieldref           #60.#146      // com/zaxxer/nuprocess/NuProcessBuilder.command:Ljava/util/List;
+   #12 = Methodref          #147.#148     // java/lang/System.getenv:()Ljava/util/Map;
+   #13 = Methodref          #149.#150     // java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+   #14 = Methodref          #60.#151      // com/zaxxer/nuprocess/NuProcessBuilder."<init>":([Ljava/lang/String;)V
+   #15 = String             #152          // A NuProcessListener must be specified
+   #16 = Fieldref           #60.#153      // com/zaxxer/nuprocess/NuProcessBuilder.processListener:Lcom/zaxxer/nuprocess/NuProcessHandler;
+   #17 = Methodref          #60.#154      // com/zaxxer/nuprocess/NuProcessBuilder."<init>":(Ljava/util/List;)V
+   #18 = Fieldref           #60.#155      // com/zaxxer/nuprocess/NuProcessBuilder.cwd:Ljava/nio/file/Path;
+   #19 = Methodref          #60.#156      // com/zaxxer/nuprocess/NuProcessBuilder.ensureListener:()V
+   #20 = Methodref          #60.#157      // com/zaxxer/nuprocess/NuProcessBuilder.prepareEnvironment:()[Ljava/lang/String;
+   #21 = Fieldref           #60.#158      // com/zaxxer/nuprocess/NuProcessBuilder.factory:Lcom/zaxxer/nuprocess/NuProcessFactory;
+   #22 = InterfaceMethodref #57.#159      // com/zaxxer/nuprocess/NuProcessFactory.createProcess:(Ljava/util/List;[Ljava/lang/String;Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/nio/file/Path;)Lcom/zaxxer/nuprocess/NuProcess;
+   #23 = InterfaceMethodref #57.#160      // com/zaxxer/nuprocess/NuProcessFactory.runProcess:(Ljava/util/List;[Ljava/lang/String;Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/nio/file/Path;)V
+   #24 = String             #161          // NuProcessHandler not specified
+   #25 = Methodref          #6.#162       // java/util/TreeMap.size:()I
+   #26 = Class              #163          // java/lang/String
+   #27 = Methodref          #6.#164       // java/util/TreeMap.entrySet:()Ljava/util/Set;
+   #28 = InterfaceMethodref #165.#166     // java/util/Set.iterator:()Ljava/util/Iterator;
+   #29 = InterfaceMethodref #124.#167     // java/util/Iterator.hasNext:()Z
+   #30 = InterfaceMethodref #124.#168     // java/util/Iterator.next:()Ljava/lang/Object;
+   #31 = Class              #169          // java/util/Map$Entry
+   #32 = Class              #170          // java/lang/StringBuilder
+   #33 = Methodref          #32.#136      // java/lang/StringBuilder."<init>":()V
+   #34 = InterfaceMethodref #31.#171      // java/util/Map$Entry.getKey:()Ljava/lang/Object;
+   #35 = Methodref          #32.#172      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #36 = String             #173          // =
+   #37 = InterfaceMethodref #31.#174      // java/util/Map$Entry.getValue:()Ljava/lang/Object;
+   #38 = Methodref          #32.#175      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #39 = String             #176          // os.name
+   #40 = Methodref          #147.#177     // java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+   #41 = Methodref          #26.#178      // java/lang/String.toLowerCase:()Ljava/lang/String;
+   #42 = String             #179          // mac
+   #43 = Methodref          #26.#180      // java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+   #44 = String             #181          // freebsd
+   #45 = String             #182          // com.zaxxer.nuprocess.osx.OsxProcessFactory
+   #46 = String             #183          // win
+   #47 = String             #184          // com.zaxxer.nuprocess.windows.WinProcessFactory
+   #48 = String             #185          // linux
+   #49 = String             #186          // com.zaxxer.nuprocess.linux.LinProcessFactory
+   #50 = String             #187          // sunos
+   #51 = String             #188          // com.zaxxer.nuprocess.solaris.SolProcessFactory
+   #52 = Class              #189          // java/lang/RuntimeException
+   #53 = String             #190          // Unsupported operating system:
+   #54 = Methodref          #52.#140      // java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+   #55 = Methodref          #191.#192     // java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+   #56 = Methodref          #191.#193     // java/lang/Class.newInstance:()Ljava/lang/Object;
+   #57 = Class              #194          // com/zaxxer/nuprocess/NuProcessFactory
+   #58 = Class              #195          // java/lang/Exception
+   #59 = Methodref          #52.#196      // java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+   #60 = Class              #197          // com/zaxxer/nuprocess/NuProcessBuilder
+   #61 = Class              #198          // java/lang/Object
+   #62 = Utf8               factory
+   #63 = Utf8               Lcom/zaxxer/nuprocess/NuProcessFactory;
+   #64 = Utf8               command
+   #65 = Utf8               Ljava/util/List;
+   #66 = Utf8               Signature
+   #67 = Utf8               Ljava/util/List<Ljava/lang/String;>;
+   #68 = Utf8               environment
+   #69 = Utf8               Ljava/util/TreeMap;
+   #70 = Utf8               Ljava/util/TreeMap<Ljava/lang/String;Ljava/lang/String;>;
+   #71 = Utf8               cwd
+   #72 = Utf8               Ljava/nio/file/Path;
+   #73 = Utf8               processListener
+   #74 = Utf8               Lcom/zaxxer/nuprocess/NuProcessHandler;
+   #75 = Utf8               <init>
+   #76 = Utf8               (Ljava/util/List;Ljava/util/Map;)V
+   #77 = Utf8               Code
+   #78 = Utf8               LineNumberTable
+   #79 = Utf8               LocalVariableTable
+   #80 = Utf8               this
+   #81 = Utf8               Lcom/zaxxer/nuprocess/NuProcessBuilder;
+   #82 = Utf8               commands
+   #83 = Utf8               Ljava/util/Map;
+   #84 = Utf8               LocalVariableTypeTable
+   #85 = Utf8               Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+   #86 = Utf8               StackMapTable
+   #87 = Class              #199          // java/util/List
+   #88 = Class              #200          // java/util/Map
+   #89 = Utf8               (Ljava/util/List<Ljava/lang/String;>;Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;)V
+   #90 = Utf8               (Ljava/util/List;)V
+   #91 = Utf8               (Ljava/util/List<Ljava/lang/String;>;)V
+   #92 = Utf8               ([Ljava/lang/String;)V
+   #93 = Utf8               [Ljava/lang/String;
+   #94 = Class              #93           // "[Ljava/lang/String;"
+   #95 = Utf8               (Lcom/zaxxer/nuprocess/NuProcessHandler;[Ljava/lang/String;)V
+   #96 = Utf8               nuProcessHandler
+   #97 = Class              #201          // com/zaxxer/nuprocess/NuProcessHandler
+   #98 = Utf8               (Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/util/List;)V
+   #99 = Utf8               (Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/util/List<Ljava/lang/String;>;)V
+  #100 = Utf8               ()Ljava/util/List;
+  #101 = Utf8               ()Ljava/util/List<Ljava/lang/String;>;
+  #102 = Utf8               ()Ljava/util/Map;
+  #103 = Utf8               ()Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+  #104 = Utf8               setProcessListener
+  #105 = Utf8               (Lcom/zaxxer/nuprocess/NuProcessHandler;)V
+  #106 = Utf8               listener
+  #107 = Utf8               setCwd
+  #108 = Utf8               (Ljava/nio/file/Path;)V
+  #109 = Utf8               start
+  #110 = Utf8               ()Lcom/zaxxer/nuprocess/NuProcess;
+  #111 = Utf8               env
+  #112 = Utf8               run
+  #113 = Utf8               ()V
+  #114 = Utf8               ensureListener
+  #115 = Utf8               prepareEnvironment
+  #116 = Utf8               ()[Ljava/lang/String;
+  #117 = Utf8               entrySet
+  #118 = Utf8               Entry
+  #119 = Utf8               InnerClasses
+  #120 = Utf8               Ljava/util/Map$Entry;
+  #121 = Utf8               i
+  #122 = Utf8               I
+  #123 = Utf8               Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/String;>;
+  #124 = Class              #202          // java/util/Iterator
+  #125 = Utf8               <clinit>
+  #126 = Utf8               forName
+  #127 = Utf8               Ljava/lang/Class;
+  #128 = Utf8               e
+  #129 = Utf8               Ljava/lang/Exception;
+  #130 = Utf8               factoryClassName
+  #131 = Utf8               Ljava/lang/String;
+  #132 = Utf8               osname
+  #133 = Utf8               Ljava/lang/Class<*>;
+  #134 = Utf8               SourceFile
+  #135 = Utf8               NuProcessBuilder.java
+  #136 = NameAndType        #75:#113      // "<init>":()V
+  #137 = NameAndType        #203:#204     // isEmpty:()Z
+  #138 = Utf8               java/lang/IllegalArgumentException
+  #139 = Utf8               List of commands may not be null or empty
+  #140 = NameAndType        #75:#205      // "<init>":(Ljava/lang/String;)V
+  #141 = Utf8               java/util/TreeMap
+  #142 = NameAndType        #75:#206      // "<init>":(Ljava/util/Map;)V
+  #143 = NameAndType        #68:#69       // environment:Ljava/util/TreeMap;
+  #144 = Utf8               java/util/ArrayList
+  #145 = NameAndType        #75:#207      // "<init>":(Ljava/util/Collection;)V
+  #146 = NameAndType        #64:#65       // command:Ljava/util/List;
+  #147 = Class              #208          // java/lang/System
+  #148 = NameAndType        #209:#102     // getenv:()Ljava/util/Map;
+  #149 = Class              #210          // java/util/Arrays
+  #150 = NameAndType        #211:#212     // asList:([Ljava/lang/Object;)Ljava/util/List;
+  #151 = NameAndType        #75:#92       // "<init>":([Ljava/lang/String;)V
+  #152 = Utf8               A NuProcessListener must be specified
+  #153 = NameAndType        #73:#74       // processListener:Lcom/zaxxer/nuprocess/NuProcessHandler;
+  #154 = NameAndType        #75:#90       // "<init>":(Ljava/util/List;)V
+  #155 = NameAndType        #71:#72       // cwd:Ljava/nio/file/Path;
+  #156 = NameAndType        #114:#113     // ensureListener:()V
+  #157 = NameAndType        #115:#116     // prepareEnvironment:()[Ljava/lang/String;
+  #158 = NameAndType        #62:#63       // factory:Lcom/zaxxer/nuprocess/NuProcessFactory;
+  #159 = NameAndType        #213:#214     // createProcess:(Ljava/util/List;[Ljava/lang/String;Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/nio/file/Path;)Lcom/zaxxer/nuprocess/NuProcess;
+  #160 = NameAndType        #215:#216     // runProcess:(Ljava/util/List;[Ljava/lang/String;Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/nio/file/Path;)V
+  #161 = Utf8               NuProcessHandler not specified
+  #162 = NameAndType        #217:#218     // size:()I
+  #163 = Utf8               java/lang/String
+  #164 = NameAndType        #117:#219     // entrySet:()Ljava/util/Set;
+  #165 = Class              #220          // java/util/Set
+  #166 = NameAndType        #221:#222     // iterator:()Ljava/util/Iterator;
+  #167 = NameAndType        #223:#204     // hasNext:()Z
+  #168 = NameAndType        #224:#225     // next:()Ljava/lang/Object;
+  #169 = Utf8               java/util/Map$Entry
+  #170 = Utf8               java/lang/StringBuilder
+  #171 = NameAndType        #226:#225     // getKey:()Ljava/lang/Object;
+  #172 = NameAndType        #227:#228     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #173 = Utf8               =
+  #174 = NameAndType        #229:#225     // getValue:()Ljava/lang/Object;
+  #175 = NameAndType        #230:#231     // toString:()Ljava/lang/String;
+  #176 = Utf8               os.name
+  #177 = NameAndType        #232:#233     // getProperty:(Ljava/lang/String;)Ljava/lang/String;
+  #178 = NameAndType        #234:#231     // toLowerCase:()Ljava/lang/String;
+  #179 = Utf8               mac
+  #180 = NameAndType        #235:#236     // contains:(Ljava/lang/CharSequence;)Z
+  #181 = Utf8               freebsd
+  #182 = Utf8               com.zaxxer.nuprocess.osx.OsxProcessFactory
+  #183 = Utf8               win
+  #184 = Utf8               com.zaxxer.nuprocess.windows.WinProcessFactory
+  #185 = Utf8               linux
+  #186 = Utf8               com.zaxxer.nuprocess.linux.LinProcessFactory
+  #187 = Utf8               sunos
+  #188 = Utf8               com.zaxxer.nuprocess.solaris.SolProcessFactory
+  #189 = Utf8               java/lang/RuntimeException
+  #190 = Utf8               Unsupported operating system:
+  #191 = Class              #237          // java/lang/Class
+  #192 = NameAndType        #126:#238     // forName:(Ljava/lang/String;)Ljava/lang/Class;
+  #193 = NameAndType        #239:#225     // newInstance:()Ljava/lang/Object;
+  #194 = Utf8               com/zaxxer/nuprocess/NuProcessFactory
+  #195 = Utf8               java/lang/Exception
+  #196 = NameAndType        #75:#240      // "<init>":(Ljava/lang/Throwable;)V
+  #197 = Utf8               com/zaxxer/nuprocess/NuProcessBuilder
+  #198 = Utf8               java/lang/Object
+  #199 = Utf8               java/util/List
+  #200 = Utf8               java/util/Map
+  #201 = Utf8               com/zaxxer/nuprocess/NuProcessHandler
+  #202 = Utf8               java/util/Iterator
+  #203 = Utf8               isEmpty
+  #204 = Utf8               ()Z
+  #205 = Utf8               (Ljava/lang/String;)V
+  #206 = Utf8               (Ljava/util/Map;)V
+  #207 = Utf8               (Ljava/util/Collection;)V
+  #208 = Utf8               java/lang/System
+  #209 = Utf8               getenv
+  #210 = Utf8               java/util/Arrays
+  #211 = Utf8               asList
+  #212 = Utf8               ([Ljava/lang/Object;)Ljava/util/List;
+  #213 = Utf8               createProcess
+  #214 = Utf8               (Ljava/util/List;[Ljava/lang/String;Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/nio/file/Path;)Lcom/zaxxer/nuprocess/NuProcess;
+  #215 = Utf8               runProcess
+  #216 = Utf8               (Ljava/util/List;[Ljava/lang/String;Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/nio/file/Path;)V
+  #217 = Utf8               size
+  #218 = Utf8               ()I
+  #219 = Utf8               ()Ljava/util/Set;
+  #220 = Utf8               java/util/Set
+  #221 = Utf8               iterator
+  #222 = Utf8               ()Ljava/util/Iterator;
+  #223 = Utf8               hasNext
+  #224 = Utf8               next
+  #225 = Utf8               ()Ljava/lang/Object;
+  #226 = Utf8               getKey
+  #227 = Utf8               append
+  #228 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #229 = Utf8               getValue
+  #230 = Utf8               toString
+  #231 = Utf8               ()Ljava/lang/String;
+  #232 = Utf8               getProperty
+  #233 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #234 = Utf8               toLowerCase
+  #235 = Utf8               contains
+  #236 = Utf8               (Ljava/lang/CharSequence;)Z
+  #237 = Utf8               java/lang/Class
+  #238 = Utf8               (Ljava/lang/String;)Ljava/lang/Class;
+  #239 = Utf8               newInstance
+  #240 = Utf8               (Ljava/lang/Throwable;)V
+{
+  private static final com.zaxxer.nuprocess.NuProcessFactory factory;
+    descriptor: Lcom/zaxxer/nuprocess/NuProcessFactory;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private final java.util.List<java.lang.String> command;
+    descriptor: Ljava/util/List;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #67                          // Ljava/util/List<Ljava/lang/String;>;
+
+  private final java.util.TreeMap<java.lang.String, java.lang.String> environment;
+    descriptor: Ljava/util/TreeMap;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #70                          // Ljava/util/TreeMap<Ljava/lang/String;Ljava/lang/String;>;
+
+  private java.nio.file.Path cwd;
+    descriptor: Ljava/nio/file/Path;
+    flags: (0x0002) ACC_PRIVATE
+
+  private com.zaxxer.nuprocess.NuProcessHandler processListener;
+    descriptor: Lcom/zaxxer/nuprocess/NuProcessHandler;
+    flags: (0x0002) ACC_PRIVATE
+
+  public com.zaxxer.nuprocess.NuProcessBuilder(java.util.List<java.lang.String>, java.util.Map<java.lang.String, java.lang.String>);
+    descriptor: (Ljava/util/List;Ljava/util/Map;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_1
+         5: ifnull        17
+         8: aload_1
+         9: invokeinterface #2,  1            // InterfaceMethod java/util/List.isEmpty:()Z
+        14: ifeq          27
+        17: new           #3                  // class java/lang/IllegalArgumentException
+        20: dup
+        21: ldc           #4                  // String List of commands may not be null or empty
+        23: invokespecial #5                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        26: athrow
+        27: aload_0
+        28: new           #6                  // class java/util/TreeMap
+        31: dup
+        32: aload_2
+        33: invokespecial #7                  // Method java/util/TreeMap."<init>":(Ljava/util/Map;)V
+        36: putfield      #8                  // Field environment:Ljava/util/TreeMap;
+        39: aload_0
+        40: new           #9                  // class java/util/ArrayList
+        43: dup
+        44: aload_1
+        45: invokespecial #10                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+        48: putfield      #11                 // Field command:Ljava/util/List;
+        51: return
+      LineNumberTable:
+        line 106: 0
+        line 107: 4
+        line 108: 17
+        line 111: 27
+        line 112: 39
+        line 113: 51
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      52     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            0      52     1 commands   Ljava/util/List;
+            0      52     2 environment   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      52     1 commands   Ljava/util/List<Ljava/lang/String;>;
+            0      52     2 environment   Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 17
+          locals = [ class com/zaxxer/nuprocess/NuProcessBuilder, class java/util/List, class java/util/Map ]
+          stack = []
+        frame_type = 9 /* same */
+    Signature: #89                          // (Ljava/util/List<Ljava/lang/String;>;Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;)V
+
+  public com.zaxxer.nuprocess.NuProcessBuilder(java.util.List<java.lang.String>);
+    descriptor: (Ljava/util/List;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_1
+         5: ifnull        17
+         8: aload_1
+         9: invokeinterface #2,  1            // InterfaceMethod java/util/List.isEmpty:()Z
+        14: ifeq          27
+        17: new           #3                  // class java/lang/IllegalArgumentException
+        20: dup
+        21: ldc           #4                  // String List of commands may not be null or empty
+        23: invokespecial #5                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        26: athrow
+        27: aload_0
+        28: new           #6                  // class java/util/TreeMap
+        31: dup
+        32: invokestatic  #12                 // Method java/lang/System.getenv:()Ljava/util/Map;
+        35: invokespecial #7                  // Method java/util/TreeMap."<init>":(Ljava/util/Map;)V
+        38: putfield      #8                  // Field environment:Ljava/util/TreeMap;
+        41: aload_0
+        42: new           #9                  // class java/util/ArrayList
+        45: dup
+        46: aload_1
+        47: invokespecial #10                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+        50: putfield      #11                 // Field command:Ljava/util/List;
+        53: return
+      LineNumberTable:
+        line 125: 0
+        line 126: 4
+        line 127: 17
+        line 130: 27
+        line 131: 41
+        line 132: 53
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      54     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            0      54     1 commands   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      54     1 commands   Ljava/util/List<Ljava/lang/String;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 17
+          locals = [ class com/zaxxer/nuprocess/NuProcessBuilder, class java/util/List ]
+          stack = []
+        frame_type = 9 /* same */
+    Signature: #91                          // (Ljava/util/List<Ljava/lang/String;>;)V
+
+  public com.zaxxer.nuprocess.NuProcessBuilder(java.lang.String...);
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_1
+         5: ifnull        13
+         8: aload_1
+         9: arraylength
+        10: ifne          23
+        13: new           #3                  // class java/lang/IllegalArgumentException
+        16: dup
+        17: ldc           #4                  // String List of commands may not be null or empty
+        19: invokespecial #5                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        22: athrow
+        23: aload_0
+        24: new           #6                  // class java/util/TreeMap
+        27: dup
+        28: invokestatic  #12                 // Method java/lang/System.getenv:()Ljava/util/Map;
+        31: invokespecial #7                  // Method java/util/TreeMap."<init>":(Ljava/util/Map;)V
+        34: putfield      #8                  // Field environment:Ljava/util/TreeMap;
+        37: aload_0
+        38: new           #9                  // class java/util/ArrayList
+        41: dup
+        42: aload_1
+        43: invokestatic  #13                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+        46: invokespecial #10                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+        49: putfield      #11                 // Field command:Ljava/util/List;
+        52: return
+      LineNumberTable:
+        line 143: 0
+        line 144: 4
+        line 145: 13
+        line 148: 23
+        line 149: 37
+        line 150: 52
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      53     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            0      53     1 commands   [Ljava/lang/String;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 13
+          locals = [ class com/zaxxer/nuprocess/NuProcessBuilder, class "[Ljava/lang/String;" ]
+          stack = []
+        frame_type = 9 /* same */
+
+  public com.zaxxer.nuprocess.NuProcessBuilder(com.zaxxer.nuprocess.NuProcessHandler, java.lang.String...);
+    descriptor: (Lcom/zaxxer/nuprocess/NuProcessHandler;[Ljava/lang/String;)V
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_2
+         2: invokespecial #14                 // Method "<init>":([Ljava/lang/String;)V
+         5: aload_1
+         6: ifnonnull     19
+         9: new           #3                  // class java/lang/IllegalArgumentException
+        12: dup
+        13: ldc           #15                 // String A NuProcessListener must be specified
+        15: invokespecial #5                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        18: athrow
+        19: aload_0
+        20: aload_1
+        21: putfield      #16                 // Field processListener:Lcom/zaxxer/nuprocess/NuProcessHandler;
+        24: return
+      LineNumberTable:
+        line 161: 0
+        line 163: 5
+        line 164: 9
+        line 167: 19
+        line 168: 24
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            0      25     1 nuProcessHandler   Lcom/zaxxer/nuprocess/NuProcessHandler;
+            0      25     2 commands   [Ljava/lang/String;
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = [ class com/zaxxer/nuprocess/NuProcessBuilder, class com/zaxxer/nuprocess/NuProcessHandler, class "[Ljava/lang/String;" ]
+          stack = []
+
+  public com.zaxxer.nuprocess.NuProcessBuilder(com.zaxxer.nuprocess.NuProcessHandler, java.util.List<java.lang.String>);
+    descriptor: (Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/util/List;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_2
+         2: invokespecial #17                 // Method "<init>":(Ljava/util/List;)V
+         5: aload_1
+         6: ifnonnull     19
+         9: new           #3                  // class java/lang/IllegalArgumentException
+        12: dup
+        13: ldc           #15                 // String A NuProcessListener must be specified
+        15: invokespecial #5                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        18: athrow
+        19: aload_0
+        20: aload_1
+        21: putfield      #16                 // Field processListener:Lcom/zaxxer/nuprocess/NuProcessHandler;
+        24: return
+      LineNumberTable:
+        line 180: 0
+        line 182: 5
+        line 183: 9
+        line 186: 19
+        line 187: 24
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            0      25     1 nuProcessHandler   Lcom/zaxxer/nuprocess/NuProcessHandler;
+            0      25     2 commands   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      25     2 commands   Ljava/util/List<Ljava/lang/String;>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = [ class com/zaxxer/nuprocess/NuProcessBuilder, class com/zaxxer/nuprocess/NuProcessHandler, class java/util/List ]
+          stack = []
+    Signature: #99                          // (Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/util/List<Ljava/lang/String;>;)V
+
+  public java.util.List<java.lang.String> command();
+    descriptor: ()Ljava/util/List;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #11                 // Field command:Ljava/util/List;
+         4: areturn
+      LineNumberTable:
+        line 197: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+    Signature: #101                         // ()Ljava/util/List<Ljava/lang/String;>;
+
+  public java.util.Map<java.lang.String, java.lang.String> environment();
+    descriptor: ()Ljava/util/Map;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #8                  // Field environment:Ljava/util/TreeMap;
+         4: areturn
+      LineNumberTable:
+        line 214: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+    Signature: #103                         // ()Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+
+  public void setProcessListener(com.zaxxer.nuprocess.NuProcessHandler);
+    descriptor: (Lcom/zaxxer/nuprocess/NuProcessHandler;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     14
+         4: new           #3                  // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #15                 // String A NuProcessListener must be specified
+        10: invokespecial #5                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: aload_1
+        16: putfield      #16                 // Field processListener:Lcom/zaxxer/nuprocess/NuProcessHandler;
+        19: return
+      LineNumberTable:
+        line 226: 0
+        line 227: 4
+        line 230: 14
+        line 231: 19
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            0      20     1 listener   Lcom/zaxxer/nuprocess/NuProcessHandler;
+      StackMapTable: number_of_entries = 1
+        frame_type = 14 /* same */
+
+  public void setCwd(java.nio.file.Path);
+    descriptor: (Ljava/nio/file/Path;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #18                 // Field cwd:Ljava/nio/file/Path;
+         5: return
+      LineNumberTable:
+        line 244: 0
+        line 245: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            0       6     1   cwd   Ljava/nio/file/Path;
+
+  public com.zaxxer.nuprocess.NuProcess start();
+    descriptor: ()Lcom/zaxxer/nuprocess/NuProcess;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=2, args_size=1
+         0: aload_0
+         1: invokespecial #19                 // Method ensureListener:()V
+         4: aload_0
+         5: invokespecial #20                 // Method prepareEnvironment:()[Ljava/lang/String;
+         8: astore_1
+         9: getstatic     #21                 // Field factory:Lcom/zaxxer/nuprocess/NuProcessFactory;
+        12: aload_0
+        13: getfield      #11                 // Field command:Ljava/util/List;
+        16: aload_1
+        17: aload_0
+        18: getfield      #16                 // Field processListener:Lcom/zaxxer/nuprocess/NuProcessHandler;
+        21: aload_0
+        22: getfield      #18                 // Field cwd:Ljava/nio/file/Path;
+        25: invokeinterface #22,  5           // InterfaceMethod com/zaxxer/nuprocess/NuProcessFactory.createProcess:(Ljava/util/List;[Ljava/lang/String;Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/nio/file/Path;)Lcom/zaxxer/nuprocess/NuProcess;
+        30: areturn
+      LineNumberTable:
+        line 256: 0
+        line 257: 4
+        line 259: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      31     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            9      22     1   env   [Ljava/lang/String;
+
+  public void run();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=2, args_size=1
+         0: aload_0
+         1: invokespecial #19                 // Method ensureListener:()V
+         4: aload_0
+         5: invokespecial #20                 // Method prepareEnvironment:()[Ljava/lang/String;
+         8: astore_1
+         9: getstatic     #21                 // Field factory:Lcom/zaxxer/nuprocess/NuProcessFactory;
+        12: aload_0
+        13: getfield      #11                 // Field command:Ljava/util/List;
+        16: aload_1
+        17: aload_0
+        18: getfield      #16                 // Field processListener:Lcom/zaxxer/nuprocess/NuProcessHandler;
+        21: aload_0
+        22: getfield      #18                 // Field cwd:Ljava/nio/file/Path;
+        25: invokeinterface #23,  5           // InterfaceMethod com/zaxxer/nuprocess/NuProcessFactory.runProcess:(Ljava/util/List;[Ljava/lang/String;Lcom/zaxxer/nuprocess/NuProcessHandler;Ljava/nio/file/Path;)V
+        30: return
+      LineNumberTable:
+        line 270: 0
+        line 271: 4
+        line 273: 9
+        line 274: 30
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      31     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+            9      22     1   env   [Ljava/lang/String;
+
+  private void ensureListener();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #16                 // Field processListener:Lcom/zaxxer/nuprocess/NuProcessHandler;
+         4: ifnonnull     17
+         7: new           #3                  // class java/lang/IllegalArgumentException
+        10: dup
+        11: ldc           #24                 // String NuProcessHandler not specified
+        13: invokespecial #5                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        16: athrow
+        17: return
+      LineNumberTable:
+        line 278: 0
+        line 279: 7
+        line 281: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+      StackMapTable: number_of_entries = 1
+        frame_type = 17 /* same */
+
+  private java.lang.String[] prepareEnvironment();
+    descriptor: ()[Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=5, args_size=1
+         0: aload_0
+         1: getfield      #8                  // Field environment:Ljava/util/TreeMap;
+         4: invokevirtual #25                 // Method java/util/TreeMap.size:()I
+         7: anewarray     #26                 // class java/lang/String
+        10: astore_1
+        11: iconst_0
+        12: istore_2
+        13: aload_0
+        14: getfield      #8                  // Field environment:Ljava/util/TreeMap;
+        17: invokevirtual #27                 // Method java/util/TreeMap.entrySet:()Ljava/util/Set;
+        20: invokeinterface #28,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        25: astore_3
+        26: aload_3
+        27: invokeinterface #29,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        32: ifeq          96
+        35: aload_3
+        36: invokeinterface #30,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        41: checkcast     #31                 // class java/util/Map$Entry
+        44: astore        4
+        46: aload_1
+        47: iload_2
+        48: iinc          2, 1
+        51: new           #32                 // class java/lang/StringBuilder
+        54: dup
+        55: invokespecial #33                 // Method java/lang/StringBuilder."<init>":()V
+        58: aload         4
+        60: invokeinterface #34,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        65: checkcast     #26                 // class java/lang/String
+        68: invokevirtual #35                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        71: ldc           #36                 // String =
+        73: invokevirtual #35                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        76: aload         4
+        78: invokeinterface #37,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        83: checkcast     #26                 // class java/lang/String
+        86: invokevirtual #35                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        89: invokevirtual #38                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        92: aastore
+        93: goto          26
+        96: aload_1
+        97: areturn
+      LineNumberTable:
+        line 285: 0
+        line 286: 11
+        line 287: 13
+        line 288: 46
+        line 289: 93
+        line 291: 96
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           46      47     4 entrySet   Ljava/util/Map$Entry;
+            0      98     0  this   Lcom/zaxxer/nuprocess/NuProcessBuilder;
+           11      87     1   env   [Ljava/lang/String;
+           13      85     2     i   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           46      47     4 entrySet   Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/String;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 26
+          locals = [ class "[Ljava/lang/String;", int, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 69
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=4, locals=3, args_size=0
+         0: aconst_null
+         1: astore_0
+         2: ldc           #39                 // String os.name
+         4: invokestatic  #40                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+         7: invokevirtual #41                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+        10: astore_1
+        11: aload_1
+        12: ldc           #42                 // String mac
+        14: invokevirtual #43                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        17: ifne          29
+        20: aload_1
+        21: ldc           #44                 // String freebsd
+        23: invokevirtual #43                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        26: ifeq          35
+        29: ldc           #45                 // String com.zaxxer.nuprocess.osx.OsxProcessFactory
+        31: astore_0
+        32: goto          77
+        35: aload_1
+        36: ldc           #46                 // String win
+        38: invokevirtual #43                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        41: ifeq          50
+        44: ldc           #47                 // String com.zaxxer.nuprocess.windows.WinProcessFactory
+        46: astore_0
+        47: goto          77
+        50: aload_1
+        51: ldc           #48                 // String linux
+        53: invokevirtual #43                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        56: ifeq          65
+        59: ldc           #49                 // String com.zaxxer.nuprocess.linux.LinProcessFactory
+        61: astore_0
+        62: goto          77
+        65: aload_1
+        66: ldc           #50                 // String sunos
+        68: invokevirtual #43                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        71: ifeq          77
+        74: ldc           #51                 // String com.zaxxer.nuprocess.solaris.SolProcessFactory
+        76: astore_0
+        77: aload_0
+        78: ifnonnull     108
+        81: new           #52                 // class java/lang/RuntimeException
+        84: dup
+        85: new           #32                 // class java/lang/StringBuilder
+        88: dup
+        89: invokespecial #33                 // Method java/lang/StringBuilder."<init>":()V
+        92: ldc           #53                 // String Unsupported operating system:
+        94: invokevirtual #35                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        97: aload_1
+        98: invokevirtual #35                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       101: invokevirtual #38                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       104: invokespecial #54                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+       107: athrow
+       108: aload_0
+       109: invokestatic  #55                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       112: astore_2
+       113: aload_2
+       114: invokevirtual #56                 // Method java/lang/Class.newInstance:()Ljava/lang/Object;
+       117: checkcast     #57                 // class com/zaxxer/nuprocess/NuProcessFactory
+       120: putstatic     #21                 // Field factory:Lcom/zaxxer/nuprocess/NuProcessFactory;
+       123: goto          136
+       126: astore_2
+       127: new           #52                 // class java/lang/RuntimeException
+       130: dup
+       131: aload_2
+       132: invokespecial #59                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+       135: athrow
+       136: return
+      Exception table:
+         from    to  target type
+           108   123   126   Class java/lang/Exception
+      LineNumberTable:
+        line 67: 0
+        line 68: 2
+        line 69: 11
+        line 70: 29
+        line 72: 35
+        line 73: 44
+        line 75: 50
+        line 76: 59
+        line 78: 65
+        line 79: 74
+        line 82: 77
+        line 83: 81
+        line 87: 108
+        line 88: 113
+        line 92: 123
+        line 90: 126
+        line 91: 127
+        line 93: 136
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          113      10     2 forName   Ljava/lang/Class;
+          127       9     2     e   Ljava/lang/Exception;
+            2     134     0 factoryClassName   Ljava/lang/String;
+           11     125     1 osname   Ljava/lang/String;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+          113      10     2 forName   Ljava/lang/Class<*>;
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 29
+          locals = [ class java/lang/String, class java/lang/String ]
+        frame_type = 5 /* same */
+        frame_type = 14 /* same */
+        frame_type = 14 /* same */
+        frame_type = 11 /* same */
+        frame_type = 30 /* same */
+        frame_type = 81 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 249 /* chop */
+          offset_delta = 9
+}
+SourceFile: "NuProcessBuilder.java"
+InnerClasses:
+  public static #118= #31 of #88;         // Entry=class java/util/Map$Entry of class java/util/Map

@@ -1,0 +1,1441 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.class
+  Last modified May 29, 2022; size 10946 bytes
+  SHA-256 checksum 9b78a6fda2585cb428ab1e998a9b593bc8dfb6ef035e18b5c7bf4f7322bc3241
+  Compiled from "ParHashSet.scala"
+public class scala.collection.parallel.mutable.ParHashSetCombiner$FillBlocks extends java.lang.Object implements scala.collection.parallel.Task<scala.Tuple2<java.lang.Object, scala.collection.mutable.UnrolledBuffer<java.lang.Object>>, scala.collection.parallel.mutable.ParHashSetCombiner<T>.FillBlocks>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks
+  super_class: #5                         // java/lang/Object
+  interfaces: 1, fields: 8, methods: 27, attributes: 5
+Constant pool:
+    #1 = Utf8               scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks
+    #2 = Class              #1            // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks
+    #3 = Utf8               Ljava/lang/Object;Lscala/collection/parallel/Task<Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.FillBlocks;>;
+    #4 = Utf8               java/lang/Object
+    #5 = Class              #4            // java/lang/Object
+    #6 = Utf8               scala/collection/parallel/Task
+    #7 = Class              #6            // scala/collection/parallel/Task
+    #8 = Utf8               ParHashSet.scala
+    #9 = Utf8               scala/collection/mutable/UnrolledBuffer$Unrolled
+   #10 = Class              #9            // scala/collection/mutable/UnrolledBuffer$Unrolled
+   #11 = Utf8               scala/collection/mutable/UnrolledBuffer
+   #12 = Class              #11           // scala/collection/mutable/UnrolledBuffer
+   #13 = Utf8               Unrolled
+   #14 = Utf8               scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable
+   #15 = Class              #14           // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable
+   #16 = Utf8               scala/collection/parallel/mutable/ParHashSetCombiner
+   #17 = Class              #16           // scala/collection/parallel/mutable/ParHashSetCombiner
+   #18 = Utf8               AddingFlatHashTable
+   #19 = Utf8               FillBlocks
+   #20 = Utf8               buckets
+   #21 = Utf8               [Lscala/collection/mutable/UnrolledBuffer;
+   #22 = Utf8               [Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;
+   #23 = Utf8               table
+   #24 = Utf8               Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+   #25 = Utf8               Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.AddingFlatHashTable;
+   #26 = Utf8               offset
+   #27 = Utf8               I
+   #28 = Utf8               howmany
+   #29 = Utf8               result
+   #30 = Utf8               Lscala/Tuple2;
+   #31 = Utf8               Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;
+   #32 = Utf8               blocksize
+   #33 = Utf8               throwable
+   #34 = Utf8               Ljava/lang/Throwable;
+   #35 = Utf8               $outer
+   #36 = Utf8               Lscala/collection/parallel/mutable/ParHashSetCombiner;
+   #37 = Utf8               repr
+   #38 = Utf8               ()Ljava/lang/Object;
+   #39 = Utf8               repr$
+   #40 = Utf8               (Lscala/collection/parallel/Task;)Ljava/lang/Object;
+   #41 = NameAndType        #39:#40       // repr$:(Lscala/collection/parallel/Task;)Ljava/lang/Object;
+   #42 = InterfaceMethodref #7.#41        // scala/collection/parallel/Task.repr$:(Lscala/collection/parallel/Task;)Ljava/lang/Object;
+   #43 = Utf8               this
+   #44 = Utf8               Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+   #45 = Utf8               forwardThrowable
+   #46 = Utf8               ()V
+   #47 = Utf8               forwardThrowable$
+   #48 = Utf8               (Lscala/collection/parallel/Task;)V
+   #49 = NameAndType        #47:#48       // forwardThrowable$:(Lscala/collection/parallel/Task;)V
+   #50 = InterfaceMethodref #7.#49        // scala/collection/parallel/Task.forwardThrowable$:(Lscala/collection/parallel/Task;)V
+   #51 = Utf8               tryLeaf
+   #52 = Utf8               (Lscala/Option;)V
+   #53 = Utf8               (Lscala/Option<Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;>;)V
+   #54 = Utf8               lastres
+   #55 = Utf8               tryLeaf$
+   #56 = Utf8               (Lscala/collection/parallel/Task;Lscala/Option;)V
+   #57 = NameAndType        #55:#56       // tryLeaf$:(Lscala/collection/parallel/Task;Lscala/Option;)V
+   #58 = InterfaceMethodref #7.#57        // scala/collection/parallel/Task.tryLeaf$:(Lscala/collection/parallel/Task;Lscala/Option;)V
+   #59 = Utf8               Lscala/Option;
+   #60 = Utf8               tryMerge
+   #61 = Utf8               (Ljava/lang/Object;)V
+   #62 = Utf8               t
+   #63 = Utf8               tryMerge$
+   #64 = Utf8               (Lscala/collection/parallel/Task;Ljava/lang/Object;)V
+   #65 = NameAndType        #63:#64       // tryMerge$:(Lscala/collection/parallel/Task;Ljava/lang/Object;)V
+   #66 = InterfaceMethodref #7.#65        // scala/collection/parallel/Task.tryMerge$:(Lscala/collection/parallel/Task;Ljava/lang/Object;)V
+   #67 = Utf8               Ljava/lang/Object;
+   #68 = Utf8               mergeThrowables
+   #69 = Utf8               (Lscala/collection/parallel/Task<**>;)V
+   #70 = Utf8               that
+   #71 = Utf8               mergeThrowables$
+   #72 = Utf8               (Lscala/collection/parallel/Task;Lscala/collection/parallel/Task;)V
+   #73 = NameAndType        #71:#72       // mergeThrowables$:(Lscala/collection/parallel/Task;Lscala/collection/parallel/Task;)V
+   #74 = InterfaceMethodref #7.#73        // scala/collection/parallel/Task.mergeThrowables$:(Lscala/collection/parallel/Task;Lscala/collection/parallel/Task;)V
+   #75 = Utf8               Lscala/collection/parallel/Task;
+   #76 = Utf8               signalAbort
+   #77 = Utf8               signalAbort$
+   #78 = NameAndType        #77:#48       // signalAbort$:(Lscala/collection/parallel/Task;)V
+   #79 = InterfaceMethodref #7.#78        // scala/collection/parallel/Task.signalAbort$:(Lscala/collection/parallel/Task;)V
+   #80 = Utf8               ()Ljava/lang/Throwable;
+   #81 = NameAndType        #33:#34       // throwable:Ljava/lang/Throwable;
+   #82 = Fieldref           #2.#81        // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.throwable:Ljava/lang/Throwable;
+   #83 = Utf8               throwable_$eq
+   #84 = Utf8               (Ljava/lang/Throwable;)V
+   #85 = Utf8               x$1
+   #86 = Utf8               ()I
+   #87 = NameAndType        #26:#27       // offset:I
+   #88 = Fieldref           #2.#87        // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.offset:I
+   #89 = NameAndType        #28:#27       // howmany:I
+   #90 = Fieldref           #2.#89        // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.howmany:I
+   #91 = Utf8               ()Lscala/Tuple2;
+   #92 = Utf8               ()Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;
+   #93 = NameAndType        #29:#30       // result:Lscala/Tuple2;
+   #94 = Fieldref           #2.#93        // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.result:Lscala/Tuple2;
+   #95 = Utf8               result_$eq
+   #96 = Utf8               (Lscala/Tuple2;)V
+   #97 = Utf8               (Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;)V
+   #98 = Utf8               leaf
+   #99 = Utf8               prev
+  #100 = NameAndType        #26:#86       // offset:()I
+  #101 = Methodref          #2.#100       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.offset:()I
+  #102 = Utf8               scala/reflect/ClassTag$
+  #103 = Class              #102          // scala/reflect/ClassTag$
+  #104 = Utf8               MODULE$
+  #105 = Utf8               Lscala/reflect/ClassTag$;
+  #106 = NameAndType        #104:#105     // MODULE$:Lscala/reflect/ClassTag$;
+  #107 = Fieldref           #103.#106     // scala/reflect/ClassTag$.MODULE$:Lscala/reflect/ClassTag$;
+  #108 = Utf8               AnyRef
+  #109 = Utf8               ()Lscala/reflect/ClassTag;
+  #110 = NameAndType        #108:#109     // AnyRef:()Lscala/reflect/ClassTag;
+  #111 = Methodref          #103.#110     // scala/reflect/ClassTag$.AnyRef:()Lscala/reflect/ClassTag;
+  #112 = Utf8               <init>
+  #113 = Utf8               (Lscala/reflect/ClassTag;)V
+  #114 = NameAndType        #112:#113     // "<init>":(Lscala/reflect/ClassTag;)V
+  #115 = Methodref          #12.#114      // scala/collection/mutable/UnrolledBuffer."<init>":(Lscala/reflect/ClassTag;)V
+  #116 = NameAndType        #28:#86       // howmany:()I
+  #117 = Methodref          #2.#116       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.howmany:()I
+  #118 = NameAndType        #20:#21       // buckets:[Lscala/collection/mutable/UnrolledBuffer;
+  #119 = Fieldref           #2.#118       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.buckets:[Lscala/collection/mutable/UnrolledBuffer;
+  #120 = Utf8               fillBlock
+  #121 = Utf8               (ILscala/collection/mutable/UnrolledBuffer;Lscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+  #122 = NameAndType        #120:#121     // fillBlock:(ILscala/collection/mutable/UnrolledBuffer;Lscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+  #123 = Methodref          #2.#122       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.fillBlock:(ILscala/collection/mutable/UnrolledBuffer;Lscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+  #124 = Utf8               scala/Tuple2
+  #125 = Class              #124          // scala/Tuple2
+  #126 = Utf8               _1$mcI$sp
+  #127 = NameAndType        #126:#86      // _1$mcI$sp:()I
+  #128 = Methodref          #125.#127     // scala/Tuple2._1$mcI$sp:()I
+  #129 = Utf8               _2
+  #130 = NameAndType        #129:#38      // _2:()Ljava/lang/Object;
+  #131 = Methodref          #125.#130     // scala/Tuple2._2:()Ljava/lang/Object;
+  #132 = Utf8               scala/runtime/BoxesRunTime
+  #133 = Class              #132          // scala/runtime/BoxesRunTime
+  #134 = Utf8               boxToInteger
+  #135 = Utf8               (I)Ljava/lang/Integer;
+  #136 = NameAndType        #134:#135     // boxToInteger:(I)Ljava/lang/Integer;
+  #137 = Methodref          #133.#136     // scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+  #138 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)V
+  #139 = NameAndType        #112:#138     // "<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+  #140 = Methodref          #125.#139     // scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+  #141 = Utf8               scala/MatchError
+  #142 = Class              #141          // scala/MatchError
+  #143 = NameAndType        #112:#61      // "<init>":(Ljava/lang/Object;)V
+  #144 = Methodref          #142.#143     // scala/MatchError."<init>":(Ljava/lang/Object;)V
+  #145 = NameAndType        #95:#96       // result_$eq:(Lscala/Tuple2;)V
+  #146 = Methodref          #2.#145       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.result_$eq:(Lscala/Tuple2;)V
+  #147 = Utf8               inserted
+  #148 = Utf8               intonextblock
+  #149 = Utf8               Lscala/collection/mutable/UnrolledBuffer;
+  #150 = Utf8               i
+  #151 = Utf8               totalinserts
+  #152 = Utf8               leftover
+  #153 = Utf8               scala/Option
+  #154 = Class              #153          // scala/Option
+  #155 = NameAndType        #32:#27       // blocksize:I
+  #156 = Fieldref           #2.#155       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.blocksize:I
+  #157 = Utf8               blockStart
+  #158 = Utf8               (I)I
+  #159 = Utf8               block
+  #160 = NameAndType        #32:#86       // blocksize:()I
+  #161 = Methodref          #2.#160       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.blocksize:()I
+  #162 = Utf8               nextBlockStart
+  #163 = Utf8               (ILscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;)Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;
+  #164 = Utf8               elems
+  #165 = Utf8               leftovers
+  #166 = NameAndType        #162:#158     // nextBlockStart:(I)I
+  #167 = Methodref          #2.#166       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.nextBlockStart:(I)I
+  #168 = Utf8               insertAll
+  #169 = Utf8               (IILscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+  #170 = NameAndType        #168:#169     // insertAll:(IILscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+  #171 = Methodref          #2.#170       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.insertAll:(IILscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+  #172 = Utf8               scala/collection/mutable/UnrolledBuffer$
+  #173 = Class              #172          // scala/collection/mutable/UnrolledBuffer$
+  #174 = Utf8               Lscala/collection/mutable/UnrolledBuffer$;
+  #175 = NameAndType        #104:#174     // MODULE$:Lscala/collection/mutable/UnrolledBuffer$;
+  #176 = Fieldref           #173.#175     // scala/collection/mutable/UnrolledBuffer$.MODULE$:Lscala/collection/mutable/UnrolledBuffer$;
+  #177 = Utf8               scala/collection/immutable/Nil$
+  #178 = Class              #177          // scala/collection/immutable/Nil$
+  #179 = Utf8               Lscala/collection/immutable/Nil$;
+  #180 = NameAndType        #104:#179     // MODULE$:Lscala/collection/immutable/Nil$;
+  #181 = Fieldref           #178.#180     // scala/collection/immutable/Nil$.MODULE$:Lscala/collection/immutable/Nil$;
+  #182 = Utf8               apply
+  #183 = Utf8               (Lscala/collection/immutable/Seq;Ljava/lang/Object;)Ljava/lang/Object;
+  #184 = NameAndType        #182:#183     // apply:(Lscala/collection/immutable/Seq;Ljava/lang/Object;)Ljava/lang/Object;
+  #185 = Methodref          #173.#184     // scala/collection/mutable/UnrolledBuffer$.apply:(Lscala/collection/immutable/Seq;Ljava/lang/Object;)Ljava/lang/Object;
+  #186 = NameAndType        #157:#158     // blockStart:(I)I
+  #187 = Methodref          #2.#186       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.blockStart:(I)I
+  #188 = Utf8               concat
+  #189 = Utf8               (Lscala/collection/mutable/UnrolledBuffer;)Lscala/collection/mutable/UnrolledBuffer;
+  #190 = NameAndType        #188:#189     // concat:(Lscala/collection/mutable/UnrolledBuffer;)Lscala/collection/mutable/UnrolledBuffer;
+  #191 = Methodref          #12.#190      // scala/collection/mutable/UnrolledBuffer.concat:(Lscala/collection/mutable/UnrolledBuffer;)Lscala/collection/mutable/UnrolledBuffer;
+  #192 = Utf8               elemsIn
+  #193 = Utf8               elemsLeft
+  #194 = Utf8               leftoversIn
+  #195 = Utf8               leftoversLeft
+  #196 = Utf8               beforePos
+  #197 = Utf8               (IILscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;)Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;
+  #198 = Utf8               atPos
+  #199 = Utf8               headPtr
+  #200 = Utf8               ()Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+  #201 = NameAndType        #199:#200     // headPtr:()Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+  #202 = Methodref          #12.#201      // scala/collection/mutable/UnrolledBuffer.headPtr:()Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+  #203 = NameAndType        #23:#24       // table:Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+  #204 = Fieldref           #2.#203       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.table:Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+  #205 = Utf8               array
+  #206 = NameAndType        #205:#38      // array:()Ljava/lang/Object;
+  #207 = Methodref          #10.#206      // scala/collection/mutable/UnrolledBuffer$Unrolled.array:()Ljava/lang/Object;
+  #208 = Utf8               [Ljava/lang/Object;
+  #209 = Class              #208          // "[Ljava/lang/Object;"
+  #210 = Utf8               size
+  #211 = NameAndType        #210:#86      // size:()I
+  #212 = Methodref          #10.#211      // scala/collection/mutable/UnrolledBuffer$Unrolled.size:()I
+  #213 = Utf8               insertEntry
+  #214 = Utf8               (IILjava/lang/Object;)I
+  #215 = NameAndType        #213:#214     // insertEntry:(IILjava/lang/Object;)I
+  #216 = Methodref          #15.#215      // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.insertEntry:(IILjava/lang/Object;)I
+  #217 = Utf8               scala/runtime/BoxedUnit
+  #218 = Class              #217          // scala/runtime/BoxedUnit
+  #219 = Utf8               UNIT
+  #220 = Utf8               Lscala/runtime/BoxedUnit;
+  #221 = NameAndType        #219:#220     // UNIT:Lscala/runtime/BoxedUnit;
+  #222 = Fieldref           #218.#221     // scala/runtime/BoxedUnit.UNIT:Lscala/runtime/BoxedUnit;
+  #223 = Utf8               $plus$eq
+  #224 = Utf8               (Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+  #225 = NameAndType        #223:#224     // $plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+  #226 = Methodref          #12.#225      // scala/collection/mutable/UnrolledBuffer.$plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+  #227 = Utf8               next
+  #228 = NameAndType        #227:#200     // next:()Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+  #229 = Methodref          #10.#228      // scala/collection/mutable/UnrolledBuffer$Unrolled.next:()Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+  #230 = Utf8               entry
+  #231 = Utf8               res
+  #232 = Utf8               chunkarr
+  #233 = Utf8               chunksz
+  #234 = Utf8               unrolled
+  #235 = Utf8               Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+  #236 = Utf8               split
+  #237 = Utf8               ()Lscala/collection/immutable/List;
+  #238 = Utf8               ()Lscala/collection/immutable/List<Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.FillBlocks;>;
+  #239 = Utf8               scala/package$
+  #240 = Class              #239          // scala/package$
+  #241 = Utf8               Lscala/package$;
+  #242 = NameAndType        #104:#241     // MODULE$:Lscala/package$;
+  #243 = Fieldref           #240.#242     // scala/package$.MODULE$:Lscala/package$;
+  #244 = Utf8               List
+  #245 = Utf8               ()Lscala/collection/immutable/List$;
+  #246 = NameAndType        #244:#245     // List:()Lscala/collection/immutable/List$;
+  #247 = Methodref          #240.#246     // scala/package$.List:()Lscala/collection/immutable/List$;
+  #248 = Utf8               scala/runtime/ScalaRunTime$
+  #249 = Class              #248          // scala/runtime/ScalaRunTime$
+  #250 = Utf8               Lscala/runtime/ScalaRunTime$;
+  #251 = NameAndType        #104:#250     // MODULE$:Lscala/runtime/ScalaRunTime$;
+  #252 = Fieldref           #249.#251     // scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+  #253 = Utf8               scala$collection$parallel$mutable$ParHashSetCombiner$FillBlocks$$$outer
+  #254 = Utf8               ()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+  #255 = NameAndType        #253:#254     // scala$collection$parallel$mutable$ParHashSetCombiner$FillBlocks$$$outer:()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+  #256 = Methodref          #2.#255       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.scala$collection$parallel$mutable$ParHashSetCombiner$FillBlocks$$$outer:()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+  #257 = Utf8               (Lscala/collection/parallel/mutable/ParHashSetCombiner;[Lscala/collection/mutable/UnrolledBuffer;Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;II)V
+  #258 = NameAndType        #112:#257     // "<init>":(Lscala/collection/parallel/mutable/ParHashSetCombiner;[Lscala/collection/mutable/UnrolledBuffer;Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;II)V
+  #259 = Methodref          #2.#258       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks."<init>":(Lscala/collection/parallel/mutable/ParHashSetCombiner;[Lscala/collection/mutable/UnrolledBuffer;Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;II)V
+  #260 = Utf8               wrapRefArray
+  #261 = Utf8               ([Ljava/lang/Object;)Lscala/collection/immutable/ArraySeq;
+  #262 = NameAndType        #260:#261     // wrapRefArray:([Ljava/lang/Object;)Lscala/collection/immutable/ArraySeq;
+  #263 = Methodref          #249.#262     // scala/runtime/ScalaRunTime$.wrapRefArray:([Ljava/lang/Object;)Lscala/collection/immutable/ArraySeq;
+  #264 = Utf8               scala/collection/immutable/List$
+  #265 = Class              #264          // scala/collection/immutable/List$
+  #266 = Utf8               (Lscala/collection/immutable/Seq;)Ljava/lang/Object;
+  #267 = NameAndType        #182:#266     // apply:(Lscala/collection/immutable/Seq;)Ljava/lang/Object;
+  #268 = Methodref          #265.#267     // scala/collection/immutable/List$.apply:(Lscala/collection/immutable/Seq;)Ljava/lang/Object;
+  #269 = Utf8               scala/collection/immutable/List
+  #270 = Class              #269          // scala/collection/immutable/List
+  #271 = Utf8               fp
+  #272 = Utf8               merge
+  #273 = Utf8               (Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;)V
+  #274 = Utf8               (Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.FillBlocks;)V
+  #275 = NameAndType        #29:#91       // result:()Lscala/Tuple2;
+  #276 = Methodref          #2.#275       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.result:()Lscala/Tuple2;
+  #277 = Utf8               remainingLeftovers
+  #278 = Utf8               shouldSplitFurther
+  #279 = Utf8               ()Z
+  #280 = Utf8               scala/collection/parallel/package$
+  #281 = Class              #280          // scala/collection/parallel/package$
+  #282 = Utf8               Lscala/collection/parallel/package$;
+  #283 = NameAndType        #104:#282     // MODULE$:Lscala/collection/parallel/package$;
+  #284 = Fieldref           #281.#283     // scala/collection/parallel/package$.MODULE$:Lscala/collection/parallel/package$;
+  #285 = Utf8               scala/collection/parallel/mutable/ParHashMapCombiner$
+  #286 = Class              #285          // scala/collection/parallel/mutable/ParHashMapCombiner$
+  #287 = Utf8               Lscala/collection/parallel/mutable/ParHashMapCombiner$;
+  #288 = NameAndType        #104:#287     // MODULE$:Lscala/collection/parallel/mutable/ParHashMapCombiner$;
+  #289 = Fieldref           #286.#288     // scala/collection/parallel/mutable/ParHashMapCombiner$.MODULE$:Lscala/collection/parallel/mutable/ParHashMapCombiner$;
+  #290 = Utf8               numblocks
+  #291 = NameAndType        #290:#86      // numblocks:()I
+  #292 = Methodref          #286.#291     // scala/collection/parallel/mutable/ParHashMapCombiner$.numblocks:()I
+  #293 = Utf8               combinerTaskSupport
+  #294 = Utf8               ()Lscala/collection/parallel/TaskSupport;
+  #295 = NameAndType        #293:#294     // combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+  #296 = Methodref          #17.#295      // scala/collection/parallel/mutable/ParHashSetCombiner.combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+  #297 = Utf8               scala/collection/parallel/TaskSupport
+  #298 = Class              #297          // scala/collection/parallel/TaskSupport
+  #299 = Utf8               parallelismLevel
+  #300 = NameAndType        #299:#86      // parallelismLevel:()I
+  #301 = InterfaceMethodref #298.#300     // scala/collection/parallel/TaskSupport.parallelismLevel:()I
+  #302 = Utf8               thresholdFromSize
+  #303 = Utf8               (II)I
+  #304 = NameAndType        #302:#303     // thresholdFromSize:(II)I
+  #305 = Methodref          #281.#304     // scala/collection/parallel/package$.thresholdFromSize:(II)I
+  #306 = NameAndType        #35:#36       // $outer:Lscala/collection/parallel/mutable/ParHashSetCombiner;
+  #307 = Fieldref           #2.#306       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.$outer:Lscala/collection/parallel/mutable/ParHashSetCombiner;
+  #308 = NameAndType        #272:#273     // merge:(Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;)V
+  #309 = Methodref          #2.#308       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.merge:(Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;)V
+  #310 = Utf8               ()Lscala/collection/immutable/Seq;
+  #311 = NameAndType        #236:#237     // split:()Lscala/collection/immutable/List;
+  #312 = Methodref          #2.#311       // scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks.split:()Lscala/collection/immutable/List;
+  #313 = Utf8               ([Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.AddingFlatHashTable;II)V
+  #314 = NameAndType        #112:#46      // "<init>":()V
+  #315 = Methodref          #5.#314       // java/lang/Object."<init>":()V
+  #316 = Utf8               $init$
+  #317 = NameAndType        #316:#48      // $init$:(Lscala/collection/parallel/Task;)V
+  #318 = InterfaceMethodref #7.#317       // scala/collection/parallel/Task.$init$:(Lscala/collection/parallel/Task;)V
+  #319 = Integer            -2147483648
+  #320 = Utf8               tableLength
+  #321 = NameAndType        #320:#86      // tableLength:()I
+  #322 = Methodref          #15.#321      // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.tableLength:()I
+  #323 = Utf8               scala/collection/parallel/mutable/ParHashSetCombiner$
+  #324 = Class              #323          // scala/collection/parallel/mutable/ParHashSetCombiner$
+  #325 = Utf8               Lscala/collection/parallel/mutable/ParHashSetCombiner$;
+  #326 = NameAndType        #104:#325     // MODULE$:Lscala/collection/parallel/mutable/ParHashSetCombiner$;
+  #327 = Fieldref           #324.#326     // scala/collection/parallel/mutable/ParHashSetCombiner$.MODULE$:Lscala/collection/parallel/mutable/ParHashSetCombiner$;
+  #328 = Utf8               discriminantbits
+  #329 = NameAndType        #328:#86      // discriminantbits:()I
+  #330 = Methodref          #324.#329     // scala/collection/parallel/mutable/ParHashSetCombiner$.discriminantbits:()I
+  #331 = Utf8               Signature
+  #332 = Utf8               Code
+  #333 = Utf8               LineNumberTable
+  #334 = Utf8               LocalVariableTable
+  #335 = Utf8               MethodParameters
+  #336 = Utf8               StackMapTable
+  #337 = Utf8               InnerClasses
+  #338 = Utf8               SourceFile
+  #339 = Utf8               ScalaInlineInfo
+  #340 = Utf8               Scala
+{
+  private final scala.collection.mutable.UnrolledBuffer<java.lang.Object>[] buckets;
+    descriptor: [Lscala/collection/mutable/UnrolledBuffer;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #22                          // [Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;
+
+  private final scala.collection.parallel.mutable.ParHashSetCombiner<T>.AddingFlatHashTable table;
+    descriptor: Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #25                          // Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.AddingFlatHashTable;
+
+  private final int offset;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final int howmany;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private scala.Tuple2<java.lang.Object, scala.collection.mutable.UnrolledBuffer<java.lang.Object>> result;
+    descriptor: Lscala/Tuple2;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #31                          // Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;
+
+  private final int blocksize;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private volatile java.lang.Throwable throwable;
+    descriptor: Ljava/lang/Throwable;
+    flags: (0x0042) ACC_PRIVATE, ACC_VOLATILE
+
+  public final scala.collection.parallel.mutable.ParHashSetCombiner $outer;
+    descriptor: Lscala/collection/parallel/mutable/ParHashSetCombiner;
+    flags: (0x1011) ACC_PUBLIC, ACC_FINAL, ACC_SYNTHETIC
+
+  public java.lang.Object repr();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #42                 // InterfaceMethod scala/collection/parallel/Task.repr$:(Lscala/collection/parallel/Task;)Ljava/lang/Object;
+         4: areturn
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public void forwardThrowable();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #50                 // InterfaceMethod scala/collection/parallel/Task.forwardThrowable$:(Lscala/collection/parallel/Task;)V
+         4: return
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public void tryLeaf(scala.Option<scala.Tuple2<java.lang.Object, scala.collection.mutable.UnrolledBuffer<java.lang.Object>>>);
+    descriptor: (Lscala/Option;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #58                 // InterfaceMethod scala/collection/parallel/Task.tryLeaf$:(Lscala/collection/parallel/Task;Lscala/Option;)V
+         5: return
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       6     1 lastres   Lscala/Option;
+    Signature: #53                          // (Lscala/Option<Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;>;)V
+    MethodParameters:
+      Name                           Flags
+      lastres                        final
+
+  public void tryMerge(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #66                 // InterfaceMethod scala/collection/parallel/Task.tryMerge$:(Lscala/collection/parallel/Task;Ljava/lang/Object;)V
+         5: return
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       6     1     t   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      t                              final
+
+  public void mergeThrowables(scala.collection.parallel.Task<?, ?>);
+    descriptor: (Lscala/collection/parallel/Task;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #74                 // InterfaceMethod scala/collection/parallel/Task.mergeThrowables$:(Lscala/collection/parallel/Task;Lscala/collection/parallel/Task;)V
+         5: return
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       6     1  that   Lscala/collection/parallel/Task;
+    Signature: #69                          // (Lscala/collection/parallel/Task<**>;)V
+    MethodParameters:
+      Name                           Flags
+      that                           final
+
+  public void signalAbort();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #79                 // InterfaceMethod scala/collection/parallel/Task.signalAbort$:(Lscala/collection/parallel/Task;)V
+         4: return
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public java.lang.Throwable throwable();
+    descriptor: ()Ljava/lang/Throwable;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #82                 // Field throwable:Ljava/lang/Throwable;
+         4: areturn
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public void throwable_$eq(java.lang.Throwable);
+    descriptor: (Ljava/lang/Throwable;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #82                 // Field throwable:Ljava/lang/Throwable;
+         5: return
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       6     1   x$1   Ljava/lang/Throwable;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public int offset();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #88                 // Field offset:I
+         4: ireturn
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public int howmany();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #90                 // Field howmany:I
+         4: ireturn
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public scala.Tuple2<java.lang.Object, scala.collection.mutable.UnrolledBuffer<java.lang.Object>> result();
+    descriptor: ()Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #94                 // Field result:Lscala/Tuple2;
+         4: areturn
+      LineNumberTable:
+        line 243: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+    Signature: #92                          // ()Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;
+
+  public void result_$eq(scala.Tuple2<java.lang.Object, scala.collection.mutable.UnrolledBuffer<java.lang.Object>>);
+    descriptor: (Lscala/Tuple2;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #94                 // Field result:Lscala/Tuple2;
+         5: return
+      LineNumberTable:
+        line 243: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       6     1   x$1   Lscala/Tuple2;
+    Signature: #97                          // (Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;)V
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public void leaf(scala.Option<scala.Tuple2<java.lang.Object, scala.collection.mutable.UnrolledBuffer<java.lang.Object>>>);
+    descriptor: (Lscala/Option;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=12, args_size=2
+         0: aload_0
+         1: invokevirtual #101                // Method offset:()I
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: new           #12                 // class scala/collection/mutable/UnrolledBuffer
+        11: dup
+        12: getstatic     #107                // Field scala/reflect/ClassTag$.MODULE$:Lscala/reflect/ClassTag$;
+        15: invokevirtual #111                // Method scala/reflect/ClassTag$.AnyRef:()Lscala/reflect/ClassTag;
+        18: invokespecial #115                // Method scala/collection/mutable/UnrolledBuffer."<init>":(Lscala/reflect/ClassTag;)V
+        21: astore        5
+        23: iload_3
+        24: aload_0
+        25: invokevirtual #101                // Method offset:()I
+        28: aload_0
+        29: invokevirtual #117                // Method howmany:()I
+        32: iadd
+        33: if_icmpge     142
+        36: aload_0
+        37: iload_3
+        38: aload_0
+        39: getfield      #119                // Field buckets:[Lscala/collection/mutable/UnrolledBuffer;
+        42: iload_3
+        43: aaload
+        44: aload         5
+        46: invokespecial #123                // Method fillBlock:(ILscala/collection/mutable/UnrolledBuffer;Lscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+        49: astore        7
+        51: aload         7
+        53: ifnull        91
+        56: aload         7
+        58: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+        61: istore        8
+        63: aload         7
+        65: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+        68: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+        71: astore        9
+        73: new           #125                // class scala/Tuple2
+        76: dup
+        77: iload         8
+        79: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+        82: aload         9
+        84: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+        87: astore_2
+        88: goto          104
+        91: goto          94
+        94: new           #142                // class scala/MatchError
+        97: dup
+        98: aload         7
+       100: invokespecial #144                // Method scala/MatchError."<init>":(Ljava/lang/Object;)V
+       103: athrow
+       104: aload_2
+       105: astore        6
+       107: aload         6
+       109: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+       112: istore        10
+       114: aload         6
+       116: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+       119: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+       122: astore        11
+       124: iload         4
+       126: iload         10
+       128: iadd
+       129: istore        4
+       131: aload         11
+       133: astore        5
+       135: iload_3
+       136: iconst_1
+       137: iadd
+       138: istore_3
+       139: goto          23
+       142: aload_0
+       143: new           #125                // class scala/Tuple2
+       146: dup
+       147: iload         4
+       149: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+       152: aload         5
+       154: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+       157: invokevirtual #146                // Method result_$eq:(Lscala/Tuple2;)V
+       160: return
+      StackMapTable: number_of_entries = 5
+        frame_type = 255 /* full_frame */
+          offset_delta = 23
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, class scala/Option, top, int, int, class scala/collection/mutable/UnrolledBuffer ]
+          stack = []
+        frame_type = 253 /* append */
+          offset_delta = 67
+          locals = [ top, class scala/Tuple2 ]
+        frame_type = 2 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, class scala/Option, class scala/Tuple2, int, int, class scala/collection/mutable/UnrolledBuffer, top, class scala/Tuple2, int, class scala/collection/mutable/UnrolledBuffer ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 37
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, class scala/Option, top, int, int, class scala/collection/mutable/UnrolledBuffer ]
+          stack = []
+      LineNumberTable:
+        line 246: 0
+        line 247: 5
+        line 248: 8
+        line 249: 23
+        line 250: 36
+        line 251: 124
+        line 252: 131
+        line 253: 135
+        line 249: 139
+        line 255: 142
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           63      28     8 inserted   I
+           73      18     9 intonextblock   Lscala/collection/mutable/UnrolledBuffer;
+          114      25    10 inserted   I
+          124      15    11 intonextblock   Lscala/collection/mutable/UnrolledBuffer;
+            5     155     3     i   I
+            8     152     4 totalinserts   I
+           23     137     5 leftover   Lscala/collection/mutable/UnrolledBuffer;
+            0     161     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0     161     1  prev   Lscala/Option;
+    Signature: #53                          // (Lscala/Option<Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;>;)V
+    MethodParameters:
+      Name                           Flags
+      prev                           final
+
+  private int blocksize();
+    descriptor: ()I
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #156                // Field blocksize:I
+         4: ireturn
+      LineNumberTable:
+        line 257: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  private int blockStart(int);
+    descriptor: (I)I
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=2, args_size=2
+         0: iload_1
+         1: aload_0
+         2: invokespecial #161                // Method blocksize:()I
+         5: imul
+         6: ireturn
+      LineNumberTable:
+        line 258: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       7     1 block   I
+    MethodParameters:
+      Name                           Flags
+      block                          final
+
+  private int nextBlockStart(int);
+    descriptor: (I)I
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=2, args_size=2
+         0: iload_1
+         1: iconst_1
+         2: iadd
+         3: aload_0
+         4: invokespecial #161                // Method blocksize:()I
+         7: imul
+         8: ireturn
+      LineNumberTable:
+        line 259: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       9     1 block   I
+    MethodParameters:
+      Name                           Flags
+      block                          final
+
+  private scala.Tuple2<java.lang.Object, scala.collection.mutable.UnrolledBuffer<java.lang.Object>> fillBlock(int, scala.collection.mutable.UnrolledBuffer<java.lang.Object>, scala.collection.mutable.UnrolledBuffer<java.lang.Object>);
+    descriptor: (ILscala/collection/mutable/UnrolledBuffer;Lscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=19, args_size=4
+         0: aload_0
+         1: iload_1
+         2: invokespecial #167                // Method nextBlockStart:(I)I
+         5: istore        6
+         7: aload_2
+         8: ifnull        22
+        11: aload_0
+        12: iconst_m1
+        13: iload         6
+        15: aload_2
+        16: invokespecial #171                // Method insertAll:(IILscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+        19: goto          48
+        22: new           #125                // class scala/Tuple2
+        25: dup
+        26: iconst_0
+        27: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+        30: getstatic     #176                // Field scala/collection/mutable/UnrolledBuffer$.MODULE$:Lscala/collection/mutable/UnrolledBuffer$;
+        33: getstatic     #181                // Field scala/collection/immutable/Nil$.MODULE$:Lscala/collection/immutable/Nil$;
+        36: getstatic     #107                // Field scala/reflect/ClassTag$.MODULE$:Lscala/reflect/ClassTag$;
+        39: invokevirtual #111                // Method scala/reflect/ClassTag$.AnyRef:()Lscala/reflect/ClassTag;
+        42: invokevirtual #185                // Method scala/collection/mutable/UnrolledBuffer$.apply:(Lscala/collection/immutable/Seq;Ljava/lang/Object;)Ljava/lang/Object;
+        45: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+        48: astore        8
+        50: aload         8
+        52: ifnull        91
+        55: aload         8
+        57: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+        60: istore        9
+        62: aload         8
+        64: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+        67: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+        70: astore        10
+        72: new           #125                // class scala/Tuple2
+        75: dup
+        76: iload         9
+        78: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+        81: aload         10
+        83: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+        86: astore        5
+        88: goto          104
+        91: goto          94
+        94: new           #142                // class scala/MatchError
+        97: dup
+        98: aload         8
+       100: invokespecial #144                // Method scala/MatchError."<init>":(Ljava/lang/Object;)V
+       103: athrow
+       104: aload         5
+       106: astore        7
+       108: aload         7
+       110: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+       113: istore        11
+       115: aload         7
+       117: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+       120: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+       123: astore        12
+       125: aload_0
+       126: aload_0
+       127: iload_1
+       128: invokespecial #187                // Method blockStart:(I)I
+       131: iload         6
+       133: aload_3
+       134: invokespecial #171                // Method insertAll:(IILscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+       137: astore        14
+       139: aload         14
+       141: ifnull        180
+       144: aload         14
+       146: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+       149: istore        15
+       151: aload         14
+       153: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+       156: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+       159: astore        16
+       161: new           #125                // class scala/Tuple2
+       164: dup
+       165: iload         15
+       167: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+       170: aload         16
+       172: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+       175: astore        4
+       177: goto          193
+       180: goto          183
+       183: new           #142                // class scala/MatchError
+       186: dup
+       187: aload         14
+       189: invokespecial #144                // Method scala/MatchError."<init>":(Ljava/lang/Object;)V
+       192: athrow
+       193: aload         4
+       195: astore        13
+       197: aload         13
+       199: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+       202: istore        17
+       204: aload         13
+       206: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+       209: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+       212: astore        18
+       214: new           #125                // class scala/Tuple2
+       217: dup
+       218: iload         11
+       220: iload         17
+       222: iadd
+       223: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+       226: aload         12
+       228: aload         18
+       230: invokevirtual #191                // Method scala/collection/mutable/UnrolledBuffer.concat:(Lscala/collection/mutable/UnrolledBuffer;)Lscala/collection/mutable/UnrolledBuffer;
+       233: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+       236: areturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 254 /* append */
+          offset_delta = 22
+          locals = [ top, top, int ]
+        frame_type = 89 /* same_locals_1_stack_item */
+          stack = [ class scala/Tuple2 ]
+        frame_type = 253 /* append */
+          offset_delta = 42
+          locals = [ top, class scala/Tuple2 ]
+        frame_type = 2 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, int, class scala/collection/mutable/UnrolledBuffer, class scala/collection/mutable/UnrolledBuffer, top, class scala/Tuple2, int, top, class scala/Tuple2, int, class scala/collection/mutable/UnrolledBuffer ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 75
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, int, class scala/collection/mutable/UnrolledBuffer, class scala/collection/mutable/UnrolledBuffer, top, class scala/Tuple2, int, class scala/Tuple2, class scala/Tuple2, int, class scala/collection/mutable/UnrolledBuffer, int, class scala/collection/mutable/UnrolledBuffer, top, class scala/Tuple2 ]
+          stack = []
+        frame_type = 2 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, int, class scala/collection/mutable/UnrolledBuffer, class scala/collection/mutable/UnrolledBuffer, class scala/Tuple2, class scala/Tuple2, int, class scala/Tuple2, class scala/Tuple2, int, class scala/collection/mutable/UnrolledBuffer, int, class scala/collection/mutable/UnrolledBuffer, top, class scala/Tuple2, int, class scala/collection/mutable/UnrolledBuffer ]
+          stack = []
+      LineNumberTable:
+        line 261: 0
+        line 264: 7
+        line 267: 125
+        line 270: 214
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           62      29     9 elemsIn   I
+           72      19    10 elemsLeft   Lscala/collection/mutable/UnrolledBuffer;
+          151      29    15 leftoversIn   I
+          161      19    16 leftoversLeft   Lscala/collection/mutable/UnrolledBuffer;
+            7     229     6 beforePos   I
+          115     121    11 elemsIn   I
+          125     111    12 elemsLeft   Lscala/collection/mutable/UnrolledBuffer;
+          204      32    17 leftoversIn   I
+          214      22    18 leftoversLeft   Lscala/collection/mutable/UnrolledBuffer;
+            0     237     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0     237     1 block   I
+            0     237     2 elems   Lscala/collection/mutable/UnrolledBuffer;
+            0     237     3 leftovers   Lscala/collection/mutable/UnrolledBuffer;
+    Signature: #163                         // (ILscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;)Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;
+    MethodParameters:
+      Name                           Flags
+      block                          final
+      elems                          final
+      leftovers                      final
+
+  private scala.Tuple2<java.lang.Object, scala.collection.mutable.UnrolledBuffer<java.lang.Object>> insertAll(int, int, scala.collection.mutable.UnrolledBuffer<java.lang.Object>);
+    descriptor: (IILscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=13, args_size=4
+         0: new           #12                 // class scala/collection/mutable/UnrolledBuffer
+         3: dup
+         4: getstatic     #107                // Field scala/reflect/ClassTag$.MODULE$:Lscala/reflect/ClassTag$;
+         7: invokevirtual #111                // Method scala/reflect/ClassTag$.AnyRef:()Lscala/reflect/ClassTag;
+        10: invokespecial #115                // Method scala/collection/mutable/UnrolledBuffer."<init>":(Lscala/reflect/ClassTag;)V
+        13: astore        4
+        15: iconst_0
+        16: istore        5
+        18: aload_3
+        19: invokevirtual #202                // Method scala/collection/mutable/UnrolledBuffer.headPtr:()Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+        22: astore        6
+        24: iconst_0
+        25: istore        7
+        27: aload_0
+        28: getfield      #204                // Field table:Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+        31: astore        8
+        33: aload         6
+        35: ifnull        129
+        38: aload         6
+        40: invokevirtual #207                // Method scala/collection/mutable/UnrolledBuffer$Unrolled.array:()Ljava/lang/Object;
+        43: checkcast     #209                // class "[Ljava/lang/Object;"
+        46: astore        9
+        48: aload         6
+        50: invokevirtual #212                // Method scala/collection/mutable/UnrolledBuffer$Unrolled.size:()I
+        53: istore        10
+        55: iload         7
+        57: iload         10
+        59: if_icmpge     116
+        62: aload         9
+        64: iload         7
+        66: aaload
+        67: astore        11
+        69: aload         8
+        71: iload_1
+        72: iload_2
+        73: aload         11
+        75: invokevirtual #216                // Method scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.insertEntry:(IILjava/lang/Object;)I
+        78: istore        12
+        80: iload         12
+        82: iconst_0
+        83: if_icmplt     99
+        86: iload         5
+        88: iload         12
+        90: iadd
+        91: istore        5
+        93: getstatic     #222                // Field scala/runtime/BoxedUnit.UNIT:Lscala/runtime/BoxedUnit;
+        96: goto          106
+        99: aload         4
+       101: aload         11
+       103: invokevirtual #226                // Method scala/collection/mutable/UnrolledBuffer.$plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+       106: pop
+       107: iload         7
+       109: iconst_1
+       110: iadd
+       111: istore        7
+       113: goto          55
+       116: iconst_0
+       117: istore        7
+       119: aload         6
+       121: invokevirtual #229                // Method scala/collection/mutable/UnrolledBuffer$Unrolled.next:()Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+       124: astore        6
+       126: goto          33
+       129: new           #125                // class scala/Tuple2
+       132: dup
+       133: iload         5
+       135: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+       138: aload         4
+       140: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+       143: areturn
+      StackMapTable: number_of_entries = 6
+        frame_type = 255 /* full_frame */
+          offset_delta = 33
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, int, int, class scala/collection/mutable/UnrolledBuffer, class scala/collection/mutable/UnrolledBuffer, int, class scala/collection/mutable/UnrolledBuffer$Unrolled, int, class scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable ]
+          stack = []
+        frame_type = 253 /* append */
+          offset_delta = 21
+          locals = [ class "[Ljava/lang/Object;", int ]
+        frame_type = 253 /* append */
+          offset_delta = 43
+          locals = [ class java/lang/Object, int ]
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Object ]
+        frame_type = 249 /* chop */
+          offset_delta = 9
+        frame_type = 249 /* chop */
+          offset_delta = 12
+      LineNumberTable:
+        line 273: 0
+        line 274: 15
+        line 276: 18
+        line 277: 24
+        line 278: 27
+        line 279: 33
+        line 280: 38
+        line 281: 48
+        line 282: 55
+        line 283: 62
+        line 284: 69
+        line 285: 80
+        line 286: 99
+        line 287: 107
+        line 282: 113
+        line 289: 116
+        line 290: 119
+        line 279: 126
+        line 302: 129
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           69      44    11 entry   Ljava/lang/Object;
+           80      33    12   res   I
+           48      78     9 chunkarr   [Ljava/lang/Object;
+           55      71    10 chunksz   I
+           15     128     4 leftovers   Lscala/collection/mutable/UnrolledBuffer;
+           18     125     5 inserted   I
+           24     119     6 unrolled   Lscala/collection/mutable/UnrolledBuffer$Unrolled;
+           27     116     7     i   I
+           33     110     8     t   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0     144     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0     144     1 atPos   I
+            0     144     2 beforePos   I
+            0     144     3 elems   Lscala/collection/mutable/UnrolledBuffer;
+    Signature: #197                         // (IILscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;)Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;
+    MethodParameters:
+      Name                           Flags
+      atPos                          final
+      beforePos                      final
+      elems                          final
+
+  public scala.collection.immutable.List<scala.collection.parallel.mutable.ParHashSetCombiner<T>.FillBlocks> split();
+    descriptor: ()Lscala/collection/immutable/List;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=13, locals=2, args_size=1
+         0: aload_0
+         1: invokevirtual #117                // Method howmany:()I
+         4: iconst_2
+         5: idiv
+         6: istore_1
+         7: getstatic     #243                // Field scala/package$.MODULE$:Lscala/package$;
+        10: invokevirtual #247                // Method scala/package$.List:()Lscala/collection/immutable/List$;
+        13: getstatic     #252                // Field scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+        16: iconst_2
+        17: anewarray     #2                  // class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks
+        20: dup
+        21: iconst_0
+        22: new           #2                  // class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks
+        25: dup
+        26: aload_0
+        27: invokevirtual #256                // Method scala$collection$parallel$mutable$ParHashSetCombiner$FillBlocks$$$outer:()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+        30: aload_0
+        31: getfield      #119                // Field buckets:[Lscala/collection/mutable/UnrolledBuffer;
+        34: aload_0
+        35: getfield      #204                // Field table:Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+        38: aload_0
+        39: invokevirtual #101                // Method offset:()I
+        42: iload_1
+        43: invokespecial #259                // Method "<init>":(Lscala/collection/parallel/mutable/ParHashSetCombiner;[Lscala/collection/mutable/UnrolledBuffer;Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;II)V
+        46: aastore
+        47: dup
+        48: iconst_1
+        49: new           #2                  // class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks
+        52: dup
+        53: aload_0
+        54: invokevirtual #256                // Method scala$collection$parallel$mutable$ParHashSetCombiner$FillBlocks$$$outer:()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+        57: aload_0
+        58: getfield      #119                // Field buckets:[Lscala/collection/mutable/UnrolledBuffer;
+        61: aload_0
+        62: getfield      #204                // Field table:Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+        65: aload_0
+        66: invokevirtual #101                // Method offset:()I
+        69: iload_1
+        70: iadd
+        71: aload_0
+        72: invokevirtual #117                // Method howmany:()I
+        75: iload_1
+        76: isub
+        77: invokespecial #259                // Method "<init>":(Lscala/collection/parallel/mutable/ParHashSetCombiner;[Lscala/collection/mutable/UnrolledBuffer;Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;II)V
+        80: aastore
+        81: checkcast     #209                // class "[Ljava/lang/Object;"
+        84: invokevirtual #263                // Method scala/runtime/ScalaRunTime$.wrapRefArray:([Ljava/lang/Object;)Lscala/collection/immutable/ArraySeq;
+        87: invokevirtual #268                // Method scala/collection/immutable/List$.apply:(Lscala/collection/immutable/Seq;)Ljava/lang/Object;
+        90: checkcast     #270                // class scala/collection/immutable/List
+        93: areturn
+      LineNumberTable:
+        line 305: 0
+        line 306: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            7      86     1    fp   I
+            0      94     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+    Signature: #238                         // ()Lscala/collection/immutable/List<Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.FillBlocks;>;
+
+  public void merge(scala.collection.parallel.mutable.ParHashSetCombiner<T>.FillBlocks);
+    descriptor: (Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=11, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #101                // Method offset:()I
+         5: invokespecial #187                // Method blockStart:(I)I
+         8: istore_3
+         9: aload_0
+        10: aload_1
+        11: invokevirtual #101                // Method offset:()I
+        14: aload_1
+        15: invokevirtual #117                // Method howmany:()I
+        18: iadd
+        19: invokespecial #187                // Method blockStart:(I)I
+        22: istore        4
+        24: aload_0
+        25: iload_3
+        26: iload         4
+        28: aload_0
+        29: invokevirtual #276                // Method result:()Lscala/Tuple2;
+        32: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+        35: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+        38: invokespecial #171                // Method insertAll:(IILscala/collection/mutable/UnrolledBuffer;)Lscala/Tuple2;
+        41: astore        6
+        43: aload         6
+        45: ifnull        83
+        48: aload         6
+        50: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+        53: istore        7
+        55: aload         6
+        57: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+        60: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+        63: astore        8
+        65: new           #125                // class scala/Tuple2
+        68: dup
+        69: iload         7
+        71: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+        74: aload         8
+        76: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+        79: astore_2
+        80: goto          96
+        83: goto          86
+        86: new           #142                // class scala/MatchError
+        89: dup
+        90: aload         6
+        92: invokespecial #144                // Method scala/MatchError."<init>":(Ljava/lang/Object;)V
+        95: athrow
+        96: aload_2
+        97: astore        5
+        99: aload         5
+       101: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+       104: istore        9
+       106: aload         5
+       108: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+       111: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+       114: astore        10
+       116: aload_0
+       117: new           #125                // class scala/Tuple2
+       120: dup
+       121: aload_0
+       122: invokevirtual #276                // Method result:()Lscala/Tuple2;
+       125: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+       128: aload_1
+       129: invokevirtual #276                // Method result:()Lscala/Tuple2;
+       132: invokevirtual #128                // Method scala/Tuple2._1$mcI$sp:()I
+       135: iadd
+       136: iload         9
+       138: iadd
+       139: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+       142: aload         10
+       144: aload_1
+       145: invokevirtual #276                // Method result:()Lscala/Tuple2;
+       148: invokevirtual #131                // Method scala/Tuple2._2:()Ljava/lang/Object;
+       151: checkcast     #12                 // class scala/collection/mutable/UnrolledBuffer
+       154: invokevirtual #191                // Method scala/collection/mutable/UnrolledBuffer.concat:(Lscala/collection/mutable/UnrolledBuffer;)Lscala/collection/mutable/UnrolledBuffer;
+       157: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+       160: invokevirtual #146                // Method result_$eq:(Lscala/Tuple2;)V
+       163: return
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 83
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, top, int, int, top, class scala/Tuple2 ]
+          stack = []
+        frame_type = 2 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks, class scala/Tuple2, int, int, top, class scala/Tuple2, int, class scala/collection/mutable/UnrolledBuffer ]
+          stack = []
+      LineNumberTable:
+        line 310: 0
+        line 311: 9
+        line 312: 24
+        line 317: 116
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           55      28     7 inserted   I
+           65      18     8 remainingLeftovers   Lscala/collection/mutable/UnrolledBuffer;
+            9     154     3 atPos   I
+           24     139     4 beforePos   I
+          106      57     9 inserted   I
+          116      47    10 remainingLeftovers   Lscala/collection/mutable/UnrolledBuffer;
+            0     164     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0     164     1  that   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+    Signature: #274                         // (Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.FillBlocks;)V
+    MethodParameters:
+      Name                           Flags
+      that                           final
+
+  public boolean shouldSplitFurther();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #117                // Method howmany:()I
+         4: getstatic     #284                // Field scala/collection/parallel/package$.MODULE$:Lscala/collection/parallel/package$;
+         7: getstatic     #289                // Field scala/collection/parallel/mutable/ParHashMapCombiner$.MODULE$:Lscala/collection/parallel/mutable/ParHashMapCombiner$;
+        10: invokevirtual #292                // Method scala/collection/parallel/mutable/ParHashMapCombiner$.numblocks:()I
+        13: aload_0
+        14: invokevirtual #256                // Method scala$collection$parallel$mutable$ParHashSetCombiner$FillBlocks$$$outer:()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+        17: invokevirtual #296                // Method scala/collection/parallel/mutable/ParHashSetCombiner.combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+        20: invokeinterface #301,  1          // InterfaceMethod scala/collection/parallel/TaskSupport.parallelismLevel:()I
+        25: invokevirtual #305                // Method scala/collection/parallel/package$.thresholdFromSize:(II)I
+        28: if_icmple     35
+        31: iconst_1
+        32: goto          36
+        35: iconst_0
+        36: ireturn
+      StackMapTable: number_of_entries = 2
+        frame_type = 35 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+      LineNumberTable:
+        line 319: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      37     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public scala.collection.parallel.mutable.ParHashSetCombiner scala$collection$parallel$mutable$ParHashSetCombiner$FillBlocks$$$outer();
+    descriptor: ()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+    flags: (0x1001) ACC_PUBLIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #307                // Field $outer:Lscala/collection/parallel/mutable/ParHashSetCombiner;
+         4: areturn
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public void merge(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #2                  // class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks
+         5: invokevirtual #309                // Method merge:(Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;)V
+         8: return
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       9     1  that   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      that                           final
+
+  public scala.collection.immutable.Seq split();
+    descriptor: ()Lscala/collection/immutable/Seq;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #312                // Method split:()Lscala/collection/immutable/List;
+         4: areturn
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public void result_$eq(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #125                // class scala/Tuple2
+         5: invokevirtual #146                // Method result_$eq:(Lscala/Tuple2;)V
+         8: return
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0       9     1   x$1   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public java.lang.Object result();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #276                // Method result:()Lscala/Tuple2;
+         4: areturn
+      LineNumberTable:
+        line 241: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+
+  public scala.collection.parallel.mutable.ParHashSetCombiner$FillBlocks(scala.collection.mutable.UnrolledBuffer<java.lang.Object>[], scala.collection.parallel.mutable.ParHashSetCombiner<T>.AddingFlatHashTable, int, int);
+    descriptor: (Lscala/collection/parallel/mutable/ParHashSetCombiner;[Lscala/collection/mutable/UnrolledBuffer;Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=6, args_size=6
+         0: aload_0
+         1: aload_2
+         2: putfield      #119                // Field buckets:[Lscala/collection/mutable/UnrolledBuffer;
+         5: aload_0
+         6: aload_3
+         7: putfield      #204                // Field table:Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+        10: aload_0
+        11: iload         4
+        13: putfield      #88                 // Field offset:I
+        16: aload_0
+        17: iload         5
+        19: putfield      #90                 // Field howmany:I
+        22: aload_1
+        23: ifnonnull     28
+        26: aconst_null
+        27: athrow
+        28: aload_0
+        29: aload_1
+        30: putfield      #307                // Field $outer:Lscala/collection/parallel/mutable/ParHashSetCombiner;
+        33: aload_0
+        34: invokespecial #315                // Method java/lang/Object."<init>":()V
+        37: aload_0
+        38: invokestatic  #318                // InterfaceMethod scala/collection/parallel/Task.$init$:(Lscala/collection/parallel/Task;)V
+        41: aload_0
+        42: new           #125                // class scala/Tuple2
+        45: dup
+        46: ldc_w         #319                // int -2147483648
+        49: invokestatic  #137                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+        52: new           #12                 // class scala/collection/mutable/UnrolledBuffer
+        55: dup
+        56: getstatic     #107                // Field scala/reflect/ClassTag$.MODULE$:Lscala/reflect/ClassTag$;
+        59: invokevirtual #111                // Method scala/reflect/ClassTag$.AnyRef:()Lscala/reflect/ClassTag;
+        62: invokespecial #115                // Method scala/collection/mutable/UnrolledBuffer."<init>":(Lscala/reflect/ClassTag;)V
+        65: invokespecial #140                // Method scala/Tuple2."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+        68: putfield      #94                 // Field result:Lscala/Tuple2;
+        71: aload_0
+        72: aload_3
+        73: invokevirtual #322                // Method scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.tableLength:()I
+        76: getstatic     #327                // Field scala/collection/parallel/mutable/ParHashSetCombiner$.MODULE$:Lscala/collection/parallel/mutable/ParHashSetCombiner$;
+        79: invokevirtual #330                // Method scala/collection/parallel/mutable/ParHashSetCombiner$.discriminantbits:()I
+        82: ishr
+        83: putfield      #156                // Field blocksize:I
+        86: return
+      StackMapTable: number_of_entries = 1
+        frame_type = 28 /* same */
+      LineNumberTable:
+        line 241: 0
+        line 242: 33
+        line 243: 41
+        line 257: 71
+        line 241: 86
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      87     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks;
+            0      87     1 $outer   Lscala/collection/parallel/mutable/ParHashSetCombiner;
+            0      87     2 buckets   [Lscala/collection/mutable/UnrolledBuffer;
+            0      87     3 table   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0      87     4 offset   I
+            0      87     5 howmany   I
+    Signature: #313                         // ([Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.AddingFlatHashTable;II)V
+    MethodParameters:
+      Name                           Flags
+      $outer                         final synthetic
+      buckets                        final
+      table                          final
+      offset                         final
+      howmany                        final
+}
+InnerClasses:
+  public static #13= #10 of #12;          // Unrolled=class scala/collection/mutable/UnrolledBuffer$Unrolled of class scala/collection/mutable/UnrolledBuffer
+  public #18= #15 of #17;                 // AddingFlatHashTable=class scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable of class scala/collection/parallel/mutable/ParHashSetCombiner
+  public #19= #2 of #17;                  // FillBlocks=class scala/collection/parallel/mutable/ParHashSetCombiner$FillBlocks of class scala/collection/parallel/mutable/ParHashSetCombiner
+Signature: #3                           // Ljava/lang/Object;Lscala/collection/parallel/Task<Lscala/Tuple2<Ljava/lang/Object;Lscala/collection/mutable/UnrolledBuffer<Ljava/lang/Object;>;>;Lscala/collection/parallel/mutable/ParHashSetCombiner<TT;>.FillBlocks;>;
+SourceFile: "ParHashSet.scala"
+  ScalaInlineInfo: length = 0x8B (unknown attribute)
+   01 00 00 1B 00 70 01 01 00 00 9D 00 9E 01 00 20
+   00 56 01 00 78 00 79 01 00 2D 00 2E 00 00 1C 00
+   56 00 00 A8 00 A9 01 00 62 00 34 00 01 10 00 3D
+   00 01 10 01 11 00 00 44 00 30 00 00 A2 00 9E 01
+   00 1A 00 56 00 00 25 00 26 00 00 1D 00 26 00 00
+   1D 00 5B 00 00 5F 00 3D 00 00 5F 00 60 00 00 FD
+   00 FE 00 01 16 01 17 00 00 4C 00 2E 00 00 EC 00
+   ED 00 00 EC 01 36 00 00 21 00 50 00 00 53 00 54
+   00 00 33 00 34 00 00 3C 00 3D 00
+  Scala: length = 0x0 (unknown attribute)
+

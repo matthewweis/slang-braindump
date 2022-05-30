@@ -1,0 +1,761 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/kohsuke/github/GHCommitSearchBuilder.class
+  Last modified May 29, 2022; size 5104 bytes
+  SHA-256 checksum 9613b8676cb834313875acef331af453f2b294ac9b2120ba06fbdcd0c2503abf
+  Compiled from "GHCommitSearchBuilder.java"
+public class org.kohsuke.github.GHCommitSearchBuilder extends org.kohsuke.github.GHSearchBuilder<org.kohsuke.github.GHCommit>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #44                         // org/kohsuke/github/GHCommitSearchBuilder
+  super_class: #45                        // org/kohsuke/github/GHSearchBuilder
+  interfaces: 0, fields: 0, methods: 24, attributes: 4
+Constant pool:
+    #1 = Methodref          #44.#110      // org/kohsuke/github/GHCommitSearchBuilder.getRepoName:(Ljava/lang/String;)Ljava/lang/String;
+    #2 = Class              #111          // org/kohsuke/github/GHCommitSearchBuilder$CommitSearchResult
+    #3 = Methodref          #45.#112      // org/kohsuke/github/GHSearchBuilder."<init>":(Lorg/kohsuke/github/GitHub;Ljava/lang/Class;)V
+    #4 = Fieldref           #44.#113      // org/kohsuke/github/GHCommitSearchBuilder.req:Lorg/kohsuke/github/Requester;
+    #5 = Fieldref           #114.#115     // org/kohsuke/github/internal/Previews.CLOAK:Lorg/kohsuke/github/internal/Previews;
+    #6 = Methodref          #116.#117     // org/kohsuke/github/Requester.withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+    #7 = Methodref          #45.#118      // org/kohsuke/github/GHSearchBuilder.q:(Ljava/lang/String;)Lorg/kohsuke/github/GHQueryBuilder;
+    #8 = Class              #119          // java/lang/StringBuilder
+    #9 = Methodref          #8.#120       // java/lang/StringBuilder."<init>":()V
+   #10 = String             #121          // author:
+   #11 = Methodref          #8.#122       // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #12 = Methodref          #8.#123       // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #13 = Methodref          #44.#124      // org/kohsuke/github/GHCommitSearchBuilder.q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+   #14 = String             #125          // committer:
+   #15 = String             #126          // author-name:
+   #16 = String             #127          // committer-name:
+   #17 = String             #128          // author-email:
+   #18 = String             #129          // committer-email:
+   #19 = String             #130          // author-date:
+   #20 = String             #131          // committer-date:
+   #21 = String             #132          // merge:
+   #22 = Methodref          #133.#134     // java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+   #23 = Methodref          #133.#123     // java/lang/Boolean.toString:()Ljava/lang/String;
+   #24 = Methodref          #135.#136     // java/lang/String.toLowerCase:()Ljava/lang/String;
+   #25 = String             #137          // hash:
+   #26 = String             #138          // parent:
+   #27 = String             #139          // tree:
+   #28 = String             #140          // is:
+   #29 = String             #141          // user:
+   #30 = String             #142          // org:
+   #31 = String             #143          // repo:
+   #32 = String             #82           // order
+   #33 = Methodref          #116.#144     // org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #34 = String             #85           // sort
+   #35 = Methodref          #145.#146     // org/apache/commons/lang3/StringUtils.isBlank:(Ljava/lang/CharSequence;)Z
+   #36 = Class              #147          // org/kohsuke/github/GitHubClient
+   #37 = String             #148          // https://api.github.com/repos/
+   #38 = Methodref          #135.#149     // java/lang/String.length:()I
+   #39 = Methodref          #135.#150     // java/lang/String.substring:(I)Ljava/lang/String;
+   #40 = String             #151          // /
+   #41 = Methodref          #135.#152     // java/lang/String.split:(Ljava/lang/String;I)[Ljava/lang/String;
+   #42 = Methodref          #8.#153       // java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+   #43 = String             #154          // /search/commits
+   #44 = Class              #155          // org/kohsuke/github/GHCommitSearchBuilder
+   #45 = Class              #156          // org/kohsuke/github/GHSearchBuilder
+   #46 = Utf8               CommitSearchResult
+   #47 = Utf8               InnerClasses
+   #48 = Class              #157          // org/kohsuke/github/GHCommitSearchBuilder$Sort
+   #49 = Utf8               Sort
+   #50 = Utf8               <init>
+   #51 = Utf8               (Lorg/kohsuke/github/GitHub;)V
+   #52 = Utf8               Code
+   #53 = Utf8               LineNumberTable
+   #54 = Utf8               LocalVariableTable
+   #55 = Utf8               this
+   #56 = Utf8               Lorg/kohsuke/github/GHCommitSearchBuilder;
+   #57 = Utf8               root
+   #58 = Utf8               Lorg/kohsuke/github/GitHub;
+   #59 = Utf8               q
+   #60 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+   #61 = Utf8               term
+   #62 = Utf8               Ljava/lang/String;
+   #63 = Utf8               author
+   #64 = Utf8               v
+   #65 = Utf8               committer
+   #66 = Utf8               authorName
+   #67 = Utf8               committerName
+   #68 = Utf8               authorEmail
+   #69 = Utf8               committerEmail
+   #70 = Utf8               authorDate
+   #71 = Utf8               committerDate
+   #72 = Utf8               merge
+   #73 = Utf8               (Z)Lorg/kohsuke/github/GHCommitSearchBuilder;
+   #74 = Utf8               Z
+   #75 = Utf8               hash
+   #76 = Utf8               parent
+   #77 = Utf8               tree
+   #78 = Utf8               is
+   #79 = Utf8               user
+   #80 = Utf8               org
+   #81 = Utf8               repo
+   #82 = Utf8               order
+   #83 = Utf8               (Lorg/kohsuke/github/GHDirection;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+   #84 = Utf8               Lorg/kohsuke/github/GHDirection;
+   #85 = Utf8               sort
+   #86 = Utf8               (Lorg/kohsuke/github/GHCommitSearchBuilder$Sort;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+   #87 = Utf8               Lorg/kohsuke/github/GHCommitSearchBuilder$Sort;
+   #88 = Utf8               getRepoName
+   #89 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+   #90 = Utf8               commitUrl
+   #91 = Utf8               indexOfUsername
+   #92 = Utf8               I
+   #93 = Utf8               tokens
+   #94 = Utf8               [Ljava/lang/String;
+   #95 = Utf8               StackMapTable
+   #96 = Utf8               getApiUrl
+   #97 = Utf8               ()Ljava/lang/String;
+   #98 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GHQueryBuilder;
+   #99 = Utf8               access$000
+  #100 = Utf8               x0
+  #101 = Utf8               Signature
+  #102 = Utf8               Lorg/kohsuke/github/GHSearchBuilder<Lorg/kohsuke/github/GHCommit;>;
+  #103 = Utf8               SourceFile
+  #104 = Utf8               GHCommitSearchBuilder.java
+  #105 = Utf8               RuntimeVisibleAnnotations
+  #106 = Utf8               Lorg/kohsuke/github/Preview;
+  #107 = Utf8               value
+  #108 = Utf8               Lorg/kohsuke/github/internal/Previews;
+  #109 = Utf8               CLOAK
+  #110 = NameAndType        #88:#89       // getRepoName:(Ljava/lang/String;)Ljava/lang/String;
+  #111 = Utf8               org/kohsuke/github/GHCommitSearchBuilder$CommitSearchResult
+  #112 = NameAndType        #50:#158      // "<init>":(Lorg/kohsuke/github/GitHub;Ljava/lang/Class;)V
+  #113 = NameAndType        #159:#160     // req:Lorg/kohsuke/github/Requester;
+  #114 = Class              #161          // org/kohsuke/github/internal/Previews
+  #115 = NameAndType        #109:#108     // CLOAK:Lorg/kohsuke/github/internal/Previews;
+  #116 = Class              #162          // org/kohsuke/github/Requester
+  #117 = NameAndType        #163:#166     // withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #118 = NameAndType        #59:#98       // q:(Ljava/lang/String;)Lorg/kohsuke/github/GHQueryBuilder;
+  #119 = Utf8               java/lang/StringBuilder
+  #120 = NameAndType        #50:#167      // "<init>":()V
+  #121 = Utf8               author:
+  #122 = NameAndType        #168:#169     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #123 = NameAndType        #170:#97      // toString:()Ljava/lang/String;
+  #124 = NameAndType        #59:#60       // q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+  #125 = Utf8               committer:
+  #126 = Utf8               author-name:
+  #127 = Utf8               committer-name:
+  #128 = Utf8               author-email:
+  #129 = Utf8               committer-email:
+  #130 = Utf8               author-date:
+  #131 = Utf8               committer-date:
+  #132 = Utf8               merge:
+  #133 = Class              #171          // java/lang/Boolean
+  #134 = NameAndType        #172:#173     // valueOf:(Z)Ljava/lang/Boolean;
+  #135 = Class              #174          // java/lang/String
+  #136 = NameAndType        #175:#97      // toLowerCase:()Ljava/lang/String;
+  #137 = Utf8               hash:
+  #138 = Utf8               parent:
+  #139 = Utf8               tree:
+  #140 = Utf8               is:
+  #141 = Utf8               user:
+  #142 = Utf8               org:
+  #143 = Utf8               repo:
+  #144 = NameAndType        #176:#177     // with:(Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #145 = Class              #178          // org/apache/commons/lang3/StringUtils
+  #146 = NameAndType        #179:#180     // isBlank:(Ljava/lang/CharSequence;)Z
+  #147 = Utf8               org/kohsuke/github/GitHubClient
+  #148 = Utf8               https://api.github.com/repos/
+  #149 = NameAndType        #181:#182     // length:()I
+  #150 = NameAndType        #183:#184     // substring:(I)Ljava/lang/String;
+  #151 = Utf8               /
+  #152 = NameAndType        #185:#186     // split:(Ljava/lang/String;I)[Ljava/lang/String;
+  #153 = NameAndType        #168:#187     // append:(C)Ljava/lang/StringBuilder;
+  #154 = Utf8               /search/commits
+  #155 = Utf8               org/kohsuke/github/GHCommitSearchBuilder
+  #156 = Utf8               org/kohsuke/github/GHSearchBuilder
+  #157 = Utf8               org/kohsuke/github/GHCommitSearchBuilder$Sort
+  #158 = Utf8               (Lorg/kohsuke/github/GitHub;Ljava/lang/Class;)V
+  #159 = Utf8               req
+  #160 = Utf8               Lorg/kohsuke/github/Requester;
+  #161 = Utf8               org/kohsuke/github/internal/Previews
+  #162 = Utf8               org/kohsuke/github/Requester
+  #163 = Utf8               withPreview
+  #164 = Class              #189          // org/kohsuke/github/GitHubRequest$Builder
+  #165 = Utf8               Builder
+  #166 = Utf8               (Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #167 = Utf8               ()V
+  #168 = Utf8               append
+  #169 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #170 = Utf8               toString
+  #171 = Utf8               java/lang/Boolean
+  #172 = Utf8               valueOf
+  #173 = Utf8               (Z)Ljava/lang/Boolean;
+  #174 = Utf8               java/lang/String
+  #175 = Utf8               toLowerCase
+  #176 = Utf8               with
+  #177 = Utf8               (Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #178 = Utf8               org/apache/commons/lang3/StringUtils
+  #179 = Utf8               isBlank
+  #180 = Utf8               (Ljava/lang/CharSequence;)Z
+  #181 = Utf8               length
+  #182 = Utf8               ()I
+  #183 = Utf8               substring
+  #184 = Utf8               (I)Ljava/lang/String;
+  #185 = Utf8               split
+  #186 = Utf8               (Ljava/lang/String;I)[Ljava/lang/String;
+  #187 = Utf8               (C)Ljava/lang/StringBuilder;
+  #188 = Class              #190          // org/kohsuke/github/GitHubRequest
+  #189 = Utf8               org/kohsuke/github/GitHubRequest$Builder
+  #190 = Utf8               org/kohsuke/github/GitHubRequest
+{
+  org.kohsuke.github.GHCommitSearchBuilder(org.kohsuke.github.GitHub);
+    descriptor: (Lorg/kohsuke/github/GitHub;)V
+    flags: (0x0000)
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: ldc           #2                  // class org/kohsuke/github/GHCommitSearchBuilder$CommitSearchResult
+         4: invokespecial #3                  // Method org/kohsuke/github/GHSearchBuilder."<init>":(Lorg/kohsuke/github/GitHub;Ljava/lang/Class;)V
+         7: aload_0
+         8: getfield      #4                  // Field req:Lorg/kohsuke/github/Requester;
+        11: getstatic     #5                  // Field org/kohsuke/github/internal/Previews.CLOAK:Lorg/kohsuke/github/internal/Previews;
+        14: invokevirtual #6                  // Method org/kohsuke/github/Requester.withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        17: pop
+        18: return
+      LineNumberTable:
+        line 17: 0
+        line 18: 7
+        line 19: 18
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      19     1  root   Lorg/kohsuke/github/GitHub;
+
+  public org.kohsuke.github.GHCommitSearchBuilder q(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokespecial #7                  // Method org/kohsuke/github/GHSearchBuilder.q:(Ljava/lang/String;)Lorg/kohsuke/github/GHQueryBuilder;
+         5: pop
+         6: aload_0
+         7: areturn
+      LineNumberTable:
+        line 25: 0
+        line 26: 6
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0       8     1  term   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder author(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #10                 // String author:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 37: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder committer(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #14                 // String committer:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 48: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder authorName(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #15                 // String author-name:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 59: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder committerName(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #16                 // String committer-name:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 70: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder authorEmail(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #17                 // String author-email:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 81: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder committerEmail(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #18                 // String committer-email:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 92: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder authorDate(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #19                 // String author-date:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 103: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder committerDate(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #20                 // String committer-date:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 114: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder merge(boolean);
+    descriptor: (Z)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #21                 // String merge:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: iload_1
+        14: invokestatic  #22                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        17: invokevirtual #23                 // Method java/lang/Boolean.toString:()Ljava/lang/String;
+        20: invokevirtual #24                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+        23: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        26: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        29: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        32: areturn
+      LineNumberTable:
+        line 125: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      33     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      33     1 merge   Z
+
+  public org.kohsuke.github.GHCommitSearchBuilder hash(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #25                 // String hash:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 136: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder parent(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #26                 // String parent:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 147: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder tree(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #27                 // String tree:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 158: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder is(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #28                 // String is:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 169: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder user(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #29                 // String user:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 180: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder org(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #30                 // String org:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 191: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder repo(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: new           #8                  // class java/lang/StringBuilder
+         4: dup
+         5: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+         8: ldc           #31                 // String repo:
+        10: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: aload_1
+        14: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        17: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        20: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+        23: areturn
+      LineNumberTable:
+        line 202: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      24     1     v   Ljava/lang/String;
+
+  public org.kohsuke.github.GHCommitSearchBuilder order(org.kohsuke.github.GHDirection);
+    descriptor: (Lorg/kohsuke/github/GHDirection;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #4                  // Field req:Lorg/kohsuke/github/Requester;
+         4: ldc           #32                 // String order
+         6: aload_1
+         7: invokevirtual #33                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        10: pop
+        11: aload_0
+        12: areturn
+      LineNumberTable:
+        line 213: 0
+        line 214: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      13     1     v   Lorg/kohsuke/github/GHDirection;
+
+  public org.kohsuke.github.GHCommitSearchBuilder sort(org.kohsuke.github.GHCommitSearchBuilder$Sort);
+    descriptor: (Lorg/kohsuke/github/GHCommitSearchBuilder$Sort;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #4                  // Field req:Lorg/kohsuke/github/Requester;
+         4: ldc           #34                 // String sort
+         6: aload_1
+         7: invokevirtual #33                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/Enum;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        10: pop
+        11: aload_0
+        12: areturn
+      LineNumberTable:
+        line 225: 0
+        line 226: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+            0      13     1  sort   Lorg/kohsuke/github/GHCommitSearchBuilder$Sort;
+
+  private static java.lang.String getRepoName(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: aload_0
+         1: invokestatic  #35                 // Method org/apache/commons/lang3/StringUtils.isBlank:(Ljava/lang/CharSequence;)Z
+         4: ifeq          9
+         7: aconst_null
+         8: areturn
+         9: ldc           #37                 // String https://api.github.com/repos/
+        11: invokevirtual #38                 // Method java/lang/String.length:()I
+        14: istore_1
+        15: aload_0
+        16: iload_1
+        17: invokevirtual #39                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+        20: ldc           #40                 // String /
+        22: iconst_3
+        23: invokevirtual #41                 // Method java/lang/String.split:(Ljava/lang/String;I)[Ljava/lang/String;
+        26: astore_2
+        27: new           #8                  // class java/lang/StringBuilder
+        30: dup
+        31: invokespecial #9                  // Method java/lang/StringBuilder."<init>":()V
+        34: aload_2
+        35: iconst_0
+        36: aaload
+        37: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        40: bipush        47
+        42: invokevirtual #42                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        45: aload_2
+        46: iconst_1
+        47: aaload
+        48: invokevirtual #11                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        51: invokevirtual #12                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        54: areturn
+      LineNumberTable:
+        line 259: 0
+        line 260: 7
+        line 262: 9
+        line 263: 15
+        line 264: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      55     0 commitUrl   Ljava/lang/String;
+           15      40     1 indexOfUsername   I
+           27      28     2 tokens   [Ljava/lang/String;
+      StackMapTable: number_of_entries = 1
+        frame_type = 9 /* same */
+
+  protected java.lang.String getApiUrl();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=1, locals=1, args_size=1
+         0: ldc           #43                 // String /search/commits
+         2: areturn
+      LineNumberTable:
+        line 269: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       3     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+
+  public org.kohsuke.github.GHQueryBuilder q(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHQueryBuilder;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #13                 // Method q:(Ljava/lang/String;)Lorg/kohsuke/github/GHCommitSearchBuilder;
+         5: areturn
+      LineNumberTable:
+        line 14: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/kohsuke/github/GHCommitSearchBuilder;
+
+  static java.lang.String access$000(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x1008) ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #1                  // Method getRepoName:(Ljava/lang/String;)Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 15: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0    x0   Ljava/lang/String;
+}
+Signature: #102                         // Lorg/kohsuke/github/GHSearchBuilder<Lorg/kohsuke/github/GHCommit;>;
+SourceFile: "GHCommitSearchBuilder.java"
+RuntimeVisibleAnnotations:
+  0: #106(#107=[e#108.#109])
+    org.kohsuke.github.Preview(
+      value=[Lorg/kohsuke/github/internal/Previews;.CLOAK]
+    )
+InnerClasses:
+  private static #46= #2 of #44;          // CommitSearchResult=class org/kohsuke/github/GHCommitSearchBuilder$CommitSearchResult of class org/kohsuke/github/GHCommitSearchBuilder
+  public static final #49= #48 of #44;    // Sort=class org/kohsuke/github/GHCommitSearchBuilder$Sort of class org/kohsuke/github/GHCommitSearchBuilder
+  static #165= #164 of #188;              // Builder=class org/kohsuke/github/GitHubRequest$Builder of class org/kohsuke/github/GitHubRequest

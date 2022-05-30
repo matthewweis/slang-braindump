@@ -1,0 +1,953 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/core/io/IOContext.class
+  Last modified May 29, 2022; size 5556 bytes
+  SHA-256 checksum 6b37e679086b61fad6fe87e94068653fbd4478161d92ca7efd392aa876414cc2
+  Compiled from "IOContext.java"
+public class com.fasterxml.jackson.core.io.IOContext
+  minor version: 0
+  major version: 50
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #35                         // com/fasterxml/jackson/core/io/IOContext
+  super_class: #36                        // java/lang/Object
+  interfaces: 0, fields: 11, methods: 29, attributes: 1
+Constant pool:
+    #1 = Methodref          #36.#119      // java/lang/Object."<init>":()V
+    #2 = Fieldref           #35.#120      // com/fasterxml/jackson/core/io/IOContext._bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+    #3 = Fieldref           #35.#121      // com/fasterxml/jackson/core/io/IOContext._contentReference:Lcom/fasterxml/jackson/core/io/ContentReference;
+    #4 = Methodref          #122.#123     // com/fasterxml/jackson/core/io/ContentReference.getRawContent:()Ljava/lang/Object;
+    #5 = Fieldref           #35.#124      // com/fasterxml/jackson/core/io/IOContext._sourceRef:Ljava/lang/Object;
+    #6 = Fieldref           #35.#125      // com/fasterxml/jackson/core/io/IOContext._managedResource:Z
+    #7 = Methodref          #122.#126     // com/fasterxml/jackson/core/io/ContentReference.rawReference:(Ljava/lang/Object;)Lcom/fasterxml/jackson/core/io/ContentReference;
+    #8 = Methodref          #35.#127      // com/fasterxml/jackson/core/io/IOContext."<init>":(Lcom/fasterxml/jackson/core/util/BufferRecycler;Lcom/fasterxml/jackson/core/io/ContentReference;Z)V
+    #9 = Fieldref           #35.#128      // com/fasterxml/jackson/core/io/IOContext._encoding:Lcom/fasterxml/jackson/core/JsonEncoding;
+   #10 = Class              #129          // com/fasterxml/jackson/core/util/TextBuffer
+   #11 = Methodref          #10.#130      // com/fasterxml/jackson/core/util/TextBuffer."<init>":(Lcom/fasterxml/jackson/core/util/BufferRecycler;)V
+   #12 = Fieldref           #35.#131      // com/fasterxml/jackson/core/io/IOContext._readIOBuffer:[B
+   #13 = Methodref          #35.#132      // com/fasterxml/jackson/core/io/IOContext._verifyAlloc:(Ljava/lang/Object;)V
+   #14 = Class              #133          // com/fasterxml/jackson/core/util/BufferRecycler
+   #15 = Methodref          #14.#134      // com/fasterxml/jackson/core/util/BufferRecycler.allocByteBuffer:(I)[B
+   #16 = Methodref          #14.#135      // com/fasterxml/jackson/core/util/BufferRecycler.allocByteBuffer:(II)[B
+   #17 = Fieldref           #35.#136      // com/fasterxml/jackson/core/io/IOContext._writeEncodingBuffer:[B
+   #18 = Fieldref           #35.#137      // com/fasterxml/jackson/core/io/IOContext._base64Buffer:[B
+   #19 = Fieldref           #35.#138      // com/fasterxml/jackson/core/io/IOContext._tokenCBuffer:[C
+   #20 = Methodref          #14.#139      // com/fasterxml/jackson/core/util/BufferRecycler.allocCharBuffer:(I)[C
+   #21 = Methodref          #14.#140      // com/fasterxml/jackson/core/util/BufferRecycler.allocCharBuffer:(II)[C
+   #22 = Fieldref           #35.#141      // com/fasterxml/jackson/core/io/IOContext._concatCBuffer:[C
+   #23 = Fieldref           #35.#142      // com/fasterxml/jackson/core/io/IOContext._nameCopyBuffer:[C
+   #24 = Methodref          #35.#143      // com/fasterxml/jackson/core/io/IOContext._verifyRelease:([B[B)V
+   #25 = Methodref          #14.#144      // com/fasterxml/jackson/core/util/BufferRecycler.releaseByteBuffer:(I[B)V
+   #26 = Methodref          #35.#145      // com/fasterxml/jackson/core/io/IOContext._verifyRelease:([C[C)V
+   #27 = Methodref          #14.#146      // com/fasterxml/jackson/core/util/BufferRecycler.releaseCharBuffer:(I[C)V
+   #28 = Class              #147          // java/lang/IllegalStateException
+   #29 = String             #148          // Trying to call same allocXxx() method second time
+   #30 = Methodref          #28.#149      // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+   #31 = Methodref          #35.#150      // com/fasterxml/jackson/core/io/IOContext.wrongBuf:()Ljava/lang/IllegalArgumentException;
+   #32 = Class              #151          // java/lang/IllegalArgumentException
+   #33 = String             #152          // Trying to release buffer smaller than original
+   #34 = Methodref          #32.#149      // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+   #35 = Class              #153          // com/fasterxml/jackson/core/io/IOContext
+   #36 = Class              #154          // java/lang/Object
+   #37 = Utf8               _contentReference
+   #38 = Utf8               Lcom/fasterxml/jackson/core/io/ContentReference;
+   #39 = Utf8               _sourceRef
+   #40 = Utf8               Ljava/lang/Object;
+   #41 = Utf8               Deprecated
+   #42 = Utf8               RuntimeVisibleAnnotations
+   #43 = Utf8               Ljava/lang/Deprecated;
+   #44 = Utf8               _encoding
+   #45 = Utf8               Lcom/fasterxml/jackson/core/JsonEncoding;
+   #46 = Utf8               _managedResource
+   #47 = Utf8               Z
+   #48 = Utf8               _bufferRecycler
+   #49 = Utf8               Lcom/fasterxml/jackson/core/util/BufferRecycler;
+   #50 = Utf8               _readIOBuffer
+   #51 = Utf8               [B
+   #52 = Utf8               _writeEncodingBuffer
+   #53 = Utf8               _base64Buffer
+   #54 = Utf8               _tokenCBuffer
+   #55 = Utf8               [C
+   #56 = Utf8               _concatCBuffer
+   #57 = Utf8               _nameCopyBuffer
+   #58 = Utf8               <init>
+   #59 = Utf8               (Lcom/fasterxml/jackson/core/util/BufferRecycler;Lcom/fasterxml/jackson/core/io/ContentReference;Z)V
+   #60 = Utf8               Code
+   #61 = Utf8               LineNumberTable
+   #62 = Utf8               LocalVariableTable
+   #63 = Utf8               this
+   #64 = Utf8               Lcom/fasterxml/jackson/core/io/IOContext;
+   #65 = Utf8               br
+   #66 = Utf8               contentRef
+   #67 = Utf8               managedResource
+   #68 = Utf8               (Lcom/fasterxml/jackson/core/util/BufferRecycler;Ljava/lang/Object;Z)V
+   #69 = Utf8               rawContent
+   #70 = Utf8               setEncoding
+   #71 = Utf8               (Lcom/fasterxml/jackson/core/JsonEncoding;)V
+   #72 = Utf8               enc
+   #73 = Utf8               withEncoding
+   #74 = Utf8               (Lcom/fasterxml/jackson/core/JsonEncoding;)Lcom/fasterxml/jackson/core/io/IOContext;
+   #75 = Utf8               getEncoding
+   #76 = Utf8               ()Lcom/fasterxml/jackson/core/JsonEncoding;
+   #77 = Utf8               isResourceManaged
+   #78 = Utf8               ()Z
+   #79 = Utf8               contentReference
+   #80 = Utf8               ()Lcom/fasterxml/jackson/core/io/ContentReference;
+   #81 = Utf8               getSourceReference
+   #82 = Utf8               ()Ljava/lang/Object;
+   #83 = Utf8               constructTextBuffer
+   #84 = Utf8               ()Lcom/fasterxml/jackson/core/util/TextBuffer;
+   #85 = Utf8               allocReadIOBuffer
+   #86 = Utf8               ()[B
+   #87 = Utf8               (I)[B
+   #88 = Utf8               minSize
+   #89 = Utf8               I
+   #90 = Utf8               allocWriteEncodingBuffer
+   #91 = Utf8               allocBase64Buffer
+   #92 = Utf8               allocTokenBuffer
+   #93 = Utf8               ()[C
+   #94 = Utf8               (I)[C
+   #95 = Utf8               allocConcatBuffer
+   #96 = Utf8               allocNameCopyBuffer
+   #97 = Utf8               releaseReadIOBuffer
+   #98 = Utf8               ([B)V
+   #99 = Utf8               buf
+  #100 = Utf8               StackMapTable
+  #101 = Utf8               releaseWriteEncodingBuffer
+  #102 = Utf8               releaseBase64Buffer
+  #103 = Utf8               releaseTokenBuffer
+  #104 = Utf8               ([C)V
+  #105 = Utf8               releaseConcatBuffer
+  #106 = Utf8               releaseNameCopyBuffer
+  #107 = Utf8               _verifyAlloc
+  #108 = Utf8               (Ljava/lang/Object;)V
+  #109 = Utf8               buffer
+  #110 = Utf8               _verifyRelease
+  #111 = Utf8               ([B[B)V
+  #112 = Utf8               toRelease
+  #113 = Utf8               src
+  #114 = Utf8               ([C[C)V
+  #115 = Utf8               wrongBuf
+  #116 = Utf8               ()Ljava/lang/IllegalArgumentException;
+  #117 = Utf8               SourceFile
+  #118 = Utf8               IOContext.java
+  #119 = NameAndType        #58:#155      // "<init>":()V
+  #120 = NameAndType        #48:#49       // _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+  #121 = NameAndType        #37:#38       // _contentReference:Lcom/fasterxml/jackson/core/io/ContentReference;
+  #122 = Class              #156          // com/fasterxml/jackson/core/io/ContentReference
+  #123 = NameAndType        #157:#82      // getRawContent:()Ljava/lang/Object;
+  #124 = NameAndType        #39:#40       // _sourceRef:Ljava/lang/Object;
+  #125 = NameAndType        #46:#47       // _managedResource:Z
+  #126 = NameAndType        #158:#159     // rawReference:(Ljava/lang/Object;)Lcom/fasterxml/jackson/core/io/ContentReference;
+  #127 = NameAndType        #58:#59       // "<init>":(Lcom/fasterxml/jackson/core/util/BufferRecycler;Lcom/fasterxml/jackson/core/io/ContentReference;Z)V
+  #128 = NameAndType        #44:#45       // _encoding:Lcom/fasterxml/jackson/core/JsonEncoding;
+  #129 = Utf8               com/fasterxml/jackson/core/util/TextBuffer
+  #130 = NameAndType        #58:#160      // "<init>":(Lcom/fasterxml/jackson/core/util/BufferRecycler;)V
+  #131 = NameAndType        #50:#51       // _readIOBuffer:[B
+  #132 = NameAndType        #107:#108     // _verifyAlloc:(Ljava/lang/Object;)V
+  #133 = Utf8               com/fasterxml/jackson/core/util/BufferRecycler
+  #134 = NameAndType        #161:#87      // allocByteBuffer:(I)[B
+  #135 = NameAndType        #161:#162     // allocByteBuffer:(II)[B
+  #136 = NameAndType        #52:#51       // _writeEncodingBuffer:[B
+  #137 = NameAndType        #53:#51       // _base64Buffer:[B
+  #138 = NameAndType        #54:#55       // _tokenCBuffer:[C
+  #139 = NameAndType        #163:#94      // allocCharBuffer:(I)[C
+  #140 = NameAndType        #163:#164     // allocCharBuffer:(II)[C
+  #141 = NameAndType        #56:#55       // _concatCBuffer:[C
+  #142 = NameAndType        #57:#55       // _nameCopyBuffer:[C
+  #143 = NameAndType        #110:#111     // _verifyRelease:([B[B)V
+  #144 = NameAndType        #165:#166     // releaseByteBuffer:(I[B)V
+  #145 = NameAndType        #110:#114     // _verifyRelease:([C[C)V
+  #146 = NameAndType        #167:#168     // releaseCharBuffer:(I[C)V
+  #147 = Utf8               java/lang/IllegalStateException
+  #148 = Utf8               Trying to call same allocXxx() method second time
+  #149 = NameAndType        #58:#169      // "<init>":(Ljava/lang/String;)V
+  #150 = NameAndType        #115:#116     // wrongBuf:()Ljava/lang/IllegalArgumentException;
+  #151 = Utf8               java/lang/IllegalArgumentException
+  #152 = Utf8               Trying to release buffer smaller than original
+  #153 = Utf8               com/fasterxml/jackson/core/io/IOContext
+  #154 = Utf8               java/lang/Object
+  #155 = Utf8               ()V
+  #156 = Utf8               com/fasterxml/jackson/core/io/ContentReference
+  #157 = Utf8               getRawContent
+  #158 = Utf8               rawReference
+  #159 = Utf8               (Ljava/lang/Object;)Lcom/fasterxml/jackson/core/io/ContentReference;
+  #160 = Utf8               (Lcom/fasterxml/jackson/core/util/BufferRecycler;)V
+  #161 = Utf8               allocByteBuffer
+  #162 = Utf8               (II)[B
+  #163 = Utf8               allocCharBuffer
+  #164 = Utf8               (II)[C
+  #165 = Utf8               releaseByteBuffer
+  #166 = Utf8               (I[B)V
+  #167 = Utf8               releaseCharBuffer
+  #168 = Utf8               (I[C)V
+  #169 = Utf8               (Ljava/lang/String;)V
+{
+  protected final com.fasterxml.jackson.core.io.ContentReference _contentReference;
+    descriptor: Lcom/fasterxml/jackson/core/io/ContentReference;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final java.lang.Object _sourceRef;
+    descriptor: Ljava/lang/Object;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #43()
+        java.lang.Deprecated
+
+  protected com.fasterxml.jackson.core.JsonEncoding _encoding;
+    descriptor: Lcom/fasterxml/jackson/core/JsonEncoding;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected final boolean _managedResource;
+    descriptor: Z
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final com.fasterxml.jackson.core.util.BufferRecycler _bufferRecycler;
+    descriptor: Lcom/fasterxml/jackson/core/util/BufferRecycler;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected byte[] _readIOBuffer;
+    descriptor: [B
+    flags: (0x0004) ACC_PROTECTED
+
+  protected byte[] _writeEncodingBuffer;
+    descriptor: [B
+    flags: (0x0004) ACC_PROTECTED
+
+  protected byte[] _base64Buffer;
+    descriptor: [B
+    flags: (0x0004) ACC_PROTECTED
+
+  protected char[] _tokenCBuffer;
+    descriptor: [C
+    flags: (0x0004) ACC_PROTECTED
+
+  protected char[] _concatCBuffer;
+    descriptor: [C
+    flags: (0x0004) ACC_PROTECTED
+
+  protected char[] _nameCopyBuffer;
+    descriptor: [C
+    flags: (0x0004) ACC_PROTECTED
+
+  public com.fasterxml.jackson.core.io.IOContext(com.fasterxml.jackson.core.util.BufferRecycler, com.fasterxml.jackson.core.io.ContentReference, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/util/BufferRecycler;Lcom/fasterxml/jackson/core/io/ContentReference;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=4, args_size=4
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+         9: aload_0
+        10: aload_2
+        11: putfield      #3                  // Field _contentReference:Lcom/fasterxml/jackson/core/io/ContentReference;
+        14: aload_0
+        15: aload_2
+        16: invokevirtual #4                  // Method com/fasterxml/jackson/core/io/ContentReference.getRawContent:()Ljava/lang/Object;
+        19: putfield      #5                  // Field _sourceRef:Ljava/lang/Object;
+        22: aload_0
+        23: iload_3
+        24: putfield      #6                  // Field _managedResource:Z
+        27: return
+      LineNumberTable:
+        line 119: 0
+        line 120: 4
+        line 121: 9
+        line 122: 14
+        line 123: 22
+        line 124: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      28     1    br   Lcom/fasterxml/jackson/core/util/BufferRecycler;
+            0      28     2 contentRef   Lcom/fasterxml/jackson/core/io/ContentReference;
+            0      28     3 managedResource   Z
+
+  public com.fasterxml.jackson.core.io.IOContext(com.fasterxml.jackson.core.util.BufferRecycler, java.lang.Object, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/util/BufferRecycler;Ljava/lang/Object;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #7                  // Method com/fasterxml/jackson/core/io/ContentReference.rawReference:(Ljava/lang/Object;)Lcom/fasterxml/jackson/core/io/ContentReference;
+         6: iload_3
+         7: invokespecial #8                  // Method "<init>":(Lcom/fasterxml/jackson/core/util/BufferRecycler;Lcom/fasterxml/jackson/core/io/ContentReference;Z)V
+        10: return
+      LineNumberTable:
+        line 128: 0
+        line 129: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      11     1    br   Lcom/fasterxml/jackson/core/util/BufferRecycler;
+            0      11     2 rawContent   Ljava/lang/Object;
+            0      11     3 managedResource   Z
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #43()
+        java.lang.Deprecated
+
+  public void setEncoding(com.fasterxml.jackson.core.JsonEncoding);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonEncoding;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #9                  // Field _encoding:Lcom/fasterxml/jackson/core/JsonEncoding;
+         5: return
+      LineNumberTable:
+        line 132: 0
+        line 133: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0       6     1   enc   Lcom/fasterxml/jackson/core/JsonEncoding;
+
+  public com.fasterxml.jackson.core.io.IOContext withEncoding(com.fasterxml.jackson.core.JsonEncoding);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonEncoding;)Lcom/fasterxml/jackson/core/io/IOContext;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #9                  // Field _encoding:Lcom/fasterxml/jackson/core/JsonEncoding;
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 136: 0
+        line 137: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0       7     1   enc   Lcom/fasterxml/jackson/core/JsonEncoding;
+
+  public com.fasterxml.jackson.core.JsonEncoding getEncoding();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonEncoding;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #9                  // Field _encoding:Lcom/fasterxml/jackson/core/JsonEncoding;
+         4: areturn
+      LineNumberTable:
+        line 146: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public boolean isResourceManaged();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #6                  // Field _managedResource:Z
+         4: ireturn
+      LineNumberTable:
+        line 147: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public com.fasterxml.jackson.core.io.ContentReference contentReference();
+    descriptor: ()Lcom/fasterxml/jackson/core/io/ContentReference;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #3                  // Field _contentReference:Lcom/fasterxml/jackson/core/io/ContentReference;
+         4: areturn
+      LineNumberTable:
+        line 158: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public java.lang.Object getSourceReference();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #5                  // Field _sourceRef:Ljava/lang/Object;
+         4: areturn
+      LineNumberTable:
+        line 166: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #43()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.core.util.TextBuffer constructTextBuffer();
+    descriptor: ()Lcom/fasterxml/jackson/core/util/TextBuffer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #10                 // class com/fasterxml/jackson/core/util/TextBuffer
+         3: dup
+         4: aload_0
+         5: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+         8: invokespecial #11                 // Method com/fasterxml/jackson/core/util/TextBuffer."<init>":(Lcom/fasterxml/jackson/core/util/BufferRecycler;)V
+        11: areturn
+      LineNumberTable:
+        line 175: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public byte[] allocReadIOBuffer();
+    descriptor: ()[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: getfield      #12                 // Field _readIOBuffer:[B
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_0
+        14: invokevirtual #15                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocByteBuffer:(I)[B
+        17: dup_x1
+        18: putfield      #12                 // Field _readIOBuffer:[B
+        21: areturn
+      LineNumberTable:
+        line 187: 0
+        line 188: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public byte[] allocReadIOBuffer(int);
+    descriptor: (I)[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: aload_0
+         2: getfield      #12                 // Field _readIOBuffer:[B
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_0
+        14: iload_1
+        15: invokevirtual #16                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocByteBuffer:(II)[B
+        18: dup_x1
+        19: putfield      #12                 // Field _readIOBuffer:[B
+        22: areturn
+      LineNumberTable:
+        line 202: 0
+        line 203: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      23     1 minSize   I
+
+  public byte[] allocWriteEncodingBuffer();
+    descriptor: ()[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: getfield      #17                 // Field _writeEncodingBuffer:[B
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_1
+        14: invokevirtual #15                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocByteBuffer:(I)[B
+        17: dup_x1
+        18: putfield      #17                 // Field _writeEncodingBuffer:[B
+        21: areturn
+      LineNumberTable:
+        line 215: 0
+        line 216: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public byte[] allocWriteEncodingBuffer(int);
+    descriptor: (I)[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: aload_0
+         2: getfield      #17                 // Field _writeEncodingBuffer:[B
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_1
+        14: iload_1
+        15: invokevirtual #16                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocByteBuffer:(II)[B
+        18: dup_x1
+        19: putfield      #17                 // Field _writeEncodingBuffer:[B
+        22: areturn
+      LineNumberTable:
+        line 230: 0
+        line 231: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      23     1 minSize   I
+
+  public byte[] allocBase64Buffer();
+    descriptor: ()[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: getfield      #18                 // Field _base64Buffer:[B
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_3
+        14: invokevirtual #15                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocByteBuffer:(I)[B
+        17: dup_x1
+        18: putfield      #18                 // Field _base64Buffer:[B
+        21: areturn
+      LineNumberTable:
+        line 243: 0
+        line 244: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public byte[] allocBase64Buffer(int);
+    descriptor: (I)[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: aload_0
+         2: getfield      #18                 // Field _base64Buffer:[B
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_3
+        14: iload_1
+        15: invokevirtual #16                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocByteBuffer:(II)[B
+        18: dup_x1
+        19: putfield      #18                 // Field _base64Buffer:[B
+        22: areturn
+      LineNumberTable:
+        line 258: 0
+        line 259: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      23     1 minSize   I
+
+  public char[] allocTokenBuffer();
+    descriptor: ()[C
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: getfield      #19                 // Field _tokenCBuffer:[C
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_0
+        14: invokevirtual #20                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocCharBuffer:(I)[C
+        17: dup_x1
+        18: putfield      #19                 // Field _tokenCBuffer:[C
+        21: areturn
+      LineNumberTable:
+        line 263: 0
+        line 264: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public char[] allocTokenBuffer(int);
+    descriptor: (I)[C
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: aload_0
+         2: getfield      #19                 // Field _tokenCBuffer:[C
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_0
+        14: iload_1
+        15: invokevirtual #21                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocCharBuffer:(II)[C
+        18: dup_x1
+        19: putfield      #19                 // Field _tokenCBuffer:[C
+        22: areturn
+      LineNumberTable:
+        line 269: 0
+        line 270: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      23     1 minSize   I
+
+  public char[] allocConcatBuffer();
+    descriptor: ()[C
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: getfield      #22                 // Field _concatCBuffer:[C
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_1
+        14: invokevirtual #20                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocCharBuffer:(I)[C
+        17: dup_x1
+        18: putfield      #22                 // Field _concatCBuffer:[C
+        21: areturn
+      LineNumberTable:
+        line 274: 0
+        line 275: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+
+  public char[] allocNameCopyBuffer(int);
+    descriptor: (I)[C
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: aload_0
+         2: getfield      #23                 // Field _nameCopyBuffer:[C
+         5: invokevirtual #13                 // Method _verifyAlloc:(Ljava/lang/Object;)V
+         8: aload_0
+         9: aload_0
+        10: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        13: iconst_3
+        14: iload_1
+        15: invokevirtual #21                 // Method com/fasterxml/jackson/core/util/BufferRecycler.allocCharBuffer:(II)[C
+        18: dup_x1
+        19: putfield      #23                 // Field _nameCopyBuffer:[C
+        22: areturn
+      LineNumberTable:
+        line 279: 0
+        line 280: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      23     1 minSize   I
+
+  public void releaseReadIOBuffer(byte[]);
+    descriptor: ([B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ifnull        27
+         4: aload_0
+         5: aload_1
+         6: aload_0
+         7: getfield      #12                 // Field _readIOBuffer:[B
+        10: invokevirtual #24                 // Method _verifyRelease:([B[B)V
+        13: aload_0
+        14: aconst_null
+        15: putfield      #12                 // Field _readIOBuffer:[B
+        18: aload_0
+        19: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        22: iconst_0
+        23: aload_1
+        24: invokevirtual #25                 // Method com/fasterxml/jackson/core/util/BufferRecycler.releaseByteBuffer:(I[B)V
+        27: return
+      LineNumberTable:
+        line 290: 0
+        line 293: 4
+        line 294: 13
+        line 295: 18
+        line 297: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      28     1   buf   [B
+      StackMapTable: number_of_entries = 1
+        frame_type = 27 /* same */
+
+  public void releaseWriteEncodingBuffer(byte[]);
+    descriptor: ([B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ifnull        27
+         4: aload_0
+         5: aload_1
+         6: aload_0
+         7: getfield      #17                 // Field _writeEncodingBuffer:[B
+        10: invokevirtual #24                 // Method _verifyRelease:([B[B)V
+        13: aload_0
+        14: aconst_null
+        15: putfield      #17                 // Field _writeEncodingBuffer:[B
+        18: aload_0
+        19: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        22: iconst_1
+        23: aload_1
+        24: invokevirtual #25                 // Method com/fasterxml/jackson/core/util/BufferRecycler.releaseByteBuffer:(I[B)V
+        27: return
+      LineNumberTable:
+        line 300: 0
+        line 303: 4
+        line 304: 13
+        line 305: 18
+        line 307: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      28     1   buf   [B
+      StackMapTable: number_of_entries = 1
+        frame_type = 27 /* same */
+
+  public void releaseBase64Buffer(byte[]);
+    descriptor: ([B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ifnull        27
+         4: aload_0
+         5: aload_1
+         6: aload_0
+         7: getfield      #18                 // Field _base64Buffer:[B
+        10: invokevirtual #24                 // Method _verifyRelease:([B[B)V
+        13: aload_0
+        14: aconst_null
+        15: putfield      #18                 // Field _base64Buffer:[B
+        18: aload_0
+        19: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        22: iconst_3
+        23: aload_1
+        24: invokevirtual #25                 // Method com/fasterxml/jackson/core/util/BufferRecycler.releaseByteBuffer:(I[B)V
+        27: return
+      LineNumberTable:
+        line 310: 0
+        line 311: 4
+        line 312: 13
+        line 313: 18
+        line 315: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      28     1   buf   [B
+      StackMapTable: number_of_entries = 1
+        frame_type = 27 /* same */
+
+  public void releaseTokenBuffer(char[]);
+    descriptor: ([C)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ifnull        27
+         4: aload_0
+         5: aload_1
+         6: aload_0
+         7: getfield      #19                 // Field _tokenCBuffer:[C
+        10: invokevirtual #26                 // Method _verifyRelease:([C[C)V
+        13: aload_0
+        14: aconst_null
+        15: putfield      #19                 // Field _tokenCBuffer:[C
+        18: aload_0
+        19: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        22: iconst_0
+        23: aload_1
+        24: invokevirtual #27                 // Method com/fasterxml/jackson/core/util/BufferRecycler.releaseCharBuffer:(I[C)V
+        27: return
+      LineNumberTable:
+        line 318: 0
+        line 319: 4
+        line 320: 13
+        line 321: 18
+        line 323: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      28     1   buf   [C
+      StackMapTable: number_of_entries = 1
+        frame_type = 27 /* same */
+
+  public void releaseConcatBuffer(char[]);
+    descriptor: ([C)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ifnull        27
+         4: aload_0
+         5: aload_1
+         6: aload_0
+         7: getfield      #22                 // Field _concatCBuffer:[C
+        10: invokevirtual #26                 // Method _verifyRelease:([C[C)V
+        13: aload_0
+        14: aconst_null
+        15: putfield      #22                 // Field _concatCBuffer:[C
+        18: aload_0
+        19: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        22: iconst_1
+        23: aload_1
+        24: invokevirtual #27                 // Method com/fasterxml/jackson/core/util/BufferRecycler.releaseCharBuffer:(I[C)V
+        27: return
+      LineNumberTable:
+        line 326: 0
+        line 328: 4
+        line 329: 13
+        line 330: 18
+        line 332: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      28     1   buf   [C
+      StackMapTable: number_of_entries = 1
+        frame_type = 27 /* same */
+
+  public void releaseNameCopyBuffer(char[]);
+    descriptor: ([C)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ifnull        27
+         4: aload_0
+         5: aload_1
+         6: aload_0
+         7: getfield      #23                 // Field _nameCopyBuffer:[C
+        10: invokevirtual #26                 // Method _verifyRelease:([C[C)V
+        13: aload_0
+        14: aconst_null
+        15: putfield      #23                 // Field _nameCopyBuffer:[C
+        18: aload_0
+        19: getfield      #2                  // Field _bufferRecycler:Lcom/fasterxml/jackson/core/util/BufferRecycler;
+        22: iconst_3
+        23: aload_1
+        24: invokevirtual #27                 // Method com/fasterxml/jackson/core/util/BufferRecycler.releaseCharBuffer:(I[C)V
+        27: return
+      LineNumberTable:
+        line 335: 0
+        line 337: 4
+        line 338: 13
+        line 339: 18
+        line 341: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      28     1   buf   [C
+      StackMapTable: number_of_entries = 1
+        frame_type = 27 /* same */
+
+  protected final void _verifyAlloc(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ifnull        14
+         4: new           #28                 // class java/lang/IllegalStateException
+         7: dup
+         8: ldc           #29                 // String Trying to call same allocXxx() method second time
+        10: invokespecial #30                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: return
+      LineNumberTable:
+        line 350: 0
+        line 351: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      15     1 buffer   Ljava/lang/Object;
+      StackMapTable: number_of_entries = 1
+        frame_type = 14 /* same */
+
+  protected final void _verifyRelease(byte[], byte[]);
+    descriptor: ([B[B)V
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_1
+         1: aload_2
+         2: if_acmpeq     17
+         5: aload_1
+         6: arraylength
+         7: aload_2
+         8: arraylength
+         9: if_icmpge     17
+        12: aload_0
+        13: invokespecial #31                 // Method wrongBuf:()Ljava/lang/IllegalArgumentException;
+        16: athrow
+        17: return
+      LineNumberTable:
+        line 355: 0
+        line 356: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      18     1 toRelease   [B
+            0      18     2   src   [B
+      StackMapTable: number_of_entries = 1
+        frame_type = 17 /* same */
+
+  protected final void _verifyRelease(char[], char[]);
+    descriptor: ([C[C)V
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_1
+         1: aload_2
+         2: if_acmpeq     17
+         5: aload_1
+         6: arraylength
+         7: aload_2
+         8: arraylength
+         9: if_icmpge     17
+        12: aload_0
+        13: invokespecial #31                 // Method wrongBuf:()Ljava/lang/IllegalArgumentException;
+        16: athrow
+        17: return
+      LineNumberTable:
+        line 360: 0
+        line 361: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      18     1 toRelease   [C
+            0      18     2   src   [C
+      StackMapTable: number_of_entries = 1
+        frame_type = 17 /* same */
+
+  private java.lang.IllegalArgumentException wrongBuf();
+    descriptor: ()Ljava/lang/IllegalArgumentException;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #32                 // class java/lang/IllegalArgumentException
+         3: dup
+         4: ldc           #33                 // String Trying to release buffer smaller than original
+         6: invokespecial #34                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+         9: areturn
+      LineNumberTable:
+        line 365: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/io/IOContext;
+}
+SourceFile: "IOContext.java"

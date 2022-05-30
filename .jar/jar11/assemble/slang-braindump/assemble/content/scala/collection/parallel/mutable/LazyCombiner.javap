@@ -1,0 +1,546 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/scala/collection/parallel/mutable/LazyCombiner.class
+  Last modified May 29, 2022; size 6238 bytes
+  SHA-256 checksum 5fa90a5337d99b2926ce43ec8052302497f89ea8d8b2b9904327090fc852687d
+  Compiled from "LazyCombiner.scala"
+public interface scala.collection.parallel.mutable.LazyCombiner<Elem extends java.lang.Object, To extends java.lang.Object, Buff extends scala.collection.mutable.Growable<Elem> & scala.collection.generic.Sizing> extends scala.collection.parallel.Combiner<Elem, To>
+  minor version: 0
+  major version: 52
+  flags: (0x0601) ACC_PUBLIC, ACC_INTERFACE, ACC_ABSTRACT
+  this_class: #2                          // scala/collection/parallel/mutable/LazyCombiner
+  super_class: #5                         // java/lang/Object
+  interfaces: 1, fields: 0, methods: 19, attributes: 7
+Constant pool:
+    #1 = Utf8               scala/collection/parallel/mutable/LazyCombiner
+    #2 = Class              #1            // scala/collection/parallel/mutable/LazyCombiner
+    #3 = Utf8               <Elem:Ljava/lang/Object;To:Ljava/lang/Object;Buff::Lscala/collection/mutable/Growable<TElem;>;:Lscala/collection/generic/Sizing;>Ljava/lang/Object;Lscala/collection/parallel/Combiner<TElem;TTo;>;
+    #4 = Utf8               java/lang/Object
+    #5 = Class              #4            // java/lang/Object
+    #6 = Utf8               scala/collection/parallel/Combiner
+    #7 = Class              #6            // scala/collection/parallel/Combiner
+    #8 = Utf8               LazyCombiner.scala
+    #9 = Utf8               Lscala/reflect/ScalaSignature;
+   #10 = Utf8               bytes
+   #11 = Utf8               \u0006\u000594qa\u0003\u0007\u0011\u0002\u0007\u0005Q\u0003C\u0003.\u0001\u0011\u0005a\u0006C\u00043\u0001\t\u0007i\u0011A\u001a\t\u000f%\u0003!\u0019!C\u0001\u0015\")1\n\u0001C\u0001\u0019\")\u0001\u000b\u0001C\u0001#\")!\u000b\u0001C\u0001]!)1\u000b\u0001C\u0001)\")\u0011\r\u0001C\u0001E\")a\r\u0001D\u0001O\")\u0001\u000e\u0001D\u0001S\naA*\u0019>z\u0007>l\'-\u001b8fe*\u0011QBD\u0001\b[V$\u0018M\u00197f\u0015\ty\u0001#\u0001\u0005qCJ\fG\u000e\\3m\u0015\t\t\"#\u0001\u0006d_2dWm\u0019;j_:T\u0011aE\u0001\u0006g\u000e\fG.Y\u0002\u0001+\u00111\u0012e\u000b\u001e\u0014\u0007\u000192\u0004\u0005\u0002\u001935\t!#\u0003\u0002\u001b%\t1\u0011I\\=SK\u001a\u0004B\u0001H\u000f U5\ta\"\u0003\u0002\u001f\u001d\tA1i\\7cS:,\'\u000f\u0005\u0002!C1\u0001A!\u0002\u0012\u0001\u0005\u0004\u0019#\u0001B#mK6\f\"\u0001J\u0014\u0011\u0005a)\u0013B\u0001\u0014\u0013\u0005\u001dqu\u000e\u001e5j]\u001e\u0004\"\u0001\u0007\u0015\n\u0005%\u0012\"aA!osB\u0011\u0001e\u000b\u0003\u0007Y\u0001!)\u0019A\u0012\u0003\u0005Q{\u0017A\u0002\u0013j]&$H\u0005F\u00010!\tA\u0002\'\u0003\u00022%\t!QK\\5u\u0003\u0015\u0019\u0007.Y5o+\u0005!\u0004cA\u001b8s5\taG\u0003\u0002\u000e!%\u0011\u0001H\u000e\u0002\f\u0003J\u0014\u0018-\u001f\"vM\u001a,\'\u000f\u0005\u0002!u\u0011)1\b\u0001b\u0001y\t!!)\u001e4g#\t!SHE\u0002?\u0001\u000e3Aa\u0010\u0001\u0001{\taAH]3gS:,W.\u001a8u}A\u0019Q\'Q\u0010\n\u0005\t3$\u0001C$s_^\f\'\r\\3\u0011\u0005\u0011;U\"A#\u000b\u0005\u0019\u0003\u0012aB4f]\u0016\u0014\u0018nY\u0005\u0003\u0011\u0016\u0013aaU5{S:<\u0017\u0001\u00037bgR\u0014WO\u001a4\u0016\u0003e\na!\u00193e\u001f:,GCA\'O\u001b\u0005\u0001\u0001\"B(\u0005\u0001\u0004y\u0012\u0001B3mK6\faA]3tk2$H#\u0001\u0016\u0002\u000b\rdW-\u0019:\u0002\u000f\r|WNY5oKV\u0019Q\u000b\u0017/\u0015\u0005Y{\u0006\u0003\u0002\u000f\u001e/n\u0003\"\u0001\t-\u0005\u000be;!\u0019\u0001.\u0003\u00039\u000b\"\u0001J\u0010\u0011\u0005\u0001bF!B/\b\u0005\u0004q&!\u0002(foR{\u0017C\u0001\u0016(\u0011\u0015\u0001w\u00011\u0001W\u0003\u0015yG\u000f[3s\u0003\u0011\u0019\u0018N_3\u0016\u0003\r\u0004\"\u0001\u00073\n\u0005\u0015\u0014\"aA%oi\u0006y\u0011\r\u001c7pG\u0006$X-\u00118e\u0007>\u0004\u00180F\u0001+\u0003=qWm\u001e\'buf\u001cu.\u001c2j]\u0016\u0014HC\u00016m!\u0015Y\u0007a\b\u0016:\u001b\u0005a\u0001\"B7\u000b\u0001\u0004!\u0014!\u00032vM\u001a\u001c\u0007.Y5o\u0001
+   #12 = Utf8               java/lang/invoke/MethodHandles$Lookup
+   #13 = Class              #12           // java/lang/invoke/MethodHandles$Lookup
+   #14 = Utf8               java/lang/invoke/MethodHandles
+   #15 = Class              #14           // java/lang/invoke/MethodHandles
+   #16 = Utf8               Lookup
+   #17 = Utf8               scala$collection$parallel$mutable$LazyCombiner$_setter_$lastbuff_$eq
+   #18 = Utf8               (Lscala/collection/mutable/Growable;)V
+   #19 = Utf8               (TBuff;)V
+   #20 = Utf8               x$1
+   #21 = Utf8               chain
+   #22 = Utf8               ()Lscala/collection/mutable/ArrayBuffer;
+   #23 = Utf8               ()Lscala/collection/mutable/ArrayBuffer<TBuff;>;
+   #24 = Utf8               lastbuff
+   #25 = Utf8               ()Lscala/collection/mutable/Growable;
+   #26 = Utf8               ()TBuff;
+   #27 = Utf8               addOne$
+   #28 = Utf8               (Lscala/collection/parallel/mutable/LazyCombiner;Ljava/lang/Object;)Lscala/collection/parallel/mutable/LazyCombiner;
+   #29 = Utf8               $this
+   #30 = Utf8               elem
+   #31 = Utf8               addOne
+   #32 = Utf8               (Ljava/lang/Object;)Lscala/collection/parallel/mutable/LazyCombiner;
+   #33 = NameAndType        #31:#32       // addOne:(Ljava/lang/Object;)Lscala/collection/parallel/mutable/LazyCombiner;
+   #34 = InterfaceMethodref #2.#33        // scala/collection/parallel/mutable/LazyCombiner.addOne:(Ljava/lang/Object;)Lscala/collection/parallel/mutable/LazyCombiner;
+   #35 = Utf8               Lscala/collection/parallel/mutable/LazyCombiner;
+   #36 = Utf8               Ljava/lang/Object;
+   #37 = Utf8               (TElem;)Lscala/collection/parallel/mutable/LazyCombiner<TElem;TTo;TBuff;>;
+   #38 = NameAndType        #24:#25       // lastbuff:()Lscala/collection/mutable/Growable;
+   #39 = InterfaceMethodref #2.#38        // scala/collection/parallel/mutable/LazyCombiner.lastbuff:()Lscala/collection/mutable/Growable;
+   #40 = Utf8               scala/collection/mutable/Growable
+   #41 = Class              #40           // scala/collection/mutable/Growable
+   #42 = Utf8               $plus$eq
+   #43 = Utf8               (Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+   #44 = NameAndType        #42:#43       // $plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+   #45 = InterfaceMethodref #41.#44       // scala/collection/mutable/Growable.$plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+   #46 = Utf8               this
+   #47 = Utf8               result$
+   #48 = Utf8               (Lscala/collection/parallel/mutable/LazyCombiner;)Ljava/lang/Object;
+   #49 = Utf8               result
+   #50 = Utf8               ()Ljava/lang/Object;
+   #51 = NameAndType        #49:#50       // result:()Ljava/lang/Object;
+   #52 = InterfaceMethodref #2.#51        // scala/collection/parallel/mutable/LazyCombiner.result:()Ljava/lang/Object;
+   #53 = Utf8               ()TTo;
+   #54 = Utf8               allocateAndCopy
+   #55 = NameAndType        #54:#50       // allocateAndCopy:()Ljava/lang/Object;
+   #56 = InterfaceMethodref #2.#55        // scala/collection/parallel/mutable/LazyCombiner.allocateAndCopy:()Ljava/lang/Object;
+   #57 = Utf8               clear$
+   #58 = Utf8               (Lscala/collection/parallel/mutable/LazyCombiner;)V
+   #59 = Utf8               clear
+   #60 = Utf8               ()V
+   #61 = NameAndType        #59:#60       // clear:()V
+   #62 = InterfaceMethodref #2.#61        // scala/collection/parallel/mutable/LazyCombiner.clear:()V
+   #63 = NameAndType        #21:#22       // chain:()Lscala/collection/mutable/ArrayBuffer;
+   #64 = InterfaceMethodref #2.#63        // scala/collection/parallel/mutable/LazyCombiner.chain:()Lscala/collection/mutable/ArrayBuffer;
+   #65 = Utf8               scala/collection/mutable/ArrayBuffer
+   #66 = Class              #65           // scala/collection/mutable/ArrayBuffer
+   #67 = Methodref          #66.#61       // scala/collection/mutable/ArrayBuffer.clear:()V
+   #68 = Utf8               combine$
+   #69 = Utf8               (Lscala/collection/parallel/mutable/LazyCombiner;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+   #70 = Utf8               other
+   #71 = Utf8               combine
+   #72 = Utf8               (Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+   #73 = NameAndType        #71:#72       // combine:(Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+   #74 = InterfaceMethodref #2.#73        // scala/collection/parallel/mutable/LazyCombiner.combine:(Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+   #75 = Utf8               Lscala/collection/parallel/Combiner;
+   #76 = Utf8               <N:TElem;NewTo:Ljava/lang/Object;>(Lscala/collection/parallel/Combiner<TN;TNewTo;>;)Lscala/collection/parallel/Combiner<TN;TNewTo;>;
+   #77 = Utf8               $plus$plus$eq
+   #78 = Utf8               (Lscala/collection/IterableOnce;)Lscala/collection/mutable/Growable;
+   #79 = NameAndType        #77:#78       // $plus$plus$eq:(Lscala/collection/IterableOnce;)Lscala/collection/mutable/Growable;
+   #80 = Methodref          #66.#79       // scala/collection/mutable/ArrayBuffer.$plus$plus$eq:(Lscala/collection/IterableOnce;)Lscala/collection/mutable/Growable;
+   #81 = Utf8               newLazyCombiner
+   #82 = Utf8               (Lscala/collection/mutable/ArrayBuffer;)Lscala/collection/parallel/mutable/LazyCombiner;
+   #83 = NameAndType        #81:#82       // newLazyCombiner:(Lscala/collection/mutable/ArrayBuffer;)Lscala/collection/parallel/mutable/LazyCombiner;
+   #84 = InterfaceMethodref #2.#83        // scala/collection/parallel/mutable/LazyCombiner.newLazyCombiner:(Lscala/collection/mutable/ArrayBuffer;)Lscala/collection/parallel/mutable/LazyCombiner;
+   #85 = Utf8               java/lang/UnsupportedOperationException
+   #86 = Class              #85           // java/lang/UnsupportedOperationException
+   #87 = Utf8               Cannot combine with combiner of different type.
+   #88 = String             #87           // Cannot combine with combiner of different type.
+   #89 = Utf8               <init>
+   #90 = Utf8               (Ljava/lang/String;)V
+   #91 = NameAndType        #89:#90       // "<init>":(Ljava/lang/String;)V
+   #92 = Methodref          #86.#91       // java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+   #93 = Utf8               that
+   #94 = Utf8               size$
+   #95 = Utf8               (Lscala/collection/parallel/mutable/LazyCombiner;)I
+   #96 = Utf8               size
+   #97 = Utf8               ()I
+   #98 = NameAndType        #96:#97       // size:()I
+   #99 = InterfaceMethodref #2.#98        // scala/collection/parallel/mutable/LazyCombiner.size:()I
+  #100 = Utf8               scala/runtime/BoxesRunTime
+  #101 = Class              #100          // scala/runtime/BoxesRunTime
+  #102 = Utf8               boxToInteger
+  #103 = Utf8               (I)Ljava/lang/Integer;
+  #104 = NameAndType        #102:#103     // boxToInteger:(I)Ljava/lang/Integer;
+  #105 = Methodref          #101.#104     // scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+  #106 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #107 = MethodType         #106          //  (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #108 = Utf8               $anonfun$size$1$adapted
+  #109 = Utf8               (Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+  #110 = NameAndType        #108:#109     // $anonfun$size$1$adapted:(Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+  #111 = InterfaceMethodref #2.#110       // scala/collection/parallel/mutable/LazyCombiner.$anonfun$size$1$adapted:(Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+  #112 = MethodHandle       6:#111        // REF_invokeStatic scala/collection/parallel/mutable/LazyCombiner.$anonfun$size$1$adapted:(Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+  #113 = MethodType         #109          //  (Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+  #114 = Integer            5
+  #115 = Integer            1
+  #116 = Utf8               java/lang/invoke/LambdaMetafactory
+  #117 = Class              #116          // java/lang/invoke/LambdaMetafactory
+  #118 = Utf8               altMetafactory
+  #119 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #120 = NameAndType        #118:#119     // altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #121 = Methodref          #117.#120     // java/lang/invoke/LambdaMetafactory.altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #122 = MethodHandle       6:#121        // REF_invokeStatic java/lang/invoke/LambdaMetafactory.altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #123 = Utf8               apply
+  #124 = Utf8               ()Lscala/Function2;
+  #125 = NameAndType        #123:#124     // apply:()Lscala/Function2;
+  #126 = InvokeDynamic      #0:#125       // #0:apply:()Lscala/Function2;
+  #127 = Utf8               foldLeft
+  #128 = Utf8               (Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+  #129 = NameAndType        #127:#128     // foldLeft:(Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+  #130 = Methodref          #66.#129      // scala/collection/mutable/ArrayBuffer.foldLeft:(Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+  #131 = Utf8               unboxToInt
+  #132 = Utf8               (Ljava/lang/Object;)I
+  #133 = NameAndType        #131:#132     // unboxToInt:(Ljava/lang/Object;)I
+  #134 = Methodref          #101.#133     // scala/runtime/BoxesRunTime.unboxToInt:(Ljava/lang/Object;)I
+  #135 = Utf8               (Lscala/collection/mutable/ArrayBuffer<TBuff;>;)Lscala/collection/parallel/mutable/LazyCombiner<TElem;TTo;TBuff;>;
+  #136 = Utf8               buffchain
+  #137 = Utf8               $anonfun$size$1
+  #138 = Utf8               (ILscala/collection/mutable/Growable;)I
+  #139 = Utf8               x$2
+  #140 = Utf8               scala/collection/generic/Sizing
+  #141 = Class              #140          // scala/collection/generic/Sizing
+  #142 = InterfaceMethodref #141.#98      // scala/collection/generic/Sizing.size:()I
+  #143 = Utf8               I
+  #144 = Utf8               Lscala/collection/mutable/Growable;
+  #145 = Utf8               $init$
+  #146 = Utf8               last
+  #147 = NameAndType        #146:#50      // last:()Ljava/lang/Object;
+  #148 = Methodref          #66.#147      // scala/collection/mutable/ArrayBuffer.last:()Ljava/lang/Object;
+  #149 = NameAndType        #17:#18       // scala$collection$parallel$mutable$LazyCombiner$_setter_$lastbuff_$eq:(Lscala/collection/mutable/Growable;)V
+  #150 = InterfaceMethodref #2.#149       // scala/collection/parallel/mutable/LazyCombiner.scala$collection$parallel$mutable$LazyCombiner$_setter_$lastbuff_$eq:(Lscala/collection/mutable/Growable;)V
+  #151 = NameAndType        #137:#138     // $anonfun$size$1:(ILscala/collection/mutable/Growable;)I
+  #152 = InterfaceMethodref #2.#151       // scala/collection/parallel/mutable/LazyCombiner.$anonfun$size$1:(ILscala/collection/mutable/Growable;)I
+  #153 = Utf8               $deserializeLambda$
+  #154 = Utf8               (Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+  #155 = Utf8               scala/runtime/LambdaDeserialize
+  #156 = Class              #155          // scala/runtime/LambdaDeserialize
+  #157 = Utf8               bootstrap
+  #158 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+  #159 = NameAndType        #157:#158     // bootstrap:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+  #160 = Methodref          #156.#159     // scala/runtime/LambdaDeserialize.bootstrap:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+  #161 = MethodHandle       6:#160        // REF_invokeStatic scala/runtime/LambdaDeserialize.bootstrap:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+  #162 = Utf8               lambdaDeserialize
+  #163 = NameAndType        #162:#154     // lambdaDeserialize:(Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+  #164 = InvokeDynamic      #1:#163       // #1:lambdaDeserialize:(Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+  #165 = Utf8               Signature
+  #166 = Utf8               MethodParameters
+  #167 = Utf8               Code
+  #168 = Utf8               LineNumberTable
+  #169 = Utf8               LocalVariableTable
+  #170 = Utf8               StackMapTable
+  #171 = Utf8               InnerClasses
+  #172 = Utf8               SourceFile
+  #173 = Utf8               RuntimeVisibleAnnotations
+  #174 = Utf8               BootstrapMethods
+  #175 = Utf8               ScalaInlineInfo
+  #176 = Utf8               ScalaSig
+{
+  public abstract void scala$collection$parallel$mutable$LazyCombiner$_setter_$lastbuff_$eq(Buff);
+    descriptor: (Lscala/collection/mutable/Growable;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Signature: #19                          // (TBuff;)V
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public abstract scala.collection.mutable.ArrayBuffer<Buff> chain();
+    descriptor: ()Lscala/collection/mutable/ArrayBuffer;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Signature: #23                          // ()Lscala/collection/mutable/ArrayBuffer<TBuff;>;
+
+  public abstract Buff lastbuff();
+    descriptor: ()Lscala/collection/mutable/Growable;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Signature: #26                          // ()TBuff;
+
+  public static scala.collection.parallel.mutable.LazyCombiner addOne$(scala.collection.parallel.mutable.LazyCombiner, java.lang.Object);
+    descriptor: (Lscala/collection/parallel/mutable/LazyCombiner;Ljava/lang/Object;)Lscala/collection/parallel/mutable/LazyCombiner;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokespecial #34                 // InterfaceMethod addOne:(Ljava/lang/Object;)Lscala/collection/parallel/mutable/LazyCombiner;
+         5: areturn
+      LineNumberTable:
+        line 33: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0 $this   Lscala/collection/parallel/mutable/LazyCombiner;
+            0       6     1  elem   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+      elem                           final
+
+  public default scala.collection.parallel.mutable.LazyCombiner<Elem, To, Buff> addOne(Elem);
+    descriptor: (Ljava/lang/Object;)Lscala/collection/parallel/mutable/LazyCombiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokeinterface #39,  1           // InterfaceMethod lastbuff:()Lscala/collection/mutable/Growable;
+         6: aload_1
+         7: invokeinterface #45,  2           // InterfaceMethod scala/collection/mutable/Growable.$plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+        12: pop
+        13: aload_0
+        14: areturn
+      LineNumberTable:
+        line 33: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lscala/collection/parallel/mutable/LazyCombiner;
+            0      15     1  elem   Ljava/lang/Object;
+    Signature: #37                          // (TElem;)Lscala/collection/parallel/mutable/LazyCombiner<TElem;TTo;TBuff;>;
+    MethodParameters:
+      Name                           Flags
+      elem                           final
+
+  public static java.lang.Object result$(scala.collection.parallel.mutable.LazyCombiner);
+    descriptor: (Lscala/collection/parallel/mutable/LazyCombiner;)Ljava/lang/Object;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #52                 // InterfaceMethod result:()Ljava/lang/Object;
+         4: areturn
+      LineNumberTable:
+        line 34: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0 $this   Lscala/collection/parallel/mutable/LazyCombiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+
+  public default To result();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokeinterface #56,  1           // InterfaceMethod allocateAndCopy:()Ljava/lang/Object;
+         6: areturn
+      LineNumberTable:
+        line 34: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/LazyCombiner;
+    Signature: #53                          // ()TTo;
+
+  public static void clear$(scala.collection.parallel.mutable.LazyCombiner);
+    descriptor: (Lscala/collection/parallel/mutable/LazyCombiner;)V
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #62                 // InterfaceMethod clear:()V
+         4: return
+      LineNumberTable:
+        line 35: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0 $this   Lscala/collection/parallel/mutable/LazyCombiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+
+  public default void clear();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokeinterface #64,  1           // InterfaceMethod chain:()Lscala/collection/mutable/ArrayBuffer;
+         6: invokevirtual #67                 // Method scala/collection/mutable/ArrayBuffer.clear:()V
+         9: return
+      LineNumberTable:
+        line 35: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lscala/collection/parallel/mutable/LazyCombiner;
+
+  public static scala.collection.parallel.Combiner combine$(scala.collection.parallel.mutable.LazyCombiner, scala.collection.parallel.Combiner);
+    descriptor: (Lscala/collection/parallel/mutable/LazyCombiner;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokespecial #74                 // InterfaceMethod combine:(Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         5: areturn
+      LineNumberTable:
+        line 36: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0 $this   Lscala/collection/parallel/mutable/LazyCombiner;
+            0       6     1 other   Lscala/collection/parallel/Combiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+      other                          final
+
+  public default <N extends Elem, NewTo extends java.lang.Object> scala.collection.parallel.Combiner<N, NewTo> combine(scala.collection.parallel.Combiner<N, NewTo>);
+    descriptor: (Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: aload_1
+         2: if_acmpeq     57
+         5: aload_1
+         6: instanceof    #2                  // class scala/collection/parallel/mutable/LazyCombiner
+         9: ifeq          44
+        12: aload_1
+        13: checkcast     #2                  // class scala/collection/parallel/mutable/LazyCombiner
+        16: astore_2
+        17: aload_0
+        18: aload_0
+        19: invokeinterface #64,  1           // InterfaceMethod chain:()Lscala/collection/mutable/ArrayBuffer;
+        24: aload_2
+        25: invokeinterface #64,  1           // InterfaceMethod chain:()Lscala/collection/mutable/ArrayBuffer;
+        30: invokevirtual #80                 // Method scala/collection/mutable/ArrayBuffer.$plus$plus$eq:(Lscala/collection/IterableOnce;)Lscala/collection/mutable/Growable;
+        33: checkcast     #66                 // class scala/collection/mutable/ArrayBuffer
+        36: invokeinterface #84,  2           // InterfaceMethod newLazyCombiner:(Lscala/collection/mutable/ArrayBuffer;)Lscala/collection/parallel/mutable/LazyCombiner;
+        41: goto          54
+        44: new           #86                 // class java/lang/UnsupportedOperationException
+        47: dup
+        48: ldc           #88                 // String Cannot combine with combiner of different type.
+        50: invokespecial #92                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+        53: athrow
+        54: goto          58
+        57: aload_0
+        58: areturn
+      StackMapTable: number_of_entries = 4
+        frame_type = 44 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class scala/collection/parallel/mutable/LazyCombiner, class scala/collection/parallel/Combiner, class scala/collection/parallel/mutable/LazyCombiner ]
+          stack = [ class scala/collection/parallel/mutable/LazyCombiner ]
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class scala/collection/parallel/mutable/LazyCombiner ]
+      LineNumberTable:
+        line 36: 0
+        line 37: 5
+        line 38: 12
+        line 39: 17
+        line 40: 44
+        line 41: 57
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           17      24     2  that   Lscala/collection/parallel/mutable/LazyCombiner;
+            0      59     0  this   Lscala/collection/parallel/mutable/LazyCombiner;
+            0      59     1 other   Lscala/collection/parallel/Combiner;
+    Signature: #76                          // <N:TElem;NewTo:Ljava/lang/Object;>(Lscala/collection/parallel/Combiner<TN;TNewTo;>;)Lscala/collection/parallel/Combiner<TN;TNewTo;>;
+    MethodParameters:
+      Name                           Flags
+      other                          final
+
+  public static int size$(scala.collection.parallel.mutable.LazyCombiner);
+    descriptor: (Lscala/collection/parallel/mutable/LazyCombiner;)I
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #99                 // InterfaceMethod size:()I
+         4: ireturn
+      LineNumberTable:
+        line 42: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0 $this   Lscala/collection/parallel/mutable/LazyCombiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+
+  public default int size();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokeinterface #64,  1           // InterfaceMethod chain:()Lscala/collection/mutable/ArrayBuffer;
+         6: iconst_0
+         7: invokestatic  #105                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+        10: invokedynamic #126,  0            // InvokeDynamic #0:apply:()Lscala/Function2;
+        15: invokevirtual #130                // Method scala/collection/mutable/ArrayBuffer.foldLeft:(Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+        18: invokestatic  #134                // Method scala/runtime/BoxesRunTime.unboxToInt:(Ljava/lang/Object;)I
+        21: ireturn
+      LineNumberTable:
+        line 42: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lscala/collection/parallel/mutable/LazyCombiner;
+
+  public abstract To allocateAndCopy();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Signature: #53                          // ()TTo;
+
+  public abstract scala.collection.parallel.mutable.LazyCombiner<Elem, To, Buff> newLazyCombiner(scala.collection.mutable.ArrayBuffer<Buff>);
+    descriptor: (Lscala/collection/mutable/ArrayBuffer;)Lscala/collection/parallel/mutable/LazyCombiner;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Signature: #135                         // (Lscala/collection/mutable/ArrayBuffer<TBuff;>;)Lscala/collection/parallel/mutable/LazyCombiner<TElem;TTo;TBuff;>;
+    MethodParameters:
+      Name                           Flags
+      buffchain                      final
+
+  public static int $anonfun$size$1(int, scala.collection.mutable.Growable);
+    descriptor: (ILscala/collection/mutable/Growable;)I
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: iload_0
+         1: aload_1
+         2: checkcast     #141                // class scala/collection/generic/Sizing
+         5: invokeinterface #142,  1          // InterfaceMethod scala/collection/generic/Sizing.size:()I
+        10: iadd
+        11: ireturn
+      LineNumberTable:
+        line 42: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0   x$1   I
+            0      12     1   x$2   Lscala/collection/mutable/Growable;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+      x$2                            final
+
+  public static void $init$(scala.collection.parallel.mutable.LazyCombiner);
+    descriptor: (Lscala/collection/parallel/mutable/LazyCombiner;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: invokeinterface #64,  1           // InterfaceMethod chain:()Lscala/collection/mutable/ArrayBuffer;
+         7: invokevirtual #148                // Method scala/collection/mutable/ArrayBuffer.last:()Ljava/lang/Object;
+        10: checkcast     #41                 // class scala/collection/mutable/Growable
+        13: invokeinterface #150,  2          // InterfaceMethod scala$collection$parallel$mutable$LazyCombiner$_setter_$lastbuff_$eq:(Lscala/collection/mutable/Growable;)V
+        18: return
+      LineNumberTable:
+        line 32: 0
+        line 29: 18
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0 $this   Lscala/collection/parallel/mutable/LazyCombiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+
+  public static java.lang.Object $anonfun$size$1$adapted(java.lang.Object, scala.collection.mutable.Growable);
+    descriptor: (Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokestatic  #134                // Method scala/runtime/BoxesRunTime.unboxToInt:(Ljava/lang/Object;)I
+         4: aload_1
+         5: invokestatic  #152                // InterfaceMethod $anonfun$size$1:(ILscala/collection/mutable/Growable;)I
+         8: invokestatic  #105                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+        11: areturn
+      LineNumberTable:
+        line 42: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0   x$1   Ljava/lang/Object;
+            0      12     1   x$2   Lscala/collection/mutable/Growable;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+      x$2                            final
+
+  private static java.lang.Object $deserializeLambda$(java.lang.invoke.SerializedLambda);
+    descriptor: (Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+    flags: (0x100a) ACC_PRIVATE, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokedynamic #164,  0            // InvokeDynamic #1:lambdaDeserialize:(Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+         6: areturn
+}
+InnerClasses:
+  public static final #16= #13 of #15;    // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+Signature: #3                           // <Elem:Ljava/lang/Object;To:Ljava/lang/Object;Buff::Lscala/collection/mutable/Growable<TElem;>;:Lscala/collection/generic/Sizing;>Ljava/lang/Object;Lscala/collection/parallel/Combiner<TElem;TTo;>;
+SourceFile: "LazyCombiner.scala"
+RuntimeVisibleAnnotations:
+  0: #9(#10=s#11)
+    scala.reflect.ScalaSignature(
+      bytes="\u0006\u000594qa\u0003\u0007\u0011\u0002\u0007\u0005Q\u0003C\u0003.\u0001\u0011\u0005a\u0006C\u00043\u0001\t\u0007i\u0011A\u001a\t\u000f%\u0003!\u0019!C\u0001\u0015\")1\n\u0001C\u0001\u0019\")\u0001\u000b\u0001C\u0001#\")!\u000b\u0001C\u0001]!)1\u000b\u0001C\u0001)\")\u0011\r\u0001C\u0001E\")a\r\u0001D\u0001O\")\u0001\u000e\u0001D\u0001S\naA*\u0019>z\u0007>l\'-\u001b8fe*\u0011QBD\u0001\b[V$\u0018M\u00197f\u0015\ty\u0001#\u0001\u0005qCJ\fG\u000e\\3m\u0015\t\t\"#\u0001\u0006d_2dWm\u0019;j_:T\u0011aE\u0001\u0006g\u000e\fG.Y\u0002\u0001+\u00111\u0012e\u000b\u001e\u0014\u0007\u000192\u0004\u0005\u0002\u001935\t!#\u0003\u0002\u001b%\t1\u0011I\\=SK\u001a\u0004B\u0001H\u000f U5\ta\"\u0003\u0002\u001f\u001d\tA1i\\7cS:,\'\u000f\u0005\u0002!C1\u0001A!\u0002\u0012\u0001\u0005\u0004\u0019#\u0001B#mK6\f\"\u0001J\u0014\u0011\u0005a)\u0013B\u0001\u0014\u0013\u0005\u001dqu\u000e\u001e5j]\u001e\u0004\"\u0001\u0007\u0015\n\u0005%\u0012\"aA!osB\u0011\u0001e\u000b\u0003\u0007Y\u0001!)\u0019A\u0012\u0003\u0005Q{\u0017A\u0002\u0013j]&$H\u0005F\u00010!\tA\u0002\'\u0003\u00022%\t!QK\\5u\u0003\u0015\u0019\u0007.Y5o+\u0005!\u0004cA\u001b8s5\taG\u0003\u0002\u000e!%\u0011\u0001H\u000e\u0002\f\u0003J\u0014\u0018-\u001f\"vM\u001a,\'\u000f\u0005\u0002!u\u0011)1\b\u0001b\u0001y\t!!)\u001e4g#\t!SHE\u0002?\u0001\u000e3Aa\u0010\u0001\u0001{\taAH]3gS:,W.\u001a8u}A\u0019Q\'Q\u0010\n\u0005\t3$\u0001C$s_^\f\'\r\\3\u0011\u0005\u0011;U\"A#\u000b\u0005\u0019\u0003\u0012aB4f]\u0016\u0014\u0018nY\u0005\u0003\u0011\u0016\u0013aaU5{S:<\u0017\u0001\u00037bgR\u0014WO\u001a4\u0016\u0003e\na!\u00193e\u001f:,GCA\'O\u001b\u0005\u0001\u0001\"B(\u0005\u0001\u0004y\u0012\u0001B3mK6\faA]3tk2$H#\u0001\u0016\u0002\u000b\rdW-\u0019:\u0002\u000f\r|WNY5oKV\u0019Q\u000b\u0017/\u0015\u0005Y{\u0006\u0003\u0002\u000f\u001e/n\u0003\"\u0001\t-\u0005\u000be;!\u0019\u0001.\u0003\u00039\u000b\"\u0001J\u0010\u0011\u0005\u0001bF!B/\b\u0005\u0004q&!\u0002(foR{\u0017C\u0001\u0016(\u0011\u0015\u0001w\u00011\u0001W\u0003\u0015yG\u000f[3s\u0003\u0011\u0019\u0018N_3\u0016\u0003\r\u0004\"\u0001\u00073\n\u0005\u0015\u0014\"aA%oi\u0006y\u0011\r\u001c7pG\u0006$X-\u00118e\u0007>\u0004\u00180F\u0001+\u0003=qWm\u001e\'buf\u001cu.\u001c2j]\u0016\u0014HC\u00016m!\u0015Y\u0007a\b\u0016:\u001b\u0005a\u0001\"B7\u000b\u0001\u0004!\u0014!\u00032vM\u001a\u001c\u0007.Y5o\u0001"
+    )
+BootstrapMethods:
+  0: #122 REF_invokeStatic java/lang/invoke/LambdaMetafactory.altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #107 (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      #112 REF_invokeStatic scala/collection/parallel/mutable/LazyCombiner.$anonfun$size$1$adapted:(Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+      #113 (Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+      #114 5
+      #115 1
+      #113 (Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+  1: #161 REF_invokeStatic scala/runtime/LambdaDeserialize.bootstrap:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #112 REF_invokeStatic scala/collection/parallel/mutable/LazyCombiner.$anonfun$size$1$adapted:(Ljava/lang/Object;Lscala/collection/mutable/Growable;)Ljava/lang/Object;
+  ScalaInlineInfo: length = 0x5E (unknown attribute)
+   01 00 00 12 00 89 00 8A 01 00 6C 00 6D 01 00 91
+   00 3A 01 00 1F 00 20 00 00 1B 00 1C 01 00 36 00
+   32 00 00 15 00 16 00 00 3B 00 3C 00 00 39 00 3A
+   01 00 47 00 48 00 00 44 00 45 01 00 18 00 19 00
+   00 51 00 52 00 00 31 00 32 00 00 2F 00 30 01 00
+   11 00 12 00 00 60 00 61 00 00 5E 00 5F 01
+  ScalaSig: length = 0x3 (unknown attribute)
+   05 02 00

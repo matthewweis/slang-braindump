@@ -1,0 +1,342 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/core/util/ThreadLocalBufferManager.class
+  Last modified May 29, 2022; size 2936 bytes
+  SHA-256 checksum 59f9bf829ab4b8723c559a7bb777aeca01f273d5b4c8c76e62626900c4bac958
+  Compiled from "ThreadLocalBufferManager.java"
+class com.fasterxml.jackson.core.util.ThreadLocalBufferManager
+  minor version: 0
+  major version: 50
+  flags: (0x0020) ACC_SUPER
+  this_class: #24                         // com/fasterxml/jackson/core/util/ThreadLocalBufferManager
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 3, methods: 5, attributes: 2
+Constant pool:
+    #1 = Methodref          #2.#71        // java/lang/Object."<init>":()V
+    #2 = Class              #72           // java/lang/Object
+    #3 = Fieldref           #24.#73       // com/fasterxml/jackson/core/util/ThreadLocalBufferManager.RELEASE_LOCK:Ljava/lang/Object;
+    #4 = Class              #74           // java/util/concurrent/ConcurrentHashMap
+    #5 = Methodref          #4.#71        // java/util/concurrent/ConcurrentHashMap."<init>":()V
+    #6 = Fieldref           #24.#75       // com/fasterxml/jackson/core/util/ThreadLocalBufferManager._trackedRecyclers:Ljava/util/Map;
+    #7 = Class              #76           // java/lang/ref/ReferenceQueue
+    #8 = Methodref          #7.#71        // java/lang/ref/ReferenceQueue."<init>":()V
+    #9 = Fieldref           #24.#77       // com/fasterxml/jackson/core/util/ThreadLocalBufferManager._refQueue:Ljava/lang/ref/ReferenceQueue;
+   #10 = Fieldref           #25.#78       // com/fasterxml/jackson/core/util/ThreadLocalBufferManager$ThreadLocalBufferManagerHolder.manager:Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+   #11 = Methodref          #24.#79       // com/fasterxml/jackson/core/util/ThreadLocalBufferManager.removeSoftRefsClearedByGc:()V
+   #12 = InterfaceMethodref #80.#81       // java/util/Map.keySet:()Ljava/util/Set;
+   #13 = InterfaceMethodref #82.#83       // java/util/Set.iterator:()Ljava/util/Iterator;
+   #14 = InterfaceMethodref #84.#85       // java/util/Iterator.hasNext:()Z
+   #15 = InterfaceMethodref #84.#86       // java/util/Iterator.next:()Ljava/lang/Object;
+   #16 = Class              #87           // java/lang/ref/SoftReference
+   #17 = Methodref          #16.#88       // java/lang/ref/SoftReference.clear:()V
+   #18 = InterfaceMethodref #80.#88       // java/util/Map.clear:()V
+   #19 = Methodref          #16.#89       // java/lang/ref/SoftReference."<init>":(Ljava/lang/Object;Ljava/lang/ref/ReferenceQueue;)V
+   #20 = Methodref          #90.#91       // java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+   #21 = InterfaceMethodref #80.#92       // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #22 = Methodref          #7.#93        // java/lang/ref/ReferenceQueue.poll:()Ljava/lang/ref/Reference;
+   #23 = InterfaceMethodref #80.#94       // java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+   #24 = Class              #95           // com/fasterxml/jackson/core/util/ThreadLocalBufferManager
+   #25 = Class              #96           // com/fasterxml/jackson/core/util/ThreadLocalBufferManager$ThreadLocalBufferManagerHolder
+   #26 = Utf8               ThreadLocalBufferManagerHolder
+   #27 = Utf8               InnerClasses
+   #28 = Utf8               RELEASE_LOCK
+   #29 = Utf8               Ljava/lang/Object;
+   #30 = Utf8               _trackedRecyclers
+   #31 = Utf8               Ljava/util/Map;
+   #32 = Utf8               Signature
+   #33 = Utf8               Ljava/util/Map<Ljava/lang/ref/SoftReference<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;Ljava/lang/Boolean;>;
+   #34 = Utf8               _refQueue
+   #35 = Utf8               Ljava/lang/ref/ReferenceQueue;
+   #36 = Utf8               Ljava/lang/ref/ReferenceQueue<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;
+   #37 = Utf8               <init>
+   #38 = Utf8               ()V
+   #39 = Utf8               Code
+   #40 = Utf8               LineNumberTable
+   #41 = Utf8               LocalVariableTable
+   #42 = Utf8               this
+   #43 = Utf8               Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+   #44 = Utf8               instance
+   #45 = Utf8               ()Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+   #46 = Utf8               releaseBuffers
+   #47 = Utf8               ()I
+   #48 = Utf8               ref
+   #49 = Utf8               Ljava/lang/ref/SoftReference;
+   #50 = Utf8               count
+   #51 = Utf8               I
+   #52 = Utf8               LocalVariableTypeTable
+   #53 = Utf8               Ljava/lang/ref/SoftReference<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;
+   #54 = Utf8               StackMapTable
+   #55 = Class              #72           // java/lang/Object
+   #56 = Class              #97           // java/util/Iterator
+   #57 = Class              #95           // com/fasterxml/jackson/core/util/ThreadLocalBufferManager
+   #58 = Class              #98           // java/lang/Throwable
+   #59 = Utf8               wrapAndTrack
+   #60 = Utf8               (Lcom/fasterxml/jackson/core/util/BufferRecycler;)Ljava/lang/ref/SoftReference;
+   #61 = Utf8               br
+   #62 = Utf8               Lcom/fasterxml/jackson/core/util/BufferRecycler;
+   #63 = Utf8               newRef
+   #64 = Utf8               (Lcom/fasterxml/jackson/core/util/BufferRecycler;)Ljava/lang/ref/SoftReference<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;
+   #65 = Utf8               removeSoftRefsClearedByGc
+   #66 = Utf8               clearedSoftRef
+   #67 = Utf8               Ljava/lang/ref/SoftReference<*>;
+   #68 = Class              #87           // java/lang/ref/SoftReference
+   #69 = Utf8               SourceFile
+   #70 = Utf8               ThreadLocalBufferManager.java
+   #71 = NameAndType        #37:#38       // "<init>":()V
+   #72 = Utf8               java/lang/Object
+   #73 = NameAndType        #28:#29       // RELEASE_LOCK:Ljava/lang/Object;
+   #74 = Utf8               java/util/concurrent/ConcurrentHashMap
+   #75 = NameAndType        #30:#31       // _trackedRecyclers:Ljava/util/Map;
+   #76 = Utf8               java/lang/ref/ReferenceQueue
+   #77 = NameAndType        #34:#35       // _refQueue:Ljava/lang/ref/ReferenceQueue;
+   #78 = NameAndType        #99:#43       // manager:Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+   #79 = NameAndType        #65:#38       // removeSoftRefsClearedByGc:()V
+   #80 = Class              #100          // java/util/Map
+   #81 = NameAndType        #101:#102     // keySet:()Ljava/util/Set;
+   #82 = Class              #103          // java/util/Set
+   #83 = NameAndType        #104:#105     // iterator:()Ljava/util/Iterator;
+   #84 = Class              #97           // java/util/Iterator
+   #85 = NameAndType        #106:#107     // hasNext:()Z
+   #86 = NameAndType        #108:#109     // next:()Ljava/lang/Object;
+   #87 = Utf8               java/lang/ref/SoftReference
+   #88 = NameAndType        #110:#38      // clear:()V
+   #89 = NameAndType        #37:#111      // "<init>":(Ljava/lang/Object;Ljava/lang/ref/ReferenceQueue;)V
+   #90 = Class              #112          // java/lang/Boolean
+   #91 = NameAndType        #113:#114     // valueOf:(Z)Ljava/lang/Boolean;
+   #92 = NameAndType        #115:#116     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #93 = NameAndType        #117:#118     // poll:()Ljava/lang/ref/Reference;
+   #94 = NameAndType        #119:#120     // remove:(Ljava/lang/Object;)Ljava/lang/Object;
+   #95 = Utf8               com/fasterxml/jackson/core/util/ThreadLocalBufferManager
+   #96 = Utf8               com/fasterxml/jackson/core/util/ThreadLocalBufferManager$ThreadLocalBufferManagerHolder
+   #97 = Utf8               java/util/Iterator
+   #98 = Utf8               java/lang/Throwable
+   #99 = Utf8               manager
+  #100 = Utf8               java/util/Map
+  #101 = Utf8               keySet
+  #102 = Utf8               ()Ljava/util/Set;
+  #103 = Utf8               java/util/Set
+  #104 = Utf8               iterator
+  #105 = Utf8               ()Ljava/util/Iterator;
+  #106 = Utf8               hasNext
+  #107 = Utf8               ()Z
+  #108 = Utf8               next
+  #109 = Utf8               ()Ljava/lang/Object;
+  #110 = Utf8               clear
+  #111 = Utf8               (Ljava/lang/Object;Ljava/lang/ref/ReferenceQueue;)V
+  #112 = Utf8               java/lang/Boolean
+  #113 = Utf8               valueOf
+  #114 = Utf8               (Z)Ljava/lang/Boolean;
+  #115 = Utf8               put
+  #116 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #117 = Utf8               poll
+  #118 = Utf8               ()Ljava/lang/ref/Reference;
+  #119 = Utf8               remove
+  #120 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+{
+  private final java.lang.Object RELEASE_LOCK;
+    descriptor: Ljava/lang/Object;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.util.Map<java.lang.ref.SoftReference<com.fasterxml.jackson.core.util.BufferRecycler>, java.lang.Boolean> _trackedRecyclers;
+    descriptor: Ljava/util/Map;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #33                          // Ljava/util/Map<Ljava/lang/ref/SoftReference<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;Ljava/lang/Boolean;>;
+
+  private final java.lang.ref.ReferenceQueue<com.fasterxml.jackson.core.util.BufferRecycler> _refQueue;
+    descriptor: Ljava/lang/ref/ReferenceQueue;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #36                          // Ljava/lang/ref/ReferenceQueue<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;
+
+  com.fasterxml.jackson.core.util.ThreadLocalBufferManager();
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #2                  // class java/lang/Object
+         8: dup
+         9: invokespecial #1                  // Method java/lang/Object."<init>":()V
+        12: putfield      #3                  // Field RELEASE_LOCK:Ljava/lang/Object;
+        15: aload_0
+        16: new           #4                  // class java/util/concurrent/ConcurrentHashMap
+        19: dup
+        20: invokespecial #5                  // Method java/util/concurrent/ConcurrentHashMap."<init>":()V
+        23: putfield      #6                  // Field _trackedRecyclers:Ljava/util/Map;
+        26: aload_0
+        27: new           #7                  // class java/lang/ref/ReferenceQueue
+        30: dup
+        31: invokespecial #8                  // Method java/lang/ref/ReferenceQueue."<init>":()V
+        34: putfield      #9                  // Field _refQueue:Ljava/lang/ref/ReferenceQueue;
+        37: return
+      LineNumberTable:
+        line 20: 0
+        line 26: 4
+        line 38: 15
+        line 45: 26
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      38     0  this   Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+
+  public static com.fasterxml.jackson.core.util.ThreadLocalBufferManager instance();
+    descriptor: ()Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #10                 // Field com/fasterxml/jackson/core/util/ThreadLocalBufferManager$ThreadLocalBufferManagerHolder.manager:Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+         3: areturn
+      LineNumberTable:
+        line 57: 0
+
+  public int releaseBuffers();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=6, args_size=1
+         0: aload_0
+         1: getfield      #3                  // Field RELEASE_LOCK:Ljava/lang/Object;
+         4: dup
+         5: astore_1
+         6: monitorenter
+         7: iconst_0
+         8: istore_2
+         9: aload_0
+        10: invokespecial #11                 // Method removeSoftRefsClearedByGc:()V
+        13: aload_0
+        14: getfield      #6                  // Field _trackedRecyclers:Ljava/util/Map;
+        17: invokeinterface #12,  1           // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+        22: invokeinterface #13,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        27: astore_3
+        28: aload_3
+        29: invokeinterface #14,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        34: ifeq          59
+        37: aload_3
+        38: invokeinterface #15,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        43: checkcast     #16                 // class java/lang/ref/SoftReference
+        46: astore        4
+        48: aload         4
+        50: invokevirtual #17                 // Method java/lang/ref/SoftReference.clear:()V
+        53: iinc          2, 1
+        56: goto          28
+        59: aload_0
+        60: getfield      #6                  // Field _trackedRecyclers:Ljava/util/Map;
+        63: invokeinterface #18,  1           // InterfaceMethod java/util/Map.clear:()V
+        68: iload_2
+        69: aload_1
+        70: monitorexit
+        71: ireturn
+        72: astore        5
+        74: aload_1
+        75: monitorexit
+        76: aload         5
+        78: athrow
+      Exception table:
+         from    to  target type
+             7    71    72   any
+            72    76    72   any
+      LineNumberTable:
+        line 67: 0
+        line 68: 7
+        line 70: 9
+        line 71: 13
+        line 72: 48
+        line 73: 53
+        line 74: 56
+        line 75: 59
+        line 76: 68
+        line 77: 72
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           48       8     4   ref   Ljava/lang/ref/SoftReference;
+            9      63     2 count   I
+            0      79     0  this   Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           48       8     4   ref   Ljava/lang/ref/SoftReference<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;
+      StackMapTable: number_of_entries = 3
+        frame_type = 254 /* append */
+          offset_delta = 28
+          locals = [ class java/lang/Object, int, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 30
+        frame_type = 255 /* full_frame */
+          offset_delta = 12
+          locals = [ class com/fasterxml/jackson/core/util/ThreadLocalBufferManager, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+
+  public java.lang.ref.SoftReference<com.fasterxml.jackson.core.util.BufferRecycler> wrapAndTrack(com.fasterxml.jackson.core.util.BufferRecycler);
+    descriptor: (Lcom/fasterxml/jackson/core/util/BufferRecycler;)Ljava/lang/ref/SoftReference;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=2
+         0: new           #16                 // class java/lang/ref/SoftReference
+         3: dup
+         4: aload_1
+         5: aload_0
+         6: getfield      #9                  // Field _refQueue:Ljava/lang/ref/ReferenceQueue;
+         9: invokespecial #19                 // Method java/lang/ref/SoftReference."<init>":(Ljava/lang/Object;Ljava/lang/ref/ReferenceQueue;)V
+        12: astore_2
+        13: aload_0
+        14: getfield      #6                  // Field _trackedRecyclers:Ljava/util/Map;
+        17: aload_2
+        18: iconst_1
+        19: invokestatic  #20                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        22: invokeinterface #21,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        27: pop
+        28: aload_0
+        29: invokespecial #11                 // Method removeSoftRefsClearedByGc:()V
+        32: aload_2
+        33: areturn
+      LineNumberTable:
+        line 82: 0
+        line 84: 13
+        line 86: 28
+        line 87: 32
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      34     0  this   Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+            0      34     1    br   Lcom/fasterxml/jackson/core/util/BufferRecycler;
+           13      21     2 newRef   Ljava/lang/ref/SoftReference;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           13      21     2 newRef   Ljava/lang/ref/SoftReference<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;
+    Signature: #64                          // (Lcom/fasterxml/jackson/core/util/BufferRecycler;)Ljava/lang/ref/SoftReference<Lcom/fasterxml/jackson/core/util/BufferRecycler;>;
+
+  private void removeSoftRefsClearedByGc();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: getfield      #9                  // Field _refQueue:Ljava/lang/ref/ReferenceQueue;
+         4: invokevirtual #22                 // Method java/lang/ref/ReferenceQueue.poll:()Ljava/lang/ref/Reference;
+         7: checkcast     #16                 // class java/lang/ref/SoftReference
+        10: dup
+        11: astore_1
+        12: ifnull        29
+        15: aload_0
+        16: getfield      #6                  // Field _trackedRecyclers:Ljava/util/Map;
+        19: aload_1
+        20: invokeinterface #23,  2           // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        25: pop
+        26: goto          0
+        29: return
+      LineNumberTable:
+        line 103: 0
+        line 105: 15
+        line 107: 29
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0  this   Lcom/fasterxml/jackson/core/util/ThreadLocalBufferManager;
+           12      18     1 clearedSoftRef   Ljava/lang/ref/SoftReference;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           12      18     1 clearedSoftRef   Ljava/lang/ref/SoftReference<*>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 0 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 28
+          locals = [ class java/lang/ref/SoftReference ]
+}
+SourceFile: "ThreadLocalBufferManager.java"
+InnerClasses:
+  private static final #26= #25 of #24;   // ThreadLocalBufferManagerHolder=class com/fasterxml/jackson/core/util/ThreadLocalBufferManager$ThreadLocalBufferManagerHolder of class com/fasterxml/jackson/core/util/ThreadLocalBufferManager

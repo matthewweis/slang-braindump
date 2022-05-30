@@ -1,0 +1,1847 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/zaxxer/nuprocess/linux/ProcessEpoll.class
+  Last modified May 29, 2022; size 9180 bytes
+  SHA-256 checksum 67bc01ffefbb244c55ebc5c5985379378e49e20d64d3796a9cd05e00292f6737
+  Compiled from "ProcessEpoll.java"
+class com.zaxxer.nuprocess.linux.ProcessEpoll extends com.zaxxer.nuprocess.internal.BaseEventProcessor<com.zaxxer.nuprocess.linux.LinuxProcess>
+  minor version: 0
+  major version: 51
+  flags: (0x0020) ACC_SUPER
+  this_class: #100                        // com/zaxxer/nuprocess/linux/ProcessEpoll
+  super_class: #103                       // com/zaxxer/nuprocess/internal/BaseEventProcessor
+  interfaces: 0, fields: 6, methods: 17, attributes: 2
+Constant pool:
+    #1 = Fieldref           #100.#175     // com/zaxxer/nuprocess/linux/ProcessEpoll.LINGER_ITERATIONS:I
+    #2 = Methodref          #100.#176     // com/zaxxer/nuprocess/linux/ProcessEpoll."<init>":(I)V
+    #3 = Fieldref           #100.#177     // com/zaxxer/nuprocess/linux/ProcessEpoll.process:Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+    #4 = Methodref          #100.#178     // com/zaxxer/nuprocess/linux/ProcessEpoll.registerProcess:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+    #5 = Methodref          #100.#179     // com/zaxxer/nuprocess/linux/ProcessEpoll.checkAndSetRunning:()Z
+    #6 = Methodref          #103.#176     // com/zaxxer/nuprocess/internal/BaseEventProcessor."<init>":(I)V
+    #7 = Methodref          #38.#180      // com/zaxxer/nuprocess/linux/LibEpoll.epoll_create:(I)I
+    #8 = Fieldref           #100.#181     // com/zaxxer/nuprocess/linux/ProcessEpoll.epoll:I
+    #9 = Class              #182          // java/lang/RuntimeException
+   #10 = Class              #183          // java/lang/StringBuilder
+   #11 = Methodref          #10.#184      // java/lang/StringBuilder."<init>":()V
+   #12 = String             #185          // Unable to create kqueue:
+   #13 = Methodref          #10.#186      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #14 = Methodref          #187.#188     // com/sun/jna/Native.getLastError:()I
+   #15 = Methodref          #10.#189      // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+   #16 = Methodref          #10.#190      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #17 = Methodref          #9.#191       // java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+   #18 = Class              #192          // com/zaxxer/nuprocess/linux/EpollEvent
+   #19 = Methodref          #18.#184      // com/zaxxer/nuprocess/linux/EpollEvent."<init>":()V
+   #20 = Fieldref           #100.#193     // com/zaxxer/nuprocess/linux/ProcessEpoll.triggeredEvent:Lcom/zaxxer/nuprocess/linux/EpollEvent;
+   #21 = Class              #194          // java/util/LinkedList
+   #22 = Methodref          #21.#184      // java/util/LinkedList."<init>":()V
+   #23 = Fieldref           #100.#195     // com/zaxxer/nuprocess/linux/ProcessEpoll.deadPool:Ljava/util/List;
+   #24 = Fieldref           #100.#196     // com/zaxxer/nuprocess/linux/ProcessEpoll.shutdown:Z
+   #25 = Class              #197          // java/lang/Integer
+   #26 = Integer            -2147483648
+   #27 = Methodref          #60.#198      // com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+   #28 = Methodref          #199.#200     // com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+   #29 = Methodref          #60.#201      // com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+   #30 = Methodref          #60.#202      // com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+   #31 = Fieldref           #100.#203     // com/zaxxer/nuprocess/linux/ProcessEpoll.pidToProcessMap:Ljava/util/Map;
+   #32 = Methodref          #60.#204      // com/zaxxer/nuprocess/linux/LinuxProcess.getPid:()I
+   #33 = Methodref          #25.#205      // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #34 = InterfaceMethodref #206.#207     // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #35 = Fieldref           #100.#208     // com/zaxxer/nuprocess/linux/ProcessEpoll.fildesToProcessMap:Ljava/util/Map;
+   #36 = Fieldref           #100.#209     // com/zaxxer/nuprocess/linux/ProcessEpoll.eventPool:Ljava/util/concurrent/BlockingQueue;
+   #37 = InterfaceMethodref #210.#211     // java/util/concurrent/BlockingQueue.take:()Ljava/lang/Object;
+   #38 = Class              #212          // com/zaxxer/nuprocess/linux/LibEpoll
+   #39 = Methodref          #18.#213      // com/zaxxer/nuprocess/linux/EpollEvent.setEvents:(I)V
+   #40 = Methodref          #18.#214      // com/zaxxer/nuprocess/linux/EpollEvent.setFileDescriptor:(I)V
+   #41 = Methodref          #18.#215      // com/zaxxer/nuprocess/linux/EpollEvent.getPointer:()Lcom/sun/jna/Pointer;
+   #42 = Methodref          #38.#216      // com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+   #43 = InterfaceMethodref #210.#217     // java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+   #44 = String             #218          // Unable to register new events to epoll, errorcode:
+   #45 = Class              #219          // java/lang/InterruptedException
+   #46 = Methodref          #9.#220       // java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+   #47 = Methodref          #199.#221     // com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+   #48 = Integer            1073750036
+   #49 = String             #222          // Unable to register new event to epoll queue
+   #50 = Methodref          #103.#223     // com/zaxxer/nuprocess/internal/BaseEventProcessor.run:()V
+   #51 = Methodref          #100.#224     // com/zaxxer/nuprocess/linux/ProcessEpoll.waitForDeadPool:()V
+   #52 = InterfaceMethodref #206.#225     // java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+   #53 = Fieldref           #100.#226     // com/zaxxer/nuprocess/linux/ProcessEpoll.DEADPOOL_POLL_INTERVAL:I
+   #54 = Methodref          #38.#227      // com/zaxxer/nuprocess/linux/LibEpoll.epoll_wait:(ILcom/sun/jna/Pointer;II)I
+   #55 = String             #228          // Error waiting for epoll
+   #56 = Methodref          #100.#229     // com/zaxxer/nuprocess/linux/ProcessEpoll.checkDeadPool:()V
+   #57 = Methodref          #18.#230      // com/zaxxer/nuprocess/linux/EpollEvent.getFileDescriptor:()I
+   #58 = Methodref          #18.#231      // com/zaxxer/nuprocess/linux/EpollEvent.getEvents:()I
+   #59 = InterfaceMethodref #206.#232     // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #60 = Class              #233          // com/zaxxer/nuprocess/linux/LinuxProcess
+   #61 = Class              #234          // com/zaxxer/nuprocess/NuProcess
+   #62 = Integer            65536
+   #63 = Methodref          #60.#235      // com/zaxxer/nuprocess/linux/LinuxProcess.readStdout:(II)V
+   #64 = Methodref          #60.#236      // com/zaxxer/nuprocess/linux/LinuxProcess.readStderr:(II)V
+   #65 = Methodref          #60.#237      // com/zaxxer/nuprocess/linux/LinuxProcess.writeStdin:(II)Z
+   #66 = Methodref          #60.#238      // com/zaxxer/nuprocess/linux/LinuxProcess.closeStdin:(Z)V
+   #67 = Methodref          #60.#239      // com/zaxxer/nuprocess/linux/LinuxProcess.isSoftExit:()Z
+   #68 = Methodref          #100.#240     // com/zaxxer/nuprocess/linux/ProcessEpoll.cleanupProcess:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;III)V
+   #69 = Methodref          #75.#241      // com/zaxxer/nuprocess/internal/LibC.close:(I)I
+   #70 = Fieldref           #60.#242      // com/zaxxer/nuprocess/linux/LinuxProcess.cleanlyExitedBeforeProcess:Ljava/util/concurrent/atomic/AtomicBoolean;
+   #71 = Methodref          #243.#244     // java/util/concurrent/atomic/AtomicBoolean.get:()Z
+   #72 = Methodref          #60.#245      // com/zaxxer/nuprocess/linux/LinuxProcess.onExit:(I)V
+   #73 = Class              #246          // com/sun/jna/ptr/IntByReference
+   #74 = Methodref          #73.#184      // com/sun/jna/ptr/IntByReference."<init>":()V
+   #75 = Class              #247          // com/zaxxer/nuprocess/internal/LibC
+   #76 = Methodref          #75.#248      // com/zaxxer/nuprocess/internal/LibC.waitpid:(ILcom/sun/jna/ptr/IntByReference;I)I
+   #77 = InterfaceMethodref #249.#250     // java/util/List.add:(Ljava/lang/Object;)Z
+   #78 = Integer            2147483647
+   #79 = Methodref          #73.#251      // com/sun/jna/ptr/IntByReference.getValue:()I
+   #80 = Methodref          #100.#252     // com/zaxxer/nuprocess/linux/ProcessEpoll.handleExit:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;I)V
+   #81 = InterfaceMethodref #249.#253     // java/util/List.isEmpty:()Z
+   #82 = InterfaceMethodref #249.#254     // java/util/List.iterator:()Ljava/util/Iterator;
+   #83 = InterfaceMethodref #160.#255     // java/util/Iterator.hasNext:()Z
+   #84 = InterfaceMethodref #160.#256     // java/util/Iterator.next:()Ljava/lang/Object;
+   #85 = InterfaceMethodref #160.#257     // java/util/Iterator.remove:()V
+   #86 = Methodref          #75.#258      // com/zaxxer/nuprocess/internal/LibC.WIFEXITED:(I)Z
+   #87 = Methodref          #75.#259      // com/zaxxer/nuprocess/internal/LibC.WEXITSTATUS:(I)I
+   #88 = Methodref          #75.#260      // com/zaxxer/nuprocess/internal/LibC.WIFSIGNALED:(I)Z
+   #89 = Methodref          #75.#261      // com/zaxxer/nuprocess/internal/LibC.WTERMSIG:(I)I
+   #90 = Methodref          #262.#263     // java/lang/System.currentTimeMillis:()J
+   #91 = Fieldref           #100.#264     // com/zaxxer/nuprocess/linux/ProcessEpoll.LINGER_TIME_MS:I
+   #92 = Methodref          #265.#266     // java/lang/Thread.sleep:(J)V
+   #93 = Methodref          #265.#267     // java/lang/Thread.currentThread:()Ljava/lang/Thread;
+   #94 = Methodref          #265.#268     // java/lang/Thread.interrupt:()V
+   #95 = Long               2l
+   #97 = Methodref          #100.#269     // com/zaxxer/nuprocess/linux/ProcessEpoll.closeStdin:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+   #98 = Methodref          #100.#270     // com/zaxxer/nuprocess/linux/ProcessEpoll.queueWrite:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+   #99 = Class              #271          // java/util/concurrent/ArrayBlockingQueue
+  #100 = Class              #272          // com/zaxxer/nuprocess/linux/ProcessEpoll
+  #101 = Methodref          #99.#176      // java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+  #102 = InterfaceMethodref #210.#250     // java/util/concurrent/BlockingQueue.add:(Ljava/lang/Object;)Z
+  #103 = Class              #273          // com/zaxxer/nuprocess/internal/BaseEventProcessor
+  #104 = Utf8               EVENT_POOL_SIZE
+  #105 = Utf8               I
+  #106 = Utf8               ConstantValue
+  #107 = Integer            64
+  #108 = Utf8               eventPool
+  #109 = Utf8               Ljava/util/concurrent/BlockingQueue;
+  #110 = Utf8               Signature
+  #111 = Utf8               Ljava/util/concurrent/BlockingQueue<Lcom/zaxxer/nuprocess/linux/EpollEvent;>;
+  #112 = Utf8               epoll
+  #113 = Utf8               triggeredEvent
+  #114 = Utf8               Lcom/zaxxer/nuprocess/linux/EpollEvent;
+  #115 = Utf8               deadPool
+  #116 = Utf8               Ljava/util/List;
+  #117 = Utf8               Ljava/util/List<Lcom/zaxxer/nuprocess/linux/LinuxProcess;>;
+  #118 = Utf8               process
+  #119 = Utf8               Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+  #120 = Utf8               <init>
+  #121 = Utf8               ()V
+  #122 = Utf8               Code
+  #123 = Utf8               LineNumberTable
+  #124 = Utf8               LocalVariableTable
+  #125 = Utf8               this
+  #126 = Utf8               Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+  #127 = Utf8               (Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+  #128 = Utf8               (I)V
+  #129 = Utf8               lingerIterations
+  #130 = Utf8               StackMapTable
+  #131 = Utf8               registerProcess
+  #132 = Utf8               event
+  #133 = Utf8               rc
+  #134 = Utf8               ie
+  #135 = Utf8               Ljava/lang/InterruptedException;
+  #136 = Utf8               stdinFd
+  #137 = Utf8               stdoutFd
+  #138 = Utf8               stderrFd
+  #139 = Class              #274          // java/lang/Throwable
+  #140 = Utf8               queueWrite
+  #141 = Utf8               stdin
+  #142 = Utf8               run
+  #143 = Utf8               closeStdin
+  #144 = Utf8               ()Z
+  #145 = Utf8               nev
+  #146 = Utf8               epEvent
+  #147 = Utf8               ident
+  #148 = Utf8               events
+  #149 = Utf8               linuxProcess
+  #150 = Utf8               close
+  #151 = Utf8               cleanupProcess
+  #152 = Utf8               (Lcom/zaxxer/nuprocess/linux/LinuxProcess;III)V
+  #153 = Utf8               ret
+  #154 = Utf8               Lcom/sun/jna/ptr/IntByReference;
+  #155 = Utf8               checkDeadPool
+  #156 = Utf8               iterator
+  #157 = Utf8               Ljava/util/Iterator;
+  #158 = Utf8               LocalVariableTypeTable
+  #159 = Utf8               Ljava/util/Iterator<Lcom/zaxxer/nuprocess/linux/LinuxProcess;>;
+  #160 = Class              #275          // java/util/Iterator
+  #161 = Utf8               handleExit
+  #162 = Utf8               (Lcom/zaxxer/nuprocess/linux/LinuxProcess;I)V
+  #163 = Utf8               status
+  #164 = Utf8               waitForDeadPool
+  #165 = Utf8               e
+  #166 = Utf8               sleepInterval
+  #167 = Utf8               J
+  #168 = Utf8               timeout
+  #169 = Utf8               (Lcom/zaxxer/nuprocess/internal/BasePosixProcess;)V
+  #170 = Utf8               <clinit>
+  #171 = Utf8               i
+  #172 = Utf8               Lcom/zaxxer/nuprocess/internal/BaseEventProcessor<Lcom/zaxxer/nuprocess/linux/LinuxProcess;>;
+  #173 = Utf8               SourceFile
+  #174 = Utf8               ProcessEpoll.java
+  #175 = NameAndType        #276:#105     // LINGER_ITERATIONS:I
+  #176 = NameAndType        #120:#128     // "<init>":(I)V
+  #177 = NameAndType        #118:#119     // process:Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+  #178 = NameAndType        #131:#127     // registerProcess:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+  #179 = NameAndType        #277:#144     // checkAndSetRunning:()Z
+  #180 = NameAndType        #278:#279     // epoll_create:(I)I
+  #181 = NameAndType        #112:#105     // epoll:I
+  #182 = Utf8               java/lang/RuntimeException
+  #183 = Utf8               java/lang/StringBuilder
+  #184 = NameAndType        #120:#121     // "<init>":()V
+  #185 = Utf8               Unable to create kqueue:
+  #186 = NameAndType        #280:#281     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #187 = Class              #282          // com/sun/jna/Native
+  #188 = NameAndType        #283:#284     // getLastError:()I
+  #189 = NameAndType        #280:#285     // append:(I)Ljava/lang/StringBuilder;
+  #190 = NameAndType        #286:#287     // toString:()Ljava/lang/String;
+  #191 = NameAndType        #120:#288     // "<init>":(Ljava/lang/String;)V
+  #192 = Utf8               com/zaxxer/nuprocess/linux/EpollEvent
+  #193 = NameAndType        #113:#114     // triggeredEvent:Lcom/zaxxer/nuprocess/linux/EpollEvent;
+  #194 = Utf8               java/util/LinkedList
+  #195 = NameAndType        #115:#116     // deadPool:Ljava/util/List;
+  #196 = NameAndType        #289:#290     // shutdown:Z
+  #197 = Utf8               java/lang/Integer
+  #198 = NameAndType        #291:#292     // getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+  #199 = Class              #293          // com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor
+  #200 = NameAndType        #294:#284     // acquire:()I
+  #201 = NameAndType        #295:#292     // getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+  #202 = NameAndType        #296:#292     // getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+  #203 = NameAndType        #297:#298     // pidToProcessMap:Ljava/util/Map;
+  #204 = NameAndType        #299:#284     // getPid:()I
+  #205 = NameAndType        #300:#301     // valueOf:(I)Ljava/lang/Integer;
+  #206 = Class              #302          // java/util/Map
+  #207 = NameAndType        #303:#304     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #208 = NameAndType        #305:#298     // fildesToProcessMap:Ljava/util/Map;
+  #209 = NameAndType        #108:#109     // eventPool:Ljava/util/concurrent/BlockingQueue;
+  #210 = Class              #306          // java/util/concurrent/BlockingQueue
+  #211 = NameAndType        #307:#308     // take:()Ljava/lang/Object;
+  #212 = Utf8               com/zaxxer/nuprocess/linux/LibEpoll
+  #213 = NameAndType        #309:#128     // setEvents:(I)V
+  #214 = NameAndType        #310:#128     // setFileDescriptor:(I)V
+  #215 = NameAndType        #311:#312     // getPointer:()Lcom/sun/jna/Pointer;
+  #216 = NameAndType        #313:#314     // epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+  #217 = NameAndType        #303:#315     // put:(Ljava/lang/Object;)V
+  #218 = Utf8               Unable to register new events to epoll, errorcode:
+  #219 = Utf8               java/lang/InterruptedException
+  #220 = NameAndType        #120:#316     // "<init>":(Ljava/lang/Throwable;)V
+  #221 = NameAndType        #317:#121     // release:()V
+  #222 = Utf8               Unable to register new event to epoll queue
+  #223 = NameAndType        #142:#121     // run:()V
+  #224 = NameAndType        #164:#121     // waitForDeadPool:()V
+  #225 = NameAndType        #318:#319     // remove:(Ljava/lang/Object;)Ljava/lang/Object;
+  #226 = NameAndType        #320:#105     // DEADPOOL_POLL_INTERVAL:I
+  #227 = NameAndType        #321:#322     // epoll_wait:(ILcom/sun/jna/Pointer;II)I
+  #228 = Utf8               Error waiting for epoll
+  #229 = NameAndType        #155:#121     // checkDeadPool:()V
+  #230 = NameAndType        #323:#284     // getFileDescriptor:()I
+  #231 = NameAndType        #324:#284     // getEvents:()I
+  #232 = NameAndType        #325:#319     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #233 = Utf8               com/zaxxer/nuprocess/linux/LinuxProcess
+  #234 = Utf8               com/zaxxer/nuprocess/NuProcess
+  #235 = NameAndType        #326:#327     // readStdout:(II)V
+  #236 = NameAndType        #328:#327     // readStderr:(II)V
+  #237 = NameAndType        #329:#330     // writeStdin:(II)Z
+  #238 = NameAndType        #143:#331     // closeStdin:(Z)V
+  #239 = NameAndType        #332:#144     // isSoftExit:()Z
+  #240 = NameAndType        #151:#152     // cleanupProcess:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;III)V
+  #241 = NameAndType        #150:#279     // close:(I)I
+  #242 = NameAndType        #333:#334     // cleanlyExitedBeforeProcess:Ljava/util/concurrent/atomic/AtomicBoolean;
+  #243 = Class              #335          // java/util/concurrent/atomic/AtomicBoolean
+  #244 = NameAndType        #325:#144     // get:()Z
+  #245 = NameAndType        #336:#128     // onExit:(I)V
+  #246 = Utf8               com/sun/jna/ptr/IntByReference
+  #247 = Utf8               com/zaxxer/nuprocess/internal/LibC
+  #248 = NameAndType        #337:#338     // waitpid:(ILcom/sun/jna/ptr/IntByReference;I)I
+  #249 = Class              #339          // java/util/List
+  #250 = NameAndType        #340:#341     // add:(Ljava/lang/Object;)Z
+  #251 = NameAndType        #342:#284     // getValue:()I
+  #252 = NameAndType        #161:#162     // handleExit:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;I)V
+  #253 = NameAndType        #343:#144     // isEmpty:()Z
+  #254 = NameAndType        #156:#344     // iterator:()Ljava/util/Iterator;
+  #255 = NameAndType        #345:#144     // hasNext:()Z
+  #256 = NameAndType        #346:#308     // next:()Ljava/lang/Object;
+  #257 = NameAndType        #318:#121     // remove:()V
+  #258 = NameAndType        #347:#348     // WIFEXITED:(I)Z
+  #259 = NameAndType        #349:#279     // WEXITSTATUS:(I)I
+  #260 = NameAndType        #350:#348     // WIFSIGNALED:(I)Z
+  #261 = NameAndType        #351:#279     // WTERMSIG:(I)I
+  #262 = Class              #352          // java/lang/System
+  #263 = NameAndType        #353:#354     // currentTimeMillis:()J
+  #264 = NameAndType        #355:#105     // LINGER_TIME_MS:I
+  #265 = Class              #356          // java/lang/Thread
+  #266 = NameAndType        #357:#358     // sleep:(J)V
+  #267 = NameAndType        #359:#360     // currentThread:()Ljava/lang/Thread;
+  #268 = NameAndType        #361:#121     // interrupt:()V
+  #269 = NameAndType        #143:#127     // closeStdin:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+  #270 = NameAndType        #140:#127     // queueWrite:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+  #271 = Utf8               java/util/concurrent/ArrayBlockingQueue
+  #272 = Utf8               com/zaxxer/nuprocess/linux/ProcessEpoll
+  #273 = Utf8               com/zaxxer/nuprocess/internal/BaseEventProcessor
+  #274 = Utf8               java/lang/Throwable
+  #275 = Utf8               java/util/Iterator
+  #276 = Utf8               LINGER_ITERATIONS
+  #277 = Utf8               checkAndSetRunning
+  #278 = Utf8               epoll_create
+  #279 = Utf8               (I)I
+  #280 = Utf8               append
+  #281 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #282 = Utf8               com/sun/jna/Native
+  #283 = Utf8               getLastError
+  #284 = Utf8               ()I
+  #285 = Utf8               (I)Ljava/lang/StringBuilder;
+  #286 = Utf8               toString
+  #287 = Utf8               ()Ljava/lang/String;
+  #288 = Utf8               (Ljava/lang/String;)V
+  #289 = Utf8               shutdown
+  #290 = Utf8               Z
+  #291 = Utf8               getStdin
+  #292 = Utf8               ()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+  #293 = Utf8               com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor
+  #294 = Utf8               acquire
+  #295 = Utf8               getStdout
+  #296 = Utf8               getStderr
+  #297 = Utf8               pidToProcessMap
+  #298 = Utf8               Ljava/util/Map;
+  #299 = Utf8               getPid
+  #300 = Utf8               valueOf
+  #301 = Utf8               (I)Ljava/lang/Integer;
+  #302 = Utf8               java/util/Map
+  #303 = Utf8               put
+  #304 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #305 = Utf8               fildesToProcessMap
+  #306 = Utf8               java/util/concurrent/BlockingQueue
+  #307 = Utf8               take
+  #308 = Utf8               ()Ljava/lang/Object;
+  #309 = Utf8               setEvents
+  #310 = Utf8               setFileDescriptor
+  #311 = Utf8               getPointer
+  #312 = Utf8               ()Lcom/sun/jna/Pointer;
+  #313 = Utf8               epoll_ctl
+  #314 = Utf8               (IIILcom/sun/jna/Pointer;)I
+  #315 = Utf8               (Ljava/lang/Object;)V
+  #316 = Utf8               (Ljava/lang/Throwable;)V
+  #317 = Utf8               release
+  #318 = Utf8               remove
+  #319 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #320 = Utf8               DEADPOOL_POLL_INTERVAL
+  #321 = Utf8               epoll_wait
+  #322 = Utf8               (ILcom/sun/jna/Pointer;II)I
+  #323 = Utf8               getFileDescriptor
+  #324 = Utf8               getEvents
+  #325 = Utf8               get
+  #326 = Utf8               readStdout
+  #327 = Utf8               (II)V
+  #328 = Utf8               readStderr
+  #329 = Utf8               writeStdin
+  #330 = Utf8               (II)Z
+  #331 = Utf8               (Z)V
+  #332 = Utf8               isSoftExit
+  #333 = Utf8               cleanlyExitedBeforeProcess
+  #334 = Utf8               Ljava/util/concurrent/atomic/AtomicBoolean;
+  #335 = Utf8               java/util/concurrent/atomic/AtomicBoolean
+  #336 = Utf8               onExit
+  #337 = Utf8               waitpid
+  #338 = Utf8               (ILcom/sun/jna/ptr/IntByReference;I)I
+  #339 = Utf8               java/util/List
+  #340 = Utf8               add
+  #341 = Utf8               (Ljava/lang/Object;)Z
+  #342 = Utf8               getValue
+  #343 = Utf8               isEmpty
+  #344 = Utf8               ()Ljava/util/Iterator;
+  #345 = Utf8               hasNext
+  #346 = Utf8               next
+  #347 = Utf8               WIFEXITED
+  #348 = Utf8               (I)Z
+  #349 = Utf8               WEXITSTATUS
+  #350 = Utf8               WIFSIGNALED
+  #351 = Utf8               WTERMSIG
+  #352 = Utf8               java/lang/System
+  #353 = Utf8               currentTimeMillis
+  #354 = Utf8               ()J
+  #355 = Utf8               LINGER_TIME_MS
+  #356 = Utf8               java/lang/Thread
+  #357 = Utf8               sleep
+  #358 = Utf8               (J)V
+  #359 = Utf8               currentThread
+  #360 = Utf8               ()Ljava/lang/Thread;
+  #361 = Utf8               interrupt
+{
+  private static final int EVENT_POOL_SIZE;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 64
+
+  private static final java.util.concurrent.BlockingQueue<com.zaxxer.nuprocess.linux.EpollEvent> eventPool;
+    descriptor: Ljava/util/concurrent/BlockingQueue;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    Signature: #111                         // Ljava/util/concurrent/BlockingQueue<Lcom/zaxxer/nuprocess/linux/EpollEvent;>;
+
+  private int epoll;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private com.zaxxer.nuprocess.linux.EpollEvent triggeredEvent;
+    descriptor: Lcom/zaxxer/nuprocess/linux/EpollEvent;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.util.List<com.zaxxer.nuprocess.linux.LinuxProcess> deadPool;
+    descriptor: Ljava/util/List;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #117                         // Ljava/util/List<Lcom/zaxxer/nuprocess/linux/LinuxProcess;>;
+
+  private com.zaxxer.nuprocess.linux.LinuxProcess process;
+    descriptor: Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+    flags: (0x0002) ACC_PRIVATE
+
+  com.zaxxer.nuprocess.linux.ProcessEpoll();
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getstatic     #1                  // Field LINGER_ITERATIONS:I
+         4: invokespecial #2                  // Method "<init>":(I)V
+         7: return
+      LineNumberTable:
+        line 60: 0
+        line 61: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+
+  com.zaxxer.nuprocess.linux.ProcessEpoll(com.zaxxer.nuprocess.linux.LinuxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+    flags: (0x0000)
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iconst_m1
+         2: invokespecial #2                  // Method "<init>":(I)V
+         5: aload_0
+         6: aload_1
+         7: putfield      #3                  // Field process:Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+        10: aload_0
+        11: aload_1
+        12: invokevirtual #4                  // Method registerProcess:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+        15: aload_0
+        16: invokevirtual #5                  // Method checkAndSetRunning:()Z
+        19: pop
+        20: return
+      LineNumberTable:
+        line 65: 0
+        line 67: 5
+        line 69: 10
+        line 70: 15
+        line 71: 20
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      21     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            0      21     1 process   Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+
+  private com.zaxxer.nuprocess.linux.ProcessEpoll(int);
+    descriptor: (I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokespecial #6                  // Method com/zaxxer/nuprocess/internal/BaseEventProcessor."<init>":(I)V
+         5: aload_0
+         6: sipush        1024
+         9: invokestatic  #7                  // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_create:(I)I
+        12: putfield      #8                  // Field epoll:I
+        15: aload_0
+        16: getfield      #8                  // Field epoll:I
+        19: ifge          51
+        22: new           #9                  // class java/lang/RuntimeException
+        25: dup
+        26: new           #10                 // class java/lang/StringBuilder
+        29: dup
+        30: invokespecial #11                 // Method java/lang/StringBuilder."<init>":()V
+        33: ldc           #12                 // String Unable to create kqueue:
+        35: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        38: invokestatic  #14                 // Method com/sun/jna/Native.getLastError:()I
+        41: invokevirtual #15                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        44: invokevirtual #16                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        47: invokespecial #17                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+        50: athrow
+        51: aload_0
+        52: new           #18                 // class com/zaxxer/nuprocess/linux/EpollEvent
+        55: dup
+        56: invokespecial #19                 // Method com/zaxxer/nuprocess/linux/EpollEvent."<init>":()V
+        59: putfield      #20                 // Field triggeredEvent:Lcom/zaxxer/nuprocess/linux/EpollEvent;
+        62: aload_0
+        63: new           #21                 // class java/util/LinkedList
+        66: dup
+        67: invokespecial #22                 // Method java/util/LinkedList."<init>":()V
+        70: putfield      #23                 // Field deadPool:Ljava/util/List;
+        73: return
+      LineNumberTable:
+        line 75: 0
+        line 77: 5
+        line 78: 15
+        line 79: 22
+        line 82: 51
+        line 84: 62
+        line 85: 73
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      74     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            0      74     1 lingerIterations   I
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 51
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, int ]
+          stack = []
+
+  public void registerProcess(com.zaxxer.nuprocess.linux.LinuxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=8, args_size=2
+         0: aload_0
+         1: getfield      #24                 // Field shutdown:Z
+         4: ifeq          8
+         7: return
+         8: ldc           #26                 // int -2147483648
+        10: istore_2
+        11: ldc           #26                 // int -2147483648
+        13: istore_3
+        14: ldc           #26                 // int -2147483648
+        16: istore        4
+        18: aload_1
+        19: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        22: invokevirtual #28                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+        25: istore_2
+        26: aload_1
+        27: invokevirtual #29                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        30: invokevirtual #28                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+        33: istore_3
+        34: aload_1
+        35: invokevirtual #30                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        38: invokevirtual #28                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+        41: istore        4
+        43: aload_0
+        44: getfield      #31                 // Field pidToProcessMap:Ljava/util/Map;
+        47: aload_1
+        48: invokevirtual #32                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getPid:()I
+        51: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        54: aload_1
+        55: invokeinterface #34,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        60: pop
+        61: aload_0
+        62: getfield      #35                 // Field fildesToProcessMap:Ljava/util/Map;
+        65: iload_2
+        66: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        69: aload_1
+        70: invokeinterface #34,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        75: pop
+        76: aload_0
+        77: getfield      #35                 // Field fildesToProcessMap:Ljava/util/Map;
+        80: iload_3
+        81: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        84: aload_1
+        85: invokeinterface #34,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        90: pop
+        91: aload_0
+        92: getfield      #35                 // Field fildesToProcessMap:Ljava/util/Map;
+        95: iload         4
+        97: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       100: aload_1
+       101: invokeinterface #34,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       106: pop
+       107: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+       110: invokeinterface #37,  1           // InterfaceMethod java/util/concurrent/BlockingQueue.take:()Ljava/lang/Object;
+       115: checkcast     #18                 // class com/zaxxer/nuprocess/linux/EpollEvent
+       118: astore        5
+       120: aload         5
+       122: iconst_1
+       123: invokevirtual #39                 // Method com/zaxxer/nuprocess/linux/EpollEvent.setEvents:(I)V
+       126: aload         5
+       128: iload_3
+       129: invokevirtual #40                 // Method com/zaxxer/nuprocess/linux/EpollEvent.setFileDescriptor:(I)V
+       132: aload_0
+       133: getfield      #8                  // Field epoll:I
+       136: iconst_1
+       137: iload_3
+       138: aload         5
+       140: invokevirtual #41                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getPointer:()Lcom/sun/jna/Pointer;
+       143: invokestatic  #42                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+       146: istore        6
+       148: iload         6
+       150: iconst_m1
+       151: if_icmpne     197
+       154: invokestatic  #14                 // Method com/sun/jna/Native.getLastError:()I
+       157: istore        6
+       159: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+       162: aload         5
+       164: invokeinterface #43,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+       169: new           #9                  // class java/lang/RuntimeException
+       172: dup
+       173: new           #10                 // class java/lang/StringBuilder
+       176: dup
+       177: invokespecial #11                 // Method java/lang/StringBuilder."<init>":()V
+       180: ldc           #44                 // String Unable to register new events to epoll, errorcode:
+       182: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       185: iload         6
+       187: invokevirtual #15                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       190: invokevirtual #16                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       193: invokespecial #17                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+       196: athrow
+       197: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+       200: aload         5
+       202: invokeinterface #43,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+       207: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+       210: invokeinterface #37,  1           // InterfaceMethod java/util/concurrent/BlockingQueue.take:()Ljava/lang/Object;
+       215: checkcast     #18                 // class com/zaxxer/nuprocess/linux/EpollEvent
+       218: astore        5
+       220: aload         5
+       222: iconst_1
+       223: invokevirtual #39                 // Method com/zaxxer/nuprocess/linux/EpollEvent.setEvents:(I)V
+       226: aload         5
+       228: iload         4
+       230: invokevirtual #40                 // Method com/zaxxer/nuprocess/linux/EpollEvent.setFileDescriptor:(I)V
+       233: aload_0
+       234: getfield      #8                  // Field epoll:I
+       237: iconst_1
+       238: iload         4
+       240: aload         5
+       242: invokevirtual #41                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getPointer:()Lcom/sun/jna/Pointer;
+       245: invokestatic  #42                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+       248: istore        6
+       250: iload         6
+       252: iconst_m1
+       253: if_icmpne     299
+       256: invokestatic  #14                 // Method com/sun/jna/Native.getLastError:()I
+       259: istore        6
+       261: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+       264: aload         5
+       266: invokeinterface #43,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+       271: new           #9                  // class java/lang/RuntimeException
+       274: dup
+       275: new           #10                 // class java/lang/StringBuilder
+       278: dup
+       279: invokespecial #11                 // Method java/lang/StringBuilder."<init>":()V
+       282: ldc           #44                 // String Unable to register new events to epoll, errorcode:
+       284: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       287: iload         6
+       289: invokevirtual #15                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       292: invokevirtual #16                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       295: invokespecial #17                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+       298: athrow
+       299: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+       302: aload         5
+       304: invokeinterface #43,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+       309: goto          324
+       312: astore        5
+       314: new           #9                  // class java/lang/RuntimeException
+       317: dup
+       318: aload         5
+       320: invokespecial #46                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+       323: athrow
+       324: iload_2
+       325: ldc           #26                 // int -2147483648
+       327: if_icmpeq     337
+       330: aload_1
+       331: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       334: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       337: iload_3
+       338: ldc           #26                 // int -2147483648
+       340: if_icmpeq     350
+       343: aload_1
+       344: invokevirtual #29                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       347: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       350: iload         4
+       352: ldc           #26                 // int -2147483648
+       354: if_icmpeq     412
+       357: aload_1
+       358: invokevirtual #30                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       361: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       364: goto          412
+       367: astore        7
+       369: iload_2
+       370: ldc           #26                 // int -2147483648
+       372: if_icmpeq     382
+       375: aload_1
+       376: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       379: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       382: iload_3
+       383: ldc           #26                 // int -2147483648
+       385: if_icmpeq     395
+       388: aload_1
+       389: invokevirtual #29                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       392: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       395: iload         4
+       397: ldc           #26                 // int -2147483648
+       399: if_icmpeq     409
+       402: aload_1
+       403: invokevirtual #30                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       406: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       409: aload         7
+       411: athrow
+       412: return
+      Exception table:
+         from    to  target type
+           107   309   312   Class java/lang/InterruptedException
+            18   324   367   any
+           367   369   367   any
+      LineNumberTable:
+        line 94: 0
+        line 95: 7
+        line 98: 8
+        line 99: 11
+        line 100: 14
+        line 102: 18
+        line 103: 26
+        line 104: 34
+        line 106: 43
+        line 107: 61
+        line 108: 76
+        line 109: 91
+        line 112: 107
+        line 113: 120
+        line 114: 126
+        line 115: 132
+        line 116: 148
+        line 117: 154
+        line 118: 159
+        line 119: 169
+        line 121: 197
+        line 123: 207
+        line 124: 220
+        line 125: 226
+        line 126: 233
+        line 127: 250
+        line 128: 256
+        line 129: 261
+        line 130: 271
+        line 132: 299
+        line 136: 309
+        line 134: 312
+        line 135: 314
+        line 139: 324
+        line 140: 330
+        line 142: 337
+        line 143: 343
+        line 145: 350
+        line 146: 357
+        line 139: 367
+        line 140: 375
+        line 142: 382
+        line 143: 388
+        line 145: 395
+        line 146: 402
+        line 148: 409
+        line 149: 412
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          120     189     5 event   Lcom/zaxxer/nuprocess/linux/EpollEvent;
+          148     161     6    rc   I
+          314      10     5    ie   Ljava/lang/InterruptedException;
+            0     413     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            0     413     1 process   Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+           11     402     2 stdinFd   I
+           14     399     3 stdoutFd   I
+           18     395     4 stderrFd   I
+      StackMapTable: number_of_entries = 12
+        frame_type = 8 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 188
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, class com/zaxxer/nuprocess/linux/LinuxProcess, int, int, int, class com/zaxxer/nuprocess/linux/EpollEvent, int ]
+          stack = []
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 101
+        frame_type = 255 /* full_frame */
+          offset_delta = 12
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, class com/zaxxer/nuprocess/linux/LinuxProcess, int, int, int ]
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 11 /* same */
+        frame_type = 12 /* same */
+        frame_type = 12 /* same */
+        frame_type = 80 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 14
+          locals = [ top, top, class java/lang/Throwable ]
+        frame_type = 12 /* same */
+        frame_type = 13 /* same */
+        frame_type = 248 /* chop */
+          offset_delta = 2
+
+  public void queueWrite(com.zaxxer.nuprocess.linux.LinuxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=6, args_size=2
+         0: aload_0
+         1: getfield      #24                 // Field shutdown:Z
+         4: ifeq          8
+         7: return
+         8: aload_1
+         9: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        12: invokevirtual #28                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+        15: istore_2
+        16: iload_2
+        17: iconst_m1
+        18: if_icmpne     29
+        21: aload_1
+        22: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        25: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+        28: return
+        29: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+        32: invokeinterface #37,  1           // InterfaceMethod java/util/concurrent/BlockingQueue.take:()Ljava/lang/Object;
+        37: checkcast     #18                 // class com/zaxxer/nuprocess/linux/EpollEvent
+        40: astore_3
+        41: aload_3
+        42: ldc           #48                 // int 1073750036
+        44: invokevirtual #39                 // Method com/zaxxer/nuprocess/linux/EpollEvent.setEvents:(I)V
+        47: aload_3
+        48: iload_2
+        49: invokevirtual #40                 // Method com/zaxxer/nuprocess/linux/EpollEvent.setFileDescriptor:(I)V
+        52: aload_0
+        53: getfield      #8                  // Field epoll:I
+        56: iconst_3
+        57: iload_2
+        58: aload_3
+        59: invokevirtual #41                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getPointer:()Lcom/sun/jna/Pointer;
+        62: invokestatic  #42                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+        65: istore        4
+        67: iload         4
+        69: iconst_m1
+        70: if_icmpne     102
+        73: aload_0
+        74: getfield      #8                  // Field epoll:I
+        77: iconst_2
+        78: iload_2
+        79: aload_3
+        80: invokevirtual #41                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getPointer:()Lcom/sun/jna/Pointer;
+        83: invokestatic  #42                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+        86: pop
+        87: aload_0
+        88: getfield      #8                  // Field epoll:I
+        91: iconst_1
+        92: iload_2
+        93: aload_3
+        94: invokevirtual #41                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getPointer:()Lcom/sun/jna/Pointer;
+        97: invokestatic  #42                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+       100: istore        4
+       102: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+       105: aload_3
+       106: invokeinterface #43,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+       111: iload         4
+       113: iconst_m1
+       114: if_icmpne     127
+       117: new           #9                  // class java/lang/RuntimeException
+       120: dup
+       121: ldc           #49                 // String Unable to register new event to epoll queue
+       123: invokespecial #17                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+       126: athrow
+       127: aload_1
+       128: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       131: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       134: goto          159
+       137: astore_2
+       138: new           #9                  // class java/lang/RuntimeException
+       141: dup
+       142: aload_2
+       143: invokespecial #46                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+       146: athrow
+       147: astore        5
+       149: aload_1
+       150: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       153: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       156: aload         5
+       158: athrow
+       159: return
+      Exception table:
+         from    to  target type
+             8    21   137   Class java/lang/InterruptedException
+            29   127   137   Class java/lang/InterruptedException
+             8    21   147   any
+            29   127   147   any
+           137   149   147   any
+      LineNumberTable:
+        line 154: 0
+        line 155: 7
+        line 159: 8
+        line 160: 16
+        line 181: 21
+        line 161: 28
+        line 163: 29
+        line 164: 41
+        line 165: 47
+        line 166: 52
+        line 167: 67
+        line 168: 73
+        line 169: 87
+        line 172: 102
+        line 173: 111
+        line 174: 117
+        line 181: 127
+        line 182: 134
+        line 177: 137
+        line 178: 138
+        line 181: 147
+        line 182: 156
+        line 183: 159
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           16     111     2 stdin   I
+           41      86     3 event   Lcom/zaxxer/nuprocess/linux/EpollEvent;
+           67      60     4    rc   I
+          138       9     2    ie   Ljava/lang/InterruptedException;
+            0     160     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            0     160     1 process   Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+      StackMapTable: number_of_entries = 7
+        frame_type = 8 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 20
+          locals = [ int ]
+        frame_type = 253 /* append */
+          offset_delta = 72
+          locals = [ class com/zaxxer/nuprocess/linux/EpollEvent, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 24
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+
+  public void run();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #50                 // Method com/zaxxer/nuprocess/internal/BaseEventProcessor.run:()V
+         4: aload_0
+         5: getfield      #3                  // Field process:Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+         8: ifnull        15
+        11: aload_0
+        12: invokespecial #51                 // Method waitForDeadPool:()V
+        15: return
+      LineNumberTable:
+        line 188: 0
+        line 190: 4
+        line 193: 11
+        line 195: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+      StackMapTable: number_of_entries = 1
+        frame_type = 15 /* same */
+
+  public void closeStdin(com.zaxxer.nuprocess.linux.LinuxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=2
+         0: aload_1
+         1: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+         4: invokevirtual #28                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+         7: istore_2
+         8: iload_2
+         9: iconst_m1
+        10: if_icmpeq     38
+        13: aload_0
+        14: getfield      #35                 // Field fildesToProcessMap:Ljava/util/Map;
+        17: iload_2
+        18: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        21: invokeinterface #52,  2           // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        26: pop
+        27: aload_0
+        28: getfield      #8                  // Field epoll:I
+        31: iconst_2
+        32: iload_2
+        33: aconst_null
+        34: invokestatic  #42                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+        37: pop
+        38: aload_1
+        39: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        42: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+        45: goto          58
+        48: astore_3
+        49: aload_1
+        50: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        53: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+        56: aload_3
+        57: athrow
+        58: return
+      Exception table:
+         from    to  target type
+             0    38    48   any
+      LineNumberTable:
+        line 201: 0
+        line 202: 8
+        line 203: 13
+        line 204: 27
+        line 207: 38
+        line 208: 45
+        line 207: 48
+        line 208: 56
+        line 209: 58
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            8      30     2 stdin   I
+            0      59     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            0      59     1 process   Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+      StackMapTable: number_of_entries = 3
+        frame_type = 38 /* same */
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 9 /* same */
+
+  public boolean process();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=11, args_size=1
+         0: ldc           #26                 // int -2147483648
+         2: istore_1
+         3: ldc           #26                 // int -2147483648
+         5: istore_2
+         6: ldc           #26                 // int -2147483648
+         8: istore_3
+         9: aconst_null
+        10: astore        4
+        12: aload_0
+        13: getfield      #8                  // Field epoll:I
+        16: aload_0
+        17: getfield      #20                 // Field triggeredEvent:Lcom/zaxxer/nuprocess/linux/EpollEvent;
+        20: invokevirtual #41                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getPointer:()Lcom/sun/jna/Pointer;
+        23: iconst_1
+        24: getstatic     #53                 // Field DEADPOOL_POLL_INTERVAL:I
+        27: invokestatic  #54                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_wait:(ILcom/sun/jna/Pointer;II)I
+        30: istore        5
+        32: iload         5
+        34: iconst_m1
+        35: if_icmpne     48
+        38: new           #9                  // class java/lang/RuntimeException
+        41: dup
+        42: ldc           #55                 // String Error waiting for epoll
+        44: invokespecial #17                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+        47: athrow
+        48: iload         5
+        50: ifne          110
+        53: iconst_0
+        54: istore        6
+        56: aload         4
+        58: ifnull        103
+        61: iload_1
+        62: ldc           #26                 // int -2147483648
+        64: if_icmpeq     75
+        67: aload         4
+        69: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        72: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+        75: iload_2
+        76: ldc           #26                 // int -2147483648
+        78: if_icmpeq     89
+        81: aload         4
+        83: invokevirtual #29                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        86: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+        89: iload_3
+        90: ldc           #26                 // int -2147483648
+        92: if_icmpeq     103
+        95: aload         4
+        97: invokevirtual #30                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       100: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       103: aload_0
+       104: invokespecial #56                 // Method checkDeadPool:()V
+       107: iload         6
+       109: ireturn
+       110: aload_0
+       111: getfield      #20                 // Field triggeredEvent:Lcom/zaxxer/nuprocess/linux/EpollEvent;
+       114: astore        6
+       116: aload         6
+       118: invokevirtual #57                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getFileDescriptor:()I
+       121: istore        7
+       123: aload         6
+       125: invokevirtual #58                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getEvents:()I
+       128: istore        8
+       130: aload_0
+       131: getfield      #35                 // Field fildesToProcessMap:Ljava/util/Map;
+       134: iload         7
+       136: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       139: invokeinterface #59,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       144: checkcast     #60                 // class com/zaxxer/nuprocess/linux/LinuxProcess
+       147: astore        4
+       149: aload         4
+       151: ifnonnull     211
+       154: iconst_1
+       155: istore        9
+       157: aload         4
+       159: ifnull        204
+       162: iload_1
+       163: ldc           #26                 // int -2147483648
+       165: if_icmpeq     176
+       168: aload         4
+       170: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       173: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       176: iload_2
+       177: ldc           #26                 // int -2147483648
+       179: if_icmpeq     190
+       182: aload         4
+       184: invokevirtual #29                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       187: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       190: iload_3
+       191: ldc           #26                 // int -2147483648
+       193: if_icmpeq     204
+       196: aload         4
+       198: invokevirtual #30                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       201: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       204: aload_0
+       205: invokespecial #56                 // Method checkDeadPool:()V
+       208: iload         9
+       210: ireturn
+       211: aload         4
+       213: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       216: invokevirtual #28                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+       219: istore_1
+       220: aload         4
+       222: invokevirtual #29                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       225: invokevirtual #28                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+       228: istore_2
+       229: aload         4
+       231: invokevirtual #30                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       234: invokevirtual #28                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+       237: istore_3
+       238: iload         8
+       240: iconst_1
+       241: iand
+       242: ifeq          279
+       245: iload         7
+       247: iload_2
+       248: if_icmpne     262
+       251: aload         4
+       253: ldc           #62                 // int 65536
+       255: iload_2
+       256: invokevirtual #63                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.readStdout:(II)V
+       259: goto          325
+       262: iload         7
+       264: iload_3
+       265: if_icmpne     325
+       268: aload         4
+       270: ldc           #62                 // int 65536
+       272: iload_3
+       273: invokevirtual #64                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.readStderr:(II)V
+       276: goto          325
+       279: iload         8
+       281: iconst_4
+       282: iand
+       283: ifeq          325
+       286: iload_1
+       287: iconst_m1
+       288: if_icmpeq     325
+       291: aload         4
+       293: ldc           #62                 // int 65536
+       295: iload_1
+       296: invokevirtual #65                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.writeStdin:(II)Z
+       299: ifeq          325
+       302: aload         6
+       304: ldc           #48                 // int 1073750036
+       306: invokevirtual #39                 // Method com/zaxxer/nuprocess/linux/EpollEvent.setEvents:(I)V
+       309: aload_0
+       310: getfield      #8                  // Field epoll:I
+       313: iconst_3
+       314: iload         7
+       316: aload         6
+       318: invokevirtual #41                 // Method com/zaxxer/nuprocess/linux/EpollEvent.getPointer:()Lcom/sun/jna/Pointer;
+       321: invokestatic  #42                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+       324: pop
+       325: iload         8
+       327: bipush        16
+       329: iand
+       330: ifne          350
+       333: iload         8
+       335: sipush        8192
+       338: iand
+       339: ifne          350
+       342: iload         8
+       344: bipush        8
+       346: iand
+       347: ifeq          406
+       350: aload_0
+       351: getfield      #8                  // Field epoll:I
+       354: iconst_2
+       355: iload         7
+       357: aconst_null
+       358: invokestatic  #42                 // Method com/zaxxer/nuprocess/linux/LibEpoll.epoll_ctl:(IIILcom/sun/jna/Pointer;)I
+       361: pop
+       362: iload         7
+       364: iload_2
+       365: if_icmpne     378
+       368: aload         4
+       370: iconst_m1
+       371: iload_2
+       372: invokevirtual #63                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.readStdout:(II)V
+       375: goto          406
+       378: iload         7
+       380: iload_3
+       381: if_icmpne     394
+       384: aload         4
+       386: iconst_m1
+       387: iload_3
+       388: invokevirtual #64                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.readStderr:(II)V
+       391: goto          406
+       394: iload         7
+       396: iload_1
+       397: if_icmpne     406
+       400: aload         4
+       402: iconst_1
+       403: invokevirtual #66                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.closeStdin:(Z)V
+       406: aload         4
+       408: invokevirtual #67                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.isSoftExit:()Z
+       411: ifeq          423
+       414: aload_0
+       415: aload         4
+       417: iload_1
+       418: iload_2
+       419: iload_3
+       420: invokespecial #68                 // Method cleanupProcess:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;III)V
+       423: iconst_1
+       424: istore        9
+       426: aload         4
+       428: ifnull        473
+       431: iload_1
+       432: ldc           #26                 // int -2147483648
+       434: if_icmpeq     445
+       437: aload         4
+       439: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       442: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       445: iload_2
+       446: ldc           #26                 // int -2147483648
+       448: if_icmpeq     459
+       451: aload         4
+       453: invokevirtual #29                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       456: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       459: iload_3
+       460: ldc           #26                 // int -2147483648
+       462: if_icmpeq     473
+       465: aload         4
+       467: invokevirtual #30                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       470: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       473: aload_0
+       474: invokespecial #56                 // Method checkDeadPool:()V
+       477: iload         9
+       479: ireturn
+       480: astore        10
+       482: aload         4
+       484: ifnull        529
+       487: iload_1
+       488: ldc           #26                 // int -2147483648
+       490: if_icmpeq     501
+       493: aload         4
+       495: invokevirtual #27                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       498: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       501: iload_2
+       502: ldc           #26                 // int -2147483648
+       504: if_icmpeq     515
+       507: aload         4
+       509: invokevirtual #29                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       512: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       515: iload_3
+       516: ldc           #26                 // int -2147483648
+       518: if_icmpeq     529
+       521: aload         4
+       523: invokevirtual #30                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       526: invokevirtual #47                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       529: aload_0
+       530: invokespecial #56                 // Method checkDeadPool:()V
+       533: aload         10
+       535: athrow
+      Exception table:
+         from    to  target type
+            12    56   480   any
+           110   157   480   any
+           211   426   480   any
+           480   482   480   any
+      LineNumberTable:
+        line 214: 0
+        line 215: 3
+        line 216: 6
+        line 217: 9
+        line 219: 12
+        line 220: 32
+        line 221: 38
+        line 224: 48
+        line 225: 53
+        line 278: 56
+        line 279: 61
+        line 280: 67
+        line 282: 75
+        line 283: 81
+        line 285: 89
+        line 286: 95
+        line 289: 103
+        line 225: 107
+        line 228: 110
+        line 229: 116
+        line 230: 123
+        line 232: 130
+        line 233: 149
+        line 234: 154
+        line 278: 157
+        line 279: 162
+        line 280: 168
+        line 282: 176
+        line 283: 182
+        line 285: 190
+        line 286: 196
+        line 289: 204
+        line 234: 208
+        line 237: 211
+        line 238: 220
+        line 239: 229
+        line 241: 238
+        line 242: 245
+        line 243: 251
+        line 245: 262
+        line 246: 268
+        line 249: 279
+        line 250: 286
+        line 251: 291
+        line 252: 302
+        line 253: 309
+        line 258: 325
+        line 259: 350
+        line 260: 362
+        line 261: 368
+        line 263: 378
+        line 264: 384
+        line 266: 394
+        line 267: 400
+        line 271: 406
+        line 272: 414
+        line 275: 423
+        line 278: 426
+        line 279: 431
+        line 280: 437
+        line 282: 445
+        line 283: 451
+        line 285: 459
+        line 286: 465
+        line 289: 473
+        line 275: 477
+        line 278: 480
+        line 279: 487
+        line 280: 493
+        line 282: 501
+        line 283: 507
+        line 285: 515
+        line 286: 521
+        line 289: 529
+        line 290: 533
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           32     448     5   nev   I
+          116     364     6 epEvent   Lcom/zaxxer/nuprocess/linux/EpollEvent;
+          123     357     7 ident   I
+          130     350     8 events   I
+            0     536     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            3     533     1 stdinFd   I
+            6     530     2 stdoutFd   I
+            9     527     3 stderrFd   I
+           12     524     4 linuxProcess   Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+      StackMapTable: number_of_entries = 24
+        frame_type = 255 /* full_frame */
+          offset_delta = 48
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, int, int, int, class com/zaxxer/nuprocess/linux/LinuxProcess, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 26
+          locals = [ int ]
+        frame_type = 13 /* same */
+        frame_type = 13 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 6
+        frame_type = 255 /* full_frame */
+          offset_delta = 65
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, int, int, int, class com/zaxxer/nuprocess/linux/LinuxProcess, int, class com/zaxxer/nuprocess/linux/EpollEvent, int, int, int ]
+          stack = []
+        frame_type = 13 /* same */
+        frame_type = 13 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 6
+        frame_type = 50 /* same */
+        frame_type = 16 /* same */
+        frame_type = 45 /* same */
+        frame_type = 24 /* same */
+        frame_type = 27 /* same */
+        frame_type = 15 /* same */
+        frame_type = 11 /* same */
+        frame_type = 16 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ int ]
+        frame_type = 13 /* same */
+        frame_type = 13 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, int, int, int, class com/zaxxer/nuprocess/linux/LinuxProcess ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 20
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, int, int, int, class com/zaxxer/nuprocess/linux/LinuxProcess, top, top, top, top, top, class java/lang/Throwable ]
+          stack = []
+        frame_type = 13 /* same */
+        frame_type = 13 /* same */
+
+  protected void close();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #8                  // Field epoll:I
+         4: invokestatic  #69                 // Method com/zaxxer/nuprocess/internal/LibC.close:(I)I
+         7: pop
+         8: return
+      LineNumberTable:
+        line 301: 0
+        line 302: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+
+  private void cleanupProcess(com.zaxxer.nuprocess.linux.LinuxProcess, int, int, int);
+    descriptor: (Lcom/zaxxer/nuprocess/linux/LinuxProcess;III)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=7, args_size=5
+         0: aload_0
+         1: getfield      #31                 // Field pidToProcessMap:Ljava/util/Map;
+         4: aload_1
+         5: invokevirtual #32                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getPid:()I
+         8: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        11: invokeinterface #52,  2           // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        16: pop
+        17: aload_0
+        18: getfield      #35                 // Field fildesToProcessMap:Ljava/util/Map;
+        21: iload_2
+        22: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        25: invokeinterface #52,  2           // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        30: pop
+        31: aload_0
+        32: getfield      #35                 // Field fildesToProcessMap:Ljava/util/Map;
+        35: iload_3
+        36: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        39: invokeinterface #52,  2           // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        44: pop
+        45: aload_0
+        46: getfield      #35                 // Field fildesToProcessMap:Ljava/util/Map;
+        49: iload         4
+        51: invokestatic  #33                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        54: invokeinterface #52,  2           // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        59: pop
+        60: aload_1
+        61: getfield      #70                 // Field com/zaxxer/nuprocess/linux/LinuxProcess.cleanlyExitedBeforeProcess:Ljava/util/concurrent/atomic/AtomicBoolean;
+        64: invokevirtual #71                 // Method java/util/concurrent/atomic/AtomicBoolean.get:()Z
+        67: ifeq          76
+        70: aload_1
+        71: iconst_0
+        72: invokevirtual #72                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.onExit:(I)V
+        75: return
+        76: new           #73                 // class com/sun/jna/ptr/IntByReference
+        79: dup
+        80: invokespecial #74                 // Method com/sun/jna/ptr/IntByReference."<init>":()V
+        83: astore        5
+        85: aload_1
+        86: invokevirtual #32                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getPid:()I
+        89: aload         5
+        91: iconst_1
+        92: invokestatic  #76                 // Method com/zaxxer/nuprocess/internal/LibC.waitpid:(ILcom/sun/jna/ptr/IntByReference;I)I
+        95: istore        6
+        97: iload         6
+        99: ifne          116
+       102: aload_0
+       103: getfield      #23                 // Field deadPool:Ljava/util/List;
+       106: aload_1
+       107: invokeinterface #77,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       112: pop
+       113: goto          153
+       116: iload         6
+       118: ifge          143
+       121: aload_1
+       122: invokestatic  #14                 // Method com/sun/jna/Native.getLastError:()I
+       125: bipush        10
+       127: if_icmpne     135
+       130: ldc           #78                 // int 2147483647
+       132: goto          137
+       135: ldc           #26                 // int -2147483648
+       137: invokevirtual #72                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.onExit:(I)V
+       140: goto          153
+       143: aload_0
+       144: aload_1
+       145: aload         5
+       147: invokevirtual #79                 // Method com/sun/jna/ptr/IntByReference.getValue:()I
+       150: invokespecial #80                 // Method handleExit:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;I)V
+       153: return
+      LineNumberTable:
+        line 310: 0
+        line 311: 17
+        line 312: 31
+        line 313: 45
+        line 319: 60
+        line 320: 70
+        line 321: 75
+        line 324: 76
+        line 325: 85
+        line 327: 97
+        line 328: 102
+        line 330: 116
+        line 331: 121
+        line 334: 143
+        line 336: 153
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     154     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            0     154     1 linuxProcess   Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+            0     154     2 stdinFd   I
+            0     154     3 stdoutFd   I
+            0     154     4 stderrFd   I
+           85      69     5   ret   Lcom/sun/jna/ptr/IntByReference;
+           97      57     6    rc   I
+      StackMapTable: number_of_entries = 6
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 76
+        frame_type = 253 /* append */
+          offset_delta = 39
+          locals = [ class com/sun/jna/ptr/IntByReference, int ]
+        frame_type = 82 /* same_locals_1_stack_item */
+          stack = [ class com/zaxxer/nuprocess/linux/LinuxProcess ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, class com/zaxxer/nuprocess/linux/LinuxProcess, int, int, int, class com/sun/jna/ptr/IntByReference, int ]
+          stack = [ class com/zaxxer/nuprocess/linux/LinuxProcess, int ]
+        frame_type = 5 /* same */
+        frame_type = 9 /* same */
+
+  private void checkDeadPool();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=5, args_size=1
+         0: aload_0
+         1: getfield      #23                 // Field deadPool:Ljava/util/List;
+         4: invokeinterface #81,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+         9: ifeq          13
+        12: return
+        13: new           #73                 // class com/sun/jna/ptr/IntByReference
+        16: dup
+        17: invokespecial #74                 // Method com/sun/jna/ptr/IntByReference."<init>":()V
+        20: astore_1
+        21: aload_0
+        22: getfield      #23                 // Field deadPool:Ljava/util/List;
+        25: invokeinterface #82,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        30: astore_2
+        31: aload_2
+        32: invokeinterface #83,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        37: ifeq          114
+        40: aload_2
+        41: invokeinterface #84,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        46: checkcast     #60                 // class com/zaxxer/nuprocess/linux/LinuxProcess
+        49: astore_3
+        50: aload_3
+        51: invokevirtual #32                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.getPid:()I
+        54: aload_1
+        55: iconst_1
+        56: invokestatic  #76                 // Method com/zaxxer/nuprocess/internal/LibC.waitpid:(ILcom/sun/jna/ptr/IntByReference;I)I
+        59: istore        4
+        61: iload         4
+        63: ifne          69
+        66: goto          31
+        69: aload_2
+        70: invokeinterface #85,  1           // InterfaceMethod java/util/Iterator.remove:()V
+        75: iload         4
+        77: ifge          102
+        80: aload_3
+        81: invokestatic  #14                 // Method com/sun/jna/Native.getLastError:()I
+        84: bipush        10
+        86: if_icmpne     94
+        89: ldc           #78                 // int 2147483647
+        91: goto          96
+        94: ldc           #26                 // int -2147483648
+        96: invokevirtual #72                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.onExit:(I)V
+        99: goto          31
+       102: aload_0
+       103: aload_3
+       104: aload_1
+       105: invokevirtual #79                 // Method com/sun/jna/ptr/IntByReference.getValue:()I
+       108: invokespecial #80                 // Method handleExit:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;I)V
+       111: goto          31
+       114: return
+      LineNumberTable:
+        line 340: 0
+        line 341: 12
+        line 344: 13
+        line 345: 21
+        line 346: 31
+        line 347: 40
+        line 348: 50
+        line 349: 61
+        line 350: 66
+        line 353: 69
+        line 354: 75
+        line 355: 80
+        line 356: 99
+        line 359: 102
+        line 360: 111
+        line 361: 114
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           50      61     3 process   Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+           61      50     4    rc   I
+            0     115     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+           21      94     1   ret   Lcom/sun/jna/ptr/IntByReference;
+           31      84     2 iterator   Ljava/util/Iterator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           31      84     2 iterator   Ljava/util/Iterator<Lcom/zaxxer/nuprocess/linux/LinuxProcess;>;
+      StackMapTable: number_of_entries = 7
+        frame_type = 13 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 17
+          locals = [ class com/sun/jna/ptr/IntByReference, class java/util/Iterator ]
+        frame_type = 253 /* append */
+          offset_delta = 37
+          locals = [ class com/zaxxer/nuprocess/linux/LinuxProcess, int ]
+        frame_type = 88 /* same_locals_1_stack_item */
+          stack = [ class com/zaxxer/nuprocess/linux/LinuxProcess ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class com/zaxxer/nuprocess/linux/ProcessEpoll, class com/sun/jna/ptr/IntByReference, class java/util/Iterator, class com/zaxxer/nuprocess/linux/LinuxProcess, int ]
+          stack = [ class com/zaxxer/nuprocess/linux/LinuxProcess, int ]
+        frame_type = 5 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 11
+
+  private void handleExit(com.zaxxer.nuprocess.linux.LinuxProcess, int);
+    descriptor: (Lcom/zaxxer/nuprocess/linux/LinuxProcess;I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=3, args_size=3
+         0: iload_2
+         1: invokestatic  #86                 // Method com/zaxxer/nuprocess/internal/LibC.WIFEXITED:(I)Z
+         4: ifeq          35
+         7: iload_2
+         8: invokestatic  #87                 // Method com/zaxxer/nuprocess/internal/LibC.WEXITSTATUS:(I)I
+        11: istore_2
+        12: iload_2
+        13: bipush        127
+        15: if_icmpne     27
+        18: aload_1
+        19: ldc           #26                 // int -2147483648
+        21: invokevirtual #72                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.onExit:(I)V
+        24: goto          59
+        27: aload_1
+        28: iload_2
+        29: invokevirtual #72                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.onExit:(I)V
+        32: goto          59
+        35: iload_2
+        36: invokestatic  #88                 // Method com/zaxxer/nuprocess/internal/LibC.WIFSIGNALED:(I)Z
+        39: ifeq          53
+        42: aload_1
+        43: iload_2
+        44: invokestatic  #89                 // Method com/zaxxer/nuprocess/internal/LibC.WTERMSIG:(I)I
+        47: invokevirtual #72                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.onExit:(I)V
+        50: goto          59
+        53: aload_1
+        54: ldc           #26                 // int -2147483648
+        56: invokevirtual #72                 // Method com/zaxxer/nuprocess/linux/LinuxProcess.onExit:(I)V
+        59: return
+      LineNumberTable:
+        line 365: 0
+        line 366: 7
+        line 367: 12
+        line 368: 18
+        line 371: 27
+        line 374: 35
+        line 375: 42
+        line 378: 53
+        line 380: 59
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      60     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            0      60     1 process   Lcom/zaxxer/nuprocess/linux/LinuxProcess;
+            0      60     2 status   I
+      StackMapTable: number_of_entries = 4
+        frame_type = 27 /* same */
+        frame_type = 7 /* same */
+        frame_type = 17 /* same */
+        frame_type = 5 /* same */
+
+  private void waitForDeadPool();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=6, args_size=1
+         0: lconst_0
+         1: lstore_1
+         2: invokestatic  #90                 // Method java/lang/System.currentTimeMillis:()J
+         5: getstatic     #91                 // Field LINGER_TIME_MS:I
+         8: i2l
+         9: ladd
+        10: lstore_3
+        11: aload_0
+        12: invokespecial #56                 // Method checkDeadPool:()V
+        15: aload_0
+        16: getfield      #23                 // Field deadPool:Ljava/util/List;
+        19: invokeinterface #81,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+        24: ifne          73
+        27: invokestatic  #90                 // Method java/lang/System.currentTimeMillis:()J
+        30: lload_3
+        31: lcmp
+        32: ifle          38
+        35: goto          73
+        38: lload_1
+        39: lconst_0
+        40: lcmp
+        41: ifle          62
+        44: lload_1
+        45: invokestatic  #92                 // Method java/lang/Thread.sleep:(J)V
+        48: goto          62
+        51: astore        5
+        53: invokestatic  #93                 // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+        56: invokevirtual #94                 // Method java/lang/Thread.interrupt:()V
+        59: goto          73
+        62: lload_1
+        63: ldc2_w        #95                 // long 2l
+        66: lmul
+        67: lconst_1
+        68: ladd
+        69: lstore_1
+        70: goto          11
+        73: return
+      Exception table:
+         from    to  target type
+            44    48    51   Class java/lang/InterruptedException
+      LineNumberTable:
+        line 402: 0
+        line 403: 2
+        line 405: 11
+        line 406: 15
+        line 407: 35
+        line 410: 38
+        line 412: 44
+        line 417: 48
+        line 414: 51
+        line 415: 53
+        line 416: 59
+        line 420: 62
+        line 422: 73
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           53       9     5     e   Ljava/lang/InterruptedException;
+            0      74     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+            2      72     1 sleepInterval   J
+           11      63     3 timeout   J
+      StackMapTable: number_of_entries = 5
+        frame_type = 253 /* append */
+          offset_delta = 11
+          locals = [ long, long ]
+        frame_type = 26 /* same */
+        frame_type = 76 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 10 /* same */
+        frame_type = 10 /* same */
+
+  public void closeStdin(com.zaxxer.nuprocess.internal.BasePosixProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/internal/BasePosixProcess;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #60                 // class com/zaxxer/nuprocess/linux/LinuxProcess
+         5: invokevirtual #97                 // Method closeStdin:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+         8: return
+      LineNumberTable:
+        line 39: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+
+  public void queueWrite(com.zaxxer.nuprocess.internal.BasePosixProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/internal/BasePosixProcess;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #60                 // class com/zaxxer/nuprocess/linux/LinuxProcess
+         5: invokevirtual #98                 // Method queueWrite:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+         8: return
+      LineNumberTable:
+        line 39: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+
+  public void registerProcess(com.zaxxer.nuprocess.internal.BasePosixProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/internal/BasePosixProcess;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #60                 // class com/zaxxer/nuprocess/linux/LinuxProcess
+         5: invokevirtual #4                  // Method registerProcess:(Lcom/zaxxer/nuprocess/linux/LinuxProcess;)V
+         8: return
+      LineNumberTable:
+        line 39: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/zaxxer/nuprocess/linux/ProcessEpoll;
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=2, args_size=0
+         0: new           #99                 // class java/util/concurrent/ArrayBlockingQueue
+         3: dup
+         4: bipush        64
+         6: invokespecial #101                // Method java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+         9: putstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+        12: iconst_0
+        13: istore_0
+        14: iload_0
+        15: bipush        64
+        17: if_icmpge     44
+        20: new           #18                 // class com/zaxxer/nuprocess/linux/EpollEvent
+        23: dup
+        24: invokespecial #19                 // Method com/zaxxer/nuprocess/linux/EpollEvent."<init>":()V
+        27: astore_1
+        28: getstatic     #36                 // Field eventPool:Ljava/util/concurrent/BlockingQueue;
+        31: aload_1
+        32: invokeinterface #102,  2          // InterfaceMethod java/util/concurrent/BlockingQueue.add:(Ljava/lang/Object;)Z
+        37: pop
+        38: iinc          0, 1
+        41: goto          14
+        44: return
+      LineNumberTable:
+        line 51: 0
+        line 52: 12
+        line 53: 20
+        line 54: 28
+        line 52: 38
+        line 56: 44
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           28      10     1 event   Lcom/zaxxer/nuprocess/linux/EpollEvent;
+           14      30     0     i   I
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 14
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 29
+}
+Signature: #172                         // Lcom/zaxxer/nuprocess/internal/BaseEventProcessor<Lcom/zaxxer/nuprocess/linux/LinuxProcess;>;
+SourceFile: "ProcessEpoll.java"

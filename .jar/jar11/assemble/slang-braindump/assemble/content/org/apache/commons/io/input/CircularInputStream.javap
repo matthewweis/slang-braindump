@@ -1,0 +1,246 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/apache/commons/io/input/CircularInputStream.class
+  Last modified May 29, 2022; size 1291 bytes
+  SHA-256 checksum 4d71d88a89715ee84e4cf0df58f4bc46d2b40929bd35d817a76624e6fc5c920d
+  Compiled from "CircularInputStream.java"
+public class org.apache.commons.io.input.CircularInputStream extends java.io.InputStream
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #14                         // org/apache/commons/io/input/CircularInputStream
+  super_class: #15                        // java/io/InputStream
+  interfaces: 0, fields: 4, methods: 3, attributes: 1
+Constant pool:
+   #1 = String             #30            // repeatContent
+   #2 = Methodref          #42.#43        // java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+   #3 = Class              #44            // org/apache/commons/io/IOUtils
+   #4 = Class              #45            // java/lang/IllegalArgumentException
+   #5 = String             #46            // repeatContent contains the end-of-stream marker -1
+   #6 = Methodref          #4.#47         // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+   #7 = Methodref          #15.#48        // java/io/InputStream."<init>":()V
+   #8 = Fieldref           #14.#49        // org/apache/commons/io/input/CircularInputStream.position:I
+   #9 = Methodref          #14.#50        // org/apache/commons/io/input/CircularInputStream.validate:([B)[B
+  #10 = Fieldref           #14.#51        // org/apache/commons/io/input/CircularInputStream.repeatedContent:[B
+  #11 = String             #52            // repeatContent is empty.
+  #12 = Fieldref           #14.#53        // org/apache/commons/io/input/CircularInputStream.targetByteCount:J
+  #13 = Fieldref           #14.#54        // org/apache/commons/io/input/CircularInputStream.byteCount:J
+  #14 = Class              #55            // org/apache/commons/io/input/CircularInputStream
+  #15 = Class              #56            // java/io/InputStream
+  #16 = Utf8               byteCount
+  #17 = Utf8               J
+  #18 = Utf8               position
+  #19 = Utf8               I
+  #20 = Utf8               repeatedContent
+  #21 = Utf8               [B
+  #22 = Utf8               targetByteCount
+  #23 = Utf8               validate
+  #24 = Utf8               ([B)[B
+  #25 = Utf8               Code
+  #26 = Utf8               LineNumberTable
+  #27 = Utf8               LocalVariableTable
+  #28 = Utf8               b
+  #29 = Utf8               B
+  #30 = Utf8               repeatContent
+  #31 = Utf8               StackMapTable
+  #32 = Class              #21            // "[B"
+  #33 = Utf8               <init>
+  #34 = Utf8               ([BJ)V
+  #35 = Utf8               this
+  #36 = Utf8               Lorg/apache/commons/io/input/CircularInputStream;
+  #37 = Class              #55            // org/apache/commons/io/input/CircularInputStream
+  #38 = Utf8               read
+  #39 = Utf8               ()I
+  #40 = Utf8               SourceFile
+  #41 = Utf8               CircularInputStream.java
+  #42 = Class              #57            // java/util/Objects
+  #43 = NameAndType        #58:#59        // requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  #44 = Utf8               org/apache/commons/io/IOUtils
+  #45 = Utf8               java/lang/IllegalArgumentException
+  #46 = Utf8               repeatContent contains the end-of-stream marker -1
+  #47 = NameAndType        #33:#60        // "<init>":(Ljava/lang/String;)V
+  #48 = NameAndType        #33:#61        // "<init>":()V
+  #49 = NameAndType        #18:#19        // position:I
+  #50 = NameAndType        #23:#24        // validate:([B)[B
+  #51 = NameAndType        #20:#21        // repeatedContent:[B
+  #52 = Utf8               repeatContent is empty.
+  #53 = NameAndType        #22:#17        // targetByteCount:J
+  #54 = NameAndType        #16:#17        // byteCount:J
+  #55 = Utf8               org/apache/commons/io/input/CircularInputStream
+  #56 = Utf8               java/io/InputStream
+  #57 = Utf8               java/util/Objects
+  #58 = Utf8               requireNonNull
+  #59 = Utf8               (Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  #60 = Utf8               (Ljava/lang/String;)V
+  #61 = Utf8               ()V
+{
+  private long byteCount;
+    descriptor: J
+    flags: (0x0002) ACC_PRIVATE
+
+  private int position;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private final byte[] repeatedContent;
+    descriptor: [B
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final long targetByteCount;
+    descriptor: J
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private static byte[] validate(byte[]);
+    descriptor: ([B)[B
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=5, args_size=1
+         0: aload_0
+         1: ldc           #1                  // String repeatContent
+         3: invokestatic  #2                  // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+         6: pop
+         7: aload_0
+         8: astore_1
+         9: aload_1
+        10: arraylength
+        11: istore_2
+        12: iconst_0
+        13: istore_3
+        14: iload_3
+        15: iload_2
+        16: if_icmpge     46
+        19: aload_1
+        20: iload_3
+        21: baload
+        22: istore        4
+        24: iload         4
+        26: iconst_m1
+        27: if_icmpne     40
+        30: new           #4                  // class java/lang/IllegalArgumentException
+        33: dup
+        34: ldc           #5                  // String repeatContent contains the end-of-stream marker -1
+        36: invokespecial #6                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        39: athrow
+        40: iinc          3, 1
+        43: goto          14
+        46: aload_0
+        47: areturn
+      LineNumberTable:
+        line 45: 0
+        line 46: 7
+        line 47: 24
+        line 48: 30
+        line 46: 40
+        line 51: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           24      16     4     b   B
+            0      48     0 repeatContent   [B
+      StackMapTable: number_of_entries = 3
+        frame_type = 254 /* append */
+          offset_delta = 14
+          locals = [ class "[B", int, int ]
+        frame_type = 25 /* same */
+        frame_type = 248 /* chop */
+          offset_delta = 5
+
+  public org.apache.commons.io.input.CircularInputStream(byte[], long);
+    descriptor: ([BJ)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=3
+         0: aload_0
+         1: invokespecial #7                  // Method java/io/InputStream."<init>":()V
+         4: aload_0
+         5: iconst_m1
+         6: putfield      #8                  // Field position:I
+         9: aload_0
+        10: aload_1
+        11: invokestatic  #9                  // Method validate:([B)[B
+        14: putfield      #10                 // Field repeatedContent:[B
+        17: aload_1
+        18: arraylength
+        19: ifne          32
+        22: new           #4                  // class java/lang/IllegalArgumentException
+        25: dup
+        26: ldc           #11                 // String repeatContent is empty.
+        28: invokespecial #6                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        31: athrow
+        32: aload_0
+        33: lload_2
+        34: putfield      #12                 // Field targetByteCount:J
+        37: return
+      LineNumberTable:
+        line 65: 0
+        line 55: 4
+        line 66: 9
+        line 67: 17
+        line 68: 22
+        line 70: 32
+        line 71: 37
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      38     0  this   Lorg/apache/commons/io/input/CircularInputStream;
+            0      38     1 repeatContent   [B
+            0      38     2 targetByteCount   J
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 32
+          locals = [ class org/apache/commons/io/input/CircularInputStream, class "[B", long ]
+          stack = []
+
+  public int read();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #12                 // Field targetByteCount:J
+         4: lconst_0
+         5: lcmp
+         6: iflt          33
+         9: aload_0
+        10: getfield      #13                 // Field byteCount:J
+        13: aload_0
+        14: getfield      #12                 // Field targetByteCount:J
+        17: lcmp
+        18: ifne          23
+        21: iconst_m1
+        22: ireturn
+        23: aload_0
+        24: dup
+        25: getfield      #13                 // Field byteCount:J
+        28: lconst_1
+        29: ladd
+        30: putfield      #13                 // Field byteCount:J
+        33: aload_0
+        34: aload_0
+        35: getfield      #8                  // Field position:I
+        38: iconst_1
+        39: iadd
+        40: aload_0
+        41: getfield      #10                 // Field repeatedContent:[B
+        44: arraylength
+        45: irem
+        46: putfield      #8                  // Field position:I
+        49: aload_0
+        50: getfield      #10                 // Field repeatedContent:[B
+        53: aload_0
+        54: getfield      #8                  // Field position:I
+        57: baload
+        58: sipush        255
+        61: iand
+        62: ireturn
+      LineNumberTable:
+        line 75: 0
+        line 76: 9
+        line 77: 21
+        line 79: 23
+        line 81: 33
+        line 82: 49
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      63     0  this   Lorg/apache/commons/io/input/CircularInputStream;
+      StackMapTable: number_of_entries = 2
+        frame_type = 23 /* same */
+        frame_type = 9 /* same */
+}
+SourceFile: "CircularInputStream.java"

@@ -1,0 +1,2094 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/scala/collection/parallel/mutable/ParTrieMapSplitter.class
+  Last modified May 29, 2022; size 24558 bytes
+  SHA-256 checksum e3e17ac5515de536d68fb72551bb4b487701472d166570ad1dda0fcd5ccff651
+  Compiled from "ParTrieMap.scala"
+public class scala.collection.parallel.mutable.ParTrieMapSplitter<K extends java.lang.Object, V extends java.lang.Object> extends scala.collection.concurrent.TrieMapIterator<K, V> implements scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // scala/collection/parallel/mutable/ParTrieMapSplitter
+  super_class: #5                         // scala/collection/concurrent/TrieMapIterator
+  interfaces: 1, fields: 5, methods: 71, attributes: 6
+Constant pool:
+    #1 = Utf8               scala/collection/parallel/mutable/ParTrieMapSplitter
+    #2 = Class              #1            // scala/collection/parallel/mutable/ParTrieMapSplitter
+    #3 = Utf8               <K:Ljava/lang/Object;V:Ljava/lang/Object;>Lscala/collection/concurrent/TrieMapIterator<TK;TV;>;Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;
+    #4 = Utf8               scala/collection/concurrent/TrieMapIterator
+    #5 = Class              #4            // scala/collection/concurrent/TrieMapIterator
+    #6 = Utf8               scala/collection/parallel/IterableSplitter
+    #7 = Class              #6            // scala/collection/parallel/IterableSplitter
+    #8 = Utf8               ParTrieMap.scala
+    #9 = Utf8               Lscala/reflect/ScalaSignature;
+   #10 = Utf8               bytes
+   #11 = Utf8               \u0006\u0005m4Q\u0001E\t\u0001+eA\u0001\u0002\u000f\u0001\u0003\u0002\u0003\u0006I!\u000f\u0005\ty\u0001\u0011\t\u0011)A\u0005{!A\u0001\t\u0001B\u0001B\u0003%\u0011\tC\u0003E\u0001\u0011\u0005Q\t\u0003\u0005L\u0001!\u0015\r\u0011\"\u0001M\u0011\u001di\u0005\u00011A\u0005\u00021CqA\u0014\u0001A\u0002\u0013\u0005q\n\u0003\u0004V\u0001\u0001\u0006K!\u000f\u0005\u0006-\u0002!\tf\u0016\u0005\u0006=\u0002!\te\u0018\u0005\u0006W\u0002!\t\u0001\u001c\u0005\u0006[\u0002!\tE\u001c\u0005\u0006_\u0002!\t\u0001\u001d\u0005\u0006q\u0002!\t%\u001f\u0005\u0006u\u0002!\t\u0001\u0014\u0002\u0013!\u0006\u0014HK]5f\u001b\u0006\u00048\u000b\u001d7jiR,\'O\u0003\u0002\u0013\'\u00059Q.\u001e;bE2,\'B\u0001\u000b\u0016\u0003!\u0001\u0018M]1mY\u0016d\'B\u0001\f\u0018\u0003)\u0019w\u000e\u001c7fGRLwN\u001c\u0006\u00021\u0005)1oY1mCV\u0019!dI\u0018\u0014\u0007\u0001Y\u0012\u0007\u0005\u0003\u001d?\u0005rS\"A\u000f\u000b\u0005y)\u0012AC2p]\u000e,(O]3oi&\u0011\u0001%\b\u0002\u0010)JLW-T1q\u0013R,\'/\u0019;peB\u0011!e\t\u0007\u0001\t\u0015!\u0003A1\u0001\'\u0005\u0005Y5\u0001A\t\u0003O-\u0002\"\u0001K\u0015\u000e\u0003]I!AK\f\u0003\u000f9{G\u000f[5oOB\u0011\u0001\u0006L\u0005\u0003[]\u00111!\u00118z!\t\u0011s\u0006B\u00031\u0001\t\u0007aEA\u0001W!\r\u00114\'N\u0007\u0002\'%\u0011Ag\u0005\u0002\u0011\u0013R,\'/\u00192mKN\u0003H.\u001b;uKJ\u0004B\u0001\u000b\u001c\"]%\u0011qg\u0006\u0002\u0007)V\u0004H.\u001a\u001a\u0002\u00071,g\u000f\u0005\u0002)u%\u00111h\u0006\u0002\u0004\u0013:$\u0018AA2u!\u0011ab(\t\u0018\n\u0005}j\"a\u0002+sS\u0016l\u0015\r]\u0001\t[V\u001cH/\u00138jiB\u0011\u0001FQ\u0005\u0003\u0007^\u0011qAQ8pY\u0016\fg.\u0001\u0004=S:LGO\u0010\u000b\u0005\r\"K%\n\u0005\u0003H\u0001\u0005rS\"A\t\t\u000ba\"\u0001\u0019A\u001d\t\u000bq\"\u0001\u0019A\u001f\t\u000b\u0001#\u0001\u0019A!\u0002\u0013Q|G/\u00197tSj,W#A\u001d\u0002\u0011%$XM]1uK\u0012\fA\"\u001b;fe\u0006$X\rZ0%KF$\"\u0001U*\u0011\u0005!\n\u0016B\u0001*\u0018\u0005\u0011)f.\u001b;\t\u000fQ;\u0011\u0011!a\u0001s\u0005\u0019\u0001\u0010J\u0019\u0002\u0013%$XM]1uK\u0012\u0004\u0013a\u00038fo&#XM]1u_J$BA\u0012-[9\")\u0011,\u0003a\u0001s\u0005!q\f\\3w\u0011\u0015Y\u0016\u00021\u0001>\u0003\ry6\r\u001e\u0005\u0006;&\u0001\r!Q\u0001\n?6,8\u000f^%oSR\f!c\u001d5pk2$7\u000b\u001d7ji\u001a+(\u000f\u001e5feV\u0011\u0001m\u001a\u000b\u0004\u0003\u0006L\u0007\"\u00022\u000b\u0001\u0004\u0019\u0017\u0001B2pY2\u00042A\r3g\u0013\t)7CA\u0006QCJLE/\u001a:bE2,\u0007C\u0001\u0012h\t\u0015A\'B1\u0001\'\u0005\u0005\u0019\u0006\"\u00026\u000b\u0001\u0004I\u0014\u0001\u00059be\u0006dG.\u001a7jg6dUM^3m\u0003\r!W\u000f]\u000b\u0002\r\u0006!a.\u001a=u)\u0005)\u0014!B:qY&$X#A9\u0011\u0007I,\u0018G\u0004\u0002)g&\u0011AoF\u0001\ba\u0006\u001c7.Y4f\u0013\t1xOA\u0002TKFT!\u0001^\f\u0002!%\u001c(+Z7bS:LgnZ\"iK\u0006\u0004X#A!\u0002\u0013I,W.Y5oS:<\u0007
+   #12 = Utf8               scala/collection/parallel/IterableSplitter$Appended
+   #13 = Class              #12           // scala/collection/parallel/IterableSplitter$Appended
+   #14 = Utf8               Appended
+   #15 = Utf8               scala/collection/parallel/IterableSplitter$Taken
+   #16 = Class              #15           // scala/collection/parallel/IterableSplitter$Taken
+   #17 = Utf8               Taken
+   #18 = Utf8               scala/collection/parallel/IterableSplitter$ZippedAll
+   #19 = Class              #18           // scala/collection/parallel/IterableSplitter$ZippedAll
+   #20 = Utf8               ZippedAll
+   #21 = Utf8               totalsize
+   #22 = Utf8               I
+   #23 = Utf8               ct
+   #24 = Utf8               Lscala/collection/concurrent/TrieMap;
+   #25 = Utf8               Lscala/collection/concurrent/TrieMap<TK;TV;>;
+   #26 = Utf8               iterated
+   #27 = Utf8               signalDelegate
+   #28 = Utf8               Lscala/collection/generic/Signalling;
+   #29 = Utf8               bitmap$0
+   #30 = Utf8               Z
+   #31 = Utf8               splitWithSignalling
+   #32 = Utf8               ()Lscala/collection/immutable/Seq;
+   #33 = Utf8               ()Lscala/collection/immutable/Seq<Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;>;
+   #34 = Utf8               splitWithSignalling$
+   #35 = Utf8               (Lscala/collection/parallel/IterableSplitter;)Lscala/collection/immutable/Seq;
+   #36 = NameAndType        #34:#35       // splitWithSignalling$:(Lscala/collection/parallel/IterableSplitter;)Lscala/collection/immutable/Seq;
+   #37 = InterfaceMethodref #7.#36        // scala/collection/parallel/IterableSplitter.splitWithSignalling$:(Lscala/collection/parallel/IterableSplitter;)Lscala/collection/immutable/Seq;
+   #38 = Utf8               this
+   #39 = Utf8               Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+   #40 = Utf8               buildString
+   #41 = Utf8               (Lscala/Function1;)Ljava/lang/String;
+   #42 = Utf8               (Lscala/Function1<Lscala/Function1<Ljava/lang/String;Lscala/runtime/BoxedUnit;>;Lscala/runtime/BoxedUnit;>;)Ljava/lang/String;
+   #43 = Utf8               closure
+   #44 = Utf8               buildString$
+   #45 = Utf8               (Lscala/collection/parallel/IterableSplitter;Lscala/Function1;)Ljava/lang/String;
+   #46 = NameAndType        #44:#45       // buildString$:(Lscala/collection/parallel/IterableSplitter;Lscala/Function1;)Ljava/lang/String;
+   #47 = InterfaceMethodref #7.#46        // scala/collection/parallel/IterableSplitter.buildString$:(Lscala/collection/parallel/IterableSplitter;Lscala/Function1;)Ljava/lang/String;
+   #48 = Utf8               Lscala/Function1;
+   #49 = Utf8               debugInformation
+   #50 = Utf8               ()Ljava/lang/String;
+   #51 = Utf8               debugInformation$
+   #52 = Utf8               (Lscala/collection/parallel/IterableSplitter;)Ljava/lang/String;
+   #53 = NameAndType        #51:#52       // debugInformation$:(Lscala/collection/parallel/IterableSplitter;)Ljava/lang/String;
+   #54 = InterfaceMethodref #7.#53        // scala/collection/parallel/IterableSplitter.debugInformation$:(Lscala/collection/parallel/IterableSplitter;)Ljava/lang/String;
+   #55 = Utf8               newTaken
+   #56 = Utf8               (I)Lscala/collection/parallel/IterableSplitter$Taken;
+   #57 = Utf8               (I)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>.Taken;
+   #58 = Utf8               until
+   #59 = Utf8               newTaken$
+   #60 = Utf8               (Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter$Taken;
+   #61 = NameAndType        #59:#60       // newTaken$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter$Taken;
+   #62 = InterfaceMethodref #7.#61        // scala/collection/parallel/IterableSplitter.newTaken$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter$Taken;
+   #63 = Utf8               newSliceInternal
+   #64 = Utf8               (Lscala/collection/parallel/IterableSplitter$Taken;I)Lscala/collection/parallel/IterableSplitter$Taken;
+   #65 = Utf8               <U:Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>.Taken;>(TU;I)TU;
+   #66 = Utf8               it
+   #67 = Utf8               from1
+   #68 = Utf8               newSliceInternal$
+   #69 = Utf8               (Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/IterableSplitter$Taken;I)Lscala/collection/parallel/IterableSplitter$Taken;
+   #70 = NameAndType        #68:#69       // newSliceInternal$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/IterableSplitter$Taken;I)Lscala/collection/parallel/IterableSplitter$Taken;
+   #71 = InterfaceMethodref #7.#70        // scala/collection/parallel/IterableSplitter.newSliceInternal$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/IterableSplitter$Taken;I)Lscala/collection/parallel/IterableSplitter$Taken;
+   #72 = Utf8               Lscala/collection/parallel/IterableSplitter$Taken;
+   #73 = Utf8               drop
+   #74 = Utf8               (I)Lscala/collection/parallel/IterableSplitter;
+   #75 = Utf8               (I)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;
+   #76 = Utf8               n
+   #77 = Utf8               drop$
+   #78 = Utf8               (Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter;
+   #79 = NameAndType        #77:#78       // drop$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter;
+   #80 = InterfaceMethodref #7.#79        // scala/collection/parallel/IterableSplitter.drop$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter;
+   #81 = Utf8               take
+   #82 = Utf8               take$
+   #83 = NameAndType        #82:#78       // take$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter;
+   #84 = InterfaceMethodref #7.#83        // scala/collection/parallel/IterableSplitter.take$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter;
+   #85 = Utf8               slice
+   #86 = Utf8               (II)Lscala/collection/parallel/IterableSplitter;
+   #87 = Utf8               (II)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;
+   #88 = Utf8               until1
+   #89 = Utf8               slice$
+   #90 = Utf8               (Lscala/collection/parallel/IterableSplitter;II)Lscala/collection/parallel/IterableSplitter;
+   #91 = NameAndType        #89:#90       // slice$:(Lscala/collection/parallel/IterableSplitter;II)Lscala/collection/parallel/IterableSplitter;
+   #92 = InterfaceMethodref #7.#91        // scala/collection/parallel/IterableSplitter.slice$:(Lscala/collection/parallel/IterableSplitter;II)Lscala/collection/parallel/IterableSplitter;
+   #93 = Utf8               map
+   #94 = Utf8               (Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+   #95 = Utf8               <S$:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;TS$;>;)Lscala/collection/parallel/IterableSplitter<TS$;>;
+   #96 = Utf8               f
+   #97 = Utf8               map$
+   #98 = Utf8               (Lscala/collection/parallel/IterableSplitter;Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+   #99 = NameAndType        #97:#98       // map$:(Lscala/collection/parallel/IterableSplitter;Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+  #100 = InterfaceMethodref #7.#99        // scala/collection/parallel/IterableSplitter.map$:(Lscala/collection/parallel/IterableSplitter;Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+  #101 = Utf8               appendParIterable
+  #102 = Utf8               (Lscala/collection/parallel/IterableSplitter;)Lscala/collection/parallel/IterableSplitter$Appended;
+  #103 = Utf8               <U:Ljava/lang/Object;PI::Lscala/collection/parallel/IterableSplitter<TU;>;>(TPI;)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>.Appended<TU;TPI;>;
+  #104 = Utf8               that
+  #105 = Utf8               appendParIterable$
+  #106 = Utf8               (Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/IterableSplitter;)Lscala/collection/parallel/IterableSplitter$Appended;
+  #107 = NameAndType        #105:#106     // appendParIterable$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/IterableSplitter;)Lscala/collection/parallel/IterableSplitter$Appended;
+  #108 = InterfaceMethodref #7.#107       // scala/collection/parallel/IterableSplitter.appendParIterable$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/IterableSplitter;)Lscala/collection/parallel/IterableSplitter$Appended;
+  #109 = Utf8               Lscala/collection/parallel/IterableSplitter;
+  #110 = Utf8               zipParSeq
+  #111 = Utf8               (Lscala/collection/parallel/SeqSplitter;)Lscala/collection/parallel/IterableSplitter;
+  #112 = Utf8               <S$:Ljava/lang/Object;>(Lscala/collection/parallel/SeqSplitter<TS$;>;)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<Lscala/Tuple2<TK;TV;>;TS$;>;>;
+  #113 = Utf8               zipParSeq$
+  #114 = Utf8               (Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/SeqSplitter;)Lscala/collection/parallel/IterableSplitter;
+  #115 = NameAndType        #113:#114     // zipParSeq$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/SeqSplitter;)Lscala/collection/parallel/IterableSplitter;
+  #116 = InterfaceMethodref #7.#115       // scala/collection/parallel/IterableSplitter.zipParSeq$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/SeqSplitter;)Lscala/collection/parallel/IterableSplitter;
+  #117 = Utf8               Lscala/collection/parallel/SeqSplitter;
+  #118 = Utf8               zipAllParSeq
+  #119 = Utf8               (Lscala/collection/parallel/SeqSplitter;Ljava/lang/Object;Ljava/lang/Object;)Lscala/collection/parallel/IterableSplitter$ZippedAll;
+  #120 = Utf8               <S:Ljava/lang/Object;U:Ljava/lang/Object;R:Ljava/lang/Object;>(Lscala/collection/parallel/SeqSplitter<TS;>;TU;TR;)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>.ZippedAll<TU;TR;>;
+  #121 = Utf8               thisElem
+  #122 = Utf8               thatElem
+  #123 = Utf8               zipAllParSeq$
+  #124 = Utf8               (Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/SeqSplitter;Ljava/lang/Object;Ljava/lang/Object;)Lscala/collection/parallel/IterableSplitter$ZippedAll;
+  #125 = NameAndType        #123:#124     // zipAllParSeq$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/SeqSplitter;Ljava/lang/Object;Ljava/lang/Object;)Lscala/collection/parallel/IterableSplitter$ZippedAll;
+  #126 = InterfaceMethodref #7.#125       // scala/collection/parallel/IterableSplitter.zipAllParSeq$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/SeqSplitter;Ljava/lang/Object;Ljava/lang/Object;)Lscala/collection/parallel/IterableSplitter$ZippedAll;
+  #127 = Utf8               Ljava/lang/Object;
+  #128 = Utf8               isAborted
+  #129 = Utf8               ()Z
+  #130 = Utf8               scala/collection/generic/DelegatedSignalling
+  #131 = Class              #130          // scala/collection/generic/DelegatedSignalling
+  #132 = Utf8               isAborted$
+  #133 = Utf8               (Lscala/collection/generic/DelegatedSignalling;)Z
+  #134 = NameAndType        #132:#133     // isAborted$:(Lscala/collection/generic/DelegatedSignalling;)Z
+  #135 = InterfaceMethodref #131.#134     // scala/collection/generic/DelegatedSignalling.isAborted$:(Lscala/collection/generic/DelegatedSignalling;)Z
+  #136 = Utf8               abort
+  #137 = Utf8               ()V
+  #138 = Utf8               abort$
+  #139 = Utf8               (Lscala/collection/generic/DelegatedSignalling;)V
+  #140 = NameAndType        #138:#139     // abort$:(Lscala/collection/generic/DelegatedSignalling;)V
+  #141 = InterfaceMethodref #131.#140     // scala/collection/generic/DelegatedSignalling.abort$:(Lscala/collection/generic/DelegatedSignalling;)V
+  #142 = Utf8               indexFlag
+  #143 = Utf8               ()I
+  #144 = Utf8               indexFlag$
+  #145 = Utf8               (Lscala/collection/generic/DelegatedSignalling;)I
+  #146 = NameAndType        #144:#145     // indexFlag$:(Lscala/collection/generic/DelegatedSignalling;)I
+  #147 = InterfaceMethodref #131.#146     // scala/collection/generic/DelegatedSignalling.indexFlag$:(Lscala/collection/generic/DelegatedSignalling;)I
+  #148 = Utf8               setIndexFlag
+  #149 = Utf8               (I)V
+  #150 = Utf8               setIndexFlag$
+  #151 = Utf8               (Lscala/collection/generic/DelegatedSignalling;I)V
+  #152 = NameAndType        #150:#151     // setIndexFlag$:(Lscala/collection/generic/DelegatedSignalling;I)V
+  #153 = InterfaceMethodref #131.#152     // scala/collection/generic/DelegatedSignalling.setIndexFlag$:(Lscala/collection/generic/DelegatedSignalling;I)V
+  #154 = Utf8               setIndexFlagIfGreater
+  #155 = Utf8               setIndexFlagIfGreater$
+  #156 = NameAndType        #155:#151     // setIndexFlagIfGreater$:(Lscala/collection/generic/DelegatedSignalling;I)V
+  #157 = InterfaceMethodref #131.#156     // scala/collection/generic/DelegatedSignalling.setIndexFlagIfGreater$:(Lscala/collection/generic/DelegatedSignalling;I)V
+  #158 = Utf8               setIndexFlagIfLesser
+  #159 = Utf8               setIndexFlagIfLesser$
+  #160 = NameAndType        #159:#151     // setIndexFlagIfLesser$:(Lscala/collection/generic/DelegatedSignalling;I)V
+  #161 = InterfaceMethodref #131.#160     // scala/collection/generic/DelegatedSignalling.setIndexFlagIfLesser$:(Lscala/collection/generic/DelegatedSignalling;I)V
+  #162 = Utf8               tag
+  #163 = Utf8               tag$
+  #164 = NameAndType        #163:#145     // tag$:(Lscala/collection/generic/DelegatedSignalling;)I
+  #165 = InterfaceMethodref #131.#164     // scala/collection/generic/DelegatedSignalling.tag$:(Lscala/collection/generic/DelegatedSignalling;)I
+  #166 = Utf8               count
+  #167 = Utf8               (Lscala/Function1;)I
+  #168 = Utf8               (Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;)I
+  #169 = Utf8               p
+  #170 = Utf8               scala/collection/parallel/AugmentedIterableIterator
+  #171 = Class              #170          // scala/collection/parallel/AugmentedIterableIterator
+  #172 = Utf8               count$
+  #173 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;)I
+  #174 = NameAndType        #172:#173     // count$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;)I
+  #175 = InterfaceMethodref #171.#174     // scala/collection/parallel/AugmentedIterableIterator.count$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;)I
+  #176 = Utf8               reduce
+  #177 = Utf8               (Lscala/Function2;)Ljava/lang/Object;
+  #178 = Utf8               <U:Ljava/lang/Object;>(Lscala/Function2<TU;TU;TU;>;)TU;
+  #179 = Utf8               op
+  #180 = Utf8               reduce$
+  #181 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function2;)Ljava/lang/Object;
+  #182 = NameAndType        #180:#181     // reduce$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function2;)Ljava/lang/Object;
+  #183 = InterfaceMethodref #171.#182     // scala/collection/parallel/AugmentedIterableIterator.reduce$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function2;)Ljava/lang/Object;
+  #184 = Utf8               Lscala/Function2;
+  #185 = Utf8               fold
+  #186 = Utf8               (Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+  #187 = Utf8               <U:Ljava/lang/Object;>(TU;Lscala/Function2<TU;TU;TU;>;)TU;
+  #188 = Utf8               z
+  #189 = Utf8               fold$
+  #190 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+  #191 = NameAndType        #189:#190     // fold$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+  #192 = InterfaceMethodref #171.#191     // scala/collection/parallel/AugmentedIterableIterator.fold$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+  #193 = Utf8               sum
+  #194 = Utf8               (Lscala/math/Numeric;)Ljava/lang/Object;
+  #195 = Utf8               <U:Ljava/lang/Object;>(Lscala/math/Numeric<TU;>;)TU;
+  #196 = Utf8               num
+  #197 = Utf8               sum$
+  #198 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Numeric;)Ljava/lang/Object;
+  #199 = NameAndType        #197:#198     // sum$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Numeric;)Ljava/lang/Object;
+  #200 = InterfaceMethodref #171.#199     // scala/collection/parallel/AugmentedIterableIterator.sum$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Numeric;)Ljava/lang/Object;
+  #201 = Utf8               Lscala/math/Numeric;
+  #202 = Utf8               product
+  #203 = Utf8               product$
+  #204 = NameAndType        #203:#198     // product$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Numeric;)Ljava/lang/Object;
+  #205 = InterfaceMethodref #171.#204     // scala/collection/parallel/AugmentedIterableIterator.product$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Numeric;)Ljava/lang/Object;
+  #206 = Utf8               min
+  #207 = Utf8               (Lscala/math/Ordering;)Ljava/lang/Object;
+  #208 = Utf8               ord
+  #209 = Utf8               min$
+  #210 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Ordering;)Ljava/lang/Object;
+  #211 = NameAndType        #209:#210     // min$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Ordering;)Ljava/lang/Object;
+  #212 = InterfaceMethodref #171.#211     // scala/collection/parallel/AugmentedIterableIterator.min$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Ordering;)Ljava/lang/Object;
+  #213 = Utf8               Lscala/math/Ordering;
+  #214 = Utf8               max
+  #215 = Utf8               max$
+  #216 = NameAndType        #215:#210     // max$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Ordering;)Ljava/lang/Object;
+  #217 = InterfaceMethodref #171.#216     // scala/collection/parallel/AugmentedIterableIterator.max$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Ordering;)Ljava/lang/Object;
+  #218 = Utf8               reduceLeft
+  #219 = Utf8               (ILscala/Function2;)Ljava/lang/Object;
+  #220 = Utf8               <U:Ljava/lang/Object;>(ILscala/Function2<TU;TU;TU;>;)TU;
+  #221 = Utf8               howmany
+  #222 = Utf8               reduceLeft$
+  #223 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;ILscala/Function2;)Ljava/lang/Object;
+  #224 = NameAndType        #222:#223     // reduceLeft$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/Function2;)Ljava/lang/Object;
+  #225 = InterfaceMethodref #171.#224     // scala/collection/parallel/AugmentedIterableIterator.reduceLeft$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/Function2;)Ljava/lang/Object;
+  #226 = Utf8               map2combiner
+  #227 = Utf8               (Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #228 = Utf8               <S$:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;TS$;>;Lscala/collection/parallel/Combiner<TS$;TThat;>;)Lscala/collection/parallel/Combiner<TS$;TThat;>;
+  #229 = Utf8               cb
+  #230 = Utf8               map2combiner$
+  #231 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #232 = NameAndType        #230:#231     // map2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #233 = InterfaceMethodref #171.#232     // scala/collection/parallel/AugmentedIterableIterator.map2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #234 = Utf8               Lscala/collection/parallel/Combiner;
+  #235 = Utf8               collect2combiner
+  #236 = Utf8               (Lscala/PartialFunction;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #237 = Utf8               <S$:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/PartialFunction<Lscala/Tuple2<TK;TV;>;TS$;>;Lscala/collection/parallel/Combiner<TS$;TThat;>;)Lscala/collection/parallel/Combiner<TS$;TThat;>;
+  #238 = Utf8               pf
+  #239 = Utf8               collect2combiner$
+  #240 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/PartialFunction;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #241 = NameAndType        #239:#240     // collect2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/PartialFunction;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #242 = InterfaceMethodref #171.#241     // scala/collection/parallel/AugmentedIterableIterator.collect2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/PartialFunction;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #243 = Utf8               Lscala/PartialFunction;
+  #244 = Utf8               flatmap2combiner
+  #245 = Utf8               <S$:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Lscala/collection/IterableOnce<TS$;>;>;Lscala/collection/parallel/Combiner<TS$;TThat;>;)Lscala/collection/parallel/Combiner<TS$;TThat;>;
+  #246 = Utf8               flatmap2combiner$
+  #247 = NameAndType        #246:#231     // flatmap2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #248 = InterfaceMethodref #171.#247     // scala/collection/parallel/AugmentedIterableIterator.flatmap2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #249 = Utf8               copy2builder
+  #250 = Utf8               (Lscala/collection/mutable/Builder;)Lscala/collection/mutable/Builder;
+  #251 = Utf8               <U:Ljava/lang/Object;Coll:Ljava/lang/Object;Bld::Lscala/collection/mutable/Builder<TU;TColl;>;>(TBld;)TBld;
+  #252 = Utf8               b
+  #253 = Utf8               copy2builder$
+  #254 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/mutable/Builder;)Lscala/collection/mutable/Builder;
+  #255 = NameAndType        #253:#254     // copy2builder$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/mutable/Builder;)Lscala/collection/mutable/Builder;
+  #256 = InterfaceMethodref #171.#255     // scala/collection/parallel/AugmentedIterableIterator.copy2builder$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/mutable/Builder;)Lscala/collection/mutable/Builder;
+  #257 = Utf8               Lscala/collection/mutable/Builder;
+  #258 = Utf8               filter2combiner
+  #259 = Utf8               <U:Ljava/lang/Object;This:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/collection/parallel/Combiner<TU;TThis;>;
+  #260 = Utf8               pred
+  #261 = Utf8               filter2combiner$
+  #262 = NameAndType        #261:#231     // filter2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #263 = InterfaceMethodref #171.#262     // scala/collection/parallel/AugmentedIterableIterator.filter2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #264 = Utf8               filterNot2combiner
+  #265 = Utf8               filterNot2combiner$
+  #266 = NameAndType        #265:#231     // filterNot2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #267 = InterfaceMethodref #171.#266     // scala/collection/parallel/AugmentedIterableIterator.filterNot2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #268 = Utf8               partition2combiners
+  #269 = Utf8               (Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #270 = Utf8               <U:Ljava/lang/Object;This:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;Lscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/Tuple2<Lscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;>;
+  #271 = Utf8               btrue
+  #272 = Utf8               bfalse
+  #273 = Utf8               partition2combiners$
+  #274 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #275 = NameAndType        #273:#274     // partition2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #276 = InterfaceMethodref #171.#275     // scala/collection/parallel/AugmentedIterableIterator.partition2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #277 = Utf8               take2combiner
+  #278 = Utf8               (ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #279 = Utf8               <U:Ljava/lang/Object;This:Ljava/lang/Object;>(ILscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/collection/parallel/Combiner<TU;TThis;>;
+  #280 = Utf8               take2combiner$
+  #281 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #282 = NameAndType        #280:#281     // take2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #283 = InterfaceMethodref #171.#282     // scala/collection/parallel/AugmentedIterableIterator.take2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #284 = Utf8               drop2combiner
+  #285 = Utf8               drop2combiner$
+  #286 = NameAndType        #285:#281     // drop2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #287 = InterfaceMethodref #171.#286     // scala/collection/parallel/AugmentedIterableIterator.drop2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #288 = Utf8               slice2combiner
+  #289 = Utf8               (IILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #290 = Utf8               <U:Ljava/lang/Object;This:Ljava/lang/Object;>(IILscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/collection/parallel/Combiner<TU;TThis;>;
+  #291 = Utf8               from
+  #292 = Utf8               slice2combiner$
+  #293 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;IILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #294 = NameAndType        #292:#293     // slice2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;IILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #295 = InterfaceMethodref #171.#294     // scala/collection/parallel/AugmentedIterableIterator.slice2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;IILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #296 = Utf8               splitAt2combiners
+  #297 = Utf8               (ILscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #298 = Utf8               <U:Ljava/lang/Object;This:Ljava/lang/Object;>(ILscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/Tuple2<Lscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;>;
+  #299 = Utf8               at
+  #300 = Utf8               before
+  #301 = Utf8               after
+  #302 = Utf8               splitAt2combiners$
+  #303 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #304 = NameAndType        #302:#303     // splitAt2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #305 = InterfaceMethodref #171.#304     // scala/collection/parallel/AugmentedIterableIterator.splitAt2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #306 = Utf8               takeWhile2combiner
+  #307 = Utf8               (Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #308 = Utf8               <U:Ljava/lang/Object;This:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/Tuple2<Lscala/collection/parallel/Combiner<TU;TThis;>;Ljava/lang/Object;>;
+  #309 = Utf8               takeWhile2combiner$
+  #310 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #311 = NameAndType        #309:#310     // takeWhile2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #312 = InterfaceMethodref #171.#311     // scala/collection/parallel/AugmentedIterableIterator.takeWhile2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #313 = Utf8               span2combiners
+  #314 = Utf8               span2combiners$
+  #315 = NameAndType        #314:#274     // span2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #316 = InterfaceMethodref #171.#315     // scala/collection/parallel/AugmentedIterableIterator.span2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+  #317 = Utf8               scanToArray
+  #318 = Utf8               (Ljava/lang/Object;Lscala/Function2;Ljava/lang/Object;I)V
+  #319 = Utf8               <U:Ljava/lang/Object;A:Ljava/lang/Object;>(TU;Lscala/Function2<TU;TU;TU;>;Ljava/lang/Object;I)V
+  #320 = Utf8               array
+  #321 = Utf8               scanToArray$
+  #322 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;Ljava/lang/Object;I)V
+  #323 = NameAndType        #321:#322     // scanToArray$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;Ljava/lang/Object;I)V
+  #324 = InterfaceMethodref #171.#323     // scala/collection/parallel/AugmentedIterableIterator.scanToArray$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;Ljava/lang/Object;I)V
+  #325 = Utf8               scanToCombiner
+  #326 = Utf8               (Ljava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #327 = Utf8               <U:Ljava/lang/Object;That:Ljava/lang/Object;>(TU;Lscala/Function2<TU;TU;TU;>;Lscala/collection/parallel/Combiner<TU;TThat;>;)Lscala/collection/parallel/Combiner<TU;TThat;>;
+  #328 = Utf8               startValue
+  #329 = Utf8               scanToCombiner$
+  #330 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #331 = NameAndType        #329:#330     // scanToCombiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #332 = InterfaceMethodref #171.#331     // scala/collection/parallel/AugmentedIterableIterator.scanToCombiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #333 = Utf8               (ILjava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #334 = Utf8               <U:Ljava/lang/Object;That:Ljava/lang/Object;>(ITU;Lscala/Function2<TU;TU;TU;>;Lscala/collection/parallel/Combiner<TU;TThat;>;)Lscala/collection/parallel/Combiner<TU;TThat;>;
+  #335 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;ILjava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #336 = NameAndType        #329:#335     // scanToCombiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILjava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #337 = InterfaceMethodref #171.#336     // scala/collection/parallel/AugmentedIterableIterator.scanToCombiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILjava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #338 = Utf8               zip2combiner
+  #339 = Utf8               (Lscala/collection/parallel/RemainsIterator;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #340 = Utf8               <U:Ljava/lang/Object;S:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/collection/parallel/RemainsIterator<TS;>;Lscala/collection/parallel/Combiner<Lscala/Tuple2<TU;TS;>;TThat;>;)Lscala/collection/parallel/Combiner<Lscala/Tuple2<TU;TS;>;TThat;>;
+  #341 = Utf8               otherpit
+  #342 = Utf8               zip2combiner$
+  #343 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/parallel/RemainsIterator;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #344 = NameAndType        #342:#343     // zip2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/parallel/RemainsIterator;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #345 = InterfaceMethodref #171.#344     // scala/collection/parallel/AugmentedIterableIterator.zip2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/parallel/RemainsIterator;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #346 = Utf8               Lscala/collection/parallel/RemainsIterator;
+  #347 = Utf8               zipAll2combiner
+  #348 = Utf8               (Lscala/collection/parallel/RemainsIterator;Ljava/lang/Object;Ljava/lang/Object;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #349 = Utf8               <U:Ljava/lang/Object;S:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/collection/parallel/RemainsIterator<TS;>;TU;TS;Lscala/collection/parallel/Combiner<Lscala/Tuple2<TU;TS;>;TThat;>;)Lscala/collection/parallel/Combiner<Lscala/Tuple2<TU;TS;>;TThat;>;
+  #350 = Utf8               thiselem
+  #351 = Utf8               thatelem
+  #352 = Utf8               zipAll2combiner$
+  #353 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/parallel/RemainsIterator;Ljava/lang/Object;Ljava/lang/Object;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #354 = NameAndType        #352:#353     // zipAll2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/parallel/RemainsIterator;Ljava/lang/Object;Ljava/lang/Object;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #355 = InterfaceMethodref #171.#354     // scala/collection/parallel/AugmentedIterableIterator.zipAll2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/parallel/RemainsIterator;Ljava/lang/Object;Ljava/lang/Object;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+  #356 = Utf8               ()Lscala/collection/generic/Signalling;
+  #357 = NameAndType        #27:#28       // signalDelegate:Lscala/collection/generic/Signalling;
+  #358 = Fieldref           #2.#357       // scala/collection/parallel/mutable/ParTrieMapSplitter.signalDelegate:Lscala/collection/generic/Signalling;
+  #359 = Utf8               signalDelegate_$eq
+  #360 = Utf8               (Lscala/collection/generic/Signalling;)V
+  #361 = Utf8               x$1
+  #362 = Utf8               totalsize$lzycompute
+  #363 = NameAndType        #29:#30       // bitmap$0:Z
+  #364 = Fieldref           #2.#363       // scala/collection/parallel/mutable/ParTrieMapSplitter.bitmap$0:Z
+  #365 = Utf8               scala/collection/parallel/mutable/ParTrieMap
+  #366 = Class              #365          // scala/collection/parallel/mutable/ParTrieMap
+  #367 = NameAndType        #23:#24       // ct:Lscala/collection/concurrent/TrieMap;
+  #368 = Fieldref           #2.#367       // scala/collection/parallel/mutable/ParTrieMapSplitter.ct:Lscala/collection/concurrent/TrieMap;
+  #369 = Utf8               <init>
+  #370 = Utf8               (Lscala/collection/concurrent/TrieMap;)V
+  #371 = NameAndType        #369:#370     // "<init>":(Lscala/collection/concurrent/TrieMap;)V
+  #372 = Methodref          #366.#371     // scala/collection/parallel/mutable/ParTrieMap."<init>":(Lscala/collection/concurrent/TrieMap;)V
+  #373 = Utf8               size
+  #374 = NameAndType        #373:#143     // size:()I
+  #375 = Methodref          #366.#374     // scala/collection/parallel/mutable/ParTrieMap.size:()I
+  #376 = NameAndType        #21:#22       // totalsize:I
+  #377 = Fieldref           #2.#376       // scala/collection/parallel/mutable/ParTrieMapSplitter.totalsize:I
+  #378 = Utf8               java/lang/Throwable
+  #379 = Class              #378          // java/lang/Throwable
+  #380 = NameAndType        #362:#143     // totalsize$lzycompute:()I
+  #381 = Methodref          #2.#380       // scala/collection/parallel/mutable/ParTrieMapSplitter.totalsize$lzycompute:()I
+  #382 = NameAndType        #26:#22       // iterated:I
+  #383 = Fieldref           #2.#382       // scala/collection/parallel/mutable/ParTrieMapSplitter.iterated:I
+  #384 = Utf8               iterated_$eq
+  #385 = Utf8               newIterator
+  #386 = Utf8               (ILscala/collection/concurrent/TrieMap;Z)Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+  #387 = Utf8               (ILscala/collection/concurrent/TrieMap<TK;TV;>;Z)Lscala/collection/parallel/mutable/ParTrieMapSplitter<TK;TV;>;
+  #388 = Utf8               _lev
+  #389 = Utf8               _ct
+  #390 = Utf8               _mustInit
+  #391 = Utf8               (ILscala/collection/concurrent/TrieMap;Z)V
+  #392 = NameAndType        #369:#391     // "<init>":(ILscala/collection/concurrent/TrieMap;Z)V
+  #393 = Methodref          #2.#392       // scala/collection/parallel/mutable/ParTrieMapSplitter."<init>":(ILscala/collection/concurrent/TrieMap;Z)V
+  #394 = Utf8               shouldSplitFurther
+  #395 = Utf8               (Lscala/collection/parallel/ParIterable;I)Z
+  #396 = Utf8               <S:Ljava/lang/Object;>(Lscala/collection/parallel/ParIterable<TS;>;I)Z
+  #397 = Utf8               coll
+  #398 = Utf8               parallelismLevel
+  #399 = Utf8               java/lang/Integer
+  #400 = Class              #399          // java/lang/Integer
+  #401 = Utf8               highestOneBit
+  #402 = Utf8               (I)I
+  #403 = NameAndType        #401:#402     // highestOneBit:(I)I
+  #404 = Methodref          #400.#403     // java/lang/Integer.highestOneBit:(I)I
+  #405 = Utf8               level
+  #406 = NameAndType        #405:#143     // level:()I
+  #407 = Methodref          #2.#406       // scala/collection/parallel/mutable/ParTrieMapSplitter.level:()I
+  #408 = Utf8               maxsplits
+  #409 = Utf8               Lscala/collection/parallel/ParIterable;
+  #410 = Utf8               dup
+  #411 = Utf8               ()Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+  #412 = Utf8               ()Lscala/collection/parallel/mutable/ParTrieMapSplitter<TK;TV;>;
+  #413 = NameAndType        #385:#386     // newIterator:(ILscala/collection/concurrent/TrieMap;Z)Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+  #414 = Methodref          #2.#413       // scala/collection/parallel/mutable/ParTrieMapSplitter.newIterator:(ILscala/collection/concurrent/TrieMap;Z)Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+  #415 = Utf8               dupTo
+  #416 = Utf8               (Lscala/collection/concurrent/TrieMapIterator;)V
+  #417 = NameAndType        #415:#416     // dupTo:(Lscala/collection/concurrent/TrieMapIterator;)V
+  #418 = Methodref          #2.#417       // scala/collection/parallel/mutable/ParTrieMapSplitter.dupTo:(Lscala/collection/concurrent/TrieMapIterator;)V
+  #419 = NameAndType        #26:#143      // iterated:()I
+  #420 = Methodref          #2.#419       // scala/collection/parallel/mutable/ParTrieMapSplitter.iterated:()I
+  #421 = NameAndType        #384:#149     // iterated_$eq:(I)V
+  #422 = Methodref          #2.#421       // scala/collection/parallel/mutable/ParTrieMapSplitter.iterated_$eq:(I)V
+  #423 = Utf8               next
+  #424 = Utf8               ()Lscala/Tuple2;
+  #425 = Utf8               ()Lscala/Tuple2<TK;TV;>;
+  #426 = NameAndType        #423:#424     // next:()Lscala/Tuple2;
+  #427 = Methodref          #5.#426       // scala/collection/concurrent/TrieMapIterator.next:()Lscala/Tuple2;
+  #428 = Utf8               split
+  #429 = Utf8               subdivide
+  #430 = Utf8               ()Lscala/collection/Seq;
+  #431 = NameAndType        #429:#430     // subdivide:()Lscala/collection/Seq;
+  #432 = Methodref          #2.#431       // scala/collection/parallel/mutable/ParTrieMapSplitter.subdivide:()Lscala/collection/Seq;
+  #433 = Utf8               scala/collection/immutable/Seq
+  #434 = Class              #433          // scala/collection/immutable/Seq
+  #435 = Utf8               isRemainingCheap
+  #436 = Utf8               remaining
+  #437 = NameAndType        #21:#143      // totalsize:()I
+  #438 = Methodref          #2.#437       // scala/collection/parallel/mutable/ParTrieMapSplitter.totalsize:()I
+  #439 = Utf8               (Lscala/Function1;)Ljava/lang/Object;
+  #440 = NameAndType        #93:#94       // map:(Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+  #441 = Methodref          #2.#440       // scala/collection/parallel/mutable/ParTrieMapSplitter.map:(Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+  #442 = Utf8               (Lscala/Function1;)Lscala/collection/Iterator;
+  #443 = Utf8               (II)Ljava/lang/Object;
+  #444 = NameAndType        #85:#86       // slice:(II)Lscala/collection/parallel/IterableSplitter;
+  #445 = Methodref          #2.#444       // scala/collection/parallel/mutable/ParTrieMapSplitter.slice:(II)Lscala/collection/parallel/IterableSplitter;
+  #446 = Utf8               (II)Lscala/collection/Iterator;
+  #447 = Utf8               (I)Ljava/lang/Object;
+  #448 = NameAndType        #81:#74       // take:(I)Lscala/collection/parallel/IterableSplitter;
+  #449 = Methodref          #2.#448       // scala/collection/parallel/mutable/ParTrieMapSplitter.take:(I)Lscala/collection/parallel/IterableSplitter;
+  #450 = Utf8               (I)Lscala/collection/Iterator;
+  #451 = NameAndType        #73:#74       // drop:(I)Lscala/collection/parallel/IterableSplitter;
+  #452 = Methodref          #2.#451       // scala/collection/parallel/mutable/ParTrieMapSplitter.drop:(I)Lscala/collection/parallel/IterableSplitter;
+  #453 = NameAndType        #428:#32      // split:()Lscala/collection/immutable/Seq;
+  #454 = Methodref          #2.#453       // scala/collection/parallel/mutable/ParTrieMapSplitter.split:()Lscala/collection/immutable/Seq;
+  #455 = Utf8               ()Ljava/lang/Object;
+  #456 = Methodref          #2.#426       // scala/collection/parallel/mutable/ParTrieMapSplitter.next:()Lscala/Tuple2;
+  #457 = Utf8               ()Lscala/collection/parallel/IterableSplitter;
+  #458 = NameAndType        #410:#411     // dup:()Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+  #459 = Methodref          #2.#458       // scala/collection/parallel/mutable/ParTrieMapSplitter.dup:()Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+  #460 = Utf8               (ILscala/collection/concurrent/TrieMap;Z)Lscala/collection/concurrent/TrieMapIterator;
+  #461 = Utf8               (ILscala/collection/concurrent/TrieMap<TK;TV;>;Z)V
+  #462 = Utf8               lev
+  #463 = Utf8               mustInit
+  #464 = Methodref          #5.#392       // scala/collection/concurrent/TrieMapIterator."<init>":(ILscala/collection/concurrent/TrieMap;Z)V
+  #465 = Utf8               scala/collection/parallel/RemainsIterator
+  #466 = Class              #465          // scala/collection/parallel/RemainsIterator
+  #467 = Utf8               $init$
+  #468 = Utf8               (Lscala/collection/parallel/RemainsIterator;)V
+  #469 = NameAndType        #467:#468     // $init$:(Lscala/collection/parallel/RemainsIterator;)V
+  #470 = InterfaceMethodref #466.#469     // scala/collection/parallel/RemainsIterator.$init$:(Lscala/collection/parallel/RemainsIterator;)V
+  #471 = Utf8               (Lscala/collection/parallel/AugmentedIterableIterator;)V
+  #472 = NameAndType        #467:#471     // $init$:(Lscala/collection/parallel/AugmentedIterableIterator;)V
+  #473 = InterfaceMethodref #171.#472     // scala/collection/parallel/AugmentedIterableIterator.$init$:(Lscala/collection/parallel/AugmentedIterableIterator;)V
+  #474 = NameAndType        #467:#139     // $init$:(Lscala/collection/generic/DelegatedSignalling;)V
+  #475 = InterfaceMethodref #131.#474     // scala/collection/generic/DelegatedSignalling.$init$:(Lscala/collection/generic/DelegatedSignalling;)V
+  #476 = Utf8               (Lscala/collection/parallel/IterableSplitter;)V
+  #477 = NameAndType        #467:#476     // $init$:(Lscala/collection/parallel/IterableSplitter;)V
+  #478 = InterfaceMethodref #7.#477       // scala/collection/parallel/IterableSplitter.$init$:(Lscala/collection/parallel/IterableSplitter;)V
+  #479 = Utf8               Signature
+  #480 = Utf8               Code
+  #481 = Utf8               LineNumberTable
+  #482 = Utf8               LocalVariableTable
+  #483 = Utf8               MethodParameters
+  #484 = Utf8               StackMapTable
+  #485 = Utf8               InnerClasses
+  #486 = Utf8               SourceFile
+  #487 = Utf8               RuntimeVisibleAnnotations
+  #488 = Utf8               ScalaInlineInfo
+  #489 = Utf8               ScalaSig
+{
+  private int totalsize;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private final scala.collection.concurrent.TrieMap<K, V> ct;
+    descriptor: Lscala/collection/concurrent/TrieMap;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #25                          // Lscala/collection/concurrent/TrieMap<TK;TV;>;
+
+  private int iterated;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private scala.collection.generic.Signalling signalDelegate;
+    descriptor: Lscala/collection/generic/Signalling;
+    flags: (0x0002) ACC_PRIVATE
+
+  private volatile boolean bitmap$0;
+    descriptor: Z
+    flags: (0x0042) ACC_PRIVATE, ACC_VOLATILE
+
+  public scala.collection.immutable.Seq<scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>>> splitWithSignalling();
+    descriptor: ()Lscala/collection/immutable/Seq;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #37                 // InterfaceMethod scala/collection/parallel/IterableSplitter.splitWithSignalling$:(Lscala/collection/parallel/IterableSplitter;)Lscala/collection/immutable/Seq;
+         4: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+    Signature: #33                          // ()Lscala/collection/immutable/Seq<Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;>;
+
+  public java.lang.String buildString(scala.Function1<scala.Function1<java.lang.String, scala.runtime.BoxedUnit>, scala.runtime.BoxedUnit>);
+    descriptor: (Lscala/Function1;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #47                 // InterfaceMethod scala/collection/parallel/IterableSplitter.buildString$:(Lscala/collection/parallel/IterableSplitter;Lscala/Function1;)Ljava/lang/String;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1 closure   Lscala/Function1;
+    Signature: #42                          // (Lscala/Function1<Lscala/Function1<Ljava/lang/String;Lscala/runtime/BoxedUnit;>;Lscala/runtime/BoxedUnit;>;)Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      closure                        final
+
+  public java.lang.String debugInformation();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #54                 // InterfaceMethod scala/collection/parallel/IterableSplitter.debugInformation$:(Lscala/collection/parallel/IterableSplitter;)Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>>.Taken newTaken(int);
+    descriptor: (I)Lscala/collection/parallel/IterableSplitter$Taken;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #62                 // InterfaceMethod scala/collection/parallel/IterableSplitter.newTaken$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter$Taken;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1 until   I
+    Signature: #57                          // (I)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>.Taken;
+    MethodParameters:
+      Name                           Flags
+      until                          final
+
+  public <U extends scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>>.Taken> U newSliceInternal(U, int);
+    descriptor: (Lscala/collection/parallel/IterableSplitter$Taken;I)Lscala/collection/parallel/IterableSplitter$Taken;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokestatic  #71                 // InterfaceMethod scala/collection/parallel/IterableSplitter.newSliceInternal$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/IterableSplitter$Taken;I)Lscala/collection/parallel/IterableSplitter$Taken;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1    it   Lscala/collection/parallel/IterableSplitter$Taken;
+            0       7     2 from1   I
+    Signature: #65                          // <U:Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>.Taken;>(TU;I)TU;
+    MethodParameters:
+      Name                           Flags
+      it                             final
+      from1                          final
+
+  public scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>> drop(int);
+    descriptor: (I)Lscala/collection/parallel/IterableSplitter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #80                 // InterfaceMethod scala/collection/parallel/IterableSplitter.drop$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     n   I
+    Signature: #75                          // (I)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;
+    MethodParameters:
+      Name                           Flags
+      n                              final
+
+  public scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>> take(int);
+    descriptor: (I)Lscala/collection/parallel/IterableSplitter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #84                 // InterfaceMethod scala/collection/parallel/IterableSplitter.take$:(Lscala/collection/parallel/IterableSplitter;I)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     n   I
+    Signature: #75                          // (I)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;
+    MethodParameters:
+      Name                           Flags
+      n                              final
+
+  public scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>> slice(int, int);
+    descriptor: (II)Lscala/collection/parallel/IterableSplitter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokestatic  #92                 // InterfaceMethod scala/collection/parallel/IterableSplitter.slice$:(Lscala/collection/parallel/IterableSplitter;II)Lscala/collection/parallel/IterableSplitter;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1 from1   I
+            0       7     2 until1   I
+    Signature: #87                          // (II)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;
+    MethodParameters:
+      Name                           Flags
+      from1                          final
+      until1                         final
+
+  public <S$ extends java.lang.Object> scala.collection.parallel.IterableSplitter<S$> map(scala.Function1<scala.Tuple2<K, V>, S$>);
+    descriptor: (Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #100                // InterfaceMethod scala/collection/parallel/IterableSplitter.map$:(Lscala/collection/parallel/IterableSplitter;Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     f   Lscala/Function1;
+    Signature: #95                          // <S$:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;TS$;>;)Lscala/collection/parallel/IterableSplitter<TS$;>;
+    MethodParameters:
+      Name                           Flags
+      f                              final
+
+  public <U extends java.lang.Object, PI extends scala.collection.parallel.IterableSplitter<U>> scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>>.Appended<U, PI> appendParIterable(PI);
+    descriptor: (Lscala/collection/parallel/IterableSplitter;)Lscala/collection/parallel/IterableSplitter$Appended;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #108                // InterfaceMethod scala/collection/parallel/IterableSplitter.appendParIterable$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/IterableSplitter;)Lscala/collection/parallel/IterableSplitter$Appended;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1  that   Lscala/collection/parallel/IterableSplitter;
+    Signature: #103                         // <U:Ljava/lang/Object;PI::Lscala/collection/parallel/IterableSplitter<TU;>;>(TPI;)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>.Appended<TU;TPI;>;
+    MethodParameters:
+      Name                           Flags
+      that                           final
+
+  public <S$ extends java.lang.Object> scala.collection.parallel.IterableSplitter<scala.Tuple2<scala.Tuple2<K, V>, S$>> zipParSeq(scala.collection.parallel.SeqSplitter<S$>);
+    descriptor: (Lscala/collection/parallel/SeqSplitter;)Lscala/collection/parallel/IterableSplitter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #116                // InterfaceMethod scala/collection/parallel/IterableSplitter.zipParSeq$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/SeqSplitter;)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1  that   Lscala/collection/parallel/SeqSplitter;
+    Signature: #112                         // <S$:Ljava/lang/Object;>(Lscala/collection/parallel/SeqSplitter<TS$;>;)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<Lscala/Tuple2<TK;TV;>;TS$;>;>;
+    MethodParameters:
+      Name                           Flags
+      that                           final
+
+  public <S extends java.lang.Object, U extends java.lang.Object, R extends java.lang.Object> scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>>.ZippedAll<U, R> zipAllParSeq(scala.collection.parallel.SeqSplitter<S>, U, R);
+    descriptor: (Lscala/collection/parallel/SeqSplitter;Ljava/lang/Object;Ljava/lang/Object;)Lscala/collection/parallel/IterableSplitter$ZippedAll;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #126                // InterfaceMethod scala/collection/parallel/IterableSplitter.zipAllParSeq$:(Lscala/collection/parallel/IterableSplitter;Lscala/collection/parallel/SeqSplitter;Ljava/lang/Object;Ljava/lang/Object;)Lscala/collection/parallel/IterableSplitter$ZippedAll;
+         7: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       8     1  that   Lscala/collection/parallel/SeqSplitter;
+            0       8     2 thisElem   Ljava/lang/Object;
+            0       8     3 thatElem   Ljava/lang/Object;
+    Signature: #120                         // <S:Ljava/lang/Object;U:Ljava/lang/Object;R:Ljava/lang/Object;>(Lscala/collection/parallel/SeqSplitter<TS;>;TU;TR;)Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>.ZippedAll<TU;TR;>;
+    MethodParameters:
+      Name                           Flags
+      that                           final
+      thisElem                       final
+      thatElem                       final
+
+  public boolean isAborted();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #135                // InterfaceMethod scala/collection/generic/DelegatedSignalling.isAborted$:(Lscala/collection/generic/DelegatedSignalling;)Z
+         4: ireturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public void abort();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #141                // InterfaceMethod scala/collection/generic/DelegatedSignalling.abort$:(Lscala/collection/generic/DelegatedSignalling;)V
+         4: return
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public int indexFlag();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #147                // InterfaceMethod scala/collection/generic/DelegatedSignalling.indexFlag$:(Lscala/collection/generic/DelegatedSignalling;)I
+         4: ireturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public void setIndexFlag(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #153                // InterfaceMethod scala/collection/generic/DelegatedSignalling.setIndexFlag$:(Lscala/collection/generic/DelegatedSignalling;I)V
+         5: return
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     f   I
+    MethodParameters:
+      Name                           Flags
+      f                              final
+
+  public void setIndexFlagIfGreater(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #157                // InterfaceMethod scala/collection/generic/DelegatedSignalling.setIndexFlagIfGreater$:(Lscala/collection/generic/DelegatedSignalling;I)V
+         5: return
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     f   I
+    MethodParameters:
+      Name                           Flags
+      f                              final
+
+  public void setIndexFlagIfLesser(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #161                // InterfaceMethod scala/collection/generic/DelegatedSignalling.setIndexFlagIfLesser$:(Lscala/collection/generic/DelegatedSignalling;I)V
+         5: return
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     f   I
+    MethodParameters:
+      Name                           Flags
+      f                              final
+
+  public int tag();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #165                // InterfaceMethod scala/collection/generic/DelegatedSignalling.tag$:(Lscala/collection/generic/DelegatedSignalling;)I
+         4: ireturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public int count(scala.Function1<scala.Tuple2<K, V>, java.lang.Object>);
+    descriptor: (Lscala/Function1;)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #175                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.count$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;)I
+         5: ireturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     p   Lscala/Function1;
+    Signature: #168                         // (Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;)I
+    MethodParameters:
+      Name                           Flags
+      p                              final
+
+  public <U extends java.lang.Object> U reduce(scala.Function2<U, U, U>);
+    descriptor: (Lscala/Function2;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #183                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.reduce$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function2;)Ljava/lang/Object;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1    op   Lscala/Function2;
+    Signature: #178                         // <U:Ljava/lang/Object;>(Lscala/Function2<TU;TU;TU;>;)TU;
+    MethodParameters:
+      Name                           Flags
+      op                             final
+
+  public <U extends java.lang.Object> U fold(U, scala.Function2<U, U, U>);
+    descriptor: (Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #192                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.fold$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;)Ljava/lang/Object;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1     z   Ljava/lang/Object;
+            0       7     2    op   Lscala/Function2;
+    Signature: #187                         // <U:Ljava/lang/Object;>(TU;Lscala/Function2<TU;TU;TU;>;)TU;
+    MethodParameters:
+      Name                           Flags
+      z                              final
+      op                             final
+
+  public <U extends java.lang.Object> U sum(scala.math.Numeric<U>);
+    descriptor: (Lscala/math/Numeric;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #200                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.sum$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Numeric;)Ljava/lang/Object;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1   num   Lscala/math/Numeric;
+    Signature: #195                         // <U:Ljava/lang/Object;>(Lscala/math/Numeric<TU;>;)TU;
+    MethodParameters:
+      Name                           Flags
+      num                            final
+
+  public <U extends java.lang.Object> U product(scala.math.Numeric<U>);
+    descriptor: (Lscala/math/Numeric;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #205                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.product$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Numeric;)Ljava/lang/Object;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1   num   Lscala/math/Numeric;
+    Signature: #195                         // <U:Ljava/lang/Object;>(Lscala/math/Numeric<TU;>;)TU;
+    MethodParameters:
+      Name                           Flags
+      num                            final
+
+  public java.lang.Object min(scala.math.Ordering);
+    descriptor: (Lscala/math/Ordering;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #212                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.min$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Ordering;)Ljava/lang/Object;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1   ord   Lscala/math/Ordering;
+    MethodParameters:
+      Name                           Flags
+      ord                            final
+
+  public java.lang.Object max(scala.math.Ordering);
+    descriptor: (Lscala/math/Ordering;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #217                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.max$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/math/Ordering;)Ljava/lang/Object;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1   ord   Lscala/math/Ordering;
+    MethodParameters:
+      Name                           Flags
+      ord                            final
+
+  public <U extends java.lang.Object> U reduceLeft(int, scala.Function2<U, U, U>);
+    descriptor: (ILscala/Function2;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: invokestatic  #225                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.reduceLeft$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/Function2;)Ljava/lang/Object;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1 howmany   I
+            0       7     2    op   Lscala/Function2;
+    Signature: #220                         // <U:Ljava/lang/Object;>(ILscala/Function2<TU;TU;TU;>;)TU;
+    MethodParameters:
+      Name                           Flags
+      howmany                        final
+      op                             final
+
+  public <S$ extends java.lang.Object, That extends java.lang.Object> scala.collection.parallel.Combiner<S$, That> map2combiner(scala.Function1<scala.Tuple2<K, V>, S$>, scala.collection.parallel.Combiner<S$, That>);
+    descriptor: (Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #233                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.map2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1     f   Lscala/Function1;
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #228                         // <S$:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;TS$;>;Lscala/collection/parallel/Combiner<TS$;TThat;>;)Lscala/collection/parallel/Combiner<TS$;TThat;>;
+    MethodParameters:
+      Name                           Flags
+      f                              final
+      cb                             final
+
+  public <S$ extends java.lang.Object, That extends java.lang.Object> scala.collection.parallel.Combiner<S$, That> collect2combiner(scala.PartialFunction<scala.Tuple2<K, V>, S$>, scala.collection.parallel.Combiner<S$, That>);
+    descriptor: (Lscala/PartialFunction;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #242                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.collect2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/PartialFunction;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1    pf   Lscala/PartialFunction;
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #237                         // <S$:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/PartialFunction<Lscala/Tuple2<TK;TV;>;TS$;>;Lscala/collection/parallel/Combiner<TS$;TThat;>;)Lscala/collection/parallel/Combiner<TS$;TThat;>;
+    MethodParameters:
+      Name                           Flags
+      pf                             final
+      cb                             final
+
+  public <S$ extends java.lang.Object, That extends java.lang.Object> scala.collection.parallel.Combiner<S$, That> flatmap2combiner(scala.Function1<scala.Tuple2<K, V>, scala.collection.IterableOnce<S$>>, scala.collection.parallel.Combiner<S$, That>);
+    descriptor: (Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #248                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.flatmap2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1     f   Lscala/Function1;
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #245                         // <S$:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Lscala/collection/IterableOnce<TS$;>;>;Lscala/collection/parallel/Combiner<TS$;TThat;>;)Lscala/collection/parallel/Combiner<TS$;TThat;>;
+    MethodParameters:
+      Name                           Flags
+      f                              final
+      cb                             final
+
+  public <U extends java.lang.Object, Coll extends java.lang.Object, Bld extends scala.collection.mutable.Builder<U, Coll>> Bld copy2builder(Bld);
+    descriptor: (Lscala/collection/mutable/Builder;)Lscala/collection/mutable/Builder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #256                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.copy2builder$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/mutable/Builder;)Lscala/collection/mutable/Builder;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     b   Lscala/collection/mutable/Builder;
+    Signature: #251                         // <U:Ljava/lang/Object;Coll:Ljava/lang/Object;Bld::Lscala/collection/mutable/Builder<TU;TColl;>;>(TBld;)TBld;
+    MethodParameters:
+      Name                           Flags
+      b                              final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.collection.parallel.Combiner<U, This> filter2combiner(scala.Function1<scala.Tuple2<K, V>, java.lang.Object>, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #263                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.filter2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1  pred   Lscala/Function1;
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #259                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/collection/parallel/Combiner<TU;TThis;>;
+    MethodParameters:
+      Name                           Flags
+      pred                           final
+      cb                             final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.collection.parallel.Combiner<U, This> filterNot2combiner(scala.Function1<scala.Tuple2<K, V>, java.lang.Object>, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #267                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.filterNot2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1  pred   Lscala/Function1;
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #259                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/collection/parallel/Combiner<TU;TThis;>;
+    MethodParameters:
+      Name                           Flags
+      pred                           final
+      cb                             final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.Tuple2<scala.collection.parallel.Combiner<U, This>, scala.collection.parallel.Combiner<U, This>> partition2combiners(scala.Function1<scala.Tuple2<K, V>, java.lang.Object>, scala.collection.parallel.Combiner<U, This>, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #276                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.partition2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+         7: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       8     1  pred   Lscala/Function1;
+            0       8     2 btrue   Lscala/collection/parallel/Combiner;
+            0       8     3 bfalse   Lscala/collection/parallel/Combiner;
+    Signature: #270                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;Lscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/Tuple2<Lscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;>;
+    MethodParameters:
+      Name                           Flags
+      pred                           final
+      btrue                          final
+      bfalse                         final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.collection.parallel.Combiner<U, This> take2combiner(int, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: invokestatic  #283                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.take2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1     n   I
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #279                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(ILscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/collection/parallel/Combiner<TU;TThis;>;
+    MethodParameters:
+      Name                           Flags
+      n                              final
+      cb                             final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.collection.parallel.Combiner<U, This> drop2combiner(int, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: invokestatic  #287                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.drop2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1     n   I
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #279                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(ILscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/collection/parallel/Combiner<TU;TThis;>;
+    MethodParameters:
+      Name                           Flags
+      n                              final
+      cb                             final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.collection.parallel.Combiner<U, This> slice2combiner(int, int, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (IILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: aload_3
+         4: invokestatic  #295                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.slice2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;IILscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         7: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       8     1  from   I
+            0       8     2 until   I
+            0       8     3    cb   Lscala/collection/parallel/Combiner;
+    Signature: #290                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(IILscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/collection/parallel/Combiner<TU;TThis;>;
+    MethodParameters:
+      Name                           Flags
+      from                           final
+      until                          final
+      cb                             final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.Tuple2<scala.collection.parallel.Combiner<U, This>, scala.collection.parallel.Combiner<U, This>> splitAt2combiners(int, scala.collection.parallel.Combiner<U, This>, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (ILscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #305                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.splitAt2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;ILscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+         7: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       8     1    at   I
+            0       8     2 before   Lscala/collection/parallel/Combiner;
+            0       8     3 after   Lscala/collection/parallel/Combiner;
+    Signature: #298                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(ILscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/Tuple2<Lscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;>;
+    MethodParameters:
+      Name                           Flags
+      at                             final
+      before                         final
+      after                          final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.Tuple2<scala.collection.parallel.Combiner<U, This>, java.lang.Object> takeWhile2combiner(scala.Function1<scala.Tuple2<K, V>, java.lang.Object>, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #312                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.takeWhile2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1     p   Lscala/Function1;
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #308                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/Tuple2<Lscala/collection/parallel/Combiner<TU;TThis;>;Ljava/lang/Object;>;
+    MethodParameters:
+      Name                           Flags
+      p                              final
+      cb                             final
+
+  public <U extends java.lang.Object, This extends java.lang.Object> scala.Tuple2<scala.collection.parallel.Combiner<U, This>, scala.collection.parallel.Combiner<U, This>> span2combiners(scala.Function1<scala.Tuple2<K, V>, java.lang.Object>, scala.collection.parallel.Combiner<U, This>, scala.collection.parallel.Combiner<U, This>);
+    descriptor: (Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #316                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.span2combiners$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/Function1;Lscala/collection/parallel/Combiner;Lscala/collection/parallel/Combiner;)Lscala/Tuple2;
+         7: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       8     1     p   Lscala/Function1;
+            0       8     2 before   Lscala/collection/parallel/Combiner;
+            0       8     3 after   Lscala/collection/parallel/Combiner;
+    Signature: #270                         // <U:Ljava/lang/Object;This:Ljava/lang/Object;>(Lscala/Function1<Lscala/Tuple2<TK;TV;>;Ljava/lang/Object;>;Lscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;)Lscala/Tuple2<Lscala/collection/parallel/Combiner<TU;TThis;>;Lscala/collection/parallel/Combiner<TU;TThis;>;>;
+    MethodParameters:
+      Name                           Flags
+      p                              final
+      before                         final
+      after                          final
+
+  public <U extends java.lang.Object, A extends java.lang.Object> void scanToArray(U, scala.Function2<U, U, U>, java.lang.Object, int);
+    descriptor: (Ljava/lang/Object;Lscala/Function2;Ljava/lang/Object;I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: iload         4
+         6: invokestatic  #324                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.scanToArray$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;Ljava/lang/Object;I)V
+         9: return
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0      10     1     z   Ljava/lang/Object;
+            0      10     2    op   Lscala/Function2;
+            0      10     3 array   Ljava/lang/Object;
+            0      10     4  from   I
+    Signature: #319                         // <U:Ljava/lang/Object;A:Ljava/lang/Object;>(TU;Lscala/Function2<TU;TU;TU;>;Ljava/lang/Object;I)V
+    MethodParameters:
+      Name                           Flags
+      z                              final
+      op                             final
+      array                          final
+      from                           final
+
+  public <U extends java.lang.Object, That extends java.lang.Object> scala.collection.parallel.Combiner<U, That> scanToCombiner(U, scala.Function2<U, U, U>, scala.collection.parallel.Combiner<U, That>);
+    descriptor: (Ljava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #332                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.scanToCombiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Ljava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         7: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       8     1 startValue   Ljava/lang/Object;
+            0       8     2    op   Lscala/Function2;
+            0       8     3    cb   Lscala/collection/parallel/Combiner;
+    Signature: #327                         // <U:Ljava/lang/Object;That:Ljava/lang/Object;>(TU;Lscala/Function2<TU;TU;TU;>;Lscala/collection/parallel/Combiner<TU;TThat;>;)Lscala/collection/parallel/Combiner<TU;TThat;>;
+    MethodParameters:
+      Name                           Flags
+      startValue                     final
+      op                             final
+      cb                             final
+
+  public <U extends java.lang.Object, That extends java.lang.Object> scala.collection.parallel.Combiner<U, That> scanToCombiner(int, U, scala.Function2<U, U, U>, scala.collection.parallel.Combiner<U, That>);
+    descriptor: (ILjava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: aload_3
+         4: aload         4
+         6: invokestatic  #337                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.scanToCombiner$:(Lscala/collection/parallel/AugmentedIterableIterator;ILjava/lang/Object;Lscala/Function2;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         9: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0      10     1 howmany   I
+            0      10     2 startValue   Ljava/lang/Object;
+            0      10     3    op   Lscala/Function2;
+            0      10     4    cb   Lscala/collection/parallel/Combiner;
+    Signature: #334                         // <U:Ljava/lang/Object;That:Ljava/lang/Object;>(ITU;Lscala/Function2<TU;TU;TU;>;Lscala/collection/parallel/Combiner<TU;TThat;>;)Lscala/collection/parallel/Combiner<TU;TThat;>;
+    MethodParameters:
+      Name                           Flags
+      howmany                        final
+      startValue                     final
+      op                             final
+      cb                             final
+
+  public <U extends java.lang.Object, S extends java.lang.Object, That extends java.lang.Object> scala.collection.parallel.Combiner<scala.Tuple2<U, S>, That> zip2combiner(scala.collection.parallel.RemainsIterator<S>, scala.collection.parallel.Combiner<scala.Tuple2<U, S>, That>);
+    descriptor: (Lscala/collection/parallel/RemainsIterator;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #345                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.zip2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/parallel/RemainsIterator;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1 otherpit   Lscala/collection/parallel/RemainsIterator;
+            0       7     2    cb   Lscala/collection/parallel/Combiner;
+    Signature: #340                         // <U:Ljava/lang/Object;S:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/collection/parallel/RemainsIterator<TS;>;Lscala/collection/parallel/Combiner<Lscala/Tuple2<TU;TS;>;TThat;>;)Lscala/collection/parallel/Combiner<Lscala/Tuple2<TU;TS;>;TThat;>;
+    MethodParameters:
+      Name                           Flags
+      otherpit                       final
+      cb                             final
+
+  public <U extends java.lang.Object, S extends java.lang.Object, That extends java.lang.Object> scala.collection.parallel.Combiner<scala.Tuple2<U, S>, That> zipAll2combiner(scala.collection.parallel.RemainsIterator<S>, U, S, scala.collection.parallel.Combiner<scala.Tuple2<U, S>, That>);
+    descriptor: (Lscala/collection/parallel/RemainsIterator;Ljava/lang/Object;Ljava/lang/Object;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: aload         4
+         6: invokestatic  #355                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.zipAll2combiner$:(Lscala/collection/parallel/AugmentedIterableIterator;Lscala/collection/parallel/RemainsIterator;Ljava/lang/Object;Ljava/lang/Object;Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+         9: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0      10     1  that   Lscala/collection/parallel/RemainsIterator;
+            0      10     2 thiselem   Ljava/lang/Object;
+            0      10     3 thatelem   Ljava/lang/Object;
+            0      10     4    cb   Lscala/collection/parallel/Combiner;
+    Signature: #349                         // <U:Ljava/lang/Object;S:Ljava/lang/Object;That:Ljava/lang/Object;>(Lscala/collection/parallel/RemainsIterator<TS;>;TU;TS;Lscala/collection/parallel/Combiner<Lscala/Tuple2<TU;TS;>;TThat;>;)Lscala/collection/parallel/Combiner<Lscala/Tuple2<TU;TS;>;TThat;>;
+    MethodParameters:
+      Name                           Flags
+      that                           final
+      thiselem                       final
+      thatelem                       final
+      cb                             final
+
+  public scala.collection.generic.Signalling signalDelegate();
+    descriptor: ()Lscala/collection/generic/Signalling;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #358                // Field signalDelegate:Lscala/collection/generic/Signalling;
+         4: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public void signalDelegate_$eq(scala.collection.generic.Signalling);
+    descriptor: (Lscala/collection/generic/Signalling;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #358                // Field signalDelegate:Lscala/collection/generic/Signalling;
+         5: return
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1   x$1   Lscala/collection/generic/Signalling;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  private int totalsize$lzycompute();
+    descriptor: ()I
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=2, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: getfield      #364                // Field bitmap$0:Z
+         8: ifne          34
+        11: aload_0
+        12: new           #366                // class scala/collection/parallel/mutable/ParTrieMap
+        15: dup
+        16: aload_0
+        17: getfield      #368                // Field ct:Lscala/collection/concurrent/TrieMap;
+        20: invokespecial #372                // Method scala/collection/parallel/mutable/ParTrieMap."<init>":(Lscala/collection/concurrent/TrieMap;)V
+        23: invokevirtual #375                // Method scala/collection/parallel/mutable/ParTrieMap.size:()I
+        26: putfield      #377                // Field totalsize:I
+        29: aload_0
+        30: iconst_1
+        31: putfield      #364                // Field bitmap$0:Z
+        34: aload_1
+        35: monitorexit
+        36: goto          42
+        39: aload_1
+        40: monitorexit
+        41: athrow
+        42: aload_0
+        43: getfield      #377                // Field totalsize:I
+        46: ireturn
+      Exception table:
+         from    to  target type
+             4    34    39   any
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 34
+          locals = [ class scala/collection/parallel/mutable/ParTrieMapSplitter ]
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 2 /* same */
+      LineNumberTable:
+        line 127: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      47     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public int totalsize();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #364                // Field bitmap$0:Z
+         4: ifne          14
+         7: aload_0
+         8: invokespecial #381                // Method totalsize$lzycompute:()I
+        11: goto          18
+        14: aload_0
+        15: getfield      #377                // Field totalsize:I
+        18: ireturn
+      StackMapTable: number_of_entries = 2
+        frame_type = 14 /* same */
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ int ]
+      LineNumberTable:
+        line 127: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public int iterated();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #383                // Field iterated:I
+         4: ireturn
+      LineNumberTable:
+        line 128: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public void iterated_$eq(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #383                // Field iterated:I
+         5: return
+      LineNumberTable:
+        line 128: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1   x$1   I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public scala.collection.parallel.mutable.ParTrieMapSplitter<K, V> newIterator(int, scala.collection.concurrent.TrieMap<K, V>, boolean);
+    descriptor: (ILscala/collection/concurrent/TrieMap;Z)Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=4
+         0: new           #2                  // class scala/collection/parallel/mutable/ParTrieMapSplitter
+         3: dup
+         4: iload_1
+         5: aload_2
+         6: iload_3
+         7: invokespecial #393                // Method "<init>":(ILscala/collection/concurrent/TrieMap;Z)V
+        10: areturn
+      LineNumberTable:
+        line 130: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0      11     1  _lev   I
+            0      11     2   _ct   Lscala/collection/concurrent/TrieMap;
+            0      11     3 _mustInit   Z
+    Signature: #387                         // (ILscala/collection/concurrent/TrieMap<TK;TV;>;Z)Lscala/collection/parallel/mutable/ParTrieMapSplitter<TK;TV;>;
+    MethodParameters:
+      Name                           Flags
+      _lev                           final
+      _ct                            final
+      _mustInit                      final
+
+  public <S extends java.lang.Object> boolean shouldSplitFurther(scala.collection.parallel.ParIterable<S>, int);
+    descriptor: (Lscala/collection/parallel/ParIterable;I)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=4, args_size=3
+         0: iconst_3
+         1: iload_2
+         2: invokestatic  #404                // Method java/lang/Integer.highestOneBit:(I)I
+         5: iadd
+         6: istore_3
+         7: aload_0
+         8: invokevirtual #407                // Method level:()I
+        11: iload_3
+        12: if_icmpge     19
+        15: iconst_1
+        16: goto          20
+        19: iconst_0
+        20: ireturn
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 19
+          locals = [ int ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+      LineNumberTable:
+        line 133: 0
+        line 134: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            7      13     3 maxsplits   I
+            0      21     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0      21     1  coll   Lscala/collection/parallel/ParIterable;
+            0      21     2 parallelismLevel   I
+    Signature: #396                         // <S:Ljava/lang/Object;>(Lscala/collection/parallel/ParIterable<TS;>;I)Z
+    MethodParameters:
+      Name                           Flags
+      coll                           final
+      parallelismLevel               final
+
+  public scala.collection.parallel.mutable.ParTrieMapSplitter<K, V> dup();
+    descriptor: ()Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=1
+         0: aload_0
+         1: iconst_0
+         2: aload_0
+         3: getfield      #368                // Field ct:Lscala/collection/concurrent/TrieMap;
+         6: iconst_0
+         7: invokevirtual #414                // Method newIterator:(ILscala/collection/concurrent/TrieMap;Z)Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+        10: astore_1
+        11: aload_0
+        12: aload_1
+        13: invokevirtual #418                // Method dupTo:(Lscala/collection/concurrent/TrieMapIterator;)V
+        16: aload_1
+        17: aload_0
+        18: invokevirtual #420                // Method iterated:()I
+        21: invokevirtual #422                // Method iterated_$eq:(I)V
+        24: aload_1
+        25: areturn
+      LineNumberTable:
+        line 138: 0
+        line 139: 11
+        line 140: 16
+        line 141: 24
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           11      14     1    it   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0      26     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+    Signature: #412                         // ()Lscala/collection/parallel/mutable/ParTrieMapSplitter<TK;TV;>;
+
+  public scala.Tuple2<K, V> next();
+    descriptor: ()Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: aload_0
+         2: invokevirtual #420                // Method iterated:()I
+         5: iconst_1
+         6: iadd
+         7: invokevirtual #422                // Method iterated_$eq:(I)V
+        10: aload_0
+        11: invokespecial #427                // Method scala/collection/concurrent/TrieMapIterator.next:()Lscala/Tuple2;
+        14: areturn
+      LineNumberTable:
+        line 145: 0
+        line 146: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+    Signature: #425                         // ()Lscala/Tuple2<TK;TV;>;
+
+  public scala.collection.immutable.Seq<scala.collection.parallel.IterableSplitter<scala.Tuple2<K, V>>> split();
+    descriptor: ()Lscala/collection/immutable/Seq;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #432                // Method subdivide:()Lscala/collection/Seq;
+         4: checkcast     #434                // class scala/collection/immutable/Seq
+         7: areturn
+      LineNumberTable:
+        line 149: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+    Signature: #33                          // ()Lscala/collection/immutable/Seq<Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;>;
+
+  public boolean isRemainingCheap();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 151: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public int remaining();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #438                // Method totalsize:()I
+         4: aload_0
+         5: invokevirtual #420                // Method iterated:()I
+         8: isub
+         9: ireturn
+      LineNumberTable:
+        line 153: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public java.lang.Object map(scala.Function1);
+    descriptor: (Lscala/Function1;)Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #441                // Method map:(Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     f   Lscala/Function1;
+    MethodParameters:
+      Name                           Flags
+      f                              final
+
+  public scala.collection.Iterator map(scala.Function1);
+    descriptor: (Lscala/Function1;)Lscala/collection/Iterator;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #441                // Method map:(Lscala/Function1;)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     f   Lscala/Function1;
+    MethodParameters:
+      Name                           Flags
+      f                              final
+
+  public java.lang.Object slice(int, int);
+    descriptor: (II)Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokevirtual #445                // Method slice:(II)Lscala/collection/parallel/IterableSplitter;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1  from   I
+            0       7     2 until   I
+    MethodParameters:
+      Name                           Flags
+      from                           final
+      until                          final
+
+  public scala.collection.Iterator slice(int, int);
+    descriptor: (II)Lscala/collection/Iterator;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokevirtual #445                // Method slice:(II)Lscala/collection/parallel/IterableSplitter;
+         6: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       7     1  from   I
+            0       7     2 until   I
+    MethodParameters:
+      Name                           Flags
+      from                           final
+      until                          final
+
+  public java.lang.Object take(int);
+    descriptor: (I)Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #449                // Method take:(I)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     n   I
+    MethodParameters:
+      Name                           Flags
+      n                              final
+
+  public scala.collection.Iterator take(int);
+    descriptor: (I)Lscala/collection/Iterator;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #449                // Method take:(I)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     n   I
+    MethodParameters:
+      Name                           Flags
+      n                              final
+
+  public java.lang.Object drop(int);
+    descriptor: (I)Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #452                // Method drop:(I)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     n   I
+    MethodParameters:
+      Name                           Flags
+      n                              final
+
+  public scala.collection.Iterator drop(int);
+    descriptor: (I)Lscala/collection/Iterator;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #452                // Method drop:(I)Lscala/collection/parallel/IterableSplitter;
+         5: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       6     1     n   I
+    MethodParameters:
+      Name                           Flags
+      n                              final
+
+  public scala.collection.Seq split();
+    descriptor: ()Lscala/collection/Seq;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #454                // Method split:()Lscala/collection/immutable/Seq;
+         4: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public java.lang.Object next();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #456                // Method next:()Lscala/Tuple2;
+         4: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public scala.collection.parallel.IterableSplitter dup();
+    descriptor: ()Lscala/collection/parallel/IterableSplitter;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #459                // Method dup:()Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+         4: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+
+  public scala.collection.concurrent.TrieMapIterator newIterator(int, scala.collection.concurrent.TrieMap, boolean);
+    descriptor: (ILscala/collection/concurrent/TrieMap;Z)Lscala/collection/concurrent/TrieMapIterator;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: iload_3
+         4: invokevirtual #414                // Method newIterator:(ILscala/collection/concurrent/TrieMap;Z)Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+         7: areturn
+      LineNumberTable:
+        line 122: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0       8     1  _lev   I
+            0       8     2   _ct   Lscala/collection/concurrent/TrieMap;
+            0       8     3 _mustInit   Z
+    MethodParameters:
+      Name                           Flags
+      _lev                           final
+      _ct                            final
+      _mustInit                      final
+
+  public scala.collection.parallel.mutable.ParTrieMapSplitter(int, scala.collection.concurrent.TrieMap<K, V>, boolean);
+    descriptor: (ILscala/collection/concurrent/TrieMap;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_2
+         2: putfield      #368                // Field ct:Lscala/collection/concurrent/TrieMap;
+         5: aload_0
+         6: iload_1
+         7: aload_2
+         8: iload_3
+         9: invokespecial #464                // Method scala/collection/concurrent/TrieMapIterator."<init>":(ILscala/collection/concurrent/TrieMap;Z)V
+        12: aload_0
+        13: invokestatic  #470                // InterfaceMethod scala/collection/parallel/RemainsIterator.$init$:(Lscala/collection/parallel/RemainsIterator;)V
+        16: aload_0
+        17: invokestatic  #473                // InterfaceMethod scala/collection/parallel/AugmentedIterableIterator.$init$:(Lscala/collection/parallel/AugmentedIterableIterator;)V
+        20: aload_0
+        21: invokestatic  #475                // InterfaceMethod scala/collection/generic/DelegatedSignalling.$init$:(Lscala/collection/generic/DelegatedSignalling;)V
+        24: aload_0
+        25: invokestatic  #478                // InterfaceMethod scala/collection/parallel/IterableSplitter.$init$:(Lscala/collection/parallel/IterableSplitter;)V
+        28: aload_0
+        29: iconst_0
+        30: putfield      #383                // Field iterated:I
+        33: return
+      LineNumberTable:
+        line 122: 0
+        line 123: 5
+        line 128: 28
+        line 122: 33
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      34     0  this   Lscala/collection/parallel/mutable/ParTrieMapSplitter;
+            0      34     1   lev   I
+            0      34     2    ct   Lscala/collection/concurrent/TrieMap;
+            0      34     3 mustInit   Z
+    Signature: #461                         // (ILscala/collection/concurrent/TrieMap<TK;TV;>;Z)V
+    MethodParameters:
+      Name                           Flags
+      lev                            final
+      ct                             final
+      mustInit                       final
+}
+InnerClasses:
+  public #14= #13 of #7;                  // Appended=class scala/collection/parallel/IterableSplitter$Appended of class scala/collection/parallel/IterableSplitter
+  public #17= #16 of #7;                  // Taken=class scala/collection/parallel/IterableSplitter$Taken of class scala/collection/parallel/IterableSplitter
+  public #20= #19 of #7;                  // ZippedAll=class scala/collection/parallel/IterableSplitter$ZippedAll of class scala/collection/parallel/IterableSplitter
+Signature: #3                           // <K:Ljava/lang/Object;V:Ljava/lang/Object;>Lscala/collection/concurrent/TrieMapIterator<TK;TV;>;Lscala/collection/parallel/IterableSplitter<Lscala/Tuple2<TK;TV;>;>;
+SourceFile: "ParTrieMap.scala"
+RuntimeVisibleAnnotations:
+  0: #9(#10=s#11)
+    scala.reflect.ScalaSignature(
+      bytes="\u0006\u0005m4Q\u0001E\t\u0001+eA\u0001\u0002\u000f\u0001\u0003\u0002\u0003\u0006I!\u000f\u0005\ty\u0001\u0011\t\u0011)A\u0005{!A\u0001\t\u0001B\u0001B\u0003%\u0011\tC\u0003E\u0001\u0011\u0005Q\t\u0003\u0005L\u0001!\u0015\r\u0011\"\u0001M\u0011\u001di\u0005\u00011A\u0005\u00021CqA\u0014\u0001A\u0002\u0013\u0005q\n\u0003\u0004V\u0001\u0001\u0006K!\u000f\u0005\u0006-\u0002!\tf\u0016\u0005\u0006=\u0002!\te\u0018\u0005\u0006W\u0002!\t\u0001\u001c\u0005\u0006[\u0002!\tE\u001c\u0005\u0006_\u0002!\t\u0001\u001d\u0005\u0006q\u0002!\t%\u001f\u0005\u0006u\u0002!\t\u0001\u0014\u0002\u0013!\u0006\u0014HK]5f\u001b\u0006\u00048\u000b\u001d7jiR,\'O\u0003\u0002\u0013\'\u00059Q.\u001e;bE2,\'B\u0001\u000b\u0016\u0003!\u0001\u0018M]1mY\u0016d\'B\u0001\f\u0018\u0003)\u0019w\u000e\u001c7fGRLwN\u001c\u0006\u00021\u0005)1oY1mCV\u0019!dI\u0018\u0014\u0007\u0001Y\u0012\u0007\u0005\u0003\u001d?\u0005rS\"A\u000f\u000b\u0005y)\u0012AC2p]\u000e,(O]3oi&\u0011\u0001%\b\u0002\u0010)JLW-T1q\u0013R,\'/\u0019;peB\u0011!e\t\u0007\u0001\t\u0015!\u0003A1\u0001\'\u0005\u0005Y5\u0001A\t\u0003O-\u0002\"\u0001K\u0015\u000e\u0003]I!AK\f\u0003\u000f9{G\u000f[5oOB\u0011\u0001\u0006L\u0005\u0003[]\u00111!\u00118z!\t\u0011s\u0006B\u00031\u0001\t\u0007aEA\u0001W!\r\u00114\'N\u0007\u0002\'%\u0011Ag\u0005\u0002\u0011\u0013R,\'/\u00192mKN\u0003H.\u001b;uKJ\u0004B\u0001\u000b\u001c\"]%\u0011qg\u0006\u0002\u0007)V\u0004H.\u001a\u001a\u0002\u00071,g\u000f\u0005\u0002)u%\u00111h\u0006\u0002\u0004\u0013:$\u0018AA2u!\u0011ab(\t\u0018\n\u0005}j\"a\u0002+sS\u0016l\u0015\r]\u0001\t[V\u001cH/\u00138jiB\u0011\u0001FQ\u0005\u0003\u0007^\u0011qAQ8pY\u0016\fg.\u0001\u0004=S:LGO\u0010\u000b\u0005\r\"K%\n\u0005\u0003H\u0001\u0005rS\"A\t\t\u000ba\"\u0001\u0019A\u001d\t\u000bq\"\u0001\u0019A\u001f\t\u000b\u0001#\u0001\u0019A!\u0002\u0013Q|G/\u00197tSj,W#A\u001d\u0002\u0011%$XM]1uK\u0012\fA\"\u001b;fe\u0006$X\rZ0%KF$\"\u0001U*\u0011\u0005!\n\u0016B\u0001*\u0018\u0005\u0011)f.\u001b;\t\u000fQ;\u0011\u0011!a\u0001s\u0005\u0019\u0001\u0010J\u0019\u0002\u0013%$XM]1uK\u0012\u0004\u0013a\u00038fo&#XM]1u_J$BA\u0012-[9\")\u0011,\u0003a\u0001s\u0005!q\f\\3w\u0011\u0015Y\u0016\u00021\u0001>\u0003\ry6\r\u001e\u0005\u0006;&\u0001\r!Q\u0001\n?6,8\u000f^%oSR\f!c\u001d5pk2$7\u000b\u001d7ji\u001a+(\u000f\u001e5feV\u0011\u0001m\u001a\u000b\u0004\u0003\u0006L\u0007\"\u00022\u000b\u0001\u0004\u0019\u0017\u0001B2pY2\u00042A\r3g\u0013\t)7CA\u0006QCJLE/\u001a:bE2,\u0007C\u0001\u0012h\t\u0015A\'B1\u0001\'\u0005\u0005\u0019\u0006\"\u00026\u000b\u0001\u0004I\u0014\u0001\u00059be\u0006dG.\u001a7jg6dUM^3m\u0003\r!W\u000f]\u000b\u0002\r\u0006!a.\u001a=u)\u0005)\u0014!B:qY&$X#A9\u0011\u0007I,\u0018G\u0004\u0002)g&\u0011AoF\u0001\ba\u0006\u001c7.Y4f\u0013\t1xOA\u0002TKFT!\u0001^\f\u0002!%\u001c(+Z7bS:LgnZ\"iK\u0006\u0004X#A!\u0002\u0013I,W.Y5oS:<\u0007"
+    )
+  ScalaInlineInfo: length = 0x167 (unknown attribute)
+   01 00 00 47 01 71 01 87 00 00 88 00 89 00 00 65
+   00 66 00 00 28 00 29 00 00 EB 00 EC 00 00 F9 00
+   FA 00 00 A6 00 A7 00 00 31 00 32 00 00 49 01 BF
+   00 00 49 01 C2 00 00 49 00 4A 00 01 1C 01 16 00
+   01 9A 01 C9 00 01 9A 01 9B 00 01 02 00 E3 00 01
+   08 00 E3 00 00 F4 00 E3 00 00 B9 00 BA 00 00 8E
+   00 8F 00 00 80 00 81 00 01 B3 00 81 00 00 1A 00
+   8F 00 01 80 00 95 00 00 5D 01 B7 00 00 5D 01 BA
+   00 00 5D 00 5E 00 00 E2 00 E3 00 00 D6 00 CF 00
+   00 CE 00 CF 00 01 81 01 CC 00 01 81 01 82 00 00
+   3F 00 40 00 00 37 00 38 00 01 A7 01 C7 00 01 A7
+   01 A8 00 01 0C 01 0D 00 00 CA 00 C2 00 00 B0 00
+   B1 00 00 DA 00 DB 00 01 B4 00 8F 00 01 3D 01 3E
+   00 01 45 01 4D 00 01 45 01 46 00 00 94 00 95 00
+   00 9A 00 95 00 00 9E 00 95 00 01 8A 01 8B 00 00
+   1B 01 64 00 01 67 01 68 00 00 55 01 BB 00 00 55
+   01 BE 00 00 55 00 56 00 01 20 01 21 00 01 39 01
+   0D 00 01 AC 01 AE 00 01 AC 00 20 00 01 28 01 29
+   00 00 1F 00 20 00 00 C1 00 C2 00 00 A2 00 8F 00
+   00 51 01 BF 00 00 51 01 C2 00 00 51 00 4A 00 01
+   15 01 16 00 01 32 01 33 00 00 15 00 8F 00 01 6A
+   00 8F 01 01 52 01 53 00 01 5B 01 5C 00 00 76 00
+   77 00 00 6E 00 6F 00
+  ScalaSig: length = 0x3 (unknown attribute)
+   05 02 00

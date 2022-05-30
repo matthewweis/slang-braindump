@@ -1,0 +1,1978 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer.class
+  Last modified May 29, 2022; size 10011 bytes
+  SHA-256 checksum c0965dccd05155f91b68159e67ec6571445b7385c3daf929b79c8f24a3780e2a
+  Compiled from "CharsToNameCanonicalizer.java"
+public final class com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  minor version: 0
+  major version: 50
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #9                          // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer
+  super_class: #71                        // java/lang/Object
+  interfaces: 0, fields: 18, methods: 25, attributes: 2
+Constant pool:
+    #1 = Methodref          #71.#210      // java/lang/Object."<init>":()V
+    #2 = Fieldref           #9.#211       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._parent:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+    #3 = Fieldref           #9.#212       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._seed:I
+    #4 = Fieldref           #9.#213       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._canonicalize:Z
+    #5 = Fieldref           #9.#214       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._flags:I
+    #6 = Fieldref           #9.#215       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._hashShared:Z
+    #7 = Fieldref           #9.#216       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._longestCollisionList:I
+    #8 = Class              #217          // java/util/concurrent/atomic/AtomicReference
+    #9 = Class              #218          // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer
+   #10 = Methodref          #29.#219      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.createInitial:(I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+   #11 = Methodref          #8.#220       // java/util/concurrent/atomic/AtomicReference."<init>":(Ljava/lang/Object;)V
+   #12 = Fieldref           #9.#221       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+   #13 = Fieldref           #222.#223     // com/fasterxml/jackson/core/JsonFactory$Feature.CANONICALIZE_FIELD_NAMES:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+   #14 = Methodref          #222.#224     // com/fasterxml/jackson/core/JsonFactory$Feature.enabledIn:(I)Z
+   #15 = Fieldref           #29.#225      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.symbols:[Ljava/lang/String;
+   #16 = Fieldref           #9.#226       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._symbols:[Ljava/lang/String;
+   #17 = Fieldref           #29.#227      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+   #18 = Fieldref           #9.#228       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+   #19 = Fieldref           #29.#229      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.size:I
+   #20 = Fieldref           #9.#230       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._size:I
+   #21 = Fieldref           #29.#231      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.longestCollisionList:I
+   #22 = Methodref          #9.#232       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._thresholdSize:(I)I
+   #23 = Fieldref           #9.#233       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._sizeThreshold:I
+   #24 = Fieldref           #9.#234       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._indexMask:I
+   #25 = Methodref          #235.#236     // java/lang/System.currentTimeMillis:()J
+   #26 = Methodref          #9.#237       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer.createRoot:(I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+   #27 = Methodref          #9.#238       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer."<init>":(I)V
+   #28 = Methodref          #8.#239       // java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+   #29 = Class              #240          // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo
+   #30 = Methodref          #9.#241       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer."<init>":(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;IILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+   #31 = Methodref          #9.#242       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer.maybeDirty:()Z
+   #32 = Methodref          #29.#243      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo."<init>":(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;)V
+   #33 = Methodref          #9.#244       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer.mergeChild:(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+   #34 = Methodref          #8.#245       // java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+   #35 = Fieldref           #52.#246      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.length:I
+   #36 = String             #247          //
+   #37 = Class              #248          // java/lang/String
+   #38 = Methodref          #37.#249      // java/lang/String."<init>":([CII)V
+   #39 = Methodref          #9.#250       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._hashToIndex:(I)I
+   #40 = Methodref          #37.#251      // java/lang/String.length:()I
+   #41 = Methodref          #37.#252      // java/lang/String.charAt:(I)C
+   #42 = Methodref          #52.#253      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.has:([CII)Ljava/lang/String;
+   #43 = Fieldref           #52.#254      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.next:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+   #44 = Methodref          #9.#255       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._findSymbol2:([CIILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)Ljava/lang/String;
+   #45 = Methodref          #9.#256       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._addSymbol:([CIIII)Ljava/lang/String;
+   #46 = Methodref          #9.#257       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer.copyArrays:()V
+   #47 = Methodref          #9.#258       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer.rehash:()V
+   #48 = Methodref          #9.#259       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer.calcHash:([CII)I
+   #49 = Fieldref           #222.#260     // com/fasterxml/jackson/core/JsonFactory$Feature.INTERN_FIELD_NAMES:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+   #50 = Fieldref           #261.#262     // com/fasterxml/jackson/core/util/InternCache.instance:Lcom/fasterxml/jackson/core/util/InternCache;
+   #51 = Methodref          #261.#263     // com/fasterxml/jackson/core/util/InternCache.intern:(Ljava/lang/String;)Ljava/lang/String;
+   #52 = Class              #264          // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket
+   #53 = Methodref          #52.#265      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)V
+   #54 = Methodref          #9.#266       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._handleSpillOverflow:(ILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;I)V
+   #55 = Methodref          #267.#268     // java/lang/Math.max:(II)I
+   #56 = Fieldref           #9.#269       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._overflows:Ljava/util/BitSet;
+   #57 = Class              #270          // java/util/BitSet
+   #58 = Methodref          #57.#210      // java/util/BitSet."<init>":()V
+   #59 = Methodref          #57.#271      // java/util/BitSet.set:(I)V
+   #60 = Methodref          #57.#272      // java/util/BitSet.get:(I)Z
+   #61 = Fieldref           #222.#273     // com/fasterxml/jackson/core/JsonFactory$Feature.FAIL_ON_SYMBOL_HASH_OVERFLOW:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+   #62 = Methodref          #9.#274       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer._reportTooManyCollisions:(I)V
+   #63 = Fieldref           #52.#275      // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.symbol:Ljava/lang/String;
+   #64 = Methodref          #276.#277     // java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+   #65 = Class              #109          // "[Ljava/lang/String;"
+   #66 = Class              #111          // "[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;"
+   #67 = Integer            65536
+   #68 = Methodref          #9.#278       // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer.calcHash:(Ljava/lang/String;)I
+   #69 = Class              #279          // java/lang/IllegalStateException
+   #70 = String             #280          // Internal error on SymbolTable.rehash(): had %d entries; now have %d
+   #71 = Class              #281          // java/lang/Object
+   #72 = Methodref          #282.#283     // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #73 = Methodref          #37.#284      // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+   #74 = Methodref          #69.#285      // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+   #75 = Class              #286          // java/lang/StringBuilder
+   #76 = Methodref          #75.#210      // java/lang/StringBuilder."<init>":()V
+   #77 = String             #287          // Longest collision chain in symbol table (of size
+   #78 = Methodref          #75.#288      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #79 = Methodref          #75.#289      // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+   #80 = String             #290          // ) now exceeds maximum,
+   #81 = String             #291          //  -- suspect a DoS attack based on hash collisions
+   #82 = Methodref          #75.#292      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #83 = String             #293          // Internal error: expected internal size %d vs calculated count %d
+   #84 = Utf8               TableInfo
+   #85 = Utf8               InnerClasses
+   #86 = Utf8               Bucket
+   #87 = Utf8               HASH_MULT
+   #88 = Utf8               I
+   #89 = Utf8               ConstantValue
+   #90 = Integer            33
+   #91 = Utf8               DEFAULT_T_SIZE
+   #92 = Integer            64
+   #93 = Utf8               MAX_T_SIZE
+   #94 = Utf8               MAX_ENTRIES_FOR_REUSE
+   #95 = Integer            12000
+   #96 = Utf8               MAX_COLL_CHAIN_LENGTH
+   #97 = Integer            150
+   #98 = Utf8               _parent
+   #99 = Utf8               Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+  #100 = Utf8               _tableInfo
+  #101 = Utf8               Ljava/util/concurrent/atomic/AtomicReference;
+  #102 = Utf8               Signature
+  #103 = Utf8               Ljava/util/concurrent/atomic/AtomicReference<Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;>;
+  #104 = Utf8               _seed
+  #105 = Utf8               _flags
+  #106 = Utf8               _canonicalize
+  #107 = Utf8               Z
+  #108 = Utf8               _symbols
+  #109 = Utf8               [Ljava/lang/String;
+  #110 = Utf8               _buckets
+  #111 = Utf8               [Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+  #112 = Utf8               _size
+  #113 = Utf8               _sizeThreshold
+  #114 = Utf8               _indexMask
+  #115 = Utf8               _longestCollisionList
+  #116 = Utf8               _hashShared
+  #117 = Utf8               _overflows
+  #118 = Utf8               Ljava/util/BitSet;
+  #119 = Utf8               <init>
+  #120 = Utf8               (I)V
+  #121 = Utf8               Code
+  #122 = Utf8               LineNumberTable
+  #123 = Utf8               LocalVariableTable
+  #124 = Utf8               this
+  #125 = Utf8               seed
+  #126 = Utf8               (Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;IILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+  #127 = Utf8               parent
+  #128 = Utf8               flags
+  #129 = Utf8               parentState
+  #130 = Utf8               Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+  #131 = Utf8               arrayLen
+  #132 = Utf8               _thresholdSize
+  #133 = Utf8               (I)I
+  #134 = Utf8               hashAreaSize
+  #135 = Utf8               createRoot
+  #136 = Utf8               ()Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+  #137 = Utf8               now
+  #138 = Utf8               J
+  #139 = Utf8               (I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+  #140 = Utf8               makeChild
+  #141 = Utf8               release
+  #142 = Utf8               ()V
+  #143 = Utf8               StackMapTable
+  #144 = Utf8               mergeChild
+  #145 = Utf8               (Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+  #146 = Utf8               childState
+  #147 = Utf8               childCount
+  #148 = Utf8               currState
+  #149 = Class              #240          // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo
+  #150 = Utf8               size
+  #151 = Utf8               ()I
+  #152 = Utf8               bucketCount
+  #153 = Utf8               maybeDirty
+  #154 = Utf8               ()Z
+  #155 = Utf8               hashSeed
+  #156 = Utf8               collisionCount
+  #157 = Utf8               bucket
+  #158 = Utf8               Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+  #159 = Utf8               count
+  #160 = Class              #218          // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer
+  #161 = Utf8               maxCollisionLength
+  #162 = Utf8               findSymbol
+  #163 = Utf8               ([CIII)Ljava/lang/String;
+  #164 = Utf8               i
+  #165 = Utf8               b
+  #166 = Utf8               buffer
+  #167 = Utf8               [C
+  #168 = Utf8               start
+  #169 = Utf8               len
+  #170 = Utf8               h
+  #171 = Utf8               index
+  #172 = Utf8               sym
+  #173 = Utf8               Ljava/lang/String;
+  #174 = Class              #248          // java/lang/String
+  #175 = Class              #264          // com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket
+  #176 = Utf8               _findSymbol2
+  #177 = Utf8               ([CIILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)Ljava/lang/String;
+  #178 = Utf8               _addSymbol
+  #179 = Utf8               ([CIIII)Ljava/lang/String;
+  #180 = Utf8               bix
+  #181 = Utf8               newB
+  #182 = Utf8               collLen
+  #183 = Utf8               newSymbol
+  #184 = Utf8               _handleSpillOverflow
+  #185 = Utf8               (ILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;I)V
+  #186 = Utf8               bucketIndex
+  #187 = Utf8               newBucket
+  #188 = Utf8               mainIndex
+  #189 = Utf8               _hashToIndex
+  #190 = Utf8               rawHash
+  #191 = Utf8               calcHash
+  #192 = Utf8               ([CII)I
+  #193 = Utf8               end
+  #194 = Utf8               hash
+  #195 = Utf8               (Ljava/lang/String;)I
+  #196 = Utf8               key
+  #197 = Utf8               copyArrays
+  #198 = Utf8               oldSyms
+  #199 = Utf8               oldBuckets
+  #200 = Utf8               rehash
+  #201 = Utf8               symbol
+  #202 = Utf8               newSize
+  #203 = Utf8               maxColl
+  #204 = Utf8               bucketSize
+  #205 = Utf8               _reportTooManyCollisions
+  #206 = Utf8               maxLen
+  #207 = Utf8               verifyInternalConsistency
+  #208 = Utf8               SourceFile
+  #209 = Utf8               CharsToNameCanonicalizer.java
+  #210 = NameAndType        #119:#142     // "<init>":()V
+  #211 = NameAndType        #98:#99       // _parent:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+  #212 = NameAndType        #104:#88      // _seed:I
+  #213 = NameAndType        #106:#107     // _canonicalize:Z
+  #214 = NameAndType        #105:#88      // _flags:I
+  #215 = NameAndType        #116:#107     // _hashShared:Z
+  #216 = NameAndType        #115:#88      // _longestCollisionList:I
+  #217 = Utf8               java/util/concurrent/atomic/AtomicReference
+  #218 = Utf8               com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer
+  #219 = NameAndType        #294:#295     // createInitial:(I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+  #220 = NameAndType        #119:#296     // "<init>":(Ljava/lang/Object;)V
+  #221 = NameAndType        #100:#101     // _tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+  #222 = Class              #298          // com/fasterxml/jackson/core/JsonFactory$Feature
+  #223 = NameAndType        #300:#301     // CANONICALIZE_FIELD_NAMES:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+  #224 = NameAndType        #302:#303     // enabledIn:(I)Z
+  #225 = NameAndType        #304:#109     // symbols:[Ljava/lang/String;
+  #226 = NameAndType        #108:#109     // _symbols:[Ljava/lang/String;
+  #227 = NameAndType        #305:#111     // buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+  #228 = NameAndType        #110:#111     // _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+  #229 = NameAndType        #150:#88      // size:I
+  #230 = NameAndType        #112:#88      // _size:I
+  #231 = NameAndType        #306:#88      // longestCollisionList:I
+  #232 = NameAndType        #132:#133     // _thresholdSize:(I)I
+  #233 = NameAndType        #113:#88      // _sizeThreshold:I
+  #234 = NameAndType        #114:#88      // _indexMask:I
+  #235 = Class              #307          // java/lang/System
+  #236 = NameAndType        #308:#309     // currentTimeMillis:()J
+  #237 = NameAndType        #135:#139     // createRoot:(I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+  #238 = NameAndType        #119:#120     // "<init>":(I)V
+  #239 = NameAndType        #310:#311     // get:()Ljava/lang/Object;
+  #240 = Utf8               com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo
+  #241 = NameAndType        #119:#126     // "<init>":(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;IILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+  #242 = NameAndType        #153:#154     // maybeDirty:()Z
+  #243 = NameAndType        #119:#312     // "<init>":(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;)V
+  #244 = NameAndType        #144:#145     // mergeChild:(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+  #245 = NameAndType        #313:#314     // compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #246 = NameAndType        #315:#88      // length:I
+  #247 = Utf8
+  #248 = Utf8               java/lang/String
+  #249 = NameAndType        #119:#316     // "<init>":([CII)V
+  #250 = NameAndType        #189:#133     // _hashToIndex:(I)I
+  #251 = NameAndType        #315:#151     // length:()I
+  #252 = NameAndType        #317:#318     // charAt:(I)C
+  #253 = NameAndType        #319:#320     // has:([CII)Ljava/lang/String;
+  #254 = NameAndType        #321:#158     // next:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+  #255 = NameAndType        #176:#177     // _findSymbol2:([CIILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)Ljava/lang/String;
+  #256 = NameAndType        #178:#179     // _addSymbol:([CIIII)Ljava/lang/String;
+  #257 = NameAndType        #197:#142     // copyArrays:()V
+  #258 = NameAndType        #200:#142     // rehash:()V
+  #259 = NameAndType        #191:#192     // calcHash:([CII)I
+  #260 = NameAndType        #322:#301     // INTERN_FIELD_NAMES:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+  #261 = Class              #323          // com/fasterxml/jackson/core/util/InternCache
+  #262 = NameAndType        #324:#325     // instance:Lcom/fasterxml/jackson/core/util/InternCache;
+  #263 = NameAndType        #326:#327     // intern:(Ljava/lang/String;)Ljava/lang/String;
+  #264 = Utf8               com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket
+  #265 = NameAndType        #119:#328     // "<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)V
+  #266 = NameAndType        #184:#185     // _handleSpillOverflow:(ILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;I)V
+  #267 = Class              #329          // java/lang/Math
+  #268 = NameAndType        #330:#331     // max:(II)I
+  #269 = NameAndType        #117:#118     // _overflows:Ljava/util/BitSet;
+  #270 = Utf8               java/util/BitSet
+  #271 = NameAndType        #332:#120     // set:(I)V
+  #272 = NameAndType        #310:#303     // get:(I)Z
+  #273 = NameAndType        #333:#301     // FAIL_ON_SYMBOL_HASH_OVERFLOW:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+  #274 = NameAndType        #205:#120     // _reportTooManyCollisions:(I)V
+  #275 = NameAndType        #201:#173     // symbol:Ljava/lang/String;
+  #276 = Class              #334          // java/util/Arrays
+  #277 = NameAndType        #335:#336     // copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+  #278 = NameAndType        #191:#195     // calcHash:(Ljava/lang/String;)I
+  #279 = Utf8               java/lang/IllegalStateException
+  #280 = Utf8               Internal error on SymbolTable.rehash(): had %d entries; now have %d
+  #281 = Utf8               java/lang/Object
+  #282 = Class              #337          // java/lang/Integer
+  #283 = NameAndType        #338:#339     // valueOf:(I)Ljava/lang/Integer;
+  #284 = NameAndType        #340:#341     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #285 = NameAndType        #119:#342     // "<init>":(Ljava/lang/String;)V
+  #286 = Utf8               java/lang/StringBuilder
+  #287 = Utf8               Longest collision chain in symbol table (of size
+  #288 = NameAndType        #343:#344     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #289 = NameAndType        #343:#345     // append:(I)Ljava/lang/StringBuilder;
+  #290 = Utf8               ) now exceeds maximum,
+  #291 = Utf8                -- suspect a DoS attack based on hash collisions
+  #292 = NameAndType        #346:#347     // toString:()Ljava/lang/String;
+  #293 = Utf8               Internal error: expected internal size %d vs calculated count %d
+  #294 = Utf8               createInitial
+  #295 = Utf8               (I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+  #296 = Utf8               (Ljava/lang/Object;)V
+  #297 = Class              #348          // com/fasterxml/jackson/core/JsonFactory
+  #298 = Utf8               com/fasterxml/jackson/core/JsonFactory$Feature
+  #299 = Utf8               Feature
+  #300 = Utf8               CANONICALIZE_FIELD_NAMES
+  #301 = Utf8               Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+  #302 = Utf8               enabledIn
+  #303 = Utf8               (I)Z
+  #304 = Utf8               symbols
+  #305 = Utf8               buckets
+  #306 = Utf8               longestCollisionList
+  #307 = Utf8               java/lang/System
+  #308 = Utf8               currentTimeMillis
+  #309 = Utf8               ()J
+  #310 = Utf8               get
+  #311 = Utf8               ()Ljava/lang/Object;
+  #312 = Utf8               (Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;)V
+  #313 = Utf8               compareAndSet
+  #314 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Z
+  #315 = Utf8               length
+  #316 = Utf8               ([CII)V
+  #317 = Utf8               charAt
+  #318 = Utf8               (I)C
+  #319 = Utf8               has
+  #320 = Utf8               ([CII)Ljava/lang/String;
+  #321 = Utf8               next
+  #322 = Utf8               INTERN_FIELD_NAMES
+  #323 = Utf8               com/fasterxml/jackson/core/util/InternCache
+  #324 = Utf8               instance
+  #325 = Utf8               Lcom/fasterxml/jackson/core/util/InternCache;
+  #326 = Utf8               intern
+  #327 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #328 = Utf8               (Ljava/lang/String;Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)V
+  #329 = Utf8               java/lang/Math
+  #330 = Utf8               max
+  #331 = Utf8               (II)I
+  #332 = Utf8               set
+  #333 = Utf8               FAIL_ON_SYMBOL_HASH_OVERFLOW
+  #334 = Utf8               java/util/Arrays
+  #335 = Utf8               copyOf
+  #336 = Utf8               ([Ljava/lang/Object;I)[Ljava/lang/Object;
+  #337 = Utf8               java/lang/Integer
+  #338 = Utf8               valueOf
+  #339 = Utf8               (I)Ljava/lang/Integer;
+  #340 = Utf8               format
+  #341 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #342 = Utf8               (Ljava/lang/String;)V
+  #343 = Utf8               append
+  #344 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #345 = Utf8               (I)Ljava/lang/StringBuilder;
+  #346 = Utf8               toString
+  #347 = Utf8               ()Ljava/lang/String;
+  #348 = Utf8               com/fasterxml/jackson/core/JsonFactory
+{
+  public static final int HASH_MULT;
+    descriptor: I
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 33
+
+  private static final int DEFAULT_T_SIZE;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 64
+
+  private static final int MAX_T_SIZE;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 65536
+
+  static final int MAX_ENTRIES_FOR_REUSE;
+    descriptor: I
+    flags: (0x0018) ACC_STATIC, ACC_FINAL
+    ConstantValue: int 12000
+
+  static final int MAX_COLL_CHAIN_LENGTH;
+    descriptor: I
+    flags: (0x0018) ACC_STATIC, ACC_FINAL
+    ConstantValue: int 150
+
+  protected final com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer _parent;
+    descriptor: Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final java.util.concurrent.atomic.AtomicReference<com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer$TableInfo> _tableInfo;
+    descriptor: Ljava/util/concurrent/atomic/AtomicReference;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Signature: #103                         // Ljava/util/concurrent/atomic/AtomicReference<Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;>;
+
+  protected final int _seed;
+    descriptor: I
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final int _flags;
+    descriptor: I
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected boolean _canonicalize;
+    descriptor: Z
+    flags: (0x0004) ACC_PROTECTED
+
+  protected java.lang.String[] _symbols;
+    descriptor: [Ljava/lang/String;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer$Bucket[] _buckets;
+    descriptor: [Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected int _size;
+    descriptor: I
+    flags: (0x0004) ACC_PROTECTED
+
+  protected int _sizeThreshold;
+    descriptor: I
+    flags: (0x0004) ACC_PROTECTED
+
+  protected int _indexMask;
+    descriptor: I
+    flags: (0x0004) ACC_PROTECTED
+
+  protected int _longestCollisionList;
+    descriptor: I
+    flags: (0x0004) ACC_PROTECTED
+
+  protected boolean _hashShared;
+    descriptor: Z
+    flags: (0x0004) ACC_PROTECTED
+
+  protected java.util.BitSet _overflows;
+    descriptor: Ljava/util/BitSet;
+    flags: (0x0004) ACC_PROTECTED
+
+  private com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer(int);
+    descriptor: (I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aconst_null
+         6: putfield      #2                  // Field _parent:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+         9: aload_0
+        10: iload_1
+        11: putfield      #3                  // Field _seed:I
+        14: aload_0
+        15: iconst_1
+        16: putfield      #4                  // Field _canonicalize:Z
+        19: aload_0
+        20: iconst_m1
+        21: putfield      #5                  // Field _flags:I
+        24: aload_0
+        25: iconst_0
+        26: putfield      #6                  // Field _hashShared:Z
+        29: aload_0
+        30: iconst_0
+        31: putfield      #7                  // Field _longestCollisionList:I
+        34: aload_0
+        35: new           #8                  // class java/util/concurrent/atomic/AtomicReference
+        38: dup
+        39: bipush        64
+        41: invokestatic  #10                 // Method com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.createInitial:(I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+        44: invokespecial #11                 // Method java/util/concurrent/atomic/AtomicReference."<init>":(Ljava/lang/Object;)V
+        47: putfield      #12                 // Field _tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+        50: return
+      LineNumberTable:
+        line 231: 0
+        line 232: 4
+        line 233: 9
+        line 236: 14
+        line 237: 19
+        line 239: 24
+        line 240: 29
+        line 242: 34
+        line 245: 50
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      51     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0      51     1  seed   I
+
+  private com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer(com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer, int, int, com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer$TableInfo);
+    descriptor: (Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;IILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=6, args_size=5
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #2                  // Field _parent:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+         9: aload_0
+        10: iload_3
+        11: putfield      #3                  // Field _seed:I
+        14: aload_0
+        15: aconst_null
+        16: putfield      #12                 // Field _tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+        19: aload_0
+        20: iload_2
+        21: putfield      #5                  // Field _flags:I
+        24: aload_0
+        25: getstatic     #13                 // Field com/fasterxml/jackson/core/JsonFactory$Feature.CANONICALIZE_FIELD_NAMES:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+        28: iload_2
+        29: invokevirtual #14                 // Method com/fasterxml/jackson/core/JsonFactory$Feature.enabledIn:(I)Z
+        32: putfield      #4                  // Field _canonicalize:Z
+        35: aload_0
+        36: aload         4
+        38: getfield      #15                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.symbols:[Ljava/lang/String;
+        41: putfield      #16                 // Field _symbols:[Ljava/lang/String;
+        44: aload_0
+        45: aload         4
+        47: getfield      #17                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        50: putfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        53: aload_0
+        54: aload         4
+        56: getfield      #19                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.size:I
+        59: putfield      #20                 // Field _size:I
+        62: aload_0
+        63: aload         4
+        65: getfield      #21                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.longestCollisionList:I
+        68: putfield      #7                  // Field _longestCollisionList:I
+        71: aload_0
+        72: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+        75: arraylength
+        76: istore        5
+        78: aload_0
+        79: iload         5
+        81: invokestatic  #22                 // Method _thresholdSize:(I)I
+        84: putfield      #23                 // Field _sizeThreshold:I
+        87: aload_0
+        88: iload         5
+        90: iconst_1
+        91: isub
+        92: putfield      #24                 // Field _indexMask:I
+        95: aload_0
+        96: iconst_1
+        97: putfield      #6                  // Field _hashShared:Z
+       100: return
+      LineNumberTable:
+        line 252: 0
+        line 253: 4
+        line 254: 9
+        line 255: 14
+        line 256: 19
+        line 257: 24
+        line 260: 35
+        line 261: 44
+        line 263: 53
+        line 264: 62
+        line 267: 71
+        line 268: 78
+        line 269: 87
+        line 272: 95
+        line 273: 100
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     101     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0     101     1 parent   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0     101     2 flags   I
+            0     101     3  seed   I
+            0     101     4 parentState   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+           78      23     5 arrayLen   I
+
+  private static int _thresholdSize(int);
+    descriptor: (I)I
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: iload_0
+         1: iload_0
+         2: iconst_2
+         3: ishr
+         4: isub
+         5: ireturn
+      LineNumberTable:
+        line 275: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0 hashAreaSize   I
+
+  public static com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer createRoot();
+    descriptor: ()Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=3, args_size=0
+         0: invokestatic  #25                 // Method java/lang/System.currentTimeMillis:()J
+         3: lstore_0
+         4: lload_0
+         5: l2i
+         6: lload_0
+         7: bipush        32
+         9: lushr
+        10: l2i
+        11: iadd
+        12: iconst_1
+        13: ior
+        14: istore_2
+        15: iload_2
+        16: invokestatic  #26                 // Method createRoot:(I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+        19: areturn
+      LineNumberTable:
+        line 294: 0
+        line 296: 4
+        line 297: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            4      16     0   now   J
+           15       5     2  seed   I
+
+  protected static com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer createRoot(int);
+    descriptor: (I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+    flags: (0x000c) ACC_PROTECTED, ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #9                  // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer
+         3: dup
+         4: iload_0
+         5: invokespecial #27                 // Method "<init>":(I)V
+         8: areturn
+      LineNumberTable:
+        line 301: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  seed   I
+
+  public com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer makeChild(int);
+    descriptor: (I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=2, args_size=2
+         0: new           #9                  // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer
+         3: dup
+         4: aload_0
+         5: iload_1
+         6: aload_0
+         7: getfield      #3                  // Field _seed:I
+        10: aload_0
+        11: getfield      #12                 // Field _tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+        14: invokevirtual #28                 // Method java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+        17: checkcast     #29                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo
+        20: invokespecial #30                 // Method "<init>":(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;IILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+        23: areturn
+      LineNumberTable:
+        line 320: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0      24     1 flags   I
+
+  public void release();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #31                 // Method maybeDirty:()Z
+         4: ifne          8
+         7: return
+         8: aload_0
+         9: getfield      #2                  // Field _parent:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+        12: ifnull        42
+        15: aload_0
+        16: getfield      #4                  // Field _canonicalize:Z
+        19: ifeq          42
+        22: aload_0
+        23: getfield      #2                  // Field _parent:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+        26: new           #29                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo
+        29: dup
+        30: aload_0
+        31: invokespecial #32                 // Method com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo."<init>":(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;)V
+        34: invokespecial #33                 // Method mergeChild:(Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+        37: aload_0
+        38: iconst_1
+        39: putfield      #6                  // Field _hashShared:Z
+        42: return
+      LineNumberTable:
+        line 331: 0
+        line 334: 8
+        line 335: 22
+        line 338: 37
+        line 340: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+      StackMapTable: number_of_entries = 2
+        frame_type = 8 /* same */
+        frame_type = 33 /* same */
+
+  private void mergeChild(com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer$TableInfo);
+    descriptor: (Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=4, args_size=2
+         0: aload_1
+         1: getfield      #19                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.size:I
+         4: istore_2
+         5: aload_0
+         6: getfield      #12                 // Field _tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+         9: invokevirtual #28                 // Method java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+        12: checkcast     #29                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo
+        15: astore_3
+        16: iload_2
+        17: aload_3
+        18: getfield      #19                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.size:I
+        21: if_icmpne     25
+        24: return
+        25: iload_2
+        26: sipush        12000
+        29: if_icmple     38
+        32: bipush        64
+        34: invokestatic  #10                 // Method com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.createInitial:(I)Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+        37: astore_1
+        38: aload_0
+        39: getfield      #12                 // Field _tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+        42: aload_3
+        43: aload_1
+        44: invokevirtual #34                 // Method java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        47: pop
+        48: return
+      LineNumberTable:
+        line 351: 0
+        line 352: 5
+        line 356: 16
+        line 357: 24
+        line 363: 25
+        line 365: 32
+        line 367: 38
+        line 368: 48
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      49     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0      49     1 childState   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+            5      44     2 childCount   I
+           16      33     3 currState   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo;
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 25
+          locals = [ int, class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo ]
+        frame_type = 12 /* same */
+
+  public int size();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #12                 // Field _tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+         4: ifnull        21
+         7: aload_0
+         8: getfield      #12                 // Field _tableInfo:Ljava/util/concurrent/atomic/AtomicReference;
+        11: invokevirtual #28                 // Method java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+        14: checkcast     #29                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo
+        17: getfield      #19                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo.size:I
+        20: ireturn
+        21: aload_0
+        22: getfield      #20                 // Field _size:I
+        25: ireturn
+      LineNumberTable:
+        line 380: 0
+        line 381: 7
+        line 384: 21
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      26     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+      StackMapTable: number_of_entries = 1
+        frame_type = 21 /* same */
+
+  public int bucketCount();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+         4: arraylength
+         5: ireturn
+      LineNumberTable:
+        line 393: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+
+  public boolean maybeDirty();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #6                  // Field _hashShared:Z
+         4: ifne          11
+         7: iconst_1
+         8: goto          12
+        11: iconst_0
+        12: ireturn
+      LineNumberTable:
+        line 394: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+      StackMapTable: number_of_entries = 2
+        frame_type = 11 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public int hashSeed();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #3                  // Field _seed:I
+         4: ireturn
+      LineNumberTable:
+        line 395: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+
+  public int collisionCount();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=6, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: aload_0
+         3: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+         6: astore_2
+         7: aload_2
+         8: arraylength
+         9: istore_3
+        10: iconst_0
+        11: istore        4
+        13: iload         4
+        15: iload_3
+        16: if_icmpge     44
+        19: aload_2
+        20: iload         4
+        22: aaload
+        23: astore        5
+        25: aload         5
+        27: ifnull        38
+        30: iload_1
+        31: aload         5
+        33: getfield      #35                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.length:I
+        36: iadd
+        37: istore_1
+        38: iinc          4, 1
+        41: goto          13
+        44: iload_1
+        45: ireturn
+      LineNumberTable:
+        line 407: 0
+        line 409: 2
+        line 410: 25
+        line 411: 30
+        line 409: 38
+        line 414: 44
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           25      13     5 bucket   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+            0      46     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            2      44     1 count   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 13
+          locals = [ class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer, int, class "[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;", int, int ]
+          stack = []
+        frame_type = 24 /* same */
+        frame_type = 248 /* chop */
+          offset_delta = 5
+
+  public int maxCollisionLength();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #7                  // Field _longestCollisionList:I
+         4: ireturn
+      LineNumberTable:
+        line 426: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+
+  public java.lang.String findSymbol(char[], int, int, int);
+    descriptor: ([CIII)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=8, args_size=5
+         0: iload_3
+         1: iconst_1
+         2: if_icmpge     8
+         5: ldc           #36                 // String
+         7: areturn
+         8: aload_0
+         9: getfield      #4                  // Field _canonicalize:Z
+        12: ifne          26
+        15: new           #37                 // class java/lang/String
+        18: dup
+        19: aload_1
+        20: iload_2
+        21: iload_3
+        22: invokespecial #38                 // Method java/lang/String."<init>":([CII)V
+        25: areturn
+        26: aload_0
+        27: iload         4
+        29: invokevirtual #39                 // Method _hashToIndex:(I)I
+        32: istore        5
+        34: aload_0
+        35: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+        38: iload         5
+        40: aaload
+        41: astore        6
+        43: aload         6
+        45: ifnull        144
+        48: aload         6
+        50: invokevirtual #40                 // Method java/lang/String.length:()I
+        53: iload_3
+        54: if_icmpne     88
+        57: iconst_0
+        58: istore        7
+        60: aload         6
+        62: iload         7
+        64: invokevirtual #41                 // Method java/lang/String.charAt:(I)C
+        67: aload_1
+        68: iload_2
+        69: iload         7
+        71: iadd
+        72: caload
+        73: if_icmpne     88
+        76: iinc          7, 1
+        79: iload         7
+        81: iload_3
+        82: if_icmpne     60
+        85: aload         6
+        87: areturn
+        88: aload_0
+        89: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        92: iload         5
+        94: iconst_1
+        95: ishr
+        96: aaload
+        97: astore        7
+        99: aload         7
+       101: ifnull        144
+       104: aload         7
+       106: aload_1
+       107: iload_2
+       108: iload_3
+       109: invokevirtual #42                 // Method com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.has:([CII)Ljava/lang/String;
+       112: astore        6
+       114: aload         6
+       116: ifnull        122
+       119: aload         6
+       121: areturn
+       122: aload_0
+       123: aload_1
+       124: iload_2
+       125: iload_3
+       126: aload         7
+       128: getfield      #43                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.next:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+       131: invokespecial #44                 // Method _findSymbol2:([CIILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)Ljava/lang/String;
+       134: astore        6
+       136: aload         6
+       138: ifnull        144
+       141: aload         6
+       143: areturn
+       144: aload_0
+       145: aload_1
+       146: iload_2
+       147: iload_3
+       148: iload         4
+       150: iload         5
+       152: invokespecial #45                 // Method _addSymbol:([CIIII)Ljava/lang/String;
+       155: areturn
+      LineNumberTable:
+        line 436: 0
+        line 437: 5
+        line 439: 8
+        line 440: 15
+        line 448: 26
+        line 449: 34
+        line 452: 43
+        line 454: 48
+        line 455: 57
+        line 456: 60
+        line 458: 76
+        line 459: 85
+        line 463: 88
+        line 464: 99
+        line 465: 104
+        line 466: 114
+        line 467: 119
+        line 469: 122
+        line 470: 136
+        line 471: 141
+        line 475: 144
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           60      28     7     i   I
+           99      45     7     b   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+            0     156     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0     156     1 buffer   [C
+            0     156     2 start   I
+            0     156     3   len   I
+            0     156     4     h   I
+           34     122     5 index   I
+           43     113     6   sym   Ljava/lang/String;
+      StackMapTable: number_of_entries = 6
+        frame_type = 8 /* same */
+        frame_type = 17 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 33
+          locals = [ int, class java/lang/String, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 27
+        frame_type = 252 /* append */
+          offset_delta = 33
+          locals = [ class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket ]
+        frame_type = 250 /* chop */
+          offset_delta = 21
+
+  private java.lang.String _findSymbol2(char[], int, int, com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer$Bucket);
+    descriptor: ([CIILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=6, args_size=5
+         0: aload         4
+         2: ifnull        33
+         5: aload         4
+         7: aload_1
+         8: iload_2
+         9: iload_3
+        10: invokevirtual #42                 // Method com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.has:([CII)Ljava/lang/String;
+        13: astore        5
+        15: aload         5
+        17: ifnull        23
+        20: aload         5
+        22: areturn
+        23: aload         4
+        25: getfield      #43                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.next:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        28: astore        4
+        30: goto          0
+        33: aconst_null
+        34: areturn
+      LineNumberTable:
+        line 479: 0
+        line 480: 5
+        line 481: 15
+        line 482: 20
+        line 484: 23
+        line 485: 30
+        line 486: 33
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           15      15     5   sym   Ljava/lang/String;
+            0      35     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0      35     1 buffer   [C
+            0      35     2 start   I
+            0      35     3   len   I
+            0      35     4     b   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+      StackMapTable: number_of_entries = 3
+        frame_type = 0 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ class java/lang/String ]
+        frame_type = 250 /* chop */
+          offset_delta = 9
+
+  private java.lang.String _addSymbol(char[], int, int, int, int);
+    descriptor: ([CIIII)Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=5, locals=10, args_size=6
+         0: aload_0
+         1: getfield      #6                  // Field _hashShared:Z
+         4: ifeq          19
+         7: aload_0
+         8: invokespecial #46                 // Method copyArrays:()V
+        11: aload_0
+        12: iconst_0
+        13: putfield      #6                  // Field _hashShared:Z
+        16: goto          47
+        19: aload_0
+        20: getfield      #20                 // Field _size:I
+        23: aload_0
+        24: getfield      #23                 // Field _sizeThreshold:I
+        27: if_icmplt     47
+        30: aload_0
+        31: invokespecial #47                 // Method rehash:()V
+        34: aload_0
+        35: aload_0
+        36: aload_1
+        37: iload_2
+        38: iload_3
+        39: invokevirtual #48                 // Method calcHash:([CII)I
+        42: invokevirtual #39                 // Method _hashToIndex:(I)I
+        45: istore        5
+        47: new           #37                 // class java/lang/String
+        50: dup
+        51: aload_1
+        52: iload_2
+        53: iload_3
+        54: invokespecial #38                 // Method java/lang/String."<init>":([CII)V
+        57: astore        6
+        59: getstatic     #49                 // Field com/fasterxml/jackson/core/JsonFactory$Feature.INTERN_FIELD_NAMES:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+        62: aload_0
+        63: getfield      #5                  // Field _flags:I
+        66: invokevirtual #14                 // Method com/fasterxml/jackson/core/JsonFactory$Feature.enabledIn:(I)Z
+        69: ifeq          82
+        72: getstatic     #50                 // Field com/fasterxml/jackson/core/util/InternCache.instance:Lcom/fasterxml/jackson/core/util/InternCache;
+        75: aload         6
+        77: invokevirtual #51                 // Method com/fasterxml/jackson/core/util/InternCache.intern:(Ljava/lang/String;)Ljava/lang/String;
+        80: astore        6
+        82: aload_0
+        83: dup
+        84: getfield      #20                 // Field _size:I
+        87: iconst_1
+        88: iadd
+        89: putfield      #20                 // Field _size:I
+        92: aload_0
+        93: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+        96: iload         5
+        98: aaload
+        99: ifnonnull     114
+       102: aload_0
+       103: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+       106: iload         5
+       108: aload         6
+       110: aastore
+       111: goto          188
+       114: iload         5
+       116: iconst_1
+       117: ishr
+       118: istore        7
+       120: new           #52                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket
+       123: dup
+       124: aload         6
+       126: aload_0
+       127: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+       130: iload         7
+       132: aaload
+       133: invokespecial #53                 // Method com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)V
+       136: astore        8
+       138: aload         8
+       140: getfield      #35                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.length:I
+       143: istore        9
+       145: iload         9
+       147: sipush        150
+       150: if_icmple     166
+       153: aload_0
+       154: iload         7
+       156: aload         8
+       158: iload         5
+       160: invokespecial #54                 // Method _handleSpillOverflow:(ILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;I)V
+       163: goto          188
+       166: aload_0
+       167: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+       170: iload         7
+       172: aload         8
+       174: aastore
+       175: aload_0
+       176: iload         9
+       178: aload_0
+       179: getfield      #7                  // Field _longestCollisionList:I
+       182: invokestatic  #55                 // Method java/lang/Math.max:(II)I
+       185: putfield      #7                  // Field _longestCollisionList:I
+       188: aload         6
+       190: areturn
+      LineNumberTable:
+        line 491: 0
+        line 492: 7
+        line 493: 11
+        line 494: 19
+        line 495: 30
+        line 498: 34
+        line 501: 47
+        line 502: 59
+        line 503: 72
+        line 505: 82
+        line 507: 92
+        line 508: 102
+        line 510: 114
+        line 511: 120
+        line 512: 138
+        line 513: 145
+        line 516: 153
+        line 518: 166
+        line 519: 175
+        line 522: 188
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          120      68     7   bix   I
+          138      50     8  newB   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+          145      43     9 collLen   I
+            0     191     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0     191     1 buffer   [C
+            0     191     2 start   I
+            0     191     3   len   I
+            0     191     4     h   I
+            0     191     5 index   I
+           59     132     6 newSymbol   Ljava/lang/String;
+      StackMapTable: number_of_entries = 6
+        frame_type = 19 /* same */
+        frame_type = 27 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 34
+          locals = [ class java/lang/String ]
+        frame_type = 31 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 51
+          locals = [ int, class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 21
+
+  private void _handleSpillOverflow(int, com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer$Bucket, int);
+    descriptor: (ILcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_0
+         1: getfield      #56                 // Field _overflows:Ljava/util/BitSet;
+         4: ifnonnull     29
+         7: aload_0
+         8: new           #57                 // class java/util/BitSet
+        11: dup
+        12: invokespecial #58                 // Method java/util/BitSet."<init>":()V
+        15: putfield      #56                 // Field _overflows:Ljava/util/BitSet;
+        18: aload_0
+        19: getfield      #56                 // Field _overflows:Ljava/util/BitSet;
+        22: iload_1
+        23: invokevirtual #59                 // Method java/util/BitSet.set:(I)V
+        26: goto          76
+        29: aload_0
+        30: getfield      #56                 // Field _overflows:Ljava/util/BitSet;
+        33: iload_1
+        34: invokevirtual #60                 // Method java/util/BitSet.get:(I)Z
+        37: ifeq          68
+        40: getstatic     #61                 // Field com/fasterxml/jackson/core/JsonFactory$Feature.FAIL_ON_SYMBOL_HASH_OVERFLOW:Lcom/fasterxml/jackson/core/JsonFactory$Feature;
+        43: aload_0
+        44: getfield      #5                  // Field _flags:I
+        47: invokevirtual #14                 // Method com/fasterxml/jackson/core/JsonFactory$Feature.enabledIn:(I)Z
+        50: ifeq          60
+        53: aload_0
+        54: sipush        150
+        57: invokevirtual #62                 // Method _reportTooManyCollisions:(I)V
+        60: aload_0
+        61: iconst_0
+        62: putfield      #4                  // Field _canonicalize:Z
+        65: goto          76
+        68: aload_0
+        69: getfield      #56                 // Field _overflows:Ljava/util/BitSet;
+        72: iload_1
+        73: invokevirtual #59                 // Method java/util/BitSet.set:(I)V
+        76: aload_0
+        77: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+        80: iload_3
+        81: aload_2
+        82: getfield      #63                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.symbol:Ljava/lang/String;
+        85: aastore
+        86: aload_0
+        87: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        90: iload_1
+        91: aconst_null
+        92: aastore
+        93: aload_0
+        94: dup
+        95: getfield      #20                 // Field _size:I
+        98: aload_2
+        99: getfield      #35                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.length:I
+       102: isub
+       103: putfield      #20                 // Field _size:I
+       106: aload_0
+       107: iconst_m1
+       108: putfield      #7                  // Field _longestCollisionList:I
+       111: return
+      LineNumberTable:
+        line 534: 0
+        line 535: 7
+        line 536: 18
+        line 538: 29
+        line 540: 40
+        line 541: 53
+        line 545: 60
+        line 547: 68
+        line 552: 76
+        line 553: 86
+        line 555: 93
+        line 557: 106
+        line 558: 111
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     112     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0     112     1 bucketIndex   I
+            0     112     2 newBucket   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+            0     112     3 mainIndex   I
+      StackMapTable: number_of_entries = 4
+        frame_type = 29 /* same */
+        frame_type = 30 /* same */
+        frame_type = 7 /* same */
+        frame_type = 7 /* same */
+
+  public int _hashToIndex(int);
+    descriptor: (I)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: iload_1
+         1: iload_1
+         2: bipush        15
+         4: iushr
+         5: iadd
+         6: istore_1
+         7: iload_1
+         8: iload_1
+         9: bipush        7
+        11: ishl
+        12: ixor
+        13: istore_1
+        14: iload_1
+        15: iload_1
+        16: iconst_3
+        17: iushr
+        18: iadd
+        19: istore_1
+        20: iload_1
+        21: aload_0
+        22: getfield      #24                 // Field _indexMask:I
+        25: iand
+        26: ireturn
+      LineNumberTable:
+        line 570: 0
+        line 571: 7
+        line 572: 14
+        line 573: 20
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      27     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0      27     1 rawHash   I
+
+  public int calcHash(char[], int, int);
+    descriptor: ([CII)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=7, args_size=4
+         0: aload_0
+         1: getfield      #3                  // Field _seed:I
+         4: istore        4
+         6: iload_2
+         7: istore        5
+         9: iload_2
+        10: iload_3
+        11: iadd
+        12: istore        6
+        14: iload         5
+        16: iload         6
+        18: if_icmpge     39
+        21: iload         4
+        23: bipush        33
+        25: imul
+        26: aload_1
+        27: iload         5
+        29: caload
+        30: iadd
+        31: istore        4
+        33: iinc          5, 1
+        36: goto          14
+        39: iload         4
+        41: ifne          48
+        44: iconst_1
+        45: goto          50
+        48: iload         4
+        50: ireturn
+      LineNumberTable:
+        line 589: 0
+        line 590: 6
+        line 591: 21
+        line 590: 33
+        line 594: 39
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            9      30     5     i   I
+           14      25     6   end   I
+            0      51     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0      51     1 buffer   [C
+            0      51     2 start   I
+            0      51     3   len   I
+            6      45     4  hash   I
+      StackMapTable: number_of_entries = 4
+        frame_type = 254 /* append */
+          offset_delta = 14
+          locals = [ int, int, int ]
+        frame_type = 249 /* chop */
+          offset_delta = 24
+        frame_type = 8 /* same */
+        frame_type = 65 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public int calcHash(java.lang.String);
+    descriptor: (Ljava/lang/String;)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=5, args_size=2
+         0: aload_1
+         1: invokevirtual #40                 // Method java/lang/String.length:()I
+         4: istore_2
+         5: aload_0
+         6: getfield      #3                  // Field _seed:I
+         9: istore_3
+        10: iconst_0
+        11: istore        4
+        13: iload         4
+        15: iload_2
+        16: if_icmpge     37
+        19: iload_3
+        20: bipush        33
+        22: imul
+        23: aload_1
+        24: iload         4
+        26: invokevirtual #41                 // Method java/lang/String.charAt:(I)C
+        29: iadd
+        30: istore_3
+        31: iinc          4, 1
+        34: goto          13
+        37: iload_3
+        38: ifne          45
+        41: iconst_1
+        42: goto          46
+        45: iload_3
+        46: ireturn
+      LineNumberTable:
+        line 599: 0
+        line 601: 5
+        line 602: 10
+        line 603: 19
+        line 602: 31
+        line 606: 37
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           13      24     4     i   I
+            0      47     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0      47     1   key   Ljava/lang/String;
+            5      42     2   len   I
+           10      37     3  hash   I
+      StackMapTable: number_of_entries = 4
+        frame_type = 254 /* append */
+          offset_delta = 13
+          locals = [ int, int, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 23
+        frame_type = 7 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  private void copyArrays();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=3, args_size=1
+         0: aload_0
+         1: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+         4: astore_1
+         5: aload_0
+         6: aload_1
+         7: aload_1
+         8: arraylength
+         9: invokestatic  #64                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+        12: checkcast     #65                 // class "[Ljava/lang/String;"
+        15: putfield      #16                 // Field _symbols:[Ljava/lang/String;
+        18: aload_0
+        19: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        22: astore_2
+        23: aload_0
+        24: aload_2
+        25: aload_2
+        26: arraylength
+        27: invokestatic  #64                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+        30: checkcast     #66                 // class "[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;"
+        33: putfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        36: return
+      LineNumberTable:
+        line 620: 0
+        line 621: 5
+        line 622: 18
+        line 623: 23
+        line 624: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      37     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            5      32     1 oldSyms   [Ljava/lang/String;
+           23      14     2 oldBuckets   [Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+
+  private void rehash();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=7, locals=14, args_size=1
+         0: aload_0
+         1: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+         4: arraylength
+         5: istore_1
+         6: iload_1
+         7: iload_1
+         8: iadd
+         9: istore_2
+        10: iload_2
+        11: ldc           #67                 // int 65536
+        13: if_icmple     56
+        16: aload_0
+        17: iconst_0
+        18: putfield      #20                 // Field _size:I
+        21: aload_0
+        22: iconst_0
+        23: putfield      #4                  // Field _canonicalize:Z
+        26: aload_0
+        27: bipush        64
+        29: anewarray     #37                 // class java/lang/String
+        32: putfield      #16                 // Field _symbols:[Ljava/lang/String;
+        35: aload_0
+        36: bipush        32
+        38: anewarray     #52                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket
+        41: putfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        44: aload_0
+        45: bipush        63
+        47: putfield      #24                 // Field _indexMask:I
+        50: aload_0
+        51: iconst_0
+        52: putfield      #6                  // Field _hashShared:Z
+        55: return
+        56: aload_0
+        57: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+        60: astore_3
+        61: aload_0
+        62: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        65: astore        4
+        67: aload_0
+        68: iload_2
+        69: anewarray     #37                 // class java/lang/String
+        72: putfield      #16                 // Field _symbols:[Ljava/lang/String;
+        75: aload_0
+        76: iload_2
+        77: iconst_1
+        78: ishr
+        79: anewarray     #52                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket
+        82: putfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        85: aload_0
+        86: iload_2
+        87: iconst_1
+        88: isub
+        89: putfield      #24                 // Field _indexMask:I
+        92: aload_0
+        93: iload_2
+        94: invokestatic  #22                 // Method _thresholdSize:(I)I
+        97: putfield      #23                 // Field _sizeThreshold:I
+       100: iconst_0
+       101: istore        5
+       103: iconst_0
+       104: istore        6
+       106: iconst_0
+       107: istore        7
+       109: iload         7
+       111: iload_1
+       112: if_icmpge     214
+       115: aload_3
+       116: iload         7
+       118: aaload
+       119: astore        8
+       121: aload         8
+       123: ifnull        208
+       126: iinc          5, 1
+       129: aload_0
+       130: aload_0
+       131: aload         8
+       133: invokevirtual #68                 // Method calcHash:(Ljava/lang/String;)I
+       136: invokevirtual #39                 // Method _hashToIndex:(I)I
+       139: istore        9
+       141: aload_0
+       142: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+       145: iload         9
+       147: aaload
+       148: ifnonnull     163
+       151: aload_0
+       152: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+       155: iload         9
+       157: aload         8
+       159: aastore
+       160: goto          208
+       163: iload         9
+       165: iconst_1
+       166: ishr
+       167: istore        10
+       169: new           #52                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket
+       172: dup
+       173: aload         8
+       175: aload_0
+       176: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+       179: iload         10
+       181: aaload
+       182: invokespecial #53                 // Method com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)V
+       185: astore        11
+       187: aload_0
+       188: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+       191: iload         10
+       193: aload         11
+       195: aastore
+       196: iload         6
+       198: aload         11
+       200: getfield      #35                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.length:I
+       203: invokestatic  #55                 // Method java/lang/Math.max:(II)I
+       206: istore        6
+       208: iinc          7, 1
+       211: goto          109
+       214: iload_1
+       215: iconst_1
+       216: ishr
+       217: istore        7
+       219: iconst_0
+       220: istore        8
+       222: iload         8
+       224: iload         7
+       226: if_icmpge     346
+       229: aload         4
+       231: iload         8
+       233: aaload
+       234: astore        9
+       236: aload         9
+       238: ifnull        340
+       241: iinc          5, 1
+       244: aload         9
+       246: getfield      #63                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.symbol:Ljava/lang/String;
+       249: astore        10
+       251: aload_0
+       252: aload_0
+       253: aload         10
+       255: invokevirtual #68                 // Method calcHash:(Ljava/lang/String;)I
+       258: invokevirtual #39                 // Method _hashToIndex:(I)I
+       261: istore        11
+       263: aload_0
+       264: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+       267: iload         11
+       269: aaload
+       270: ifnonnull     285
+       273: aload_0
+       274: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+       277: iload         11
+       279: aload         10
+       281: aastore
+       282: goto          330
+       285: iload         11
+       287: iconst_1
+       288: ishr
+       289: istore        12
+       291: new           #52                 // class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket
+       294: dup
+       295: aload         10
+       297: aload_0
+       298: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+       301: iload         12
+       303: aaload
+       304: invokespecial #53                 // Method com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;)V
+       307: astore        13
+       309: aload_0
+       310: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+       313: iload         12
+       315: aload         13
+       317: aastore
+       318: iload         6
+       320: aload         13
+       322: getfield      #35                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.length:I
+       325: invokestatic  #55                 // Method java/lang/Math.max:(II)I
+       328: istore        6
+       330: aload         9
+       332: getfield      #43                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.next:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+       335: astore        9
+       337: goto          236
+       340: iinc          8, 1
+       343: goto          222
+       346: aload_0
+       347: iload         6
+       349: putfield      #7                  // Field _longestCollisionList:I
+       352: aload_0
+       353: aconst_null
+       354: putfield      #56                 // Field _overflows:Ljava/util/BitSet;
+       357: iload         5
+       359: aload_0
+       360: getfield      #20                 // Field _size:I
+       363: if_icmpeq     401
+       366: new           #69                 // class java/lang/IllegalStateException
+       369: dup
+       370: ldc           #70                 // String Internal error on SymbolTable.rehash(): had %d entries; now have %d
+       372: iconst_2
+       373: anewarray     #71                 // class java/lang/Object
+       376: dup
+       377: iconst_0
+       378: aload_0
+       379: getfield      #20                 // Field _size:I
+       382: invokestatic  #72                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       385: aastore
+       386: dup
+       387: iconst_1
+       388: iload         5
+       390: invokestatic  #72                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       393: aastore
+       394: invokestatic  #73                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       397: invokespecial #74                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       400: athrow
+       401: return
+      LineNumberTable:
+        line 634: 0
+        line 635: 6
+        line 641: 10
+        line 644: 16
+        line 645: 21
+        line 647: 26
+        line 648: 35
+        line 649: 44
+        line 650: 50
+        line 651: 55
+        line 654: 56
+        line 655: 61
+        line 656: 67
+        line 657: 75
+        line 659: 85
+        line 660: 92
+        line 662: 100
+        line 666: 103
+        line 667: 106
+        line 668: 115
+        line 669: 121
+        line 670: 126
+        line 671: 129
+        line 672: 141
+        line 673: 151
+        line 675: 163
+        line 676: 169
+        line 677: 187
+        line 678: 196
+        line 667: 208
+        line 683: 214
+        line 684: 219
+        line 685: 229
+        line 686: 236
+        line 687: 241
+        line 688: 244
+        line 689: 251
+        line 690: 263
+        line 691: 273
+        line 693: 285
+        line 694: 291
+        line 695: 309
+        line 696: 318
+        line 698: 330
+        line 699: 337
+        line 684: 340
+        line 701: 346
+        line 702: 352
+        line 704: 357
+        line 705: 366
+        line 707: 382
+        line 705: 394
+        line 709: 401
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          169      39    10   bix   I
+          187      21    11  newB   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+          141      67     9 index   I
+          121      87     8 symbol   Ljava/lang/String;
+          109     105     7     i   I
+          291      39    12   bix   I
+          309      21    13  newB   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+          251      86    10 symbol   Ljava/lang/String;
+          263      74    11 index   I
+          236     104     9     b   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+          222     124     8     i   I
+            0     402     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            6     396     1  size   I
+           10     392     2 newSize   I
+           61     341     3 oldSyms   [Ljava/lang/String;
+           67     335     4 oldBuckets   [Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+          103     299     5 count   I
+          106     296     6 maxColl   I
+          219     183     7 bucketSize   I
+      StackMapTable: number_of_entries = 12
+        frame_type = 253 /* append */
+          offset_delta = 56
+          locals = [ int, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 52
+          locals = [ class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer, int, int, class "[Ljava/lang/String;", class "[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;", int, int, int ]
+          stack = []
+        frame_type = 253 /* append */
+          offset_delta = 53
+          locals = [ class java/lang/String, int ]
+        frame_type = 249 /* chop */
+          offset_delta = 44
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 253 /* append */
+          offset_delta = 7
+          locals = [ int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket ]
+        frame_type = 253 /* append */
+          offset_delta = 48
+          locals = [ class java/lang/String, int ]
+        frame_type = 44 /* same */
+        frame_type = 248 /* chop */
+          offset_delta = 9
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 54 /* same */
+
+  protected void _reportTooManyCollisions(int);
+    descriptor: (I)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=4, locals=2, args_size=2
+         0: new           #69                 // class java/lang/IllegalStateException
+         3: dup
+         4: new           #75                 // class java/lang/StringBuilder
+         7: dup
+         8: invokespecial #76                 // Method java/lang/StringBuilder."<init>":()V
+        11: ldc           #77                 // String Longest collision chain in symbol table (of size
+        13: invokevirtual #78                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        16: aload_0
+        17: getfield      #20                 // Field _size:I
+        20: invokevirtual #79                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        23: ldc           #80                 // String ) now exceeds maximum,
+        25: invokevirtual #78                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        28: iload_1
+        29: invokevirtual #79                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        32: ldc           #81                 // String  -- suspect a DoS attack based on hash collisions
+        34: invokevirtual #78                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        37: invokevirtual #82                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        40: invokespecial #74                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        43: athrow
+      LineNumberTable:
+        line 717: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      44     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            0      44     1 maxLen   I
+
+  protected void verifyInternalConsistency();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=7, locals=6, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: aload_0
+         3: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+         6: arraylength
+         7: istore_2
+         8: iconst_0
+         9: istore_3
+        10: iload_3
+        11: iload_2
+        12: if_icmpge     37
+        15: aload_0
+        16: getfield      #16                 // Field _symbols:[Ljava/lang/String;
+        19: iload_3
+        20: aaload
+        21: astore        4
+        23: aload         4
+        25: ifnull        31
+        28: iinc          1, 1
+        31: iinc          3, 1
+        34: goto          10
+        37: iload_2
+        38: iconst_1
+        39: ishr
+        40: istore_3
+        41: iconst_0
+        42: istore        4
+        44: iload         4
+        46: iload_3
+        47: if_icmpge     83
+        50: aload_0
+        51: getfield      #18                 // Field _buckets:[Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        54: iload         4
+        56: aaload
+        57: astore        5
+        59: aload         5
+        61: ifnull        77
+        64: iinc          1, 1
+        67: aload         5
+        69: getfield      #43                 // Field com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket.next:Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+        72: astore        5
+        74: goto          59
+        77: iinc          4, 1
+        80: goto          44
+        83: iload_1
+        84: aload_0
+        85: getfield      #20                 // Field _size:I
+        88: if_icmpeq     125
+        91: new           #69                 // class java/lang/IllegalStateException
+        94: dup
+        95: ldc           #83                 // String Internal error: expected internal size %d vs calculated count %d
+        97: iconst_2
+        98: anewarray     #71                 // class java/lang/Object
+       101: dup
+       102: iconst_0
+       103: aload_0
+       104: getfield      #20                 // Field _size:I
+       107: invokestatic  #72                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       110: aastore
+       111: dup
+       112: iconst_1
+       113: iload_1
+       114: invokestatic  #72                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       117: aastore
+       118: invokestatic  #73                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       121: invokespecial #74                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       124: athrow
+       125: return
+      LineNumberTable:
+        line 729: 0
+        line 730: 2
+        line 732: 8
+        line 733: 15
+        line 734: 23
+        line 735: 28
+        line 732: 31
+        line 739: 37
+        line 740: 41
+        line 741: 50
+        line 742: 64
+        line 741: 67
+        line 740: 77
+        line 745: 83
+        line 746: 91
+        line 747: 107
+        line 746: 118
+        line 749: 125
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           23       8     4 symbol   Ljava/lang/String;
+           10      27     3     i   I
+           59      18     5     b   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket;
+           44      39     4     i   I
+            0     126     0  this   Lcom/fasterxml/jackson/core/sym/CharsToNameCanonicalizer;
+            2     124     1 count   I
+            8     118     2  size   I
+           41      85     3 bucketSize   I
+      StackMapTable: number_of_entries = 8
+        frame_type = 254 /* append */
+          offset_delta = 10
+          locals = [ int, int, int ]
+        frame_type = 20 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 253 /* append */
+          offset_delta = 6
+          locals = [ int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 14
+          locals = [ class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket ]
+        frame_type = 250 /* chop */
+          offset_delta = 17
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 41 /* same */
+}
+SourceFile: "CharsToNameCanonicalizer.java"
+InnerClasses:
+  private static final #84= #29 of #9;    // TableInfo=class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$TableInfo of class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer
+  static final #86= #52 of #9;            // Bucket=class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer$Bucket of class com/fasterxml/jackson/core/sym/CharsToNameCanonicalizer
+  public static final #299= #222 of #297; // Feature=class com/fasterxml/jackson/core/JsonFactory$Feature of class com/fasterxml/jackson/core/JsonFactory

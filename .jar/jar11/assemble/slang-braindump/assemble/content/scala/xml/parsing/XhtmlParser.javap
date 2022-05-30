@@ -1,0 +1,2572 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/scala/xml/parsing/XhtmlParser.class
+  Last modified May 29, 2022; size 20557 bytes
+  SHA-256 checksum 2dd5c0d05e948b49e18e28f988f80dab1f53b5e9284da23f009aeaeb9abf868d
+  Compiled from "XhtmlParser.scala"
+public class scala.xml.parsing.XhtmlParser extends scala.xml.parsing.ConstructingHandler implements scala.xml.parsing.MarkupParser,scala.xml.parsing.ExternalSources
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // scala/xml/parsing/XhtmlParser
+  super_class: #4                         // scala/xml/parsing/ConstructingHandler
+  interfaces: 2, fields: 14, methods: 106, attributes: 4
+Constant pool:
+    #1 = Utf8               scala/xml/parsing/XhtmlParser
+    #2 = Class              #1            // scala/xml/parsing/XhtmlParser
+    #3 = Utf8               scala/xml/parsing/ConstructingHandler
+    #4 = Class              #3            // scala/xml/parsing/ConstructingHandler
+    #5 = Utf8               scala/xml/parsing/MarkupParser
+    #6 = Class              #5            // scala/xml/parsing/MarkupParser
+    #7 = Utf8               scala/xml/parsing/ExternalSources
+    #8 = Class              #7            // scala/xml/parsing/ExternalSources
+    #9 = Utf8               XhtmlParser.scala
+   #10 = Utf8               Lscala/reflect/ScalaSignature;
+   #11 = Utf8               bytes
+   #12 = Utf8               \u0006\u0005\u00013AAC\u0006\u0001%!AQ\u0004\u0001BC\u0002\u0013\u0005a\u0004\u0003\u0005&\u0001\t\u0005\t\u0015!\u0003 \u0011\u00151\u0003\u0001\"\u0001(\u0011\u001dQ\u0003A1A\u0005\u0002-Ba\u0001\r\u0001!\u0002\u0013as!B\u0019\f\u0011\u0003\u0011d!\u0002\u0006\f\u0011\u0003\u0019\u0004\"\u0002\u0014\b\t\u00039\u0004\"\u0002\u001d\b\t\u0003I$a\u0003-ii6d\u0007+\u0019:tKJT!\u0001D\u0007\u0002\u000fA\f\'o]5oO*\u0011abD\u0001\u0004q6d\'\"\u0001\t\u0002\u000bM\u001c\u0017\r\\1\u0004\u0001M!\u0001aE\f\u001b!\t!R#D\u0001\f\u0013\t12BA\nD_:\u001cHO];di&tw\rS1oI2,\'\u000f\u0005\u0002\u00151%\u0011\u0011d\u0003\u0002\r\u001b\u0006\u00148.\u001e9QCJ\u001cXM\u001d\t\u0003)mI!\u0001H\u0006\u0003\u001f\u0015CH/\u001a:oC2\u001cv.\u001e:dKN\fQ!\u001b8qkR,\u0012a\b\t\u0003A\rj\u0011!\t\u0006\u0003E=\t!![8\n\u0005\u0011\n#AB*pkJ\u001cW-\u0001\u0004j]B,H\u000fI\u0001\u0007y%t\u0017\u000e\u001e \u0015\u0005!J\u0003C\u0001\u000b\u0001\u0011\u0015i2\u00011\u0001 \u0003)\u0001(/Z:feZ,wkU\u000b\u0002YA\u0011QFL\u0007\u0002\u001f%\u0011qf\u0004\u0002\b\u0005>|G.Z1o\u0003-\u0001(/Z:feZ,wk\u0015\u0011\u0002\u0017aCG/\u001c7QCJ\u001cXM\u001d\t\u0003)\u001d\u0019\"a\u0002\u001b\u0011\u00055*\u0014B\u0001\u001c\u0010\u0005\u0019\te.\u001f*fMR\t!\'A\u0003baBd\u0017\u0010\u0006\u0002;}A\u00111\bP\u0007\u0002\u001b%\u0011Q(\u0004\u0002\b\u001d>$WmU3r\u0011\u0015y\u0014\u00021\u0001 \u0003\u0019\u0019x.\u001e:dK\u0002
+   #13 = Utf8               input
+   #14 = Utf8               Lscala/io/Source;
+   #15 = Utf8               preserveWS
+   #16 = Utf8               Z
+   #17 = Utf8               curInput
+   #18 = Utf8               scala$xml$parsing$MarkupParser$$handle
+   #19 = Utf8               Lscala/xml/parsing/MarkupHandler;
+   #20 = Utf8               inpStack
+   #21 = Utf8               Lscala/collection/immutable/List;
+   #22 = Utf8               Lscala/collection/immutable/List<Lscala/io/Source;>;
+   #23 = Utf8               pos
+   #24 = Utf8               I
+   #25 = Utf8               extIndex
+   #26 = Utf8               tmppos
+   #27 = Utf8               nextChNeeded
+   #28 = Utf8               reachedEof
+   #29 = Utf8               lastChRead
+   #30 = Utf8               C
+   #31 = Utf8               cbuf
+   #32 = Utf8               Lscala/collection/mutable/StringBuilder;
+   #33 = Utf8               dtd
+   #34 = Utf8               Lscala/xml/dtd/DTD;
+   #35 = Utf8               doc
+   #36 = Utf8               Lscala/xml/Document;
+   #37 = Utf8               apply
+   #38 = Utf8               (Lscala/io/Source;)Lscala/xml/NodeSeq;
+   #39 = Utf8               source
+   #40 = Utf8               scala/xml/parsing/XhtmlParser$
+   #41 = Class              #40           // scala/xml/parsing/XhtmlParser$
+   #42 = Utf8               MODULE$
+   #43 = Utf8               Lscala/xml/parsing/XhtmlParser$;
+   #44 = NameAndType        #42:#43       // MODULE$:Lscala/xml/parsing/XhtmlParser$;
+   #45 = Fieldref           #41.#44       // scala/xml/parsing/XhtmlParser$.MODULE$:Lscala/xml/parsing/XhtmlParser$;
+   #46 = NameAndType        #37:#38       // apply:(Lscala/io/Source;)Lscala/xml/NodeSeq;
+   #47 = Methodref          #41.#46       // scala/xml/parsing/XhtmlParser$.apply:(Lscala/io/Source;)Lscala/xml/NodeSeq;
+   #48 = Utf8               externalSource
+   #49 = Utf8               (Ljava/lang/String;)Lscala/io/Source;
+   #50 = Utf8               systemId
+   #51 = Utf8               externalSource$
+   #52 = Utf8               (Lscala/xml/parsing/ExternalSources;Ljava/lang/String;)Lscala/io/Source;
+   #53 = NameAndType        #51:#52       // externalSource$:(Lscala/xml/parsing/ExternalSources;Ljava/lang/String;)Lscala/io/Source;
+   #54 = InterfaceMethodref #8.#53        // scala/xml/parsing/ExternalSources.externalSource$:(Lscala/xml/parsing/ExternalSources;Ljava/lang/String;)Lscala/io/Source;
+   #55 = Utf8               this
+   #56 = Utf8               Lscala/xml/parsing/XhtmlParser;
+   #57 = Utf8               Ljava/lang/String;
+   #58 = Utf8               truncatedError
+   #59 = Utf8               (Ljava/lang/String;)Lscala/runtime/Nothing$;
+   #60 = Utf8               msg
+   #61 = Utf8               truncatedError$
+   #62 = Utf8               (Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)Lscala/runtime/Nothing$;
+   #63 = NameAndType        #61:#62       // truncatedError$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)Lscala/runtime/Nothing$;
+   #64 = InterfaceMethodref #6.#63        // scala/xml/parsing/MarkupParser.truncatedError$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)Lscala/runtime/Nothing$;
+   #65 = Utf8               errorNoEnd
+   #66 = Utf8               tag
+   #67 = Utf8               errorNoEnd$
+   #68 = NameAndType        #67:#62       // errorNoEnd$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)Lscala/runtime/Nothing$;
+   #69 = InterfaceMethodref #6.#68        // scala/xml/parsing/MarkupParser.errorNoEnd$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)Lscala/runtime/Nothing$;
+   #70 = Utf8               xHandleError
+   #71 = Utf8               (CLjava/lang/String;)V
+   #72 = Utf8               that
+   #73 = Utf8               xHandleError$
+   #74 = Utf8               (Lscala/xml/parsing/MarkupParser;CLjava/lang/String;)V
+   #75 = NameAndType        #73:#74       // xHandleError$:(Lscala/xml/parsing/MarkupParser;CLjava/lang/String;)V
+   #76 = InterfaceMethodref #6.#75        // scala/xml/parsing/MarkupParser.xHandleError$:(Lscala/xml/parsing/MarkupParser;CLjava/lang/String;)V
+   #77 = Utf8               lookahead
+   #78 = Utf8               ()Lscala/collection/BufferedIterator;
+   #79 = Utf8               ()Lscala/collection/BufferedIterator<Ljava/lang/Object;>;
+   #80 = Utf8               lookahead$
+   #81 = Utf8               (Lscala/xml/parsing/MarkupParser;)Lscala/collection/BufferedIterator;
+   #82 = NameAndType        #80:#81       // lookahead$:(Lscala/xml/parsing/MarkupParser;)Lscala/collection/BufferedIterator;
+   #83 = InterfaceMethodref #6.#82        // scala/xml/parsing/MarkupParser.lookahead$:(Lscala/xml/parsing/MarkupParser;)Lscala/collection/BufferedIterator;
+   #84 = Utf8               ch
+   #85 = Utf8               ()C
+   #86 = Utf8               ch$
+   #87 = Utf8               (Lscala/xml/parsing/MarkupParser;)C
+   #88 = NameAndType        #86:#87       // ch$:(Lscala/xml/parsing/MarkupParser;)C
+   #89 = InterfaceMethodref #6.#88        // scala/xml/parsing/MarkupParser.ch$:(Lscala/xml/parsing/MarkupParser;)C
+   #90 = Utf8               eof
+   #91 = Utf8               ()Z
+   #92 = Utf8               eof$
+   #93 = Utf8               (Lscala/xml/parsing/MarkupParser;)Z
+   #94 = NameAndType        #92:#93       // eof$:(Lscala/xml/parsing/MarkupParser;)Z
+   #95 = InterfaceMethodref #6.#94        // scala/xml/parsing/MarkupParser.eof$:(Lscala/xml/parsing/MarkupParser;)Z
+   #96 = Utf8               xmlProcInstr
+   #97 = Utf8               ()Lscala/xml/MetaData;
+   #98 = Utf8               xmlProcInstr$
+   #99 = Utf8               (Lscala/xml/parsing/MarkupParser;)Lscala/xml/MetaData;
+  #100 = NameAndType        #98:#99       // xmlProcInstr$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/MetaData;
+  #101 = InterfaceMethodref #6.#100       // scala/xml/parsing/MarkupParser.xmlProcInstr$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/MetaData;
+  #102 = Utf8               prolog
+  #103 = Utf8               ()Lscala/Tuple3;
+  #104 = Utf8               ()Lscala/Tuple3<Lscala/Option<Ljava/lang/String;>;Lscala/Option<Ljava/lang/String;>;Lscala/Option<Ljava/lang/Object;>;>;
+  #105 = Utf8               prolog$
+  #106 = Utf8               (Lscala/xml/parsing/MarkupParser;)Lscala/Tuple3;
+  #107 = NameAndType        #105:#106     // prolog$:(Lscala/xml/parsing/MarkupParser;)Lscala/Tuple3;
+  #108 = InterfaceMethodref #6.#107       // scala/xml/parsing/MarkupParser.prolog$:(Lscala/xml/parsing/MarkupParser;)Lscala/Tuple3;
+  #109 = Utf8               textDecl
+  #110 = Utf8               ()Lscala/Tuple2;
+  #111 = Utf8               ()Lscala/Tuple2<Lscala/Option<Ljava/lang/String;>;Lscala/Option<Ljava/lang/String;>;>;
+  #112 = Utf8               textDecl$
+  #113 = Utf8               (Lscala/xml/parsing/MarkupParser;)Lscala/Tuple2;
+  #114 = NameAndType        #112:#113     // textDecl$:(Lscala/xml/parsing/MarkupParser;)Lscala/Tuple2;
+  #115 = InterfaceMethodref #6.#114       // scala/xml/parsing/MarkupParser.textDecl$:(Lscala/xml/parsing/MarkupParser;)Lscala/Tuple2;
+  #116 = Utf8               document
+  #117 = Utf8               ()Lscala/xml/Document;
+  #118 = Utf8               document$
+  #119 = Utf8               (Lscala/xml/parsing/MarkupParser;)Lscala/xml/Document;
+  #120 = NameAndType        #118:#119     // document$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/Document;
+  #121 = InterfaceMethodref #6.#120       // scala/xml/parsing/MarkupParser.document$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/Document;
+  #122 = Utf8               putChar
+  #123 = Utf8               (C)Lscala/collection/mutable/StringBuilder;
+  #124 = Utf8               c
+  #125 = Utf8               putChar$
+  #126 = Utf8               (Lscala/xml/parsing/MarkupParser;C)Lscala/collection/mutable/StringBuilder;
+  #127 = NameAndType        #125:#126     // putChar$:(Lscala/xml/parsing/MarkupParser;C)Lscala/collection/mutable/StringBuilder;
+  #128 = InterfaceMethodref #6.#127       // scala/xml/parsing/MarkupParser.putChar$:(Lscala/xml/parsing/MarkupParser;C)Lscala/collection/mutable/StringBuilder;
+  #129 = Utf8               initialize
+  #130 = Utf8               ()Lscala/xml/parsing/MarkupHandler;
+  #131 = Utf8               initialize$
+  #132 = Utf8               (Lscala/xml/parsing/MarkupParser;)Lscala/xml/parsing/MarkupHandler;
+  #133 = NameAndType        #131:#132     // initialize$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/parsing/MarkupHandler;
+  #134 = InterfaceMethodref #6.#133       // scala/xml/parsing/MarkupParser.initialize$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/parsing/MarkupHandler;
+  #135 = Utf8               ch_returning_nextch
+  #136 = Utf8               ch_returning_nextch$
+  #137 = NameAndType        #136:#87      // ch_returning_nextch$:(Lscala/xml/parsing/MarkupParser;)C
+  #138 = InterfaceMethodref #6.#137       // scala/xml/parsing/MarkupParser.ch_returning_nextch$:(Lscala/xml/parsing/MarkupParser;)C
+  #139 = Utf8               mkAttributes
+  #140 = Utf8               (Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #141 = Utf8               (Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2<Lscala/xml/MetaData;Lscala/xml/NamespaceBinding;>;
+  #142 = Utf8               name
+  #143 = Utf8               pscope
+  #144 = Utf8               mkAttributes$
+  #145 = Utf8               (Lscala/xml/parsing/MarkupParser;Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #146 = NameAndType        #144:#145     // mkAttributes$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #147 = InterfaceMethodref #6.#146       // scala/xml/parsing/MarkupParser.mkAttributes$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #148 = Utf8               Lscala/xml/NamespaceBinding;
+  #149 = Utf8               mkProcInstr
+  #150 = Utf8               (ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+  #151 = Utf8               position
+  #152 = Utf8               text
+  #153 = Utf8               mkProcInstr$
+  #154 = Utf8               (Lscala/xml/parsing/MarkupParser;ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+  #155 = NameAndType        #153:#154     // mkProcInstr$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+  #156 = InterfaceMethodref #6.#155       // scala/xml/parsing/MarkupParser.mkProcInstr$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+  #157 = Utf8               nextch
+  #158 = Utf8               ()V
+  #159 = Utf8               nextch$
+  #160 = Utf8               (Lscala/xml/parsing/MarkupParser;)V
+  #161 = NameAndType        #159:#160     // nextch$:(Lscala/xml/parsing/MarkupParser;)V
+  #162 = InterfaceMethodref #6.#161       // scala/xml/parsing/MarkupParser.nextch$:(Lscala/xml/parsing/MarkupParser;)V
+  #163 = Utf8               xAttributes
+  #164 = Utf8               (Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #165 = Utf8               (Lscala/xml/NamespaceBinding;)Lscala/Tuple2<Lscala/xml/MetaData;Lscala/xml/NamespaceBinding;>;
+  #166 = Utf8               xAttributes$
+  #167 = Utf8               (Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #168 = NameAndType        #166:#167     // xAttributes$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #169 = InterfaceMethodref #6.#168       // scala/xml/parsing/MarkupParser.xAttributes$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #170 = Utf8               xEntityValue
+  #171 = Utf8               ()Ljava/lang/String;
+  #172 = Utf8               xEntityValue$
+  #173 = Utf8               (Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+  #174 = NameAndType        #172:#173     // xEntityValue$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+  #175 = InterfaceMethodref #6.#174       // scala/xml/parsing/MarkupParser.xEntityValue$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+  #176 = Utf8               xCharData
+  #177 = Utf8               ()Lscala/xml/NodeSeq;
+  #178 = Utf8               xCharData$
+  #179 = Utf8               (Lscala/xml/parsing/MarkupParser;)Lscala/xml/NodeSeq;
+  #180 = NameAndType        #178:#179     // xCharData$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/NodeSeq;
+  #181 = InterfaceMethodref #6.#180       // scala/xml/parsing/MarkupParser.xCharData$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/NodeSeq;
+  #182 = Utf8               xComment
+  #183 = Utf8               xComment$
+  #184 = NameAndType        #183:#179     // xComment$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/NodeSeq;
+  #185 = InterfaceMethodref #6.#184       // scala/xml/parsing/MarkupParser.xComment$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/NodeSeq;
+  #186 = Utf8               appendText
+  #187 = Utf8               (ILscala/xml/NodeBuffer;Ljava/lang/String;)V
+  #188 = Utf8               ts
+  #189 = Utf8               txt
+  #190 = Utf8               appendText$
+  #191 = Utf8               (Lscala/xml/parsing/MarkupParser;ILscala/xml/NodeBuffer;Ljava/lang/String;)V
+  #192 = NameAndType        #190:#191     // appendText$:(Lscala/xml/parsing/MarkupParser;ILscala/xml/NodeBuffer;Ljava/lang/String;)V
+  #193 = InterfaceMethodref #6.#192       // scala/xml/parsing/MarkupParser.appendText$:(Lscala/xml/parsing/MarkupParser;ILscala/xml/NodeBuffer;Ljava/lang/String;)V
+  #194 = Utf8               Lscala/xml/NodeBuffer;
+  #195 = Utf8               content1
+  #196 = Utf8               (Lscala/xml/NamespaceBinding;Lscala/xml/NodeBuffer;)V
+  #197 = Utf8               content1$
+  #198 = Utf8               (Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;Lscala/xml/NodeBuffer;)V
+  #199 = NameAndType        #197:#198     // content1$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;Lscala/xml/NodeBuffer;)V
+  #200 = InterfaceMethodref #6.#199       // scala/xml/parsing/MarkupParser.content1$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;Lscala/xml/NodeBuffer;)V
+  #201 = Utf8               content
+  #202 = Utf8               (Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+  #203 = Utf8               content$
+  #204 = Utf8               (Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+  #205 = NameAndType        #203:#204     // content$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+  #206 = InterfaceMethodref #6.#205       // scala/xml/parsing/MarkupParser.content$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+  #207 = Utf8               externalID
+  #208 = Utf8               ()Lscala/xml/dtd/ExternalID;
+  #209 = Utf8               externalID$
+  #210 = Utf8               (Lscala/xml/parsing/MarkupParser;)Lscala/xml/dtd/ExternalID;
+  #211 = NameAndType        #209:#210     // externalID$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/dtd/ExternalID;
+  #212 = InterfaceMethodref #6.#211       // scala/xml/parsing/MarkupParser.externalID$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/dtd/ExternalID;
+  #213 = Utf8               parseDTD
+  #214 = Utf8               parseDTD$
+  #215 = NameAndType        #214:#160     // parseDTD$:(Lscala/xml/parsing/MarkupParser;)V
+  #216 = InterfaceMethodref #6.#215       // scala/xml/parsing/MarkupParser.parseDTD$:(Lscala/xml/parsing/MarkupParser;)V
+  #217 = Utf8               element
+  #218 = Utf8               element$
+  #219 = NameAndType        #218:#204     // element$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+  #220 = InterfaceMethodref #6.#219       // scala/xml/parsing/MarkupParser.element$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+  #221 = Utf8               element1
+  #222 = Utf8               element1$
+  #223 = NameAndType        #222:#204     // element1$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+  #224 = InterfaceMethodref #6.#223       // scala/xml/parsing/MarkupParser.element1$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+  #225 = Utf8               systemLiteral
+  #226 = Utf8               systemLiteral$
+  #227 = NameAndType        #226:#173     // systemLiteral$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+  #228 = InterfaceMethodref #6.#227       // scala/xml/parsing/MarkupParser.systemLiteral$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+  #229 = Utf8               pubidLiteral
+  #230 = Utf8               pubidLiteral$
+  #231 = NameAndType        #230:#173     // pubidLiteral$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+  #232 = InterfaceMethodref #6.#231       // scala/xml/parsing/MarkupParser.pubidLiteral$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+  #233 = Utf8               extSubset
+  #234 = Utf8               extSubset$
+  #235 = NameAndType        #234:#160     // extSubset$:(Lscala/xml/parsing/MarkupParser;)V
+  #236 = InterfaceMethodref #6.#235       // scala/xml/parsing/MarkupParser.extSubset$:(Lscala/xml/parsing/MarkupParser;)V
+  #237 = Utf8               markupDecl1
+  #238 = Utf8               ()Ljava/lang/Object;
+  #239 = Utf8               markupDecl1$
+  #240 = Utf8               (Lscala/xml/parsing/MarkupParser;)Ljava/lang/Object;
+  #241 = NameAndType        #239:#240     // markupDecl1$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/Object;
+  #242 = InterfaceMethodref #6.#241       // scala/xml/parsing/MarkupParser.markupDecl1$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/Object;
+  #243 = Utf8               markupDecl
+  #244 = Utf8               markupDecl$
+  #245 = NameAndType        #244:#160     // markupDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #246 = InterfaceMethodref #6.#245       // scala/xml/parsing/MarkupParser.markupDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #247 = Utf8               intSubset
+  #248 = Utf8               intSubset$
+  #249 = NameAndType        #248:#160     // intSubset$:(Lscala/xml/parsing/MarkupParser;)V
+  #250 = InterfaceMethodref #6.#249       // scala/xml/parsing/MarkupParser.intSubset$:(Lscala/xml/parsing/MarkupParser;)V
+  #251 = Utf8               elementDecl
+  #252 = Utf8               elementDecl$
+  #253 = NameAndType        #252:#160     // elementDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #254 = InterfaceMethodref #6.#253       // scala/xml/parsing/MarkupParser.elementDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #255 = Utf8               attrDecl
+  #256 = Utf8               attrDecl$
+  #257 = NameAndType        #256:#160     // attrDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #258 = InterfaceMethodref #6.#257       // scala/xml/parsing/MarkupParser.attrDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #259 = Utf8               entityDecl
+  #260 = Utf8               entityDecl$
+  #261 = NameAndType        #260:#160     // entityDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #262 = InterfaceMethodref #6.#261       // scala/xml/parsing/MarkupParser.entityDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #263 = Utf8               notationDecl
+  #264 = Utf8               notationDecl$
+  #265 = NameAndType        #264:#160     // notationDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #266 = InterfaceMethodref #6.#265       // scala/xml/parsing/MarkupParser.notationDecl$:(Lscala/xml/parsing/MarkupParser;)V
+  #267 = Utf8               reportSyntaxError
+  #268 = Utf8               (ILjava/lang/String;)V
+  #269 = Utf8               str
+  #270 = Utf8               reportSyntaxError$
+  #271 = Utf8               (Lscala/xml/parsing/MarkupParser;ILjava/lang/String;)V
+  #272 = NameAndType        #270:#271     // reportSyntaxError$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;)V
+  #273 = InterfaceMethodref #6.#272       // scala/xml/parsing/MarkupParser.reportSyntaxError$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;)V
+  #274 = Utf8               (Ljava/lang/String;)V
+  #275 = Utf8               (Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+  #276 = NameAndType        #270:#275     // reportSyntaxError$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+  #277 = InterfaceMethodref #6.#276       // scala/xml/parsing/MarkupParser.reportSyntaxError$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+  #278 = Utf8               reportValidationError
+  #279 = Utf8               reportValidationError$
+  #280 = NameAndType        #279:#271     // reportValidationError$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;)V
+  #281 = InterfaceMethodref #6.#280       // scala/xml/parsing/MarkupParser.reportValidationError$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;)V
+  #282 = Utf8               push
+  #283 = Utf8               entityName
+  #284 = Utf8               push$
+  #285 = NameAndType        #284:#275     // push$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+  #286 = InterfaceMethodref #6.#285       // scala/xml/parsing/MarkupParser.push$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+  #287 = Utf8               pushExternal
+  #288 = Utf8               pushExternal$
+  #289 = NameAndType        #288:#275     // pushExternal$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+  #290 = InterfaceMethodref #6.#289       // scala/xml/parsing/MarkupParser.pushExternal$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+  #291 = Utf8               pop
+  #292 = Utf8               pop$
+  #293 = NameAndType        #292:#160     // pop$:(Lscala/xml/parsing/MarkupParser;)V
+  #294 = InterfaceMethodref #6.#293       // scala/xml/parsing/MarkupParser.pop$:(Lscala/xml/parsing/MarkupParser;)V
+  #295 = Utf8               unreachable
+  #296 = Utf8               ()Lscala/runtime/Nothing$;
+  #297 = Utf8               scala/xml/parsing/MarkupParserCommon
+  #298 = Class              #297          // scala/xml/parsing/MarkupParserCommon
+  #299 = Utf8               unreachable$
+  #300 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;)Lscala/runtime/Nothing$;
+  #301 = NameAndType        #299:#300     // unreachable$:(Lscala/xml/parsing/MarkupParserCommon;)Lscala/runtime/Nothing$;
+  #302 = InterfaceMethodref #298.#301     // scala/xml/parsing/MarkupParserCommon.unreachable$:(Lscala/xml/parsing/MarkupParserCommon;)Lscala/runtime/Nothing$;
+  #303 = Utf8               xTag
+  #304 = Utf8               (Ljava/lang/Object;)Lscala/Tuple2;
+  #305 = Utf8               (Ljava/lang/Object;)Lscala/Tuple2<Ljava/lang/String;Ljava/lang/Object;>;
+  #306 = Utf8               xTag$
+  #307 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;)Lscala/Tuple2;
+  #308 = NameAndType        #306:#307     // xTag$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;)Lscala/Tuple2;
+  #309 = InterfaceMethodref #298.#308     // scala/xml/parsing/MarkupParserCommon.xTag$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;)Lscala/Tuple2;
+  #310 = Utf8               Ljava/lang/Object;
+  #311 = Utf8               xProcInstr
+  #312 = Utf8               xProcInstr$
+  #313 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/Object;
+  #314 = NameAndType        #312:#313     // xProcInstr$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/Object;
+  #315 = InterfaceMethodref #298.#314     // scala/xml/parsing/MarkupParserCommon.xProcInstr$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/Object;
+  #316 = Utf8               xAttributeValue
+  #317 = Utf8               (C)Ljava/lang/String;
+  #318 = Utf8               endCh
+  #319 = Utf8               xAttributeValue$
+  #320 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;C)Ljava/lang/String;
+  #321 = NameAndType        #319:#320     // xAttributeValue$:(Lscala/xml/parsing/MarkupParserCommon;C)Ljava/lang/String;
+  #322 = InterfaceMethodref #298.#321     // scala/xml/parsing/MarkupParserCommon.xAttributeValue$:(Lscala/xml/parsing/MarkupParserCommon;C)Ljava/lang/String;
+  #323 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+  #324 = NameAndType        #319:#323     // xAttributeValue$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+  #325 = InterfaceMethodref #298.#324     // scala/xml/parsing/MarkupParserCommon.xAttributeValue$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+  #326 = Utf8               xEndTag
+  #327 = Utf8               startName
+  #328 = Utf8               xEndTag$
+  #329 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/String;)V
+  #330 = NameAndType        #328:#329     // xEndTag$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/String;)V
+  #331 = InterfaceMethodref #298.#330     // scala/xml/parsing/MarkupParserCommon.xEndTag$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/String;)V
+  #332 = Utf8               xName
+  #333 = Utf8               xName$
+  #334 = NameAndType        #333:#323     // xName$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+  #335 = InterfaceMethodref #298.#334     // scala/xml/parsing/MarkupParserCommon.xName$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+  #336 = Utf8               xCharRef
+  #337 = Utf8               (Lscala/Function0;Lscala/Function0;)Ljava/lang/String;
+  #338 = Utf8               (Lscala/Function0<Ljava/lang/Object;>;Lscala/Function0<Lscala/runtime/BoxedUnit;>;)Ljava/lang/String;
+  #339 = Utf8               xCharRef$
+  #340 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Lscala/Function0;Lscala/Function0;)Ljava/lang/String;
+  #341 = NameAndType        #339:#340     // xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/Function0;Lscala/Function0;)Ljava/lang/String;
+  #342 = InterfaceMethodref #298.#341     // scala/xml/parsing/MarkupParserCommon.xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/Function0;Lscala/Function0;)Ljava/lang/String;
+  #343 = Utf8               Lscala/Function0;
+  #344 = Utf8               (Lscala/collection/Iterator;)Ljava/lang/String;
+  #345 = Utf8               (Lscala/collection/Iterator<Ljava/lang/Object;>;)Ljava/lang/String;
+  #346 = Utf8               it
+  #347 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Lscala/collection/Iterator;)Ljava/lang/String;
+  #348 = NameAndType        #339:#347     // xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/collection/Iterator;)Ljava/lang/String;
+  #349 = InterfaceMethodref #298.#348     // scala/xml/parsing/MarkupParserCommon.xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/collection/Iterator;)Ljava/lang/String;
+  #350 = Utf8               Lscala/collection/Iterator;
+  #351 = NameAndType        #339:#323     // xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+  #352 = InterfaceMethodref #298.#351     // scala/xml/parsing/MarkupParserCommon.xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+  #353 = Utf8               errorAndResult
+  #354 = Utf8               (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+  #355 = Utf8               <T:Ljava/lang/Object;>(Ljava/lang/String;TT;)TT;
+  #356 = Utf8               x
+  #357 = Utf8               errorAndResult$
+  #358 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+  #359 = NameAndType        #357:#358     // errorAndResult$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+  #360 = InterfaceMethodref #298.#359     // scala/xml/parsing/MarkupParserCommon.errorAndResult$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+  #361 = Utf8               xToken
+  #362 = Utf8               (C)V
+  #363 = Utf8               xToken$
+  #364 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;C)V
+  #365 = NameAndType        #363:#364     // xToken$:(Lscala/xml/parsing/MarkupParserCommon;C)V
+  #366 = InterfaceMethodref #298.#365     // scala/xml/parsing/MarkupParserCommon.xToken$:(Lscala/xml/parsing/MarkupParserCommon;C)V
+  #367 = Utf8               (Lscala/collection/Seq;)V
+  #368 = Utf8               (Lscala/collection/Seq<Ljava/lang/Object;>;)V
+  #369 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Lscala/collection/Seq;)V
+  #370 = NameAndType        #363:#369     // xToken$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/collection/Seq;)V
+  #371 = InterfaceMethodref #298.#370     // scala/xml/parsing/MarkupParserCommon.xToken$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/collection/Seq;)V
+  #372 = Utf8               Lscala/collection/Seq;
+  #373 = Utf8               xEQ
+  #374 = Utf8               xEQ$
+  #375 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;)V
+  #376 = NameAndType        #374:#375     // xEQ$:(Lscala/xml/parsing/MarkupParserCommon;)V
+  #377 = InterfaceMethodref #298.#376     // scala/xml/parsing/MarkupParserCommon.xEQ$:(Lscala/xml/parsing/MarkupParserCommon;)V
+  #378 = Utf8               xSpaceOpt
+  #379 = Utf8               xSpaceOpt$
+  #380 = NameAndType        #379:#375     // xSpaceOpt$:(Lscala/xml/parsing/MarkupParserCommon;)V
+  #381 = InterfaceMethodref #298.#380     // scala/xml/parsing/MarkupParserCommon.xSpaceOpt$:(Lscala/xml/parsing/MarkupParserCommon;)V
+  #382 = Utf8               xSpace
+  #383 = Utf8               xSpace$
+  #384 = NameAndType        #383:#375     // xSpace$:(Lscala/xml/parsing/MarkupParserCommon;)V
+  #385 = InterfaceMethodref #298.#384     // scala/xml/parsing/MarkupParserCommon.xSpace$:(Lscala/xml/parsing/MarkupParserCommon;)V
+  #386 = Utf8               returning
+  #387 = Utf8               (Ljava/lang/Object;Lscala/Function1;)Ljava/lang/Object;
+  #388 = Utf8               <T:Ljava/lang/Object;>(TT;Lscala/Function1<TT;Lscala/runtime/BoxedUnit;>;)TT;
+  #389 = Utf8               f
+  #390 = Utf8               returning$
+  #391 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;Lscala/Function1;)Ljava/lang/Object;
+  #392 = NameAndType        #390:#391     // returning$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;Lscala/Function1;)Ljava/lang/Object;
+  #393 = InterfaceMethodref #298.#392     // scala/xml/parsing/MarkupParserCommon.returning$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;Lscala/Function1;)Ljava/lang/Object;
+  #394 = Utf8               Lscala/Function1;
+  #395 = Utf8               saving
+  #396 = Utf8               (Ljava/lang/Object;Lscala/Function1;Lscala/Function0;)Ljava/lang/Object;
+  #397 = Utf8               <A:Ljava/lang/Object;B:Ljava/lang/Object;>(TA;Lscala/Function1<TA;Lscala/runtime/BoxedUnit;>;Lscala/Function0<TB;>;)TB;
+  #398 = Utf8               getter
+  #399 = Utf8               setter
+  #400 = Utf8               body
+  #401 = Utf8               saving$
+  #402 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;Lscala/Function1;Lscala/Function0;)Ljava/lang/Object;
+  #403 = NameAndType        #401:#402     // saving$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;Lscala/Function1;Lscala/Function0;)Ljava/lang/Object;
+  #404 = InterfaceMethodref #298.#403     // scala/xml/parsing/MarkupParserCommon.saving$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;Lscala/Function1;Lscala/Function0;)Ljava/lang/Object;
+  #405 = Utf8               xTakeUntil
+  #406 = Utf8               (Lscala/Function2;Lscala/Function0;Ljava/lang/String;)Ljava/lang/Object;
+  #407 = Utf8               <T:Ljava/lang/Object;>(Lscala/Function2<Ljava/lang/Object;Ljava/lang/String;TT;>;Lscala/Function0<Ljava/lang/Object;>;Ljava/lang/String;)TT;
+  #408 = Utf8               handler
+  #409 = Utf8               positioner
+  #410 = Utf8               until
+  #411 = Utf8               xTakeUntil$
+  #412 = Utf8               (Lscala/xml/parsing/MarkupParserCommon;Lscala/Function2;Lscala/Function0;Ljava/lang/String;)Ljava/lang/Object;
+  #413 = NameAndType        #411:#412     // xTakeUntil$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/Function2;Lscala/Function0;Ljava/lang/String;)Ljava/lang/Object;
+  #414 = InterfaceMethodref #298.#413     // scala/xml/parsing/MarkupParserCommon.xTakeUntil$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/Function2;Lscala/Function0;Ljava/lang/String;)Ljava/lang/Object;
+  #415 = Utf8               Lscala/Function2;
+  #416 = Utf8               isSpace
+  #417 = Utf8               (C)Z
+  #418 = Utf8               scala/xml/parsing/TokenTests
+  #419 = Class              #418          // scala/xml/parsing/TokenTests
+  #420 = Utf8               isSpace$
+  #421 = Utf8               (Lscala/xml/parsing/TokenTests;C)Z
+  #422 = NameAndType        #420:#421     // isSpace$:(Lscala/xml/parsing/TokenTests;C)Z
+  #423 = InterfaceMethodref #419.#422     // scala/xml/parsing/TokenTests.isSpace$:(Lscala/xml/parsing/TokenTests;C)Z
+  #424 = Utf8               (Lscala/collection/Seq;)Z
+  #425 = Utf8               (Lscala/collection/Seq<Ljava/lang/Object;>;)Z
+  #426 = Utf8               cs
+  #427 = Utf8               (Lscala/xml/parsing/TokenTests;Lscala/collection/Seq;)Z
+  #428 = NameAndType        #420:#427     // isSpace$:(Lscala/xml/parsing/TokenTests;Lscala/collection/Seq;)Z
+  #429 = InterfaceMethodref #419.#428     // scala/xml/parsing/TokenTests.isSpace$:(Lscala/xml/parsing/TokenTests;Lscala/collection/Seq;)Z
+  #430 = Utf8               isAlpha
+  #431 = Utf8               isAlpha$
+  #432 = NameAndType        #431:#421     // isAlpha$:(Lscala/xml/parsing/TokenTests;C)Z
+  #433 = InterfaceMethodref #419.#432     // scala/xml/parsing/TokenTests.isAlpha$:(Lscala/xml/parsing/TokenTests;C)Z
+  #434 = Utf8               isAlphaDigit
+  #435 = Utf8               isAlphaDigit$
+  #436 = NameAndType        #435:#421     // isAlphaDigit$:(Lscala/xml/parsing/TokenTests;C)Z
+  #437 = InterfaceMethodref #419.#436     // scala/xml/parsing/TokenTests.isAlphaDigit$:(Lscala/xml/parsing/TokenTests;C)Z
+  #438 = Utf8               isNameChar
+  #439 = Utf8               isNameChar$
+  #440 = NameAndType        #439:#421     // isNameChar$:(Lscala/xml/parsing/TokenTests;C)Z
+  #441 = InterfaceMethodref #419.#440     // scala/xml/parsing/TokenTests.isNameChar$:(Lscala/xml/parsing/TokenTests;C)Z
+  #442 = Utf8               isNameStart
+  #443 = Utf8               isNameStart$
+  #444 = NameAndType        #443:#421     // isNameStart$:(Lscala/xml/parsing/TokenTests;C)Z
+  #445 = InterfaceMethodref #419.#444     // scala/xml/parsing/TokenTests.isNameStart$:(Lscala/xml/parsing/TokenTests;C)Z
+  #446 = Utf8               isName
+  #447 = Utf8               (Ljava/lang/String;)Z
+  #448 = Utf8               s
+  #449 = Utf8               isName$
+  #450 = Utf8               (Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+  #451 = NameAndType        #449:#450     // isName$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+  #452 = InterfaceMethodref #419.#451     // scala/xml/parsing/TokenTests.isName$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+  #453 = Utf8               isPubIDChar
+  #454 = Utf8               isPubIDChar$
+  #455 = NameAndType        #454:#421     // isPubIDChar$:(Lscala/xml/parsing/TokenTests;C)Z
+  #456 = InterfaceMethodref #419.#455     // scala/xml/parsing/TokenTests.isPubIDChar$:(Lscala/xml/parsing/TokenTests;C)Z
+  #457 = Utf8               isValidIANAEncoding
+  #458 = Utf8               ianaEncoding
+  #459 = Utf8               isValidIANAEncoding$
+  #460 = NameAndType        #459:#427     // isValidIANAEncoding$:(Lscala/xml/parsing/TokenTests;Lscala/collection/Seq;)Z
+  #461 = InterfaceMethodref #419.#460     // scala/xml/parsing/TokenTests.isValidIANAEncoding$:(Lscala/xml/parsing/TokenTests;Lscala/collection/Seq;)Z
+  #462 = Utf8               checkSysID
+  #463 = Utf8               checkSysID$
+  #464 = NameAndType        #463:#450     // checkSysID$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+  #465 = InterfaceMethodref #419.#464     // scala/xml/parsing/TokenTests.checkSysID$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+  #466 = Utf8               checkPubID
+  #467 = Utf8               checkPubID$
+  #468 = NameAndType        #467:#450     // checkPubID$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+  #469 = InterfaceMethodref #419.#468     // scala/xml/parsing/TokenTests.checkPubID$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+  #470 = Utf8               ()Lscala/io/Source;
+  #471 = NameAndType        #17:#14       // curInput:Lscala/io/Source;
+  #472 = Fieldref           #2.#471       // scala/xml/parsing/XhtmlParser.curInput:Lscala/io/Source;
+  #473 = Utf8               curInput_$eq
+  #474 = Utf8               (Lscala/io/Source;)V
+  #475 = Utf8               x$1
+  #476 = NameAndType        #18:#19       // scala$xml$parsing$MarkupParser$$handle:Lscala/xml/parsing/MarkupHandler;
+  #477 = Fieldref           #2.#476       // scala/xml/parsing/XhtmlParser.scala$xml$parsing$MarkupParser$$handle:Lscala/xml/parsing/MarkupHandler;
+  #478 = Utf8               ()Lscala/collection/immutable/List;
+  #479 = Utf8               ()Lscala/collection/immutable/List<Lscala/io/Source;>;
+  #480 = NameAndType        #20:#21       // inpStack:Lscala/collection/immutable/List;
+  #481 = Fieldref           #2.#480       // scala/xml/parsing/XhtmlParser.inpStack:Lscala/collection/immutable/List;
+  #482 = Utf8               inpStack_$eq
+  #483 = Utf8               (Lscala/collection/immutable/List;)V
+  #484 = Utf8               (Lscala/collection/immutable/List<Lscala/io/Source;>;)V
+  #485 = Utf8               ()I
+  #486 = NameAndType        #23:#24       // pos:I
+  #487 = Fieldref           #2.#486       // scala/xml/parsing/XhtmlParser.pos:I
+  #488 = Utf8               pos_$eq
+  #489 = Utf8               (I)V
+  #490 = NameAndType        #25:#24       // extIndex:I
+  #491 = Fieldref           #2.#490       // scala/xml/parsing/XhtmlParser.extIndex:I
+  #492 = Utf8               extIndex_$eq
+  #493 = NameAndType        #26:#24       // tmppos:I
+  #494 = Fieldref           #2.#493       // scala/xml/parsing/XhtmlParser.tmppos:I
+  #495 = Utf8               tmppos_$eq
+  #496 = NameAndType        #27:#16       // nextChNeeded:Z
+  #497 = Fieldref           #2.#496       // scala/xml/parsing/XhtmlParser.nextChNeeded:Z
+  #498 = Utf8               nextChNeeded_$eq
+  #499 = Utf8               (Z)V
+  #500 = NameAndType        #28:#16       // reachedEof:Z
+  #501 = Fieldref           #2.#500       // scala/xml/parsing/XhtmlParser.reachedEof:Z
+  #502 = Utf8               reachedEof_$eq
+  #503 = NameAndType        #29:#30       // lastChRead:C
+  #504 = Fieldref           #2.#503       // scala/xml/parsing/XhtmlParser.lastChRead:C
+  #505 = Utf8               lastChRead_$eq
+  #506 = Utf8               ()Lscala/collection/mutable/StringBuilder;
+  #507 = NameAndType        #31:#32       // cbuf:Lscala/collection/mutable/StringBuilder;
+  #508 = Fieldref           #2.#507       // scala/xml/parsing/XhtmlParser.cbuf:Lscala/collection/mutable/StringBuilder;
+  #509 = Utf8               ()Lscala/xml/dtd/DTD;
+  #510 = NameAndType        #33:#34       // dtd:Lscala/xml/dtd/DTD;
+  #511 = Fieldref           #2.#510       // scala/xml/parsing/XhtmlParser.dtd:Lscala/xml/dtd/DTD;
+  #512 = Utf8               dtd_$eq
+  #513 = Utf8               (Lscala/xml/dtd/DTD;)V
+  #514 = NameAndType        #35:#36       // doc:Lscala/xml/Document;
+  #515 = Fieldref           #2.#514       // scala/xml/parsing/XhtmlParser.doc:Lscala/xml/Document;
+  #516 = Utf8               doc_$eq
+  #517 = Utf8               (Lscala/xml/Document;)V
+  #518 = Utf8               scala$xml$parsing$MarkupParser$_setter_$scala$xml$parsing$MarkupParser$$handle_$eq
+  #519 = Utf8               (Lscala/xml/parsing/MarkupHandler;)V
+  #520 = Utf8               scala$xml$parsing$MarkupParser$_setter_$cbuf_$eq
+  #521 = Utf8               (Lscala/collection/mutable/StringBuilder;)V
+  #522 = NameAndType        #13:#14       // input:Lscala/io/Source;
+  #523 = Fieldref           #2.#522       // scala/xml/parsing/XhtmlParser.input:Lscala/io/Source;
+  #524 = NameAndType        #15:#16       // preserveWS:Z
+  #525 = Fieldref           #2.#524       // scala/xml/parsing/XhtmlParser.preserveWS:Z
+  #526 = Utf8               (Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
+  #527 = Utf8               scala/runtime/BoxesRunTime
+  #528 = Class              #527          // scala/runtime/BoxesRunTime
+  #529 = Utf8               unboxToInt
+  #530 = Utf8               (Ljava/lang/Object;)I
+  #531 = NameAndType        #529:#530     // unboxToInt:(Ljava/lang/Object;)I
+  #532 = Methodref          #528.#531     // scala/runtime/BoxesRunTime.unboxToInt:(Ljava/lang/Object;)I
+  #533 = NameAndType        #149:#150     // mkProcInstr:(ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+  #534 = Methodref          #2.#533       // scala/xml/parsing/XhtmlParser.mkProcInstr:(ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+  #535 = Utf8               scala/xml/NamespaceBinding
+  #536 = Class              #535          // scala/xml/NamespaceBinding
+  #537 = NameAndType        #139:#140     // mkAttributes:(Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #538 = Methodref          #2.#537       // scala/xml/parsing/XhtmlParser.mkAttributes:(Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+  #539 = Utf8               (Ljava/lang/Object;)V
+  #540 = NameAndType        #495:#489     // tmppos_$eq:(I)V
+  #541 = Methodref          #2.#540       // scala/xml/parsing/XhtmlParser.tmppos_$eq:(I)V
+  #542 = NameAndType        #26:#485      // tmppos:()I
+  #543 = Methodref          #2.#542       // scala/xml/parsing/XhtmlParser.tmppos:()I
+  #544 = Utf8               boxToInteger
+  #545 = Utf8               (I)Ljava/lang/Integer;
+  #546 = NameAndType        #544:#545     // boxToInteger:(I)Ljava/lang/Integer;
+  #547 = Methodref          #528.#546     // scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+  #548 = Utf8               <init>
+  #549 = NameAndType        #548:#158     // "<init>":()V
+  #550 = Methodref          #4.#549       // scala/xml/parsing/ConstructingHandler."<init>":()V
+  #551 = Utf8               $init$
+  #552 = Utf8               (Lscala/xml/parsing/TokenTests;)V
+  #553 = NameAndType        #551:#552     // $init$:(Lscala/xml/parsing/TokenTests;)V
+  #554 = InterfaceMethodref #419.#553     // scala/xml/parsing/TokenTests.$init$:(Lscala/xml/parsing/TokenTests;)V
+  #555 = NameAndType        #551:#375     // $init$:(Lscala/xml/parsing/MarkupParserCommon;)V
+  #556 = InterfaceMethodref #298.#555     // scala/xml/parsing/MarkupParserCommon.$init$:(Lscala/xml/parsing/MarkupParserCommon;)V
+  #557 = NameAndType        #551:#160     // $init$:(Lscala/xml/parsing/MarkupParser;)V
+  #558 = InterfaceMethodref #6.#557       // scala/xml/parsing/MarkupParser.$init$:(Lscala/xml/parsing/MarkupParser;)V
+  #559 = Utf8               (Lscala/xml/parsing/ExternalSources;)V
+  #560 = NameAndType        #551:#559     // $init$:(Lscala/xml/parsing/ExternalSources;)V
+  #561 = InterfaceMethodref #8.#560       // scala/xml/parsing/ExternalSources.$init$:(Lscala/xml/parsing/ExternalSources;)V
+  #562 = Utf8               ent
+  #563 = Utf8               ()Lscala/collection/mutable/Map;
+  #564 = NameAndType        #562:#563     // ent:()Lscala/collection/mutable/Map;
+  #565 = Methodref          #2.#564       // scala/xml/parsing/XhtmlParser.ent:()Lscala/collection/mutable/Map;
+  #566 = Utf8               scala/xml/parsing/XhtmlEntities$
+  #567 = Class              #566          // scala/xml/parsing/XhtmlEntities$
+  #568 = Utf8               Lscala/xml/parsing/XhtmlEntities$;
+  #569 = NameAndType        #42:#568      // MODULE$:Lscala/xml/parsing/XhtmlEntities$;
+  #570 = Fieldref           #567.#569     // scala/xml/parsing/XhtmlEntities$.MODULE$:Lscala/xml/parsing/XhtmlEntities$;
+  #571 = NameAndType        #37:#478      // apply:()Lscala/collection/immutable/List;
+  #572 = Methodref          #567.#571     // scala/xml/parsing/XhtmlEntities$.apply:()Lscala/collection/immutable/List;
+  #573 = Utf8               scala/collection/mutable/Map
+  #574 = Class              #573          // scala/collection/mutable/Map
+  #575 = Utf8               $plus$plus$eq
+  #576 = Utf8               (Lscala/collection/IterableOnce;)Lscala/collection/mutable/Growable;
+  #577 = NameAndType        #575:#576     // $plus$plus$eq:(Lscala/collection/IterableOnce;)Lscala/collection/mutable/Growable;
+  #578 = InterfaceMethodref #574.#577     // scala/collection/mutable/Map.$plus$plus$eq:(Lscala/collection/IterableOnce;)Lscala/collection/mutable/Growable;
+  #579 = Utf8               scala/runtime/Statics
+  #580 = Class              #579          // scala/runtime/Statics
+  #581 = Utf8               releaseFence
+  #582 = NameAndType        #581:#158     // releaseFence:()V
+  #583 = Methodref          #580.#582     // scala/runtime/Statics.releaseFence:()V
+  #584 = Utf8               Signature
+  #585 = Utf8               Code
+  #586 = Utf8               LocalVariableTable
+  #587 = Utf8               MethodParameters
+  #588 = Utf8               LineNumberTable
+  #589 = Utf8               SourceFile
+  #590 = Utf8               RuntimeVisibleAnnotations
+  #591 = Utf8               ScalaInlineInfo
+  #592 = Utf8               ScalaSig
+{
+  private final scala.io.Source input;
+    descriptor: Lscala/io/Source;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final boolean preserveWS;
+    descriptor: Z
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private scala.io.Source curInput;
+    descriptor: Lscala/io/Source;
+    flags: (0x0002) ACC_PRIVATE
+
+  private scala.xml.parsing.MarkupHandler scala$xml$parsing$MarkupParser$$handle;
+    descriptor: Lscala/xml/parsing/MarkupHandler;
+    flags: (0x0002) ACC_PRIVATE
+
+  private scala.collection.immutable.List<scala.io.Source> inpStack;
+    descriptor: Lscala/collection/immutable/List;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #22                          // Lscala/collection/immutable/List<Lscala/io/Source;>;
+
+  private int pos;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int extIndex;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int tmppos;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean nextChNeeded;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean reachedEof;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private char lastChRead;
+    descriptor: C
+    flags: (0x0002) ACC_PRIVATE
+
+  private scala.collection.mutable.StringBuilder cbuf;
+    descriptor: Lscala/collection/mutable/StringBuilder;
+    flags: (0x0002) ACC_PRIVATE
+
+  private scala.xml.dtd.DTD dtd;
+    descriptor: Lscala/xml/dtd/DTD;
+    flags: (0x0002) ACC_PRIVATE
+
+  private scala.xml.Document doc;
+    descriptor: Lscala/xml/Document;
+    flags: (0x0002) ACC_PRIVATE
+
+  public static scala.xml.NodeSeq apply(scala.io.Source);
+    descriptor: (Lscala/io/Source;)Lscala/xml/NodeSeq;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #45                 // Field scala/xml/parsing/XhtmlParser$.MODULE$:Lscala/xml/parsing/XhtmlParser$;
+         3: aload_0
+         4: invokevirtual #47                 // Method scala/xml/parsing/XhtmlParser$.apply:(Lscala/io/Source;)Lscala/xml/NodeSeq;
+         7: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0 source   Lscala/io/Source;
+    MethodParameters:
+      Name                           Flags
+      source                         final
+
+  public scala.io.Source externalSource(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lscala/io/Source;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #54                 // InterfaceMethod scala/xml/parsing/ExternalSources.externalSource$:(Lscala/xml/parsing/ExternalSources;Ljava/lang/String;)Lscala/io/Source;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 systemId   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      systemId                       final
+
+  public scala.runtime.Nothing$ truncatedError(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lscala/runtime/Nothing$;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #64                 // InterfaceMethod scala/xml/parsing/MarkupParser.truncatedError$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)Lscala/runtime/Nothing$;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   msg   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      msg                            final
+
+  public scala.runtime.Nothing$ errorNoEnd(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lscala/runtime/Nothing$;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #69                 // InterfaceMethod scala/xml/parsing/MarkupParser.errorNoEnd$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)Lscala/runtime/Nothing$;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   tag   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      tag                            final
+
+  public void xHandleError(char, java.lang.String);
+    descriptor: (CLjava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: invokestatic  #76                 // InterfaceMethod scala/xml/parsing/MarkupParser.xHandleError$:(Lscala/xml/parsing/MarkupParser;CLjava/lang/String;)V
+         6: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       7     1  that   C
+            0       7     2   msg   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      that                           final
+      msg                            final
+
+  public scala.collection.BufferedIterator<java.lang.Object> lookahead();
+    descriptor: ()Lscala/collection/BufferedIterator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #83                 // InterfaceMethod scala/xml/parsing/MarkupParser.lookahead$:(Lscala/xml/parsing/MarkupParser;)Lscala/collection/BufferedIterator;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+    Signature: #79                          // ()Lscala/collection/BufferedIterator<Ljava/lang/Object;>;
+
+  public char ch();
+    descriptor: ()C
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #89                 // InterfaceMethod scala/xml/parsing/MarkupParser.ch$:(Lscala/xml/parsing/MarkupParser;)C
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public boolean eof();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #95                 // InterfaceMethod scala/xml/parsing/MarkupParser.eof$:(Lscala/xml/parsing/MarkupParser;)Z
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.xml.MetaData xmlProcInstr();
+    descriptor: ()Lscala/xml/MetaData;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #101                // InterfaceMethod scala/xml/parsing/MarkupParser.xmlProcInstr$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/MetaData;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.Tuple3<scala.Option<java.lang.String>, scala.Option<java.lang.String>, scala.Option<java.lang.Object>> prolog();
+    descriptor: ()Lscala/Tuple3;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #108                // InterfaceMethod scala/xml/parsing/MarkupParser.prolog$:(Lscala/xml/parsing/MarkupParser;)Lscala/Tuple3;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+    Signature: #104                         // ()Lscala/Tuple3<Lscala/Option<Ljava/lang/String;>;Lscala/Option<Ljava/lang/String;>;Lscala/Option<Ljava/lang/Object;>;>;
+
+  public scala.Tuple2<scala.Option<java.lang.String>, scala.Option<java.lang.String>> textDecl();
+    descriptor: ()Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #115                // InterfaceMethod scala/xml/parsing/MarkupParser.textDecl$:(Lscala/xml/parsing/MarkupParser;)Lscala/Tuple2;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+    Signature: #111                         // ()Lscala/Tuple2<Lscala/Option<Ljava/lang/String;>;Lscala/Option<Ljava/lang/String;>;>;
+
+  public scala.xml.Document document();
+    descriptor: ()Lscala/xml/Document;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #121                // InterfaceMethod scala/xml/parsing/MarkupParser.document$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/Document;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.collection.mutable.StringBuilder putChar(char);
+    descriptor: (C)Lscala/collection/mutable/StringBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #128                // InterfaceMethod scala/xml/parsing/MarkupParser.putChar$:(Lscala/xml/parsing/MarkupParser;C)Lscala/collection/mutable/StringBuilder;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1     c   C
+    MethodParameters:
+      Name                           Flags
+      c                              final
+
+  public scala.xml.parsing.MarkupHandler initialize();
+    descriptor: ()Lscala/xml/parsing/MarkupHandler;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #134                // InterfaceMethod scala/xml/parsing/MarkupParser.initialize$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/parsing/MarkupHandler;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public char ch_returning_nextch();
+    descriptor: ()C
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #138                // InterfaceMethod scala/xml/parsing/MarkupParser.ch_returning_nextch$:(Lscala/xml/parsing/MarkupParser;)C
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.Tuple2<scala.xml.MetaData, scala.xml.NamespaceBinding> mkAttributes(java.lang.String, scala.xml.NamespaceBinding);
+    descriptor: (Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #147                // InterfaceMethod scala/xml/parsing/MarkupParser.mkAttributes$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+         6: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       7     1  name   Ljava/lang/String;
+            0       7     2 pscope   Lscala/xml/NamespaceBinding;
+    Signature: #141                         // (Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2<Lscala/xml/MetaData;Lscala/xml/NamespaceBinding;>;
+    MethodParameters:
+      Name                           Flags
+      name                           final
+      pscope                         final
+
+  public scala.xml.NodeSeq mkProcInstr(int, java.lang.String, java.lang.String);
+    descriptor: (ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #156                // InterfaceMethod scala/xml/parsing/MarkupParser.mkProcInstr$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+         7: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       8     1 position   I
+            0       8     2  name   Ljava/lang/String;
+            0       8     3  text   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      position                       final
+      name                           final
+      text                           final
+
+  public void nextch();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #162                // InterfaceMethod scala/xml/parsing/MarkupParser.nextch$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.Tuple2<scala.xml.MetaData, scala.xml.NamespaceBinding> xAttributes(scala.xml.NamespaceBinding);
+    descriptor: (Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #169                // InterfaceMethod scala/xml/parsing/MarkupParser.xAttributes$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 pscope   Lscala/xml/NamespaceBinding;
+    Signature: #165                         // (Lscala/xml/NamespaceBinding;)Lscala/Tuple2<Lscala/xml/MetaData;Lscala/xml/NamespaceBinding;>;
+    MethodParameters:
+      Name                           Flags
+      pscope                         final
+
+  public java.lang.String xEntityValue();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #175                // InterfaceMethod scala/xml/parsing/MarkupParser.xEntityValue$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.xml.NodeSeq xCharData();
+    descriptor: ()Lscala/xml/NodeSeq;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #181                // InterfaceMethod scala/xml/parsing/MarkupParser.xCharData$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/NodeSeq;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.xml.NodeSeq xComment();
+    descriptor: ()Lscala/xml/NodeSeq;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #185                // InterfaceMethod scala/xml/parsing/MarkupParser.xComment$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/NodeSeq;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void appendText(int, scala.xml.NodeBuffer, java.lang.String);
+    descriptor: (ILscala/xml/NodeBuffer;Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #193                // InterfaceMethod scala/xml/parsing/MarkupParser.appendText$:(Lscala/xml/parsing/MarkupParser;ILscala/xml/NodeBuffer;Ljava/lang/String;)V
+         7: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       8     1   pos   I
+            0       8     2    ts   Lscala/xml/NodeBuffer;
+            0       8     3   txt   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      pos                            final
+      ts                             final
+      txt                            final
+
+  public void content1(scala.xml.NamespaceBinding, scala.xml.NodeBuffer);
+    descriptor: (Lscala/xml/NamespaceBinding;Lscala/xml/NodeBuffer;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #200                // InterfaceMethod scala/xml/parsing/MarkupParser.content1$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;Lscala/xml/NodeBuffer;)V
+         6: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       7     1 pscope   Lscala/xml/NamespaceBinding;
+            0       7     2    ts   Lscala/xml/NodeBuffer;
+    MethodParameters:
+      Name                           Flags
+      pscope                         final
+      ts                             final
+
+  public scala.xml.NodeSeq content(scala.xml.NamespaceBinding);
+    descriptor: (Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #206                // InterfaceMethod scala/xml/parsing/MarkupParser.content$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 pscope   Lscala/xml/NamespaceBinding;
+    MethodParameters:
+      Name                           Flags
+      pscope                         final
+
+  public scala.xml.dtd.ExternalID externalID();
+    descriptor: ()Lscala/xml/dtd/ExternalID;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #212                // InterfaceMethod scala/xml/parsing/MarkupParser.externalID$:(Lscala/xml/parsing/MarkupParser;)Lscala/xml/dtd/ExternalID;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void parseDTD();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #216                // InterfaceMethod scala/xml/parsing/MarkupParser.parseDTD$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.xml.NodeSeq element(scala.xml.NamespaceBinding);
+    descriptor: (Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #220                // InterfaceMethod scala/xml/parsing/MarkupParser.element$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 pscope   Lscala/xml/NamespaceBinding;
+    MethodParameters:
+      Name                           Flags
+      pscope                         final
+
+  public scala.xml.NodeSeq element1(scala.xml.NamespaceBinding);
+    descriptor: (Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #224                // InterfaceMethod scala/xml/parsing/MarkupParser.element1$:(Lscala/xml/parsing/MarkupParser;Lscala/xml/NamespaceBinding;)Lscala/xml/NodeSeq;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 pscope   Lscala/xml/NamespaceBinding;
+    MethodParameters:
+      Name                           Flags
+      pscope                         final
+
+  public java.lang.String systemLiteral();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #228                // InterfaceMethod scala/xml/parsing/MarkupParser.systemLiteral$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public java.lang.String pubidLiteral();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #232                // InterfaceMethod scala/xml/parsing/MarkupParser.pubidLiteral$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void extSubset();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #236                // InterfaceMethod scala/xml/parsing/MarkupParser.extSubset$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public java.lang.Object markupDecl1();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #242                // InterfaceMethod scala/xml/parsing/MarkupParser.markupDecl1$:(Lscala/xml/parsing/MarkupParser;)Ljava/lang/Object;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void markupDecl();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #246                // InterfaceMethod scala/xml/parsing/MarkupParser.markupDecl$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void intSubset();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #250                // InterfaceMethod scala/xml/parsing/MarkupParser.intSubset$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void elementDecl();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #254                // InterfaceMethod scala/xml/parsing/MarkupParser.elementDecl$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void attrDecl();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #258                // InterfaceMethod scala/xml/parsing/MarkupParser.attrDecl$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void entityDecl();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #262                // InterfaceMethod scala/xml/parsing/MarkupParser.entityDecl$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void notationDecl();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #266                // InterfaceMethod scala/xml/parsing/MarkupParser.notationDecl$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void reportSyntaxError(int, java.lang.String);
+    descriptor: (ILjava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: invokestatic  #273                // InterfaceMethod scala/xml/parsing/MarkupParser.reportSyntaxError$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;)V
+         6: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       7     1   pos   I
+            0       7     2   str   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      pos                            final
+      str                            final
+
+  public void reportSyntaxError(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #277                // InterfaceMethod scala/xml/parsing/MarkupParser.reportSyntaxError$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   str   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      str                            final
+
+  public void reportValidationError(int, java.lang.String);
+    descriptor: (ILjava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: invokestatic  #281                // InterfaceMethod scala/xml/parsing/MarkupParser.reportValidationError$:(Lscala/xml/parsing/MarkupParser;ILjava/lang/String;)V
+         6: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       7     1   pos   I
+            0       7     2   str   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      pos                            final
+      str                            final
+
+  public void push(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #286                // InterfaceMethod scala/xml/parsing/MarkupParser.push$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 entityName   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      entityName                     final
+
+  public void pushExternal(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #290                // InterfaceMethod scala/xml/parsing/MarkupParser.pushExternal$:(Lscala/xml/parsing/MarkupParser;Ljava/lang/String;)V
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 systemId   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      systemId                       final
+
+  public void pop();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #294                // InterfaceMethod scala/xml/parsing/MarkupParser.pop$:(Lscala/xml/parsing/MarkupParser;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.runtime.Nothing$ unreachable();
+    descriptor: ()Lscala/runtime/Nothing$;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #302                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.unreachable$:(Lscala/xml/parsing/MarkupParserCommon;)Lscala/runtime/Nothing$;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.Tuple2<java.lang.String, java.lang.Object> xTag(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Lscala/Tuple2;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #309                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xTag$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;)Lscala/Tuple2;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 pscope   Ljava/lang/Object;
+    Signature: #305                         // (Ljava/lang/Object;)Lscala/Tuple2<Ljava/lang/String;Ljava/lang/Object;>;
+    MethodParameters:
+      Name                           Flags
+      pscope                         final
+
+  public java.lang.Object xProcInstr();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #315                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xProcInstr$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/Object;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public java.lang.String xAttributeValue(char);
+    descriptor: (C)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #322                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xAttributeValue$:(Lscala/xml/parsing/MarkupParserCommon;C)Ljava/lang/String;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 endCh   C
+    MethodParameters:
+      Name                           Flags
+      endCh                          final
+
+  public java.lang.String xAttributeValue();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #325                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xAttributeValue$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void xEndTag(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #331                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xEndTag$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/String;)V
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 startName   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      startName                      final
+
+  public java.lang.String xName();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #335                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xName$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public java.lang.String xCharRef(scala.Function0<java.lang.Object>, scala.Function0<scala.runtime.BoxedUnit>);
+    descriptor: (Lscala/Function0;Lscala/Function0;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #342                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/Function0;Lscala/Function0;)Ljava/lang/String;
+         6: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       7     1    ch   Lscala/Function0;
+            0       7     2 nextch   Lscala/Function0;
+    Signature: #338                         // (Lscala/Function0<Ljava/lang/Object;>;Lscala/Function0<Lscala/runtime/BoxedUnit;>;)Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      ch                             final
+      nextch                         final
+
+  public java.lang.String xCharRef(scala.collection.Iterator<java.lang.Object>);
+    descriptor: (Lscala/collection/Iterator;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #349                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/collection/Iterator;)Ljava/lang/String;
+         5: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1    it   Lscala/collection/Iterator;
+    Signature: #345                         // (Lscala/collection/Iterator<Ljava/lang/Object;>;)Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      it                             final
+
+  public java.lang.String xCharRef();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #352                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xCharRef$:(Lscala/xml/parsing/MarkupParserCommon;)Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public <T extends java.lang.Object> T errorAndResult(java.lang.String, T);
+    descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #360                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.errorAndResult$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+         6: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       7     1   msg   Ljava/lang/String;
+            0       7     2     x   Ljava/lang/Object;
+    Signature: #355                         // <T:Ljava/lang/Object;>(Ljava/lang/String;TT;)TT;
+    MethodParameters:
+      Name                           Flags
+      msg                            final
+      x                              final
+
+  public void xToken(char);
+    descriptor: (C)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #366                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xToken$:(Lscala/xml/parsing/MarkupParserCommon;C)V
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1  that   C
+    MethodParameters:
+      Name                           Flags
+      that                           final
+
+  public void xToken(scala.collection.Seq<java.lang.Object>);
+    descriptor: (Lscala/collection/Seq;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #371                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xToken$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/collection/Seq;)V
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1  that   Lscala/collection/Seq;
+    Signature: #368                         // (Lscala/collection/Seq<Ljava/lang/Object;>;)V
+    MethodParameters:
+      Name                           Flags
+      that                           final
+
+  public void xEQ();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #377                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xEQ$:(Lscala/xml/parsing/MarkupParserCommon;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void xSpaceOpt();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #381                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xSpaceOpt$:(Lscala/xml/parsing/MarkupParserCommon;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void xSpace();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #385                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xSpace$:(Lscala/xml/parsing/MarkupParserCommon;)V
+         4: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public <T extends java.lang.Object> T returning(T, scala.Function1<T, scala.runtime.BoxedUnit>);
+    descriptor: (Ljava/lang/Object;Lscala/Function1;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #393                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.returning$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;Lscala/Function1;)Ljava/lang/Object;
+         6: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       7     1     x   Ljava/lang/Object;
+            0       7     2     f   Lscala/Function1;
+    Signature: #388                         // <T:Ljava/lang/Object;>(TT;Lscala/Function1<TT;Lscala/runtime/BoxedUnit;>;)TT;
+    MethodParameters:
+      Name                           Flags
+      x                              final
+      f                              final
+
+  public <A extends java.lang.Object, B extends java.lang.Object> B saving(A, scala.Function1<A, scala.runtime.BoxedUnit>, scala.Function0<B>);
+    descriptor: (Ljava/lang/Object;Lscala/Function1;Lscala/Function0;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #404                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.saving$:(Lscala/xml/parsing/MarkupParserCommon;Ljava/lang/Object;Lscala/Function1;Lscala/Function0;)Ljava/lang/Object;
+         7: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       8     1 getter   Ljava/lang/Object;
+            0       8     2 setter   Lscala/Function1;
+            0       8     3  body   Lscala/Function0;
+    Signature: #397                         // <A:Ljava/lang/Object;B:Ljava/lang/Object;>(TA;Lscala/Function1<TA;Lscala/runtime/BoxedUnit;>;Lscala/Function0<TB;>;)TB;
+    MethodParameters:
+      Name                           Flags
+      getter                         final
+      setter                         final
+      body                           final
+
+  public <T extends java.lang.Object> T xTakeUntil(scala.Function2<java.lang.Object, java.lang.String, T>, scala.Function0<java.lang.Object>, java.lang.String);
+    descriptor: (Lscala/Function2;Lscala/Function0;Ljava/lang/String;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #414                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.xTakeUntil$:(Lscala/xml/parsing/MarkupParserCommon;Lscala/Function2;Lscala/Function0;Ljava/lang/String;)Ljava/lang/Object;
+         7: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       8     1 handler   Lscala/Function2;
+            0       8     2 positioner   Lscala/Function0;
+            0       8     3 until   Ljava/lang/String;
+    Signature: #407                         // <T:Ljava/lang/Object;>(Lscala/Function2<Ljava/lang/Object;Ljava/lang/String;TT;>;Lscala/Function0<Ljava/lang/Object;>;Ljava/lang/String;)TT;
+    MethodParameters:
+      Name                           Flags
+      handler                        final
+      positioner                     final
+      until                          final
+
+  public final boolean isSpace(char);
+    descriptor: (C)Z
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #423                // InterfaceMethod scala/xml/parsing/TokenTests.isSpace$:(Lscala/xml/parsing/TokenTests;C)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1    ch   C
+    MethodParameters:
+      Name                           Flags
+      ch                             final
+
+  public final boolean isSpace(scala.collection.Seq<java.lang.Object>);
+    descriptor: (Lscala/collection/Seq;)Z
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #429                // InterfaceMethod scala/xml/parsing/TokenTests.isSpace$:(Lscala/xml/parsing/TokenTests;Lscala/collection/Seq;)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1    cs   Lscala/collection/Seq;
+    Signature: #425                         // (Lscala/collection/Seq<Ljava/lang/Object;>;)Z
+    MethodParameters:
+      Name                           Flags
+      cs                             final
+
+  public boolean isAlpha(char);
+    descriptor: (C)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #433                // InterfaceMethod scala/xml/parsing/TokenTests.isAlpha$:(Lscala/xml/parsing/TokenTests;C)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1     c   C
+    MethodParameters:
+      Name                           Flags
+      c                              final
+
+  public boolean isAlphaDigit(char);
+    descriptor: (C)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #437                // InterfaceMethod scala/xml/parsing/TokenTests.isAlphaDigit$:(Lscala/xml/parsing/TokenTests;C)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1     c   C
+    MethodParameters:
+      Name                           Flags
+      c                              final
+
+  public boolean isNameChar(char);
+    descriptor: (C)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #441                // InterfaceMethod scala/xml/parsing/TokenTests.isNameChar$:(Lscala/xml/parsing/TokenTests;C)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1    ch   C
+    MethodParameters:
+      Name                           Flags
+      ch                             final
+
+  public boolean isNameStart(char);
+    descriptor: (C)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #445                // InterfaceMethod scala/xml/parsing/TokenTests.isNameStart$:(Lscala/xml/parsing/TokenTests;C)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1    ch   C
+    MethodParameters:
+      Name                           Flags
+      ch                             final
+
+  public boolean isName(java.lang.String);
+    descriptor: (Ljava/lang/String;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #452                // InterfaceMethod scala/xml/parsing/TokenTests.isName$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1     s   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      s                              final
+
+  public boolean isPubIDChar(char);
+    descriptor: (C)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #456                // InterfaceMethod scala/xml/parsing/TokenTests.isPubIDChar$:(Lscala/xml/parsing/TokenTests;C)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1    ch   C
+    MethodParameters:
+      Name                           Flags
+      ch                             final
+
+  public boolean isValidIANAEncoding(scala.collection.Seq<java.lang.Object>);
+    descriptor: (Lscala/collection/Seq;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #461                // InterfaceMethod scala/xml/parsing/TokenTests.isValidIANAEncoding$:(Lscala/xml/parsing/TokenTests;Lscala/collection/Seq;)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1 ianaEncoding   Lscala/collection/Seq;
+    Signature: #425                         // (Lscala/collection/Seq<Ljava/lang/Object;>;)Z
+    MethodParameters:
+      Name                           Flags
+      ianaEncoding                   final
+
+  public boolean checkSysID(java.lang.String);
+    descriptor: (Ljava/lang/String;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #465                // InterfaceMethod scala/xml/parsing/TokenTests.checkSysID$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1     s   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      s                              final
+
+  public boolean checkPubID(java.lang.String);
+    descriptor: (Ljava/lang/String;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #469                // InterfaceMethod scala/xml/parsing/TokenTests.checkPubID$:(Lscala/xml/parsing/TokenTests;Ljava/lang/String;)Z
+         5: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1     s   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      s                              final
+
+  public scala.io.Source curInput();
+    descriptor: ()Lscala/io/Source;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #472                // Field curInput:Lscala/io/Source;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void curInput_$eq(scala.io.Source);
+    descriptor: (Lscala/io/Source;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #472                // Field curInput:Lscala/io/Source;
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   Lscala/io/Source;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public scala.xml.parsing.MarkupHandler scala$xml$parsing$MarkupParser$$handle();
+    descriptor: ()Lscala/xml/parsing/MarkupHandler;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #477                // Field scala$xml$parsing$MarkupParser$$handle:Lscala/xml/parsing/MarkupHandler;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.collection.immutable.List<scala.io.Source> inpStack();
+    descriptor: ()Lscala/collection/immutable/List;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #481                // Field inpStack:Lscala/collection/immutable/List;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+    Signature: #479                         // ()Lscala/collection/immutable/List<Lscala/io/Source;>;
+
+  public void inpStack_$eq(scala.collection.immutable.List<scala.io.Source>);
+    descriptor: (Lscala/collection/immutable/List;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #481                // Field inpStack:Lscala/collection/immutable/List;
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   Lscala/collection/immutable/List;
+    Signature: #484                         // (Lscala/collection/immutable/List<Lscala/io/Source;>;)V
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public int pos();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #487                // Field pos:I
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void pos_$eq(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #487                // Field pos:I
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public int extIndex();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #491                // Field extIndex:I
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void extIndex_$eq(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #491                // Field extIndex:I
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public int tmppos();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #494                // Field tmppos:I
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void tmppos_$eq(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #494                // Field tmppos:I
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public boolean nextChNeeded();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #497                // Field nextChNeeded:Z
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void nextChNeeded_$eq(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #497                // Field nextChNeeded:Z
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   Z
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public boolean reachedEof();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #501                // Field reachedEof:Z
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void reachedEof_$eq(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #501                // Field reachedEof:Z
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   Z
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public char lastChRead();
+    descriptor: ()C
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #504                // Field lastChRead:C
+         4: ireturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void lastChRead_$eq(char);
+    descriptor: (C)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #504                // Field lastChRead:C
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   C
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public scala.collection.mutable.StringBuilder cbuf();
+    descriptor: ()Lscala/collection/mutable/StringBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #508                // Field cbuf:Lscala/collection/mutable/StringBuilder;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.xml.dtd.DTD dtd();
+    descriptor: ()Lscala/xml/dtd/DTD;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #511                // Field dtd:Lscala/xml/dtd/DTD;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void dtd_$eq(scala.xml.dtd.DTD);
+    descriptor: (Lscala/xml/dtd/DTD;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #511                // Field dtd:Lscala/xml/dtd/DTD;
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   Lscala/xml/dtd/DTD;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public scala.xml.Document doc();
+    descriptor: ()Lscala/xml/Document;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #515                // Field doc:Lscala/xml/Document;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public void doc_$eq(scala.xml.Document);
+    descriptor: (Lscala/xml/Document;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #515                // Field doc:Lscala/xml/Document;
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   Lscala/xml/Document;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public final void scala$xml$parsing$MarkupParser$_setter_$scala$xml$parsing$MarkupParser$$handle_$eq(scala.xml.parsing.MarkupHandler);
+    descriptor: (Lscala/xml/parsing/MarkupHandler;)V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #477                // Field scala$xml$parsing$MarkupParser$$handle:Lscala/xml/parsing/MarkupHandler;
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   Lscala/xml/parsing/MarkupHandler;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public void scala$xml$parsing$MarkupParser$_setter_$cbuf_$eq(scala.collection.mutable.StringBuilder);
+    descriptor: (Lscala/collection/mutable/StringBuilder;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #508                // Field cbuf:Lscala/collection/mutable/StringBuilder;
+         5: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       6     1   x$1   Lscala/collection/mutable/StringBuilder;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public scala.io.Source input();
+    descriptor: ()Lscala/io/Source;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #523                // Field input:Lscala/io/Source;
+         4: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public boolean preserveWS();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #525                // Field preserveWS:Z
+         4: ireturn
+      LineNumberTable:
+        line 26: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public java.lang.Object mkProcInstr(java.lang.Object, java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #532                // Method scala/runtime/BoxesRunTime.unboxToInt:(Ljava/lang/Object;)I
+         5: aload_2
+         6: aload_3
+         7: invokevirtual #534                // Method mkProcInstr:(ILjava/lang/String;Ljava/lang/String;)Lscala/xml/NodeSeq;
+        10: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lscala/xml/parsing/XhtmlParser;
+            0      11     1 position   Ljava/lang/Object;
+            0      11     2  name   Ljava/lang/String;
+            0      11     3  text   Ljava/lang/String;
+    MethodParameters:
+      Name                           Flags
+      position                       final
+      name                           final
+      text                           final
+
+  public java.lang.Object mkAttributes(java.lang.String, java.lang.Object);
+    descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: checkcast     #536                // class scala/xml/NamespaceBinding
+         6: invokevirtual #538                // Method mkAttributes:(Ljava/lang/String;Lscala/xml/NamespaceBinding;)Lscala/Tuple2;
+         9: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lscala/xml/parsing/XhtmlParser;
+            0      10     1  name   Ljava/lang/String;
+            0      10     2 pscope   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      name                           final
+      pscope                         final
+
+  public void tmppos_$eq(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #532                // Method scala/runtime/BoxesRunTime.unboxToInt:(Ljava/lang/Object;)I
+         5: invokevirtual #541                // Method tmppos_$eq:(I)V
+         8: return
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lscala/xml/parsing/XhtmlParser;
+            0       9     1   x$1   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public java.lang.Object tmppos();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #543                // Method tmppos:()I
+         4: invokestatic  #547                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+         7: areturn
+      LineNumberTable:
+        line 25: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/xml/parsing/XhtmlParser;
+
+  public scala.xml.parsing.XhtmlParser(scala.io.Source);
+    descriptor: (Lscala/io/Source;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #523                // Field input:Lscala/io/Source;
+         5: aload_0
+         6: invokespecial #550                // Method scala/xml/parsing/ConstructingHandler."<init>":()V
+         9: aload_0
+        10: invokestatic  #554                // InterfaceMethod scala/xml/parsing/TokenTests.$init$:(Lscala/xml/parsing/TokenTests;)V
+        13: aload_0
+        14: invokestatic  #556                // InterfaceMethod scala/xml/parsing/MarkupParserCommon.$init$:(Lscala/xml/parsing/MarkupParserCommon;)V
+        17: aload_0
+        18: invokestatic  #558                // InterfaceMethod scala/xml/parsing/MarkupParser.$init$:(Lscala/xml/parsing/MarkupParser;)V
+        21: aload_0
+        22: invokestatic  #561                // InterfaceMethod scala/xml/parsing/ExternalSources.$init$:(Lscala/xml/parsing/ExternalSources;)V
+        25: aload_0
+        26: iconst_1
+        27: putfield      #525                // Field preserveWS:Z
+        30: aload_0
+        31: invokevirtual #565                // Method ent:()Lscala/collection/mutable/Map;
+        34: getstatic     #570                // Field scala/xml/parsing/XhtmlEntities$.MODULE$:Lscala/xml/parsing/XhtmlEntities$;
+        37: invokevirtual #572                // Method scala/xml/parsing/XhtmlEntities$.apply:()Lscala/collection/immutable/List;
+        40: invokeinterface #578,  2          // InterfaceMethod scala/collection/mutable/Map.$plus$plus$eq:(Lscala/collection/IterableOnce;)Lscala/collection/mutable/Growable;
+        45: pop
+        46: invokestatic  #583                // Method scala/runtime/Statics.releaseFence:()V
+        49: return
+      LineNumberTable:
+        line 25: 0
+        line 26: 25
+        line 27: 30
+        line 25: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      50     0  this   Lscala/xml/parsing/XhtmlParser;
+            0      50     1 input   Lscala/io/Source;
+    MethodParameters:
+      Name                           Flags
+      input                          final
+}
+SourceFile: "XhtmlParser.scala"
+RuntimeVisibleAnnotations:
+  0: #10(#11=s#12)
+    scala.reflect.ScalaSignature(
+      bytes="\u0006\u0005\u00013AAC\u0006\u0001%!AQ\u0004\u0001BC\u0002\u0013\u0005a\u0004\u0003\u0005&\u0001\t\u0005\t\u0015!\u0003 \u0011\u00151\u0003\u0001\"\u0001(\u0011\u001dQ\u0003A1A\u0005\u0002-Ba\u0001\r\u0001!\u0002\u0013as!B\u0019\f\u0011\u0003\u0011d!\u0002\u0006\f\u0011\u0003\u0019\u0004\"\u0002\u0014\b\t\u00039\u0004\"\u0002\u001d\b\t\u0003I$a\u0003-ii6d\u0007+\u0019:tKJT!\u0001D\u0007\u0002\u000fA\f\'o]5oO*\u0011abD\u0001\u0004q6d\'\"\u0001\t\u0002\u000bM\u001c\u0017\r\\1\u0004\u0001M!\u0001aE\f\u001b!\t!R#D\u0001\f\u0013\t12BA\nD_:\u001cHO];di&tw\rS1oI2,\'\u000f\u0005\u0002\u00151%\u0011\u0011d\u0003\u0002\r\u001b\u0006\u00148.\u001e9QCJ\u001cXM\u001d\t\u0003)mI!\u0001H\u0006\u0003\u001f\u0015CH/\u001a:oC2\u001cv.\u001e:dKN\fQ!\u001b8qkR,\u0012a\b\t\u0003A\rj\u0011!\t\u0006\u0003E=\t!![8\n\u0005\u0011\n#AB*pkJ\u001cW-\u0001\u0004j]B,H\u000fI\u0001\u0007y%t\u0017\u000e\u001e \u0015\u0005!J\u0003C\u0001\u000b\u0001\u0011\u0015i2\u00011\u0001 \u0003)\u0001(/Z:feZ,wkU\u000b\u0002YA\u0011QFL\u0007\u0002\u001f%\u0011qf\u0004\u0002\b\u0005>|G.Z1o\u0003-\u0001(/Z:feZ,wk\u0015\u0011\u0002\u0017aCG/\u001c7QCJ\u001cXM\u001d\t\u0003)\u001d\u0019\"a\u0002\u001b\u0011\u00055*\u0014B\u0001\u001c\u0010\u0005\u0019\te.\u001f*fMR\t!\'A\u0003baBd\u0017\u0010\u0006\u0002;}A\u00111\bP\u0007\u0002\u001b%\u0011Q(\u0004\u0002\b\u001d>$WmU3r\u0011\u0015y\u0014\u00021\u0001 \u0003\u0019\u0019x.\u001e:dK\u0002"
+    )
+  ScalaInlineInfo: length = 0x211 (unknown attribute)
+   01 00 00 69 02 24 01 DA 00 00 BA 00 BB 00 00 FF
+   00 9E 00 00 1F 01 FA 00 00 54 00 55 00 00 87 00
+   55 00 01 D2 01 BF 00 01 CE 01 BF 00 00 C9 00 CA
+   00 00 C3 00 C4 00 00 11 01 D6 00 01 D9 01 DA 00
+   00 23 00 75 00 02 04 02 05 00 00 74 00 75 00 00
+   21 01 FD 00 02 00 02 01 00 00 D9 00 CA 00 00 DD
+   00 CA 00 00 FB 00 9E 00 01 03 00 9E 00 00 5A 00
+   5B 00 01 61 01 62 00 00 41 00 3B 00 00 19 01 E5
+   00 01 EC 01 E9 00 00 E9 00 9E 00 00 CF 00 D0 00
+   00 30 00 31 00 00 81 00 82 00 00 14 01 DE 00 01
+   E2 01 E3 00 00 0D 01 D6 00 00 F7 00 9E 00 01 AE
+   01 A1 00 01 B2 01 A1 00 01 BE 01 BF 00 01 B6 01
+   A1 00 01 BA 01 A1 00 01 C5 01 A1 00 01 A0 01 A1
+   01 01 A0 01 A8 01 01 C9 01 A8 00 00 1D 00 55 00
+   01 F9 01 6A 00 00 4D 00 4E 00 00 F3 00 9E 00 00
+   ED 00 EE 00 00 8B 01 62 00 00 8B 00 8C 00 00 95
+   00 96 00 00 95 02 0E 00 00 1B 00 5B 00 01 F2 01
+   F3 00 00 9D 00 9E 00 01 07 00 9E 00 00 D5 00 9E
+   00 01 23 00 9E 00 00 17 01 E5 00 01 E8 01 E9 00
+   00 0F 00 5B 00 00 66 00 67 00 00 E5 00 AB 00 01
+   1A 01 12 00 01 1F 01 12 00 00 7A 00 7B 00 00 1C
+   00 5B 00 01 F6 01 F3 00 01 0B 01 0C 00 01 0B 01
+   12 00 01 16 01 0C 00 01 82 01 83 00 01 8B 01 8C
+   00 00 12 00 82 01 02 08 02 09 00 02 06 02 07 01
+   00 E1 00 AB 00 00 6D 00 6E 00 00 1A 01 E5 00 00
+   1A 00 EE 00 01 EF 01 E9 00 01 EF 02 1B 00 00 3A
+   00 3B 00 01 27 01 28 00 01 3C 00 AB 00 01 3C 01
+   3D 00 00 A3 00 A4 00 00 B0 00 B1 00 01 50 00 AB
+   00 01 50 01 51 00 01 50 01 58 00 00 B6 00 B1 00
+   01 75 00 9E 00 01 46 01 12 00 00 AA 00 AB 00 00
+   46 00 47 00 01 4C 00 AB 00 01 37 00 EE 00 01 7E
+   00 9E 00 01 7A 00 9E 00 01 2F 01 30 00 01 95 01
+   96 00 01 69 01 6A 00 01 69 01 6F 00 00 60 00 61
+   00
+  ScalaSig: length = 0x3 (unknown attribute)
+   05 02 00

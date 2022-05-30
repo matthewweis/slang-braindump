@@ -1,0 +1,3681 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/scala/util/hashing/MurmurHash3.class
+  Last modified May 29, 2022; size 18595 bytes
+  SHA-256 checksum 6682a3232679043359222993a81956fd3d907a7b7f88f427d3472b9eb8ebb43f
+  Compiled from "MurmurHash3.scala"
+public class scala.util.hashing.MurmurHash3
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // scala/util/hashing/MurmurHash3
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 42, attributes: 5
+Constant pool:
+    #1 = Utf8               scala/util/hashing/MurmurHash3
+    #2 = Class              #1            // scala/util/hashing/MurmurHash3
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               MurmurHash3.scala
+    #6 = Utf8               Lscala/reflect/ScalaSignature;
+    #7 = Utf8               bytes
+    #8 = Utf8               \u0006\u0005\tEh!B\u001e=\u0001q\u0012\u0005\"B$\u0001\t\u0003I\u0005\"\u0002\'\u0001\t\u000bi\u0005\"B+\u0001\t\u000b1\u0006\"B-\u0001\t\u000bQ\u0006\"\u00020\u0001\t\u001by\u0006BB1\u0001\t\u0003\u0001%\rC\u0003j\u0001\u0011\u0015!\u000eC\u0004v\u0001E\u0005IQ\u0001<\t\u000f\u0005\r\u0001\u0001\"\u0002\u0002\u0006!9\u00111\u0005\u0001\u0005\u0006\u0005\u0015\u0002bBA!\u0001\u0011\u0015\u00111\t\u0005\b\u0003\u0013\u0002AQAA&\u0011\u001d\t\u0019\b\u0001C\u0003\u0003kBq!!\"\u0001\t\u000b\t9\tC\u0004\u0002\u0016\u0002!)!a&\t\u000f\u0005%\u0006\u0001\"\u0002\u0002,\u001e9\u0011Q\u0019\u001f\t\u0002\u0005\u001dgAB\u001e=\u0011\u0003\tI\r\u0003\u0004H%\u0011\u0005\u00111\u001a\u0005\n\u0003\u001b\u0014\"\u0019!C\u0003\u0003\u001fD\u0001\"!6\u0013A\u00035\u0011\u0011\u001b\u0005\n\u0003/\u0014\"\u0019!C\u0003\u00033D\u0001\"a8\u0013A\u00035\u00111\u001c\u0005\n\u0003C\u0014\"\u0019!C\u0003\u0003GD\u0001\"!;\u0013A\u00035\u0011Q\u001d\u0005\n\u0003W\u0014\"\u0019!C\u0003\u0003[D\u0001\"a=\u0013A\u00035\u0011q\u001e\u0005\n\u0003k\u0014\"\u0019!C\u0003\u0003oD\u0001\"!@\u0013A\u00035\u0011\u0011 \u0005\n\u0003\u007f\u0014\"\u0019!C\u0003\u0005\u0003AqAa\u0001\u0013A\u00035a\nC\u0005\u0003\u0006I\u0011\r\u0011\"\u0002\u0003\u0002!9!q\u0001\n!\u0002\u001bq\u0005\"\u0003B\u0005%\t\u0007IQ\u0001B\u0001\u0011\u001d\u0011YA\u0005Q\u0001\u000e9Cq!!\u0013\u0013\t\u0003\u0011i\u0001C\u0004\u0002\u0006J!\tAa\u0007\t\u000f\u0005\u0005#\u0003\"\u0001\u0003 !1\u0011N\u0005C\u0001\u0005GAq!a\u0001\u0013\t\u0003\u00119\u0003C\u0004\u0002$I!\tAa\u000b\t\u000f\u0005M$\u0003\"\u0001\u00030!A!q\u0007\n\u0005\u0002\u0001\u0013I\u0004C\u0004b%\u0011\u0005\u0001Ia\u0012\t\u000f\t5#\u0003\"\u0001\u0003P!9!\u0011\r\n\u0005\u0002\t\r\u0004B\u0003B>%\t\u0007I\u0011\u0001!\u0003\u0002!9!Q\u0010\n!\u0002\u0013q\u0005b\u0002B@%\u0011\u0005!\u0011\u0011\u0004\u0007\u0005\'\u0013\u0002A!&\t\r\u001d\u0013D\u0011\u0001BT\u0011\u0019\u0011&\u0007\"\u0001\u0003.\"9!\u0011\u0017\n\u0005\u0002\tM\u0006b\u0002B`%\u0011\u0005!\u0011\u0019\u0005\b\u0005\u0017\u0014B\u0011\u0001Bg\u0011\u001d\u0011)N\u0005C\u0001\u0005/DqAa8\u0013\t\u0003\u0011\t\u000fC\u0004\u0003jJ!\tAa;\u0003\u00175+(/\\;s\u0011\u0006\u001c\bn\r\u0006\u0003{y\nq\u0001[1tQ&twM\u0003\u0002@\u0001\u0006!Q\u000f^5m\u0015\u0005\t\u0015!B:dC2\f7C\u0001\u0001D!\t!U)D\u0001A\u0013\t1\u0005I\u0001\u0004B]f\u0014VMZ\u0001\u0007y%t\u0017\u000e\u001e \u0004\u0001Q\t!\n\u0005\u0002L\u00015\tA(A\u0002nSb$2AT)T!\t!u*\u0003\u0002Q\u0001\n\u0019\u0011J\u001c;\t\u000bI\u0013\u0001\u0019\u0001(\u0002\t!\f7\u000f\u001b\u0005\u0006)\n\u0001\rAT\u0001\u0005I\u0006$\u0018-A\u0004nSbd\u0015m\u001d;\u0015\u00079;\u0006\fC\u0003S\u0007\u0001\u0007a\nC\u0003U\u0007\u0001\u0007a*\u0001\u0007gS:\fG.\u001b>f\u0011\u0006\u001c\b\u000eF\u0002O7rCQA\u0015\u0003A\u00029CQ!\u0018\u0003A\u00029\u000ba\u0001\\3oORD\u0017!C1wC2\fgn\u00195f)\tq\u0005\rC\u0003S\u000b\u0001\u0007a*\u0001\u0006ukBdWM\r%bg\"$BAT2fO\")AM\u0002a\u0001\u001d\u0006\t\u0001\u0010C\u0003g\r\u0001\u0007a*A\u0001z\u0011\u0015Ag\u00011\u0001O\u0003\u0011\u0019X-\u001a3\u0002\u0017A\u0014x\u000eZ;di\"\u000b7\u000f\u001b\u000b\u0005\u001d.|\u0007\u000fC\u0003e\u000f\u0001\u0007A\u000e\u0005\u0002E[&\u0011a\u000e\u0011\u0002\b!J|G-^2u\u0011\u0015Aw\u00011\u0001O\u0011\u001d\tx\u0001%AA\u0002I\fA\"[4o_J,\u0007K]3gSb\u0004\"\u0001R:\n\u0005Q\u0004%a\u0002\"p_2,\u0017M\\\u0001\u0016aJ|G-^2u\u0011\u0006\u001c\b\u000e\n3fM\u0006,H\u000e\u001e\u00134+\u00059(F\u0001:yW\u0005I\bC\u0001>\u0000\u001b\u0005Y(B\u0001?~\u0003%)hn\u00195fG.,GM\u0003\u0002\u007f\u0001\u0006Q\u0011M\u001c8pi\u0006$\u0018n\u001c8\n\u0007\u0005\u00051PA\tv]\u000eDWmY6fIZ\u000b\'/[1oG\u0016\f!b\u001d;sS:<\u0007*Y:i)\u0015q\u0015qAA\u0011\u0011\u001d\tI!\u0003a\u0001\u0003\u0017\t1a\u001d;s!\u0011\ti!a\u0007\u000f\t\u0005=\u0011q\u0003\t\u0004\u0003#\u0001UBAA\n\u0015\r\t)\u0002S\u0001\u0007yI|w\u000e\u001e \n\u0007\u0005e\u0001)\u0001\u0004Qe\u0016$WMZ\u0005\u0005\u0003;\tyB\u0001\u0004TiJLgn\u001a\u0006\u0004\u00033\u0001\u0005\"\u00025\n\u0001\u0004q\u0015!D;o_J$WM]3e\u0011\u0006\u001c\b\u000eF\u0003O\u0003O\ty\u0004C\u0004\u0002*)\u0001\r!a\u000b\u0002\u0005a\u001c\bCBA\u0017\u0003g\tIDD\u0002E\u0003_I1!!\rA\u0003\u001d\u0001\u0018mY6bO\u0016LA!!\u000e\u00028\ta\u0011\n^3sC\ndWm\u00148dK*\u0019\u0011\u0011\u0007!\u0011\u0007\u0011\u000bY$C\u0002\u0002>\u0001\u00131!\u00118z\u0011\u0015A\'\u00021\u0001O\u0003-y\'\u000fZ3sK\u0012D\u0015m\u001d5\u0015\u000b9\u000b)%a\u0012\t\u000f\u0005%2\u00021\u0001\u0002,!)\u0001n\u0003a\u0001\u001d\u0006I\u0011M\u001d:bs\"\u000b7\u000f[\u000b\u0005\u0003\u001b\ni\u0006F\u0003O\u0003\u001f\n\t\bC\u0004\u0002R1\u0001\r!a\u0015\u0002\u0003\u0005\u0004R\u0001RA+\u00033J1!a\u0016A\u0005\u0015\t%O]1z!\u0011\tY&!\u0018\r\u0001\u0011Y\u0011q\f\u0007!\u0002\u0003\u0005)\u0019AA1\u0005\u0005!\u0016\u0003BA2\u0003s\u00012\u0001RA3\u0013\r\t9\u0007\u0011\u0002\b\u001d>$\b.\u001b8hQ\u0011\ti&a\u001b\u0011\u0007\u0011\u000bi\'C\u0002\u0002p\u0001\u00131b\u001d9fG&\fG.\u001b>fI\")\u0001\u000e\u0004a\u0001\u001d\u0006I!/\u00198hK\"\u000b7\u000f\u001b\u000b\n\u001d\u0006]\u00141PA@\u0003\u0007Ca!!\u001f\u000e\u0001\u0004q\u0015!B:uCJ$\bBBA?\u001b\u0001\u0007a*\u0001\u0003ti\u0016\u0004\bBBAA\u001b\u0001\u0007a*\u0001\u0003mCN$\b\"\u00025\u000e\u0001\u0004q\u0015!\u00032zi\u0016\u001c\b*Y:i)\u0015q\u0015\u0011RAJ\u0011\u0019!f\u00021\u0001\u0002\fB)A)!\u0016\u0002\u000eB\u0019A)a$\n\u0007\u0005E\u0005I\u0001\u0003CsR,\u0007\"\u00025\u000f\u0001\u0004q\u0015AD5oI\u0016DX\rZ*fc\"\u000b7\u000f\u001b\u000b\u0006\u001d\u0006e\u0015q\u0015\u0005\b\u0003#z\u0001\u0019AAN!\u0019\ti*a)\u0002:5\u0011\u0011q\u0014\u0006\u0004\u0003C\u0003\u0015AC2pY2,7\r^5p]&!\u0011QUAP\u0005)Ie\u000eZ3yK\u0012\u001cV-\u001d\u0005\u0006Q>\u0001\rAT\u0001\tY&\u001cH\u000fS1tQR)a*!,\u0002D\"9\u0011\u0011\u0006\tA\u0002\u0005=\u0006\u0007BAY\u0003\u007f\u0003b!a-\u0002:\u0006uVBAA[\u0015\u0011\t9,a(\u0002\u0013%lW.\u001e;bE2,\u0017\u0002BA^\u0003k\u0013A\u0001T5tiB!\u00111LA`\t1\t\t-!,\u0002\u0002\u0003\u0005)\u0011AA1\u0005\ryF%\r\u0005\u0006QB\u0001\rAT\u0001\f\u001bV\u0014X.\u001e:ICND7\u0007\u0005\u0002L%M\u0011!C\u0013\u000b\u0003\u0003\u000f\f\u0011\"\u0019:sCf\u001cV-\u001a3\u0016\u0005\u0005EwBAAj;\u0011atAS1\u0002\u0015\u0005\u0014(/Y=TK\u0016$\u0007%\u0001\u0006tiJLgnZ*fK\u0012,\"!a7\u0010\u0005\u0005uW\u0004B|K\u0000J\u000f1b\u001d;sS:<7+Z3eA\u0005Y\u0001O]8ek\u000e$8+Z3e+\t\t)o\u0004\u0002\u0002hv!!Z@^?\u00041\u0001(o\u001c3vGR\u001cV-\u001a3!\u00035\u0019\u00180\\7fiJL7mU3fIV\u0011\u0011q^\b\u0003\u0003clB!.Jx^\u0007q1/_7nKR\u0014\u0018nY*fK\u0012\u0004\u0013a\u0004;sCZ,\'o]1cY\u0016\u001cV-\u001a3\u0016\u0005\u0005exBAA~;\u00119/hc\u000b\u0002!Q\u0014\u0018M^3sg\u0006\u0014G.Z*fK\u0012\u0004\u0013aB:fcN+W\rZ\u000b\u0002\u001d\u0006A1/Z9TK\u0016$\u0007%A\u0004nCB\u001cV-\u001a3\u0002\u00115\f\u0007oU3fI\u0002\nqa]3u\'\u0016,G-\u0001\u0005tKR\u001cV-\u001a3!+\u0011\u0011yAa\u0006\u0015\u00079\u0013\t\u0002C\u0004\u0002R\u0011\u0002\rAa\u0005\u0011\u000b\u0011\u000b)F!\u0006\u0011\t\u0005m#q\u0003\u0003\f\u0003?\"\u0003\u0015!A\u0001\u0006\u0004\t\t\u0007\u000b\u0003\u0003\u0018\u0005-Dc\u0001(\u0003\u001e!1A+\na\u0001\u0003\u0017#2A\u0014B\u0011\u0011\u001d\tIC\na\u0001\u0003W!2A\u0014B\u0013\u0011\u0015!w\u00051\u0001m)\rq%\u0011\u0006\u0005\u0007I\"\u0002\r!a\u0003\u0015\u00079\u0013i\u0003C\u0004\u0002*%\u0002\r!a\u000b\u0015\u000f9\u0013\tDa\r\u00036!1\u0011\u0011\u0010\u0016A\u00029Ca!! +\u0001\u0004q\u0005BBAAU\u0001\u0007a*\u0001\u0007beJ\f\u0017pU3r\u0011\u0006\u001c\b.\u0006\u0003\u0003<\t\rCc\u0001(\u0003>!9\u0011\u0011K\u0016A\u0002\t}\u0002#\u0002#\u0002V\t\u0005\u0003\u0003BA.\u0005\u0007\"1\"a\u0018,A\u0003\u0005\tQ1\u0001\u0002b!\"!1IA6)\u0015q%\u0011\nB&\u0011\u0019!G\u00061\u0001\u0002:!1a\r\fa\u0001\u0003s\tqa]3r\u0011\u0006\u001c\b\u000eF\u0002O\u0005#Bq!!\u000b.\u0001\u0004\u0011\u0019\u0006\r\u0003\u0003V\tu\u0003CBAO\u0005/\u0012Y&\u0003\u0003\u0003Z\u0005}%aA*fcB!\u00111\fB/\t1\u0011yF!\u0015\u0002\u0002\u0003\u0005)\u0011AA1\u0005\ryFEM\u0001\b[\u0006\u0004\b*Y:i)\rq%Q\r\u0005\b\u0003Sq\u0003\u0019\u0001B4a\u0019\u0011IG!\u001d\u0003xAA\u0011Q\u0014B6\u0005_\u0012)(\u0003\u0003\u0003n\u0005}%aA\'baB!\u00111\fB9\t1\u0011\u0019H!\u001a\u0002\u0002\u0003\u0005)\u0011AA1\u0005\ryFe\r\t\u0005\u00037\u00129\b\u0002\u0007\u0003z\t\u0015\u0014\u0011!A\u0001\u0006\u0003\t\tGA\u0002`IQ\nA\"Z7qifl\u0015\r\u001d%bg\"\fQ\"Z7qifl\u0015\r\u001d%bg\"\u0004\u0013aB:fi\"\u000b7\u000f\u001b\u000b\u0004\u001d\n\r\u0005bBA\u0015c\u0001\u0007!Q\u0011\u0019\u0005\u0005\u000f\u0013y\t\u0005\u0004\u0002\u001e\n%%QR\u0005\u0005\u0005\u0017\u000byJA\u0002TKR\u0004B!a\u0017\u0003\u0010\u0012a!\u0011\u0013BB\u0003\u0003\u0005\tQ!\u0001\u0002b\t\u0019q\fJ\u001b\u0003\u0019\u0005\u0013(/Y=ICND\u0017N\\4\u0016\t\t]%1U\n\u0005e\r\u0013I\nE\u0003L\u00057\u0013y*C\u0002\u0003\u001er\u0012q\u0001S1tQ&tw\rE\u0003E\u0003+\u0012\t\u000b\u0005\u0003\u0002\\\t\rFaCA0e\u0001\u0006\t\u0011!b\u0001\u0003CBCAa)\u0002lQ\u0011!\u0011\u0016\t\u0006\u0005W\u0013$\u0011U\u0007\u0002%Q\u0019aJa,\t\u000f\u0005EC\u00071\u0001\u0003 \u0006a\u0011M\u001d:bs\"\u000b7\u000f[5oOV!!Q\u0017B^+\t\u00119\fE\u0003\u0003,J\u0012I\f\u0005\u0003\u0002\\\tmFaCA0k\u0001\u0006\t\u0011!b\u0001\u0003CBCAa/\u0002l\u0005a!-\u001f;fg\"\u000b7\u000f[5oOV\u0011!1\u0019\n\u0006\u0005\u000b\u001c%\u0011\u001a\u0004\u0007\u0005\u000f4\u0004Aa1\u0003\u0019q\u0012XMZ5oK6,g\u000e\u001e \u0011\u000b-\u0013Y*a#\u0002\u001d=\u0014H-\u001a:fI\"\u000b7\u000f[5oOV\u0011!q\u001a\n\u0006\u0005#\u001c%1\u001b\u0004\u0007\u0005\u000f<\u0004Aa4\u0011\u000b-\u0013Y*a\u000b\u0002\u001dA\u0014x\u000eZ;di\"\u000b7\u000f[5oOV\u0011!\u0011\u001c\n\u0006\u00057\u001c%Q\u001c\u0004\u0007\u0005\u000fD\u0004A!7\u0011\t-\u0013Y\n\\\u0001\u000egR\u0014\u0018N\\4ICND\u0017N\\4\u0016\u0005\t\r(#\u0002Bs\u0007\n\u001dhA\u0002Bds\u0001\u0011\u0019\u000fE\u0003L\u00057\u000bY!\u0001\tv]>\u0014H-\u001a:fI\"\u000b7\u000f[5oOV\u0011!Q\u001e\n\u0006\u0005_\u001c%1\u001b\u0004\u0007\u0005\u000fT\u0004A!<
+    #9 = Utf8               scala/util/hashing/MurmurHash3$$anon$1
+   #10 = Class              #9            // scala/util/hashing/MurmurHash3$$anon$1
+   #11 = Utf8               scala/util/hashing/MurmurHash3$$anon$2
+   #12 = Class              #11           // scala/util/hashing/MurmurHash3$$anon$2
+   #13 = Utf8               scala/util/hashing/MurmurHash3$$anon$3
+   #14 = Class              #13           // scala/util/hashing/MurmurHash3$$anon$3
+   #15 = Utf8               scala/util/hashing/MurmurHash3$$anon$4
+   #16 = Class              #15           // scala/util/hashing/MurmurHash3$$anon$4
+   #17 = Utf8               scala/util/hashing/MurmurHash3$$anon$5
+   #18 = Class              #17           // scala/util/hashing/MurmurHash3$$anon$5
+   #19 = Utf8               scala/util/hashing/MurmurHash3$ArrayHashing
+   #20 = Class              #19           // scala/util/hashing/MurmurHash3$ArrayHashing
+   #21 = Utf8               ArrayHashing
+   #22 = Utf8               unorderedHashing
+   #23 = Utf8               ()Lscala/util/hashing/Hashing;
+   #24 = Utf8               ()Lscala/util/hashing/Hashing<Lscala/collection/IterableOnce<Ljava/lang/Object;>;>;
+   #25 = Utf8               scala/util/hashing/MurmurHash3$
+   #26 = Class              #25           // scala/util/hashing/MurmurHash3$
+   #27 = Utf8               MODULE$
+   #28 = Utf8               Lscala/util/hashing/MurmurHash3$;
+   #29 = NameAndType        #27:#28       // MODULE$:Lscala/util/hashing/MurmurHash3$;
+   #30 = Fieldref           #26.#29       // scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+   #31 = Utf8               <init>
+   #32 = Utf8               ()V
+   #33 = NameAndType        #31:#32       // "<init>":()V
+   #34 = Methodref          #18.#33       // scala/util/hashing/MurmurHash3$$anon$5."<init>":()V
+   #35 = Utf8               stringHashing
+   #36 = Utf8               ()Lscala/util/hashing/Hashing<Ljava/lang/String;>;
+   #37 = Methodref          #16.#33       // scala/util/hashing/MurmurHash3$$anon$4."<init>":()V
+   #38 = Utf8               productHashing
+   #39 = Utf8               ()Lscala/util/hashing/Hashing<Lscala/Product;>;
+   #40 = Methodref          #14.#33       // scala/util/hashing/MurmurHash3$$anon$3."<init>":()V
+   #41 = Utf8               orderedHashing
+   #42 = Methodref          #12.#33       // scala/util/hashing/MurmurHash3$$anon$2."<init>":()V
+   #43 = Utf8               bytesHashing
+   #44 = Utf8               ()Lscala/util/hashing/Hashing<[B>;
+   #45 = Methodref          #10.#33       // scala/util/hashing/MurmurHash3$$anon$1."<init>":()V
+   #46 = Utf8               arrayHashing
+   #47 = Utf8               ()Lscala/util/hashing/MurmurHash3$ArrayHashing;
+   #48 = Utf8               <T:Ljava/lang/Object;>()Lscala/util/hashing/MurmurHash3$ArrayHashing<TT;>;
+   #49 = Methodref          #20.#33       // scala/util/hashing/MurmurHash3$ArrayHashing."<init>":()V
+   #50 = Utf8               setHash
+   #51 = Utf8               (Lscala/collection/Set;)I
+   #52 = Utf8               (Lscala/collection/Set<*>;)I
+   #53 = Utf8               xs
+   #54 = NameAndType        #50:#51       // setHash:(Lscala/collection/Set;)I
+   #55 = Methodref          #26.#54       // scala/util/hashing/MurmurHash3$.setHash:(Lscala/collection/Set;)I
+   #56 = Utf8               Lscala/collection/Set;
+   #57 = Utf8               mapHash
+   #58 = Utf8               (Lscala/collection/Map;)I
+   #59 = Utf8               (Lscala/collection/Map<**>;)I
+   #60 = NameAndType        #57:#58       // mapHash:(Lscala/collection/Map;)I
+   #61 = Methodref          #26.#60       // scala/util/hashing/MurmurHash3$.mapHash:(Lscala/collection/Map;)I
+   #62 = Utf8               Lscala/collection/Map;
+   #63 = Utf8               seqHash
+   #64 = Utf8               (Lscala/collection/Seq;)I
+   #65 = Utf8               (Lscala/collection/Seq<*>;)I
+   #66 = NameAndType        #63:#64       // seqHash:(Lscala/collection/Seq;)I
+   #67 = Methodref          #26.#66       // scala/util/hashing/MurmurHash3$.seqHash:(Lscala/collection/Seq;)I
+   #68 = Utf8               Lscala/collection/Seq;
+   #69 = Utf8               setSeed
+   #70 = Utf8               ()I
+   #71 = NameAndType        #69:#70       // setSeed:()I
+   #72 = Methodref          #26.#71       // scala/util/hashing/MurmurHash3$.setSeed:()I
+   #73 = Utf8               mapSeed
+   #74 = NameAndType        #73:#70       // mapSeed:()I
+   #75 = Methodref          #26.#74       // scala/util/hashing/MurmurHash3$.mapSeed:()I
+   #76 = Utf8               seqSeed
+   #77 = NameAndType        #76:#70       // seqSeed:()I
+   #78 = Methodref          #26.#77       // scala/util/hashing/MurmurHash3$.seqSeed:()I
+   #79 = Utf8               traversableSeed
+   #80 = Integer            -415593707
+   #81 = Utf8               symmetricSeed
+   #82 = Integer            -1248659538
+   #83 = Utf8               productSeed
+   #84 = Integer            -889275714
+   #85 = Utf8               stringSeed
+   #86 = Integer            -137723950
+   #87 = Utf8               arraySeed
+   #88 = Integer            1007110753
+   #89 = Utf8               mix
+   #90 = Utf8               (II)I
+   #91 = Utf8               hash
+   #92 = Utf8               data
+   #93 = Utf8               mixLast
+   #94 = NameAndType        #93:#90       // mixLast:(II)I
+   #95 = Methodref          #2.#94        // scala/util/hashing/MurmurHash3.mixLast:(II)I
+   #96 = Utf8               java/lang/Integer
+   #97 = Class              #96           // java/lang/Integer
+   #98 = Utf8               rotateLeft
+   #99 = NameAndType        #98:#90       // rotateLeft:(II)I
+  #100 = Methodref          #97.#99       // java/lang/Integer.rotateLeft:(II)I
+  #101 = Integer            -430675100
+  #102 = Utf8               this
+  #103 = Utf8               Lscala/util/hashing/MurmurHash3;
+  #104 = Utf8               I
+  #105 = Integer            -862048943
+  #106 = Integer            461845907
+  #107 = Utf8               k
+  #108 = Utf8               finalizeHash
+  #109 = Utf8               length
+  #110 = Utf8               scala$util$hashing$MurmurHash3$$avalanche
+  #111 = Utf8               (I)I
+  #112 = NameAndType        #110:#111     // scala$util$hashing$MurmurHash3$$avalanche:(I)I
+  #113 = Methodref          #2.#112       // scala/util/hashing/MurmurHash3.scala$util$hashing$MurmurHash3$$avalanche:(I)I
+  #114 = Integer            -2048144789
+  #115 = Integer            -1028477387
+  #116 = Utf8               h
+  #117 = Utf8               tuple2Hash
+  #118 = Utf8               (III)I
+  #119 = Utf8               x
+  #120 = Utf8               y
+  #121 = Utf8               seed
+  #122 = Utf8               Tuple2
+  #123 = String             #122          // Tuple2
+  #124 = Utf8               java/lang/String
+  #125 = Class              #124          // java/lang/String
+  #126 = Utf8               hashCode
+  #127 = NameAndType        #126:#70      // hashCode:()I
+  #128 = Methodref          #125.#127     // java/lang/String.hashCode:()I
+  #129 = NameAndType        #89:#90       // mix:(II)I
+  #130 = Methodref          #2.#129       // scala/util/hashing/MurmurHash3.mix:(II)I
+  #131 = Utf8               finalizeHash_length
+  #132 = Utf8               productHash
+  #133 = Utf8               (Lscala/Product;IZ)I
+  #134 = Utf8               ignorePrefix
+  #135 = Utf8               scala/Product
+  #136 = Class              #135          // scala/Product
+  #137 = Utf8               productArity
+  #138 = NameAndType        #137:#70      // productArity:()I
+  #139 = InterfaceMethodref #136.#138     // scala/Product.productArity:()I
+  #140 = Utf8               productPrefix
+  #141 = Utf8               ()Ljava/lang/String;
+  #142 = NameAndType        #140:#141     // productPrefix:()Ljava/lang/String;
+  #143 = InterfaceMethodref #136.#142     // scala/Product.productPrefix:()Ljava/lang/String;
+  #144 = Utf8               productElement
+  #145 = Utf8               (I)Ljava/lang/Object;
+  #146 = NameAndType        #144:#145     // productElement:(I)Ljava/lang/Object;
+  #147 = InterfaceMethodref #136.#146     // scala/Product.productElement:(I)Ljava/lang/Object;
+  #148 = Utf8               scala/runtime/Statics
+  #149 = Class              #148          // scala/runtime/Statics
+  #150 = Utf8               anyHash
+  #151 = Utf8               (Ljava/lang/Object;)I
+  #152 = NameAndType        #150:#151     // anyHash:(Ljava/lang/Object;)I
+  #153 = Methodref          #149.#152     // scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+  #154 = Utf8               i
+  #155 = Utf8               arr
+  #156 = Utf8               Lscala/Product;
+  #157 = Utf8               Z
+  #158 = Utf8               productHash$default$3
+  #159 = Utf8               ()Z
+  #160 = Utf8               stringHash
+  #161 = Utf8               (Ljava/lang/String;I)I
+  #162 = Utf8               str
+  #163 = NameAndType        #109:#70      // length:()I
+  #164 = Methodref          #125.#163     // java/lang/String.length:()I
+  #165 = Utf8               charAt
+  #166 = Utf8               (I)C
+  #167 = NameAndType        #165:#166     // charAt:(I)C
+  #168 = Methodref          #125.#167     // java/lang/String.charAt:(I)C
+  #169 = Utf8               Ljava/lang/String;
+  #170 = Utf8               unorderedHash
+  #171 = Utf8               (Lscala/collection/IterableOnce;I)I
+  #172 = Utf8               (Lscala/collection/IterableOnce<Ljava/lang/Object;>;I)I
+  #173 = Utf8               scala/collection/IterableOnce
+  #174 = Class              #173          // scala/collection/IterableOnce
+  #175 = Utf8               iterator
+  #176 = Utf8               ()Lscala/collection/Iterator;
+  #177 = NameAndType        #175:#176     // iterator:()Lscala/collection/Iterator;
+  #178 = InterfaceMethodref #174.#177     // scala/collection/IterableOnce.iterator:()Lscala/collection/Iterator;
+  #179 = Utf8               scala/collection/Iterator
+  #180 = Class              #179          // scala/collection/Iterator
+  #181 = Utf8               hasNext
+  #182 = NameAndType        #181:#159     // hasNext:()Z
+  #183 = InterfaceMethodref #180.#182     // scala/collection/Iterator.hasNext:()Z
+  #184 = Utf8               next
+  #185 = Utf8               ()Ljava/lang/Object;
+  #186 = NameAndType        #184:#185     // next:()Ljava/lang/Object;
+  #187 = InterfaceMethodref #180.#186     // scala/collection/Iterator.next:()Ljava/lang/Object;
+  #188 = Utf8               a
+  #189 = Utf8               b
+  #190 = Utf8               n
+  #191 = Utf8               c
+  #192 = Utf8               Lscala/collection/Iterator;
+  #193 = Utf8               Lscala/collection/IterableOnce;
+  #194 = Utf8               orderedHash
+  #195 = Utf8               it
+  #196 = Utf8               x0
+  #197 = Utf8               Ljava/lang/Object;
+  #198 = Utf8               x1
+  #199 = Utf8               initial
+  #200 = Utf8               h0
+  #201 = Utf8               prev
+  #202 = Utf8               rangeDiff
+  #203 = Utf8               finalizeHash_hash
+  #204 = Utf8               arrayHash
+  #205 = Utf8               (Ljava/lang/Object;I)I
+  #206 = Utf8               <T:Ljava/lang/Object;>(Ljava/lang/Object;I)I
+  #207 = Utf8               java/lang/reflect/Array
+  #208 = Class              #207          // java/lang/reflect/Array
+  #209 = Utf8               getLength
+  #210 = NameAndType        #209:#151     // getLength:(Ljava/lang/Object;)I
+  #211 = Methodref          #208.#210     // java/lang/reflect/Array.getLength:(Ljava/lang/Object;)I
+  #212 = Utf8               scala/runtime/ScalaRunTime$
+  #213 = Class              #212          // scala/runtime/ScalaRunTime$
+  #214 = Utf8               Lscala/runtime/ScalaRunTime$;
+  #215 = NameAndType        #27:#214      // MODULE$:Lscala/runtime/ScalaRunTime$;
+  #216 = Fieldref           #213.#215     // scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+  #217 = Utf8               array_apply
+  #218 = Utf8               (Ljava/lang/Object;I)Ljava/lang/Object;
+  #219 = NameAndType        #217:#218     // array_apply:(Ljava/lang/Object;I)Ljava/lang/Object;
+  #220 = Methodref          #213.#219     // scala/runtime/ScalaRunTime$.array_apply:(Ljava/lang/Object;I)Ljava/lang/Object;
+  #221 = Utf8               rangeHash
+  #222 = Utf8               (IIII)I
+  #223 = Utf8               start
+  #224 = Utf8               step
+  #225 = Utf8               last
+  #226 = Utf8               bytesHash
+  #227 = Utf8               ([BI)I
+  #228 = Utf8               len
+  #229 = Utf8               [B
+  #230 = Utf8               indexedSeqHash
+  #231 = Utf8               (Lscala/collection/IndexedSeq;I)I
+  #232 = Utf8               (Lscala/collection/IndexedSeq<Ljava/lang/Object;>;I)I
+  #233 = Utf8               scala/collection/IndexedSeq
+  #234 = Class              #233          // scala/collection/IndexedSeq
+  #235 = InterfaceMethodref #234.#163     // scala/collection/IndexedSeq.length:()I
+  #236 = Utf8               apply
+  #237 = NameAndType        #236:#145     // apply:(I)Ljava/lang/Object;
+  #238 = InterfaceMethodref #234.#237     // scala/collection/IndexedSeq.apply:(I)Ljava/lang/Object;
+  #239 = Utf8               l
+  #240 = Utf8               Lscala/collection/IndexedSeq;
+  #241 = Utf8               listHash
+  #242 = Utf8               (Lscala/collection/immutable/List;I)I
+  #243 = Utf8               (Lscala/collection/immutable/List<*>;I)I
+  #244 = Utf8               scala/collection/immutable/List
+  #245 = Class              #244          // scala/collection/immutable/List
+  #246 = Utf8               isEmpty
+  #247 = NameAndType        #246:#159     // isEmpty:()Z
+  #248 = Methodref          #245.#247     // scala/collection/immutable/List.isEmpty:()Z
+  #249 = Utf8               head
+  #250 = NameAndType        #249:#185     // head:()Ljava/lang/Object;
+  #251 = Methodref          #245.#250     // scala/collection/immutable/List.head:()Ljava/lang/Object;
+  #252 = Utf8               tail
+  #253 = NameAndType        #252:#185     // tail:()Ljava/lang/Object;
+  #254 = Methodref          #245.#253     // scala/collection/immutable/List.tail:()Ljava/lang/Object;
+  #255 = NameAndType        #221:#222     // rangeHash:(IIII)I
+  #256 = Methodref          #2.#255       // scala/util/hashing/MurmurHash3.rangeHash:(IIII)I
+  #257 = Utf8               Lscala/collection/immutable/List;
+  #258 = Utf8               rangeState
+  #259 = Utf8               elems
+  #260 = Utf8               arrayHash$mZc$sp
+  #261 = Utf8               ([ZI)I
+  #262 = Utf8               [Z
+  #263 = Class              #262          // "[Z"
+  #264 = Utf8               arrayHash$mBc$sp
+  #265 = Class              #229          // "[B"
+  #266 = Utf8               arrayHash$mCc$sp
+  #267 = Utf8               ([CI)I
+  #268 = Utf8               [C
+  #269 = Class              #268          // "[C"
+  #270 = Utf8               arrayHash$mDc$sp
+  #271 = Utf8               ([DI)I
+  #272 = Utf8               doubleHash
+  #273 = Utf8               (D)I
+  #274 = NameAndType        #272:#273     // doubleHash:(D)I
+  #275 = Methodref          #149.#274     // scala/runtime/Statics.doubleHash:(D)I
+  #276 = Utf8               [D
+  #277 = Class              #276          // "[D"
+  #278 = Utf8               arrayHash$mFc$sp
+  #279 = Utf8               ([FI)I
+  #280 = Utf8               floatHash
+  #281 = Utf8               (F)I
+  #282 = NameAndType        #280:#281     // floatHash:(F)I
+  #283 = Methodref          #149.#282     // scala/runtime/Statics.floatHash:(F)I
+  #284 = Utf8               [F
+  #285 = Class              #284          // "[F"
+  #286 = Utf8               arrayHash$mIc$sp
+  #287 = Utf8               ([II)I
+  #288 = Utf8               [I
+  #289 = Class              #288          // "[I"
+  #290 = Utf8               arrayHash$mJc$sp
+  #291 = Utf8               ([JI)I
+  #292 = Utf8               longHash
+  #293 = Utf8               (J)I
+  #294 = NameAndType        #292:#293     // longHash:(J)I
+  #295 = Methodref          #149.#294     // scala/runtime/Statics.longHash:(J)I
+  #296 = Utf8               [J
+  #297 = Class              #296          // "[J"
+  #298 = Utf8               arrayHash$mSc$sp
+  #299 = Utf8               ([SI)I
+  #300 = Utf8               [S
+  #301 = Class              #300          // "[S"
+  #302 = Utf8               arrayHash$mVc$sp
+  #303 = Utf8               ([Lscala/runtime/BoxedUnit;I)I
+  #304 = Utf8               [Lscala/runtime/BoxedUnit;
+  #305 = Class              #304          // "[Lscala/runtime/BoxedUnit;"
+  #306 = Methodref          #4.#33        // java/lang/Object."<init>":()V
+  #307 = Utf8               Code
+  #308 = Utf8               LineNumberTable
+  #309 = Utf8               Signature
+  #310 = Utf8               LocalVariableTable
+  #311 = Utf8               MethodParameters
+  #312 = Utf8               StackMapTable
+  #313 = Utf8               InnerClasses
+  #314 = Utf8               SourceFile
+  #315 = Utf8               RuntimeVisibleAnnotations
+  #316 = Utf8               ScalaInlineInfo
+  #317 = Utf8               ScalaSig
+{
+  public static scala.util.hashing.Hashing<scala.collection.IterableOnce<java.lang.Object>> unorderedHashing();
+    descriptor: ()Lscala/util/hashing/Hashing;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: new           #18                 // class scala/util/hashing/MurmurHash3$$anon$5
+         7: dup
+         8: invokespecial #34                 // Method scala/util/hashing/MurmurHash3$$anon$5."<init>":()V
+        11: areturn
+      LineNumberTable:
+        line 408: 4
+    Signature: #24                          // ()Lscala/util/hashing/Hashing<Lscala/collection/IterableOnce<Ljava/lang/Object;>;>;
+
+  public static scala.util.hashing.Hashing<java.lang.String> stringHashing();
+    descriptor: ()Lscala/util/hashing/Hashing;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: new           #16                 // class scala/util/hashing/MurmurHash3$$anon$4
+         7: dup
+         8: invokespecial #37                 // Method scala/util/hashing/MurmurHash3$$anon$4."<init>":()V
+        11: areturn
+      LineNumberTable:
+        line 404: 4
+    Signature: #36                          // ()Lscala/util/hashing/Hashing<Ljava/lang/String;>;
+
+  public static scala.util.hashing.Hashing<scala.Product> productHashing();
+    descriptor: ()Lscala/util/hashing/Hashing;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: new           #14                 // class scala/util/hashing/MurmurHash3$$anon$3
+         7: dup
+         8: invokespecial #40                 // Method scala/util/hashing/MurmurHash3$$anon$3."<init>":()V
+        11: areturn
+      LineNumberTable:
+        line 400: 4
+    Signature: #39                          // ()Lscala/util/hashing/Hashing<Lscala/Product;>;
+
+  public static scala.util.hashing.Hashing<scala.collection.IterableOnce<java.lang.Object>> orderedHashing();
+    descriptor: ()Lscala/util/hashing/Hashing;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: new           #12                 // class scala/util/hashing/MurmurHash3$$anon$2
+         7: dup
+         8: invokespecial #42                 // Method scala/util/hashing/MurmurHash3$$anon$2."<init>":()V
+        11: areturn
+      LineNumberTable:
+        line 396: 4
+    Signature: #24                          // ()Lscala/util/hashing/Hashing<Lscala/collection/IterableOnce<Ljava/lang/Object;>;>;
+
+  public static scala.util.hashing.Hashing<byte[]> bytesHashing();
+    descriptor: ()Lscala/util/hashing/Hashing;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: new           #10                 // class scala/util/hashing/MurmurHash3$$anon$1
+         7: dup
+         8: invokespecial #45                 // Method scala/util/hashing/MurmurHash3$$anon$1."<init>":()V
+        11: areturn
+      LineNumberTable:
+        line 392: 4
+    Signature: #44                          // ()Lscala/util/hashing/Hashing<[B>;
+
+  public static <T extends java.lang.Object> scala.util.hashing.MurmurHash3$ArrayHashing<T> arrayHashing();
+    descriptor: ()Lscala/util/hashing/MurmurHash3$ArrayHashing;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: new           #20                 // class scala/util/hashing/MurmurHash3$ArrayHashing
+         7: dup
+         8: invokespecial #49                 // Method scala/util/hashing/MurmurHash3$ArrayHashing."<init>":()V
+        11: areturn
+      LineNumberTable:
+        line 390: 4
+    Signature: #48                          // <T:Ljava/lang/Object;>()Lscala/util/hashing/MurmurHash3$ArrayHashing<TT;>;
+
+  public static int setHash(scala.collection.Set<?>);
+    descriptor: (Lscala/collection/Set;)I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: aload_0
+         4: invokevirtual #55                 // Method scala/util/hashing/MurmurHash3$.setHash:(Lscala/collection/Set;)I
+         7: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0    xs   Lscala/collection/Set;
+    Signature: #52                          // (Lscala/collection/Set<*>;)I
+    MethodParameters:
+      Name                           Flags
+      xs                             final
+
+  public static int mapHash(scala.collection.Map<?, ?>);
+    descriptor: (Lscala/collection/Map;)I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: aload_0
+         4: invokevirtual #61                 // Method scala/util/hashing/MurmurHash3$.mapHash:(Lscala/collection/Map;)I
+         7: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0    xs   Lscala/collection/Map;
+    Signature: #59                          // (Lscala/collection/Map<**>;)I
+    MethodParameters:
+      Name                           Flags
+      xs                             final
+
+  public static int seqHash(scala.collection.Seq<?>);
+    descriptor: (Lscala/collection/Seq;)I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: aload_0
+         4: invokevirtual #67                 // Method scala/util/hashing/MurmurHash3$.seqHash:(Lscala/collection/Seq;)I
+         7: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0    xs   Lscala/collection/Seq;
+    Signature: #65                          // (Lscala/collection/Seq<*>;)I
+    MethodParameters:
+      Name                           Flags
+      xs                             final
+
+  public static int setSeed();
+    descriptor: ()I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: invokevirtual #72                 // Method scala/util/hashing/MurmurHash3$.setSeed:()I
+         6: ireturn
+
+  public static int mapSeed();
+    descriptor: ()I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: invokevirtual #75                 // Method scala/util/hashing/MurmurHash3$.mapSeed:()I
+         6: ireturn
+
+  public static int seqSeed();
+    descriptor: ()I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: invokevirtual #78                 // Method scala/util/hashing/MurmurHash3$.seqSeed:()I
+         6: ireturn
+
+  public static int traversableSeed();
+    descriptor: ()I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: ldc           #80                 // int -415593707
+         6: ireturn
+
+  public static int symmetricSeed();
+    descriptor: ()I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: ldc           #82                 // int -1248659538
+         6: ireturn
+
+  public static int productSeed();
+    descriptor: ()I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: ldc           #84                 // int -889275714
+         6: ireturn
+
+  public static int stringSeed();
+    descriptor: ()I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: ldc           #86                 // int -137723950
+         6: ireturn
+
+  public static int arraySeed();
+    descriptor: ()I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #30                 // Field scala/util/hashing/MurmurHash3$.MODULE$:Lscala/util/hashing/MurmurHash3$;
+         3: pop
+         4: ldc           #88                 // int 1007110753
+         6: ireturn
+
+  public final int mix(int, int);
+    descriptor: (II)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokevirtual #95                 // Method mixLast:(II)I
+         6: bipush        13
+         8: invokestatic  #100                // Method java/lang/Integer.rotateLeft:(II)I
+        11: iconst_5
+        12: imul
+        13: ldc           #101                // int -430675100
+        15: iadd
+        16: ireturn
+      LineNumberTable:
+        line 21: 0
+        line 22: 6
+        line 23: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lscala/util/hashing/MurmurHash3;
+            0      17     1  hash   I
+            0      17     2  data   I
+    MethodParameters:
+      Name                           Flags
+      hash                           final
+      data                           final
+
+  public final int mixLast(int, int);
+    descriptor: (II)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=4, args_size=3
+         0: iload_2
+         1: ldc           #105                // int -862048943
+         3: imul
+         4: istore_3
+         5: iload_3
+         6: bipush        15
+         8: invokestatic  #100                // Method java/lang/Integer.rotateLeft:(II)I
+        11: istore_3
+        12: iload_3
+        13: ldc           #106                // int 461845907
+        15: imul
+        16: istore_3
+        17: iload_1
+        18: iload_3
+        19: ixor
+        20: ireturn
+      LineNumberTable:
+        line 32: 0
+        line 33: 5
+        line 34: 12
+        line 36: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     3     k   I
+            0      21     0  this   Lscala/util/hashing/MurmurHash3;
+            0      21     1  hash   I
+            0      21     2  data   I
+    MethodParameters:
+      Name                           Flags
+      hash                           final
+      data                           final
+
+  public final int finalizeHash(int, int);
+    descriptor: (II)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: ixor
+         4: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+         7: ireturn
+      LineNumberTable:
+        line 40: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/util/hashing/MurmurHash3;
+            0       8     1  hash   I
+            0       8     2 length   I
+    MethodParameters:
+      Name                           Flags
+      hash                           final
+      length                         final
+
+  public final int scala$util$hashing$MurmurHash3$$avalanche(int);
+    descriptor: (I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=3, locals=3, args_size=2
+         0: iload_1
+         1: iload_1
+         2: bipush        16
+         4: iushr
+         5: ixor
+         6: istore_2
+         7: iload_2
+         8: ldc           #114                // int -2048144789
+        10: imul
+        11: istore_2
+        12: iload_2
+        13: iload_2
+        14: bipush        13
+        16: iushr
+        17: ixor
+        18: istore_2
+        19: iload_2
+        20: ldc           #115                // int -1028477387
+        22: imul
+        23: istore_2
+        24: iload_2
+        25: iload_2
+        26: bipush        16
+        28: iushr
+        29: ixor
+        30: istore_2
+        31: iload_2
+        32: ireturn
+      LineNumberTable:
+        line 46: 0
+        line 47: 7
+        line 48: 12
+        line 49: 19
+        line 50: 24
+        line 52: 31
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      32     2     h   I
+            0      33     0  this   Lscala/util/hashing/MurmurHash3;
+            0      33     1  hash   I
+    MethodParameters:
+      Name                           Flags
+      hash                           final
+
+  public int tuple2Hash(int, int, int);
+    descriptor: (III)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=6, args_size=4
+         0: aload_0
+         1: iload_3
+         2: ldc           #123                // String Tuple2
+         4: invokevirtual #128                // Method java/lang/String.hashCode:()I
+         7: invokevirtual #130                // Method mix:(II)I
+        10: istore        4
+        12: aload_0
+        13: iload         4
+        15: iload_1
+        16: invokevirtual #130                // Method mix:(II)I
+        19: istore        4
+        21: aload_0
+        22: iload         4
+        24: iload_2
+        25: invokevirtual #130                // Method mix:(II)I
+        28: istore        4
+        30: iconst_2
+        31: istore        5
+        33: aload_0
+        34: iload         4
+        36: iload         5
+        38: ixor
+        39: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        42: ireturn
+      LineNumberTable:
+        line 57: 0
+        line 58: 12
+        line 59: 21
+        line 60: 30
+        line 40: 33
+        line 60: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      42     4     h   I
+            0      43     0  this   Lscala/util/hashing/MurmurHash3;
+            0      43     1     x   I
+            0      43     2     y   I
+            0      43     3  seed   I
+           33       9     5 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      x                              final
+      y                              final
+      seed                           final
+
+  public final int productHash(scala.Product, int, boolean);
+    descriptor: (Lscala/Product;IZ)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=4, locals=7, args_size=4
+         0: aload_1
+         1: invokeinterface #139,  1          // InterfaceMethod scala/Product.productArity:()I
+         6: istore        4
+         8: iload         4
+        10: iconst_0
+        11: if_icmpne     24
+        14: aload_1
+        15: invokeinterface #143,  1          // InterfaceMethod scala/Product.productPrefix:()Ljava/lang/String;
+        20: invokevirtual #128                // Method java/lang/String.hashCode:()I
+        23: ireturn
+        24: iload_2
+        25: istore        5
+        27: iload_3
+        28: ifne          47
+        31: aload_0
+        32: iload_2
+        33: aload_1
+        34: invokeinterface #143,  1          // InterfaceMethod scala/Product.productPrefix:()Ljava/lang/String;
+        39: invokevirtual #128                // Method java/lang/String.hashCode:()I
+        42: invokevirtual #130                // Method mix:(II)I
+        45: istore        5
+        47: iconst_0
+        48: istore        6
+        50: iload         6
+        52: iload         4
+        54: if_icmpge     82
+        57: aload_0
+        58: iload         5
+        60: aload_1
+        61: iload         6
+        63: invokeinterface #147,  2          // InterfaceMethod scala/Product.productElement:(I)Ljava/lang/Object;
+        68: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        71: invokevirtual #130                // Method mix:(II)I
+        74: istore        5
+        76: iinc          6, 1
+        79: goto          50
+        82: aload_0
+        83: iload         5
+        85: iload         4
+        87: ixor
+        88: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        91: ireturn
+      StackMapTable: number_of_entries = 4
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 31 /* same */
+      LineNumberTable:
+        line 65: 0
+        line 69: 8
+        line 70: 14
+        line 72: 24
+        line 73: 27
+        line 74: 47
+        line 75: 50
+        line 76: 57
+        line 77: 76
+        line 75: 79
+        line 40: 82
+        line 79: 91
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           27      64     5     h   I
+           50      41     6     i   I
+            8      83     4   arr   I
+            0      92     0  this   Lscala/util/hashing/MurmurHash3;
+            0      92     1     x   Lscala/Product;
+            0      92     2  seed   I
+            0      92     3 ignorePrefix   Z
+    MethodParameters:
+      Name                           Flags
+      x                              final
+      seed                           final
+      ignorePrefix                   final
+
+  public final boolean productHash$default$3();
+    descriptor: ()Z
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 64: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lscala/util/hashing/MurmurHash3;
+
+  public final int stringHash(java.lang.String, int);
+    descriptor: (Ljava/lang/String;I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=4, locals=7, args_size=3
+         0: iload_2
+         1: istore_3
+         2: iconst_0
+         3: istore        4
+         5: iload         4
+         7: iconst_1
+         8: iadd
+         9: aload_1
+        10: invokevirtual #164                // Method java/lang/String.length:()I
+        13: if_icmpge     50
+        16: aload_1
+        17: iload         4
+        19: invokevirtual #168                // Method java/lang/String.charAt:(I)C
+        22: bipush        16
+        24: ishl
+        25: aload_1
+        26: iload         4
+        28: iconst_1
+        29: iadd
+        30: invokevirtual #168                // Method java/lang/String.charAt:(I)C
+        33: iadd
+        34: istore        5
+        36: aload_0
+        37: iload_3
+        38: iload         5
+        40: invokevirtual #130                // Method mix:(II)I
+        43: istore_3
+        44: iinc          4, 2
+        47: goto          5
+        50: iload         4
+        52: aload_1
+        53: invokevirtual #164                // Method java/lang/String.length:()I
+        56: if_icmpge     71
+        59: aload_0
+        60: iload_3
+        61: aload_1
+        62: iload         4
+        64: invokevirtual #168                // Method java/lang/String.charAt:(I)C
+        67: invokevirtual #95                 // Method mixLast:(II)I
+        70: istore_3
+        71: aload_1
+        72: invokevirtual #164                // Method java/lang/String.length:()I
+        75: istore        6
+        77: aload_0
+        78: iload_3
+        79: iload         6
+        81: ixor
+        82: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        85: ireturn
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 5
+          locals = [ int, int ]
+        frame_type = 44 /* same */
+        frame_type = 20 /* same */
+      LineNumberTable:
+        line 85: 0
+        line 86: 2
+        line 87: 5
+        line 88: 16
+        line 89: 36
+        line 90: 44
+        line 87: 47
+        line 92: 50
+        line 93: 71
+        line 40: 77
+        line 93: 85
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           36      11     5  data   I
+            2      83     3     h   I
+            5      80     4     i   I
+            0      86     0  this   Lscala/util/hashing/MurmurHash3;
+            0      86     1   str   Ljava/lang/String;
+            0      86     2  seed   I
+           77       8     6 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      str                            final
+      seed                           final
+
+  public final int unorderedHash(scala.collection.IterableOnce<java.lang.Object>, int);
+    descriptor: (Lscala/collection/IterableOnce;I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=3, locals=10, args_size=3
+         0: iconst_0
+         1: istore_3
+         2: iconst_0
+         3: istore        4
+         5: iconst_0
+         6: istore        5
+         8: iconst_1
+         9: istore        6
+        11: aload_1
+        12: invokeinterface #178,  1          // InterfaceMethod scala/collection/IterableOnce.iterator:()Lscala/collection/Iterator;
+        17: astore        7
+        19: aload         7
+        21: invokeinterface #183,  1          // InterfaceMethod scala/collection/Iterator.hasNext:()Z
+        26: ifeq          68
+        29: aload         7
+        31: invokeinterface #187,  1          // InterfaceMethod scala/collection/Iterator.next:()Ljava/lang/Object;
+        36: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        39: istore        8
+        41: iload_3
+        42: iload         8
+        44: iadd
+        45: istore_3
+        46: iload         4
+        48: iload         8
+        50: ixor
+        51: istore        4
+        53: iload         6
+        55: iload         8
+        57: iconst_1
+        58: ior
+        59: imul
+        60: istore        6
+        62: iinc          5, 1
+        65: goto          19
+        68: aload_0
+        69: iload_2
+        70: iload_3
+        71: invokevirtual #130                // Method mix:(II)I
+        74: istore        9
+        76: aload_0
+        77: iload         9
+        79: iload         4
+        81: invokevirtual #130                // Method mix:(II)I
+        84: istore        9
+        86: aload_0
+        87: iload         9
+        89: iload         6
+        91: invokevirtual #95                 // Method mixLast:(II)I
+        94: istore        9
+        96: aload_0
+        97: iload         9
+        99: iload         5
+       101: ixor
+       102: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       105: ireturn
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = [ class scala/util/hashing/MurmurHash3, class scala/collection/IterableOnce, int, int, int, int, int, class scala/collection/Iterator ]
+          stack = []
+        frame_type = 48 /* same */
+      LineNumberTable:
+        line 101: 0
+        line 102: 8
+        line 103: 11
+        line 104: 19
+        line 105: 29
+        line 106: 36
+        line 107: 41
+        line 108: 46
+        line 109: 53
+        line 110: 62
+        line 104: 65
+        line 113: 68
+        line 114: 76
+        line 115: 86
+        line 40: 96
+        line 116: 105
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           41      24     8     h   I
+            2     103     3     a   I
+            5     100     4     b   I
+            8      97     5     n   I
+           11      94     6     c   I
+           19      86     7 iterator   Lscala/collection/Iterator;
+           68      37     9     h   I
+            0     106     0  this   Lscala/util/hashing/MurmurHash3;
+            0     106     1    xs   Lscala/collection/IterableOnce;
+            0     106     2  seed   I
+    Signature: #172                         // (Lscala/collection/IterableOnce<Ljava/lang/Object;>;I)I
+    MethodParameters:
+      Name                           Flags
+      xs                             final
+      seed                           final
+
+  public final int orderedHash(scala.collection.IterableOnce<java.lang.Object>, int);
+    descriptor: (Lscala/collection/IterableOnce;I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=16, args_size=3
+         0: aload_1
+         1: invokeinterface #178,  1          // InterfaceMethod scala/collection/IterableOnce.iterator:()Lscala/collection/Iterator;
+         6: astore_3
+         7: aload_3
+         8: invokeinterface #183,  1          // InterfaceMethod scala/collection/Iterator.hasNext:()Z
+        13: ifne          28
+        16: iconst_0
+        17: istore        13
+        19: aload_0
+        20: iload_2
+        21: iload         13
+        23: ixor
+        24: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        27: ireturn
+        28: aload_3
+        29: invokeinterface #187,  1          // InterfaceMethod scala/collection/Iterator.next:()Ljava/lang/Object;
+        34: astore        5
+        36: aload_3
+        37: invokeinterface #183,  1          // InterfaceMethod scala/collection/Iterator.hasNext:()Z
+        42: ifne          70
+        45: aload_0
+        46: iload_2
+        47: aload         5
+        49: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        52: invokevirtual #130                // Method mix:(II)I
+        55: iconst_1
+        56: istore        15
+        58: istore        14
+        60: aload_0
+        61: iload         14
+        63: iload         15
+        65: ixor
+        66: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        69: ireturn
+        70: aload_3
+        71: invokeinterface #187,  1          // InterfaceMethod scala/collection/Iterator.next:()Ljava/lang/Object;
+        76: astore        6
+        78: aload         5
+        80: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        83: istore        7
+        85: aload_0
+        86: iload_2
+        87: iload         7
+        89: invokevirtual #130                // Method mix:(II)I
+        92: istore        4
+        94: iload         4
+        96: istore        8
+        98: aload         6
+       100: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       103: istore        9
+       105: iload         9
+       107: iload         7
+       109: isub
+       110: istore        10
+       112: iconst_2
+       113: istore        11
+       115: aload_3
+       116: invokeinterface #183,  1          // InterfaceMethod scala/collection/Iterator.hasNext:()Z
+       121: ifeq          220
+       124: aload_0
+       125: iload         4
+       127: iload         9
+       129: invokevirtual #130                // Method mix:(II)I
+       132: istore        4
+       134: aload_3
+       135: invokeinterface #187,  1          // InterfaceMethod scala/collection/Iterator.next:()Ljava/lang/Object;
+       140: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       143: istore        12
+       145: iload         10
+       147: iload         12
+       149: iload         9
+       151: isub
+       152: if_icmpeq     210
+       155: aload_0
+       156: iload         4
+       158: iload         12
+       160: invokevirtual #130                // Method mix:(II)I
+       163: istore        4
+       165: iinc          11, 1
+       168: aload_3
+       169: invokeinterface #183,  1          // InterfaceMethod scala/collection/Iterator.hasNext:()Z
+       174: ifeq          200
+       177: aload_0
+       178: iload         4
+       180: aload_3
+       181: invokeinterface #187,  1          // InterfaceMethod scala/collection/Iterator.next:()Ljava/lang/Object;
+       186: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       189: invokevirtual #130                // Method mix:(II)I
+       192: istore        4
+       194: iinc          11, 1
+       197: goto          168
+       200: aload_0
+       201: iload         4
+       203: iload         11
+       205: ixor
+       206: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       209: ireturn
+       210: iload         12
+       212: istore        9
+       214: iinc          11, 1
+       217: goto          115
+       220: aload_0
+       221: aload_0
+       222: aload_0
+       223: iload         8
+       225: iload         10
+       227: invokevirtual #130                // Method mix:(II)I
+       230: iload         9
+       232: invokevirtual #130                // Method mix:(II)I
+       235: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       238: ireturn
+      StackMapTable: number_of_entries = 7
+        frame_type = 252 /* append */
+          offset_delta = 28
+          locals = [ class scala/collection/Iterator ]
+        frame_type = 253 /* append */
+          offset_delta = 41
+          locals = [ top, class java/lang/Object ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 44
+          locals = [ class scala/util/hashing/MurmurHash3, class scala/collection/IterableOnce, int, class scala/collection/Iterator, int, class java/lang/Object, class java/lang/Object, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 52
+          locals = [ int ]
+        frame_type = 31 /* same */
+        frame_type = 9 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 123: 0
+        line 125: 7
+        line 40: 19
+        line 125: 27
+        line 126: 28
+        line 127: 36
+        line 40: 60
+        line 127: 69
+        line 128: 70
+        line 130: 78
+        line 131: 85
+        line 132: 94
+        line 133: 98
+        line 134: 105
+        line 135: 112
+        line 136: 115
+        line 137: 124
+        line 138: 134
+        line 139: 145
+        line 140: 155
+        line 141: 165
+        line 142: 168
+        line 143: 177
+        line 144: 194
+        line 142: 197
+        line 40: 200
+        line 146: 209
+        line 148: 210
+        line 149: 214
+        line 136: 217
+        line 151: 220
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          145      72    12  hash   I
+            7     231     3    it   Lscala/collection/Iterator;
+            7     231     4     h   I
+           36     202     5    x0   Ljava/lang/Object;
+           78     160     6    x1   Ljava/lang/Object;
+           85     153     7 initial   I
+           98     140     8    h0   I
+          105     133     9  prev   I
+          112     126    10 rangeDiff   I
+          115     123    11     i   I
+            0     239     0  this   Lscala/util/hashing/MurmurHash3;
+            0     239     1    xs   Lscala/collection/IterableOnce;
+            0     239     2  seed   I
+           19       8    13 finalizeHash_length   I
+           60       9    14 finalizeHash_hash   I
+           60       9    15 finalizeHash_length   I
+    Signature: #172                         // (Lscala/collection/IterableOnce<Ljava/lang/Object;>;I)I
+    MethodParameters:
+      Name                           Flags
+      xs                             final
+      seed                           final
+
+  public final <T extends java.lang.Object> int arrayHash(java.lang.Object, int);
+    descriptor: (Ljava/lang/Object;I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: invokestatic  #211                // Method java/lang/reflect/Array.getLength:(Ljava/lang/Object;)I
+         4: istore        10
+         6: iload         10
+         8: tableswitch   { // 0 to 1
+                       0: 32
+                       1: 44
+                 default: 75
+            }
+        32: iconst_0
+        33: istore        11
+        35: aload_0
+        36: iload_2
+        37: iload         11
+        39: ixor
+        40: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        43: ireturn
+        44: aload_0
+        45: iload_2
+        46: getstatic     #216                // Field scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+        49: aload_1
+        50: iconst_0
+        51: invokevirtual #220                // Method scala/runtime/ScalaRunTime$.array_apply:(Ljava/lang/Object;I)Ljava/lang/Object;
+        54: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        57: invokevirtual #130                // Method mix:(II)I
+        60: iconst_1
+        61: istore        13
+        63: istore        12
+        65: aload_0
+        66: iload         12
+        68: iload         13
+        70: ixor
+        71: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        74: ireturn
+        75: getstatic     #216                // Field scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+        78: aload_1
+        79: iconst_0
+        80: invokevirtual #220                // Method scala/runtime/ScalaRunTime$.array_apply:(Ljava/lang/Object;I)Ljava/lang/Object;
+        83: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        86: istore        4
+        88: aload_0
+        89: iload_2
+        90: iload         4
+        92: invokevirtual #130                // Method mix:(II)I
+        95: istore_3
+        96: iload_3
+        97: istore        5
+        99: getstatic     #216                // Field scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+       102: aload_1
+       103: iconst_1
+       104: invokevirtual #220                // Method scala/runtime/ScalaRunTime$.array_apply:(Ljava/lang/Object;I)Ljava/lang/Object;
+       107: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       110: istore        6
+       112: iload         6
+       114: iload         4
+       116: isub
+       117: istore        7
+       119: iconst_2
+       120: istore        8
+       122: iload         8
+       124: iload         10
+       126: if_icmpge     222
+       129: aload_0
+       130: iload_3
+       131: iload         6
+       133: invokevirtual #130                // Method mix:(II)I
+       136: istore_3
+       137: getstatic     #216                // Field scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+       140: aload_1
+       141: iload         8
+       143: invokevirtual #220                // Method scala/runtime/ScalaRunTime$.array_apply:(Ljava/lang/Object;I)Ljava/lang/Object;
+       146: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       149: istore        9
+       151: iload         7
+       153: iload         9
+       155: iload         6
+       157: isub
+       158: if_icmpeq     212
+       161: aload_0
+       162: iload_3
+       163: iload         9
+       165: invokevirtual #130                // Method mix:(II)I
+       168: istore_3
+       169: iinc          8, 1
+       172: iload         8
+       174: iload         10
+       176: if_icmpge     203
+       179: aload_0
+       180: iload_3
+       181: getstatic     #216                // Field scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+       184: aload_1
+       185: iload         8
+       187: invokevirtual #220                // Method scala/runtime/ScalaRunTime$.array_apply:(Ljava/lang/Object;I)Ljava/lang/Object;
+       190: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       193: invokevirtual #130                // Method mix:(II)I
+       196: istore_3
+       197: iinc          8, 1
+       200: goto          172
+       203: aload_0
+       204: iload_3
+       205: iload         10
+       207: ixor
+       208: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       211: ireturn
+       212: iload         9
+       214: istore        6
+       216: iinc          8, 1
+       219: goto          122
+       222: aload_0
+       223: aload_0
+       224: aload_0
+       225: iload         5
+       227: iload         7
+       229: invokevirtual #130                // Method mix:(II)I
+       232: iload         6
+       234: invokevirtual #130                // Method mix:(II)I
+       237: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       240: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 255 /* full_frame */
+          offset_delta = 32
+          locals = [ class scala/util/hashing/MurmurHash3, class java/lang/Object, int, top, top, top, top, top, top, top, int ]
+          stack = []
+        frame_type = 11 /* same */
+        frame_type = 30 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 46
+          locals = [ class scala/util/hashing/MurmurHash3, class java/lang/Object, int, int, int, int, int, int, int, top, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 49
+          locals = [ class scala/util/hashing/MurmurHash3, class java/lang/Object, int, int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 30 /* same */
+        frame_type = 8 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class scala/util/hashing/MurmurHash3, class java/lang/Object, int, int, int, int, int, int, int, top, int ]
+          stack = []
+      LineNumberTable:
+        line 160: 0
+        line 161: 6
+        line 163: 32
+        line 40: 35
+        line 163: 43
+        line 165: 44
+        line 40: 65
+        line 165: 74
+        line 167: 75
+        line 168: 88
+        line 169: 96
+        line 170: 99
+        line 171: 112
+        line 172: 119
+        line 173: 122
+        line 174: 129
+        line 175: 137
+        line 176: 151
+        line 177: 161
+        line 178: 169
+        line 179: 172
+        line 180: 179
+        line 181: 197
+        line 179: 200
+        line 40: 203
+        line 183: 211
+        line 185: 212
+        line 186: 216
+        line 173: 219
+        line 188: 222
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          151      68     9  hash   I
+           88     152     4 initial   I
+           99     141     5    h0   I
+          112     128     6  prev   I
+          119     121     7 rangeDiff   I
+          122     118     8     i   I
+            0     240     3     h   I
+            0     241     0  this   Lscala/util/hashing/MurmurHash3;
+            0     241     1     a   Ljava/lang/Object;
+            0     241     2  seed   I
+           35       8    11 finalizeHash_length   I
+           65       9    12 finalizeHash_hash   I
+           65       9    13 finalizeHash_length   I
+    Signature: #206                         // <T:Ljava/lang/Object;>(Ljava/lang/Object;I)I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int rangeHash(int, int, int, int);
+    descriptor: (IIII)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=6, locals=5, args_size=5
+         0: aload_0
+         1: aload_0
+         2: aload_0
+         3: aload_0
+         4: iload         4
+         6: iload_1
+         7: invokevirtual #130                // Method mix:(II)I
+        10: iload_2
+        11: invokevirtual #130                // Method mix:(II)I
+        14: iload_3
+        15: invokevirtual #130                // Method mix:(II)I
+        18: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        21: ireturn
+      LineNumberTable:
+        line 197: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lscala/util/hashing/MurmurHash3;
+            0      22     1 start   I
+            0      22     2  step   I
+            0      22     3  last   I
+            0      22     4  seed   I
+    MethodParameters:
+      Name                           Flags
+      start                          final
+      step                           final
+      last                           final
+      seed                           final
+
+  public final int bytesHash(byte[], int);
+    descriptor: ([BI)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=4, locals=9, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore_3
+         3: iload_2
+         4: istore        4
+         6: iconst_0
+         7: istore        5
+         9: iload_3
+        10: iconst_4
+        11: if_icmplt     99
+        14: aload_1
+        15: iload         5
+        17: iconst_0
+        18: iadd
+        19: baload
+        20: sipush        255
+        23: iand
+        24: istore        6
+        26: iload         6
+        28: aload_1
+        29: iload         5
+        31: iconst_1
+        32: iadd
+        33: baload
+        34: sipush        255
+        37: iand
+        38: bipush        8
+        40: ishl
+        41: ior
+        42: istore        6
+        44: iload         6
+        46: aload_1
+        47: iload         5
+        49: iconst_2
+        50: iadd
+        51: baload
+        52: sipush        255
+        55: iand
+        56: bipush        16
+        58: ishl
+        59: ior
+        60: istore        6
+        62: iload         6
+        64: aload_1
+        65: iload         5
+        67: iconst_3
+        68: iadd
+        69: baload
+        70: sipush        255
+        73: iand
+        74: bipush        24
+        76: ishl
+        77: ior
+        78: istore        6
+        80: aload_0
+        81: iload         4
+        83: iload         6
+        85: invokevirtual #130                // Method mix:(II)I
+        88: istore        4
+        90: iinc          5, 4
+        93: iinc          3, -4
+        96: goto          9
+        99: iconst_0
+       100: istore        7
+       102: iload_3
+       103: iconst_3
+       104: if_icmpne     125
+       107: iload         7
+       109: aload_1
+       110: iload         5
+       112: iconst_2
+       113: iadd
+       114: baload
+       115: sipush        255
+       118: iand
+       119: bipush        16
+       121: ishl
+       122: ixor
+       123: istore        7
+       125: iload_3
+       126: iconst_2
+       127: if_icmplt     148
+       130: iload         7
+       132: aload_1
+       133: iload         5
+       135: iconst_1
+       136: iadd
+       137: baload
+       138: sipush        255
+       141: iand
+       142: bipush        8
+       144: ishl
+       145: ixor
+       146: istore        7
+       148: iload_3
+       149: iconst_1
+       150: if_icmplt     178
+       153: iload         7
+       155: aload_1
+       156: iload         5
+       158: iconst_0
+       159: iadd
+       160: baload
+       161: sipush        255
+       164: iand
+       165: ixor
+       166: istore        7
+       168: aload_0
+       169: iload         4
+       171: iload         7
+       173: invokevirtual #95                 // Method mixLast:(II)I
+       176: istore        4
+       178: aload_1
+       179: arraylength
+       180: istore        8
+       182: aload_0
+       183: iload         4
+       185: iload         8
+       187: ixor
+       188: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       191: ireturn
+      StackMapTable: number_of_entries = 5
+        frame_type = 254 /* append */
+          offset_delta = 9
+          locals = [ int, int, int ]
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 89
+        frame_type = 253 /* append */
+          offset_delta = 25
+          locals = [ top, int ]
+        frame_type = 22 /* same */
+        frame_type = 29 /* same */
+      LineNumberTable:
+        line 204: 0
+        line 205: 3
+        line 208: 6
+        line 209: 9
+        line 210: 14
+        line 211: 26
+        line 212: 44
+        line 213: 62
+        line 215: 80
+        line 217: 90
+        line 218: 93
+        line 209: 96
+        line 222: 99
+        line 223: 102
+        line 224: 125
+        line 225: 148
+        line 226: 153
+        line 227: 168
+        line 231: 178
+        line 40: 182
+        line 231: 191
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26      70     6     k   I
+            3     188     3   len   I
+            6     185     4     h   I
+            9     182     5     i   I
+          102      89     7     k   I
+            0     192     0  this   Lscala/util/hashing/MurmurHash3;
+            0     192     1  data   [B
+            0     192     2  seed   I
+          182       9     8 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      data                           final
+      seed                           final
+
+  public final int indexedSeqHash(scala.collection.IndexedSeq<java.lang.Object>, int);
+    descriptor: (Lscala/collection/IndexedSeq;I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: invokeinterface #235,  1          // InterfaceMethod scala/collection/IndexedSeq.length:()I
+         6: istore        4
+         8: iload         4
+        10: tableswitch   { // 0 to 1
+                       0: 32
+                       1: 44
+                 default: 74
+            }
+        32: iconst_0
+        33: istore        11
+        35: aload_0
+        36: iload_2
+        37: iload         11
+        39: ixor
+        40: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        43: ireturn
+        44: aload_0
+        45: iload_2
+        46: aload_1
+        47: iconst_0
+        48: invokeinterface #238,  2          // InterfaceMethod scala/collection/IndexedSeq.apply:(I)Ljava/lang/Object;
+        53: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        56: invokevirtual #130                // Method mix:(II)I
+        59: iconst_1
+        60: istore        13
+        62: istore        12
+        64: aload_0
+        65: iload         12
+        67: iload         13
+        69: ixor
+        70: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        73: ireturn
+        74: aload_1
+        75: iconst_0
+        76: invokeinterface #238,  2          // InterfaceMethod scala/collection/IndexedSeq.apply:(I)Ljava/lang/Object;
+        81: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        84: istore        5
+        86: aload_0
+        87: iload_2
+        88: iload         5
+        90: invokevirtual #130                // Method mix:(II)I
+        93: istore_3
+        94: iload_3
+        95: istore        6
+        97: aload_1
+        98: iconst_1
+        99: invokeinterface #238,  2          // InterfaceMethod scala/collection/IndexedSeq.apply:(I)Ljava/lang/Object;
+       104: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       107: istore        7
+       109: iload         7
+       111: iload         5
+       113: isub
+       114: istore        8
+       116: iconst_2
+       117: istore        9
+       119: iload         9
+       121: iload         4
+       123: if_icmpge     217
+       126: aload_0
+       127: iload_3
+       128: iload         7
+       130: invokevirtual #130                // Method mix:(II)I
+       133: istore_3
+       134: aload_1
+       135: iload         9
+       137: invokeinterface #238,  2          // InterfaceMethod scala/collection/IndexedSeq.apply:(I)Ljava/lang/Object;
+       142: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       145: istore        10
+       147: iload         8
+       149: iload         10
+       151: iload         7
+       153: isub
+       154: if_icmpeq     207
+       157: aload_0
+       158: iload_3
+       159: iload         10
+       161: invokevirtual #130                // Method mix:(II)I
+       164: istore_3
+       165: iinc          9, 1
+       168: iload         9
+       170: iload         4
+       172: if_icmpge     198
+       175: aload_0
+       176: iload_3
+       177: aload_1
+       178: iload         9
+       180: invokeinterface #238,  2          // InterfaceMethod scala/collection/IndexedSeq.apply:(I)Ljava/lang/Object;
+       185: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+       188: invokevirtual #130                // Method mix:(II)I
+       191: istore_3
+       192: iinc          9, 1
+       195: goto          168
+       198: aload_0
+       199: iload_3
+       200: iload         4
+       202: ixor
+       203: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       206: ireturn
+       207: iload         10
+       209: istore        7
+       211: iinc          9, 1
+       214: goto          119
+       217: aload_0
+       218: aload_0
+       219: aload_0
+       220: iload         6
+       222: iload         8
+       224: invokevirtual #130                // Method mix:(II)I
+       227: iload         7
+       229: invokevirtual #130                // Method mix:(II)I
+       232: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       235: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 32
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 29 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 44
+          locals = [ class scala/util/hashing/MurmurHash3, class scala/collection/IndexedSeq, int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 48
+          locals = [ int ]
+        frame_type = 29 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 239: 0
+        line 240: 8
+        line 242: 32
+        line 40: 35
+        line 242: 43
+        line 244: 44
+        line 40: 64
+        line 244: 73
+        line 246: 74
+        line 247: 86
+        line 248: 94
+        line 249: 97
+        line 250: 109
+        line 251: 116
+        line 252: 119
+        line 253: 126
+        line 254: 134
+        line 255: 147
+        line 256: 157
+        line 257: 165
+        line 258: 168
+        line 259: 175
+        line 260: 192
+        line 258: 195
+        line 40: 198
+        line 262: 206
+        line 264: 207
+        line 265: 211
+        line 252: 214
+        line 267: 217
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          147      67    10  hash   I
+           86     149     5 initial   I
+           97     138     6    h0   I
+          109     126     7  prev   I
+          116     119     8 rangeDiff   I
+          119     116     9     i   I
+            0     235     3     h   I
+            8     227     4     l   I
+            0     236     0  this   Lscala/util/hashing/MurmurHash3;
+            0     236     1     a   Lscala/collection/IndexedSeq;
+            0     236     2  seed   I
+           35       8    11 finalizeHash_length   I
+           64       9    12 finalizeHash_hash   I
+           64       9    13 finalizeHash_length   I
+    Signature: #232                         // (Lscala/collection/IndexedSeq<Ljava/lang/Object;>;I)I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int listHash(scala.collection.immutable.List<?>, int);
+    descriptor: (Lscala/collection/immutable/List;I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=13, args_size=3
+         0: iconst_0
+         1: istore_3
+         2: iload_2
+         3: istore        4
+         5: iconst_0
+         6: istore        5
+         8: iconst_0
+         9: istore        6
+        11: iconst_0
+        12: istore        7
+        14: iconst_0
+        15: istore        8
+        17: aload_1
+        18: astore        9
+        20: aload         9
+        22: invokevirtual #248                // Method scala/collection/immutable/List.isEmpty:()Z
+        25: ifne          142
+        28: aload         9
+        30: invokevirtual #251                // Method scala/collection/immutable/List.head:()Ljava/lang/Object;
+        33: astore        10
+        35: aload         9
+        37: invokevirtual #254                // Method scala/collection/immutable/List.tail:()Ljava/lang/Object;
+        40: checkcast     #245                // class scala/collection/immutable/List
+        43: astore        11
+        45: aload         10
+        47: invokestatic  #153                // Method scala/runtime/Statics.anyHash:(Ljava/lang/Object;)I
+        50: istore        12
+        52: aload_0
+        53: iload         4
+        55: iload         12
+        57: invokevirtual #130                // Method mix:(II)I
+        60: istore        4
+        62: iload         5
+        64: tableswitch   { // 0 to 2
+                       0: 92
+                       1: 102
+                       2: 115
+                 default: 128
+            }
+        92: iload         12
+        94: istore        8
+        96: iconst_1
+        97: istore        5
+        99: goto          128
+       102: iload         12
+       104: iload         7
+       106: isub
+       107: istore        6
+       109: iconst_2
+       110: istore        5
+       112: goto          128
+       115: iload         6
+       117: iload         12
+       119: iload         7
+       121: isub
+       122: if_icmpeq     128
+       125: iconst_3
+       126: istore        5
+       128: iload         12
+       130: istore        7
+       132: iinc          3, 1
+       135: aload         11
+       137: astore        9
+       139: goto          20
+       142: iload         5
+       144: iconst_2
+       145: if_icmpne     160
+       148: aload_0
+       149: iload         8
+       151: iload         6
+       153: iload         7
+       155: iload_2
+       156: invokevirtual #256                // Method rangeHash:(IIII)I
+       159: ireturn
+       160: aload_0
+       161: iload         4
+       163: iload_3
+       164: ixor
+       165: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       168: ireturn
+      StackMapTable: number_of_entries = 7
+        frame_type = 255 /* full_frame */
+          offset_delta = 20
+          locals = [ class scala/util/hashing/MurmurHash3, class scala/collection/immutable/List, int, int, int, int, int, int, int, class scala/collection/immutable/List ]
+          stack = []
+        frame_type = 254 /* append */
+          offset_delta = 71
+          locals = [ class java/lang/Object, class scala/collection/immutable/List, int ]
+        frame_type = 9 /* same */
+        frame_type = 12 /* same */
+        frame_type = 12 /* same */
+        frame_type = 248 /* chop */
+          offset_delta = 13
+        frame_type = 17 /* same */
+      LineNumberTable:
+        line 275: 0
+        line 276: 2
+        line 277: 5
+        line 278: 8
+        line 279: 11
+        line 280: 14
+        line 281: 17
+        line 282: 20
+        line 283: 28
+        line 284: 35
+        line 285: 45
+        line 286: 52
+        line 287: 62
+        line 289: 92
+        line 290: 96
+        line 292: 102
+        line 293: 109
+        line 295: 115
+        line 298: 128
+        line 299: 132
+        line 300: 135
+        line 282: 139
+        line 302: 142
+        line 40: 160
+        line 303: 168
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           35     104    10  head   Ljava/lang/Object;
+           45      94    11  tail   Lscala/collection/immutable/List;
+           52      87    12  hash   I
+            2     166     3     n   I
+            5     163     4     h   I
+            8     160     5 rangeState   I
+           11     157     6 rangeDiff   I
+           14     154     7  prev   I
+           17     151     8 initial   I
+           20     148     9 elems   Lscala/collection/immutable/List;
+            0     169     0  this   Lscala/util/hashing/MurmurHash3;
+            0     169     1    xs   Lscala/collection/immutable/List;
+            0     169     2  seed   I
+    Signature: #243                         // (Lscala/collection/immutable/List<*>;I)I
+    MethodParameters:
+      Name                           Flags
+      xs                             final
+      seed                           final
+
+  public final int arrayHash$mZc$sp(boolean[], int);
+    descriptor: ([ZI)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 75
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: aload_1
+        43: iconst_0
+        44: baload
+        45: ifeq          54
+        48: sipush        1231
+        51: goto          57
+        54: sipush        1237
+        57: invokevirtual #130                // Method mix:(II)I
+        60: iconst_1
+        61: istore        13
+        63: istore        12
+        65: aload_0
+        66: iload         12
+        68: iload         13
+        70: ixor
+        71: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        74: ireturn
+        75: aload_1
+        76: iconst_0
+        77: baload
+        78: ifeq          87
+        81: sipush        1231
+        84: goto          90
+        87: sipush        1237
+        90: istore        5
+        92: aload_0
+        93: iload_2
+        94: iload         5
+        96: invokevirtual #130                // Method mix:(II)I
+        99: istore_3
+       100: iload_3
+       101: istore        6
+       103: aload_1
+       104: iconst_1
+       105: baload
+       106: ifeq          115
+       109: sipush        1231
+       112: goto          118
+       115: sipush        1237
+       118: istore        7
+       120: iload         7
+       122: iload         5
+       124: isub
+       125: istore        8
+       127: iconst_2
+       128: istore        9
+       130: iload         9
+       132: iload         4
+       134: if_icmpge     238
+       137: aload_0
+       138: iload_3
+       139: iload         7
+       141: invokevirtual #130                // Method mix:(II)I
+       144: istore_3
+       145: aload_1
+       146: iload         9
+       148: baload
+       149: ifeq          158
+       152: sipush        1231
+       155: goto          161
+       158: sipush        1237
+       161: istore        10
+       163: iload         8
+       165: iload         10
+       167: iload         7
+       169: isub
+       170: if_icmpeq     228
+       173: aload_0
+       174: iload_3
+       175: iload         10
+       177: invokevirtual #130                // Method mix:(II)I
+       180: istore_3
+       181: iinc          9, 1
+       184: iload         9
+       186: iload         4
+       188: if_icmpge     219
+       191: aload_0
+       192: iload_3
+       193: aload_1
+       194: iload         9
+       196: baload
+       197: ifeq          206
+       200: sipush        1231
+       203: goto          209
+       206: sipush        1237
+       209: invokevirtual #130                // Method mix:(II)I
+       212: istore_3
+       213: iinc          9, 1
+       216: goto          184
+       219: aload_0
+       220: iload_3
+       221: iload         4
+       223: ixor
+       224: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       227: ireturn
+       228: iload         10
+       230: istore        7
+       232: iinc          9, 1
+       235: goto          130
+       238: aload_0
+       239: aload_0
+       240: aload_0
+       241: iload         6
+       243: iload         8
+       245: invokevirtual #130                // Method mix:(II)I
+       248: iload         7
+       250: invokevirtual #130                // Method mix:(II)I
+       253: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       256: ireturn
+      StackMapTable: number_of_entries = 18
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 13
+          locals = [ class scala/util/hashing/MurmurHash3, class "[Z", int, top, int ]
+          stack = [ class scala/util/hashing/MurmurHash3, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class scala/util/hashing/MurmurHash3, class "[Z", int, top, int ]
+          stack = [ class scala/util/hashing/MurmurHash3, int, int ]
+        frame_type = 17 /* same */
+        frame_type = 11 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 24
+          locals = [ class scala/util/hashing/MurmurHash3, class "[Z", int, int, int, int, int ]
+          stack = []
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 254 /* append */
+          offset_delta = 11
+          locals = [ int, int, int ]
+        frame_type = 27 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 21
+          locals = [ class scala/util/hashing/MurmurHash3, class "[Z", int, int, int, int, int, int, int, int, int ]
+          stack = [ class scala/util/hashing/MurmurHash3, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class scala/util/hashing/MurmurHash3, class "[Z", int, int, int, int, int, int, int, int, int ]
+          stack = [ class scala/util/hashing/MurmurHash3, int, int ]
+        frame_type = 9 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 65
+        line 165: 74
+        line 167: 75
+        line 168: 92
+        line 169: 100
+        line 170: 103
+        line 171: 120
+        line 172: 127
+        line 173: 130
+        line 174: 137
+        line 175: 145
+        line 176: 163
+        line 177: 173
+        line 178: 181
+        line 179: 184
+        line 180: 191
+        line 181: 213
+        line 179: 216
+        line 40: 219
+        line 183: 227
+        line 185: 228
+        line 186: 232
+        line 173: 235
+        line 188: 238
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          163      72    10  hash   I
+           92     164     5 initial   I
+          103     153     6    h0   I
+          120     136     7  prev   I
+          127     129     8 rangeDiff   I
+          130     126     9     i   I
+            0     256     3     h   I
+            4     252     4     l   I
+            0     257     0  this   Lscala/util/hashing/MurmurHash3;
+            0     257     1     a   [Z
+            0     257     2  seed   I
+           31       8    11 finalizeHash_length   I
+           65       9    12 finalizeHash_hash   I
+           65       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int arrayHash$mBc$sp(byte[], int);
+    descriptor: ([BI)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 63
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: aload_1
+        43: iconst_0
+        44: baload
+        45: invokevirtual #130                // Method mix:(II)I
+        48: iconst_1
+        49: istore        13
+        51: istore        12
+        53: aload_0
+        54: iload         12
+        56: iload         13
+        58: ixor
+        59: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        62: ireturn
+        63: aload_1
+        64: iconst_0
+        65: baload
+        66: istore        5
+        68: aload_0
+        69: iload_2
+        70: iload         5
+        72: invokevirtual #130                // Method mix:(II)I
+        75: istore_3
+        76: iload_3
+        77: istore        6
+        79: aload_1
+        80: iconst_1
+        81: baload
+        82: istore        7
+        84: iload         7
+        86: iload         5
+        88: isub
+        89: istore        8
+        91: iconst_2
+        92: istore        9
+        94: iload         9
+        96: iload         4
+        98: if_icmpge     178
+       101: aload_0
+       102: iload_3
+       103: iload         7
+       105: invokevirtual #130                // Method mix:(II)I
+       108: istore_3
+       109: aload_1
+       110: iload         9
+       112: baload
+       113: istore        10
+       115: iload         8
+       117: iload         10
+       119: iload         7
+       121: isub
+       122: if_icmpeq     168
+       125: aload_0
+       126: iload_3
+       127: iload         10
+       129: invokevirtual #130                // Method mix:(II)I
+       132: istore_3
+       133: iinc          9, 1
+       136: iload         9
+       138: iload         4
+       140: if_icmpge     159
+       143: aload_0
+       144: iload_3
+       145: aload_1
+       146: iload         9
+       148: baload
+       149: invokevirtual #130                // Method mix:(II)I
+       152: istore_3
+       153: iinc          9, 1
+       156: goto          136
+       159: aload_0
+       160: iload_3
+       161: iload         4
+       163: ixor
+       164: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       167: ireturn
+       168: iload         10
+       170: istore        7
+       172: iinc          9, 1
+       175: goto          94
+       178: aload_0
+       179: aload_0
+       180: aload_0
+       181: iload         6
+       183: iload         8
+       185: invokevirtual #130                // Method mix:(II)I
+       188: iload         7
+       190: invokevirtual #130                // Method mix:(II)I
+       193: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       196: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 22 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class scala/util/hashing/MurmurHash3, class "[B", int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 41
+          locals = [ int ]
+        frame_type = 22 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 53
+        line 165: 62
+        line 167: 63
+        line 168: 68
+        line 169: 76
+        line 170: 79
+        line 171: 84
+        line 172: 91
+        line 173: 94
+        line 174: 101
+        line 175: 109
+        line 176: 115
+        line 177: 125
+        line 178: 133
+        line 179: 136
+        line 180: 143
+        line 181: 153
+        line 179: 156
+        line 40: 159
+        line 183: 167
+        line 185: 168
+        line 186: 172
+        line 173: 175
+        line 188: 178
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          115      60    10  hash   I
+           68     128     5 initial   I
+           79     117     6    h0   I
+           84     112     7  prev   I
+           91     105     8 rangeDiff   I
+           94     102     9     i   I
+            0     196     3     h   I
+            4     192     4     l   I
+            0     197     0  this   Lscala/util/hashing/MurmurHash3;
+            0     197     1     a   [B
+            0     197     2  seed   I
+           31       8    11 finalizeHash_length   I
+           53       9    12 finalizeHash_hash   I
+           53       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int arrayHash$mCc$sp(char[], int);
+    descriptor: ([CI)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 63
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: aload_1
+        43: iconst_0
+        44: caload
+        45: invokevirtual #130                // Method mix:(II)I
+        48: iconst_1
+        49: istore        13
+        51: istore        12
+        53: aload_0
+        54: iload         12
+        56: iload         13
+        58: ixor
+        59: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        62: ireturn
+        63: aload_1
+        64: iconst_0
+        65: caload
+        66: istore        5
+        68: aload_0
+        69: iload_2
+        70: iload         5
+        72: invokevirtual #130                // Method mix:(II)I
+        75: istore_3
+        76: iload_3
+        77: istore        6
+        79: aload_1
+        80: iconst_1
+        81: caload
+        82: istore        7
+        84: iload         7
+        86: iload         5
+        88: isub
+        89: istore        8
+        91: iconst_2
+        92: istore        9
+        94: iload         9
+        96: iload         4
+        98: if_icmpge     178
+       101: aload_0
+       102: iload_3
+       103: iload         7
+       105: invokevirtual #130                // Method mix:(II)I
+       108: istore_3
+       109: aload_1
+       110: iload         9
+       112: caload
+       113: istore        10
+       115: iload         8
+       117: iload         10
+       119: iload         7
+       121: isub
+       122: if_icmpeq     168
+       125: aload_0
+       126: iload_3
+       127: iload         10
+       129: invokevirtual #130                // Method mix:(II)I
+       132: istore_3
+       133: iinc          9, 1
+       136: iload         9
+       138: iload         4
+       140: if_icmpge     159
+       143: aload_0
+       144: iload_3
+       145: aload_1
+       146: iload         9
+       148: caload
+       149: invokevirtual #130                // Method mix:(II)I
+       152: istore_3
+       153: iinc          9, 1
+       156: goto          136
+       159: aload_0
+       160: iload_3
+       161: iload         4
+       163: ixor
+       164: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       167: ireturn
+       168: iload         10
+       170: istore        7
+       172: iinc          9, 1
+       175: goto          94
+       178: aload_0
+       179: aload_0
+       180: aload_0
+       181: iload         6
+       183: iload         8
+       185: invokevirtual #130                // Method mix:(II)I
+       188: iload         7
+       190: invokevirtual #130                // Method mix:(II)I
+       193: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       196: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 22 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class scala/util/hashing/MurmurHash3, class "[C", int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 41
+          locals = [ int ]
+        frame_type = 22 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 53
+        line 165: 62
+        line 167: 63
+        line 168: 68
+        line 169: 76
+        line 170: 79
+        line 171: 84
+        line 172: 91
+        line 173: 94
+        line 174: 101
+        line 175: 109
+        line 176: 115
+        line 177: 125
+        line 178: 133
+        line 179: 136
+        line 180: 143
+        line 181: 153
+        line 179: 156
+        line 40: 159
+        line 183: 167
+        line 185: 168
+        line 186: 172
+        line 173: 175
+        line 188: 178
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          115      60    10  hash   I
+           68     128     5 initial   I
+           79     117     6    h0   I
+           84     112     7  prev   I
+           91     105     8 rangeDiff   I
+           94     102     9     i   I
+            0     196     3     h   I
+            4     192     4     l   I
+            0     197     0  this   Lscala/util/hashing/MurmurHash3;
+            0     197     1     a   [C
+            0     197     2  seed   I
+           31       8    11 finalizeHash_length   I
+           53       9    12 finalizeHash_hash   I
+           53       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int arrayHash$mDc$sp(double[], int);
+    descriptor: ([DI)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 66
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: aload_1
+        43: iconst_0
+        44: daload
+        45: invokestatic  #275                // Method scala/runtime/Statics.doubleHash:(D)I
+        48: invokevirtual #130                // Method mix:(II)I
+        51: iconst_1
+        52: istore        13
+        54: istore        12
+        56: aload_0
+        57: iload         12
+        59: iload         13
+        61: ixor
+        62: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        65: ireturn
+        66: aload_1
+        67: iconst_0
+        68: daload
+        69: invokestatic  #275                // Method scala/runtime/Statics.doubleHash:(D)I
+        72: istore        5
+        74: aload_0
+        75: iload_2
+        76: iload         5
+        78: invokevirtual #130                // Method mix:(II)I
+        81: istore_3
+        82: iload_3
+        83: istore        6
+        85: aload_1
+        86: iconst_1
+        87: daload
+        88: invokestatic  #275                // Method scala/runtime/Statics.doubleHash:(D)I
+        91: istore        7
+        93: iload         7
+        95: iload         5
+        97: isub
+        98: istore        8
+       100: iconst_2
+       101: istore        9
+       103: iload         9
+       105: iload         4
+       107: if_icmpge     193
+       110: aload_0
+       111: iload_3
+       112: iload         7
+       114: invokevirtual #130                // Method mix:(II)I
+       117: istore_3
+       118: aload_1
+       119: iload         9
+       121: daload
+       122: invokestatic  #275                // Method scala/runtime/Statics.doubleHash:(D)I
+       125: istore        10
+       127: iload         8
+       129: iload         10
+       131: iload         7
+       133: isub
+       134: if_icmpeq     183
+       137: aload_0
+       138: iload_3
+       139: iload         10
+       141: invokevirtual #130                // Method mix:(II)I
+       144: istore_3
+       145: iinc          9, 1
+       148: iload         9
+       150: iload         4
+       152: if_icmpge     174
+       155: aload_0
+       156: iload_3
+       157: aload_1
+       158: iload         9
+       160: daload
+       161: invokestatic  #275                // Method scala/runtime/Statics.doubleHash:(D)I
+       164: invokevirtual #130                // Method mix:(II)I
+       167: istore_3
+       168: iinc          9, 1
+       171: goto          148
+       174: aload_0
+       175: iload_3
+       176: iload         4
+       178: ixor
+       179: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       182: ireturn
+       183: iload         10
+       185: istore        7
+       187: iinc          9, 1
+       190: goto          103
+       193: aload_0
+       194: aload_0
+       195: aload_0
+       196: iload         6
+       198: iload         8
+       200: invokevirtual #130                // Method mix:(II)I
+       203: iload         7
+       205: invokevirtual #130                // Method mix:(II)I
+       208: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       211: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 25 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 36
+          locals = [ class scala/util/hashing/MurmurHash3, class "[D", int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 44
+          locals = [ int ]
+        frame_type = 25 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 56
+        line 165: 65
+        line 167: 66
+        line 168: 74
+        line 169: 82
+        line 170: 85
+        line 171: 93
+        line 172: 100
+        line 173: 103
+        line 174: 110
+        line 175: 118
+        line 176: 127
+        line 177: 137
+        line 178: 145
+        line 179: 148
+        line 180: 155
+        line 181: 168
+        line 179: 171
+        line 40: 174
+        line 183: 182
+        line 185: 183
+        line 186: 187
+        line 173: 190
+        line 188: 193
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          127      63    10  hash   I
+           74     137     5 initial   I
+           85     126     6    h0   I
+           93     118     7  prev   I
+          100     111     8 rangeDiff   I
+          103     108     9     i   I
+            0     211     3     h   I
+            4     207     4     l   I
+            0     212     0  this   Lscala/util/hashing/MurmurHash3;
+            0     212     1     a   [D
+            0     212     2  seed   I
+           31       8    11 finalizeHash_length   I
+           56       9    12 finalizeHash_hash   I
+           56       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int arrayHash$mFc$sp(float[], int);
+    descriptor: ([FI)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 66
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: aload_1
+        43: iconst_0
+        44: faload
+        45: invokestatic  #283                // Method scala/runtime/Statics.floatHash:(F)I
+        48: invokevirtual #130                // Method mix:(II)I
+        51: iconst_1
+        52: istore        13
+        54: istore        12
+        56: aload_0
+        57: iload         12
+        59: iload         13
+        61: ixor
+        62: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        65: ireturn
+        66: aload_1
+        67: iconst_0
+        68: faload
+        69: invokestatic  #283                // Method scala/runtime/Statics.floatHash:(F)I
+        72: istore        5
+        74: aload_0
+        75: iload_2
+        76: iload         5
+        78: invokevirtual #130                // Method mix:(II)I
+        81: istore_3
+        82: iload_3
+        83: istore        6
+        85: aload_1
+        86: iconst_1
+        87: faload
+        88: invokestatic  #283                // Method scala/runtime/Statics.floatHash:(F)I
+        91: istore        7
+        93: iload         7
+        95: iload         5
+        97: isub
+        98: istore        8
+       100: iconst_2
+       101: istore        9
+       103: iload         9
+       105: iload         4
+       107: if_icmpge     193
+       110: aload_0
+       111: iload_3
+       112: iload         7
+       114: invokevirtual #130                // Method mix:(II)I
+       117: istore_3
+       118: aload_1
+       119: iload         9
+       121: faload
+       122: invokestatic  #283                // Method scala/runtime/Statics.floatHash:(F)I
+       125: istore        10
+       127: iload         8
+       129: iload         10
+       131: iload         7
+       133: isub
+       134: if_icmpeq     183
+       137: aload_0
+       138: iload_3
+       139: iload         10
+       141: invokevirtual #130                // Method mix:(II)I
+       144: istore_3
+       145: iinc          9, 1
+       148: iload         9
+       150: iload         4
+       152: if_icmpge     174
+       155: aload_0
+       156: iload_3
+       157: aload_1
+       158: iload         9
+       160: faload
+       161: invokestatic  #283                // Method scala/runtime/Statics.floatHash:(F)I
+       164: invokevirtual #130                // Method mix:(II)I
+       167: istore_3
+       168: iinc          9, 1
+       171: goto          148
+       174: aload_0
+       175: iload_3
+       176: iload         4
+       178: ixor
+       179: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       182: ireturn
+       183: iload         10
+       185: istore        7
+       187: iinc          9, 1
+       190: goto          103
+       193: aload_0
+       194: aload_0
+       195: aload_0
+       196: iload         6
+       198: iload         8
+       200: invokevirtual #130                // Method mix:(II)I
+       203: iload         7
+       205: invokevirtual #130                // Method mix:(II)I
+       208: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       211: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 25 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 36
+          locals = [ class scala/util/hashing/MurmurHash3, class "[F", int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 44
+          locals = [ int ]
+        frame_type = 25 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 56
+        line 165: 65
+        line 167: 66
+        line 168: 74
+        line 169: 82
+        line 170: 85
+        line 171: 93
+        line 172: 100
+        line 173: 103
+        line 174: 110
+        line 175: 118
+        line 176: 127
+        line 177: 137
+        line 178: 145
+        line 179: 148
+        line 180: 155
+        line 181: 168
+        line 179: 171
+        line 40: 174
+        line 183: 182
+        line 185: 183
+        line 186: 187
+        line 173: 190
+        line 188: 193
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          127      63    10  hash   I
+           74     137     5 initial   I
+           85     126     6    h0   I
+           93     118     7  prev   I
+          100     111     8 rangeDiff   I
+          103     108     9     i   I
+            0     211     3     h   I
+            4     207     4     l   I
+            0     212     0  this   Lscala/util/hashing/MurmurHash3;
+            0     212     1     a   [F
+            0     212     2  seed   I
+           31       8    11 finalizeHash_length   I
+           56       9    12 finalizeHash_hash   I
+           56       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int arrayHash$mIc$sp(int[], int);
+    descriptor: ([II)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 63
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: aload_1
+        43: iconst_0
+        44: iaload
+        45: invokevirtual #130                // Method mix:(II)I
+        48: iconst_1
+        49: istore        13
+        51: istore        12
+        53: aload_0
+        54: iload         12
+        56: iload         13
+        58: ixor
+        59: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        62: ireturn
+        63: aload_1
+        64: iconst_0
+        65: iaload
+        66: istore        5
+        68: aload_0
+        69: iload_2
+        70: iload         5
+        72: invokevirtual #130                // Method mix:(II)I
+        75: istore_3
+        76: iload_3
+        77: istore        6
+        79: aload_1
+        80: iconst_1
+        81: iaload
+        82: istore        7
+        84: iload         7
+        86: iload         5
+        88: isub
+        89: istore        8
+        91: iconst_2
+        92: istore        9
+        94: iload         9
+        96: iload         4
+        98: if_icmpge     178
+       101: aload_0
+       102: iload_3
+       103: iload         7
+       105: invokevirtual #130                // Method mix:(II)I
+       108: istore_3
+       109: aload_1
+       110: iload         9
+       112: iaload
+       113: istore        10
+       115: iload         8
+       117: iload         10
+       119: iload         7
+       121: isub
+       122: if_icmpeq     168
+       125: aload_0
+       126: iload_3
+       127: iload         10
+       129: invokevirtual #130                // Method mix:(II)I
+       132: istore_3
+       133: iinc          9, 1
+       136: iload         9
+       138: iload         4
+       140: if_icmpge     159
+       143: aload_0
+       144: iload_3
+       145: aload_1
+       146: iload         9
+       148: iaload
+       149: invokevirtual #130                // Method mix:(II)I
+       152: istore_3
+       153: iinc          9, 1
+       156: goto          136
+       159: aload_0
+       160: iload_3
+       161: iload         4
+       163: ixor
+       164: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       167: ireturn
+       168: iload         10
+       170: istore        7
+       172: iinc          9, 1
+       175: goto          94
+       178: aload_0
+       179: aload_0
+       180: aload_0
+       181: iload         6
+       183: iload         8
+       185: invokevirtual #130                // Method mix:(II)I
+       188: iload         7
+       190: invokevirtual #130                // Method mix:(II)I
+       193: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       196: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 22 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class scala/util/hashing/MurmurHash3, class "[I", int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 41
+          locals = [ int ]
+        frame_type = 22 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 53
+        line 165: 62
+        line 167: 63
+        line 168: 68
+        line 169: 76
+        line 170: 79
+        line 171: 84
+        line 172: 91
+        line 173: 94
+        line 174: 101
+        line 175: 109
+        line 176: 115
+        line 177: 125
+        line 178: 133
+        line 179: 136
+        line 180: 143
+        line 181: 153
+        line 179: 156
+        line 40: 159
+        line 183: 167
+        line 185: 168
+        line 186: 172
+        line 173: 175
+        line 188: 178
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          115      60    10  hash   I
+           68     128     5 initial   I
+           79     117     6    h0   I
+           84     112     7  prev   I
+           91     105     8 rangeDiff   I
+           94     102     9     i   I
+            0     196     3     h   I
+            4     192     4     l   I
+            0     197     0  this   Lscala/util/hashing/MurmurHash3;
+            0     197     1     a   [I
+            0     197     2  seed   I
+           31       8    11 finalizeHash_length   I
+           53       9    12 finalizeHash_hash   I
+           53       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int arrayHash$mJc$sp(long[], int);
+    descriptor: ([JI)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 66
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: aload_1
+        43: iconst_0
+        44: laload
+        45: invokestatic  #295                // Method scala/runtime/Statics.longHash:(J)I
+        48: invokevirtual #130                // Method mix:(II)I
+        51: iconst_1
+        52: istore        13
+        54: istore        12
+        56: aload_0
+        57: iload         12
+        59: iload         13
+        61: ixor
+        62: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        65: ireturn
+        66: aload_1
+        67: iconst_0
+        68: laload
+        69: invokestatic  #295                // Method scala/runtime/Statics.longHash:(J)I
+        72: istore        5
+        74: aload_0
+        75: iload_2
+        76: iload         5
+        78: invokevirtual #130                // Method mix:(II)I
+        81: istore_3
+        82: iload_3
+        83: istore        6
+        85: aload_1
+        86: iconst_1
+        87: laload
+        88: invokestatic  #295                // Method scala/runtime/Statics.longHash:(J)I
+        91: istore        7
+        93: iload         7
+        95: iload         5
+        97: isub
+        98: istore        8
+       100: iconst_2
+       101: istore        9
+       103: iload         9
+       105: iload         4
+       107: if_icmpge     193
+       110: aload_0
+       111: iload_3
+       112: iload         7
+       114: invokevirtual #130                // Method mix:(II)I
+       117: istore_3
+       118: aload_1
+       119: iload         9
+       121: laload
+       122: invokestatic  #295                // Method scala/runtime/Statics.longHash:(J)I
+       125: istore        10
+       127: iload         8
+       129: iload         10
+       131: iload         7
+       133: isub
+       134: if_icmpeq     183
+       137: aload_0
+       138: iload_3
+       139: iload         10
+       141: invokevirtual #130                // Method mix:(II)I
+       144: istore_3
+       145: iinc          9, 1
+       148: iload         9
+       150: iload         4
+       152: if_icmpge     174
+       155: aload_0
+       156: iload_3
+       157: aload_1
+       158: iload         9
+       160: laload
+       161: invokestatic  #295                // Method scala/runtime/Statics.longHash:(J)I
+       164: invokevirtual #130                // Method mix:(II)I
+       167: istore_3
+       168: iinc          9, 1
+       171: goto          148
+       174: aload_0
+       175: iload_3
+       176: iload         4
+       178: ixor
+       179: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       182: ireturn
+       183: iload         10
+       185: istore        7
+       187: iinc          9, 1
+       190: goto          103
+       193: aload_0
+       194: aload_0
+       195: aload_0
+       196: iload         6
+       198: iload         8
+       200: invokevirtual #130                // Method mix:(II)I
+       203: iload         7
+       205: invokevirtual #130                // Method mix:(II)I
+       208: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       211: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 25 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 36
+          locals = [ class scala/util/hashing/MurmurHash3, class "[J", int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 44
+          locals = [ int ]
+        frame_type = 25 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 56
+        line 165: 65
+        line 167: 66
+        line 168: 74
+        line 169: 82
+        line 170: 85
+        line 171: 93
+        line 172: 100
+        line 173: 103
+        line 174: 110
+        line 175: 118
+        line 176: 127
+        line 177: 137
+        line 178: 145
+        line 179: 148
+        line 180: 155
+        line 181: 168
+        line 179: 171
+        line 40: 174
+        line 183: 182
+        line 185: 183
+        line 186: 187
+        line 173: 190
+        line 188: 193
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          127      63    10  hash   I
+           74     137     5 initial   I
+           85     126     6    h0   I
+           93     118     7  prev   I
+          100     111     8 rangeDiff   I
+          103     108     9     i   I
+            0     211     3     h   I
+            4     207     4     l   I
+            0     212     0  this   Lscala/util/hashing/MurmurHash3;
+            0     212     1     a   [J
+            0     212     2  seed   I
+           31       8    11 finalizeHash_length   I
+           56       9    12 finalizeHash_hash   I
+           56       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int arrayHash$mSc$sp(short[], int);
+    descriptor: ([SI)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 63
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: aload_1
+        43: iconst_0
+        44: saload
+        45: invokevirtual #130                // Method mix:(II)I
+        48: iconst_1
+        49: istore        13
+        51: istore        12
+        53: aload_0
+        54: iload         12
+        56: iload         13
+        58: ixor
+        59: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        62: ireturn
+        63: aload_1
+        64: iconst_0
+        65: saload
+        66: istore        5
+        68: aload_0
+        69: iload_2
+        70: iload         5
+        72: invokevirtual #130                // Method mix:(II)I
+        75: istore_3
+        76: iload_3
+        77: istore        6
+        79: aload_1
+        80: iconst_1
+        81: saload
+        82: istore        7
+        84: iload         7
+        86: iload         5
+        88: isub
+        89: istore        8
+        91: iconst_2
+        92: istore        9
+        94: iload         9
+        96: iload         4
+        98: if_icmpge     178
+       101: aload_0
+       102: iload_3
+       103: iload         7
+       105: invokevirtual #130                // Method mix:(II)I
+       108: istore_3
+       109: aload_1
+       110: iload         9
+       112: saload
+       113: istore        10
+       115: iload         8
+       117: iload         10
+       119: iload         7
+       121: isub
+       122: if_icmpeq     168
+       125: aload_0
+       126: iload_3
+       127: iload         10
+       129: invokevirtual #130                // Method mix:(II)I
+       132: istore_3
+       133: iinc          9, 1
+       136: iload         9
+       138: iload         4
+       140: if_icmpge     159
+       143: aload_0
+       144: iload_3
+       145: aload_1
+       146: iload         9
+       148: saload
+       149: invokevirtual #130                // Method mix:(II)I
+       152: istore_3
+       153: iinc          9, 1
+       156: goto          136
+       159: aload_0
+       160: iload_3
+       161: iload         4
+       163: ixor
+       164: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       167: ireturn
+       168: iload         10
+       170: istore        7
+       172: iinc          9, 1
+       175: goto          94
+       178: aload_0
+       179: aload_0
+       180: aload_0
+       181: iload         6
+       183: iload         8
+       185: invokevirtual #130                // Method mix:(II)I
+       188: iload         7
+       190: invokevirtual #130                // Method mix:(II)I
+       193: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       196: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 22 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class scala/util/hashing/MurmurHash3, class "[S", int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 41
+          locals = [ int ]
+        frame_type = 22 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 53
+        line 165: 62
+        line 167: 63
+        line 168: 68
+        line 169: 76
+        line 170: 79
+        line 171: 84
+        line 172: 91
+        line 173: 94
+        line 174: 101
+        line 175: 109
+        line 176: 115
+        line 177: 125
+        line 178: 133
+        line 179: 136
+        line 180: 143
+        line 181: 153
+        line 179: 156
+        line 40: 159
+        line 183: 167
+        line 185: 168
+        line 186: 172
+        line 173: 175
+        line 188: 178
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          115      60    10  hash   I
+           68     128     5 initial   I
+           79     117     6    h0   I
+           84     112     7  prev   I
+           91     105     8 rangeDiff   I
+           94     102     9     i   I
+            0     196     3     h   I
+            4     192     4     l   I
+            0     197     0  this   Lscala/util/hashing/MurmurHash3;
+            0     197     1     a   [S
+            0     197     2  seed   I
+           31       8    11 finalizeHash_length   I
+           53       9    12 finalizeHash_hash   I
+           53       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public final int arrayHash$mVc$sp(scala.runtime.BoxedUnit[], int);
+    descriptor: ([Lscala/runtime/BoxedUnit;I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=14, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: tableswitch   { // 0 to 1
+                       0: 28
+                       1: 40
+                 default: 61
+            }
+        28: iconst_0
+        29: istore        11
+        31: aload_0
+        32: iload_2
+        33: iload         11
+        35: ixor
+        36: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        39: ireturn
+        40: aload_0
+        41: iload_2
+        42: iconst_0
+        43: invokevirtual #130                // Method mix:(II)I
+        46: iconst_1
+        47: istore        13
+        49: istore        12
+        51: aload_0
+        52: iload         12
+        54: iload         13
+        56: ixor
+        57: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+        60: ireturn
+        61: iconst_0
+        62: istore        5
+        64: aload_0
+        65: iload_2
+        66: iload         5
+        68: invokevirtual #130                // Method mix:(II)I
+        71: istore_3
+        72: iload_3
+        73: istore        6
+        75: iconst_0
+        76: istore        7
+        78: iload         7
+        80: iload         5
+        82: isub
+        83: istore        8
+        85: iconst_2
+        86: istore        9
+        88: iload         9
+        90: iload         4
+        92: if_icmpge     166
+        95: aload_0
+        96: iload_3
+        97: iload         7
+        99: invokevirtual #130                // Method mix:(II)I
+       102: istore_3
+       103: iconst_0
+       104: istore        10
+       106: iload         8
+       108: iload         10
+       110: iload         7
+       112: isub
+       113: if_icmpeq     156
+       116: aload_0
+       117: iload_3
+       118: iload         10
+       120: invokevirtual #130                // Method mix:(II)I
+       123: istore_3
+       124: iinc          9, 1
+       127: iload         9
+       129: iload         4
+       131: if_icmpge     147
+       134: aload_0
+       135: iload_3
+       136: iconst_0
+       137: invokevirtual #130                // Method mix:(II)I
+       140: istore_3
+       141: iinc          9, 1
+       144: goto          127
+       147: aload_0
+       148: iload_3
+       149: iload         4
+       151: ixor
+       152: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       155: ireturn
+       156: iload         10
+       158: istore        7
+       160: iinc          9, 1
+       163: goto          88
+       166: aload_0
+       167: aload_0
+       168: aload_0
+       169: iload         6
+       171: iload         8
+       173: invokevirtual #130                // Method mix:(II)I
+       176: iload         7
+       178: invokevirtual #130                // Method mix:(II)I
+       181: invokevirtual #113                // Method scala$util$hashing$MurmurHash3$$avalanche:(I)I
+       184: ireturn
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ top, int ]
+        frame_type = 11 /* same */
+        frame_type = 20 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 26
+          locals = [ class scala/util/hashing/MurmurHash3, class "[Lscala/runtime/BoxedUnit;", int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 38
+          locals = [ int ]
+        frame_type = 19 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+      LineNumberTable:
+        line 160: 0
+        line 161: 4
+        line 163: 28
+        line 40: 31
+        line 163: 39
+        line 165: 40
+        line 40: 51
+        line 165: 60
+        line 167: 61
+        line 168: 64
+        line 169: 72
+        line 170: 75
+        line 171: 78
+        line 172: 85
+        line 173: 88
+        line 174: 95
+        line 175: 103
+        line 176: 106
+        line 177: 116
+        line 178: 124
+        line 179: 127
+        line 180: 134
+        line 181: 141
+        line 179: 144
+        line 40: 147
+        line 183: 155
+        line 185: 156
+        line 186: 160
+        line 173: 163
+        line 188: 166
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          106      57    10  hash   I
+           64     120     5 initial   I
+           75     109     6    h0   I
+           78     106     7  prev   I
+           85      99     8 rangeDiff   I
+           88      96     9     i   I
+            0     184     3     h   I
+            4     180     4     l   I
+            0     185     0  this   Lscala/util/hashing/MurmurHash3;
+            0     185     1     a   [Lscala/runtime/BoxedUnit;
+            0     185     2  seed   I
+           31       8    11 finalizeHash_length   I
+           51       9    12 finalizeHash_hash   I
+           51       9    13 finalizeHash_length   I
+    MethodParameters:
+      Name                           Flags
+      a                              final
+      seed                           final
+
+  public scala.util.hashing.MurmurHash3();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #306                // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 18: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/util/hashing/MurmurHash3;
+}
+InnerClasses:
+  public final #10;                       // class scala/util/hashing/MurmurHash3$$anon$1
+  public final #12;                       // class scala/util/hashing/MurmurHash3$$anon$2
+  public final #14;                       // class scala/util/hashing/MurmurHash3$$anon$3
+  public final #16;                       // class scala/util/hashing/MurmurHash3$$anon$4
+  public final #18;                       // class scala/util/hashing/MurmurHash3$$anon$5
+  public static #21= #20 of #2;           // ArrayHashing=class scala/util/hashing/MurmurHash3$ArrayHashing of class scala/util/hashing/MurmurHash3
+SourceFile: "MurmurHash3.scala"
+RuntimeVisibleAnnotations:
+  0: #6(#7=s#8)
+    scala.reflect.ScalaSignature(
+      bytes="\u0006\u0005\tEh!B\u001e=\u0001q\u0012\u0005\"B$\u0001\t\u0003I\u0005\"\u0002\'\u0001\t\u000bi\u0005\"B+\u0001\t\u000b1\u0006\"B-\u0001\t\u000bQ\u0006\"\u00020\u0001\t\u001by\u0006BB1\u0001\t\u0003\u0001%\rC\u0003j\u0001\u0011\u0015!\u000eC\u0004v\u0001E\u0005IQ\u0001<\t\u000f\u0005\r\u0001\u0001\"\u0002\u0002\u0006!9\u00111\u0005\u0001\u0005\u0006\u0005\u0015\u0002bBA!\u0001\u0011\u0015\u00111\t\u0005\b\u0003\u0013\u0002AQAA&\u0011\u001d\t\u0019\b\u0001C\u0003\u0003kBq!!\"\u0001\t\u000b\t9\tC\u0004\u0002\u0016\u0002!)!a&\t\u000f\u0005%\u0006\u0001\"\u0002\u0002,\u001e9\u0011Q\u0019\u001f\t\u0002\u0005\u001dgAB\u001e=\u0011\u0003\tI\r\u0003\u0004H%\u0011\u0005\u00111\u001a\u0005\n\u0003\u001b\u0014\"\u0019!C\u0003\u0003\u001fD\u0001\"!6\u0013A\u00035\u0011\u0011\u001b\u0005\n\u0003/\u0014\"\u0019!C\u0003\u00033D\u0001\"a8\u0013A\u00035\u00111\u001c\u0005\n\u0003C\u0014\"\u0019!C\u0003\u0003GD\u0001\"!;\u0013A\u00035\u0011Q\u001d\u0005\n\u0003W\u0014\"\u0019!C\u0003\u0003[D\u0001\"a=\u0013A\u00035\u0011q\u001e\u0005\n\u0003k\u0014\"\u0019!C\u0003\u0003oD\u0001\"!@\u0013A\u00035\u0011\u0011 \u0005\n\u0003\u007f\u0014\"\u0019!C\u0003\u0005\u0003AqAa\u0001\u0013A\u00035a\nC\u0005\u0003\u0006I\u0011\r\u0011\"\u0002\u0003\u0002!9!q\u0001\n!\u0002\u001bq\u0005\"\u0003B\u0005%\t\u0007IQ\u0001B\u0001\u0011\u001d\u0011YA\u0005Q\u0001\u000e9Cq!!\u0013\u0013\t\u0003\u0011i\u0001C\u0004\u0002\u0006J!\tAa\u0007\t\u000f\u0005\u0005#\u0003\"\u0001\u0003 !1\u0011N\u0005C\u0001\u0005GAq!a\u0001\u0013\t\u0003\u00119\u0003C\u0004\u0002$I!\tAa\u000b\t\u000f\u0005M$\u0003\"\u0001\u00030!A!q\u0007\n\u0005\u0002\u0001\u0013I\u0004C\u0004b%\u0011\u0005\u0001Ia\u0012\t\u000f\t5#\u0003\"\u0001\u0003P!9!\u0011\r\n\u0005\u0002\t\r\u0004B\u0003B>%\t\u0007I\u0011\u0001!\u0003\u0002!9!Q\u0010\n!\u0002\u0013q\u0005b\u0002B@%\u0011\u0005!\u0011\u0011\u0004\u0007\u0005\'\u0013\u0002A!&\t\r\u001d\u0013D\u0011\u0001BT\u0011\u0019\u0011&\u0007\"\u0001\u0003.\"9!\u0011\u0017\n\u0005\u0002\tM\u0006b\u0002B`%\u0011\u0005!\u0011\u0019\u0005\b\u0005\u0017\u0014B\u0011\u0001Bg\u0011\u001d\u0011)N\u0005C\u0001\u0005/DqAa8\u0013\t\u0003\u0011\t\u000fC\u0004\u0003jJ!\tAa;\u0003\u00175+(/\\;s\u0011\u0006\u001c\bn\r\u0006\u0003{y\nq\u0001[1tQ&twM\u0003\u0002@\u0001\u0006!Q\u000f^5m\u0015\u0005\t\u0015!B:dC2\f7C\u0001\u0001D!\t!U)D\u0001A\u0013\t1\u0005I\u0001\u0004B]f\u0014VMZ\u0001\u0007y%t\u0017\u000e\u001e \u0004\u0001Q\t!\n\u0005\u0002L\u00015\tA(A\u0002nSb$2AT)T!\t!u*\u0003\u0002Q\u0001\n\u0019\u0011J\u001c;\t\u000bI\u0013\u0001\u0019\u0001(\u0002\t!\f7\u000f\u001b\u0005\u0006)\n\u0001\rAT\u0001\u0005I\u0006$\u0018-A\u0004nSbd\u0015m\u001d;\u0015\u00079;\u0006\fC\u0003S\u0007\u0001\u0007a\nC\u0003U\u0007\u0001\u0007a*\u0001\u0007gS:\fG.\u001b>f\u0011\u0006\u001c\b\u000eF\u0002O7rCQA\u0015\u0003A\u00029CQ!\u0018\u0003A\u00029\u000ba\u0001\\3oORD\u0017!C1wC2\fgn\u00195f)\tq\u0005\rC\u0003S\u000b\u0001\u0007a*\u0001\u0006ukBdWM\r%bg\"$BAT2fO\")AM\u0002a\u0001\u001d\u0006\t\u0001\u0010C\u0003g\r\u0001\u0007a*A\u0001z\u0011\u0015Ag\u00011\u0001O\u0003\u0011\u0019X-\u001a3\u0002\u0017A\u0014x\u000eZ;di\"\u000b7\u000f\u001b\u000b\u0005\u001d.|\u0007\u000fC\u0003e\u000f\u0001\u0007A\u000e\u0005\u0002E[&\u0011a\u000e\u0011\u0002\b!J|G-^2u\u0011\u0015Aw\u00011\u0001O\u0011\u001d\tx\u0001%AA\u0002I\fA\"[4o_J,\u0007K]3gSb\u0004\"\u0001R:\n\u0005Q\u0004%a\u0002\"p_2,\u0017M\\\u0001\u0016aJ|G-^2u\u0011\u0006\u001c\b\u000e\n3fM\u0006,H\u000e\u001e\u00134+\u00059(F\u0001:yW\u0005I\bC\u0001>\u0000\u001b\u0005Y(B\u0001?~\u0003%)hn\u00195fG.,GM\u0003\u0002\u007f\u0001\u0006Q\u0011M\u001c8pi\u0006$\u0018n\u001c8\n\u0007\u0005\u00051PA\tv]\u000eDWmY6fIZ\u000b\'/[1oG\u0016\f!b\u001d;sS:<\u0007*Y:i)\u0015q\u0015qAA\u0011\u0011\u001d\tI!\u0003a\u0001\u0003\u0017\t1a\u001d;s!\u0011\ti!a\u0007\u000f\t\u0005=\u0011q\u0003\t\u0004\u0003#\u0001UBAA\n\u0015\r\t)\u0002S\u0001\u0007yI|w\u000e\u001e \n\u0007\u0005e\u0001)\u0001\u0004Qe\u0016$WMZ\u0005\u0005\u0003;\tyB\u0001\u0004TiJLgn\u001a\u0006\u0004\u00033\u0001\u0005\"\u00025\n\u0001\u0004q\u0015!D;o_J$WM]3e\u0011\u0006\u001c\b\u000eF\u0003O\u0003O\ty\u0004C\u0004\u0002*)\u0001\r!a\u000b\u0002\u0005a\u001c\bCBA\u0017\u0003g\tIDD\u0002E\u0003_I1!!\rA\u0003\u001d\u0001\u0018mY6bO\u0016LA!!\u000e\u00028\ta\u0011\n^3sC\ndWm\u00148dK*\u0019\u0011\u0011\u0007!\u0011\u0007\u0011\u000bY$C\u0002\u0002>\u0001\u00131!\u00118z\u0011\u0015A\'\u00021\u0001O\u0003-y\'\u000fZ3sK\u0012D\u0015m\u001d5\u0015\u000b9\u000b)%a\u0012\t\u000f\u0005%2\u00021\u0001\u0002,!)\u0001n\u0003a\u0001\u001d\u0006I\u0011M\u001d:bs\"\u000b7\u000f[\u000b\u0005\u0003\u001b\ni\u0006F\u0003O\u0003\u001f\n\t\bC\u0004\u0002R1\u0001\r!a\u0015\u0002\u0003\u0005\u0004R\u0001RA+\u00033J1!a\u0016A\u0005\u0015\t%O]1z!\u0011\tY&!\u0018\r\u0001\u0011Y\u0011q\f\u0007!\u0002\u0003\u0005)\u0019AA1\u0005\u0005!\u0016\u0003BA2\u0003s\u00012\u0001RA3\u0013\r\t9\u0007\u0011\u0002\b\u001d>$\b.\u001b8hQ\u0011\ti&a\u001b\u0011\u0007\u0011\u000bi\'C\u0002\u0002p\u0001\u00131b\u001d9fG&\fG.\u001b>fI\")\u0001\u000e\u0004a\u0001\u001d\u0006I!/\u00198hK\"\u000b7\u000f\u001b\u000b\n\u001d\u0006]\u00141PA@\u0003\u0007Ca!!\u001f\u000e\u0001\u0004q\u0015!B:uCJ$\bBBA?\u001b\u0001\u0007a*\u0001\u0003ti\u0016\u0004\bBBAA\u001b\u0001\u0007a*\u0001\u0003mCN$\b\"\u00025\u000e\u0001\u0004q\u0015!\u00032zi\u0016\u001c\b*Y:i)\u0015q\u0015\u0011RAJ\u0011\u0019!f\u00021\u0001\u0002\fB)A)!\u0016\u0002\u000eB\u0019A)a$\n\u0007\u0005E\u0005I\u0001\u0003CsR,\u0007\"\u00025\u000f\u0001\u0004q\u0015AD5oI\u0016DX\rZ*fc\"\u000b7\u000f\u001b\u000b\u0006\u001d\u0006e\u0015q\u0015\u0005\b\u0003#z\u0001\u0019AAN!\u0019\ti*a)\u0002:5\u0011\u0011q\u0014\u0006\u0004\u0003C\u0003\u0015AC2pY2,7\r^5p]&!\u0011QUAP\u0005)Ie\u000eZ3yK\u0012\u001cV-\u001d\u0005\u0006Q>\u0001\rAT\u0001\tY&\u001cH\u000fS1tQR)a*!,\u0002D\"9\u0011\u0011\u0006\tA\u0002\u0005=\u0006\u0007BAY\u0003\u007f\u0003b!a-\u0002:\u0006uVBAA[\u0015\u0011\t9,a(\u0002\u0013%lW.\u001e;bE2,\u0017\u0002BA^\u0003k\u0013A\u0001T5tiB!\u00111LA`\t1\t\t-!,\u0002\u0002\u0003\u0005)\u0011AA1\u0005\ryF%\r\u0005\u0006QB\u0001\rAT\u0001\f\u001bV\u0014X.\u001e:ICND7\u0007\u0005\u0002L%M\u0011!C\u0013\u000b\u0003\u0003\u000f\f\u0011\"\u0019:sCf\u001cV-\u001a3\u0016\u0005\u0005EwBAAj;\u0011atAS1\u0002\u0015\u0005\u0014(/Y=TK\u0016$\u0007%\u0001\u0006tiJLgnZ*fK\u0012,\"!a7\u0010\u0005\u0005uW\u0004B|K\u0000J\u000f1b\u001d;sS:<7+Z3eA\u0005Y\u0001O]8ek\u000e$8+Z3e+\t\t)o\u0004\u0002\u0002hv!!Z@^?\u00041\u0001(o\u001c3vGR\u001cV-\u001a3!\u00035\u0019\u00180\\7fiJL7mU3fIV\u0011\u0011q^\b\u0003\u0003clB!.Jx^\u0007q1/_7nKR\u0014\u0018nY*fK\u0012\u0004\u0013a\u0004;sCZ,\'o]1cY\u0016\u001cV-\u001a3\u0016\u0005\u0005exBAA~;\u00119/hc\u000b\u0002!Q\u0014\u0018M^3sg\u0006\u0014G.Z*fK\u0012\u0004\u0013aB:fcN+W\rZ\u000b\u0002\u001d\u0006A1/Z9TK\u0016$\u0007%A\u0004nCB\u001cV-\u001a3\u0002\u00115\f\u0007oU3fI\u0002\nqa]3u\'\u0016,G-\u0001\u0005tKR\u001cV-\u001a3!+\u0011\u0011yAa\u0006\u0015\u00079\u0013\t\u0002C\u0004\u0002R\u0011\u0002\rAa\u0005\u0011\u000b\u0011\u000b)F!\u0006\u0011\t\u0005m#q\u0003\u0003\f\u0003?\"\u0003\u0015!A\u0001\u0006\u0004\t\t\u0007\u000b\u0003\u0003\u0018\u0005-Dc\u0001(\u0003\u001e!1A+\na\u0001\u0003\u0017#2A\u0014B\u0011\u0011\u001d\tIC\na\u0001\u0003W!2A\u0014B\u0013\u0011\u0015!w\u00051\u0001m)\rq%\u0011\u0006\u0005\u0007I\"\u0002\r!a\u0003\u0015\u00079\u0013i\u0003C\u0004\u0002*%\u0002\r!a\u000b\u0015\u000f9\u0013\tDa\r\u00036!1\u0011\u0011\u0010\u0016A\u00029Ca!! +\u0001\u0004q\u0005BBAAU\u0001\u0007a*\u0001\u0007beJ\f\u0017pU3r\u0011\u0006\u001c\b.\u0006\u0003\u0003<\t\rCc\u0001(\u0003>!9\u0011\u0011K\u0016A\u0002\t}\u0002#\u0002#\u0002V\t\u0005\u0003\u0003BA.\u0005\u0007\"1\"a\u0018,A\u0003\u0005\tQ1\u0001\u0002b!\"!1IA6)\u0015q%\u0011\nB&\u0011\u0019!G\u00061\u0001\u0002:!1a\r\fa\u0001\u0003s\tqa]3r\u0011\u0006\u001c\b\u000eF\u0002O\u0005#Bq!!\u000b.\u0001\u0004\u0011\u0019\u0006\r\u0003\u0003V\tu\u0003CBAO\u0005/\u0012Y&\u0003\u0003\u0003Z\u0005}%aA*fcB!\u00111\fB/\t1\u0011yF!\u0015\u0002\u0002\u0003\u0005)\u0011AA1\u0005\ryFEM\u0001\b[\u0006\u0004\b*Y:i)\rq%Q\r\u0005\b\u0003Sq\u0003\u0019\u0001B4a\u0019\u0011IG!\u001d\u0003xAA\u0011Q\u0014B6\u0005_\u0012)(\u0003\u0003\u0003n\u0005}%aA\'baB!\u00111\fB9\t1\u0011\u0019H!\u001a\u0002\u0002\u0003\u0005)\u0011AA1\u0005\ryFe\r\t\u0005\u00037\u00129\b\u0002\u0007\u0003z\t\u0015\u0014\u0011!A\u0001\u0006\u0003\t\tGA\u0002`IQ\nA\"Z7qifl\u0015\r\u001d%bg\"\fQ\"Z7qifl\u0015\r\u001d%bg\"\u0004\u0013aB:fi\"\u000b7\u000f\u001b\u000b\u0004\u001d\n\r\u0005bBA\u0015c\u0001\u0007!Q\u0011\u0019\u0005\u0005\u000f\u0013y\t\u0005\u0004\u0002\u001e\n%%QR\u0005\u0005\u0005\u0017\u000byJA\u0002TKR\u0004B!a\u0017\u0003\u0010\u0012a!\u0011\u0013BB\u0003\u0003\u0005\tQ!\u0001\u0002b\t\u0019q\fJ\u001b\u0003\u0019\u0005\u0013(/Y=ICND\u0017N\\4\u0016\t\t]%1U\n\u0005e\r\u0013I\nE\u0003L\u00057\u0013y*C\u0002\u0003\u001er\u0012q\u0001S1tQ&tw\rE\u0003E\u0003+\u0012\t\u000b\u0005\u0003\u0002\\\t\rFaCA0e\u0001\u0006\t\u0011!b\u0001\u0003CBCAa)\u0002lQ\u0011!\u0011\u0016\t\u0006\u0005W\u0013$\u0011U\u0007\u0002%Q\u0019aJa,\t\u000f\u0005EC\u00071\u0001\u0003 \u0006a\u0011M\u001d:bs\"\u000b7\u000f[5oOV!!Q\u0017B^+\t\u00119\fE\u0003\u0003,J\u0012I\f\u0005\u0003\u0002\\\tmFaCA0k\u0001\u0006\t\u0011!b\u0001\u0003CBCAa/\u0002l\u0005a!-\u001f;fg\"\u000b7\u000f[5oOV\u0011!1\u0019\n\u0006\u0005\u000b\u001c%\u0011\u001a\u0004\u0007\u0005\u000f4\u0004Aa1\u0003\u0019q\u0012XMZ5oK6,g\u000e\u001e \u0011\u000b-\u0013Y*a#\u0002\u001d=\u0014H-\u001a:fI\"\u000b7\u000f[5oOV\u0011!q\u001a\n\u0006\u0005#\u001c%1\u001b\u0004\u0007\u0005\u000f<\u0004Aa4\u0011\u000b-\u0013Y*a\u000b\u0002\u001dA\u0014x\u000eZ;di\"\u000b7\u000f[5oOV\u0011!\u0011\u001c\n\u0006\u00057\u001c%Q\u001c\u0004\u0007\u0005\u000fD\u0004A!7\u0011\t-\u0013Y\n\\\u0001\u000egR\u0014\u0018N\\4ICND\u0017N\\4\u0016\u0005\t\r(#\u0002Bs\u0007\n\u001dhA\u0002Bds\u0001\u0011\u0019\u000fE\u0003L\u00057\u000bY!\u0001\tv]>\u0014H-\u001a:fI\"\u000b7\u000f[5oOV\u0011!Q\u001e\n\u0006\u0005_\u001c%1\u001b\u0004\u0007\u0005\u000fT\u0004A!<"
+    )
+  ScalaInlineInfo: length = 0x81 (unknown attribute)
+   01 00 00 19 00 1F 00 20 00 00 CC 00 CD 01 01 08
+   00 E3 01 01 0A 01 0B 01 01 0E 01 0F 01 01 16 01
+   17 01 01 1E 01 1F 01 01 22 01 23 01 01 2A 01 2B
+   01 01 2E 01 2F 01 01 04 01 05 01 00 E2 00 E3 01
+   00 6C 00 5A 01 00 E6 00 E7 01 00 F1 00 F2 01 00
+   59 00 5A 01 00 5D 00 5A 01 00 C2 00 AB 01 00 84
+   00 85 01 00 9E 00 9F 01 00 DD 00 DE 01 00 6E 00
+   6F 01 00 A0 00 A1 01 00 75 00 76 00 00 AA 00 AB
+   01
+  ScalaSig: length = 0x3 (unknown attribute)
+   05 02 00

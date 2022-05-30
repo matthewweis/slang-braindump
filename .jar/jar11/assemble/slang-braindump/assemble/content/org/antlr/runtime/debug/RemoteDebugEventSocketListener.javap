@@ -1,0 +1,2374 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/antlr/runtime/debug/RemoteDebugEventSocketListener.class
+  Last modified May 29, 2022; size 11884 bytes
+  SHA-256 checksum 377d86850cdd8c4e50c3956eafcd32f8d7939bca7f95acf92838bc062a38a190
+  Compiled from "RemoteDebugEventSocketListener.java"
+public class org.antlr.runtime.debug.RemoteDebugEventSocketListener implements java.lang.Runnable
+  minor version: 0
+  major version: 49
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #167                        // org/antlr/runtime/debug/RemoteDebugEventSocketListener
+  super_class: #168                       // java/lang/Object
+  interfaces: 1, fields: 12, methods: 14, attributes: 2
+Constant pool:
+    #1 = Methodref          #168.#296     // java/lang/Object."<init>":()V
+    #2 = Fieldref           #167.#297     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.channel:Ljava/net/Socket;
+    #3 = Fieldref           #167.#298     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.previousTokenIndex:I
+    #4 = Fieldref           #167.#299     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.tokenIndexesInvalid:Z
+    #5 = Fieldref           #167.#300     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.listener:Lorg/antlr/runtime/debug/DebugEventListener;
+    #6 = Fieldref           #167.#301     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.machine:Ljava/lang/String;
+    #7 = Fieldref           #167.#302     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.port:I
+    #8 = Methodref          #167.#303     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.openConnection:()Z
+    #9 = Class              #304          // java/net/ConnectException
+   #10 = Methodref          #9.#296       // java/net/ConnectException."<init>":()V
+   #11 = Methodref          #167.#305     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.handshake:()V
+   #12 = Fieldref           #167.#306     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.in:Ljava/io/BufferedReader;
+   #13 = Methodref          #37.#307      // java/io/BufferedReader.readLine:()Ljava/lang/String;
+   #14 = Fieldref           #167.#308     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.event:Ljava/lang/String;
+   #15 = Methodref          #167.#309     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.dispatch:(Ljava/lang/String;)V
+   #16 = Methodref          #167.#310     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.ack:()V
+   #17 = Methodref          #167.#311     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.closeConnection:()V
+   #18 = Class              #312          // java/lang/Exception
+   #19 = Fieldref           #313.#314     // java/lang/System.err:Ljava/io/PrintStream;
+   #20 = Methodref          #315.#316     // java/io/PrintStream.println:(Ljava/lang/Object;)V
+   #21 = Methodref          #18.#317      // java/lang/Exception.printStackTrace:(Ljava/io/PrintStream;)V
+   #22 = Class              #318          // java/net/Socket
+   #23 = Methodref          #22.#319      // java/net/Socket."<init>":(Ljava/lang/String;I)V
+   #24 = Methodref          #22.#320      // java/net/Socket.setTcpNoDelay:(Z)V
+   #25 = Methodref          #22.#321      // java/net/Socket.getOutputStream:()Ljava/io/OutputStream;
+   #26 = Class              #322          // java/io/OutputStreamWriter
+   #27 = String             #323          // UTF8
+   #28 = Methodref          #26.#324      // java/io/OutputStreamWriter."<init>":(Ljava/io/OutputStream;Ljava/lang/String;)V
+   #29 = Class              #325          // java/io/PrintWriter
+   #30 = Class              #326          // java/io/BufferedWriter
+   #31 = Methodref          #30.#327      // java/io/BufferedWriter."<init>":(Ljava/io/Writer;)V
+   #32 = Methodref          #29.#327      // java/io/PrintWriter."<init>":(Ljava/io/Writer;)V
+   #33 = Fieldref           #167.#328     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.out:Ljava/io/PrintWriter;
+   #34 = Methodref          #22.#329      // java/net/Socket.getInputStream:()Ljava/io/InputStream;
+   #35 = Class              #330          // java/io/InputStreamReader
+   #36 = Methodref          #35.#331      // java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+   #37 = Class              #332          // java/io/BufferedReader
+   #38 = Methodref          #37.#333      // java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+   #39 = Methodref          #37.#334      // java/io/BufferedReader.close:()V
+   #40 = Methodref          #29.#334      // java/io/PrintWriter.close:()V
+   #41 = Methodref          #22.#334      // java/net/Socket.close:()V
+   #42 = Class              #335          // java/io/IOException
+   #43 = Methodref          #167.#336     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.getEventElements:(Ljava/lang/String;)[Ljava/lang/String;
+   #44 = Fieldref           #167.#337     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.version:Ljava/lang/String;
+   #45 = Fieldref           #167.#338     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.grammarFileName:Ljava/lang/String;
+   #46 = InterfaceMethodref #339.#340     // org/antlr/runtime/debug/DebugEventListener.commence:()V
+   #47 = String             #226          // ack
+   #48 = Methodref          #29.#341      // java/io/PrintWriter.println:(Ljava/lang/String;)V
+   #49 = Methodref          #29.#342      // java/io/PrintWriter.flush:()V
+   #50 = Class              #343          // java/lang/StringBuilder
+   #51 = Methodref          #50.#296      // java/lang/StringBuilder."<init>":()V
+   #52 = String             #344          // unknown debug event:
+   #53 = Methodref          #50.#345      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #54 = Methodref          #50.#346      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #55 = Methodref          #315.#341     // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #56 = String             #347          // enterRule
+   #57 = Methodref          #151.#348     // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #58 = InterfaceMethodref #339.#349     // org/antlr/runtime/debug/DebugEventListener.enterRule:(Ljava/lang/String;Ljava/lang/String;)V
+   #59 = String             #350          // exitRule
+   #60 = InterfaceMethodref #339.#351     // org/antlr/runtime/debug/DebugEventListener.exitRule:(Ljava/lang/String;Ljava/lang/String;)V
+   #61 = String             #352          // enterAlt
+   #62 = Methodref          #353.#354     // java/lang/Integer.parseInt:(Ljava/lang/String;)I
+   #63 = InterfaceMethodref #339.#355     // org/antlr/runtime/debug/DebugEventListener.enterAlt:(I)V
+   #64 = String             #356          // enterSubRule
+   #65 = InterfaceMethodref #339.#357     // org/antlr/runtime/debug/DebugEventListener.enterSubRule:(I)V
+   #66 = String             #358          // exitSubRule
+   #67 = InterfaceMethodref #339.#359     // org/antlr/runtime/debug/DebugEventListener.exitSubRule:(I)V
+   #68 = String             #360          // enterDecision
+   #69 = String             #361          // true
+   #70 = InterfaceMethodref #339.#362     // org/antlr/runtime/debug/DebugEventListener.enterDecision:(IZ)V
+   #71 = String             #363          // exitDecision
+   #72 = InterfaceMethodref #339.#364     // org/antlr/runtime/debug/DebugEventListener.exitDecision:(I)V
+   #73 = String             #365          // location
+   #74 = InterfaceMethodref #339.#366     // org/antlr/runtime/debug/DebugEventListener.location:(II)V
+   #75 = String             #367          // consumeToken
+   #76 = Methodref          #167.#368     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.deserializeToken:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+   #77 = Methodref          #133.#369     // org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken.getTokenIndex:()I
+   #78 = InterfaceMethodref #339.#370     // org/antlr/runtime/debug/DebugEventListener.consumeToken:(Lorg/antlr/runtime/Token;)V
+   #79 = String             #371          // consumeHiddenToken
+   #80 = InterfaceMethodref #339.#372     // org/antlr/runtime/debug/DebugEventListener.consumeHiddenToken:(Lorg/antlr/runtime/Token;)V
+   #81 = String             #373          // LT
+   #82 = InterfaceMethodref #339.#374     // org/antlr/runtime/debug/DebugEventListener.LT:(ILorg/antlr/runtime/Token;)V
+   #83 = String             #375          // mark
+   #84 = InterfaceMethodref #339.#376     // org/antlr/runtime/debug/DebugEventListener.mark:(I)V
+   #85 = String             #377          // rewind
+   #86 = InterfaceMethodref #339.#378     // org/antlr/runtime/debug/DebugEventListener.rewind:(I)V
+   #87 = InterfaceMethodref #339.#379     // org/antlr/runtime/debug/DebugEventListener.rewind:()V
+   #88 = String             #380          // beginBacktrack
+   #89 = InterfaceMethodref #339.#381     // org/antlr/runtime/debug/DebugEventListener.beginBacktrack:(I)V
+   #90 = String             #382          // endBacktrack
+   #91 = InterfaceMethodref #339.#383     // org/antlr/runtime/debug/DebugEventListener.endBacktrack:(IZ)V
+   #92 = String             #384          // exception
+   #93 = Methodref          #385.#386     // java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+   #94 = Class              #387          // org/antlr/runtime/RecognitionException
+   #95 = Methodref          #385.#388     // java/lang/Class.asSubclass:(Ljava/lang/Class;)Ljava/lang/Class;
+   #96 = Methodref          #385.#389     // java/lang/Class.newInstance:()Ljava/lang/Object;
+   #97 = Fieldref           #94.#390      // org/antlr/runtime/RecognitionException.index:I
+   #98 = Fieldref           #94.#391      // org/antlr/runtime/RecognitionException.line:I
+   #99 = Fieldref           #94.#392      // org/antlr/runtime/RecognitionException.charPositionInLine:I
+  #100 = InterfaceMethodref #339.#393     // org/antlr/runtime/debug/DebugEventListener.recognitionException:(Lorg/antlr/runtime/RecognitionException;)V
+  #101 = Class              #394          // java/lang/ClassNotFoundException
+  #102 = String             #395          // can\'t find class
+  #103 = Methodref          #50.#396      // java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #104 = Methodref          #101.#317     // java/lang/ClassNotFoundException.printStackTrace:(Ljava/io/PrintStream;)V
+  #105 = Class              #397          // java/lang/InstantiationException
+  #106 = String             #398          // can\'t instantiate class
+  #107 = Methodref          #105.#317     // java/lang/InstantiationException.printStackTrace:(Ljava/io/PrintStream;)V
+  #108 = Class              #399          // java/lang/IllegalAccessException
+  #109 = String             #400          // can\'t access class
+  #110 = Methodref          #108.#317     // java/lang/IllegalAccessException.printStackTrace:(Ljava/io/PrintStream;)V
+  #111 = String             #401          // beginResync
+  #112 = InterfaceMethodref #339.#402     // org/antlr/runtime/debug/DebugEventListener.beginResync:()V
+  #113 = String             #403          // endResync
+  #114 = InterfaceMethodref #339.#404     // org/antlr/runtime/debug/DebugEventListener.endResync:()V
+  #115 = String             #405          // terminate
+  #116 = InterfaceMethodref #339.#406     // org/antlr/runtime/debug/DebugEventListener.terminate:()V
+  #117 = String             #407          // semanticPredicate
+  #118 = Methodref          #408.#409     // java/lang/Boolean.valueOf:(Ljava/lang/String;)Ljava/lang/Boolean;
+  #119 = Methodref          #167.#410     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.unEscapeNewlines:(Ljava/lang/String;)Ljava/lang/String;
+  #120 = Methodref          #408.#411     // java/lang/Boolean.booleanValue:()Z
+  #121 = InterfaceMethodref #339.#412     // org/antlr/runtime/debug/DebugEventListener.semanticPredicate:(ZLjava/lang/String;)V
+  #122 = String             #413          // consumeNode
+  #123 = Methodref          #167.#414     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.deserializeNode:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+  #124 = InterfaceMethodref #339.#415     // org/antlr/runtime/debug/DebugEventListener.consumeNode:(Ljava/lang/Object;)V
+  #125 = String             #416          // LN
+  #126 = InterfaceMethodref #339.#417     // org/antlr/runtime/debug/DebugEventListener.LT:(ILjava/lang/Object;)V
+  #127 = String             #418          // createNodeFromTokenElements
+  #128 = Class              #419          // org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+  #129 = Methodref          #128.#420     // org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(IIIIILjava/lang/String;)V
+  #130 = InterfaceMethodref #339.#421     // org/antlr/runtime/debug/DebugEventListener.createNode:(Ljava/lang/Object;)V
+  #131 = String             #422          // createNode
+  #132 = Methodref          #128.#423     // org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(I)V
+  #133 = Class              #424          // org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken
+  #134 = Methodref          #133.#423     // org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken."<init>":(I)V
+  #135 = InterfaceMethodref #339.#425     // org/antlr/runtime/debug/DebugEventListener.createNode:(Ljava/lang/Object;Lorg/antlr/runtime/Token;)V
+  #136 = String             #426          // nilNode
+  #137 = InterfaceMethodref #339.#427     // org/antlr/runtime/debug/DebugEventListener.nilNode:(Ljava/lang/Object;)V
+  #138 = String             #428          // errorNode
+  #139 = InterfaceMethodref #339.#429     // org/antlr/runtime/debug/DebugEventListener.errorNode:(Ljava/lang/Object;)V
+  #140 = String             #430          // becomeRoot
+  #141 = InterfaceMethodref #339.#431     // org/antlr/runtime/debug/DebugEventListener.becomeRoot:(Ljava/lang/Object;Ljava/lang/Object;)V
+  #142 = String             #432          // addChild
+  #143 = InterfaceMethodref #339.#433     // org/antlr/runtime/debug/DebugEventListener.addChild:(Ljava/lang/Object;Ljava/lang/Object;)V
+  #144 = String             #434          // setTokenBoundaries
+  #145 = InterfaceMethodref #339.#435     // org/antlr/runtime/debug/DebugEventListener.setTokenBoundaries:(Ljava/lang/Object;II)V
+  #146 = Methodref          #133.#420     // org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken."<init>":(IIIIILjava/lang/String;)V
+  #147 = Class              #436          // java/lang/Thread
+  #148 = Methodref          #147.#437     // java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+  #149 = Methodref          #147.#438     // java/lang/Thread.start:()V
+  #150 = Methodref          #167.#439     // org/antlr/runtime/debug/RemoteDebugEventSocketListener.eventHandler:()V
+  #151 = Class              #440          // java/lang/String
+  #152 = Methodref          #151.#441     // java/lang/String.indexOf:(I)I
+  #153 = Methodref          #151.#442     // java/lang/String.substring:(II)Ljava/lang/String;
+  #154 = Methodref          #151.#443     // java/lang/String.length:()I
+  #155 = Class              #444          // java/util/StringTokenizer
+  #156 = String             #445          // \t
+  #157 = Methodref          #155.#446     // java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;Z)V
+  #158 = Methodref          #155.#447     // java/util/StringTokenizer.hasMoreTokens:()Z
+  #159 = Methodref          #155.#448     // java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+  #160 = String             #449          // %0A
+  #161 = String             #450          // \n
+  #162 = Methodref          #151.#451     // java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #163 = String             #452          // %0D
+  #164 = String             #453          // \r
+  #165 = String             #454          // %25
+  #166 = String             #455          // %
+  #167 = Class              #456          // org/antlr/runtime/debug/RemoteDebugEventSocketListener
+  #168 = Class              #457          // java/lang/Object
+  #169 = Class              #458          // java/lang/Runnable
+  #170 = Utf8               ProxyTree
+  #171 = Utf8               InnerClasses
+  #172 = Utf8               ProxyToken
+  #173 = Utf8               MAX_EVENT_ELEMENTS
+  #174 = Utf8               I
+  #175 = Utf8               ConstantValue
+  #176 = Integer            8
+  #177 = Utf8               listener
+  #178 = Utf8               Lorg/antlr/runtime/debug/DebugEventListener;
+  #179 = Utf8               machine
+  #180 = Utf8               Ljava/lang/String;
+  #181 = Utf8               port
+  #182 = Utf8               channel
+  #183 = Utf8               Ljava/net/Socket;
+  #184 = Utf8               out
+  #185 = Utf8               Ljava/io/PrintWriter;
+  #186 = Utf8               in
+  #187 = Utf8               Ljava/io/BufferedReader;
+  #188 = Utf8               event
+  #189 = Utf8               version
+  #190 = Utf8               grammarFileName
+  #191 = Utf8               previousTokenIndex
+  #192 = Utf8               tokenIndexesInvalid
+  #193 = Utf8               Z
+  #194 = Utf8               <init>
+  #195 = Utf8               (Lorg/antlr/runtime/debug/DebugEventListener;Ljava/lang/String;I)V
+  #196 = Utf8               Code
+  #197 = Utf8               LineNumberTable
+  #198 = Utf8               LocalVariableTable
+  #199 = Utf8               this
+  #200 = Utf8               Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+  #201 = Utf8               Exceptions
+  #202 = Utf8               eventHandler
+  #203 = Utf8               ()V
+  #204 = Utf8               e
+  #205 = Utf8               Ljava/lang/Exception;
+  #206 = Utf8               openConnection
+  #207 = Utf8               ()Z
+  #208 = Utf8               os
+  #209 = Utf8               Ljava/io/OutputStream;
+  #210 = Utf8               osw
+  #211 = Utf8               Ljava/io/OutputStreamWriter;
+  #212 = Utf8               is
+  #213 = Utf8               Ljava/io/InputStream;
+  #214 = Utf8               isr
+  #215 = Utf8               Ljava/io/InputStreamReader;
+  #216 = Utf8               success
+  #217 = Utf8               closeConnection
+  #218 = Utf8               ioe
+  #219 = Utf8               Ljava/io/IOException;
+  #220 = Utf8               handshake
+  #221 = Utf8               antlrLine
+  #222 = Utf8               antlrElements
+  #223 = Utf8               [Ljava/lang/String;
+  #224 = Utf8               grammarLine
+  #225 = Utf8               grammarElements
+  #226 = Utf8               ack
+  #227 = Utf8               dispatch
+  #228 = Utf8               (Ljava/lang/String;)V
+  #229 = Utf8               t
+  #230 = Utf8               Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+  #231 = Utf8               Lorg/antlr/runtime/Token;
+  #232 = Utf8               level
+  #233 = Utf8               successI
+  #234 = Utf8               Lorg/antlr/runtime/RecognitionException;
+  #235 = Utf8               cnfe
+  #236 = Utf8               Ljava/lang/ClassNotFoundException;
+  #237 = Utf8               ie
+  #238 = Utf8               Ljava/lang/InstantiationException;
+  #239 = Utf8               iae
+  #240 = Utf8               Ljava/lang/IllegalAccessException;
+  #241 = Utf8               excName
+  #242 = Utf8               indexS
+  #243 = Utf8               lineS
+  #244 = Utf8               posS
+  #245 = Utf8               excClass
+  #246 = Utf8               Ljava/lang/Class;
+  #247 = Utf8               result
+  #248 = Utf8               Ljava/lang/Boolean;
+  #249 = Utf8               predicateText
+  #250 = Utf8               node
+  #251 = Utf8               Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+  #252 = Utf8               i
+  #253 = Utf8               ID
+  #254 = Utf8               type
+  #255 = Utf8               text
+  #256 = Utf8               tokenIndex
+  #257 = Utf8               token
+  #258 = Utf8               newRootID
+  #259 = Utf8               oldRootID
+  #260 = Utf8               newRoot
+  #261 = Utf8               oldRoot
+  #262 = Utf8               rootID
+  #263 = Utf8               childID
+  #264 = Utf8               root
+  #265 = Utf8               child
+  #266 = Utf8               line
+  #267 = Utf8               elements
+  #268 = Utf8               LocalVariableTypeTable
+  #269 = Utf8               Ljava/lang/Class<+Lorg/antlr/runtime/RecognitionException;>;
+  #270 = Utf8               deserializeNode
+  #271 = Utf8               ([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+  #272 = Utf8               offset
+  #273 = Utf8               tokenLine
+  #274 = Utf8               charPositionInLine
+  #275 = Utf8               deserializeToken
+  #276 = Utf8               ([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+  #277 = Utf8               typeS
+  #278 = Utf8               channelS
+  #279 = Utf8               index
+  #280 = Utf8               start
+  #281 = Utf8               Ljava/lang/Thread;
+  #282 = Utf8               run
+  #283 = Utf8               getEventElements
+  #284 = Utf8               (Ljava/lang/String;)[Ljava/lang/String;
+  #285 = Utf8               eventWithoutString
+  #286 = Utf8               firstQuoteIndex
+  #287 = Utf8               st
+  #288 = Utf8               Ljava/util/StringTokenizer;
+  #289 = Utf8               str
+  #290 = Utf8               unEscapeNewlines
+  #291 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #292 = Utf8               txt
+  #293 = Utf8               tokenIndexesAreInvalid
+  #294 = Utf8               SourceFile
+  #295 = Utf8               RemoteDebugEventSocketListener.java
+  #296 = NameAndType        #194:#203     // "<init>":()V
+  #297 = NameAndType        #182:#183     // channel:Ljava/net/Socket;
+  #298 = NameAndType        #191:#174     // previousTokenIndex:I
+  #299 = NameAndType        #192:#193     // tokenIndexesInvalid:Z
+  #300 = NameAndType        #177:#178     // listener:Lorg/antlr/runtime/debug/DebugEventListener;
+  #301 = NameAndType        #179:#180     // machine:Ljava/lang/String;
+  #302 = NameAndType        #181:#174     // port:I
+  #303 = NameAndType        #206:#207     // openConnection:()Z
+  #304 = Utf8               java/net/ConnectException
+  #305 = NameAndType        #220:#203     // handshake:()V
+  #306 = NameAndType        #186:#187     // in:Ljava/io/BufferedReader;
+  #307 = NameAndType        #459:#460     // readLine:()Ljava/lang/String;
+  #308 = NameAndType        #188:#180     // event:Ljava/lang/String;
+  #309 = NameAndType        #227:#228     // dispatch:(Ljava/lang/String;)V
+  #310 = NameAndType        #226:#203     // ack:()V
+  #311 = NameAndType        #217:#203     // closeConnection:()V
+  #312 = Utf8               java/lang/Exception
+  #313 = Class              #461          // java/lang/System
+  #314 = NameAndType        #462:#463     // err:Ljava/io/PrintStream;
+  #315 = Class              #464          // java/io/PrintStream
+  #316 = NameAndType        #465:#466     // println:(Ljava/lang/Object;)V
+  #317 = NameAndType        #467:#468     // printStackTrace:(Ljava/io/PrintStream;)V
+  #318 = Utf8               java/net/Socket
+  #319 = NameAndType        #194:#469     // "<init>":(Ljava/lang/String;I)V
+  #320 = NameAndType        #470:#471     // setTcpNoDelay:(Z)V
+  #321 = NameAndType        #472:#473     // getOutputStream:()Ljava/io/OutputStream;
+  #322 = Utf8               java/io/OutputStreamWriter
+  #323 = Utf8               UTF8
+  #324 = NameAndType        #194:#474     // "<init>":(Ljava/io/OutputStream;Ljava/lang/String;)V
+  #325 = Utf8               java/io/PrintWriter
+  #326 = Utf8               java/io/BufferedWriter
+  #327 = NameAndType        #194:#475     // "<init>":(Ljava/io/Writer;)V
+  #328 = NameAndType        #184:#185     // out:Ljava/io/PrintWriter;
+  #329 = NameAndType        #476:#477     // getInputStream:()Ljava/io/InputStream;
+  #330 = Utf8               java/io/InputStreamReader
+  #331 = NameAndType        #194:#478     // "<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+  #332 = Utf8               java/io/BufferedReader
+  #333 = NameAndType        #194:#479     // "<init>":(Ljava/io/Reader;)V
+  #334 = NameAndType        #480:#203     // close:()V
+  #335 = Utf8               java/io/IOException
+  #336 = NameAndType        #283:#284     // getEventElements:(Ljava/lang/String;)[Ljava/lang/String;
+  #337 = NameAndType        #189:#180     // version:Ljava/lang/String;
+  #338 = NameAndType        #190:#180     // grammarFileName:Ljava/lang/String;
+  #339 = Class              #481          // org/antlr/runtime/debug/DebugEventListener
+  #340 = NameAndType        #482:#203     // commence:()V
+  #341 = NameAndType        #465:#228     // println:(Ljava/lang/String;)V
+  #342 = NameAndType        #483:#203     // flush:()V
+  #343 = Utf8               java/lang/StringBuilder
+  #344 = Utf8               unknown debug event:
+  #345 = NameAndType        #484:#485     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #346 = NameAndType        #486:#460     // toString:()Ljava/lang/String;
+  #347 = Utf8               enterRule
+  #348 = NameAndType        #487:#488     // equals:(Ljava/lang/Object;)Z
+  #349 = NameAndType        #347:#489     // enterRule:(Ljava/lang/String;Ljava/lang/String;)V
+  #350 = Utf8               exitRule
+  #351 = NameAndType        #350:#489     // exitRule:(Ljava/lang/String;Ljava/lang/String;)V
+  #352 = Utf8               enterAlt
+  #353 = Class              #490          // java/lang/Integer
+  #354 = NameAndType        #491:#492     // parseInt:(Ljava/lang/String;)I
+  #355 = NameAndType        #352:#493     // enterAlt:(I)V
+  #356 = Utf8               enterSubRule
+  #357 = NameAndType        #356:#493     // enterSubRule:(I)V
+  #358 = Utf8               exitSubRule
+  #359 = NameAndType        #358:#493     // exitSubRule:(I)V
+  #360 = Utf8               enterDecision
+  #361 = Utf8               true
+  #362 = NameAndType        #360:#494     // enterDecision:(IZ)V
+  #363 = Utf8               exitDecision
+  #364 = NameAndType        #363:#493     // exitDecision:(I)V
+  #365 = Utf8               location
+  #366 = NameAndType        #365:#495     // location:(II)V
+  #367 = Utf8               consumeToken
+  #368 = NameAndType        #275:#276     // deserializeToken:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+  #369 = NameAndType        #496:#497     // getTokenIndex:()I
+  #370 = NameAndType        #367:#498     // consumeToken:(Lorg/antlr/runtime/Token;)V
+  #371 = Utf8               consumeHiddenToken
+  #372 = NameAndType        #371:#498     // consumeHiddenToken:(Lorg/antlr/runtime/Token;)V
+  #373 = Utf8               LT
+  #374 = NameAndType        #373:#499     // LT:(ILorg/antlr/runtime/Token;)V
+  #375 = Utf8               mark
+  #376 = NameAndType        #375:#493     // mark:(I)V
+  #377 = Utf8               rewind
+  #378 = NameAndType        #377:#493     // rewind:(I)V
+  #379 = NameAndType        #377:#203     // rewind:()V
+  #380 = Utf8               beginBacktrack
+  #381 = NameAndType        #380:#493     // beginBacktrack:(I)V
+  #382 = Utf8               endBacktrack
+  #383 = NameAndType        #382:#494     // endBacktrack:(IZ)V
+  #384 = Utf8               exception
+  #385 = Class              #500          // java/lang/Class
+  #386 = NameAndType        #501:#502     // forName:(Ljava/lang/String;)Ljava/lang/Class;
+  #387 = Utf8               org/antlr/runtime/RecognitionException
+  #388 = NameAndType        #503:#504     // asSubclass:(Ljava/lang/Class;)Ljava/lang/Class;
+  #389 = NameAndType        #505:#506     // newInstance:()Ljava/lang/Object;
+  #390 = NameAndType        #279:#174     // index:I
+  #391 = NameAndType        #266:#174     // line:I
+  #392 = NameAndType        #274:#174     // charPositionInLine:I
+  #393 = NameAndType        #507:#508     // recognitionException:(Lorg/antlr/runtime/RecognitionException;)V
+  #394 = Utf8               java/lang/ClassNotFoundException
+  #395 = Utf8               can\'t find class
+  #396 = NameAndType        #484:#509     // append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #397 = Utf8               java/lang/InstantiationException
+  #398 = Utf8               can\'t instantiate class
+  #399 = Utf8               java/lang/IllegalAccessException
+  #400 = Utf8               can\'t access class
+  #401 = Utf8               beginResync
+  #402 = NameAndType        #401:#203     // beginResync:()V
+  #403 = Utf8               endResync
+  #404 = NameAndType        #403:#203     // endResync:()V
+  #405 = Utf8               terminate
+  #406 = NameAndType        #405:#203     // terminate:()V
+  #407 = Utf8               semanticPredicate
+  #408 = Class              #510          // java/lang/Boolean
+  #409 = NameAndType        #511:#512     // valueOf:(Ljava/lang/String;)Ljava/lang/Boolean;
+  #410 = NameAndType        #290:#291     // unEscapeNewlines:(Ljava/lang/String;)Ljava/lang/String;
+  #411 = NameAndType        #513:#207     // booleanValue:()Z
+  #412 = NameAndType        #407:#514     // semanticPredicate:(ZLjava/lang/String;)V
+  #413 = Utf8               consumeNode
+  #414 = NameAndType        #270:#271     // deserializeNode:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+  #415 = NameAndType        #413:#466     // consumeNode:(Ljava/lang/Object;)V
+  #416 = Utf8               LN
+  #417 = NameAndType        #373:#515     // LT:(ILjava/lang/Object;)V
+  #418 = Utf8               createNodeFromTokenElements
+  #419 = Utf8               org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+  #420 = NameAndType        #194:#516     // "<init>":(IIIIILjava/lang/String;)V
+  #421 = NameAndType        #422:#466     // createNode:(Ljava/lang/Object;)V
+  #422 = Utf8               createNode
+  #423 = NameAndType        #194:#493     // "<init>":(I)V
+  #424 = Utf8               org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken
+  #425 = NameAndType        #422:#517     // createNode:(Ljava/lang/Object;Lorg/antlr/runtime/Token;)V
+  #426 = Utf8               nilNode
+  #427 = NameAndType        #426:#466     // nilNode:(Ljava/lang/Object;)V
+  #428 = Utf8               errorNode
+  #429 = NameAndType        #428:#466     // errorNode:(Ljava/lang/Object;)V
+  #430 = Utf8               becomeRoot
+  #431 = NameAndType        #430:#518     // becomeRoot:(Ljava/lang/Object;Ljava/lang/Object;)V
+  #432 = Utf8               addChild
+  #433 = NameAndType        #432:#518     // addChild:(Ljava/lang/Object;Ljava/lang/Object;)V
+  #434 = Utf8               setTokenBoundaries
+  #435 = NameAndType        #434:#519     // setTokenBoundaries:(Ljava/lang/Object;II)V
+  #436 = Utf8               java/lang/Thread
+  #437 = NameAndType        #194:#520     // "<init>":(Ljava/lang/Runnable;)V
+  #438 = NameAndType        #280:#203     // start:()V
+  #439 = NameAndType        #202:#203     // eventHandler:()V
+  #440 = Utf8               java/lang/String
+  #441 = NameAndType        #521:#522     // indexOf:(I)I
+  #442 = NameAndType        #523:#524     // substring:(II)Ljava/lang/String;
+  #443 = NameAndType        #525:#497     // length:()I
+  #444 = Utf8               java/util/StringTokenizer
+  #445 = Utf8               \t
+  #446 = NameAndType        #194:#526     // "<init>":(Ljava/lang/String;Ljava/lang/String;Z)V
+  #447 = NameAndType        #527:#207     // hasMoreTokens:()Z
+  #448 = NameAndType        #528:#460     // nextToken:()Ljava/lang/String;
+  #449 = Utf8               %0A
+  #450 = Utf8               \n
+  #451 = NameAndType        #529:#530     // replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #452 = Utf8               %0D
+  #453 = Utf8               \r
+  #454 = Utf8               %25
+  #455 = Utf8               %
+  #456 = Utf8               org/antlr/runtime/debug/RemoteDebugEventSocketListener
+  #457 = Utf8               java/lang/Object
+  #458 = Utf8               java/lang/Runnable
+  #459 = Utf8               readLine
+  #460 = Utf8               ()Ljava/lang/String;
+  #461 = Utf8               java/lang/System
+  #462 = Utf8               err
+  #463 = Utf8               Ljava/io/PrintStream;
+  #464 = Utf8               java/io/PrintStream
+  #465 = Utf8               println
+  #466 = Utf8               (Ljava/lang/Object;)V
+  #467 = Utf8               printStackTrace
+  #468 = Utf8               (Ljava/io/PrintStream;)V
+  #469 = Utf8               (Ljava/lang/String;I)V
+  #470 = Utf8               setTcpNoDelay
+  #471 = Utf8               (Z)V
+  #472 = Utf8               getOutputStream
+  #473 = Utf8               ()Ljava/io/OutputStream;
+  #474 = Utf8               (Ljava/io/OutputStream;Ljava/lang/String;)V
+  #475 = Utf8               (Ljava/io/Writer;)V
+  #476 = Utf8               getInputStream
+  #477 = Utf8               ()Ljava/io/InputStream;
+  #478 = Utf8               (Ljava/io/InputStream;Ljava/lang/String;)V
+  #479 = Utf8               (Ljava/io/Reader;)V
+  #480 = Utf8               close
+  #481 = Utf8               org/antlr/runtime/debug/DebugEventListener
+  #482 = Utf8               commence
+  #483 = Utf8               flush
+  #484 = Utf8               append
+  #485 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #486 = Utf8               toString
+  #487 = Utf8               equals
+  #488 = Utf8               (Ljava/lang/Object;)Z
+  #489 = Utf8               (Ljava/lang/String;Ljava/lang/String;)V
+  #490 = Utf8               java/lang/Integer
+  #491 = Utf8               parseInt
+  #492 = Utf8               (Ljava/lang/String;)I
+  #493 = Utf8               (I)V
+  #494 = Utf8               (IZ)V
+  #495 = Utf8               (II)V
+  #496 = Utf8               getTokenIndex
+  #497 = Utf8               ()I
+  #498 = Utf8               (Lorg/antlr/runtime/Token;)V
+  #499 = Utf8               (ILorg/antlr/runtime/Token;)V
+  #500 = Utf8               java/lang/Class
+  #501 = Utf8               forName
+  #502 = Utf8               (Ljava/lang/String;)Ljava/lang/Class;
+  #503 = Utf8               asSubclass
+  #504 = Utf8               (Ljava/lang/Class;)Ljava/lang/Class;
+  #505 = Utf8               newInstance
+  #506 = Utf8               ()Ljava/lang/Object;
+  #507 = Utf8               recognitionException
+  #508 = Utf8               (Lorg/antlr/runtime/RecognitionException;)V
+  #509 = Utf8               (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #510 = Utf8               java/lang/Boolean
+  #511 = Utf8               valueOf
+  #512 = Utf8               (Ljava/lang/String;)Ljava/lang/Boolean;
+  #513 = Utf8               booleanValue
+  #514 = Utf8               (ZLjava/lang/String;)V
+  #515 = Utf8               (ILjava/lang/Object;)V
+  #516 = Utf8               (IIIIILjava/lang/String;)V
+  #517 = Utf8               (Ljava/lang/Object;Lorg/antlr/runtime/Token;)V
+  #518 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)V
+  #519 = Utf8               (Ljava/lang/Object;II)V
+  #520 = Utf8               (Ljava/lang/Runnable;)V
+  #521 = Utf8               indexOf
+  #522 = Utf8               (I)I
+  #523 = Utf8               substring
+  #524 = Utf8               (II)Ljava/lang/String;
+  #525 = Utf8               length
+  #526 = Utf8               (Ljava/lang/String;Ljava/lang/String;Z)V
+  #527 = Utf8               hasMoreTokens
+  #528 = Utf8               nextToken
+  #529 = Utf8               replaceAll
+  #530 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+{
+  static final int MAX_EVENT_ELEMENTS;
+    descriptor: I
+    flags: (0x0018) ACC_STATIC, ACC_FINAL
+    ConstantValue: int 8
+
+  org.antlr.runtime.debug.DebugEventListener listener;
+    descriptor: Lorg/antlr/runtime/debug/DebugEventListener;
+    flags: (0x0000)
+
+  java.lang.String machine;
+    descriptor: Ljava/lang/String;
+    flags: (0x0000)
+
+  int port;
+    descriptor: I
+    flags: (0x0000)
+
+  java.net.Socket channel;
+    descriptor: Ljava/net/Socket;
+    flags: (0x0000)
+
+  java.io.PrintWriter out;
+    descriptor: Ljava/io/PrintWriter;
+    flags: (0x0000)
+
+  java.io.BufferedReader in;
+    descriptor: Ljava/io/BufferedReader;
+    flags: (0x0000)
+
+  java.lang.String event;
+    descriptor: Ljava/lang/String;
+    flags: (0x0000)
+
+  public java.lang.String version;
+    descriptor: Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+
+  public java.lang.String grammarFileName;
+    descriptor: Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+
+  int previousTokenIndex;
+    descriptor: I
+    flags: (0x0000)
+
+  boolean tokenIndexesInvalid;
+    descriptor: Z
+    flags: (0x0000)
+
+  public org.antlr.runtime.debug.RemoteDebugEventSocketListener(org.antlr.runtime.debug.DebugEventListener, java.lang.String, int) throws java.io.IOException;
+    descriptor: (Lorg/antlr/runtime/debug/DebugEventListener;Ljava/lang/String;I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=4, args_size=4
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aconst_null
+         6: putfield      #2                  // Field channel:Ljava/net/Socket;
+         9: aload_0
+        10: iconst_m1
+        11: putfield      #3                  // Field previousTokenIndex:I
+        14: aload_0
+        15: iconst_0
+        16: putfield      #4                  // Field tokenIndexesInvalid:Z
+        19: aload_0
+        20: aload_1
+        21: putfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+        24: aload_0
+        25: aload_2
+        26: putfield      #6                  // Field machine:Ljava/lang/String;
+        29: aload_0
+        30: iload_3
+        31: putfield      #7                  // Field port:I
+        34: aload_0
+        35: invokevirtual #8                  // Method openConnection:()Z
+        38: ifne          49
+        41: new           #9                  // class java/net/ConnectException
+        44: dup
+        45: invokespecial #10                 // Method java/net/ConnectException."<init>":()V
+        48: athrow
+        49: return
+      LineNumberTable:
+        line 191: 0
+        line 46: 4
+        line 56: 9
+        line 57: 14
+        line 192: 19
+        line 193: 24
+        line 194: 29
+        line 196: 34
+        line 197: 41
+        line 199: 49
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      50     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            0      50     1 listener   Lorg/antlr/runtime/debug/DebugEventListener;
+            0      50     2 machine   Ljava/lang/String;
+            0      50     3  port   I
+    Exceptions:
+      throws java.io.IOException
+
+  protected void eventHandler();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: invokevirtual #11                 // Method handshake:()V
+         4: aload_0
+         5: aload_0
+         6: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+         9: invokevirtual #13                 // Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+        12: putfield      #14                 // Field event:Ljava/lang/String;
+        15: aload_0
+        16: getfield      #14                 // Field event:Ljava/lang/String;
+        19: ifnull        48
+        22: aload_0
+        23: aload_0
+        24: getfield      #14                 // Field event:Ljava/lang/String;
+        27: invokevirtual #15                 // Method dispatch:(Ljava/lang/String;)V
+        30: aload_0
+        31: invokevirtual #16                 // Method ack:()V
+        34: aload_0
+        35: aload_0
+        36: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+        39: invokevirtual #13                 // Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+        42: putfield      #14                 // Field event:Ljava/lang/String;
+        45: goto          15
+        48: aload_0
+        49: invokevirtual #17                 // Method closeConnection:()V
+        52: goto          84
+        55: astore_1
+        56: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+        59: aload_1
+        60: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        63: aload_1
+        64: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+        67: invokevirtual #21                 // Method java/lang/Exception.printStackTrace:(Ljava/io/PrintStream;)V
+        70: aload_0
+        71: invokevirtual #17                 // Method closeConnection:()V
+        74: goto          84
+        77: astore_2
+        78: aload_0
+        79: invokevirtual #17                 // Method closeConnection:()V
+        82: aload_2
+        83: athrow
+        84: return
+      Exception table:
+         from    to  target type
+             0    48    55   Class java/lang/Exception
+             0    48    77   any
+            55    70    77   any
+            77    78    77   any
+      LineNumberTable:
+        line 203: 0
+        line 204: 4
+        line 205: 15
+        line 206: 22
+        line 207: 30
+        line 208: 34
+        line 216: 48
+        line 217: 52
+        line 211: 55
+        line 212: 56
+        line 213: 63
+        line 216: 70
+        line 217: 74
+        line 216: 77
+        line 218: 84
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           56      14     1     e   Ljava/lang/Exception;
+            0      85     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+
+  protected boolean openConnection();
+    descriptor: ()Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=6, locals=6, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: aload_0
+         3: new           #22                 // class java/net/Socket
+         6: dup
+         7: aload_0
+         8: getfield      #6                  // Field machine:Ljava/lang/String;
+        11: aload_0
+        12: getfield      #7                  // Field port:I
+        15: invokespecial #23                 // Method java/net/Socket."<init>":(Ljava/lang/String;I)V
+        18: putfield      #2                  // Field channel:Ljava/net/Socket;
+        21: aload_0
+        22: getfield      #2                  // Field channel:Ljava/net/Socket;
+        25: iconst_1
+        26: invokevirtual #24                 // Method java/net/Socket.setTcpNoDelay:(Z)V
+        29: aload_0
+        30: getfield      #2                  // Field channel:Ljava/net/Socket;
+        33: invokevirtual #25                 // Method java/net/Socket.getOutputStream:()Ljava/io/OutputStream;
+        36: astore_2
+        37: new           #26                 // class java/io/OutputStreamWriter
+        40: dup
+        41: aload_2
+        42: ldc           #27                 // String UTF8
+        44: invokespecial #28                 // Method java/io/OutputStreamWriter."<init>":(Ljava/io/OutputStream;Ljava/lang/String;)V
+        47: astore_3
+        48: aload_0
+        49: new           #29                 // class java/io/PrintWriter
+        52: dup
+        53: new           #30                 // class java/io/BufferedWriter
+        56: dup
+        57: aload_3
+        58: invokespecial #31                 // Method java/io/BufferedWriter."<init>":(Ljava/io/Writer;)V
+        61: invokespecial #32                 // Method java/io/PrintWriter."<init>":(Ljava/io/Writer;)V
+        64: putfield      #33                 // Field out:Ljava/io/PrintWriter;
+        67: aload_0
+        68: getfield      #2                  // Field channel:Ljava/net/Socket;
+        71: invokevirtual #34                 // Method java/net/Socket.getInputStream:()Ljava/io/InputStream;
+        74: astore        4
+        76: new           #35                 // class java/io/InputStreamReader
+        79: dup
+        80: aload         4
+        82: ldc           #27                 // String UTF8
+        84: invokespecial #36                 // Method java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+        87: astore        5
+        89: aload_0
+        90: new           #37                 // class java/io/BufferedReader
+        93: dup
+        94: aload         5
+        96: invokespecial #38                 // Method java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+        99: putfield      #12                 // Field in:Ljava/io/BufferedReader;
+       102: iconst_1
+       103: istore_1
+       104: goto          115
+       107: astore_2
+       108: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       111: aload_2
+       112: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+       115: iload_1
+       116: ireturn
+      Exception table:
+         from    to  target type
+             2   104   107   Class java/lang/Exception
+      LineNumberTable:
+        line 221: 0
+        line 223: 2
+        line 224: 21
+        line 225: 29
+        line 226: 37
+        line 227: 48
+        line 228: 67
+        line 229: 76
+        line 230: 89
+        line 231: 102
+        line 234: 104
+        line 232: 107
+        line 233: 108
+        line 235: 115
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           37      67     2    os   Ljava/io/OutputStream;
+           48      56     3   osw   Ljava/io/OutputStreamWriter;
+           76      28     4    is   Ljava/io/InputStream;
+           89      15     5   isr   Ljava/io/InputStreamReader;
+          108       7     2     e   Ljava/lang/Exception;
+            0     117     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            2     115     1 success   Z
+
+  protected void closeConnection();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+         4: invokevirtual #39                 // Method java/io/BufferedReader.close:()V
+         7: aload_0
+         8: aconst_null
+         9: putfield      #12                 // Field in:Ljava/io/BufferedReader;
+        12: aload_0
+        13: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+        16: invokevirtual #40                 // Method java/io/PrintWriter.close:()V
+        19: aload_0
+        20: aconst_null
+        21: putfield      #33                 // Field out:Ljava/io/PrintWriter;
+        24: aload_0
+        25: getfield      #2                  // Field channel:Ljava/net/Socket;
+        28: invokevirtual #41                 // Method java/net/Socket.close:()V
+        31: aload_0
+        32: aconst_null
+        33: putfield      #2                  // Field channel:Ljava/net/Socket;
+        36: aload_0
+        37: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+        40: ifnull        61
+        43: aload_0
+        44: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+        47: invokevirtual #39                 // Method java/io/BufferedReader.close:()V
+        50: goto          61
+        53: astore_1
+        54: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+        57: aload_1
+        58: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        61: aload_0
+        62: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+        65: ifnull        75
+        68: aload_0
+        69: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+        72: invokevirtual #40                 // Method java/io/PrintWriter.close:()V
+        75: aload_0
+        76: getfield      #2                  // Field channel:Ljava/net/Socket;
+        79: ifnull        252
+        82: aload_0
+        83: getfield      #2                  // Field channel:Ljava/net/Socket;
+        86: invokevirtual #41                 // Method java/net/Socket.close:()V
+        89: goto          252
+        92: astore_1
+        93: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+        96: aload_1
+        97: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+       100: goto          252
+       103: astore_1
+       104: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       107: aload_1
+       108: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+       111: aload_1
+       112: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       115: invokevirtual #21                 // Method java/lang/Exception.printStackTrace:(Ljava/io/PrintStream;)V
+       118: aload_0
+       119: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+       122: ifnull        143
+       125: aload_0
+       126: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+       129: invokevirtual #39                 // Method java/io/BufferedReader.close:()V
+       132: goto          143
+       135: astore_1
+       136: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       139: aload_1
+       140: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+       143: aload_0
+       144: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+       147: ifnull        157
+       150: aload_0
+       151: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+       154: invokevirtual #40                 // Method java/io/PrintWriter.close:()V
+       157: aload_0
+       158: getfield      #2                  // Field channel:Ljava/net/Socket;
+       161: ifnull        252
+       164: aload_0
+       165: getfield      #2                  // Field channel:Ljava/net/Socket;
+       168: invokevirtual #41                 // Method java/net/Socket.close:()V
+       171: goto          252
+       174: astore_1
+       175: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       178: aload_1
+       179: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+       182: goto          252
+       185: astore_2
+       186: aload_0
+       187: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+       190: ifnull        211
+       193: aload_0
+       194: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+       197: invokevirtual #39                 // Method java/io/BufferedReader.close:()V
+       200: goto          211
+       203: astore_3
+       204: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       207: aload_3
+       208: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+       211: aload_0
+       212: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+       215: ifnull        225
+       218: aload_0
+       219: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+       222: invokevirtual #40                 // Method java/io/PrintWriter.close:()V
+       225: aload_0
+       226: getfield      #2                  // Field channel:Ljava/net/Socket;
+       229: ifnull        250
+       232: aload_0
+       233: getfield      #2                  // Field channel:Ljava/net/Socket;
+       236: invokevirtual #41                 // Method java/net/Socket.close:()V
+       239: goto          250
+       242: astore_3
+       243: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       246: aload_3
+       247: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+       250: aload_2
+       251: athrow
+       252: return
+      Exception table:
+         from    to  target type
+            43    50    53   Class java/io/IOException
+            82    89    92   Class java/io/IOException
+             0    36   103   Class java/lang/Exception
+           125   132   135   Class java/io/IOException
+           164   171   174   Class java/io/IOException
+             0    36   185   any
+           103   118   185   any
+           193   200   203   Class java/io/IOException
+           232   239   242   Class java/io/IOException
+           185   186   185   any
+      LineNumberTable:
+        line 240: 0
+        line 241: 12
+        line 242: 24
+        line 249: 36
+        line 250: 43
+        line 252: 50
+        line 250: 53
+        line 251: 54
+        line 254: 61
+        line 255: 68
+        line 257: 75
+        line 258: 82
+        line 260: 89
+        line 258: 92
+        line 259: 93
+        line 260: 100
+        line 244: 103
+        line 245: 104
+        line 246: 111
+        line 249: 118
+        line 250: 125
+        line 252: 132
+        line 250: 135
+        line 251: 136
+        line 254: 143
+        line 255: 150
+        line 257: 157
+        line 258: 164
+        line 260: 171
+        line 258: 174
+        line 259: 175
+        line 260: 182
+        line 249: 185
+        line 250: 193
+        line 252: 200
+        line 250: 203
+        line 251: 204
+        line 254: 211
+        line 255: 218
+        line 257: 225
+        line 258: 232
+        line 260: 239
+        line 258: 242
+        line 259: 243
+        line 260: 250
+        line 264: 252
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           54       7     1   ioe   Ljava/io/IOException;
+           93       7     1   ioe   Ljava/io/IOException;
+          104      14     1     e   Ljava/lang/Exception;
+          136       7     1   ioe   Ljava/io/IOException;
+          175       7     1   ioe   Ljava/io/IOException;
+          204       7     3   ioe   Ljava/io/IOException;
+          243       7     3   ioe   Ljava/io/IOException;
+            0     253     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+
+  protected void handshake() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=5, args_size=1
+         0: aload_0
+         1: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+         4: invokevirtual #13                 // Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+         7: astore_1
+         8: aload_0
+         9: aload_1
+        10: invokevirtual #43                 // Method getEventElements:(Ljava/lang/String;)[Ljava/lang/String;
+        13: astore_2
+        14: aload_0
+        15: aload_2
+        16: iconst_1
+        17: aaload
+        18: putfield      #44                 // Field version:Ljava/lang/String;
+        21: aload_0
+        22: getfield      #12                 // Field in:Ljava/io/BufferedReader;
+        25: invokevirtual #13                 // Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+        28: astore_3
+        29: aload_0
+        30: aload_3
+        31: invokevirtual #43                 // Method getEventElements:(Ljava/lang/String;)[Ljava/lang/String;
+        34: astore        4
+        36: aload_0
+        37: aload         4
+        39: iconst_1
+        40: aaload
+        41: putfield      #45                 // Field grammarFileName:Ljava/lang/String;
+        44: aload_0
+        45: invokevirtual #16                 // Method ack:()V
+        48: aload_0
+        49: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+        52: invokeinterface #46,  1           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.commence:()V
+        57: return
+      LineNumberTable:
+        line 267: 0
+        line 268: 8
+        line 269: 14
+        line 270: 21
+        line 271: 29
+        line 272: 36
+        line 273: 44
+        line 274: 48
+        line 275: 57
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      58     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            8      50     1 antlrLine   Ljava/lang/String;
+           14      44     2 antlrElements   [Ljava/lang/String;
+           29      29     3 grammarLine   Ljava/lang/String;
+           36      22     4 grammarElements   [Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  protected void ack();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+         4: ldc           #47                 // String ack
+         6: invokevirtual #48                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+         9: aload_0
+        10: getfield      #33                 // Field out:Ljava/io/PrintWriter;
+        13: invokevirtual #49                 // Method java/io/PrintWriter.flush:()V
+        16: return
+      LineNumberTable:
+        line 278: 0
+        line 279: 9
+        line 280: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+
+  protected void dispatch(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=8, locals=9, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #43                 // Method getEventElements:(Ljava/lang/String;)[Ljava/lang/String;
+         5: astore_2
+         6: aload_2
+         7: ifnull        16
+        10: aload_2
+        11: iconst_0
+        12: aaload
+        13: ifnonnull     42
+        16: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+        19: new           #50                 // class java/lang/StringBuilder
+        22: dup
+        23: invokespecial #51                 // Method java/lang/StringBuilder."<init>":()V
+        26: ldc           #52                 // String unknown debug event:
+        28: invokevirtual #53                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        31: aload_1
+        32: invokevirtual #53                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        35: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        38: invokevirtual #55                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        41: return
+        42: aload_2
+        43: iconst_0
+        44: aaload
+        45: ldc           #56                 // String enterRule
+        47: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        50: ifeq          71
+        53: aload_0
+        54: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+        57: aload_2
+        58: iconst_1
+        59: aaload
+        60: aload_2
+        61: iconst_2
+        62: aaload
+        63: invokeinterface #58,  3           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.enterRule:(Ljava/lang/String;Ljava/lang/String;)V
+        68: goto          1443
+        71: aload_2
+        72: iconst_0
+        73: aaload
+        74: ldc           #59                 // String exitRule
+        76: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        79: ifeq          100
+        82: aload_0
+        83: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+        86: aload_2
+        87: iconst_1
+        88: aaload
+        89: aload_2
+        90: iconst_2
+        91: aaload
+        92: invokeinterface #60,  3           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.exitRule:(Ljava/lang/String;Ljava/lang/String;)V
+        97: goto          1443
+       100: aload_2
+       101: iconst_0
+       102: aaload
+       103: ldc           #61                 // String enterAlt
+       105: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       108: ifeq          129
+       111: aload_0
+       112: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       115: aload_2
+       116: iconst_1
+       117: aaload
+       118: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       121: invokeinterface #63,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.enterAlt:(I)V
+       126: goto          1443
+       129: aload_2
+       130: iconst_0
+       131: aaload
+       132: ldc           #64                 // String enterSubRule
+       134: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       137: ifeq          158
+       140: aload_0
+       141: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       144: aload_2
+       145: iconst_1
+       146: aaload
+       147: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       150: invokeinterface #65,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.enterSubRule:(I)V
+       155: goto          1443
+       158: aload_2
+       159: iconst_0
+       160: aaload
+       161: ldc           #66                 // String exitSubRule
+       163: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       166: ifeq          187
+       169: aload_0
+       170: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       173: aload_2
+       174: iconst_1
+       175: aaload
+       176: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       179: invokeinterface #67,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.exitSubRule:(I)V
+       184: goto          1443
+       187: aload_2
+       188: iconst_0
+       189: aaload
+       190: ldc           #68                 // String enterDecision
+       192: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       195: ifeq          224
+       198: aload_0
+       199: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       202: aload_2
+       203: iconst_1
+       204: aaload
+       205: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       208: aload_2
+       209: iconst_2
+       210: aaload
+       211: ldc           #69                 // String true
+       213: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       216: invokeinterface #70,  3           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.enterDecision:(IZ)V
+       221: goto          1443
+       224: aload_2
+       225: iconst_0
+       226: aaload
+       227: ldc           #71                 // String exitDecision
+       229: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       232: ifeq          253
+       235: aload_0
+       236: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       239: aload_2
+       240: iconst_1
+       241: aaload
+       242: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       245: invokeinterface #72,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.exitDecision:(I)V
+       250: goto          1443
+       253: aload_2
+       254: iconst_0
+       255: aaload
+       256: ldc           #73                 // String location
+       258: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       261: ifeq          288
+       264: aload_0
+       265: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       268: aload_2
+       269: iconst_1
+       270: aaload
+       271: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       274: aload_2
+       275: iconst_2
+       276: aaload
+       277: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       280: invokeinterface #74,  3           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.location:(II)V
+       285: goto          1443
+       288: aload_2
+       289: iconst_0
+       290: aaload
+       291: ldc           #75                 // String consumeToken
+       293: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       296: ifeq          343
+       299: aload_0
+       300: aload_2
+       301: iconst_1
+       302: invokevirtual #76                 // Method deserializeToken:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+       305: astore_3
+       306: aload_3
+       307: invokevirtual #77                 // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken.getTokenIndex:()I
+       310: aload_0
+       311: getfield      #3                  // Field previousTokenIndex:I
+       314: if_icmpne     322
+       317: aload_0
+       318: iconst_1
+       319: putfield      #4                  // Field tokenIndexesInvalid:Z
+       322: aload_0
+       323: aload_3
+       324: invokevirtual #77                 // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken.getTokenIndex:()I
+       327: putfield      #3                  // Field previousTokenIndex:I
+       330: aload_0
+       331: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       334: aload_3
+       335: invokeinterface #78,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.consumeToken:(Lorg/antlr/runtime/Token;)V
+       340: goto          1443
+       343: aload_2
+       344: iconst_0
+       345: aaload
+       346: ldc           #79                 // String consumeHiddenToken
+       348: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       351: ifeq          398
+       354: aload_0
+       355: aload_2
+       356: iconst_1
+       357: invokevirtual #76                 // Method deserializeToken:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+       360: astore_3
+       361: aload_3
+       362: invokevirtual #77                 // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken.getTokenIndex:()I
+       365: aload_0
+       366: getfield      #3                  // Field previousTokenIndex:I
+       369: if_icmpne     377
+       372: aload_0
+       373: iconst_1
+       374: putfield      #4                  // Field tokenIndexesInvalid:Z
+       377: aload_0
+       378: aload_3
+       379: invokevirtual #77                 // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken.getTokenIndex:()I
+       382: putfield      #3                  // Field previousTokenIndex:I
+       385: aload_0
+       386: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       389: aload_3
+       390: invokeinterface #80,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.consumeHiddenToken:(Lorg/antlr/runtime/Token;)V
+       395: goto          1443
+       398: aload_2
+       399: iconst_0
+       400: aaload
+       401: ldc           #81                 // String LT
+       403: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       406: ifeq          435
+       409: aload_0
+       410: aload_2
+       411: iconst_2
+       412: invokevirtual #76                 // Method deserializeToken:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+       415: astore_3
+       416: aload_0
+       417: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       420: aload_2
+       421: iconst_1
+       422: aaload
+       423: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       426: aload_3
+       427: invokeinterface #82,  3           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.LT:(ILorg/antlr/runtime/Token;)V
+       432: goto          1443
+       435: aload_2
+       436: iconst_0
+       437: aaload
+       438: ldc           #83                 // String mark
+       440: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       443: ifeq          464
+       446: aload_0
+       447: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       450: aload_2
+       451: iconst_1
+       452: aaload
+       453: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       456: invokeinterface #84,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.mark:(I)V
+       461: goto          1443
+       464: aload_2
+       465: iconst_0
+       466: aaload
+       467: ldc           #85                 // String rewind
+       469: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       472: ifeq          511
+       475: aload_2
+       476: iconst_1
+       477: aaload
+       478: ifnull        499
+       481: aload_0
+       482: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       485: aload_2
+       486: iconst_1
+       487: aaload
+       488: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       491: invokeinterface #86,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.rewind:(I)V
+       496: goto          1443
+       499: aload_0
+       500: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       503: invokeinterface #87,  1           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.rewind:()V
+       508: goto          1443
+       511: aload_2
+       512: iconst_0
+       513: aaload
+       514: ldc           #88                 // String beginBacktrack
+       516: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       519: ifeq          540
+       522: aload_0
+       523: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       526: aload_2
+       527: iconst_1
+       528: aaload
+       529: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       532: invokeinterface #89,  2           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.beginBacktrack:(I)V
+       537: goto          1443
+       540: aload_2
+       541: iconst_0
+       542: aaload
+       543: ldc           #90                 // String endBacktrack
+       545: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       548: ifeq          590
+       551: aload_2
+       552: iconst_1
+       553: aaload
+       554: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       557: istore_3
+       558: aload_2
+       559: iconst_2
+       560: aaload
+       561: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       564: istore        4
+       566: aload_0
+       567: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       570: iload_3
+       571: iload         4
+       573: iconst_1
+       574: if_icmpne     581
+       577: iconst_1
+       578: goto          582
+       581: iconst_0
+       582: invokeinterface #91,  3           // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.endBacktrack:(IZ)V
+       587: goto          1443
+       590: aload_2
+       591: iconst_0
+       592: aaload
+       593: ldc           #92                 // String exception
+       595: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       598: ifeq          803
+       601: aload_2
+       602: iconst_1
+       603: aaload
+       604: astore_3
+       605: aload_2
+       606: iconst_2
+       607: aaload
+       608: astore        4
+       610: aload_2
+       611: iconst_3
+       612: aaload
+       613: astore        5
+       615: aload_2
+       616: iconst_4
+       617: aaload
+       618: astore        6
+       620: aload_3
+       621: invokestatic  #93                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       624: ldc_w         #94                 // class org/antlr/runtime/RecognitionException
+       627: invokevirtual #95                 // Method java/lang/Class.asSubclass:(Ljava/lang/Class;)Ljava/lang/Class;
+       630: astore        7
+       632: aload         7
+       634: invokevirtual #96                 // Method java/lang/Class.newInstance:()Ljava/lang/Object;
+       637: checkcast     #94                 // class org/antlr/runtime/RecognitionException
+       640: astore        8
+       642: aload         8
+       644: aload         4
+       646: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       649: putfield      #97                 // Field org/antlr/runtime/RecognitionException.index:I
+       652: aload         8
+       654: aload         5
+       656: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       659: putfield      #98                 // Field org/antlr/runtime/RecognitionException.line:I
+       662: aload         8
+       664: aload         6
+       666: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       669: putfield      #99                 // Field org/antlr/runtime/RecognitionException.charPositionInLine:I
+       672: aload_0
+       673: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       676: aload         8
+       678: invokeinterface #100,  2          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.recognitionException:(Lorg/antlr/runtime/RecognitionException;)V
+       683: goto          800
+       686: astore        8
+       688: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       691: new           #50                 // class java/lang/StringBuilder
+       694: dup
+       695: invokespecial #51                 // Method java/lang/StringBuilder."<init>":()V
+       698: ldc           #102                // String can\'t find class
+       700: invokevirtual #53                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       703: aload         8
+       705: invokevirtual #103                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       708: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       711: invokevirtual #55                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       714: aload         8
+       716: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       719: invokevirtual #104                // Method java/lang/ClassNotFoundException.printStackTrace:(Ljava/io/PrintStream;)V
+       722: goto          800
+       725: astore        8
+       727: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       730: new           #50                 // class java/lang/StringBuilder
+       733: dup
+       734: invokespecial #51                 // Method java/lang/StringBuilder."<init>":()V
+       737: ldc           #106                // String can\'t instantiate class
+       739: invokevirtual #53                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       742: aload         8
+       744: invokevirtual #103                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       747: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       750: invokevirtual #55                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       753: aload         8
+       755: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       758: invokevirtual #107                // Method java/lang/InstantiationException.printStackTrace:(Ljava/io/PrintStream;)V
+       761: goto          800
+       764: astore        8
+       766: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       769: new           #50                 // class java/lang/StringBuilder
+       772: dup
+       773: invokespecial #51                 // Method java/lang/StringBuilder."<init>":()V
+       776: ldc           #109                // String can\'t access class
+       778: invokevirtual #53                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       781: aload         8
+       783: invokevirtual #103                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       786: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       789: invokevirtual #55                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       792: aload         8
+       794: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       797: invokevirtual #110                // Method java/lang/IllegalAccessException.printStackTrace:(Ljava/io/PrintStream;)V
+       800: goto          1443
+       803: aload_2
+       804: iconst_0
+       805: aaload
+       806: ldc           #111                // String beginResync
+       808: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       811: ifeq          826
+       814: aload_0
+       815: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       818: invokeinterface #112,  1          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.beginResync:()V
+       823: goto          1443
+       826: aload_2
+       827: iconst_0
+       828: aaload
+       829: ldc           #113                // String endResync
+       831: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       834: ifeq          849
+       837: aload_0
+       838: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       841: invokeinterface #114,  1          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.endResync:()V
+       846: goto          1443
+       849: aload_2
+       850: iconst_0
+       851: aaload
+       852: ldc           #115                // String terminate
+       854: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       857: ifeq          872
+       860: aload_0
+       861: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       864: invokeinterface #116,  1          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.terminate:()V
+       869: goto          1443
+       872: aload_2
+       873: iconst_0
+       874: aaload
+       875: ldc           #117                // String semanticPredicate
+       877: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       880: ifeq          921
+       883: aload_2
+       884: iconst_1
+       885: aaload
+       886: invokestatic  #118                // Method java/lang/Boolean.valueOf:(Ljava/lang/String;)Ljava/lang/Boolean;
+       889: astore_3
+       890: aload_2
+       891: iconst_2
+       892: aaload
+       893: astore        4
+       895: aload_0
+       896: aload         4
+       898: invokevirtual #119                // Method unEscapeNewlines:(Ljava/lang/String;)Ljava/lang/String;
+       901: astore        4
+       903: aload_0
+       904: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       907: aload_3
+       908: invokevirtual #120                // Method java/lang/Boolean.booleanValue:()Z
+       911: aload         4
+       913: invokeinterface #121,  3          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.semanticPredicate:(ZLjava/lang/String;)V
+       918: goto          1443
+       921: aload_2
+       922: iconst_0
+       923: aaload
+       924: ldc           #122                // String consumeNode
+       926: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       929: ifeq          952
+       932: aload_0
+       933: aload_2
+       934: iconst_1
+       935: invokevirtual #123                // Method deserializeNode:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+       938: astore_3
+       939: aload_0
+       940: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       943: aload_3
+       944: invokeinterface #124,  2          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.consumeNode:(Ljava/lang/Object;)V
+       949: goto          1443
+       952: aload_2
+       953: iconst_0
+       954: aaload
+       955: ldc           #125                // String LN
+       957: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       960: ifeq          993
+       963: aload_2
+       964: iconst_1
+       965: aaload
+       966: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       969: istore_3
+       970: aload_0
+       971: aload_2
+       972: iconst_2
+       973: invokevirtual #123                // Method deserializeNode:([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+       976: astore        4
+       978: aload_0
+       979: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+       982: iload_3
+       983: aload         4
+       985: invokeinterface #126,  3          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.LT:(ILjava/lang/Object;)V
+       990: goto          1443
+       993: aload_2
+       994: iconst_0
+       995: aaload
+       996: ldc           #127                // String createNodeFromTokenElements
+       998: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      1001: ifeq          1063
+      1004: aload_2
+      1005: iconst_1
+      1006: aaload
+      1007: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1010: istore_3
+      1011: aload_2
+      1012: iconst_2
+      1013: aaload
+      1014: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1017: istore        4
+      1019: aload_2
+      1020: iconst_3
+      1021: aaload
+      1022: astore        5
+      1024: aload_0
+      1025: aload         5
+      1027: invokevirtual #119                // Method unEscapeNewlines:(Ljava/lang/String;)Ljava/lang/String;
+      1030: astore        5
+      1032: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1035: dup
+      1036: iload_3
+      1037: iload         4
+      1039: iconst_m1
+      1040: iconst_m1
+      1041: iconst_m1
+      1042: aload         5
+      1044: invokespecial #129                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(IIIIILjava/lang/String;)V
+      1047: astore        6
+      1049: aload_0
+      1050: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+      1053: aload         6
+      1055: invokeinterface #130,  2          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.createNode:(Ljava/lang/Object;)V
+      1060: goto          1443
+      1063: aload_2
+      1064: iconst_0
+      1065: aaload
+      1066: ldc           #131                // String createNode
+      1068: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      1071: ifeq          1126
+      1074: aload_2
+      1075: iconst_1
+      1076: aaload
+      1077: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1080: istore_3
+      1081: aload_2
+      1082: iconst_2
+      1083: aaload
+      1084: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1087: istore        4
+      1089: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1092: dup
+      1093: iload_3
+      1094: invokespecial #132                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(I)V
+      1097: astore        5
+      1099: new           #133                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken
+      1102: dup
+      1103: iload         4
+      1105: invokespecial #134                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken."<init>":(I)V
+      1108: astore        6
+      1110: aload_0
+      1111: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+      1114: aload         5
+      1116: aload         6
+      1118: invokeinterface #135,  3          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.createNode:(Ljava/lang/Object;Lorg/antlr/runtime/Token;)V
+      1123: goto          1443
+      1126: aload_2
+      1127: iconst_0
+      1128: aaload
+      1129: ldc           #136                // String nilNode
+      1131: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      1134: ifeq          1168
+      1137: aload_2
+      1138: iconst_1
+      1139: aaload
+      1140: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1143: istore_3
+      1144: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1147: dup
+      1148: iload_3
+      1149: invokespecial #132                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(I)V
+      1152: astore        4
+      1154: aload_0
+      1155: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+      1158: aload         4
+      1160: invokeinterface #137,  2          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.nilNode:(Ljava/lang/Object;)V
+      1165: goto          1443
+      1168: aload_2
+      1169: iconst_0
+      1170: aaload
+      1171: ldc           #138                // String errorNode
+      1173: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      1176: ifeq          1238
+      1179: aload_2
+      1180: iconst_1
+      1181: aaload
+      1182: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1185: istore_3
+      1186: aload_2
+      1187: iconst_2
+      1188: aaload
+      1189: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1192: istore        4
+      1194: aload_2
+      1195: iconst_3
+      1196: aaload
+      1197: astore        5
+      1199: aload_0
+      1200: aload         5
+      1202: invokevirtual #119                // Method unEscapeNewlines:(Ljava/lang/String;)Ljava/lang/String;
+      1205: astore        5
+      1207: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1210: dup
+      1211: iload_3
+      1212: iload         4
+      1214: iconst_m1
+      1215: iconst_m1
+      1216: iconst_m1
+      1217: aload         5
+      1219: invokespecial #129                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(IIIIILjava/lang/String;)V
+      1222: astore        6
+      1224: aload_0
+      1225: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+      1228: aload         6
+      1230: invokeinterface #139,  2          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.errorNode:(Ljava/lang/Object;)V
+      1235: goto          1443
+      1238: aload_2
+      1239: iconst_0
+      1240: aaload
+      1241: ldc           #140                // String becomeRoot
+      1243: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      1246: ifeq          1301
+      1249: aload_2
+      1250: iconst_1
+      1251: aaload
+      1252: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1255: istore_3
+      1256: aload_2
+      1257: iconst_2
+      1258: aaload
+      1259: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1262: istore        4
+      1264: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1267: dup
+      1268: iload_3
+      1269: invokespecial #132                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(I)V
+      1272: astore        5
+      1274: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1277: dup
+      1278: iload         4
+      1280: invokespecial #132                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(I)V
+      1283: astore        6
+      1285: aload_0
+      1286: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+      1289: aload         5
+      1291: aload         6
+      1293: invokeinterface #141,  3          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.becomeRoot:(Ljava/lang/Object;Ljava/lang/Object;)V
+      1298: goto          1443
+      1301: aload_2
+      1302: iconst_0
+      1303: aaload
+      1304: ldc           #142                // String addChild
+      1306: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      1309: ifeq          1364
+      1312: aload_2
+      1313: iconst_1
+      1314: aaload
+      1315: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1318: istore_3
+      1319: aload_2
+      1320: iconst_2
+      1321: aaload
+      1322: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1325: istore        4
+      1327: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1330: dup
+      1331: iload_3
+      1332: invokespecial #132                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(I)V
+      1335: astore        5
+      1337: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1340: dup
+      1341: iload         4
+      1343: invokespecial #132                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(I)V
+      1346: astore        6
+      1348: aload_0
+      1349: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+      1352: aload         5
+      1354: aload         6
+      1356: invokeinterface #143,  3          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.addChild:(Ljava/lang/Object;Ljava/lang/Object;)V
+      1361: goto          1443
+      1364: aload_2
+      1365: iconst_0
+      1366: aaload
+      1367: ldc           #144                // String setTokenBoundaries
+      1369: invokevirtual #57                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      1372: ifeq          1418
+      1375: aload_2
+      1376: iconst_1
+      1377: aaload
+      1378: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1381: istore_3
+      1382: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+      1385: dup
+      1386: iload_3
+      1387: invokespecial #132                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(I)V
+      1390: astore        4
+      1392: aload_0
+      1393: getfield      #5                  // Field listener:Lorg/antlr/runtime/debug/DebugEventListener;
+      1396: aload         4
+      1398: aload_2
+      1399: iconst_2
+      1400: aaload
+      1401: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1404: aload_2
+      1405: iconst_3
+      1406: aaload
+      1407: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+      1410: invokeinterface #145,  4          // InterfaceMethod org/antlr/runtime/debug/DebugEventListener.setTokenBoundaries:(Ljava/lang/Object;II)V
+      1415: goto          1443
+      1418: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+      1421: new           #50                 // class java/lang/StringBuilder
+      1424: dup
+      1425: invokespecial #51                 // Method java/lang/StringBuilder."<init>":()V
+      1428: ldc           #52                 // String unknown debug event:
+      1430: invokevirtual #53                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      1433: aload_1
+      1434: invokevirtual #53                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      1437: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      1440: invokevirtual #55                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      1443: return
+      Exception table:
+         from    to  target type
+           620   683   686   Class java/lang/ClassNotFoundException
+           620   683   725   Class java/lang/InstantiationException
+           620   683   764   Class java/lang/IllegalAccessException
+      LineNumberTable:
+        line 284: 0
+        line 285: 6
+        line 286: 16
+        line 287: 41
+        line 289: 42
+        line 290: 53
+        line 292: 71
+        line 293: 82
+        line 295: 100
+        line 296: 111
+        line 298: 129
+        line 299: 140
+        line 301: 158
+        line 302: 169
+        line 304: 187
+        line 305: 198
+        line 307: 224
+        line 308: 235
+        line 310: 253
+        line 311: 264
+        line 314: 288
+        line 315: 299
+        line 316: 306
+        line 317: 317
+        line 319: 322
+        line 320: 330
+        line 321: 340
+        line 322: 343
+        line 323: 354
+        line 324: 361
+        line 325: 372
+        line 327: 377
+        line 328: 385
+        line 329: 395
+        line 330: 398
+        line 331: 409
+        line 332: 416
+        line 333: 432
+        line 334: 435
+        line 335: 446
+        line 337: 464
+        line 338: 475
+        line 339: 481
+        line 342: 499
+        line 345: 511
+        line 346: 522
+        line 348: 540
+        line 349: 551
+        line 350: 558
+        line 351: 566
+        line 352: 587
+        line 353: 590
+        line 354: 601
+        line 355: 605
+        line 356: 610
+        line 357: 615
+        line 360: 620
+        line 361: 632
+        line 362: 642
+        line 363: 652
+        line 364: 662
+        line 365: 672
+        line 378: 683
+        line 367: 686
+        line 368: 688
+        line 369: 714
+        line 378: 722
+        line 371: 725
+        line 372: 727
+        line 373: 753
+        line 378: 761
+        line 375: 764
+        line 376: 766
+        line 377: 792
+        line 379: 800
+        line 380: 803
+        line 381: 814
+        line 383: 826
+        line 384: 837
+        line 386: 849
+        line 387: 860
+        line 389: 872
+        line 390: 883
+        line 391: 890
+        line 392: 895
+        line 393: 903
+        line 395: 918
+        line 396: 921
+        line 397: 932
+        line 398: 939
+        line 399: 949
+        line 400: 952
+        line 401: 963
+        line 402: 970
+        line 403: 978
+        line 404: 990
+        line 405: 993
+        line 406: 1004
+        line 407: 1011
+        line 408: 1019
+        line 409: 1024
+        line 410: 1032
+        line 411: 1049
+        line 412: 1060
+        line 413: 1063
+        line 414: 1074
+        line 415: 1081
+        line 417: 1089
+        line 418: 1099
+        line 419: 1110
+        line 420: 1123
+        line 421: 1126
+        line 422: 1137
+        line 423: 1144
+        line 424: 1154
+        line 425: 1165
+        line 426: 1168
+        line 428: 1179
+        line 429: 1186
+        line 430: 1194
+        line 431: 1199
+        line 432: 1207
+        line 433: 1224
+        line 434: 1235
+        line 435: 1238
+        line 436: 1249
+        line 437: 1256
+        line 438: 1264
+        line 439: 1274
+        line 440: 1285
+        line 441: 1298
+        line 442: 1301
+        line 443: 1312
+        line 444: 1319
+        line 445: 1327
+        line 446: 1337
+        line 447: 1348
+        line 448: 1361
+        line 449: 1364
+        line 450: 1375
+        line 451: 1382
+        line 452: 1392
+        line 456: 1415
+        line 458: 1418
+        line 460: 1443
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          306      34     3     t   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+          361      34     3     t   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+          416      16     3     t   Lorg/antlr/runtime/Token;
+          558      29     3 level   I
+          566      21     4 successI   I
+          642      41     8     e   Lorg/antlr/runtime/RecognitionException;
+          688      34     8  cnfe   Ljava/lang/ClassNotFoundException;
+          727      34     8    ie   Ljava/lang/InstantiationException;
+          766      34     8   iae   Ljava/lang/IllegalAccessException;
+          605     195     3 excName   Ljava/lang/String;
+          610     190     4 indexS   Ljava/lang/String;
+          615     185     5 lineS   Ljava/lang/String;
+          620     180     6  posS   Ljava/lang/String;
+          632     168     7 excClass   Ljava/lang/Class;
+          890      28     3 result   Ljava/lang/Boolean;
+          895      23     4 predicateText   Ljava/lang/String;
+          939      10     3  node   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+          970      20     3     i   I
+          978      12     4  node   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1011      49     3    ID   I
+         1019      41     4  type   I
+         1024      36     5  text   Ljava/lang/String;
+         1049      11     6  node   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1081      42     3    ID   I
+         1089      34     4 tokenIndex   I
+         1099      24     5  node   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1110      13     6 token   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+         1144      21     3    ID   I
+         1154      11     4  node   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1186      49     3    ID   I
+         1194      41     4  type   I
+         1199      36     5  text   Ljava/lang/String;
+         1224      11     6  node   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1256      42     3 newRootID   I
+         1264      34     4 oldRootID   I
+         1274      24     5 newRoot   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1285      13     6 oldRoot   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1319      42     3 rootID   I
+         1327      34     4 childID   I
+         1337      24     5  root   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1348      13     6 child   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+         1382      33     3    ID   I
+         1392      23     4  node   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+            0    1444     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            0    1444     1  line   Ljava/lang/String;
+            6    1438     2 elements   [Ljava/lang/String;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+          632     168     7 excClass   Ljava/lang/Class<+Lorg/antlr/runtime/RecognitionException;>;
+
+  protected org.antlr.runtime.debug.RemoteDebugEventSocketListener$ProxyTree deserializeNode(java.lang.String[], int);
+    descriptor: ([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=8, locals=9, args_size=3
+         0: aload_1
+         1: iload_2
+         2: iconst_0
+         3: iadd
+         4: aaload
+         5: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+         8: istore_3
+         9: aload_1
+        10: iload_2
+        11: iconst_1
+        12: iadd
+        13: aaload
+        14: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        17: istore        4
+        19: aload_1
+        20: iload_2
+        21: iconst_2
+        22: iadd
+        23: aaload
+        24: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        27: istore        5
+        29: aload_1
+        30: iload_2
+        31: iconst_3
+        32: iadd
+        33: aaload
+        34: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        37: istore        6
+        39: aload_1
+        40: iload_2
+        41: iconst_4
+        42: iadd
+        43: aaload
+        44: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        47: istore        7
+        49: aload_1
+        50: iload_2
+        51: iconst_5
+        52: iadd
+        53: aaload
+        54: astore        8
+        56: aload_0
+        57: aload         8
+        59: invokevirtual #119                // Method unEscapeNewlines:(Ljava/lang/String;)Ljava/lang/String;
+        62: astore        8
+        64: new           #128                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree
+        67: dup
+        68: iload_3
+        69: iload         4
+        71: iload         5
+        73: iload         6
+        75: iload         7
+        77: aload         8
+        79: invokespecial #129                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree."<init>":(IIIIILjava/lang/String;)V
+        82: areturn
+      LineNumberTable:
+        line 463: 0
+        line 464: 9
+        line 465: 19
+        line 466: 29
+        line 467: 39
+        line 468: 49
+        line 469: 56
+        line 470: 64
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      83     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            0      83     1 elements   [Ljava/lang/String;
+            0      83     2 offset   I
+            9      74     3    ID   I
+           19      64     4  type   I
+           29      54     5 tokenLine   I
+           39      44     6 charPositionInLine   I
+           49      34     7 tokenIndex   I
+           56      27     8  text   Ljava/lang/String;
+
+  protected org.antlr.runtime.debug.RemoteDebugEventSocketListener$ProxyToken deserializeToken(java.lang.String[], int);
+    descriptor: ([Ljava/lang/String;I)Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=8, locals=11, args_size=3
+         0: aload_1
+         1: iload_2
+         2: iconst_0
+         3: iadd
+         4: aaload
+         5: astore_3
+         6: aload_1
+         7: iload_2
+         8: iconst_1
+         9: iadd
+        10: aaload
+        11: astore        4
+        13: aload_1
+        14: iload_2
+        15: iconst_2
+        16: iadd
+        17: aaload
+        18: astore        5
+        20: aload_1
+        21: iload_2
+        22: iconst_3
+        23: iadd
+        24: aaload
+        25: astore        6
+        27: aload_1
+        28: iload_2
+        29: iconst_4
+        30: iadd
+        31: aaload
+        32: astore        7
+        34: aload_1
+        35: iload_2
+        36: iconst_5
+        37: iadd
+        38: aaload
+        39: astore        8
+        41: aload_0
+        42: aload         8
+        44: invokevirtual #119                // Method unEscapeNewlines:(Ljava/lang/String;)Ljava/lang/String;
+        47: astore        8
+        49: aload_3
+        50: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        53: istore        9
+        55: new           #133                // class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken
+        58: dup
+        59: iload         9
+        61: aload         4
+        63: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        66: aload         5
+        68: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        71: aload         6
+        73: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        76: aload         7
+        78: invokestatic  #62                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        81: aload         8
+        83: invokespecial #146                // Method org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken."<init>":(IIIIILjava/lang/String;)V
+        86: astore        10
+        88: aload         10
+        90: areturn
+      LineNumberTable:
+        line 476: 0
+        line 477: 6
+        line 478: 13
+        line 479: 20
+        line 480: 27
+        line 481: 34
+        line 482: 41
+        line 483: 49
+        line 484: 55
+        line 491: 88
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      91     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            0      91     1 elements   [Ljava/lang/String;
+            0      91     2 offset   I
+            6      85     3 indexS   Ljava/lang/String;
+           13      78     4 typeS   Ljava/lang/String;
+           20      71     5 channelS   Ljava/lang/String;
+           27      64     6 lineS   Ljava/lang/String;
+           34      57     7  posS   Ljava/lang/String;
+           41      50     8  text   Ljava/lang/String;
+           55      36     9 index   I
+           88       3    10     t   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken;
+
+  public void start();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=1
+         0: new           #147                // class java/lang/Thread
+         3: dup
+         4: aload_0
+         5: invokespecial #148                // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+         8: astore_1
+         9: aload_1
+        10: invokevirtual #149                // Method java/lang/Thread.start:()V
+        13: return
+      LineNumberTable:
+        line 496: 0
+        line 497: 9
+        line 498: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            9       5     1     t   Ljava/lang/Thread;
+
+  public void run();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #150                // Method eventHandler:()V
+         4: return
+      LineNumberTable:
+        line 502: 0
+        line 503: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+
+  public java.lang.String[] getEventElements(java.lang.String);
+    descriptor: (Ljava/lang/String;)[Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=7, args_size=2
+         0: aload_1
+         1: ifnonnull     6
+         4: aconst_null
+         5: areturn
+         6: bipush        8
+         8: anewarray     #151                // class java/lang/String
+        11: astore_2
+        12: aconst_null
+        13: astore_3
+        14: aload_1
+        15: bipush        34
+        17: invokevirtual #152                // Method java/lang/String.indexOf:(I)I
+        20: istore        4
+        22: iload         4
+        24: iflt          52
+        27: aload_1
+        28: iconst_0
+        29: iload         4
+        31: invokevirtual #153                // Method java/lang/String.substring:(II)Ljava/lang/String;
+        34: astore        5
+        36: aload_1
+        37: iload         4
+        39: iconst_1
+        40: iadd
+        41: aload_1
+        42: invokevirtual #154                // Method java/lang/String.length:()I
+        45: invokevirtual #153                // Method java/lang/String.substring:(II)Ljava/lang/String;
+        48: astore_3
+        49: aload         5
+        51: astore_1
+        52: new           #155                // class java/util/StringTokenizer
+        55: dup
+        56: aload_1
+        57: ldc           #156                // String \t
+        59: iconst_0
+        60: invokespecial #157                // Method java/util/StringTokenizer."<init>":(Ljava/lang/String;Ljava/lang/String;Z)V
+        63: astore        5
+        65: iconst_0
+        66: istore        6
+        68: aload         5
+        70: invokevirtual #158                // Method java/util/StringTokenizer.hasMoreTokens:()Z
+        73: ifeq          100
+        76: iload         6
+        78: bipush        8
+        80: if_icmplt     85
+        83: aload_2
+        84: areturn
+        85: aload_2
+        86: iload         6
+        88: aload         5
+        90: invokevirtual #159                // Method java/util/StringTokenizer.nextToken:()Ljava/lang/String;
+        93: aastore
+        94: iinc          6, 1
+        97: goto          68
+       100: aload_3
+       101: ifnull        109
+       104: aload_2
+       105: iload         6
+       107: aload_3
+       108: aastore
+       109: goto          122
+       112: astore        4
+       114: aload         4
+       116: getstatic     #19                 // Field java/lang/System.err:Ljava/io/PrintStream;
+       119: invokevirtual #21                 // Method java/lang/Exception.printStackTrace:(Ljava/io/PrintStream;)V
+       122: aload_2
+       123: areturn
+      Exception table:
+         from    to  target type
+            14    84   112   Class java/lang/Exception
+            85   109   112   Class java/lang/Exception
+      LineNumberTable:
+        line 508: 0
+        line 509: 4
+        line 511: 6
+        line 512: 12
+        line 514: 14
+        line 515: 22
+        line 519: 27
+        line 520: 36
+        line 521: 49
+        line 523: 52
+        line 524: 65
+        line 525: 68
+        line 526: 76
+        line 528: 83
+        line 530: 85
+        line 531: 94
+        line 533: 100
+        line 534: 104
+        line 539: 109
+        line 537: 112
+        line 538: 114
+        line 540: 122
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           36      16     5 eventWithoutString   Ljava/lang/String;
+           22      87     4 firstQuoteIndex   I
+           65      44     5    st   Ljava/util/StringTokenizer;
+           68      41     6     i   I
+          114       8     4     e   Ljava/lang/Exception;
+            0     124     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            0     124     1 event   Ljava/lang/String;
+           12     112     2 elements   [Ljava/lang/String;
+           14     110     3   str   Ljava/lang/String;
+
+  protected java.lang.String unEscapeNewlines(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ldc           #160                // String %0A
+         3: ldc           #161                // String \n
+         5: invokevirtual #162                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+         8: astore_1
+         9: aload_1
+        10: ldc           #163                // String %0D
+        12: ldc           #164                // String \r
+        14: invokevirtual #162                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        17: astore_1
+        18: aload_1
+        19: ldc           #165                // String %25
+        21: ldc           #166                // String %
+        23: invokevirtual #162                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        26: astore_1
+        27: aload_1
+        28: areturn
+      LineNumberTable:
+        line 545: 0
+        line 546: 9
+        line 547: 18
+        line 548: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      29     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+            0      29     1   txt   Ljava/lang/String;
+
+  public boolean tokenIndexesAreInvalid();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 552: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lorg/antlr/runtime/debug/RemoteDebugEventSocketListener;
+}
+SourceFile: "RemoteDebugEventSocketListener.java"
+InnerClasses:
+  public static #170= #128 of #167;       // ProxyTree=class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyTree of class org/antlr/runtime/debug/RemoteDebugEventSocketListener
+  public static #172= #133 of #167;       // ProxyToken=class org/antlr/runtime/debug/RemoteDebugEventSocketListener$ProxyToken of class org/antlr/runtime/debug/RemoteDebugEventSocketListener

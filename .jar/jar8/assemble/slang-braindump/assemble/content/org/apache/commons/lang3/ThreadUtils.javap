@@ -1,0 +1,900 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/org/apache/commons/lang3/ThreadUtils.class
+  Last modified May 29, 2022; size 7000 bytes
+  SHA-256 checksum fbcb2c78212b26d83ba8020541d97b5bdda74c6299365d8103fbfbf2664d8f68
+  Compiled from "ThreadUtils.java"
+public class org.apache.commons.lang3.ThreadUtils
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #47                         // org/apache/commons/lang3/ThreadUtils
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 1, methods: 16, attributes: 2
+Constant pool:
+    #1 = String             #138          // The thread group must not be null
+    #2 = Class              #139          // java/lang/Object
+    #3 = Methodref          #140.#141     // org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+    #4 = Methodref          #47.#142      // org/apache/commons/lang3/ThreadUtils.findThreadById:(J)Ljava/lang/Thread;
+    #5 = Methodref          #31.#143      // java/lang/Thread.getThreadGroup:()Ljava/lang/ThreadGroup;
+    #6 = Methodref          #2.#144       // java/lang/Object.equals:(Ljava/lang/Object;)Z
+    #7 = String             #145          // The thread group name must not be null
+    #8 = Methodref          #22.#146      // java/lang/ThreadGroup.getName:()Ljava/lang/String;
+    #9 = Methodref          #147.#144     // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #10 = Class              #148          // org/apache/commons/lang3/ThreadUtils$NamePredicate
+   #11 = Methodref          #10.#149      // org/apache/commons/lang3/ThreadUtils$NamePredicate."<init>":(Ljava/lang/String;)V
+   #12 = Methodref          #47.#150      // org/apache/commons/lang3/ThreadUtils.findThreads:(Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+   #13 = String             #151          // The thread name must not be null
+   #14 = Methodref          #47.#152      // org/apache/commons/lang3/ThreadUtils.findThreadGroups:(Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+   #15 = InterfaceMethodref #89.#153      // java/util/Collection.isEmpty:()Z
+   #16 = Methodref          #154.#155     // java/util/Collections.emptyList:()Ljava/util/List;
+   #17 = Class              #156          // java/util/ArrayList
+   #18 = Methodref          #17.#157      // java/util/ArrayList."<init>":()V
+   #19 = InterfaceMethodref #89.#158      // java/util/Collection.iterator:()Ljava/util/Iterator;
+   #20 = InterfaceMethodref #90.#159      // java/util/Iterator.hasNext:()Z
+   #21 = InterfaceMethodref #90.#160      // java/util/Iterator.next:()Ljava/lang/Object;
+   #22 = Class              #161          // java/lang/ThreadGroup
+   #23 = InterfaceMethodref #89.#162      // java/util/Collection.addAll:(Ljava/util/Collection;)Z
+   #24 = Methodref          #154.#163     // java/util/Collections.unmodifiableCollection:(Ljava/util/Collection;)Ljava/util/Collection;
+   #25 = Fieldref           #47.#164      // org/apache/commons/lang3/ThreadUtils.ALWAYS_TRUE_PREDICATE:Lorg/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate;
+   #26 = Methodref          #31.#165      // java/lang/Thread.currentThread:()Ljava/lang/Thread;
+   #27 = Methodref          #22.#166      // java/lang/ThreadGroup.getParent:()Ljava/lang/ThreadGroup;
+   #28 = Methodref          #47.#167      // org/apache/commons/lang3/ThreadUtils.findThreads:(Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+   #29 = Class              #168          // org/apache/commons/lang3/ThreadUtils$ThreadIdPredicate
+   #30 = Methodref          #29.#169      // org/apache/commons/lang3/ThreadUtils$ThreadIdPredicate."<init>":(J)V
+   #31 = Class              #170          // java/lang/Thread
+   #32 = Methodref          #2.#157       // java/lang/Object."<init>":()V
+   #33 = Methodref          #47.#171      // org/apache/commons/lang3/ThreadUtils.getSystemThreadGroup:()Ljava/lang/ThreadGroup;
+   #34 = Methodref          #47.#172      // org/apache/commons/lang3/ThreadUtils.findThreadGroups:(Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+   #35 = String             #173          // The group must not be null
+   #36 = String             #174          // The predicate must not be null
+   #37 = Methodref          #22.#175      // java/lang/ThreadGroup.activeCount:()I
+   #38 = Methodref          #22.#176      // java/lang/ThreadGroup.enumerate:([Ljava/lang/Thread;Z)I
+   #39 = Methodref          #17.#177      // java/util/ArrayList."<init>":(I)V
+   #40 = InterfaceMethodref #55.#178      // org/apache/commons/lang3/ThreadUtils$ThreadPredicate.test:(Ljava/lang/Thread;)Z
+   #41 = InterfaceMethodref #128.#179     // java/util/List.add:(Ljava/lang/Object;)Z
+   #42 = Methodref          #22.#180      // java/lang/ThreadGroup.activeGroupCount:()I
+   #43 = Methodref          #22.#181      // java/lang/ThreadGroup.enumerate:([Ljava/lang/ThreadGroup;Z)I
+   #44 = InterfaceMethodref #53.#182      // org/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate.test:(Ljava/lang/ThreadGroup;)Z
+   #45 = Class              #183          // org/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate
+   #46 = Methodref          #45.#184      // org/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate."<init>":(Lorg/apache/commons/lang3/ThreadUtils$1;)V
+   #47 = Class              #185          // org/apache/commons/lang3/ThreadUtils
+   #48 = Class              #186          // org/apache/commons/lang3/ThreadUtils$1
+   #49 = Utf8               InnerClasses
+   #50 = Utf8               ThreadIdPredicate
+   #51 = Utf8               NamePredicate
+   #52 = Utf8               AlwaysTruePredicate
+   #53 = Class              #187          // org/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate
+   #54 = Utf8               ThreadGroupPredicate
+   #55 = Class              #188          // org/apache/commons/lang3/ThreadUtils$ThreadPredicate
+   #56 = Utf8               ThreadPredicate
+   #57 = Utf8               ALWAYS_TRUE_PREDICATE
+   #58 = Utf8               Lorg/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate;
+   #59 = Utf8               findThreadById
+   #60 = Utf8               (JLjava/lang/ThreadGroup;)Ljava/lang/Thread;
+   #61 = Utf8               Code
+   #62 = Utf8               LineNumberTable
+   #63 = Utf8               LocalVariableTable
+   #64 = Utf8               threadId
+   #65 = Utf8               J
+   #66 = Utf8               threadGroup
+   #67 = Utf8               Ljava/lang/ThreadGroup;
+   #68 = Utf8               thread
+   #69 = Utf8               Ljava/lang/Thread;
+   #70 = Utf8               StackMapTable
+   #71 = Utf8               (JLjava/lang/String;)Ljava/lang/Thread;
+   #72 = Utf8               threadGroupName
+   #73 = Utf8               Ljava/lang/String;
+   #74 = Utf8               findThreadsByName
+   #75 = Utf8               (Ljava/lang/String;Ljava/lang/ThreadGroup;)Ljava/util/Collection;
+   #76 = Utf8               threadName
+   #77 = Utf8               Signature
+   #78 = Utf8               (Ljava/lang/String;Ljava/lang/ThreadGroup;)Ljava/util/Collection<Ljava/lang/Thread;>;
+   #79 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/util/Collection;
+   #80 = Utf8               group
+   #81 = Utf8               threadGroups
+   #82 = Utf8               Ljava/util/Collection;
+   #83 = Utf8               result
+   #84 = Utf8               threadNamePredicate
+   #85 = Utf8               Lorg/apache/commons/lang3/ThreadUtils$NamePredicate;
+   #86 = Utf8               LocalVariableTypeTable
+   #87 = Utf8               Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+   #88 = Utf8               Ljava/util/Collection<Ljava/lang/Thread;>;
+   #89 = Class              #189          // java/util/Collection
+   #90 = Class              #190          // java/util/Iterator
+   #91 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/util/Collection<Ljava/lang/Thread;>;
+   #92 = Utf8               findThreadGroupsByName
+   #93 = Utf8               (Ljava/lang/String;)Ljava/util/Collection;
+   #94 = Utf8               (Ljava/lang/String;)Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+   #95 = Utf8               getAllThreadGroups
+   #96 = Utf8               ()Ljava/util/Collection;
+   #97 = Utf8               ()Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+   #98 = Utf8               getSystemThreadGroup
+   #99 = Utf8               ()Ljava/lang/ThreadGroup;
+  #100 = Utf8               getAllThreads
+  #101 = Utf8               ()Ljava/util/Collection<Ljava/lang/Thread;>;
+  #102 = Utf8               (Ljava/lang/String;)Ljava/util/Collection<Ljava/lang/Thread;>;
+  #103 = Utf8               (J)Ljava/lang/Thread;
+  #104 = Utf8               <init>
+  #105 = Utf8               ()V
+  #106 = Utf8               this
+  #107 = Utf8               Lorg/apache/commons/lang3/ThreadUtils;
+  #108 = Utf8               findThreads
+  #109 = Utf8               (Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+  #110 = Utf8               predicate
+  #111 = Utf8               Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;
+  #112 = Utf8               (Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection<Ljava/lang/Thread;>;
+  #113 = Utf8               findThreadGroups
+  #114 = Utf8               (Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+  #115 = Utf8               Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;
+  #116 = Utf8               (Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+  #117 = Utf8               (Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+  #118 = Utf8               i
+  #119 = Utf8               I
+  #120 = Utf8               recurse
+  #121 = Utf8               Z
+  #122 = Utf8               count
+  #123 = Utf8               threads
+  #124 = Utf8               [Ljava/lang/Thread;
+  #125 = Utf8               Ljava/util/List;
+  #126 = Utf8               Ljava/util/List<Ljava/lang/Thread;>;
+  #127 = Class              #124          // "[Ljava/lang/Thread;"
+  #128 = Class              #191          // java/util/List
+  #129 = Utf8               (Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection<Ljava/lang/Thread;>;
+  #130 = Utf8               (Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+  #131 = Utf8               [Ljava/lang/ThreadGroup;
+  #132 = Utf8               Ljava/util/List<Ljava/lang/ThreadGroup;>;
+  #133 = Class              #131          // "[Ljava/lang/ThreadGroup;"
+  #134 = Utf8               (Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+  #135 = Utf8               <clinit>
+  #136 = Utf8               SourceFile
+  #137 = Utf8               ThreadUtils.java
+  #138 = Utf8               The thread group must not be null
+  #139 = Utf8               java/lang/Object
+  #140 = Class              #192          // org/apache/commons/lang3/Validate
+  #141 = NameAndType        #193:#194     // isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+  #142 = NameAndType        #59:#103      // findThreadById:(J)Ljava/lang/Thread;
+  #143 = NameAndType        #195:#99      // getThreadGroup:()Ljava/lang/ThreadGroup;
+  #144 = NameAndType        #196:#197     // equals:(Ljava/lang/Object;)Z
+  #145 = Utf8               The thread group name must not be null
+  #146 = NameAndType        #198:#199     // getName:()Ljava/lang/String;
+  #147 = Class              #200          // java/lang/String
+  #148 = Utf8               org/apache/commons/lang3/ThreadUtils$NamePredicate
+  #149 = NameAndType        #104:#201     // "<init>":(Ljava/lang/String;)V
+  #150 = NameAndType        #108:#117     // findThreads:(Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+  #151 = Utf8               The thread name must not be null
+  #152 = NameAndType        #113:#114     // findThreadGroups:(Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+  #153 = NameAndType        #202:#203     // isEmpty:()Z
+  #154 = Class              #204          // java/util/Collections
+  #155 = NameAndType        #205:#206     // emptyList:()Ljava/util/List;
+  #156 = Utf8               java/util/ArrayList
+  #157 = NameAndType        #104:#105     // "<init>":()V
+  #158 = NameAndType        #207:#208     // iterator:()Ljava/util/Iterator;
+  #159 = NameAndType        #209:#203     // hasNext:()Z
+  #160 = NameAndType        #210:#211     // next:()Ljava/lang/Object;
+  #161 = Utf8               java/lang/ThreadGroup
+  #162 = NameAndType        #212:#213     // addAll:(Ljava/util/Collection;)Z
+  #163 = NameAndType        #214:#215     // unmodifiableCollection:(Ljava/util/Collection;)Ljava/util/Collection;
+  #164 = NameAndType        #57:#58       // ALWAYS_TRUE_PREDICATE:Lorg/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate;
+  #165 = NameAndType        #216:#217     // currentThread:()Ljava/lang/Thread;
+  #166 = NameAndType        #218:#99      // getParent:()Ljava/lang/ThreadGroup;
+  #167 = NameAndType        #108:#109     // findThreads:(Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+  #168 = Utf8               org/apache/commons/lang3/ThreadUtils$ThreadIdPredicate
+  #169 = NameAndType        #104:#219     // "<init>":(J)V
+  #170 = Utf8               java/lang/Thread
+  #171 = NameAndType        #98:#99       // getSystemThreadGroup:()Ljava/lang/ThreadGroup;
+  #172 = NameAndType        #113:#130     // findThreadGroups:(Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+  #173 = Utf8               The group must not be null
+  #174 = Utf8               The predicate must not be null
+  #175 = NameAndType        #220:#221     // activeCount:()I
+  #176 = NameAndType        #222:#223     // enumerate:([Ljava/lang/Thread;Z)I
+  #177 = NameAndType        #104:#224     // "<init>":(I)V
+  #178 = NameAndType        #225:#226     // test:(Ljava/lang/Thread;)Z
+  #179 = NameAndType        #227:#197     // add:(Ljava/lang/Object;)Z
+  #180 = NameAndType        #228:#221     // activeGroupCount:()I
+  #181 = NameAndType        #222:#229     // enumerate:([Ljava/lang/ThreadGroup;Z)I
+  #182 = NameAndType        #225:#230     // test:(Ljava/lang/ThreadGroup;)Z
+  #183 = Utf8               org/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate
+  #184 = NameAndType        #104:#231     // "<init>":(Lorg/apache/commons/lang3/ThreadUtils$1;)V
+  #185 = Utf8               org/apache/commons/lang3/ThreadUtils
+  #186 = Utf8               org/apache/commons/lang3/ThreadUtils$1
+  #187 = Utf8               org/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate
+  #188 = Utf8               org/apache/commons/lang3/ThreadUtils$ThreadPredicate
+  #189 = Utf8               java/util/Collection
+  #190 = Utf8               java/util/Iterator
+  #191 = Utf8               java/util/List
+  #192 = Utf8               org/apache/commons/lang3/Validate
+  #193 = Utf8               isTrue
+  #194 = Utf8               (ZLjava/lang/String;[Ljava/lang/Object;)V
+  #195 = Utf8               getThreadGroup
+  #196 = Utf8               equals
+  #197 = Utf8               (Ljava/lang/Object;)Z
+  #198 = Utf8               getName
+  #199 = Utf8               ()Ljava/lang/String;
+  #200 = Utf8               java/lang/String
+  #201 = Utf8               (Ljava/lang/String;)V
+  #202 = Utf8               isEmpty
+  #203 = Utf8               ()Z
+  #204 = Utf8               java/util/Collections
+  #205 = Utf8               emptyList
+  #206 = Utf8               ()Ljava/util/List;
+  #207 = Utf8               iterator
+  #208 = Utf8               ()Ljava/util/Iterator;
+  #209 = Utf8               hasNext
+  #210 = Utf8               next
+  #211 = Utf8               ()Ljava/lang/Object;
+  #212 = Utf8               addAll
+  #213 = Utf8               (Ljava/util/Collection;)Z
+  #214 = Utf8               unmodifiableCollection
+  #215 = Utf8               (Ljava/util/Collection;)Ljava/util/Collection;
+  #216 = Utf8               currentThread
+  #217 = Utf8               ()Ljava/lang/Thread;
+  #218 = Utf8               getParent
+  #219 = Utf8               (J)V
+  #220 = Utf8               activeCount
+  #221 = Utf8               ()I
+  #222 = Utf8               enumerate
+  #223 = Utf8               ([Ljava/lang/Thread;Z)I
+  #224 = Utf8               (I)V
+  #225 = Utf8               test
+  #226 = Utf8               (Ljava/lang/Thread;)Z
+  #227 = Utf8               add
+  #228 = Utf8               activeGroupCount
+  #229 = Utf8               ([Ljava/lang/ThreadGroup;Z)I
+  #230 = Utf8               (Ljava/lang/ThreadGroup;)Z
+  #231 = Utf8               (Lorg/apache/commons/lang3/ThreadUtils$1;)V
+{
+  public static final org.apache.commons.lang3.ThreadUtils$AlwaysTruePredicate ALWAYS_TRUE_PREDICATE;
+    descriptor: Lorg/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static java.lang.Thread findThreadById(long, java.lang.ThreadGroup);
+    descriptor: (JLjava/lang/ThreadGroup;)Ljava/lang/Thread;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=4, args_size=2
+         0: aload_2
+         1: ifnull        8
+         4: iconst_1
+         5: goto          9
+         8: iconst_0
+         9: ldc           #1                  // String The thread group must not be null
+        11: iconst_0
+        12: anewarray     #2                  // class java/lang/Object
+        15: invokestatic  #3                  // Method org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+        18: lload_0
+        19: invokestatic  #4                  // Method findThreadById:(J)Ljava/lang/Thread;
+        22: astore_3
+        23: aload_3
+        24: ifnull        40
+        27: aload_2
+        28: aload_3
+        29: invokevirtual #5                  // Method java/lang/Thread.getThreadGroup:()Ljava/lang/ThreadGroup;
+        32: invokevirtual #6                  // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+        35: ifeq          40
+        38: aload_3
+        39: areturn
+        40: aconst_null
+        41: areturn
+      LineNumberTable:
+        line 53: 0
+        line 54: 18
+        line 55: 23
+        line 56: 38
+        line 58: 40
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      42     0 threadId   J
+            0      42     2 threadGroup   Ljava/lang/ThreadGroup;
+           23      19     3 thread   Ljava/lang/Thread;
+      StackMapTable: number_of_entries = 3
+        frame_type = 8 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 30
+          locals = [ class java/lang/Thread ]
+
+  public static java.lang.Thread findThreadById(long, java.lang.String);
+    descriptor: (JLjava/lang/String;)Ljava/lang/Thread;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=4, args_size=2
+         0: aload_2
+         1: ifnull        8
+         4: iconst_1
+         5: goto          9
+         8: iconst_0
+         9: ldc           #7                  // String The thread group name must not be null
+        11: iconst_0
+        12: anewarray     #2                  // class java/lang/Object
+        15: invokestatic  #3                  // Method org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+        18: lload_0
+        19: invokestatic  #4                  // Method findThreadById:(J)Ljava/lang/Thread;
+        22: astore_3
+        23: aload_3
+        24: ifnull        50
+        27: aload_3
+        28: invokevirtual #5                  // Method java/lang/Thread.getThreadGroup:()Ljava/lang/ThreadGroup;
+        31: ifnull        50
+        34: aload_3
+        35: invokevirtual #5                  // Method java/lang/Thread.getThreadGroup:()Ljava/lang/ThreadGroup;
+        38: invokevirtual #8                  // Method java/lang/ThreadGroup.getName:()Ljava/lang/String;
+        41: aload_2
+        42: invokevirtual #9                  // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        45: ifeq          50
+        48: aload_3
+        49: areturn
+        50: aconst_null
+        51: areturn
+      LineNumberTable:
+        line 76: 0
+        line 77: 18
+        line 78: 23
+        line 79: 48
+        line 81: 50
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      52     0 threadId   J
+            0      52     2 threadGroupName   Ljava/lang/String;
+           23      29     3 thread   Ljava/lang/Thread;
+      StackMapTable: number_of_entries = 3
+        frame_type = 8 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 40
+          locals = [ class java/lang/Thread ]
+
+  public static java.util.Collection<java.lang.Thread> findThreadsByName(java.lang.String, java.lang.ThreadGroup);
+    descriptor: (Ljava/lang/String;Ljava/lang/ThreadGroup;)Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=2, args_size=2
+         0: aload_1
+         1: iconst_0
+         2: new           #10                 // class org/apache/commons/lang3/ThreadUtils$NamePredicate
+         5: dup
+         6: aload_0
+         7: invokespecial #11                 // Method org/apache/commons/lang3/ThreadUtils$NamePredicate."<init>":(Ljava/lang/String;)V
+        10: invokestatic  #12                 // Method findThreads:(Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+        13: areturn
+      LineNumberTable:
+        line 99: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0 threadName   Ljava/lang/String;
+            0      14     1 threadGroup   Ljava/lang/ThreadGroup;
+    Signature: #78                          // (Ljava/lang/String;Ljava/lang/ThreadGroup;)Ljava/util/Collection<Ljava/lang/Thread;>;
+
+  public static java.util.Collection<java.lang.Thread> findThreadsByName(java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=7, args_size=2
+         0: aload_0
+         1: ifnull        8
+         4: iconst_1
+         5: goto          9
+         8: iconst_0
+         9: ldc           #13                 // String The thread name must not be null
+        11: iconst_0
+        12: anewarray     #2                  // class java/lang/Object
+        15: invokestatic  #3                  // Method org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+        18: aload_1
+        19: ifnull        26
+        22: iconst_1
+        23: goto          27
+        26: iconst_0
+        27: ldc           #7                  // String The thread group name must not be null
+        29: iconst_0
+        30: anewarray     #2                  // class java/lang/Object
+        33: invokestatic  #3                  // Method org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+        36: new           #10                 // class org/apache/commons/lang3/ThreadUtils$NamePredicate
+        39: dup
+        40: aload_1
+        41: invokespecial #11                 // Method org/apache/commons/lang3/ThreadUtils$NamePredicate."<init>":(Ljava/lang/String;)V
+        44: invokestatic  #14                 // Method findThreadGroups:(Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+        47: astore_2
+        48: aload_2
+        49: invokeinterface #15,  1           // InterfaceMethod java/util/Collection.isEmpty:()Z
+        54: ifeq          61
+        57: invokestatic  #16                 // Method java/util/Collections.emptyList:()Ljava/util/List;
+        60: areturn
+        61: new           #17                 // class java/util/ArrayList
+        64: dup
+        65: invokespecial #18                 // Method java/util/ArrayList."<init>":()V
+        68: astore_3
+        69: new           #10                 // class org/apache/commons/lang3/ThreadUtils$NamePredicate
+        72: dup
+        73: aload_0
+        74: invokespecial #11                 // Method org/apache/commons/lang3/ThreadUtils$NamePredicate."<init>":(Ljava/lang/String;)V
+        77: astore        4
+        79: aload_2
+        80: invokeinterface #19,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+        85: astore        5
+        87: aload         5
+        89: invokeinterface #20,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        94: ifeq          127
+        97: aload         5
+        99: invokeinterface #21,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       104: checkcast     #22                 // class java/lang/ThreadGroup
+       107: astore        6
+       109: aload_3
+       110: aload         6
+       112: iconst_0
+       113: aload         4
+       115: invokestatic  #12                 // Method findThreads:(Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+       118: invokeinterface #23,  2           // InterfaceMethod java/util/Collection.addAll:(Ljava/util/Collection;)Z
+       123: pop
+       124: goto          87
+       127: aload_3
+       128: invokestatic  #24                 // Method java/util/Collections.unmodifiableCollection:(Ljava/util/Collection;)Ljava/util/Collection;
+       131: areturn
+      LineNumberTable:
+        line 117: 0
+        line 118: 18
+        line 120: 36
+        line 122: 48
+        line 123: 57
+        line 126: 61
+        line 127: 69
+        line 128: 79
+        line 129: 109
+        line 130: 124
+        line 131: 127
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          109      15     6 group   Ljava/lang/ThreadGroup;
+            0     132     0 threadName   Ljava/lang/String;
+            0     132     1 threadGroupName   Ljava/lang/String;
+           48      84     2 threadGroups   Ljava/util/Collection;
+           69      63     3 result   Ljava/util/Collection;
+           79      53     4 threadNamePredicate   Lorg/apache/commons/lang3/ThreadUtils$NamePredicate;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           48      84     2 threadGroups   Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+           69      63     3 result   Ljava/util/Collection<Ljava/lang/Thread;>;
+      StackMapTable: number_of_entries = 7
+        frame_type = 8 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 16 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 33
+          locals = [ class java/util/Collection ]
+        frame_type = 254 /* append */
+          offset_delta = 25
+          locals = [ class java/util/Collection, class org/apache/commons/lang3/ThreadUtils$NamePredicate, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 39
+    Signature: #91                          // (Ljava/lang/String;Ljava/lang/String;)Ljava/util/Collection<Ljava/lang/Thread;>;
+
+  public static java.util.Collection<java.lang.ThreadGroup> findThreadGroupsByName(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #10                 // class org/apache/commons/lang3/ThreadUtils$NamePredicate
+         3: dup
+         4: aload_0
+         5: invokespecial #11                 // Method org/apache/commons/lang3/ThreadUtils$NamePredicate."<init>":(Ljava/lang/String;)V
+         8: invokestatic  #14                 // Method findThreadGroups:(Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+        11: areturn
+      LineNumberTable:
+        line 147: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0 threadGroupName   Ljava/lang/String;
+    Signature: #94                          // (Ljava/lang/String;)Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+
+  public static java.util.Collection<java.lang.ThreadGroup> getAllThreadGroups();
+    descriptor: ()Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #25                 // Field ALWAYS_TRUE_PREDICATE:Lorg/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate;
+         3: invokestatic  #14                 // Method findThreadGroups:(Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+         6: areturn
+      LineNumberTable:
+        line 161: 0
+    Signature: #97                          // ()Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+
+  public static java.lang.ThreadGroup getSystemThreadGroup();
+    descriptor: ()Ljava/lang/ThreadGroup;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=1, args_size=0
+         0: invokestatic  #26                 // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+         3: invokevirtual #5                  // Method java/lang/Thread.getThreadGroup:()Ljava/lang/ThreadGroup;
+         6: astore_0
+         7: aload_0
+         8: invokevirtual #27                 // Method java/lang/ThreadGroup.getParent:()Ljava/lang/ThreadGroup;
+        11: ifnull        22
+        14: aload_0
+        15: invokevirtual #27                 // Method java/lang/ThreadGroup.getParent:()Ljava/lang/ThreadGroup;
+        18: astore_0
+        19: goto          7
+        22: aload_0
+        23: areturn
+      LineNumberTable:
+        line 172: 0
+        line 173: 7
+        line 174: 14
+        line 176: 22
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            7      17     0 threadGroup   Ljava/lang/ThreadGroup;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 7
+          locals = [ class java/lang/ThreadGroup ]
+        frame_type = 14 /* same */
+
+  public static java.util.Collection<java.lang.Thread> getAllThreads();
+    descriptor: ()Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #25                 // Field ALWAYS_TRUE_PREDICATE:Lorg/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate;
+         3: invokestatic  #28                 // Method findThreads:(Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+         6: areturn
+      LineNumberTable:
+        line 190: 0
+    Signature: #101                         // ()Ljava/util/Collection<Ljava/lang/Thread;>;
+
+  public static java.util.Collection<java.lang.Thread> findThreadsByName(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #10                 // class org/apache/commons/lang3/ThreadUtils$NamePredicate
+         3: dup
+         4: aload_0
+         5: invokespecial #11                 // Method org/apache/commons/lang3/ThreadUtils$NamePredicate."<init>":(Ljava/lang/String;)V
+         8: invokestatic  #28                 // Method findThreads:(Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+        11: areturn
+      LineNumberTable:
+        line 206: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0 threadName   Ljava/lang/String;
+    Signature: #102                         // (Ljava/lang/String;)Ljava/util/Collection<Ljava/lang/Thread;>;
+
+  public static java.lang.Thread findThreadById(long);
+    descriptor: (J)Ljava/lang/Thread;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=3, args_size=1
+         0: new           #29                 // class org/apache/commons/lang3/ThreadUtils$ThreadIdPredicate
+         3: dup
+         4: lload_0
+         5: invokespecial #30                 // Method org/apache/commons/lang3/ThreadUtils$ThreadIdPredicate."<init>":(J)V
+         8: invokestatic  #28                 // Method findThreads:(Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+        11: astore_2
+        12: aload_2
+        13: invokeinterface #15,  1           // InterfaceMethod java/util/Collection.isEmpty:()Z
+        18: ifeq          25
+        21: aconst_null
+        22: goto          39
+        25: aload_2
+        26: invokeinterface #19,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+        31: invokeinterface #21,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        36: checkcast     #31                 // class java/lang/Thread
+        39: areturn
+      LineNumberTable:
+        line 222: 0
+        line 223: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      40     0 threadId   J
+           12      28     2 result   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           12      28     2 result   Ljava/util/Collection<Ljava/lang/Thread;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 25
+          locals = [ class java/util/Collection ]
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Thread ]
+
+  public org.apache.commons.lang3.ThreadUtils();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #32                 // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 236: 0
+        line 237: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/lang3/ThreadUtils;
+
+  public static java.util.Collection<java.lang.Thread> findThreads(org.apache.commons.lang3.ThreadUtils$ThreadPredicate);
+    descriptor: (Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: invokestatic  #33                 // Method getSystemThreadGroup:()Ljava/lang/ThreadGroup;
+         3: iconst_1
+         4: aload_0
+         5: invokestatic  #12                 // Method findThreads:(Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+         8: areturn
+      LineNumberTable:
+        line 363: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0 predicate   Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;
+    Signature: #112                         // (Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection<Ljava/lang/Thread;>;
+
+  public static java.util.Collection<java.lang.ThreadGroup> findThreadGroups(org.apache.commons.lang3.ThreadUtils$ThreadGroupPredicate);
+    descriptor: (Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: invokestatic  #33                 // Method getSystemThreadGroup:()Ljava/lang/ThreadGroup;
+         3: iconst_1
+         4: aload_0
+         5: invokestatic  #34                 // Method findThreadGroups:(Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+         8: areturn
+      LineNumberTable:
+        line 378: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0 predicate   Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;
+    Signature: #116                         // (Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+
+  public static java.util.Collection<java.lang.Thread> findThreads(java.lang.ThreadGroup, boolean, org.apache.commons.lang3.ThreadUtils$ThreadPredicate);
+    descriptor: (Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=7, args_size=3
+         0: aload_0
+         1: ifnull        8
+         4: iconst_1
+         5: goto          9
+         8: iconst_0
+         9: ldc           #35                 // String The group must not be null
+        11: iconst_0
+        12: anewarray     #2                  // class java/lang/Object
+        15: invokestatic  #3                  // Method org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+        18: aload_2
+        19: ifnull        26
+        22: iconst_1
+        23: goto          27
+        26: iconst_0
+        27: ldc           #36                 // String The predicate must not be null
+        29: iconst_0
+        30: anewarray     #2                  // class java/lang/Object
+        33: invokestatic  #3                  // Method org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+        36: aload_0
+        37: invokevirtual #37                 // Method java/lang/ThreadGroup.activeCount:()I
+        40: istore_3
+        41: iload_3
+        42: iload_3
+        43: iconst_2
+        44: idiv
+        45: iadd
+        46: iconst_1
+        47: iadd
+        48: anewarray     #31                 // class java/lang/Thread
+        51: astore        4
+        53: aload_0
+        54: aload         4
+        56: iload_1
+        57: invokevirtual #38                 // Method java/lang/ThreadGroup.enumerate:([Ljava/lang/Thread;Z)I
+        60: istore_3
+        61: iload_3
+        62: aload         4
+        64: arraylength
+        65: if_icmpge     41
+        68: new           #17                 // class java/util/ArrayList
+        71: dup
+        72: iload_3
+        73: invokespecial #39                 // Method java/util/ArrayList."<init>":(I)V
+        76: astore        5
+        78: iconst_0
+        79: istore        6
+        81: iload         6
+        83: iload_3
+        84: if_icmpge     120
+        87: aload_2
+        88: aload         4
+        90: iload         6
+        92: aaload
+        93: invokeinterface #40,  2           // InterfaceMethod org/apache/commons/lang3/ThreadUtils$ThreadPredicate.test:(Ljava/lang/Thread;)Z
+        98: ifeq          114
+       101: aload         5
+       103: aload         4
+       105: iload         6
+       107: aaload
+       108: invokeinterface #41,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       113: pop
+       114: iinc          6, 1
+       117: goto          81
+       120: aload         5
+       122: invokestatic  #24                 // Method java/util/Collections.unmodifiableCollection:(Ljava/util/Collection;)Ljava/util/Collection;
+       125: areturn
+      LineNumberTable:
+        line 393: 0
+        line 394: 18
+        line 396: 36
+        line 399: 41
+        line 400: 53
+        line 402: 61
+        line 404: 68
+        line 405: 78
+        line 406: 87
+        line 407: 101
+        line 405: 114
+        line 410: 120
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           81      39     6     i   I
+            0     126     0 group   Ljava/lang/ThreadGroup;
+            0     126     1 recurse   Z
+            0     126     2 predicate   Lorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;
+           41      85     3 count   I
+           53      73     4 threads   [Ljava/lang/Thread;
+           78      48     5 result   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           78      48     5 result   Ljava/util/List<Ljava/lang/Thread;>;
+      StackMapTable: number_of_entries = 8
+        frame_type = 8 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 16 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ int ]
+        frame_type = 254 /* append */
+          offset_delta = 39
+          locals = [ class "[Ljava/lang/Thread;", class java/util/List, int ]
+        frame_type = 32 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+    Signature: #129                         // (Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadPredicate;)Ljava/util/Collection<Ljava/lang/Thread;>;
+
+  public static java.util.Collection<java.lang.ThreadGroup> findThreadGroups(java.lang.ThreadGroup, boolean, org.apache.commons.lang3.ThreadUtils$ThreadGroupPredicate);
+    descriptor: (Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=7, args_size=3
+         0: aload_0
+         1: ifnull        8
+         4: iconst_1
+         5: goto          9
+         8: iconst_0
+         9: ldc           #35                 // String The group must not be null
+        11: iconst_0
+        12: anewarray     #2                  // class java/lang/Object
+        15: invokestatic  #3                  // Method org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+        18: aload_2
+        19: ifnull        26
+        22: iconst_1
+        23: goto          27
+        26: iconst_0
+        27: ldc           #36                 // String The predicate must not be null
+        29: iconst_0
+        30: anewarray     #2                  // class java/lang/Object
+        33: invokestatic  #3                  // Method org/apache/commons/lang3/Validate.isTrue:(ZLjava/lang/String;[Ljava/lang/Object;)V
+        36: aload_0
+        37: invokevirtual #42                 // Method java/lang/ThreadGroup.activeGroupCount:()I
+        40: istore_3
+        41: iload_3
+        42: iload_3
+        43: iconst_2
+        44: idiv
+        45: iadd
+        46: iconst_1
+        47: iadd
+        48: anewarray     #22                 // class java/lang/ThreadGroup
+        51: astore        4
+        53: aload_0
+        54: aload         4
+        56: iload_1
+        57: invokevirtual #43                 // Method java/lang/ThreadGroup.enumerate:([Ljava/lang/ThreadGroup;Z)I
+        60: istore_3
+        61: iload_3
+        62: aload         4
+        64: arraylength
+        65: if_icmpge     41
+        68: new           #17                 // class java/util/ArrayList
+        71: dup
+        72: iload_3
+        73: invokespecial #39                 // Method java/util/ArrayList."<init>":(I)V
+        76: astore        5
+        78: iconst_0
+        79: istore        6
+        81: iload         6
+        83: iload_3
+        84: if_icmpge     120
+        87: aload_2
+        88: aload         4
+        90: iload         6
+        92: aaload
+        93: invokeinterface #44,  2           // InterfaceMethod org/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate.test:(Ljava/lang/ThreadGroup;)Z
+        98: ifeq          114
+       101: aload         5
+       103: aload         4
+       105: iload         6
+       107: aaload
+       108: invokeinterface #41,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       113: pop
+       114: iinc          6, 1
+       117: goto          81
+       120: aload         5
+       122: invokestatic  #24                 // Method java/util/Collections.unmodifiableCollection:(Ljava/util/Collection;)Ljava/util/Collection;
+       125: areturn
+      LineNumberTable:
+        line 425: 0
+        line 426: 18
+        line 428: 36
+        line 431: 41
+        line 432: 53
+        line 434: 61
+        line 436: 68
+        line 437: 78
+        line 438: 87
+        line 439: 101
+        line 437: 114
+        line 442: 120
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           81      39     6     i   I
+            0     126     0 group   Ljava/lang/ThreadGroup;
+            0     126     1 recurse   Z
+            0     126     2 predicate   Lorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;
+           41      85     3 count   I
+           53      73     4 threadGroups   [Ljava/lang/ThreadGroup;
+           78      48     5 result   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           78      48     5 result   Ljava/util/List<Ljava/lang/ThreadGroup;>;
+      StackMapTable: number_of_entries = 8
+        frame_type = 8 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 16 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ int ]
+        frame_type = 254 /* append */
+          offset_delta = 39
+          locals = [ class "[Ljava/lang/ThreadGroup;", class java/util/List, int ]
+        frame_type = 32 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+    Signature: #134                         // (Ljava/lang/ThreadGroup;ZLorg/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate;)Ljava/util/Collection<Ljava/lang/ThreadGroup;>;
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=0, args_size=0
+         0: new           #45                 // class org/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate
+         3: dup
+         4: aconst_null
+         5: invokespecial #46                 // Method org/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate."<init>":(Lorg/apache/commons/lang3/ThreadUtils$1;)V
+         8: putstatic     #25                 // Field ALWAYS_TRUE_PREDICATE:Lorg/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate;
+        11: return
+      LineNumberTable:
+        line 272: 0
+}
+SourceFile: "ThreadUtils.java"
+InnerClasses:
+  static #48;                             // class org/apache/commons/lang3/ThreadUtils$1
+  public static #50= #29 of #47;          // ThreadIdPredicate=class org/apache/commons/lang3/ThreadUtils$ThreadIdPredicate of class org/apache/commons/lang3/ThreadUtils
+  public static #51= #10 of #47;          // NamePredicate=class org/apache/commons/lang3/ThreadUtils$NamePredicate of class org/apache/commons/lang3/ThreadUtils
+  private static final #52= #45 of #47;   // AlwaysTruePredicate=class org/apache/commons/lang3/ThreadUtils$AlwaysTruePredicate of class org/apache/commons/lang3/ThreadUtils
+  public static #54= #53 of #47;          // ThreadGroupPredicate=class org/apache/commons/lang3/ThreadUtils$ThreadGroupPredicate of class org/apache/commons/lang3/ThreadUtils
+  public static #56= #55 of #47;          // ThreadPredicate=class org/apache/commons/lang3/ThreadUtils$ThreadPredicate of class org/apache/commons/lang3/ThreadUtils

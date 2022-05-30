@@ -1,0 +1,1566 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/sun/jna/ELFAnalyser.class
+  Last modified May 29, 2022; size 9113 bytes
+  SHA-256 checksum 440e007326e1ab8d9bc555c11cdc18cb0713867f1f7ccd0429fc4693b8175225
+  Compiled from "ELFAnalyser.java"
+class com.sun.jna.ELFAnalyser
+  minor version: 0
+  major version: 50
+  flags: (0x0020) ACC_SUPER
+  this_class: #1                          // com/sun/jna/ELFAnalyser
+  super_class: #89                        // java/lang/Object
+  interfaces: 0, fields: 14, methods: 19, attributes: 2
+Constant pool:
+    #1 = Class              #223          // com/sun/jna/ELFAnalyser
+    #2 = Methodref          #1.#224       // com/sun/jna/ELFAnalyser."<init>":(Ljava/lang/String;)V
+    #3 = Methodref          #1.#225       // com/sun/jna/ELFAnalyser.runDetection:()V
+    #4 = Fieldref           #1.#226       // com/sun/jna/ELFAnalyser.ELF:Z
+    #5 = Fieldref           #1.#227       // com/sun/jna/ELFAnalyser._64Bit:Z
+    #6 = Fieldref           #1.#228       // com/sun/jna/ELFAnalyser.bigEndian:Z
+    #7 = Fieldref           #1.#229       // com/sun/jna/ELFAnalyser.filename:Ljava/lang/String;
+    #8 = Methodref          #1.#230       // com/sun/jna/ELFAnalyser.isArmEabiAapcsVfp:()Z
+    #9 = Methodref          #1.#231       // com/sun/jna/ELFAnalyser.isArmHardFloatFlag:()Z
+   #10 = Fieldref           #1.#232       // com/sun/jna/ELFAnalyser.armEabiAapcsVfp:Z
+   #11 = Fieldref           #1.#233       // com/sun/jna/ELFAnalyser.armHardFloatFlag:Z
+   #12 = Fieldref           #1.#234       // com/sun/jna/ELFAnalyser.armSoftFloatFlag:Z
+   #13 = Fieldref           #1.#235       // com/sun/jna/ELFAnalyser.arm:Z
+   #14 = Methodref          #89.#236      // java/lang/Object."<init>":()V
+   #15 = Class              #237          // java/io/RandomAccessFile
+   #16 = String             #238          // r
+   #17 = Methodref          #15.#239      // java/io/RandomAccessFile."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+   #18 = Methodref          #15.#240      // java/io/RandomAccessFile.length:()J
+   #19 = Long               4l
+   #21 = Methodref          #15.#241      // java/io/RandomAccessFile.seek:(J)V
+   #22 = Methodref          #15.#242      // java/io/RandomAccessFile.read:([B)I
+   #23 = Fieldref           #1.#243       // com/sun/jna/ELFAnalyser.ELF_MAGIC:[B
+   #24 = Methodref          #244.#245     // java/util/Arrays.equals:([B[B)Z
+   #25 = Methodref          #15.#246      // java/io/RandomAccessFile.close:()V
+   #26 = Class              #247          // java/io/IOException
+   #27 = Methodref          #15.#248      // java/io/RandomAccessFile.readByte:()B
+   #28 = Methodref          #249.#250     // java/nio/ByteBuffer.allocate:(I)Ljava/nio/ByteBuffer;
+   #29 = Methodref          #15.#251      // java/io/RandomAccessFile.getChannel:()Ljava/nio/channels/FileChannel;
+   #30 = Methodref          #252.#253     // java/nio/channels/FileChannel.read:(Ljava/nio/ByteBuffer;J)I
+   #31 = Fieldref           #254.#255     // java/nio/ByteOrder.BIG_ENDIAN:Ljava/nio/ByteOrder;
+   #32 = Fieldref           #254.#256     // java/nio/ByteOrder.LITTLE_ENDIAN:Ljava/nio/ByteOrder;
+   #33 = Methodref          #249.#257     // java/nio/ByteBuffer.order:(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
+   #34 = Methodref          #249.#258     // java/nio/ByteBuffer.get:(I)B
+   #35 = Methodref          #249.#259     // java/nio/ByteBuffer.getInt:(I)I
+   #36 = Methodref          #1.#260       // com/sun/jna/ELFAnalyser.parseEabiAapcsVfp:(Ljava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+   #37 = Class              #261          // com/sun/jna/ELFAnalyser$ELFSectionHeaders
+   #38 = Methodref          #37.#262      // com/sun/jna/ELFAnalyser$ELFSectionHeaders."<init>":(ZZLjava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+   #39 = Methodref          #37.#263      // com/sun/jna/ELFAnalyser$ELFSectionHeaders.getEntries:()Ljava/util/List;
+   #40 = InterfaceMethodref #264.#265     // java/util/List.iterator:()Ljava/util/Iterator;
+   #41 = InterfaceMethodref #266.#267     // java/util/Iterator.hasNext:()Z
+   #42 = InterfaceMethodref #266.#268     // java/util/Iterator.next:()Ljava/lang/Object;
+   #43 = Class              #269          // com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry
+   #44 = String             #270          // .ARM.attributes
+   #45 = Methodref          #43.#271      // com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry.getName:()Ljava/lang/String;
+   #46 = Methodref          #79.#272      // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #47 = Methodref          #43.#273      // com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry.getSize:()I
+   #48 = Methodref          #43.#274      // com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry.getOffset:()I
+   #49 = Methodref          #249.#275     // java/nio/ByteBuffer.rewind:()Ljava/nio/Buffer;
+   #50 = Methodref          #1.#276       // com/sun/jna/ELFAnalyser.parseArmAttributes:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+   #51 = Methodref          #55.#277      // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #52 = InterfaceMethodref #53.#278      // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #53 = Class              #279          // java/util/Map
+   #54 = Fieldref           #92.#280      // com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag.ABI_VFP_args:Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+   #55 = Class              #281          // java/lang/Integer
+   #56 = Methodref          #55.#272      // java/lang/Integer.equals:(Ljava/lang/Object;)Z
+   #57 = Class              #282          // java/math/BigInteger
+   #58 = Methodref          #57.#283      // java/math/BigInteger.intValue:()I
+   #59 = Methodref          #249.#284     // java/nio/ByteBuffer.get:()B
+   #60 = Fieldref           #285.#286     // java/util/Collections.EMPTY_MAP:Ljava/util/Map;
+   #61 = Methodref          #249.#287     // java/nio/ByteBuffer.position:()I
+   #62 = Methodref          #249.#288     // java/nio/ByteBuffer.limit:()I
+   #63 = Methodref          #249.#289     // java/nio/ByteBuffer.getInt:()I
+   #64 = Methodref          #1.#290       // com/sun/jna/ELFAnalyser.readNTBS:(Ljava/nio/ByteBuffer;Ljava/lang/Integer;)Ljava/lang/String;
+   #65 = String             #291          // aeabi
+   #66 = Methodref          #1.#292       // com/sun/jna/ELFAnalyser.parseAEABI:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+   #67 = Methodref          #293.#294     // java/nio/Buffer.position:(I)Ljava/nio/Buffer;
+   #68 = Class              #295          // java/util/HashMap
+   #69 = Methodref          #68.#236      // java/util/HashMap."<init>":()V
+   #70 = Methodref          #1.#296       // com/sun/jna/ELFAnalyser.readULEB128:(Ljava/nio/ByteBuffer;)Ljava/math/BigInteger;
+   #71 = Methodref          #1.#297       // com/sun/jna/ELFAnalyser.parseFileAttribute:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+   #72 = InterfaceMethodref #53.#298      // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #73 = Methodref          #92.#299      // com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag.getByValue:(I)Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+   #74 = Fieldref           #90.#300      // com/sun/jna/ELFAnalyser$1.$SwitchMap$com$sun$jna$ELFAnalyser$ArmAeabiAttributesTag$ParameterType:[I
+   #75 = Methodref          #92.#301      // com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag.getParameterType:()Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType;
+   #76 = Methodref          #302.#303     // com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType.ordinal:()I
+   #77 = Methodref          #55.#283      // java/lang/Integer.intValue:()I
+   #78 = Methodref          #249.#304     // java/nio/ByteBuffer.get:([B)Ljava/nio/ByteBuffer;
+   #79 = Class              #305          // java/lang/String
+   #80 = String             #306          // ASCII
+   #81 = Methodref          #79.#307      // java/lang/String."<init>":([BLjava/lang/String;)V
+   #82 = Class              #308          // java/io/UnsupportedEncodingException
+   #83 = Class              #309          // java/lang/RuntimeException
+   #84 = Methodref          #83.#310      // java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+   #85 = Fieldref           #57.#311      // java/math/BigInteger.ZERO:Ljava/math/BigInteger;
+   #86 = Methodref          #57.#312      // java/math/BigInteger.valueOf:(J)Ljava/math/BigInteger;
+   #87 = Methodref          #57.#313      // java/math/BigInteger.shiftLeft:(I)Ljava/math/BigInteger;
+   #88 = Methodref          #57.#314      // java/math/BigInteger.or:(Ljava/math/BigInteger;)Ljava/math/BigInteger;
+   #89 = Class              #315          // java/lang/Object
+   #90 = Class              #316          // com/sun/jna/ELFAnalyser$1
+   #91 = Utf8               InnerClasses
+   #92 = Class              #317          // com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag
+   #93 = Utf8               ArmAeabiAttributesTag
+   #94 = Utf8               ELFSectionHeaderEntry
+   #95 = Utf8               ELFSectionHeaders
+   #96 = Utf8               ELF_MAGIC
+   #97 = Utf8               [B
+   #98 = Utf8               EF_ARM_ABI_FLOAT_HARD
+   #99 = Utf8               I
+  #100 = Utf8               ConstantValue
+  #101 = Integer            1024
+  #102 = Utf8               EF_ARM_ABI_FLOAT_SOFT
+  #103 = Integer            512
+  #104 = Utf8               EI_DATA_BIG_ENDIAN
+  #105 = Integer            2
+  #106 = Utf8               E_MACHINE_ARM
+  #107 = Integer            40
+  #108 = Utf8               EI_CLASS_64BIT
+  #109 = Utf8               filename
+  #110 = Utf8               Ljava/lang/String;
+  #111 = Utf8               ELF
+  #112 = Utf8               Z
+  #113 = Utf8               _64Bit
+  #114 = Utf8               bigEndian
+  #115 = Utf8               armHardFloatFlag
+  #116 = Utf8               armSoftFloatFlag
+  #117 = Utf8               armEabiAapcsVfp
+  #118 = Utf8               arm
+  #119 = Utf8               analyse
+  #120 = Utf8               (Ljava/lang/String;)Lcom/sun/jna/ELFAnalyser;
+  #121 = Utf8               Code
+  #122 = Utf8               LineNumberTable
+  #123 = Utf8               LocalVariableTable
+  #124 = Utf8               res
+  #125 = Utf8               Lcom/sun/jna/ELFAnalyser;
+  #126 = Utf8               Exceptions
+  #127 = Utf8               isELF
+  #128 = Utf8               ()Z
+  #129 = Utf8               this
+  #130 = Utf8               is64Bit
+  #131 = Utf8               isBigEndian
+  #132 = Utf8               getFilename
+  #133 = Utf8               ()Ljava/lang/String;
+  #134 = Utf8               isArmHardFloat
+  #135 = Utf8               StackMapTable
+  #136 = Utf8               isArmEabiAapcsVfp
+  #137 = Utf8               isArmHardFloatFlag
+  #138 = Utf8               isArmSoftFloatFlag
+  #139 = Utf8               isArm
+  #140 = Utf8               <init>
+  #141 = Utf8               (Ljava/lang/String;)V
+  #142 = Utf8               runDetection
+  #143 = Utf8               ()V
+  #144 = Utf8               magic
+  #145 = Utf8               flags
+  #146 = Utf8               sizeIndicator
+  #147 = Utf8               B
+  #148 = Utf8               endianessIndicator
+  #149 = Utf8               headerData
+  #150 = Utf8               Ljava/nio/ByteBuffer;
+  #151 = Utf8               raf
+  #152 = Utf8               Ljava/io/RandomAccessFile;
+  #153 = Class              #237          // java/io/RandomAccessFile
+  #154 = Class              #247          // java/io/IOException
+  #155 = Class              #223          // com/sun/jna/ELFAnalyser
+  #156 = Class              #318          // java/nio/ByteBuffer
+  #157 = Class              #319          // java/nio/ByteOrder
+  #158 = Class              #320          // java/lang/Throwable
+  #159 = Utf8               parseEabiAapcsVfp
+  #160 = Utf8               (Ljava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+  #161 = Utf8               armAttributesBuffer
+  #162 = Utf8               armAttributes
+  #163 = Utf8               Ljava/util/Map;
+  #164 = Utf8               fileAttributes
+  #165 = Utf8               abiVFPargValue
+  #166 = Utf8               Ljava/lang/Object;
+  #167 = Utf8               eshe
+  #168 = Utf8               Lcom/sun/jna/ELFAnalyser$ELFSectionHeaderEntry;
+  #169 = Utf8               sectionHeaders
+  #170 = Utf8               Lcom/sun/jna/ELFAnalyser$ELFSectionHeaders;
+  #171 = Utf8               LocalVariableTypeTable
+  #172 = Utf8               Ljava/util/Map<Ljava/lang/Integer;Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;>;
+  #173 = Utf8               Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;
+  #174 = Class              #261          // com/sun/jna/ELFAnalyser$ELFSectionHeaders
+  #175 = Class              #321          // java/util/Iterator
+  #176 = Class              #269          // com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry
+  #177 = Class              #279          // java/util/Map
+  #178 = Class              #315          // java/lang/Object
+  #179 = Utf8               parseArmAttributes
+  #180 = Utf8               (Ljava/nio/ByteBuffer;)Ljava/util/Map;
+  #181 = Utf8               posSectionStart
+  #182 = Utf8               sectionLength
+  #183 = Utf8               vendorName
+  #184 = Utf8               bb
+  #185 = Utf8               format
+  #186 = Class              #305          // java/lang/String
+  #187 = Utf8               Signature
+  #188 = Utf8               (Ljava/nio/ByteBuffer;)Ljava/util/Map<Ljava/lang/Integer;Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;>;
+  #189 = Utf8               parseAEABI
+  #190 = Utf8               pos
+  #191 = Utf8               subsectionTag
+  #192 = Utf8               length
+  #193 = Utf8               buffer
+  #194 = Utf8               data
+  #195 = Utf8               parseFileAttribute
+  #196 = Utf8               tagValue
+  #197 = Utf8               tag
+  #198 = Utf8               Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+  #199 = Utf8               result
+  #200 = Class              #317          // com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag
+  #201 = Utf8               (Ljava/nio/ByteBuffer;)Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;
+  #202 = Utf8               readNTBS
+  #203 = Utf8               (Ljava/nio/ByteBuffer;Ljava/lang/Integer;)Ljava/lang/String;
+  #204 = Utf8               ex
+  #205 = Utf8               Ljava/io/UnsupportedEncodingException;
+  #206 = Utf8               position
+  #207 = Utf8               Ljava/lang/Integer;
+  #208 = Utf8               startingPos
+  #209 = Utf8               currentByte
+  #210 = Utf8               terminatingPosition
+  #211 = Class              #281          // java/lang/Integer
+  #212 = Class              #97           // "[B"
+  #213 = Class              #308          // java/io/UnsupportedEncodingException
+  #214 = Utf8               readULEB128
+  #215 = Utf8               (Ljava/nio/ByteBuffer;)Ljava/math/BigInteger;
+  #216 = Utf8               b
+  #217 = Utf8               Ljava/math/BigInteger;
+  #218 = Utf8               shift
+  #219 = Class              #282          // java/math/BigInteger
+  #220 = Utf8               <clinit>
+  #221 = Utf8               SourceFile
+  #222 = Utf8               ELFAnalyser.java
+  #223 = Utf8               com/sun/jna/ELFAnalyser
+  #224 = NameAndType        #140:#141     // "<init>":(Ljava/lang/String;)V
+  #225 = NameAndType        #142:#143     // runDetection:()V
+  #226 = NameAndType        #111:#112     // ELF:Z
+  #227 = NameAndType        #113:#112     // _64Bit:Z
+  #228 = NameAndType        #114:#112     // bigEndian:Z
+  #229 = NameAndType        #109:#110     // filename:Ljava/lang/String;
+  #230 = NameAndType        #136:#128     // isArmEabiAapcsVfp:()Z
+  #231 = NameAndType        #137:#128     // isArmHardFloatFlag:()Z
+  #232 = NameAndType        #117:#112     // armEabiAapcsVfp:Z
+  #233 = NameAndType        #115:#112     // armHardFloatFlag:Z
+  #234 = NameAndType        #116:#112     // armSoftFloatFlag:Z
+  #235 = NameAndType        #118:#112     // arm:Z
+  #236 = NameAndType        #140:#143     // "<init>":()V
+  #237 = Utf8               java/io/RandomAccessFile
+  #238 = Utf8               r
+  #239 = NameAndType        #140:#322     // "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+  #240 = NameAndType        #192:#323     // length:()J
+  #241 = NameAndType        #324:#325     // seek:(J)V
+  #242 = NameAndType        #326:#327     // read:([B)I
+  #243 = NameAndType        #96:#97       // ELF_MAGIC:[B
+  #244 = Class              #328          // java/util/Arrays
+  #245 = NameAndType        #329:#330     // equals:([B[B)Z
+  #246 = NameAndType        #331:#143     // close:()V
+  #247 = Utf8               java/io/IOException
+  #248 = NameAndType        #332:#333     // readByte:()B
+  #249 = Class              #318          // java/nio/ByteBuffer
+  #250 = NameAndType        #334:#335     // allocate:(I)Ljava/nio/ByteBuffer;
+  #251 = NameAndType        #336:#337     // getChannel:()Ljava/nio/channels/FileChannel;
+  #252 = Class              #338          // java/nio/channels/FileChannel
+  #253 = NameAndType        #326:#339     // read:(Ljava/nio/ByteBuffer;J)I
+  #254 = Class              #319          // java/nio/ByteOrder
+  #255 = NameAndType        #340:#341     // BIG_ENDIAN:Ljava/nio/ByteOrder;
+  #256 = NameAndType        #342:#341     // LITTLE_ENDIAN:Ljava/nio/ByteOrder;
+  #257 = NameAndType        #343:#344     // order:(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
+  #258 = NameAndType        #345:#346     // get:(I)B
+  #259 = NameAndType        #347:#348     // getInt:(I)I
+  #260 = NameAndType        #159:#160     // parseEabiAapcsVfp:(Ljava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+  #261 = Utf8               com/sun/jna/ELFAnalyser$ELFSectionHeaders
+  #262 = NameAndType        #140:#349     // "<init>":(ZZLjava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+  #263 = NameAndType        #350:#351     // getEntries:()Ljava/util/List;
+  #264 = Class              #352          // java/util/List
+  #265 = NameAndType        #353:#354     // iterator:()Ljava/util/Iterator;
+  #266 = Class              #321          // java/util/Iterator
+  #267 = NameAndType        #355:#128     // hasNext:()Z
+  #268 = NameAndType        #356:#357     // next:()Ljava/lang/Object;
+  #269 = Utf8               com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry
+  #270 = Utf8               .ARM.attributes
+  #271 = NameAndType        #358:#133     // getName:()Ljava/lang/String;
+  #272 = NameAndType        #329:#359     // equals:(Ljava/lang/Object;)Z
+  #273 = NameAndType        #360:#361     // getSize:()I
+  #274 = NameAndType        #362:#361     // getOffset:()I
+  #275 = NameAndType        #363:#364     // rewind:()Ljava/nio/Buffer;
+  #276 = NameAndType        #179:#180     // parseArmAttributes:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+  #277 = NameAndType        #365:#366     // valueOf:(I)Ljava/lang/Integer;
+  #278 = NameAndType        #345:#367     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #279 = Utf8               java/util/Map
+  #280 = NameAndType        #368:#198     // ABI_VFP_args:Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+  #281 = Utf8               java/lang/Integer
+  #282 = Utf8               java/math/BigInteger
+  #283 = NameAndType        #369:#361     // intValue:()I
+  #284 = NameAndType        #345:#333     // get:()B
+  #285 = Class              #370          // java/util/Collections
+  #286 = NameAndType        #371:#163     // EMPTY_MAP:Ljava/util/Map;
+  #287 = NameAndType        #206:#361     // position:()I
+  #288 = NameAndType        #372:#361     // limit:()I
+  #289 = NameAndType        #347:#361     // getInt:()I
+  #290 = NameAndType        #202:#203     // readNTBS:(Ljava/nio/ByteBuffer;Ljava/lang/Integer;)Ljava/lang/String;
+  #291 = Utf8               aeabi
+  #292 = NameAndType        #189:#180     // parseAEABI:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+  #293 = Class              #373          // java/nio/Buffer
+  #294 = NameAndType        #206:#374     // position:(I)Ljava/nio/Buffer;
+  #295 = Utf8               java/util/HashMap
+  #296 = NameAndType        #214:#215     // readULEB128:(Ljava/nio/ByteBuffer;)Ljava/math/BigInteger;
+  #297 = NameAndType        #195:#180     // parseFileAttribute:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+  #298 = NameAndType        #375:#376     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #299 = NameAndType        #377:#378     // getByValue:(I)Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+  #300 = NameAndType        #379:#380     // $SwitchMap$com$sun$jna$ELFAnalyser$ArmAeabiAttributesTag$ParameterType:[I
+  #301 = NameAndType        #381:#383     // getParameterType:()Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType;
+  #302 = Class              #384          // com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType
+  #303 = NameAndType        #385:#361     // ordinal:()I
+  #304 = NameAndType        #345:#386     // get:([B)Ljava/nio/ByteBuffer;
+  #305 = Utf8               java/lang/String
+  #306 = Utf8               ASCII
+  #307 = NameAndType        #140:#387     // "<init>":([BLjava/lang/String;)V
+  #308 = Utf8               java/io/UnsupportedEncodingException
+  #309 = Utf8               java/lang/RuntimeException
+  #310 = NameAndType        #140:#388     // "<init>":(Ljava/lang/Throwable;)V
+  #311 = NameAndType        #389:#217     // ZERO:Ljava/math/BigInteger;
+  #312 = NameAndType        #365:#390     // valueOf:(J)Ljava/math/BigInteger;
+  #313 = NameAndType        #391:#392     // shiftLeft:(I)Ljava/math/BigInteger;
+  #314 = NameAndType        #393:#394     // or:(Ljava/math/BigInteger;)Ljava/math/BigInteger;
+  #315 = Utf8               java/lang/Object
+  #316 = Utf8               com/sun/jna/ELFAnalyser$1
+  #317 = Utf8               com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag
+  #318 = Utf8               java/nio/ByteBuffer
+  #319 = Utf8               java/nio/ByteOrder
+  #320 = Utf8               java/lang/Throwable
+  #321 = Utf8               java/util/Iterator
+  #322 = Utf8               (Ljava/lang/String;Ljava/lang/String;)V
+  #323 = Utf8               ()J
+  #324 = Utf8               seek
+  #325 = Utf8               (J)V
+  #326 = Utf8               read
+  #327 = Utf8               ([B)I
+  #328 = Utf8               java/util/Arrays
+  #329 = Utf8               equals
+  #330 = Utf8               ([B[B)Z
+  #331 = Utf8               close
+  #332 = Utf8               readByte
+  #333 = Utf8               ()B
+  #334 = Utf8               allocate
+  #335 = Utf8               (I)Ljava/nio/ByteBuffer;
+  #336 = Utf8               getChannel
+  #337 = Utf8               ()Ljava/nio/channels/FileChannel;
+  #338 = Utf8               java/nio/channels/FileChannel
+  #339 = Utf8               (Ljava/nio/ByteBuffer;J)I
+  #340 = Utf8               BIG_ENDIAN
+  #341 = Utf8               Ljava/nio/ByteOrder;
+  #342 = Utf8               LITTLE_ENDIAN
+  #343 = Utf8               order
+  #344 = Utf8               (Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
+  #345 = Utf8               get
+  #346 = Utf8               (I)B
+  #347 = Utf8               getInt
+  #348 = Utf8               (I)I
+  #349 = Utf8               (ZZLjava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+  #350 = Utf8               getEntries
+  #351 = Utf8               ()Ljava/util/List;
+  #352 = Utf8               java/util/List
+  #353 = Utf8               iterator
+  #354 = Utf8               ()Ljava/util/Iterator;
+  #355 = Utf8               hasNext
+  #356 = Utf8               next
+  #357 = Utf8               ()Ljava/lang/Object;
+  #358 = Utf8               getName
+  #359 = Utf8               (Ljava/lang/Object;)Z
+  #360 = Utf8               getSize
+  #361 = Utf8               ()I
+  #362 = Utf8               getOffset
+  #363 = Utf8               rewind
+  #364 = Utf8               ()Ljava/nio/Buffer;
+  #365 = Utf8               valueOf
+  #366 = Utf8               (I)Ljava/lang/Integer;
+  #367 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #368 = Utf8               ABI_VFP_args
+  #369 = Utf8               intValue
+  #370 = Utf8               java/util/Collections
+  #371 = Utf8               EMPTY_MAP
+  #372 = Utf8               limit
+  #373 = Utf8               java/nio/Buffer
+  #374 = Utf8               (I)Ljava/nio/Buffer;
+  #375 = Utf8               put
+  #376 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #377 = Utf8               getByValue
+  #378 = Utf8               (I)Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+  #379 = Utf8               $SwitchMap$com$sun$jna$ELFAnalyser$ArmAeabiAttributesTag$ParameterType
+  #380 = Utf8               [I
+  #381 = Utf8               getParameterType
+  #382 = Utf8               ParameterType
+  #383 = Utf8               ()Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType;
+  #384 = Utf8               com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType
+  #385 = Utf8               ordinal
+  #386 = Utf8               ([B)Ljava/nio/ByteBuffer;
+  #387 = Utf8               ([BLjava/lang/String;)V
+  #388 = Utf8               (Ljava/lang/Throwable;)V
+  #389 = Utf8               ZERO
+  #390 = Utf8               (J)Ljava/math/BigInteger;
+  #391 = Utf8               shiftLeft
+  #392 = Utf8               (I)Ljava/math/BigInteger;
+  #393 = Utf8               or
+  #394 = Utf8               (Ljava/math/BigInteger;)Ljava/math/BigInteger;
+{
+  private static final byte[] ELF_MAGIC;
+    descriptor: [B
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final int EF_ARM_ABI_FLOAT_HARD;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 1024
+
+  private static final int EF_ARM_ABI_FLOAT_SOFT;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 512
+
+  private static final int EI_DATA_BIG_ENDIAN;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 2
+
+  private static final int E_MACHINE_ARM;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 40
+
+  private static final int EI_CLASS_64BIT;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 2
+
+  private final java.lang.String filename;
+    descriptor: Ljava/lang/String;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private boolean ELF;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean _64Bit;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean bigEndian;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean armHardFloatFlag;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean armSoftFloatFlag;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean armEabiAapcsVfp;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean arm;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  public static com.sun.jna.ELFAnalyser analyse(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)Lcom/sun/jna/ELFAnalyser;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=2, args_size=1
+         0: new           #1                  // class com/sun/jna/ELFAnalyser
+         3: dup
+         4: aload_0
+         5: invokespecial #2                  // Method "<init>":(Ljava/lang/String;)V
+         8: astore_1
+         9: aload_1
+        10: invokespecial #3                  // Method runDetection:()V
+        13: aload_1
+        14: areturn
+      LineNumberTable:
+        line 67: 0
+        line 68: 9
+        line 69: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0 filename   Ljava/lang/String;
+            9       6     1   res   Lcom/sun/jna/ELFAnalyser;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean isELF();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #4                  // Field ELF:Z
+         4: ireturn
+      LineNumberTable:
+        line 85: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/sun/jna/ELFAnalyser;
+
+  public boolean is64Bit();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #5                  // Field _64Bit:Z
+         4: ireturn
+      LineNumberTable:
+        line 93: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/sun/jna/ELFAnalyser;
+
+  public boolean isBigEndian();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #6                  // Field bigEndian:Z
+         4: ireturn
+      LineNumberTable:
+        line 101: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/sun/jna/ELFAnalyser;
+
+  public java.lang.String getFilename();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #7                  // Field filename:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 108: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/sun/jna/ELFAnalyser;
+
+  public boolean isArmHardFloat();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #8                  // Method isArmEabiAapcsVfp:()Z
+         4: ifne          14
+         7: aload_0
+         8: invokevirtual #9                  // Method isArmHardFloatFlag:()Z
+        11: ifeq          18
+        14: iconst_1
+        15: goto          19
+        18: iconst_0
+        19: ireturn
+      LineNumberTable:
+        line 112: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lcom/sun/jna/ELFAnalyser;
+      StackMapTable: number_of_entries = 3
+        frame_type = 14 /* same */
+        frame_type = 3 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public boolean isArmEabiAapcsVfp();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field armEabiAapcsVfp:Z
+         4: ireturn
+      LineNumberTable:
+        line 120: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/sun/jna/ELFAnalyser;
+
+  public boolean isArmHardFloatFlag();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #11                 // Field armHardFloatFlag:Z
+         4: ireturn
+      LineNumberTable:
+        line 128: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/sun/jna/ELFAnalyser;
+
+  public boolean isArmSoftFloatFlag();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #12                 // Field armSoftFloatFlag:Z
+         4: ireturn
+      LineNumberTable:
+        line 136: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/sun/jna/ELFAnalyser;
+
+  public boolean isArm();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field arm:Z
+         4: ireturn
+      LineNumberTable:
+        line 144: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/sun/jna/ELFAnalyser;
+
+  private com.sun.jna.ELFAnalyser(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iconst_0
+         6: putfield      #4                  // Field ELF:Z
+         9: aload_0
+        10: iconst_0
+        11: putfield      #5                  // Field _64Bit:Z
+        14: aload_0
+        15: iconst_0
+        16: putfield      #6                  // Field bigEndian:Z
+        19: aload_0
+        20: iconst_0
+        21: putfield      #11                 // Field armHardFloatFlag:Z
+        24: aload_0
+        25: iconst_0
+        26: putfield      #12                 // Field armSoftFloatFlag:Z
+        29: aload_0
+        30: iconst_0
+        31: putfield      #10                 // Field armEabiAapcsVfp:Z
+        34: aload_0
+        35: iconst_0
+        36: putfield      #13                 // Field arm:Z
+        39: aload_0
+        40: aload_1
+        41: putfield      #7                  // Field filename:Ljava/lang/String;
+        44: return
+      LineNumberTable:
+        line 147: 0
+        line 73: 4
+        line 74: 9
+        line 75: 14
+        line 76: 19
+        line 77: 24
+        line 78: 29
+        line 79: 34
+        line 148: 39
+        line 149: 44
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      45     0  this   Lcom/sun/jna/ELFAnalyser;
+            0      45     1 filename   Ljava/lang/String;
+
+  private void runDetection() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=8, args_size=1
+         0: new           #15                 // class java/io/RandomAccessFile
+         3: dup
+         4: aload_0
+         5: getfield      #7                  // Field filename:Ljava/lang/String;
+         8: ldc           #16                 // String r
+        10: invokespecial #17                 // Method java/io/RandomAccessFile."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+        13: astore_1
+        14: aload_1
+        15: invokevirtual #18                 // Method java/io/RandomAccessFile.length:()J
+        18: ldc2_w        #19                 // long 4l
+        21: lcmp
+        22: ifle          55
+        25: iconst_4
+        26: newarray       byte
+        28: astore_2
+        29: aload_1
+        30: lconst_0
+        31: invokevirtual #21                 // Method java/io/RandomAccessFile.seek:(J)V
+        34: aload_1
+        35: aload_2
+        36: invokevirtual #22                 // Method java/io/RandomAccessFile.read:([B)I
+        39: pop
+        40: aload_2
+        41: getstatic     #23                 // Field ELF_MAGIC:[B
+        44: invokestatic  #24                 // Method java/util/Arrays.equals:([B[B)Z
+        47: ifeq          55
+        50: aload_0
+        51: iconst_1
+        52: putfield      #4                  // Field ELF:Z
+        55: aload_0
+        56: getfield      #4                  // Field ELF:Z
+        59: ifne          71
+        62: aload_1
+        63: invokevirtual #25                 // Method java/io/RandomAccessFile.close:()V
+        66: goto          70
+        69: astore_2
+        70: return
+        71: aload_1
+        72: ldc2_w        #19                 // long 4l
+        75: invokevirtual #21                 // Method java/io/RandomAccessFile.seek:(J)V
+        78: aload_1
+        79: invokevirtual #27                 // Method java/io/RandomAccessFile.readByte:()B
+        82: istore_2
+        83: aload_1
+        84: invokevirtual #27                 // Method java/io/RandomAccessFile.readByte:()B
+        87: istore_3
+        88: aload_0
+        89: iload_2
+        90: iconst_2
+        91: if_icmpne     98
+        94: iconst_1
+        95: goto          99
+        98: iconst_0
+        99: putfield      #5                  // Field _64Bit:Z
+       102: aload_0
+       103: iload_3
+       104: iconst_2
+       105: if_icmpne     112
+       108: iconst_1
+       109: goto          113
+       112: iconst_0
+       113: putfield      #6                  // Field bigEndian:Z
+       116: aload_1
+       117: lconst_0
+       118: invokevirtual #21                 // Method java/io/RandomAccessFile.seek:(J)V
+       121: aload_0
+       122: getfield      #5                  // Field _64Bit:Z
+       125: ifeq          133
+       128: bipush        64
+       130: goto          135
+       133: bipush        52
+       135: invokestatic  #28                 // Method java/nio/ByteBuffer.allocate:(I)Ljava/nio/ByteBuffer;
+       138: astore        4
+       140: aload_1
+       141: invokevirtual #29                 // Method java/io/RandomAccessFile.getChannel:()Ljava/nio/channels/FileChannel;
+       144: aload         4
+       146: lconst_0
+       147: invokevirtual #30                 // Method java/nio/channels/FileChannel.read:(Ljava/nio/ByteBuffer;J)I
+       150: pop
+       151: aload         4
+       153: aload_0
+       154: getfield      #6                  // Field bigEndian:Z
+       157: ifeq          166
+       160: getstatic     #31                 // Field java/nio/ByteOrder.BIG_ENDIAN:Ljava/nio/ByteOrder;
+       163: goto          169
+       166: getstatic     #32                 // Field java/nio/ByteOrder.LITTLE_ENDIAN:Ljava/nio/ByteOrder;
+       169: invokevirtual #33                 // Method java/nio/ByteBuffer.order:(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
+       172: pop
+       173: aload_0
+       174: aload         4
+       176: bipush        18
+       178: invokevirtual #34                 // Method java/nio/ByteBuffer.get:(I)B
+       181: bipush        40
+       183: if_icmpne     190
+       186: iconst_1
+       187: goto          191
+       190: iconst_0
+       191: putfield      #13                 // Field arm:Z
+       194: aload_0
+       195: getfield      #13                 // Field arm:Z
+       198: ifeq          271
+       201: aload         4
+       203: aload_0
+       204: getfield      #5                  // Field _64Bit:Z
+       207: ifeq          215
+       210: bipush        48
+       212: goto          217
+       215: bipush        36
+       217: invokevirtual #35                 // Method java/nio/ByteBuffer.getInt:(I)I
+       220: istore        5
+       222: aload_0
+       223: iload         5
+       225: sipush        1024
+       228: iand
+       229: sipush        1024
+       232: if_icmpne     239
+       235: iconst_1
+       236: goto          240
+       239: iconst_0
+       240: putfield      #11                 // Field armHardFloatFlag:Z
+       243: aload_0
+       244: iload         5
+       246: sipush        512
+       249: iand
+       250: sipush        512
+       253: if_icmpne     260
+       256: iconst_1
+       257: goto          261
+       260: iconst_0
+       261: putfield      #12                 // Field armSoftFloatFlag:Z
+       264: aload_0
+       265: aload         4
+       267: aload_1
+       268: invokespecial #36                 // Method parseEabiAapcsVfp:(Ljava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+       271: aload_1
+       272: invokevirtual #25                 // Method java/io/RandomAccessFile.close:()V
+       275: goto          296
+       278: astore_2
+       279: goto          296
+       282: astore        6
+       284: aload_1
+       285: invokevirtual #25                 // Method java/io/RandomAccessFile.close:()V
+       288: goto          293
+       291: astore        7
+       293: aload         6
+       295: athrow
+       296: return
+      Exception table:
+         from    to  target type
+            62    66    69   Class java/io/IOException
+           271   275   278   Class java/io/IOException
+            14    62   282   any
+            71   271   282   any
+           284   288   291   Class java/io/IOException
+           282   284   282   any
+      LineNumberTable:
+        line 152: 0
+        line 156: 14
+        line 157: 25
+        line 158: 29
+        line 159: 34
+        line 160: 40
+        line 161: 50
+        line 164: 55
+        line 194: 62
+        line 197: 66
+        line 195: 69
+        line 165: 70
+        line 167: 71
+        line 170: 78
+        line 171: 83
+        line 172: 88
+        line 173: 102
+        line 174: 116
+        line 176: 121
+        line 177: 140
+        line 179: 151
+        line 182: 173
+        line 184: 194
+        line 186: 201
+        line 187: 222
+        line 188: 243
+        line 190: 264
+        line 194: 271
+        line 197: 275
+        line 195: 278
+        line 198: 279
+        line 193: 282
+        line 194: 284
+        line 197: 288
+        line 195: 291
+        line 198: 293
+        line 199: 296
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           29      26     2 magic   [B
+          222      49     5 flags   I
+           83     188     2 sizeIndicator   B
+           88     183     3 endianessIndicator   B
+          140     131     4 headerData   Ljava/nio/ByteBuffer;
+            0     297     0  this   Lcom/sun/jna/ELFAnalyser;
+           14     283     1   raf   Ljava/io/RandomAccessFile;
+      StackMapTable: number_of_entries = 26
+        frame_type = 252 /* append */
+          offset_delta = 55
+          locals = [ class java/io/RandomAccessFile ]
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 0 /* same */
+        frame_type = 0 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 26
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int ]
+          stack = [ class com/sun/jna/ELFAnalyser ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int ]
+          stack = [ class com/sun/jna/ELFAnalyser, int ]
+        frame_type = 76 /* same_locals_1_stack_item */
+          stack = [ class com/sun/jna/ELFAnalyser ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int ]
+          stack = [ class com/sun/jna/ELFAnalyser, int ]
+        frame_type = 19 /* same */
+        frame_type = 65 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int, class java/nio/ByteBuffer ]
+          stack = [ class java/nio/ByteBuffer ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int, class java/nio/ByteBuffer ]
+          stack = [ class java/nio/ByteBuffer, class java/nio/ByteOrder ]
+        frame_type = 84 /* same_locals_1_stack_item */
+          stack = [ class com/sun/jna/ELFAnalyser ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int, class java/nio/ByteBuffer ]
+          stack = [ class com/sun/jna/ELFAnalyser, int ]
+        frame_type = 87 /* same_locals_1_stack_item */
+          stack = [ class java/nio/ByteBuffer ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int, class java/nio/ByteBuffer ]
+          stack = [ class java/nio/ByteBuffer, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 21
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int, class java/nio/ByteBuffer, int ]
+          stack = [ class com/sun/jna/ELFAnalyser ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int, class java/nio/ByteBuffer, int ]
+          stack = [ class com/sun/jna/ELFAnalyser, int ]
+        frame_type = 83 /* same_locals_1_stack_item */
+          stack = [ class com/sun/jna/ELFAnalyser ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, int, int, class java/nio/ByteBuffer, int ]
+          stack = [ class com/sun/jna/ELFAnalyser, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile ]
+          stack = []
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 8
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile, top, top, top, top, class java/lang/Throwable ]
+          stack = [ class java/io/IOException ]
+        frame_type = 1 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class com/sun/jna/ELFAnalyser, class java/io/RandomAccessFile ]
+          stack = []
+    Exceptions:
+      throws java.io.IOException
+
+  private void parseEabiAapcsVfp(java.nio.ByteBuffer, java.io.RandomAccessFile) throws java.io.IOException;
+    descriptor: (Ljava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=10, args_size=3
+         0: new           #37                 // class com/sun/jna/ELFAnalyser$ELFSectionHeaders
+         3: dup
+         4: aload_0
+         5: getfield      #5                  // Field _64Bit:Z
+         8: aload_0
+         9: getfield      #6                  // Field bigEndian:Z
+        12: aload_1
+        13: aload_2
+        14: invokespecial #38                 // Method com/sun/jna/ELFAnalyser$ELFSectionHeaders."<init>":(ZZLjava/nio/ByteBuffer;Ljava/io/RandomAccessFile;)V
+        17: astore_3
+        18: aload_3
+        19: invokevirtual #39                 // Method com/sun/jna/ELFAnalyser$ELFSectionHeaders.getEntries:()Ljava/util/List;
+        22: invokeinterface #40,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        27: astore        4
+        29: aload         4
+        31: invokeinterface #41,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        36: ifeq          220
+        39: aload         4
+        41: invokeinterface #42,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        46: checkcast     #43                 // class com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry
+        49: astore        5
+        51: ldc           #44                 // String .ARM.attributes
+        53: aload         5
+        55: invokevirtual #45                 // Method com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry.getName:()Ljava/lang/String;
+        58: invokevirtual #46                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        61: ifeq          217
+        64: aload         5
+        66: invokevirtual #47                 // Method com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry.getSize:()I
+        69: invokestatic  #28                 // Method java/nio/ByteBuffer.allocate:(I)Ljava/nio/ByteBuffer;
+        72: astore        6
+        74: aload         6
+        76: aload_0
+        77: getfield      #6                  // Field bigEndian:Z
+        80: ifeq          89
+        83: getstatic     #31                 // Field java/nio/ByteOrder.BIG_ENDIAN:Ljava/nio/ByteOrder;
+        86: goto          92
+        89: getstatic     #32                 // Field java/nio/ByteOrder.LITTLE_ENDIAN:Ljava/nio/ByteOrder;
+        92: invokevirtual #33                 // Method java/nio/ByteBuffer.order:(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
+        95: pop
+        96: aload_2
+        97: invokevirtual #29                 // Method java/io/RandomAccessFile.getChannel:()Ljava/nio/channels/FileChannel;
+       100: aload         6
+       102: aload         5
+       104: invokevirtual #48                 // Method com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry.getOffset:()I
+       107: i2l
+       108: invokevirtual #30                 // Method java/nio/channels/FileChannel.read:(Ljava/nio/ByteBuffer;J)I
+       111: pop
+       112: aload         6
+       114: invokevirtual #49                 // Method java/nio/ByteBuffer.rewind:()Ljava/nio/Buffer;
+       117: pop
+       118: aload         6
+       120: invokestatic  #50                 // Method parseArmAttributes:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+       123: astore        7
+       125: aload         7
+       127: iconst_1
+       128: invokestatic  #51                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       131: invokeinterface #52,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       136: checkcast     #53                 // class java/util/Map
+       139: astore        8
+       141: aload         8
+       143: ifnonnull     149
+       146: goto          29
+       149: aload         8
+       151: getstatic     #54                 // Field com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag.ABI_VFP_args:Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+       154: invokeinterface #52,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       159: astore        9
+       161: aload         9
+       163: instanceof    #55                 // class java/lang/Integer
+       166: ifeq          192
+       169: aload         9
+       171: checkcast     #55                 // class java/lang/Integer
+       174: iconst_1
+       175: invokestatic  #51                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       178: invokevirtual #56                 // Method java/lang/Integer.equals:(Ljava/lang/Object;)Z
+       181: ifeq          192
+       184: aload_0
+       185: iconst_1
+       186: putfield      #10                 // Field armEabiAapcsVfp:Z
+       189: goto          217
+       192: aload         9
+       194: instanceof    #57                 // class java/math/BigInteger
+       197: ifeq          217
+       200: aload         9
+       202: checkcast     #57                 // class java/math/BigInteger
+       205: invokevirtual #58                 // Method java/math/BigInteger.intValue:()I
+       208: iconst_1
+       209: if_icmpne     217
+       212: aload_0
+       213: iconst_1
+       214: putfield      #10                 // Field armEabiAapcsVfp:Z
+       217: goto          29
+       220: return
+      LineNumberTable:
+        line 202: 0
+        line 204: 18
+        line 205: 51
+        line 206: 64
+        line 207: 74
+        line 208: 96
+        line 209: 112
+        line 210: 118
+        line 211: 125
+        line 212: 141
+        line 213: 146
+        line 222: 149
+        line 223: 161
+        line 224: 184
+        line 225: 192
+        line 226: 212
+        line 229: 217
+        line 230: 220
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           74     143     6 armAttributesBuffer   Ljava/nio/ByteBuffer;
+          125      92     7 armAttributes   Ljava/util/Map;
+          141      76     8 fileAttributes   Ljava/util/Map;
+          161      56     9 abiVFPargValue   Ljava/lang/Object;
+           51     166     5  eshe   Lcom/sun/jna/ELFAnalyser$ELFSectionHeaderEntry;
+            0     221     0  this   Lcom/sun/jna/ELFAnalyser;
+            0     221     1 headerData   Ljava/nio/ByteBuffer;
+            0     221     2   raf   Ljava/io/RandomAccessFile;
+           18     203     3 sectionHeaders   Lcom/sun/jna/ELFAnalyser$ELFSectionHeaders;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+          125      92     7 armAttributes   Ljava/util/Map<Ljava/lang/Integer;Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;>;
+          141      76     8 fileAttributes   Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;
+      StackMapTable: number_of_entries = 7
+        frame_type = 253 /* append */
+          offset_delta = 29
+          locals = [ class com/sun/jna/ELFAnalyser$ELFSectionHeaders, class java/util/Iterator ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 59
+          locals = [ class com/sun/jna/ELFAnalyser, class java/nio/ByteBuffer, class java/io/RandomAccessFile, class com/sun/jna/ELFAnalyser$ELFSectionHeaders, class java/util/Iterator, class com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry, class java/nio/ByteBuffer ]
+          stack = [ class java/nio/ByteBuffer ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class com/sun/jna/ELFAnalyser, class java/nio/ByteBuffer, class java/io/RandomAccessFile, class com/sun/jna/ELFAnalyser$ELFSectionHeaders, class java/util/Iterator, class com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry, class java/nio/ByteBuffer ]
+          stack = [ class java/nio/ByteBuffer, class java/nio/ByteOrder ]
+        frame_type = 253 /* append */
+          offset_delta = 56
+          locals = [ class java/util/Map, class java/util/Map ]
+        frame_type = 252 /* append */
+          offset_delta = 42
+          locals = [ class java/lang/Object ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 24
+          locals = [ class com/sun/jna/ELFAnalyser, class java/nio/ByteBuffer, class java/io/RandomAccessFile, class com/sun/jna/ELFAnalyser$ELFSectionHeaders, class java/util/Iterator ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 2
+    Exceptions:
+      throws java.io.IOException
+
+  private static java.util.Map<java.lang.Integer, java.util.Map<com.sun.jna.ELFAnalyser$ArmAeabiAttributesTag, java.lang.Object>> parseArmAttributes(java.nio.ByteBuffer);
+    descriptor: (Ljava/nio/ByteBuffer;)Ljava/util/Map;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=5, args_size=1
+         0: aload_0
+         1: invokevirtual #59                 // Method java/nio/ByteBuffer.get:()B
+         4: istore_1
+         5: iload_1
+         6: bipush        65
+         8: if_icmpeq     15
+        11: getstatic     #60                 // Field java/util/Collections.EMPTY_MAP:Ljava/util/Map;
+        14: areturn
+        15: aload_0
+        16: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        19: aload_0
+        20: invokevirtual #62                 // Method java/nio/ByteBuffer.limit:()I
+        23: if_icmpge     76
+        26: aload_0
+        27: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        30: istore_2
+        31: aload_0
+        32: invokevirtual #63                 // Method java/nio/ByteBuffer.getInt:()I
+        35: istore_3
+        36: iload_3
+        37: ifgt          43
+        40: goto          76
+        43: aload_0
+        44: aconst_null
+        45: invokestatic  #64                 // Method readNTBS:(Ljava/nio/ByteBuffer;Ljava/lang/Integer;)Ljava/lang/String;
+        48: astore        4
+        50: ldc           #65                 // String aeabi
+        52: aload         4
+        54: invokevirtual #46                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        57: ifeq          65
+        60: aload_0
+        61: invokestatic  #66                 // Method parseAEABI:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+        64: areturn
+        65: aload_0
+        66: iload_2
+        67: iload_3
+        68: iadd
+        69: invokevirtual #67                 // Method java/nio/Buffer.position:(I)Ljava/nio/Buffer;
+        72: pop
+        73: goto          15
+        76: getstatic     #60                 // Field java/util/Collections.EMPTY_MAP:Ljava/util/Map;
+        79: areturn
+      LineNumberTable:
+        line 500: 0
+        line 501: 5
+        line 504: 11
+        line 506: 15
+        line 507: 26
+        line 508: 31
+        line 509: 36
+        line 511: 40
+        line 513: 43
+        line 514: 50
+        line 515: 60
+        line 517: 65
+        line 518: 73
+        line 519: 76
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           31      42     2 posSectionStart   I
+           36      37     3 sectionLength   I
+           50      23     4 vendorName   Ljava/lang/String;
+            0      80     0    bb   Ljava/nio/ByteBuffer;
+            5      75     1 format   B
+      StackMapTable: number_of_entries = 4
+        frame_type = 252 /* append */
+          offset_delta = 15
+          locals = [ int ]
+        frame_type = 253 /* append */
+          offset_delta = 27
+          locals = [ int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class java/lang/String ]
+        frame_type = 248 /* chop */
+          offset_delta = 10
+    Signature: #188                         // (Ljava/nio/ByteBuffer;)Ljava/util/Map<Ljava/lang/Integer;Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;>;
+
+  private static java.util.Map<java.lang.Integer, java.util.Map<com.sun.jna.ELFAnalyser$ArmAeabiAttributesTag, java.lang.Object>> parseAEABI(java.nio.ByteBuffer);
+    descriptor: (Ljava/nio/ByteBuffer;)Ljava/util/Map;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=5, args_size=1
+         0: new           #68                 // class java/util/HashMap
+         3: dup
+         4: invokespecial #69                 // Method java/util/HashMap."<init>":()V
+         7: astore_1
+         8: aload_0
+         9: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        12: aload_0
+        13: invokevirtual #62                 // Method java/nio/ByteBuffer.limit:()I
+        16: if_icmpge     70
+        19: aload_0
+        20: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        23: istore_2
+        24: aload_0
+        25: invokestatic  #70                 // Method readULEB128:(Ljava/nio/ByteBuffer;)Ljava/math/BigInteger;
+        28: invokevirtual #58                 // Method java/math/BigInteger.intValue:()I
+        31: istore_3
+        32: aload_0
+        33: invokevirtual #63                 // Method java/nio/ByteBuffer.getInt:()I
+        36: istore        4
+        38: iload_3
+        39: iconst_1
+        40: if_icmpne     58
+        43: aload_1
+        44: iload_3
+        45: invokestatic  #51                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        48: aload_0
+        49: invokestatic  #71                 // Method parseFileAttribute:(Ljava/nio/ByteBuffer;)Ljava/util/Map;
+        52: invokeinterface #72,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        57: pop
+        58: aload_0
+        59: iload_2
+        60: iload         4
+        62: iadd
+        63: invokevirtual #67                 // Method java/nio/Buffer.position:(I)Ljava/nio/Buffer;
+        66: pop
+        67: goto          8
+        70: aload_1
+        71: areturn
+      LineNumberTable:
+        line 523: 0
+        line 524: 8
+        line 525: 19
+        line 526: 24
+        line 527: 32
+        line 528: 38
+        line 529: 43
+        line 531: 58
+        line 532: 67
+        line 533: 70
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           24      43     2   pos   I
+           32      35     3 subsectionTag   I
+           38      29     4 length   I
+            0      72     0 buffer   Ljava/nio/ByteBuffer;
+            8      64     1  data   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            8      64     1  data   Ljava/util/Map<Ljava/lang/Integer;Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;>;
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 8
+          locals = [ class java/util/Map ]
+        frame_type = 254 /* append */
+          offset_delta = 49
+          locals = [ int, int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 11
+    Signature: #188                         // (Ljava/nio/ByteBuffer;)Ljava/util/Map<Ljava/lang/Integer;Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;>;
+
+  private static java.util.Map<com.sun.jna.ELFAnalyser$ArmAeabiAttributesTag, java.lang.Object> parseFileAttribute(java.nio.ByteBuffer);
+    descriptor: (Ljava/nio/ByteBuffer;)Ljava/util/Map;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=4, locals=4, args_size=1
+         0: new           #68                 // class java/util/HashMap
+         3: dup
+         4: invokespecial #69                 // Method java/util/HashMap."<init>":()V
+         7: astore_1
+         8: aload_0
+         9: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        12: aload_0
+        13: invokevirtual #62                 // Method java/nio/ByteBuffer.limit:()I
+        16: if_icmpge     117
+        19: aload_0
+        20: invokestatic  #70                 // Method readULEB128:(Ljava/nio/ByteBuffer;)Ljava/math/BigInteger;
+        23: invokevirtual #58                 // Method java/math/BigInteger.intValue:()I
+        26: istore_2
+        27: iload_2
+        28: invokestatic  #73                 // Method com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag.getByValue:(I)Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+        31: astore_3
+        32: getstatic     #74                 // Field com/sun/jna/ELFAnalyser$1.$SwitchMap$com$sun$jna$ELFAnalyser$ArmAeabiAttributesTag$ParameterType:[I
+        35: aload_3
+        36: invokevirtual #75                 // Method com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag.getParameterType:()Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType;
+        39: invokevirtual #76                 // Method com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType.ordinal:()I
+        42: iaload
+        43: tableswitch   { // 1 to 3
+                       1: 68
+                       2: 86
+                       3: 102
+                 default: 114
+            }
+        68: aload_1
+        69: aload_3
+        70: aload_0
+        71: invokevirtual #63                 // Method java/nio/ByteBuffer.getInt:()I
+        74: invokestatic  #51                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        77: invokeinterface #72,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        82: pop
+        83: goto          114
+        86: aload_1
+        87: aload_3
+        88: aload_0
+        89: aconst_null
+        90: invokestatic  #64                 // Method readNTBS:(Ljava/nio/ByteBuffer;Ljava/lang/Integer;)Ljava/lang/String;
+        93: invokeinterface #72,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        98: pop
+        99: goto          114
+       102: aload_1
+       103: aload_3
+       104: aload_0
+       105: invokestatic  #70                 // Method readULEB128:(Ljava/nio/ByteBuffer;)Ljava/math/BigInteger;
+       108: invokeinterface #72,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       113: pop
+       114: goto          8
+       117: aload_1
+       118: areturn
+      LineNumberTable:
+        line 537: 0
+        line 538: 8
+        line 539: 19
+        line 540: 27
+        line 541: 32
+        line 543: 68
+        line 544: 83
+        line 546: 86
+        line 547: 99
+        line 549: 102
+        line 552: 114
+        line 553: 117
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           27      87     2 tagValue   I
+           32      82     3   tag   Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;
+            0     119     0    bb   Ljava/nio/ByteBuffer;
+            8     111     1 result   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            8     111     1 result   Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;
+      StackMapTable: number_of_entries = 6
+        frame_type = 252 /* append */
+          offset_delta = 8
+          locals = [ class java/util/Map ]
+        frame_type = 253 /* append */
+          offset_delta = 59
+          locals = [ int, class com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag ]
+        frame_type = 17 /* same */
+        frame_type = 15 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 11
+        frame_type = 2 /* same */
+    Signature: #201                         // (Ljava/nio/ByteBuffer;)Ljava/util/Map<Lcom/sun/jna/ELFAnalyser$ArmAeabiAttributesTag;Ljava/lang/Object;>;
+
+  private static java.lang.String readNTBS(java.nio.ByteBuffer, java.lang.Integer);
+    descriptor: (Ljava/nio/ByteBuffer;Ljava/lang/Integer;)Ljava/lang/String;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=4, locals=7, args_size=2
+         0: aload_1
+         1: ifnull        13
+         4: aload_0
+         5: aload_1
+         6: invokevirtual #77                 // Method java/lang/Integer.intValue:()I
+         9: invokevirtual #67                 // Method java/nio/Buffer.position:(I)Ljava/nio/Buffer;
+        12: pop
+        13: aload_0
+        14: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        17: istore_2
+        18: aload_0
+        19: invokevirtual #59                 // Method java/nio/ByteBuffer.get:()B
+        22: istore_3
+        23: iload_3
+        24: ifeq          38
+        27: aload_0
+        28: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        31: aload_0
+        32: invokevirtual #62                 // Method java/nio/ByteBuffer.limit:()I
+        35: if_icmple     18
+        38: aload_0
+        39: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        42: istore        4
+        44: iload         4
+        46: iload_2
+        47: isub
+        48: iconst_1
+        49: isub
+        50: newarray       byte
+        52: astore        5
+        54: aload_0
+        55: iload_2
+        56: invokevirtual #67                 // Method java/nio/Buffer.position:(I)Ljava/nio/Buffer;
+        59: pop
+        60: aload_0
+        61: aload         5
+        63: invokevirtual #78                 // Method java/nio/ByteBuffer.get:([B)Ljava/nio/ByteBuffer;
+        66: pop
+        67: aload_0
+        68: aload_0
+        69: invokevirtual #61                 // Method java/nio/ByteBuffer.position:()I
+        72: iconst_1
+        73: iadd
+        74: invokevirtual #67                 // Method java/nio/Buffer.position:(I)Ljava/nio/Buffer;
+        77: pop
+        78: new           #79                 // class java/lang/String
+        81: dup
+        82: aload         5
+        84: ldc           #80                 // String ASCII
+        86: invokespecial #81                 // Method java/lang/String."<init>":([BLjava/lang/String;)V
+        89: areturn
+        90: astore        6
+        92: new           #83                 // class java/lang/RuntimeException
+        95: dup
+        96: aload         6
+        98: invokespecial #84                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+       101: athrow
+      Exception table:
+         from    to  target type
+            78    89    90   Class java/io/UnsupportedEncodingException
+      LineNumberTable:
+        line 557: 0
+        line 558: 4
+        line 560: 13
+        line 563: 18
+        line 564: 23
+        line 565: 38
+        line 566: 44
+        line 567: 54
+        line 568: 60
+        line 569: 67
+        line 571: 78
+        line 572: 90
+        line 573: 92
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           92      10     6    ex   Ljava/io/UnsupportedEncodingException;
+            0     102     0 buffer   Ljava/nio/ByteBuffer;
+            0     102     1 position   Ljava/lang/Integer;
+           18      84     2 startingPos   I
+           23      79     3 currentByte   B
+           44      58     4 terminatingPosition   I
+           54      48     5  data   [B
+      StackMapTable: number_of_entries = 4
+        frame_type = 13 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 4
+          locals = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 19
+          locals = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 51
+          locals = [ class java/nio/ByteBuffer, class java/lang/Integer, int, int, int, class "[B" ]
+          stack = [ class java/io/UnsupportedEncodingException ]
+
+  private static java.math.BigInteger readULEB128(java.nio.ByteBuffer);
+    descriptor: (Ljava/nio/ByteBuffer;)Ljava/math/BigInteger;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=4, args_size=1
+         0: getstatic     #85                 // Field java/math/BigInteger.ZERO:Ljava/math/BigInteger;
+         3: astore_1
+         4: iconst_0
+         5: istore_2
+         6: aload_0
+         7: invokevirtual #59                 // Method java/nio/ByteBuffer.get:()B
+        10: istore_3
+        11: aload_1
+        12: iload_3
+        13: bipush        127
+        15: iand
+        16: i2l
+        17: invokestatic  #86                 // Method java/math/BigInteger.valueOf:(J)Ljava/math/BigInteger;
+        20: iload_2
+        21: invokevirtual #87                 // Method java/math/BigInteger.shiftLeft:(I)Ljava/math/BigInteger;
+        24: invokevirtual #88                 // Method java/math/BigInteger.or:(Ljava/math/BigInteger;)Ljava/math/BigInteger;
+        27: astore_1
+        28: iload_3
+        29: sipush        128
+        32: iand
+        33: ifne          39
+        36: goto          45
+        39: iinc          2, 7
+        42: goto          6
+        45: aload_1
+        46: areturn
+      LineNumberTable:
+        line 578: 0
+        line 579: 4
+        line 581: 6
+        line 582: 11
+        line 583: 28
+        line 584: 36
+        line 586: 39
+        line 587: 42
+        line 588: 45
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           11      31     3     b   B
+            0      47     0 buffer   Ljava/nio/ByteBuffer;
+            4      43     1 result   Ljava/math/BigInteger;
+            6      41     2 shift   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 6
+          locals = [ class java/math/BigInteger, int ]
+        frame_type = 252 /* append */
+          offset_delta = 32
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 5
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=4, locals=0, args_size=0
+         0: iconst_4
+         1: newarray       byte
+         3: dup
+         4: iconst_0
+         5: bipush        127
+         7: bastore
+         8: dup
+         9: iconst_1
+        10: bipush        69
+        12: bastore
+        13: dup
+        14: iconst_2
+        15: bipush        76
+        17: bastore
+        18: dup
+        19: iconst_3
+        20: bipush        70
+        22: bastore
+        23: putstatic     #23                 // Field ELF_MAGIC:[B
+        26: return
+      LineNumberTable:
+        line 51: 0
+}
+SourceFile: "ELFAnalyser.java"
+InnerClasses:
+  static #90;                             // class com/sun/jna/ELFAnalyser$1
+  static #93= #92 of #1;                  // ArmAeabiAttributesTag=class com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag of class com/sun/jna/ELFAnalyser
+  static #94= #43 of #1;                  // ELFSectionHeaderEntry=class com/sun/jna/ELFAnalyser$ELFSectionHeaderEntry of class com/sun/jna/ELFAnalyser
+  static #95= #37 of #1;                  // ELFSectionHeaders=class com/sun/jna/ELFAnalyser$ELFSectionHeaders of class com/sun/jna/ELFAnalyser
+  public static final #382= #302 of #92;  // ParameterType=class com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag$ParameterType of class com/sun/jna/ELFAnalyser$ArmAeabiAttributesTag

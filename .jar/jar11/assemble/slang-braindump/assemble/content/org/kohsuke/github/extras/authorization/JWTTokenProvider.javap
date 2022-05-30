@@ -1,0 +1,624 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/kohsuke/github/extras/authorization/JWTTokenProvider.class
+  Last modified May 29, 2022; size 5191 bytes
+  SHA-256 checksum f413443c20bbcf253b21e4d538c22bac39dfa40513a1ae203e909b0bb287da45
+  Compiled from "JWTTokenProvider.java"
+public class org.kohsuke.github.extras.authorization.JWTTokenProvider implements org.kohsuke.github.authorization.AuthorizationProvider
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #63                         // org/kohsuke/github/extras/authorization/JWTTokenProvider
+  super_class: #18                        // java/lang/Object
+  interfaces: 1, fields: 4, methods: 9, attributes: 2
+Constant pool:
+    #1 = Methodref          #122.#123     // java/io/File.toPath:()Ljava/nio/file/Path;
+    #2 = Methodref          #63.#124      // org/kohsuke/github/extras/authorization/JWTTokenProvider."<init>":(Ljava/lang/String;Ljava/nio/file/Path;)V
+    #3 = Class              #125          // java/lang/String
+    #4 = Methodref          #126.#127     // java/nio/file/Files.readAllBytes:(Ljava/nio/file/Path;)[B
+    #5 = Fieldref           #128.#129     // java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+    #6 = Methodref          #3.#130       // java/lang/String."<init>":([BLjava/nio/charset/Charset;)V
+    #7 = Methodref          #63.#131      // org/kohsuke/github/extras/authorization/JWTTokenProvider."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+    #8 = Methodref          #63.#132      // org/kohsuke/github/extras/authorization/JWTTokenProvider.getPrivateKeyFromString:(Ljava/lang/String;)Ljava/security/PrivateKey;
+    #9 = Methodref          #63.#133      // org/kohsuke/github/extras/authorization/JWTTokenProvider."<init>":(Ljava/lang/String;Ljava/security/PrivateKey;)V
+   #10 = Methodref          #18.#134      // java/lang/Object."<init>":()V
+   #11 = Fieldref           #135.#136     // java/time/Instant.MIN:Ljava/time/Instant;
+   #12 = Fieldref           #63.#137      // org/kohsuke/github/extras/authorization/JWTTokenProvider.validUntil:Ljava/time/Instant;
+   #13 = Fieldref           #63.#138      // org/kohsuke/github/extras/authorization/JWTTokenProvider.privateKey:Ljava/security/PrivateKey;
+   #14 = Fieldref           #63.#139      // org/kohsuke/github/extras/authorization/JWTTokenProvider.applicationId:Ljava/lang/String;
+   #15 = Methodref          #63.#140      // org/kohsuke/github/extras/authorization/JWTTokenProvider.isNotValid:()Z
+   #16 = Methodref          #63.#141      // org/kohsuke/github/extras/authorization/JWTTokenProvider.refreshJWT:()Ljava/lang/String;
+   #17 = String             #142          // Bearer %s
+   #18 = Class              #143          // java/lang/Object
+   #19 = Methodref          #3.#144       // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+   #20 = Fieldref           #63.#145      // org/kohsuke/github/extras/authorization/JWTTokenProvider.authorization:Ljava/lang/String;
+   #21 = Methodref          #135.#146     // java/time/Instant.now:()Ljava/time/Instant;
+   #22 = Methodref          #135.#147     // java/time/Instant.isAfter:(Ljava/time/Instant;)Z
+   #23 = String             #148          //  RSA
+   #24 = Methodref          #3.#149       // java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+   #25 = Class              #150          // java/security/spec/InvalidKeySpecException
+   #26 = String             #151          // Private key must be a PKCS#8 formatted string, to convert it from PKCS#1 use: openssl pkcs8 -topk8 -inform PEM -outform PEM -in current-key.pem -out new-key.pem -nocrypt
+   #27 = Methodref          #25.#152      // java/security/spec/InvalidKeySpecException."<init>":(Ljava/lang/String;)V
+   #28 = String             #153          // (?m)^--.*
+   #29 = String             #154          //
+   #30 = Methodref          #3.#155       // java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #31 = String             #156          // \\s
+   #32 = String             #157          // RSA
+   #33 = Methodref          #111.#158     // java/security/KeyFactory.getInstance:(Ljava/lang/String;)Ljava/security/KeyFactory;
+   #34 = Methodref          #159.#160     // java/util/Base64.getDecoder:()Ljava/util/Base64$Decoder;
+   #35 = Methodref          #161.#162     // java/util/Base64$Decoder.decode:(Ljava/lang/String;)[B
+   #36 = Class              #163          // java/security/spec/PKCS8EncodedKeySpec
+   #37 = Methodref          #36.#164      // java/security/spec/PKCS8EncodedKeySpec."<init>":([B)V
+   #38 = Methodref          #111.#165     // java/security/KeyFactory.generatePrivate:(Ljava/security/spec/KeySpec;)Ljava/security/PrivateKey;
+   #39 = Class              #166          // java/lang/IllegalArgumentException
+   #40 = Class              #167          // java/lang/StringBuilder
+   #41 = Methodref          #40.#134      // java/lang/StringBuilder."<init>":()V
+   #42 = String             #168          // Failed to decode private key:
+   #43 = Methodref          #40.#169      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #44 = Methodref          #39.#170      // java/lang/IllegalArgumentException.getMessage:()Ljava/lang/String;
+   #45 = Methodref          #40.#171      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #46 = Methodref          #25.#172      // java/security/spec/InvalidKeySpecException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+   #47 = Long               8l
+   #49 = Methodref          #173.#174     // java/time/Duration.ofMinutes:(J)Ljava/time/Duration;
+   #50 = Methodref          #135.#175     // java/time/Instant.plus:(Ljava/time/temporal/TemporalAmount;)Ljava/time/Instant;
+   #51 = Methodref          #63.#176      // org/kohsuke/github/extras/authorization/JWTTokenProvider.getIssuedAt:(Ljava/time/Instant;)Ljava/time/Instant;
+   #52 = Methodref          #177.#178     // io/jsonwebtoken/Jwts.builder:()Lio/jsonwebtoken/JwtBuilder;
+   #53 = Methodref          #179.#180     // java/util/Date.from:(Ljava/time/Instant;)Ljava/util/Date;
+   #54 = InterfaceMethodref #181.#182     // io/jsonwebtoken/JwtBuilder.setIssuedAt:(Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;
+   #55 = InterfaceMethodref #181.#183     // io/jsonwebtoken/JwtBuilder.setExpiration:(Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;
+   #56 = InterfaceMethodref #181.#184     // io/jsonwebtoken/JwtBuilder.setIssuer:(Ljava/lang/String;)Lio/jsonwebtoken/JwtBuilder;
+   #57 = Fieldref           #185.#186     // io/jsonwebtoken/SignatureAlgorithm.RS256:Lio/jsonwebtoken/SignatureAlgorithm;
+   #58 = InterfaceMethodref #181.#187     // io/jsonwebtoken/JwtBuilder.signWith:(Ljava/security/Key;Lio/jsonwebtoken/SignatureAlgorithm;)Lio/jsonwebtoken/JwtBuilder;
+   #59 = Long               2l
+   #61 = Methodref          #135.#188     // java/time/Instant.minus:(Ljava/time/temporal/TemporalAmount;)Ljava/time/Instant;
+   #62 = InterfaceMethodref #181.#189     // io/jsonwebtoken/JwtBuilder.compact:()Ljava/lang/String;
+   #63 = Class              #190          // org/kohsuke/github/extras/authorization/JWTTokenProvider
+   #64 = Class              #191          // org/kohsuke/github/authorization/AuthorizationProvider
+   #65 = Utf8               privateKey
+   #66 = Utf8               Ljava/security/PrivateKey;
+   #67 = Utf8               validUntil
+   #68 = Utf8               Ljava/time/Instant;
+   #69 = Utf8               RuntimeVisibleAnnotations
+   #70 = Utf8               Ljavax/annotation/Nonnull;
+   #71 = Utf8               authorization
+   #72 = Utf8               Ljava/lang/String;
+   #73 = Utf8               applicationId
+   #74 = Utf8               <init>
+   #75 = Utf8               (Ljava/lang/String;Ljava/io/File;)V
+   #76 = Utf8               Code
+   #77 = Utf8               LineNumberTable
+   #78 = Utf8               LocalVariableTable
+   #79 = Utf8               this
+   #80 = Utf8               Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+   #81 = Utf8               keyFile
+   #82 = Utf8               Ljava/io/File;
+   #83 = Utf8               Exceptions
+   #84 = Class              #192          // java/security/GeneralSecurityException
+   #85 = Class              #193          // java/io/IOException
+   #86 = Utf8               (Ljava/lang/String;Ljava/nio/file/Path;)V
+   #87 = Utf8               keyPath
+   #88 = Utf8               Ljava/nio/file/Path;
+   #89 = Utf8               (Ljava/lang/String;Ljava/lang/String;)V
+   #90 = Utf8               keyString
+   #91 = Utf8               (Ljava/lang/String;Ljava/security/PrivateKey;)V
+   #92 = Utf8               getEncodedAuthorization
+   #93 = Utf8               ()Ljava/lang/String;
+   #94 = Utf8               token
+   #95 = Utf8               StackMapTable
+   #96 = Class              #194          // java/lang/Throwable
+   #97 = Utf8               isNotValid
+   #98 = Utf8               ()Z
+   #99 = Utf8               getPrivateKeyFromString
+  #100 = Utf8               (Ljava/lang/String;)Ljava/security/PrivateKey;
+  #101 = Utf8               decode
+  #102 = Utf8               [B
+  #103 = Utf8               keySpecPKCS8
+  #104 = Utf8               Ljava/security/spec/PKCS8EncodedKeySpec;
+  #105 = Utf8               e
+  #106 = Utf8               Ljava/lang/IllegalArgumentException;
+  #107 = Utf8               key
+  #108 = Utf8               privateKeyContent
+  #109 = Utf8               kf
+  #110 = Utf8               Ljava/security/KeyFactory;
+  #111 = Class              #195          // java/security/KeyFactory
+  #112 = Utf8               refreshJWT
+  #113 = Utf8               now
+  #114 = Utf8               expiration
+  #115 = Utf8               issuedAt
+  #116 = Utf8               builder
+  #117 = Utf8               Lio/jsonwebtoken/JwtBuilder;
+  #118 = Utf8               getIssuedAt
+  #119 = Utf8               (Ljava/time/Instant;)Ljava/time/Instant;
+  #120 = Utf8               SourceFile
+  #121 = Utf8               JWTTokenProvider.java
+  #122 = Class              #196          // java/io/File
+  #123 = NameAndType        #197:#198     // toPath:()Ljava/nio/file/Path;
+  #124 = NameAndType        #74:#86       // "<init>":(Ljava/lang/String;Ljava/nio/file/Path;)V
+  #125 = Utf8               java/lang/String
+  #126 = Class              #199          // java/nio/file/Files
+  #127 = NameAndType        #200:#201     // readAllBytes:(Ljava/nio/file/Path;)[B
+  #128 = Class              #202          // java/nio/charset/StandardCharsets
+  #129 = NameAndType        #203:#204     // UTF_8:Ljava/nio/charset/Charset;
+  #130 = NameAndType        #74:#205      // "<init>":([BLjava/nio/charset/Charset;)V
+  #131 = NameAndType        #74:#89       // "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+  #132 = NameAndType        #99:#100      // getPrivateKeyFromString:(Ljava/lang/String;)Ljava/security/PrivateKey;
+  #133 = NameAndType        #74:#91       // "<init>":(Ljava/lang/String;Ljava/security/PrivateKey;)V
+  #134 = NameAndType        #74:#206      // "<init>":()V
+  #135 = Class              #207          // java/time/Instant
+  #136 = NameAndType        #208:#68      // MIN:Ljava/time/Instant;
+  #137 = NameAndType        #67:#68       // validUntil:Ljava/time/Instant;
+  #138 = NameAndType        #65:#66       // privateKey:Ljava/security/PrivateKey;
+  #139 = NameAndType        #73:#72       // applicationId:Ljava/lang/String;
+  #140 = NameAndType        #97:#98       // isNotValid:()Z
+  #141 = NameAndType        #112:#93      // refreshJWT:()Ljava/lang/String;
+  #142 = Utf8               Bearer %s
+  #143 = Utf8               java/lang/Object
+  #144 = NameAndType        #209:#210     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #145 = NameAndType        #71:#72       // authorization:Ljava/lang/String;
+  #146 = NameAndType        #113:#211     // now:()Ljava/time/Instant;
+  #147 = NameAndType        #212:#213     // isAfter:(Ljava/time/Instant;)Z
+  #148 = Utf8                RSA
+  #149 = NameAndType        #214:#215     // contains:(Ljava/lang/CharSequence;)Z
+  #150 = Utf8               java/security/spec/InvalidKeySpecException
+  #151 = Utf8               Private key must be a PKCS#8 formatted string, to convert it from PKCS#1 use: openssl pkcs8 -topk8 -inform PEM -outform PEM -in current-key.pem -out new-key.pem -nocrypt
+  #152 = NameAndType        #74:#216      // "<init>":(Ljava/lang/String;)V
+  #153 = Utf8               (?m)^--.*
+  #154 = Utf8
+  #155 = NameAndType        #217:#218     // replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #156 = Utf8               \\s
+  #157 = Utf8               RSA
+  #158 = NameAndType        #219:#220     // getInstance:(Ljava/lang/String;)Ljava/security/KeyFactory;
+  #159 = Class              #221          // java/util/Base64
+  #160 = NameAndType        #222:#225     // getDecoder:()Ljava/util/Base64$Decoder;
+  #161 = Class              #226          // java/util/Base64$Decoder
+  #162 = NameAndType        #101:#227     // decode:(Ljava/lang/String;)[B
+  #163 = Utf8               java/security/spec/PKCS8EncodedKeySpec
+  #164 = NameAndType        #74:#228      // "<init>":([B)V
+  #165 = NameAndType        #229:#230     // generatePrivate:(Ljava/security/spec/KeySpec;)Ljava/security/PrivateKey;
+  #166 = Utf8               java/lang/IllegalArgumentException
+  #167 = Utf8               java/lang/StringBuilder
+  #168 = Utf8               Failed to decode private key:
+  #169 = NameAndType        #231:#232     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #170 = NameAndType        #233:#93      // getMessage:()Ljava/lang/String;
+  #171 = NameAndType        #234:#93      // toString:()Ljava/lang/String;
+  #172 = NameAndType        #74:#235      // "<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+  #173 = Class              #236          // java/time/Duration
+  #174 = NameAndType        #237:#238     // ofMinutes:(J)Ljava/time/Duration;
+  #175 = NameAndType        #239:#240     // plus:(Ljava/time/temporal/TemporalAmount;)Ljava/time/Instant;
+  #176 = NameAndType        #118:#119     // getIssuedAt:(Ljava/time/Instant;)Ljava/time/Instant;
+  #177 = Class              #241          // io/jsonwebtoken/Jwts
+  #178 = NameAndType        #116:#242     // builder:()Lio/jsonwebtoken/JwtBuilder;
+  #179 = Class              #243          // java/util/Date
+  #180 = NameAndType        #244:#245     // from:(Ljava/time/Instant;)Ljava/util/Date;
+  #181 = Class              #246          // io/jsonwebtoken/JwtBuilder
+  #182 = NameAndType        #247:#248     // setIssuedAt:(Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;
+  #183 = NameAndType        #249:#248     // setExpiration:(Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;
+  #184 = NameAndType        #250:#251     // setIssuer:(Ljava/lang/String;)Lio/jsonwebtoken/JwtBuilder;
+  #185 = Class              #252          // io/jsonwebtoken/SignatureAlgorithm
+  #186 = NameAndType        #253:#254     // RS256:Lio/jsonwebtoken/SignatureAlgorithm;
+  #187 = NameAndType        #255:#256     // signWith:(Ljava/security/Key;Lio/jsonwebtoken/SignatureAlgorithm;)Lio/jsonwebtoken/JwtBuilder;
+  #188 = NameAndType        #257:#240     // minus:(Ljava/time/temporal/TemporalAmount;)Ljava/time/Instant;
+  #189 = NameAndType        #258:#93      // compact:()Ljava/lang/String;
+  #190 = Utf8               org/kohsuke/github/extras/authorization/JWTTokenProvider
+  #191 = Utf8               org/kohsuke/github/authorization/AuthorizationProvider
+  #192 = Utf8               java/security/GeneralSecurityException
+  #193 = Utf8               java/io/IOException
+  #194 = Utf8               java/lang/Throwable
+  #195 = Utf8               java/security/KeyFactory
+  #196 = Utf8               java/io/File
+  #197 = Utf8               toPath
+  #198 = Utf8               ()Ljava/nio/file/Path;
+  #199 = Utf8               java/nio/file/Files
+  #200 = Utf8               readAllBytes
+  #201 = Utf8               (Ljava/nio/file/Path;)[B
+  #202 = Utf8               java/nio/charset/StandardCharsets
+  #203 = Utf8               UTF_8
+  #204 = Utf8               Ljava/nio/charset/Charset;
+  #205 = Utf8               ([BLjava/nio/charset/Charset;)V
+  #206 = Utf8               ()V
+  #207 = Utf8               java/time/Instant
+  #208 = Utf8               MIN
+  #209 = Utf8               format
+  #210 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #211 = Utf8               ()Ljava/time/Instant;
+  #212 = Utf8               isAfter
+  #213 = Utf8               (Ljava/time/Instant;)Z
+  #214 = Utf8               contains
+  #215 = Utf8               (Ljava/lang/CharSequence;)Z
+  #216 = Utf8               (Ljava/lang/String;)V
+  #217 = Utf8               replaceAll
+  #218 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #219 = Utf8               getInstance
+  #220 = Utf8               (Ljava/lang/String;)Ljava/security/KeyFactory;
+  #221 = Utf8               java/util/Base64
+  #222 = Utf8               getDecoder
+  #223 = Utf8               Decoder
+  #224 = Utf8               InnerClasses
+  #225 = Utf8               ()Ljava/util/Base64$Decoder;
+  #226 = Utf8               java/util/Base64$Decoder
+  #227 = Utf8               (Ljava/lang/String;)[B
+  #228 = Utf8               ([B)V
+  #229 = Utf8               generatePrivate
+  #230 = Utf8               (Ljava/security/spec/KeySpec;)Ljava/security/PrivateKey;
+  #231 = Utf8               append
+  #232 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #233 = Utf8               getMessage
+  #234 = Utf8               toString
+  #235 = Utf8               (Ljava/lang/String;Ljava/lang/Throwable;)V
+  #236 = Utf8               java/time/Duration
+  #237 = Utf8               ofMinutes
+  #238 = Utf8               (J)Ljava/time/Duration;
+  #239 = Utf8               plus
+  #240 = Utf8               (Ljava/time/temporal/TemporalAmount;)Ljava/time/Instant;
+  #241 = Utf8               io/jsonwebtoken/Jwts
+  #242 = Utf8               ()Lio/jsonwebtoken/JwtBuilder;
+  #243 = Utf8               java/util/Date
+  #244 = Utf8               from
+  #245 = Utf8               (Ljava/time/Instant;)Ljava/util/Date;
+  #246 = Utf8               io/jsonwebtoken/JwtBuilder
+  #247 = Utf8               setIssuedAt
+  #248 = Utf8               (Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;
+  #249 = Utf8               setExpiration
+  #250 = Utf8               setIssuer
+  #251 = Utf8               (Ljava/lang/String;)Lio/jsonwebtoken/JwtBuilder;
+  #252 = Utf8               io/jsonwebtoken/SignatureAlgorithm
+  #253 = Utf8               RS256
+  #254 = Utf8               Lio/jsonwebtoken/SignatureAlgorithm;
+  #255 = Utf8               signWith
+  #256 = Utf8               (Ljava/security/Key;Lio/jsonwebtoken/SignatureAlgorithm;)Lio/jsonwebtoken/JwtBuilder;
+  #257 = Utf8               minus
+  #258 = Utf8               compact
+{
+  private final java.security.PrivateKey privateKey;
+    descriptor: Ljava/security/PrivateKey;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private java.time.Instant validUntil;
+    descriptor: Ljava/time/Instant;
+    flags: (0x0002) ACC_PRIVATE
+    RuntimeVisibleAnnotations:
+      0: #70()
+        javax.annotation.Nonnull
+
+  private java.lang.String authorization;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private final java.lang.String applicationId;
+    descriptor: Ljava/lang/String;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  public org.kohsuke.github.extras.authorization.JWTTokenProvider(java.lang.String, java.io.File) throws java.security.GeneralSecurityException, java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/io/File;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokevirtual #1                  // Method java/io/File.toPath:()Ljava/nio/file/Path;
+         6: invokespecial #2                  // Method "<init>":(Ljava/lang/String;Ljava/nio/file/Path;)V
+         9: return
+      LineNumberTable:
+        line 45: 0
+        line 46: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+            0      10     1 applicationId   Ljava/lang/String;
+            0      10     2 keyFile   Ljava/io/File;
+    Exceptions:
+      throws java.security.GeneralSecurityException, java.io.IOException
+
+  public org.kohsuke.github.extras.authorization.JWTTokenProvider(java.lang.String, java.nio.file.Path) throws java.security.GeneralSecurityException, java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/nio/file/Path;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: new           #3                  // class java/lang/String
+         5: dup
+         6: aload_2
+         7: invokestatic  #4                  // Method java/nio/file/Files.readAllBytes:(Ljava/nio/file/Path;)[B
+        10: getstatic     #5                  // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+        13: invokespecial #6                  // Method java/lang/String."<init>":([BLjava/nio/charset/Charset;)V
+        16: invokespecial #7                  // Method "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+        19: return
+      LineNumberTable:
+        line 49: 0
+        line 50: 19
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+            0      20     1 applicationId   Ljava/lang/String;
+            0      20     2 keyPath   Ljava/nio/file/Path;
+    Exceptions:
+      throws java.security.GeneralSecurityException, java.io.IOException
+
+  public org.kohsuke.github.extras.authorization.JWTTokenProvider(java.lang.String, java.lang.String) throws java.security.GeneralSecurityException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #8                  // Method getPrivateKeyFromString:(Ljava/lang/String;)Ljava/security/PrivateKey;
+         6: invokespecial #9                  // Method "<init>":(Ljava/lang/String;Ljava/security/PrivateKey;)V
+         9: return
+      LineNumberTable:
+        line 53: 0
+        line 54: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+            0      10     1 applicationId   Ljava/lang/String;
+            0      10     2 keyString   Ljava/lang/String;
+    Exceptions:
+      throws java.security.GeneralSecurityException
+
+  public org.kohsuke.github.extras.authorization.JWTTokenProvider(java.lang.String, java.security.PrivateKey);
+    descriptor: (Ljava/lang/String;Ljava/security/PrivateKey;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: invokespecial #10                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: getstatic     #11                 // Field java/time/Instant.MIN:Ljava/time/Instant;
+         8: putfield      #12                 // Field validUntil:Ljava/time/Instant;
+        11: aload_0
+        12: aload_2
+        13: putfield      #13                 // Field privateKey:Ljava/security/PrivateKey;
+        16: aload_0
+        17: aload_1
+        18: putfield      #14                 // Field applicationId:Ljava/lang/String;
+        21: return
+      LineNumberTable:
+        line 56: 0
+        line 34: 4
+        line 57: 11
+        line 58: 16
+        line 59: 21
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+            0      22     1 applicationId   Ljava/lang/String;
+            0      22     2 privateKey   Ljava/security/PrivateKey;
+
+  public java.lang.String getEncodedAuthorization() throws java.io.IOException;
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=4, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: invokevirtual #15                 // Method isNotValid:()Z
+         8: ifeq          33
+        11: aload_0
+        12: invokespecial #16                 // Method refreshJWT:()Ljava/lang/String;
+        15: astore_2
+        16: aload_0
+        17: ldc           #17                 // String Bearer %s
+        19: iconst_1
+        20: anewarray     #18                 // class java/lang/Object
+        23: dup
+        24: iconst_0
+        25: aload_2
+        26: aastore
+        27: invokestatic  #19                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        30: putfield      #20                 // Field authorization:Ljava/lang/String;
+        33: aload_0
+        34: getfield      #20                 // Field authorization:Ljava/lang/String;
+        37: aload_1
+        38: monitorexit
+        39: areturn
+        40: astore_3
+        41: aload_1
+        42: monitorexit
+        43: aload_3
+        44: athrow
+      Exception table:
+         from    to  target type
+             4    39    40   any
+            40    43    40   any
+      LineNumberTable:
+        line 63: 0
+        line 64: 4
+        line 65: 11
+        line 66: 16
+        line 68: 33
+        line 69: 40
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           16      17     2 token   Ljava/lang/String;
+            0      45     0  this   Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 33
+          locals = [ class java/lang/Object ]
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+    Exceptions:
+      throws java.io.IOException
+
+  boolean isNotValid();
+    descriptor: ()Z
+    flags: (0x0000)
+    Code:
+      stack=2, locals=1, args_size=1
+         0: invokestatic  #21                 // Method java/time/Instant.now:()Ljava/time/Instant;
+         3: aload_0
+         4: getfield      #12                 // Field validUntil:Ljava/time/Instant;
+         7: invokevirtual #22                 // Method java/time/Instant.isAfter:(Ljava/time/Instant;)Z
+        10: ireturn
+      LineNumberTable:
+        line 85: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+
+  private static java.security.PrivateKey getPrivateKeyFromString(java.lang.String) throws java.security.GeneralSecurityException;
+    descriptor: (Ljava/lang/String;)Ljava/security/PrivateKey;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=4, locals=5, args_size=1
+         0: aload_0
+         1: ldc           #23                 // String  RSA
+         3: invokevirtual #24                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+         6: ifeq          19
+         9: new           #25                 // class java/security/spec/InvalidKeySpecException
+        12: dup
+        13: ldc           #26                 // String Private key must be a PKCS#8 formatted string, to convert it from PKCS#1 use: openssl pkcs8 -topk8 -inform PEM -outform PEM -in current-key.pem -out new-key.pem -nocrypt
+        15: invokespecial #27                 // Method java/security/spec/InvalidKeySpecException."<init>":(Ljava/lang/String;)V
+        18: athrow
+        19: aload_0
+        20: ldc           #28                 // String (?m)^--.*
+        22: ldc           #29                 // String
+        24: invokevirtual #30                 // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        27: ldc           #31                 // String \\s
+        29: ldc           #29                 // String
+        31: invokevirtual #30                 // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        34: astore_1
+        35: ldc           #32                 // String RSA
+        37: invokestatic  #33                 // Method java/security/KeyFactory.getInstance:(Ljava/lang/String;)Ljava/security/KeyFactory;
+        40: astore_2
+        41: invokestatic  #34                 // Method java/util/Base64.getDecoder:()Ljava/util/Base64$Decoder;
+        44: aload_1
+        45: invokevirtual #35                 // Method java/util/Base64$Decoder.decode:(Ljava/lang/String;)[B
+        48: astore_3
+        49: new           #36                 // class java/security/spec/PKCS8EncodedKeySpec
+        52: dup
+        53: aload_3
+        54: invokespecial #37                 // Method java/security/spec/PKCS8EncodedKeySpec."<init>":([B)V
+        57: astore        4
+        59: aload_2
+        60: aload         4
+        62: invokevirtual #38                 // Method java/security/KeyFactory.generatePrivate:(Ljava/security/spec/KeySpec;)Ljava/security/PrivateKey;
+        65: areturn
+        66: astore_3
+        67: new           #25                 // class java/security/spec/InvalidKeySpecException
+        70: dup
+        71: new           #40                 // class java/lang/StringBuilder
+        74: dup
+        75: invokespecial #41                 // Method java/lang/StringBuilder."<init>":()V
+        78: ldc           #42                 // String Failed to decode private key:
+        80: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        83: aload_3
+        84: invokevirtual #44                 // Method java/lang/IllegalArgumentException.getMessage:()Ljava/lang/String;
+        87: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        90: invokevirtual #45                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        93: aload_3
+        94: invokespecial #46                 // Method java/security/spec/InvalidKeySpecException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+        97: athrow
+      Exception table:
+         from    to  target type
+            41    65    66   Class java/lang/IllegalArgumentException
+      LineNumberTable:
+        line 98: 0
+        line 99: 9
+        line 106: 19
+        line 108: 35
+        line 111: 41
+        line 112: 49
+        line 114: 59
+        line 115: 66
+        line 116: 67
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           49      17     3 decode   [B
+           59       7     4 keySpecPKCS8   Ljava/security/spec/PKCS8EncodedKeySpec;
+           67      31     3     e   Ljava/lang/IllegalArgumentException;
+            0      98     0   key   Ljava/lang/String;
+           35      63     1 privateKeyContent   Ljava/lang/String;
+           41      57     2    kf   Ljava/security/KeyFactory;
+      StackMapTable: number_of_entries = 2
+        frame_type = 19 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 46
+          locals = [ class java/lang/String, class java/lang/String, class java/security/KeyFactory ]
+          stack = [ class java/lang/IllegalArgumentException ]
+    Exceptions:
+      throws java.security.GeneralSecurityException
+
+  private java.lang.String refreshJWT();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=5, args_size=1
+         0: invokestatic  #21                 // Method java/time/Instant.now:()Ljava/time/Instant;
+         3: astore_1
+         4: aload_1
+         5: ldc2_w        #47                 // long 8l
+         8: invokestatic  #49                 // Method java/time/Duration.ofMinutes:(J)Ljava/time/Duration;
+        11: invokevirtual #50                 // Method java/time/Instant.plus:(Ljava/time/temporal/TemporalAmount;)Ljava/time/Instant;
+        14: astore_2
+        15: aload_0
+        16: aload_1
+        17: invokevirtual #51                 // Method getIssuedAt:(Ljava/time/Instant;)Ljava/time/Instant;
+        20: astore_3
+        21: invokestatic  #52                 // Method io/jsonwebtoken/Jwts.builder:()Lio/jsonwebtoken/JwtBuilder;
+        24: aload_3
+        25: invokestatic  #53                 // Method java/util/Date.from:(Ljava/time/Instant;)Ljava/util/Date;
+        28: invokeinterface #54,  2           // InterfaceMethod io/jsonwebtoken/JwtBuilder.setIssuedAt:(Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;
+        33: aload_2
+        34: invokestatic  #53                 // Method java/util/Date.from:(Ljava/time/Instant;)Ljava/util/Date;
+        37: invokeinterface #55,  2           // InterfaceMethod io/jsonwebtoken/JwtBuilder.setExpiration:(Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;
+        42: aload_0
+        43: getfield      #14                 // Field applicationId:Ljava/lang/String;
+        46: invokeinterface #56,  2           // InterfaceMethod io/jsonwebtoken/JwtBuilder.setIssuer:(Ljava/lang/String;)Lio/jsonwebtoken/JwtBuilder;
+        51: aload_0
+        52: getfield      #13                 // Field privateKey:Ljava/security/PrivateKey;
+        55: getstatic     #57                 // Field io/jsonwebtoken/SignatureAlgorithm.RS256:Lio/jsonwebtoken/SignatureAlgorithm;
+        58: invokeinterface #58,  3           // InterfaceMethod io/jsonwebtoken/JwtBuilder.signWith:(Ljava/security/Key;Lio/jsonwebtoken/SignatureAlgorithm;)Lio/jsonwebtoken/JwtBuilder;
+        63: astore        4
+        65: aload_0
+        66: aload_2
+        67: ldc2_w        #59                 // long 2l
+        70: invokestatic  #49                 // Method java/time/Duration.ofMinutes:(J)Ljava/time/Duration;
+        73: invokevirtual #61                 // Method java/time/Instant.minus:(Ljava/time/temporal/TemporalAmount;)Ljava/time/Instant;
+        76: putfield      #12                 // Field validUntil:Ljava/time/Instant;
+        79: aload         4
+        81: invokeinterface #62,  1           // InterfaceMethod io/jsonwebtoken/JwtBuilder.compact:()Ljava/lang/String;
+        86: areturn
+      LineNumberTable:
+        line 121: 0
+        line 125: 4
+        line 128: 15
+        line 131: 21
+        line 132: 25
+        line 133: 34
+        line 134: 46
+        line 135: 58
+        line 138: 65
+        line 141: 79
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      87     0  this   Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+            4      83     1   now   Ljava/time/Instant;
+           15      72     2 expiration   Ljava/time/Instant;
+           21      66     3 issuedAt   Ljava/time/Instant;
+           65      22     4 builder   Lio/jsonwebtoken/JwtBuilder;
+
+  java.time.Instant getIssuedAt(java.time.Instant);
+    descriptor: (Ljava/time/Instant;)Ljava/time/Instant;
+    flags: (0x0000)
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_1
+         1: ldc2_w        #59                 // long 2l
+         4: invokestatic  #49                 // Method java/time/Duration.ofMinutes:(J)Ljava/time/Duration;
+         7: invokevirtual #61                 // Method java/time/Instant.minus:(Ljava/time/temporal/TemporalAmount;)Ljava/time/Instant;
+        10: areturn
+      LineNumberTable:
+        line 145: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lorg/kohsuke/github/extras/authorization/JWTTokenProvider;
+            0      11     1   now   Ljava/time/Instant;
+}
+SourceFile: "JWTTokenProvider.java"
+InnerClasses:
+  public static #223= #161 of #159;       // Decoder=class java/util/Base64$Decoder of class java/util/Base64

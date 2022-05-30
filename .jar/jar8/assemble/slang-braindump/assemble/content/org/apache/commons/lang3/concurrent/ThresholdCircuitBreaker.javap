@@ -1,0 +1,233 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker.class
+  Last modified May 29, 2022; size 1503 bytes
+  SHA-256 checksum 92fd83eb286afc74270a58e1ecd4aac0877622e68bcaa3264b152e926bb07136
+  Compiled from "ThresholdCircuitBreaker.java"
+public class org.apache.commons.lang3.concurrent.ThresholdCircuitBreaker extends org.apache.commons.lang3.concurrent.AbstractCircuitBreaker<java.lang.Long>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #3                          // org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker
+  super_class: #16                        // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker
+  interfaces: 0, fields: 3, methods: 6, attributes: 2
+Constant pool:
+   #1 = Methodref          #16.#48        // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker."<init>":()V
+   #2 = Class              #49            // java/util/concurrent/atomic/AtomicLong
+   #3 = Class              #50            // org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker
+   #4 = Methodref          #2.#51         // java/util/concurrent/atomic/AtomicLong."<init>":(J)V
+   #5 = Fieldref           #3.#52         // org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker.used:Ljava/util/concurrent/atomic/AtomicLong;
+   #6 = Fieldref           #3.#53         // org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker.threshold:J
+   #7 = Methodref          #3.#54         // org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker.isOpen:()Z
+   #8 = Methodref          #16.#55        // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker.close:()V
+   #9 = Methodref          #2.#56         // java/util/concurrent/atomic/AtomicLong.set:(J)V
+  #10 = Methodref          #3.#57         // org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker.open:()V
+  #11 = Methodref          #14.#58        // java/lang/Long.longValue:()J
+  #12 = Methodref          #2.#59         // java/util/concurrent/atomic/AtomicLong.addAndGet:(J)J
+  #13 = Methodref          #3.#60         // org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker.checkState:()Z
+  #14 = Class              #61            // java/lang/Long
+  #15 = Methodref          #3.#62         // org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker.incrementAndCheckState:(Ljava/lang/Long;)Z
+  #16 = Class              #63            // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker
+  #17 = Utf8               INITIAL_COUNT
+  #18 = Utf8               J
+  #19 = Utf8               ConstantValue
+  #20 = Long               0l
+  #22 = Utf8               threshold
+  #23 = Utf8               used
+  #24 = Utf8               Ljava/util/concurrent/atomic/AtomicLong;
+  #25 = Utf8               <init>
+  #26 = Utf8               (J)V
+  #27 = Utf8               Code
+  #28 = Utf8               LineNumberTable
+  #29 = Utf8               LocalVariableTable
+  #30 = Utf8               this
+  #31 = Utf8               Lorg/apache/commons/lang3/concurrent/ThresholdCircuitBreaker;
+  #32 = Utf8               getThreshold
+  #33 = Utf8               ()J
+  #34 = Utf8               checkState
+  #35 = Utf8               ()Z
+  #36 = Utf8               close
+  #37 = Utf8               ()V
+  #38 = Utf8               incrementAndCheckState
+  #39 = Utf8               (Ljava/lang/Long;)Z
+  #40 = Utf8               increment
+  #41 = Utf8               Ljava/lang/Long;
+  #42 = Utf8               StackMapTable
+  #43 = Utf8               (Ljava/lang/Object;)Z
+  #44 = Utf8               Signature
+  #45 = Utf8               Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker<Ljava/lang/Long;>;
+  #46 = Utf8               SourceFile
+  #47 = Utf8               ThresholdCircuitBreaker.java
+  #48 = NameAndType        #25:#37        // "<init>":()V
+  #49 = Utf8               java/util/concurrent/atomic/AtomicLong
+  #50 = Utf8               org/apache/commons/lang3/concurrent/ThresholdCircuitBreaker
+  #51 = NameAndType        #25:#26        // "<init>":(J)V
+  #52 = NameAndType        #23:#24        // used:Ljava/util/concurrent/atomic/AtomicLong;
+  #53 = NameAndType        #22:#18        // threshold:J
+  #54 = NameAndType        #64:#35        // isOpen:()Z
+  #55 = NameAndType        #36:#37        // close:()V
+  #56 = NameAndType        #65:#26        // set:(J)V
+  #57 = NameAndType        #66:#37        // open:()V
+  #58 = NameAndType        #67:#33        // longValue:()J
+  #59 = NameAndType        #68:#69        // addAndGet:(J)J
+  #60 = NameAndType        #34:#35        // checkState:()Z
+  #61 = Utf8               java/lang/Long
+  #62 = NameAndType        #38:#39        // incrementAndCheckState:(Ljava/lang/Long;)Z
+  #63 = Utf8               org/apache/commons/lang3/concurrent/AbstractCircuitBreaker
+  #64 = Utf8               isOpen
+  #65 = Utf8               set
+  #66 = Utf8               open
+  #67 = Utf8               longValue
+  #68 = Utf8               addAndGet
+  #69 = Utf8               (J)J
+{
+  private static final long INITIAL_COUNT;
+    descriptor: J
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: long 0l
+
+  private final long threshold;
+    descriptor: J
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.util.concurrent.atomic.AtomicLong used;
+    descriptor: Ljava/util/concurrent/atomic/AtomicLong;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  public org.apache.commons.lang3.concurrent.ThresholdCircuitBreaker(long);
+    descriptor: (J)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=3, args_size=2
+         0: aload_0
+         1: invokespecial #1                  // Method org/apache/commons/lang3/concurrent/AbstractCircuitBreaker."<init>":()V
+         4: aload_0
+         5: new           #2                  // class java/util/concurrent/atomic/AtomicLong
+         8: dup
+         9: lconst_0
+        10: invokespecial #4                  // Method java/util/concurrent/atomic/AtomicLong."<init>":(J)V
+        13: putfield      #5                  // Field used:Ljava/util/concurrent/atomic/AtomicLong;
+        16: aload_0
+        17: lload_1
+        18: putfield      #6                  // Field threshold:J
+        21: return
+      LineNumberTable:
+        line 76: 0
+        line 77: 4
+        line 78: 16
+        line 79: 21
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lorg/apache/commons/lang3/concurrent/ThresholdCircuitBreaker;
+            0      22     1 threshold   J
+
+  public long getThreshold();
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #6                  // Field threshold:J
+         4: lreturn
+      LineNumberTable:
+        line 87: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/lang3/concurrent/ThresholdCircuitBreaker;
+
+  public boolean checkState();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #7                  // Method isOpen:()Z
+         4: ireturn
+      LineNumberTable:
+        line 95: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/lang3/concurrent/ThresholdCircuitBreaker;
+
+  public void close();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #8                  // Method org/apache/commons/lang3/concurrent/AbstractCircuitBreaker.close:()V
+         4: aload_0
+         5: getfield      #5                  // Field used:Ljava/util/concurrent/atomic/AtomicLong;
+         8: lconst_0
+         9: invokevirtual #9                  // Method java/util/concurrent/atomic/AtomicLong.set:(J)V
+        12: return
+      LineNumberTable:
+        line 105: 0
+        line 106: 4
+        line 107: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lorg/apache/commons/lang3/concurrent/ThresholdCircuitBreaker;
+
+  public boolean incrementAndCheckState(java.lang.Long);
+    descriptor: (Ljava/lang/Long;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=2
+         0: aload_0
+         1: getfield      #6                  // Field threshold:J
+         4: lconst_0
+         5: lcmp
+         6: ifne          13
+         9: aload_0
+        10: invokevirtual #10                 // Method open:()V
+        13: aload_0
+        14: getfield      #5                  // Field used:Ljava/util/concurrent/atomic/AtomicLong;
+        17: aload_1
+        18: invokevirtual #11                 // Method java/lang/Long.longValue:()J
+        21: invokevirtual #12                 // Method java/util/concurrent/atomic/AtomicLong.addAndGet:(J)J
+        24: lstore_2
+        25: lload_2
+        26: aload_0
+        27: getfield      #6                  // Field threshold:J
+        30: lcmp
+        31: ifle          38
+        34: aload_0
+        35: invokevirtual #10                 // Method open:()V
+        38: aload_0
+        39: invokevirtual #13                 // Method checkState:()Z
+        42: ireturn
+      LineNumberTable:
+        line 116: 0
+        line 117: 9
+        line 120: 13
+        line 121: 25
+        line 122: 34
+        line 125: 38
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0  this   Lorg/apache/commons/lang3/concurrent/ThresholdCircuitBreaker;
+            0      43     1 increment   Ljava/lang/Long;
+           25      18     2  used   J
+      StackMapTable: number_of_entries = 2
+        frame_type = 13 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ long ]
+
+  public boolean incrementAndCheckState(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #14                 // class java/lang/Long
+         5: invokevirtual #15                 // Method incrementAndCheckState:(Ljava/lang/Long;)Z
+         8: ireturn
+      LineNumberTable:
+        line 54: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/apache/commons/lang3/concurrent/ThresholdCircuitBreaker;
+}
+Signature: #45                          // Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker<Ljava/lang/Long;>;
+SourceFile: "ThresholdCircuitBreaker.java"

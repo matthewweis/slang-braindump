@@ -1,0 +1,620 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/kohsuke/github/GHNotificationStream$1.class
+  Last modified May 29, 2022; size 4264 bytes
+  SHA-256 checksum 3695b2205a973f6d5f8d66ad4f139f917f7e479e8567cd7e1a017dec25b32b94
+  Compiled from "GHNotificationStream.java"
+class org.kohsuke.github.GHNotificationStream$1 extends java.lang.Object implements java.util.Iterator<org.kohsuke.github.GHThread>
+  minor version: 0
+  major version: 52
+  flags: (0x0020) ACC_SUPER
+  this_class: #49                         // org/kohsuke/github/GHNotificationStream$1
+  super_class: #50                        // java/lang/Object
+  interfaces: 1, fields: 8, methods: 6, attributes: 4
+Constant pool:
+    #1 = Fieldref           #49.#107      // org/kohsuke/github/GHNotificationStream$1.this$0:Lorg/kohsuke/github/GHNotificationStream;
+    #2 = Fieldref           #49.#108      // org/kohsuke/github/GHNotificationStream$1.val$req:Lorg/kohsuke/github/Requester;
+    #3 = Methodref          #50.#109      // java/lang/Object."<init>":()V
+    #4 = Methodref          #105.#110     // org/kohsuke/github/GHNotificationStream.access$000:()[Lorg/kohsuke/github/GHThread;
+    #5 = Fieldref           #49.#111      // org/kohsuke/github/GHNotificationStream$1.threads:[Lorg/kohsuke/github/GHThread;
+    #6 = Fieldref           #49.#112      // org/kohsuke/github/GHNotificationStream$1.idx:I
+    #7 = Long               -1l
+    #9 = Fieldref           #49.#113      // org/kohsuke/github/GHNotificationStream$1.lastUpdated:J
+   #10 = Fieldref           #49.#114      // org/kohsuke/github/GHNotificationStream$1.nextCheckTime:J
+   #11 = Fieldref           #49.#115      // org/kohsuke/github/GHNotificationStream$1.next:Lorg/kohsuke/github/GHThread;
+   #12 = Methodref          #49.#116      // org/kohsuke/github/GHNotificationStream$1.fetch:()Lorg/kohsuke/github/GHThread;
+   #13 = Class              #117          // java/util/NoSuchElementException
+   #14 = Methodref          #13.#109      // java/util/NoSuchElementException."<init>":()V
+   #15 = Methodref          #118.#119     // org/kohsuke/github/GHThread.getUpdatedAt:()Ljava/util/Date;
+   #16 = Methodref          #120.#121     // java/util/Date.getTime:()J
+   #17 = Methodref          #105.#122     // org/kohsuke/github/GHNotificationStream.access$100:(Lorg/kohsuke/github/GHNotificationStream;)Z
+   #18 = Methodref          #123.#124     // java/lang/System.currentTimeMillis:()J
+   #19 = Long               1000l
+   #21 = Methodref          #125.#126     // java/lang/Math.max:(JJ)J
+   #22 = Long               60000l
+   #24 = Methodref          #125.#127     // java/lang/Math.min:(JJ)J
+   #25 = Methodref          #128.#129     // java/lang/Thread.sleep:(J)V
+   #26 = String             #130          // If-Modified-Since
+   #27 = Fieldref           #49.#131      // org/kohsuke/github/GHNotificationStream$1.lastModified:Ljava/lang/String;
+   #28 = Methodref          #32.#132      // org/kohsuke/github/Requester.setHeader:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #29 = Methodref          #105.#133     // org/kohsuke/github/GHNotificationStream.access$200:(Lorg/kohsuke/github/GHNotificationStream;)Ljava/lang/String;
+   #30 = Class              #134          // java/lang/String
+   #31 = Methodref          #32.#135      // org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #32 = Class              #136          // org/kohsuke/github/Requester
+   #33 = Class              #53           // "[Lorg/kohsuke/github/GHThread;"
+   #34 = Methodref          #32.#137      // org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+   #35 = Class              #138          // org/kohsuke/github/GitHubPageContentsIterable
+   #36 = Methodref          #35.#139      // org/kohsuke/github/GitHubPageContentsIterable.toResponse:()Lorg/kohsuke/github/GitHubResponse;
+   #37 = Methodref          #92.#140      // org/kohsuke/github/GitHubResponse.body:()Ljava/lang/Object;
+   #38 = Methodref          #49.#141      // org/kohsuke/github/GHNotificationStream$1.calcNextCheckTime:(Lorg/kohsuke/github/GitHubResponse;)J
+   #39 = String             #142          // Last-Modified
+   #40 = Methodref          #92.#143      // org/kohsuke/github/GitHubResponse.header:(Ljava/lang/String;)Ljava/lang/String;
+   #41 = Class              #144          // java/io/IOException
+   #42 = Class              #145          // java/lang/InterruptedException
+   #43 = Class              #146          // java/lang/RuntimeException
+   #44 = Methodref          #43.#147      // java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+   #45 = String             #148          // X-Poll-Interval
+   #46 = String             #149          // 60
+   #47 = Methodref          #150.#151     // java/lang/Integer.parseInt:(Ljava/lang/String;)I
+   #48 = Methodref          #49.#152      // org/kohsuke/github/GHNotificationStream$1.next:()Lorg/kohsuke/github/GHThread;
+   #49 = Class              #153          // org/kohsuke/github/GHNotificationStream$1
+   #50 = Class              #154          // java/lang/Object
+   #51 = Class              #155          // java/util/Iterator
+   #52 = Utf8               threads
+   #53 = Utf8               [Lorg/kohsuke/github/GHThread;
+   #54 = Utf8               idx
+   #55 = Utf8               I
+   #56 = Utf8               lastUpdated
+   #57 = Utf8               J
+   #58 = Utf8               lastModified
+   #59 = Utf8               Ljava/lang/String;
+   #60 = Utf8               nextCheckTime
+   #61 = Utf8               next
+   #62 = Utf8               Lorg/kohsuke/github/GHThread;
+   #63 = Utf8               val$req
+   #64 = Utf8               Lorg/kohsuke/github/Requester;
+   #65 = Utf8               this$0
+   #66 = Utf8               Lorg/kohsuke/github/GHNotificationStream;
+   #67 = Utf8               <init>
+   #68 = Utf8               (Lorg/kohsuke/github/GHNotificationStream;Lorg/kohsuke/github/Requester;)V
+   #69 = Utf8               Code
+   #70 = Utf8               LineNumberTable
+   #71 = Utf8               LocalVariableTable
+   #72 = Utf8               this
+   #73 = Utf8               InnerClasses
+   #74 = Utf8               Lorg/kohsuke/github/GHNotificationStream$1;
+   #75 = Utf8               ()Lorg/kohsuke/github/GHThread;
+   #76 = Utf8               r
+   #77 = Utf8               StackMapTable
+   #78 = Utf8               hasNext
+   #79 = Utf8               ()Z
+   #80 = Utf8               fetch
+   #81 = Utf8               n
+   #82 = Utf8               nt
+   #83 = Utf8               now
+   #84 = Utf8               waitTime
+   #85 = Utf8               requester
+   #86 = Utf8               response
+   #87 = Utf8               Lorg/kohsuke/github/GitHubResponse;
+   #88 = Utf8               e
+   #89 = Utf8               Ljava/lang/Exception;
+   #90 = Utf8               LocalVariableTypeTable
+   #91 = Utf8               Lorg/kohsuke/github/GitHubResponse<[Lorg/kohsuke/github/GHThread;>;
+   #92 = Class              #156          // org/kohsuke/github/GitHubResponse
+   #93 = Class              #157          // java/lang/Exception
+   #94 = Utf8               calcNextCheckTime
+   #95 = Utf8               (Lorg/kohsuke/github/GitHubResponse;)J
+   #96 = Utf8               v
+   #97 = Utf8               seconds
+   #98 = Utf8               Signature
+   #99 = Utf8               (Lorg/kohsuke/github/GitHubResponse<[Lorg/kohsuke/github/GHThread;>;)J
+  #100 = Utf8               ()Ljava/lang/Object;
+  #101 = Utf8               Ljava/lang/Object;Ljava/util/Iterator<Lorg/kohsuke/github/GHThread;>;
+  #102 = Utf8               SourceFile
+  #103 = Utf8               GHNotificationStream.java
+  #104 = Utf8               EnclosingMethod
+  #105 = Class              #158          // org/kohsuke/github/GHNotificationStream
+  #106 = NameAndType        #159:#160     // iterator:()Ljava/util/Iterator;
+  #107 = NameAndType        #65:#66       // this$0:Lorg/kohsuke/github/GHNotificationStream;
+  #108 = NameAndType        #63:#64       // val$req:Lorg/kohsuke/github/Requester;
+  #109 = NameAndType        #67:#161      // "<init>":()V
+  #110 = NameAndType        #162:#163     // access$000:()[Lorg/kohsuke/github/GHThread;
+  #111 = NameAndType        #52:#53       // threads:[Lorg/kohsuke/github/GHThread;
+  #112 = NameAndType        #54:#55       // idx:I
+  #113 = NameAndType        #56:#57       // lastUpdated:J
+  #114 = NameAndType        #60:#57       // nextCheckTime:J
+  #115 = NameAndType        #61:#62       // next:Lorg/kohsuke/github/GHThread;
+  #116 = NameAndType        #80:#75       // fetch:()Lorg/kohsuke/github/GHThread;
+  #117 = Utf8               java/util/NoSuchElementException
+  #118 = Class              #164          // org/kohsuke/github/GHThread
+  #119 = NameAndType        #165:#166     // getUpdatedAt:()Ljava/util/Date;
+  #120 = Class              #167          // java/util/Date
+  #121 = NameAndType        #168:#169     // getTime:()J
+  #122 = NameAndType        #170:#171     // access$100:(Lorg/kohsuke/github/GHNotificationStream;)Z
+  #123 = Class              #172          // java/lang/System
+  #124 = NameAndType        #173:#169     // currentTimeMillis:()J
+  #125 = Class              #174          // java/lang/Math
+  #126 = NameAndType        #175:#176     // max:(JJ)J
+  #127 = NameAndType        #177:#176     // min:(JJ)J
+  #128 = Class              #178          // java/lang/Thread
+  #129 = NameAndType        #179:#180     // sleep:(J)V
+  #130 = Utf8               If-Modified-Since
+  #131 = NameAndType        #58:#59       // lastModified:Ljava/lang/String;
+  #132 = NameAndType        #181:#184     // setHeader:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #133 = NameAndType        #185:#186     // access$200:(Lorg/kohsuke/github/GHNotificationStream;)Ljava/lang/String;
+  #134 = Utf8               java/lang/String
+  #135 = NameAndType        #187:#188     // withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #136 = Utf8               org/kohsuke/github/Requester
+  #137 = NameAndType        #189:#190     // toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+  #138 = Utf8               org/kohsuke/github/GitHubPageContentsIterable
+  #139 = NameAndType        #191:#192     // toResponse:()Lorg/kohsuke/github/GitHubResponse;
+  #140 = NameAndType        #193:#100     // body:()Ljava/lang/Object;
+  #141 = NameAndType        #94:#95       // calcNextCheckTime:(Lorg/kohsuke/github/GitHubResponse;)J
+  #142 = Utf8               Last-Modified
+  #143 = NameAndType        #194:#195     // header:(Ljava/lang/String;)Ljava/lang/String;
+  #144 = Utf8               java/io/IOException
+  #145 = Utf8               java/lang/InterruptedException
+  #146 = Utf8               java/lang/RuntimeException
+  #147 = NameAndType        #67:#196      // "<init>":(Ljava/lang/Throwable;)V
+  #148 = Utf8               X-Poll-Interval
+  #149 = Utf8               60
+  #150 = Class              #197          // java/lang/Integer
+  #151 = NameAndType        #198:#199     // parseInt:(Ljava/lang/String;)I
+  #152 = NameAndType        #61:#75       // next:()Lorg/kohsuke/github/GHThread;
+  #153 = Utf8               org/kohsuke/github/GHNotificationStream$1
+  #154 = Utf8               java/lang/Object
+  #155 = Utf8               java/util/Iterator
+  #156 = Utf8               org/kohsuke/github/GitHubResponse
+  #157 = Utf8               java/lang/Exception
+  #158 = Utf8               org/kohsuke/github/GHNotificationStream
+  #159 = Utf8               iterator
+  #160 = Utf8               ()Ljava/util/Iterator;
+  #161 = Utf8               ()V
+  #162 = Utf8               access$000
+  #163 = Utf8               ()[Lorg/kohsuke/github/GHThread;
+  #164 = Utf8               org/kohsuke/github/GHThread
+  #165 = Utf8               getUpdatedAt
+  #166 = Utf8               ()Ljava/util/Date;
+  #167 = Utf8               java/util/Date
+  #168 = Utf8               getTime
+  #169 = Utf8               ()J
+  #170 = Utf8               access$100
+  #171 = Utf8               (Lorg/kohsuke/github/GHNotificationStream;)Z
+  #172 = Utf8               java/lang/System
+  #173 = Utf8               currentTimeMillis
+  #174 = Utf8               java/lang/Math
+  #175 = Utf8               max
+  #176 = Utf8               (JJ)J
+  #177 = Utf8               min
+  #178 = Utf8               java/lang/Thread
+  #179 = Utf8               sleep
+  #180 = Utf8               (J)V
+  #181 = Utf8               setHeader
+  #182 = Class              #201          // org/kohsuke/github/GitHubRequest$Builder
+  #183 = Utf8               Builder
+  #184 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #185 = Utf8               access$200
+  #186 = Utf8               (Lorg/kohsuke/github/GHNotificationStream;)Ljava/lang/String;
+  #187 = Utf8               withUrlPath
+  #188 = Utf8               (Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #189 = Utf8               toIterable
+  #190 = Utf8               (Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+  #191 = Utf8               toResponse
+  #192 = Utf8               ()Lorg/kohsuke/github/GitHubResponse;
+  #193 = Utf8               body
+  #194 = Utf8               header
+  #195 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #196 = Utf8               (Ljava/lang/Throwable;)V
+  #197 = Utf8               java/lang/Integer
+  #198 = Utf8               parseInt
+  #199 = Utf8               (Ljava/lang/String;)I
+  #200 = Class              #202          // org/kohsuke/github/GitHubRequest
+  #201 = Utf8               org/kohsuke/github/GitHubRequest$Builder
+  #202 = Utf8               org/kohsuke/github/GitHubRequest
+{
+  private org.kohsuke.github.GHThread[] threads;
+    descriptor: [Lorg/kohsuke/github/GHThread;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int idx;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private long lastUpdated;
+    descriptor: J
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String lastModified;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private long nextCheckTime;
+    descriptor: J
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GHThread next;
+    descriptor: Lorg/kohsuke/github/GHThread;
+    flags: (0x0002) ACC_PRIVATE
+
+  final org.kohsuke.github.Requester val$req;
+    descriptor: Lorg/kohsuke/github/Requester;
+    flags: (0x1010) ACC_FINAL, ACC_SYNTHETIC
+
+  final org.kohsuke.github.GHNotificationStream this$0;
+    descriptor: Lorg/kohsuke/github/GHNotificationStream;
+    flags: (0x1010) ACC_FINAL, ACC_SYNTHETIC
+
+  org.kohsuke.github.GHNotificationStream$1(org.kohsuke.github.GHNotificationStream, org.kohsuke.github.Requester);
+    descriptor: (Lorg/kohsuke/github/GHNotificationStream;Lorg/kohsuke/github/Requester;)V
+    flags: (0x0000)
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: putfield      #1                  // Field this$0:Lorg/kohsuke/github/GHNotificationStream;
+         5: aload_0
+         6: aload_2
+         7: putfield      #2                  // Field val$req:Lorg/kohsuke/github/Requester;
+        10: aload_0
+        11: invokespecial #3                  // Method java/lang/Object."<init>":()V
+        14: aload_0
+        15: invokestatic  #4                  // Method org/kohsuke/github/GHNotificationStream.access$000:()[Lorg/kohsuke/github/GHThread;
+        18: putfield      #5                  // Field threads:[Lorg/kohsuke/github/GHThread;
+        21: aload_0
+        22: iconst_m1
+        23: putfield      #6                  // Field idx:I
+        26: aload_0
+        27: ldc2_w        #7                  // long -1l
+        30: putfield      #9                  // Field lastUpdated:J
+        33: aload_0
+        34: ldc2_w        #7                  // long -1l
+        37: putfield      #10                 // Field nextCheckTime:J
+        40: return
+      LineNumberTable:
+        line 107: 0
+        line 111: 14
+        line 116: 21
+        line 121: 26
+        line 131: 33
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lorg/kohsuke/github/GHNotificationStream$1;
+            0      41     1 this$0   Lorg/kohsuke/github/GHNotificationStream;
+
+  public org.kohsuke.github.GHThread next();
+    descriptor: ()Lorg/kohsuke/github/GHThread;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: getfield      #11                 // Field next:Lorg/kohsuke/github/GHThread;
+         4: ifnonnull     30
+         7: aload_0
+         8: aload_0
+         9: invokevirtual #12                 // Method fetch:()Lorg/kohsuke/github/GHThread;
+        12: putfield      #11                 // Field next:Lorg/kohsuke/github/GHThread;
+        15: aload_0
+        16: getfield      #11                 // Field next:Lorg/kohsuke/github/GHThread;
+        19: ifnonnull     30
+        22: new           #13                 // class java/util/NoSuchElementException
+        25: dup
+        26: invokespecial #14                 // Method java/util/NoSuchElementException."<init>":()V
+        29: athrow
+        30: aload_0
+        31: getfield      #11                 // Field next:Lorg/kohsuke/github/GHThread;
+        34: astore_1
+        35: aload_0
+        36: aconst_null
+        37: putfield      #11                 // Field next:Lorg/kohsuke/github/GHThread;
+        40: aload_1
+        41: areturn
+      LineNumberTable:
+        line 136: 0
+        line 137: 7
+        line 138: 15
+        line 139: 22
+        line 142: 30
+        line 143: 35
+        line 144: 40
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      42     0  this   Lorg/kohsuke/github/GHNotificationStream$1;
+           35       7     1     r   Lorg/kohsuke/github/GHThread;
+      StackMapTable: number_of_entries = 1
+        frame_type = 30 /* same */
+
+  public boolean hasNext();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #11                 // Field next:Lorg/kohsuke/github/GHThread;
+         4: ifnonnull     15
+         7: aload_0
+         8: aload_0
+         9: invokevirtual #12                 // Method fetch:()Lorg/kohsuke/github/GHThread;
+        12: putfield      #11                 // Field next:Lorg/kohsuke/github/GHThread;
+        15: aload_0
+        16: getfield      #11                 // Field next:Lorg/kohsuke/github/GHThread;
+        19: ifnull        26
+        22: iconst_1
+        23: goto          27
+        26: iconst_0
+        27: ireturn
+      LineNumberTable:
+        line 148: 0
+        line 149: 7
+        line 150: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lorg/kohsuke/github/GHNotificationStream$1;
+      StackMapTable: number_of_entries = 3
+        frame_type = 15 /* same */
+        frame_type = 10 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  org.kohsuke.github.GHThread fetch();
+    descriptor: ()Lorg/kohsuke/github/GHThread;
+    flags: (0x0000)
+    Code:
+      stack=5, locals=5, args_size=1
+         0: aload_0
+         1: getfield      #6                  // Field idx:I
+         4: iflt          51
+         7: aload_0
+         8: getfield      #5                  // Field threads:[Lorg/kohsuke/github/GHThread;
+        11: aload_0
+        12: dup
+        13: getfield      #6                  // Field idx:I
+        16: dup_x1
+        17: iconst_1
+        18: isub
+        19: putfield      #6                  // Field idx:I
+        22: aaload
+        23: astore_1
+        24: aload_1
+        25: invokevirtual #15                 // Method org/kohsuke/github/GHThread.getUpdatedAt:()Ljava/util/Date;
+        28: invokevirtual #16                 // Method java/util/Date.getTime:()J
+        31: lstore_2
+        32: lload_2
+        33: aload_0
+        34: getfield      #9                  // Field lastUpdated:J
+        37: lcmp
+        38: iflt          48
+        41: aload_0
+        42: lload_2
+        43: putfield      #9                  // Field lastUpdated:J
+        46: aload_1
+        47: areturn
+        48: goto          0
+        51: aload_0
+        52: getfield      #1                  // Field this$0:Lorg/kohsuke/github/GHNotificationStream;
+        55: invokestatic  #17                 // Method org/kohsuke/github/GHNotificationStream.access$100:(Lorg/kohsuke/github/GHNotificationStream;)Z
+        58: ifeq          72
+        61: aload_0
+        62: getfield      #10                 // Field nextCheckTime:J
+        65: lconst_0
+        66: lcmp
+        67: iflt          72
+        70: aconst_null
+        71: areturn
+        72: invokestatic  #18                 // Method java/lang/System.currentTimeMillis:()J
+        75: lstore_1
+        76: aload_0
+        77: getfield      #10                 // Field nextCheckTime:J
+        80: lload_1
+        81: lcmp
+        82: ifge          88
+        85: goto          114
+        88: aload_0
+        89: getfield      #10                 // Field nextCheckTime:J
+        92: lload_1
+        93: lsub
+        94: ldc2_w        #19                 // long 1000l
+        97: invokestatic  #21                 // Method java/lang/Math.max:(JJ)J
+       100: ldc2_w        #22                 // long 60000l
+       103: invokestatic  #24                 // Method java/lang/Math.min:(JJ)J
+       106: lstore_3
+       107: lload_3
+       108: invokestatic  #25                 // Method java/lang/Thread.sleep:(J)V
+       111: goto          72
+       114: aload_0
+       115: getfield      #2                  // Field val$req:Lorg/kohsuke/github/Requester;
+       118: ldc           #26                 // String If-Modified-Since
+       120: aload_0
+       121: getfield      #27                 // Field lastModified:Ljava/lang/String;
+       124: invokevirtual #28                 // Method org/kohsuke/github/Requester.setHeader:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+       127: pop
+       128: aload_0
+       129: getfield      #2                  // Field val$req:Lorg/kohsuke/github/Requester;
+       132: aload_0
+       133: getfield      #1                  // Field this$0:Lorg/kohsuke/github/GHNotificationStream;
+       136: invokestatic  #29                 // Method org/kohsuke/github/GHNotificationStream.access$200:(Lorg/kohsuke/github/GHNotificationStream;)Ljava/lang/String;
+       139: iconst_0
+       140: anewarray     #30                 // class java/lang/String
+       143: invokevirtual #31                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+       146: checkcast     #32                 // class org/kohsuke/github/Requester
+       149: astore_1
+       150: aload_1
+       151: ldc           #33                 // class "[Lorg/kohsuke/github/GHThread;"
+       153: aconst_null
+       154: invokevirtual #34                 // Method org/kohsuke/github/Requester.toIterable:(Ljava/lang/Class;Ljava/util/function/Consumer;)Lorg/kohsuke/github/PagedIterable;
+       157: checkcast     #35                 // class org/kohsuke/github/GitHubPageContentsIterable
+       160: invokevirtual #36                 // Method org/kohsuke/github/GitHubPageContentsIterable.toResponse:()Lorg/kohsuke/github/GitHubResponse;
+       163: astore_2
+       164: aload_0
+       165: aload_2
+       166: invokevirtual #37                 // Method org/kohsuke/github/GitHubResponse.body:()Ljava/lang/Object;
+       169: checkcast     #33                 // class "[Lorg/kohsuke/github/GHThread;"
+       172: putfield      #5                  // Field threads:[Lorg/kohsuke/github/GHThread;
+       175: aload_0
+       176: getfield      #5                  // Field threads:[Lorg/kohsuke/github/GHThread;
+       179: ifnonnull     192
+       182: aload_0
+       183: invokestatic  #4                  // Method org/kohsuke/github/GHNotificationStream.access$000:()[Lorg/kohsuke/github/GHThread;
+       186: putfield      #5                  // Field threads:[Lorg/kohsuke/github/GHThread;
+       189: goto          202
+       192: aload_0
+       193: dup
+       194: getfield      #9                  // Field lastUpdated:J
+       197: lconst_1
+       198: ladd
+       199: putfield      #9                  // Field lastUpdated:J
+       202: aload_0
+       203: aload_0
+       204: getfield      #5                  // Field threads:[Lorg/kohsuke/github/GHThread;
+       207: arraylength
+       208: iconst_1
+       209: isub
+       210: putfield      #6                  // Field idx:I
+       213: aload_0
+       214: aload_0
+       215: aload_2
+       216: invokespecial #38                 // Method calcNextCheckTime:(Lorg/kohsuke/github/GitHubResponse;)J
+       219: putfield      #10                 // Field nextCheckTime:J
+       222: aload_0
+       223: aload_2
+       224: ldc           #39                 // String Last-Modified
+       226: invokevirtual #40                 // Method org/kohsuke/github/GitHubResponse.header:(Ljava/lang/String;)Ljava/lang/String;
+       229: putfield      #27                 // Field lastModified:Ljava/lang/String;
+       232: goto          0
+       235: astore_1
+       236: new           #43                 // class java/lang/RuntimeException
+       239: dup
+       240: aload_1
+       241: invokespecial #44                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+       244: athrow
+      Exception table:
+         from    to  target type
+             0    47   235   Class java/io/IOException
+             0    47   235   Class java/lang/InterruptedException
+            48    71   235   Class java/io/IOException
+            48    71   235   Class java/lang/InterruptedException
+            72   235   235   Class java/io/IOException
+            72   235   235   Class java/lang/InterruptedException
+      LineNumberTable:
+        line 158: 0
+        line 159: 7
+        line 160: 24
+        line 161: 32
+        line 162: 41
+        line 163: 46
+        line 165: 48
+        line 167: 51
+        line 168: 70
+        line 172: 72
+        line 173: 76
+        line 174: 85
+        line 175: 88
+        line 176: 107
+        line 177: 111
+        line 179: 114
+        line 181: 128
+        line 182: 150
+        line 183: 154
+        line 184: 164
+        line 186: 175
+        line 187: 182
+        line 190: 192
+        line 192: 202
+        line 194: 213
+        line 195: 222
+        line 196: 232
+        line 197: 235
+        line 198: 236
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           24      24     1     n   Lorg/kohsuke/github/GHThread;
+           32      16     2    nt   J
+           76      35     1   now   J
+          107       4     3 waitTime   J
+          150      82     1 requester   Lorg/kohsuke/github/Requester;
+          164      68     2 response   Lorg/kohsuke/github/GitHubResponse;
+          236       9     1     e   Ljava/lang/Exception;
+            0     245     0  this   Lorg/kohsuke/github/GHNotificationStream$1;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+          164      68     2 response   Lorg/kohsuke/github/GitHubResponse<[Lorg/kohsuke/github/GHThread;>;
+      StackMapTable: number_of_entries = 9
+        frame_type = 0 /* same */
+        frame_type = 47 /* same */
+        frame_type = 2 /* same */
+        frame_type = 20 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 15
+          locals = [ long ]
+        frame_type = 250 /* chop */
+          offset_delta = 25
+        frame_type = 253 /* append */
+          offset_delta = 77
+          locals = [ class org/kohsuke/github/Requester, class org/kohsuke/github/GitHubResponse ]
+        frame_type = 9 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 32
+          locals = [ class org/kohsuke/github/GHNotificationStream$1 ]
+          stack = [ class java/lang/Exception ]
+
+  private long calcNextCheckTime(org.kohsuke.github.GitHubResponse<org.kohsuke.github.GHThread[]>);
+    descriptor: (Lorg/kohsuke/github/GitHubResponse;)J
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=5, args_size=2
+         0: aload_1
+         1: ldc           #45                 // String X-Poll-Interval
+         3: invokevirtual #40                 // Method org/kohsuke/github/GitHubResponse.header:(Ljava/lang/String;)Ljava/lang/String;
+         6: astore_2
+         7: aload_2
+         8: ifnonnull     14
+        11: ldc           #46                 // String 60
+        13: astore_2
+        14: aload_2
+        15: invokestatic  #47                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        18: i2l
+        19: lstore_3
+        20: invokestatic  #18                 // Method java/lang/System.currentTimeMillis:()J
+        23: lload_3
+        24: ldc2_w        #19                 // long 1000l
+        27: lmul
+        28: ladd
+        29: lreturn
+      LineNumberTable:
+        line 203: 0
+        line 204: 7
+        line 205: 11
+        line 206: 14
+        line 207: 20
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0  this   Lorg/kohsuke/github/GHNotificationStream$1;
+            0      30     1 response   Lorg/kohsuke/github/GitHubResponse;
+            7      23     2     v   Ljava/lang/String;
+           20      10     3 seconds   J
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      30     1 response   Lorg/kohsuke/github/GitHubResponse<[Lorg/kohsuke/github/GHThread;>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 14
+          locals = [ class java/lang/String ]
+    Signature: #99                          // (Lorg/kohsuke/github/GitHubResponse<[Lorg/kohsuke/github/GHThread;>;)J
+
+  public java.lang.Object next();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #48                 // Method next:()Lorg/kohsuke/github/GHThread;
+         4: areturn
+      LineNumberTable:
+        line 107: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHNotificationStream$1;
+}
+Signature: #101                         // Ljava/lang/Object;Ljava/util/Iterator<Lorg/kohsuke/github/GHThread;>;
+SourceFile: "GHNotificationStream.java"
+EnclosingMethod: #105.#106              // org.kohsuke.github.GHNotificationStream.iterator
+InnerClasses:
+  #49;                                    // class org/kohsuke/github/GHNotificationStream$1
+  static #183= #182 of #200;              // Builder=class org/kohsuke/github/GitHubRequest$Builder of class org/kohsuke/github/GitHubRequest

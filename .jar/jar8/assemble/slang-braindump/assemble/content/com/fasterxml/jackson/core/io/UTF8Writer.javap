@@ -1,0 +1,1579 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/core/io/UTF8Writer.class
+  Last modified May 29, 2022; size 5772 bytes
+  SHA-256 checksum 55d8dba7d475ae5de233c5b98020eb9adb10315a3cf1b635f8528935f2cefaa6
+  Compiled from "UTF8Writer.java"
+public final class com.fasterxml.jackson.core.io.UTF8Writer extends java.io.Writer
+  minor version: 0
+  major version: 50
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #17                         // com/fasterxml/jackson/core/io/UTF8Writer
+  super_class: #46                        // java/io/Writer
+  interfaces: 0, fields: 10, methods: 13, attributes: 1
+Constant pool:
+    #1 = Methodref          #46.#113      // java/io/Writer."<init>":()V
+    #2 = Fieldref           #17.#114      // com/fasterxml/jackson/core/io/UTF8Writer._context:Lcom/fasterxml/jackson/core/io/IOContext;
+    #3 = Fieldref           #17.#115      // com/fasterxml/jackson/core/io/UTF8Writer._out:Ljava/io/OutputStream;
+    #4 = Methodref          #116.#117     // com/fasterxml/jackson/core/io/IOContext.allocWriteEncodingBuffer:()[B
+    #5 = Fieldref           #17.#118      // com/fasterxml/jackson/core/io/UTF8Writer._outBuffer:[B
+    #6 = Fieldref           #17.#119      // com/fasterxml/jackson/core/io/UTF8Writer._outBufferEnd:I
+    #7 = Fieldref           #17.#120      // com/fasterxml/jackson/core/io/UTF8Writer._outPtr:I
+    #8 = Methodref          #17.#121      // com/fasterxml/jackson/core/io/UTF8Writer.write:(I)V
+    #9 = Methodref          #122.#123     // java/io/OutputStream.write:([BII)V
+   #10 = Methodref          #116.#124     // com/fasterxml/jackson/core/io/IOContext.releaseWriteEncodingBuffer:([B)V
+   #11 = Methodref          #122.#125     // java/io/OutputStream.close:()V
+   #12 = Fieldref           #17.#126      // com/fasterxml/jackson/core/io/UTF8Writer._surrogate:I
+   #13 = Methodref          #17.#127      // com/fasterxml/jackson/core/io/UTF8Writer.illegalSurrogate:(I)V
+   #14 = Methodref          #122.#128     // java/io/OutputStream.flush:()V
+   #15 = Methodref          #17.#129      // com/fasterxml/jackson/core/io/UTF8Writer.write:([CII)V
+   #16 = Methodref          #17.#130      // com/fasterxml/jackson/core/io/UTF8Writer.convertSurrogate:(I)I
+   #17 = Class              #131          // com/fasterxml/jackson/core/io/UTF8Writer
+   #18 = Integer            55296
+   #19 = Integer            57343
+   #20 = Integer            56319
+   #21 = Integer            1114111
+   #22 = Integer            65535
+   #23 = Methodref          #132.#133     // java/lang/String.length:()I
+   #24 = Methodref          #17.#134      // com/fasterxml/jackson/core/io/UTF8Writer.write:(Ljava/lang/String;II)V
+   #25 = Methodref          #132.#135     // java/lang/String.charAt:(I)C
+   #26 = Integer            56320
+   #27 = Class              #136          // java/io/IOException
+   #28 = Class              #137          // java/lang/StringBuilder
+   #29 = Methodref          #28.#113      // java/lang/StringBuilder."<init>":()V
+   #30 = String             #138          // Broken surrogate pair: first char 0x
+   #31 = Methodref          #28.#139      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #32 = Methodref          #140.#141     // java/lang/Integer.toHexString:(I)Ljava/lang/String;
+   #33 = String             #142          // , second 0x
+   #34 = String             #143          // ; illegal combination
+   #35 = Methodref          #28.#144      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #36 = Methodref          #27.#145      // java/io/IOException."<init>":(Ljava/lang/String;)V
+   #37 = Integer            65536
+   #38 = Methodref          #17.#146      // com/fasterxml/jackson/core/io/UTF8Writer.illegalSurrogateDesc:(I)Ljava/lang/String;
+   #39 = String             #147          // Illegal character point (0x
+   #40 = String             #148          // ) to output; max is 0x10FFFF as per RFC 4627
+   #41 = String             #149          // Unmatched first part of surrogate pair (0x
+   #42 = String             #150          // )
+   #43 = String             #151          // Unmatched second part of surrogate pair (0x
+   #44 = String             #152          // ) to output
+   #45 = Methodref          #17.#153      // com/fasterxml/jackson/core/io/UTF8Writer.append:(C)Ljava/io/Writer;
+   #46 = Class              #154          // java/io/Writer
+   #47 = Utf8               SURR1_FIRST
+   #48 = Utf8               I
+   #49 = Utf8               ConstantValue
+   #50 = Utf8               SURR1_LAST
+   #51 = Utf8               SURR2_FIRST
+   #52 = Utf8               SURR2_LAST
+   #53 = Utf8               _context
+   #54 = Utf8               Lcom/fasterxml/jackson/core/io/IOContext;
+   #55 = Utf8               _out
+   #56 = Utf8               Ljava/io/OutputStream;
+   #57 = Utf8               _outBuffer
+   #58 = Utf8               [B
+   #59 = Utf8               _outBufferEnd
+   #60 = Utf8               _outPtr
+   #61 = Utf8               _surrogate
+   #62 = Utf8               <init>
+   #63 = Utf8               (Lcom/fasterxml/jackson/core/io/IOContext;Ljava/io/OutputStream;)V
+   #64 = Utf8               Code
+   #65 = Utf8               LineNumberTable
+   #66 = Utf8               LocalVariableTable
+   #67 = Utf8               this
+   #68 = Utf8               Lcom/fasterxml/jackson/core/io/UTF8Writer;
+   #69 = Utf8               ctxt
+   #70 = Utf8               out
+   #71 = Utf8               append
+   #72 = Utf8               (C)Ljava/io/Writer;
+   #73 = Utf8               c
+   #74 = Utf8               C
+   #75 = Utf8               Exceptions
+   #76 = Utf8               close
+   #77 = Utf8               ()V
+   #78 = Utf8               buf
+   #79 = Utf8               code
+   #80 = Utf8               StackMapTable
+   #81 = Class              #155          // java/io/OutputStream
+   #82 = Class              #58           // "[B"
+   #83 = Utf8               flush
+   #84 = Utf8               write
+   #85 = Utf8               ([C)V
+   #86 = Utf8               cbuf
+   #87 = Utf8               [C
+   #88 = Utf8               ([CII)V
+   #89 = Utf8               second
+   #90 = Utf8               maxInCount
+   #91 = Utf8               maxOutCount
+   #92 = Utf8               off
+   #93 = Utf8               len
+   #94 = Utf8               outPtr
+   #95 = Utf8               outBuf
+   #96 = Utf8               outBufLast
+   #97 = Utf8               (I)V
+   #98 = Utf8               ptr
+   #99 = Utf8               (Ljava/lang/String;)V
+  #100 = Utf8               str
+  #101 = Utf8               Ljava/lang/String;
+  #102 = Utf8               (Ljava/lang/String;II)V
+  #103 = Utf8               convertSurrogate
+  #104 = Utf8               (I)I
+  #105 = Utf8               secondPart
+  #106 = Utf8               firstPart
+  #107 = Utf8               illegalSurrogate
+  #108 = Utf8               illegalSurrogateDesc
+  #109 = Utf8               (I)Ljava/lang/String;
+  #110 = Utf8               (C)Ljava/lang/Appendable;
+  #111 = Utf8               SourceFile
+  #112 = Utf8               UTF8Writer.java
+  #113 = NameAndType        #62:#77       // "<init>":()V
+  #114 = NameAndType        #53:#54       // _context:Lcom/fasterxml/jackson/core/io/IOContext;
+  #115 = NameAndType        #55:#56       // _out:Ljava/io/OutputStream;
+  #116 = Class              #156          // com/fasterxml/jackson/core/io/IOContext
+  #117 = NameAndType        #157:#158     // allocWriteEncodingBuffer:()[B
+  #118 = NameAndType        #57:#58       // _outBuffer:[B
+  #119 = NameAndType        #59:#48       // _outBufferEnd:I
+  #120 = NameAndType        #60:#48       // _outPtr:I
+  #121 = NameAndType        #84:#97       // write:(I)V
+  #122 = Class              #155          // java/io/OutputStream
+  #123 = NameAndType        #84:#159      // write:([BII)V
+  #124 = NameAndType        #160:#161     // releaseWriteEncodingBuffer:([B)V
+  #125 = NameAndType        #76:#77       // close:()V
+  #126 = NameAndType        #61:#48       // _surrogate:I
+  #127 = NameAndType        #107:#97      // illegalSurrogate:(I)V
+  #128 = NameAndType        #83:#77       // flush:()V
+  #129 = NameAndType        #84:#88       // write:([CII)V
+  #130 = NameAndType        #103:#104     // convertSurrogate:(I)I
+  #131 = Utf8               com/fasterxml/jackson/core/io/UTF8Writer
+  #132 = Class              #162          // java/lang/String
+  #133 = NameAndType        #163:#164     // length:()I
+  #134 = NameAndType        #84:#102      // write:(Ljava/lang/String;II)V
+  #135 = NameAndType        #165:#166     // charAt:(I)C
+  #136 = Utf8               java/io/IOException
+  #137 = Utf8               java/lang/StringBuilder
+  #138 = Utf8               Broken surrogate pair: first char 0x
+  #139 = NameAndType        #71:#167      // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #140 = Class              #168          // java/lang/Integer
+  #141 = NameAndType        #169:#109     // toHexString:(I)Ljava/lang/String;
+  #142 = Utf8               , second 0x
+  #143 = Utf8               ; illegal combination
+  #144 = NameAndType        #170:#171     // toString:()Ljava/lang/String;
+  #145 = NameAndType        #62:#99       // "<init>":(Ljava/lang/String;)V
+  #146 = NameAndType        #108:#109     // illegalSurrogateDesc:(I)Ljava/lang/String;
+  #147 = Utf8               Illegal character point (0x
+  #148 = Utf8               ) to output; max is 0x10FFFF as per RFC 4627
+  #149 = Utf8               Unmatched first part of surrogate pair (0x
+  #150 = Utf8               )
+  #151 = Utf8               Unmatched second part of surrogate pair (0x
+  #152 = Utf8               ) to output
+  #153 = NameAndType        #71:#72       // append:(C)Ljava/io/Writer;
+  #154 = Utf8               java/io/Writer
+  #155 = Utf8               java/io/OutputStream
+  #156 = Utf8               com/fasterxml/jackson/core/io/IOContext
+  #157 = Utf8               allocWriteEncodingBuffer
+  #158 = Utf8               ()[B
+  #159 = Utf8               ([BII)V
+  #160 = Utf8               releaseWriteEncodingBuffer
+  #161 = Utf8               ([B)V
+  #162 = Utf8               java/lang/String
+  #163 = Utf8               length
+  #164 = Utf8               ()I
+  #165 = Utf8               charAt
+  #166 = Utf8               (I)C
+  #167 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #168 = Utf8               java/lang/Integer
+  #169 = Utf8               toHexString
+  #170 = Utf8               toString
+  #171 = Utf8               ()Ljava/lang/String;
+{
+  static final int SURR1_FIRST;
+    descriptor: I
+    flags: (0x0018) ACC_STATIC, ACC_FINAL
+    ConstantValue: int 55296
+
+  static final int SURR1_LAST;
+    descriptor: I
+    flags: (0x0018) ACC_STATIC, ACC_FINAL
+    ConstantValue: int 56319
+
+  static final int SURR2_FIRST;
+    descriptor: I
+    flags: (0x0018) ACC_STATIC, ACC_FINAL
+    ConstantValue: int 56320
+
+  static final int SURR2_LAST;
+    descriptor: I
+    flags: (0x0018) ACC_STATIC, ACC_FINAL
+    ConstantValue: int 57343
+
+  private final com.fasterxml.jackson.core.io.IOContext _context;
+    descriptor: Lcom/fasterxml/jackson/core/io/IOContext;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private java.io.OutputStream _out;
+    descriptor: Ljava/io/OutputStream;
+    flags: (0x0002) ACC_PRIVATE
+
+  private byte[] _outBuffer;
+    descriptor: [B
+    flags: (0x0002) ACC_PRIVATE
+
+  private final int _outBufferEnd;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private int _outPtr;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int _surrogate;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  public com.fasterxml.jackson.core.io.UTF8Writer(com.fasterxml.jackson.core.io.IOContext, java.io.OutputStream);
+    descriptor: (Lcom/fasterxml/jackson/core/io/IOContext;Ljava/io/OutputStream;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: invokespecial #1                  // Method java/io/Writer."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #2                  // Field _context:Lcom/fasterxml/jackson/core/io/IOContext;
+         9: aload_0
+        10: aload_2
+        11: putfield      #3                  // Field _out:Ljava/io/OutputStream;
+        14: aload_0
+        15: aload_1
+        16: invokevirtual #4                  // Method com/fasterxml/jackson/core/io/IOContext.allocWriteEncodingBuffer:()[B
+        19: putfield      #5                  // Field _outBuffer:[B
+        22: aload_0
+        23: aload_0
+        24: getfield      #5                  // Field _outBuffer:[B
+        27: arraylength
+        28: iconst_4
+        29: isub
+        30: putfield      #6                  // Field _outBufferEnd:I
+        33: aload_0
+        34: iconst_0
+        35: putfield      #7                  // Field _outPtr:I
+        38: return
+      LineNumberTable:
+        line 30: 0
+        line 31: 4
+        line 32: 9
+        line 34: 14
+        line 39: 22
+        line 40: 33
+        line 41: 38
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      39     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+            0      39     1  ctxt   Lcom/fasterxml/jackson/core/io/IOContext;
+            0      39     2   out   Ljava/io/OutputStream;
+
+  public java.io.Writer append(char) throws java.io.IOException;
+    descriptor: (C)Ljava/io/Writer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #8                  // Method write:(I)V
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 47: 0
+        line 48: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+            0       7     1     c   C
+    Exceptions:
+      throws java.io.IOException
+
+  public void close() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+         4: ifnull        89
+         7: aload_0
+         8: getfield      #7                  // Field _outPtr:I
+        11: ifle          35
+        14: aload_0
+        15: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+        18: aload_0
+        19: getfield      #5                  // Field _outBuffer:[B
+        22: iconst_0
+        23: aload_0
+        24: getfield      #7                  // Field _outPtr:I
+        27: invokevirtual #9                  // Method java/io/OutputStream.write:([BII)V
+        30: aload_0
+        31: iconst_0
+        32: putfield      #7                  // Field _outPtr:I
+        35: aload_0
+        36: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+        39: astore_1
+        40: aload_0
+        41: aconst_null
+        42: putfield      #3                  // Field _out:Ljava/io/OutputStream;
+        45: aload_0
+        46: getfield      #5                  // Field _outBuffer:[B
+        49: astore_2
+        50: aload_2
+        51: ifnull        67
+        54: aload_0
+        55: aconst_null
+        56: putfield      #5                  // Field _outBuffer:[B
+        59: aload_0
+        60: getfield      #2                  // Field _context:Lcom/fasterxml/jackson/core/io/IOContext;
+        63: aload_2
+        64: invokevirtual #10                 // Method com/fasterxml/jackson/core/io/IOContext.releaseWriteEncodingBuffer:([B)V
+        67: aload_1
+        68: invokevirtual #11                 // Method java/io/OutputStream.close:()V
+        71: aload_0
+        72: getfield      #12                 // Field _surrogate:I
+        75: istore_3
+        76: aload_0
+        77: iconst_0
+        78: putfield      #12                 // Field _surrogate:I
+        81: iload_3
+        82: ifle          89
+        85: iload_3
+        86: invokestatic  #13                 // Method illegalSurrogate:(I)V
+        89: return
+      LineNumberTable:
+        line 55: 0
+        line 56: 7
+        line 57: 14
+        line 58: 30
+        line 60: 35
+        line 61: 40
+        line 63: 45
+        line 64: 50
+        line 65: 54
+        line 66: 59
+        line 69: 67
+        line 73: 71
+        line 74: 76
+        line 75: 81
+        line 76: 85
+        line 79: 89
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           40      49     1   out   Ljava/io/OutputStream;
+           50      39     2   buf   [B
+           76      13     3  code   I
+            0      90     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+      StackMapTable: number_of_entries = 3
+        frame_type = 35 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 31
+          locals = [ class java/io/OutputStream, class "[B" ]
+        frame_type = 249 /* chop */
+          offset_delta = 21
+    Exceptions:
+      throws java.io.IOException
+
+  public void flush() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+         4: ifnull        42
+         7: aload_0
+         8: getfield      #7                  // Field _outPtr:I
+        11: ifle          35
+        14: aload_0
+        15: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+        18: aload_0
+        19: getfield      #5                  // Field _outBuffer:[B
+        22: iconst_0
+        23: aload_0
+        24: getfield      #7                  // Field _outPtr:I
+        27: invokevirtual #9                  // Method java/io/OutputStream.write:([BII)V
+        30: aload_0
+        31: iconst_0
+        32: putfield      #7                  // Field _outPtr:I
+        35: aload_0
+        36: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+        39: invokevirtual #14                 // Method java/io/OutputStream.flush:()V
+        42: return
+      LineNumberTable:
+        line 85: 0
+        line 86: 7
+        line 87: 14
+        line 88: 30
+        line 90: 35
+        line 92: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+      StackMapTable: number_of_entries = 2
+        frame_type = 35 /* same */
+        frame_type = 6 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void write(char[]) throws java.io.IOException;
+    descriptor: ([C)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: iconst_0
+         3: aload_1
+         4: arraylength
+         5: invokevirtual #15                 // Method write:([CII)V
+         8: return
+      LineNumberTable:
+        line 98: 0
+        line 99: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+            0       9     1  cbuf   [C
+    Exceptions:
+      throws java.io.IOException
+
+  public void write(char[], int, int) throws java.io.IOException;
+    descriptor: ([CII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=10, args_size=4
+         0: iload_3
+         1: iconst_2
+         2: if_icmpge     18
+         5: iload_3
+         6: iconst_1
+         7: if_icmpne     17
+        10: aload_0
+        11: aload_1
+        12: iload_2
+        13: caload
+        14: invokevirtual #8                  // Method write:(I)V
+        17: return
+        18: aload_0
+        19: getfield      #12                 // Field _surrogate:I
+        22: ifle          46
+        25: aload_1
+        26: iload_2
+        27: iinc          2, 1
+        30: caload
+        31: istore        4
+        33: iinc          3, -1
+        36: aload_0
+        37: aload_0
+        38: iload         4
+        40: invokevirtual #16                 // Method convertSurrogate:(I)I
+        43: invokevirtual #8                  // Method write:(I)V
+        46: aload_0
+        47: getfield      #7                  // Field _outPtr:I
+        50: istore        4
+        52: aload_0
+        53: getfield      #5                  // Field _outBuffer:[B
+        56: astore        5
+        58: aload_0
+        59: getfield      #6                  // Field _outBufferEnd:I
+        62: istore        6
+        64: iload_3
+        65: iload_2
+        66: iadd
+        67: istore_3
+        68: iload_2
+        69: iload_3
+        70: if_icmpge     457
+        73: iload         4
+        75: iload         6
+        77: if_icmplt     95
+        80: aload_0
+        81: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+        84: aload         5
+        86: iconst_0
+        87: iload         4
+        89: invokevirtual #9                  // Method java/io/OutputStream.write:([BII)V
+        92: iconst_0
+        93: istore        4
+        95: aload_1
+        96: iload_2
+        97: iinc          2, 1
+       100: caload
+       101: istore        7
+       103: iload         7
+       105: sipush        128
+       108: if_icmpge     193
+       111: aload         5
+       113: iload         4
+       115: iinc          4, 1
+       118: iload         7
+       120: i2b
+       121: bastore
+       122: iload_3
+       123: iload_2
+       124: isub
+       125: istore        8
+       127: iload         6
+       129: iload         4
+       131: isub
+       132: istore        9
+       134: iload         8
+       136: iload         9
+       138: if_icmple     145
+       141: iload         9
+       143: istore        8
+       145: iload         8
+       147: iload_2
+       148: iadd
+       149: istore        8
+       151: iload_2
+       152: iload         8
+       154: if_icmplt     160
+       157: goto          68
+       160: aload_1
+       161: iload_2
+       162: iinc          2, 1
+       165: caload
+       166: istore        7
+       168: iload         7
+       170: sipush        128
+       173: if_icmplt     179
+       176: goto          193
+       179: aload         5
+       181: iload         4
+       183: iinc          4, 1
+       186: iload         7
+       188: i2b
+       189: bastore
+       190: goto          151
+       193: iload         7
+       195: sipush        2048
+       198: if_icmpge     240
+       201: aload         5
+       203: iload         4
+       205: iinc          4, 1
+       208: sipush        192
+       211: iload         7
+       213: bipush        6
+       215: ishr
+       216: ior
+       217: i2b
+       218: bastore
+       219: aload         5
+       221: iload         4
+       223: iinc          4, 1
+       226: sipush        128
+       229: iload         7
+       231: bipush        63
+       233: iand
+       234: ior
+       235: i2b
+       236: bastore
+       237: goto          454
+       240: iload         7
+       242: ldc           #18                 // int 55296
+       244: if_icmplt     254
+       247: iload         7
+       249: ldc           #19                 // int 57343
+       251: if_icmple     314
+       254: aload         5
+       256: iload         4
+       258: iinc          4, 1
+       261: sipush        224
+       264: iload         7
+       266: bipush        12
+       268: ishr
+       269: ior
+       270: i2b
+       271: bastore
+       272: aload         5
+       274: iload         4
+       276: iinc          4, 1
+       279: sipush        128
+       282: iload         7
+       284: bipush        6
+       286: ishr
+       287: bipush        63
+       289: iand
+       290: ior
+       291: i2b
+       292: bastore
+       293: aload         5
+       295: iload         4
+       297: iinc          4, 1
+       300: sipush        128
+       303: iload         7
+       305: bipush        63
+       307: iand
+       308: ior
+       309: i2b
+       310: bastore
+       311: goto          68
+       314: iload         7
+       316: ldc           #20                 // int 56319
+       318: if_icmple     332
+       321: aload_0
+       322: iload         4
+       324: putfield      #7                  // Field _outPtr:I
+       327: iload         7
+       329: invokestatic  #13                 // Method illegalSurrogate:(I)V
+       332: aload_0
+       333: iload         7
+       335: putfield      #12                 // Field _surrogate:I
+       338: iload_2
+       339: iload_3
+       340: if_icmplt     346
+       343: goto          457
+       346: aload_0
+       347: aload_1
+       348: iload_2
+       349: iinc          2, 1
+       352: caload
+       353: invokevirtual #16                 // Method convertSurrogate:(I)I
+       356: istore        7
+       358: iload         7
+       360: ldc           #21                 // int 1114111
+       362: if_icmple     376
+       365: aload_0
+       366: iload         4
+       368: putfield      #7                  // Field _outPtr:I
+       371: iload         7
+       373: invokestatic  #13                 // Method illegalSurrogate:(I)V
+       376: aload         5
+       378: iload         4
+       380: iinc          4, 1
+       383: sipush        240
+       386: iload         7
+       388: bipush        18
+       390: ishr
+       391: ior
+       392: i2b
+       393: bastore
+       394: aload         5
+       396: iload         4
+       398: iinc          4, 1
+       401: sipush        128
+       404: iload         7
+       406: bipush        12
+       408: ishr
+       409: bipush        63
+       411: iand
+       412: ior
+       413: i2b
+       414: bastore
+       415: aload         5
+       417: iload         4
+       419: iinc          4, 1
+       422: sipush        128
+       425: iload         7
+       427: bipush        6
+       429: ishr
+       430: bipush        63
+       432: iand
+       433: ior
+       434: i2b
+       435: bastore
+       436: aload         5
+       438: iload         4
+       440: iinc          4, 1
+       443: sipush        128
+       446: iload         7
+       448: bipush        63
+       450: iand
+       451: ior
+       452: i2b
+       453: bastore
+       454: goto          68
+       457: aload_0
+       458: iload         4
+       460: putfield      #7                  // Field _outPtr:I
+       463: return
+      LineNumberTable:
+        line 105: 0
+        line 106: 5
+        line 107: 10
+        line 109: 17
+        line 113: 18
+        line 114: 25
+        line 115: 33
+        line 116: 36
+        line 120: 46
+        line 121: 52
+        line 122: 58
+        line 125: 64
+        line 128: 68
+        line 132: 73
+        line 133: 80
+        line 134: 92
+        line 137: 95
+        line 139: 103
+        line 140: 111
+        line 142: 122
+        line 143: 127
+        line 145: 134
+        line 146: 141
+        line 148: 145
+        line 151: 151
+        line 152: 157
+        line 154: 160
+        line 155: 168
+        line 156: 176
+        line 158: 179
+        line 163: 193
+        line 164: 201
+        line 165: 219
+        line 168: 240
+        line 169: 254
+        line 170: 272
+        line 171: 293
+        line 172: 311
+        line 175: 314
+        line 176: 321
+        line 177: 327
+        line 179: 332
+        line 181: 338
+        line 182: 343
+        line 184: 346
+        line 185: 358
+        line 186: 365
+        line 187: 371
+        line 189: 376
+        line 190: 394
+        line 191: 415
+        line 192: 436
+        line 194: 454
+        line 195: 457
+        line 196: 463
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           33      13     4 second   C
+          127      66     8 maxInCount   I
+          134      59     9 maxOutCount   I
+          103     351     7     c   I
+            0     464     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+            0     464     1  cbuf   [C
+            0     464     2   off   I
+            0     464     3   len   I
+           52     412     4 outPtr   I
+           58     406     5 outBuf   [B
+           64     400     6 outBufLast   I
+      StackMapTable: number_of_entries = 18
+        frame_type = 17 /* same */
+        frame_type = 0 /* same */
+        frame_type = 27 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 21
+          locals = [ int, class "[B", int ]
+        frame_type = 26 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 49
+          locals = [ int, int, int ]
+        frame_type = 5 /* same */
+        frame_type = 8 /* same */
+        frame_type = 18 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 13
+        frame_type = 46 /* same */
+        frame_type = 13 /* same */
+        frame_type = 59 /* same */
+        frame_type = 17 /* same */
+        frame_type = 13 /* same */
+        frame_type = 29 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 77
+        frame_type = 2 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void write(int) throws java.io.IOException;
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #12                 // Field _surrogate:I
+         4: ifle          16
+         7: aload_0
+         8: iload_1
+         9: invokevirtual #16                 // Method convertSurrogate:(I)I
+        12: istore_1
+        13: goto          44
+        16: iload_1
+        17: ldc           #18                 // int 55296
+        19: if_icmplt     44
+        22: iload_1
+        23: ldc           #19                 // int 57343
+        25: if_icmpgt     44
+        28: iload_1
+        29: ldc           #20                 // int 56319
+        31: if_icmple     38
+        34: iload_1
+        35: invokestatic  #13                 // Method illegalSurrogate:(I)V
+        38: aload_0
+        39: iload_1
+        40: putfield      #12                 // Field _surrogate:I
+        43: return
+        44: aload_0
+        45: getfield      #7                  // Field _outPtr:I
+        48: aload_0
+        49: getfield      #6                  // Field _outBufferEnd:I
+        52: if_icmplt     76
+        55: aload_0
+        56: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+        59: aload_0
+        60: getfield      #5                  // Field _outBuffer:[B
+        63: iconst_0
+        64: aload_0
+        65: getfield      #7                  // Field _outPtr:I
+        68: invokevirtual #9                  // Method java/io/OutputStream.write:([BII)V
+        71: aload_0
+        72: iconst_0
+        73: putfield      #7                  // Field _outPtr:I
+        76: iload_1
+        77: sipush        128
+        80: if_icmpge     104
+        83: aload_0
+        84: getfield      #5                  // Field _outBuffer:[B
+        87: aload_0
+        88: dup
+        89: getfield      #7                  // Field _outPtr:I
+        92: dup_x1
+        93: iconst_1
+        94: iadd
+        95: putfield      #7                  // Field _outPtr:I
+        98: iload_1
+        99: i2b
+       100: bastore
+       101: goto          314
+       104: aload_0
+       105: getfield      #7                  // Field _outPtr:I
+       108: istore_2
+       109: iload_1
+       110: sipush        2048
+       113: if_icmpge     155
+       116: aload_0
+       117: getfield      #5                  // Field _outBuffer:[B
+       120: iload_2
+       121: iinc          2, 1
+       124: sipush        192
+       127: iload_1
+       128: bipush        6
+       130: ishr
+       131: ior
+       132: i2b
+       133: bastore
+       134: aload_0
+       135: getfield      #5                  // Field _outBuffer:[B
+       138: iload_2
+       139: iinc          2, 1
+       142: sipush        128
+       145: iload_1
+       146: bipush        63
+       148: iand
+       149: ior
+       150: i2b
+       151: bastore
+       152: goto          309
+       155: iload_1
+       156: ldc           #22                 // int 65535
+       158: if_icmpgt     221
+       161: aload_0
+       162: getfield      #5                  // Field _outBuffer:[B
+       165: iload_2
+       166: iinc          2, 1
+       169: sipush        224
+       172: iload_1
+       173: bipush        12
+       175: ishr
+       176: ior
+       177: i2b
+       178: bastore
+       179: aload_0
+       180: getfield      #5                  // Field _outBuffer:[B
+       183: iload_2
+       184: iinc          2, 1
+       187: sipush        128
+       190: iload_1
+       191: bipush        6
+       193: ishr
+       194: bipush        63
+       196: iand
+       197: ior
+       198: i2b
+       199: bastore
+       200: aload_0
+       201: getfield      #5                  // Field _outBuffer:[B
+       204: iload_2
+       205: iinc          2, 1
+       208: sipush        128
+       211: iload_1
+       212: bipush        63
+       214: iand
+       215: ior
+       216: i2b
+       217: bastore
+       218: goto          309
+       221: iload_1
+       222: ldc           #21                 // int 1114111
+       224: if_icmple     231
+       227: iload_1
+       228: invokestatic  #13                 // Method illegalSurrogate:(I)V
+       231: aload_0
+       232: getfield      #5                  // Field _outBuffer:[B
+       235: iload_2
+       236: iinc          2, 1
+       239: sipush        240
+       242: iload_1
+       243: bipush        18
+       245: ishr
+       246: ior
+       247: i2b
+       248: bastore
+       249: aload_0
+       250: getfield      #5                  // Field _outBuffer:[B
+       253: iload_2
+       254: iinc          2, 1
+       257: sipush        128
+       260: iload_1
+       261: bipush        12
+       263: ishr
+       264: bipush        63
+       266: iand
+       267: ior
+       268: i2b
+       269: bastore
+       270: aload_0
+       271: getfield      #5                  // Field _outBuffer:[B
+       274: iload_2
+       275: iinc          2, 1
+       278: sipush        128
+       281: iload_1
+       282: bipush        6
+       284: ishr
+       285: bipush        63
+       287: iand
+       288: ior
+       289: i2b
+       290: bastore
+       291: aload_0
+       292: getfield      #5                  // Field _outBuffer:[B
+       295: iload_2
+       296: iinc          2, 1
+       299: sipush        128
+       302: iload_1
+       303: bipush        63
+       305: iand
+       306: ior
+       307: i2b
+       308: bastore
+       309: aload_0
+       310: iload_2
+       311: putfield      #7                  // Field _outPtr:I
+       314: return
+      LineNumberTable:
+        line 202: 0
+        line 203: 7
+        line 205: 16
+        line 207: 28
+        line 208: 34
+        line 211: 38
+        line 212: 43
+        line 215: 44
+        line 216: 55
+        line 217: 71
+        line 220: 76
+        line 221: 83
+        line 223: 104
+        line 224: 109
+        line 225: 116
+        line 226: 134
+        line 227: 155
+        line 228: 161
+        line 229: 179
+        line 230: 200
+        line 232: 221
+        line 233: 227
+        line 235: 231
+        line 236: 249
+        line 237: 270
+        line 238: 291
+        line 240: 309
+        line 242: 314
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          109     205     2   ptr   I
+            0     315     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+            0     315     1     c   I
+      StackMapTable: number_of_entries = 10
+        frame_type = 16 /* same */
+        frame_type = 21 /* same */
+        frame_type = 5 /* same */
+        frame_type = 31 /* same */
+        frame_type = 27 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 50
+          locals = [ int ]
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 65
+        frame_type = 9 /* same */
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 77
+        frame_type = 250 /* chop */
+          offset_delta = 4
+    Exceptions:
+      throws java.io.IOException
+
+  public void write(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: iconst_0
+         3: aload_1
+         4: invokevirtual #23                 // Method java/lang/String.length:()I
+         7: invokevirtual #24                 // Method write:(Ljava/lang/String;II)V
+        10: return
+      LineNumberTable:
+        line 247: 0
+        line 248: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+            0      11     1   str   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void write(java.lang.String, int, int) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=10, args_size=4
+         0: iload_3
+         1: iconst_2
+         2: if_icmpge     20
+         5: iload_3
+         6: iconst_1
+         7: if_icmpne     19
+        10: aload_0
+        11: aload_1
+        12: iload_2
+        13: invokevirtual #25                 // Method java/lang/String.charAt:(I)C
+        16: invokevirtual #8                  // Method write:(I)V
+        19: return
+        20: aload_0
+        21: getfield      #12                 // Field _surrogate:I
+        24: ifle          50
+        27: aload_1
+        28: iload_2
+        29: iinc          2, 1
+        32: invokevirtual #25                 // Method java/lang/String.charAt:(I)C
+        35: istore        4
+        37: iinc          3, -1
+        40: aload_0
+        41: aload_0
+        42: iload         4
+        44: invokevirtual #16                 // Method convertSurrogate:(I)I
+        47: invokevirtual #8                  // Method write:(I)V
+        50: aload_0
+        51: getfield      #7                  // Field _outPtr:I
+        54: istore        4
+        56: aload_0
+        57: getfield      #5                  // Field _outBuffer:[B
+        60: astore        5
+        62: aload_0
+        63: getfield      #6                  // Field _outBufferEnd:I
+        66: istore        6
+        68: iload_3
+        69: iload_2
+        70: iadd
+        71: istore_3
+        72: iload_2
+        73: iload_3
+        74: if_icmpge     467
+        77: iload         4
+        79: iload         6
+        81: if_icmplt     99
+        84: aload_0
+        85: getfield      #3                  // Field _out:Ljava/io/OutputStream;
+        88: aload         5
+        90: iconst_0
+        91: iload         4
+        93: invokevirtual #9                  // Method java/io/OutputStream.write:([BII)V
+        96: iconst_0
+        97: istore        4
+        99: aload_1
+       100: iload_2
+       101: iinc          2, 1
+       104: invokevirtual #25                 // Method java/lang/String.charAt:(I)C
+       107: istore        7
+       109: iload         7
+       111: sipush        128
+       114: if_icmpge     201
+       117: aload         5
+       119: iload         4
+       121: iinc          4, 1
+       124: iload         7
+       126: i2b
+       127: bastore
+       128: iload_3
+       129: iload_2
+       130: isub
+       131: istore        8
+       133: iload         6
+       135: iload         4
+       137: isub
+       138: istore        9
+       140: iload         8
+       142: iload         9
+       144: if_icmple     151
+       147: iload         9
+       149: istore        8
+       151: iload         8
+       153: iload_2
+       154: iadd
+       155: istore        8
+       157: iload_2
+       158: iload         8
+       160: if_icmplt     166
+       163: goto          72
+       166: aload_1
+       167: iload_2
+       168: iinc          2, 1
+       171: invokevirtual #25                 // Method java/lang/String.charAt:(I)C
+       174: istore        7
+       176: iload         7
+       178: sipush        128
+       181: if_icmplt     187
+       184: goto          201
+       187: aload         5
+       189: iload         4
+       191: iinc          4, 1
+       194: iload         7
+       196: i2b
+       197: bastore
+       198: goto          157
+       201: iload         7
+       203: sipush        2048
+       206: if_icmpge     248
+       209: aload         5
+       211: iload         4
+       213: iinc          4, 1
+       216: sipush        192
+       219: iload         7
+       221: bipush        6
+       223: ishr
+       224: ior
+       225: i2b
+       226: bastore
+       227: aload         5
+       229: iload         4
+       231: iinc          4, 1
+       234: sipush        128
+       237: iload         7
+       239: bipush        63
+       241: iand
+       242: ior
+       243: i2b
+       244: bastore
+       245: goto          464
+       248: iload         7
+       250: ldc           #18                 // int 55296
+       252: if_icmplt     262
+       255: iload         7
+       257: ldc           #19                 // int 57343
+       259: if_icmple     322
+       262: aload         5
+       264: iload         4
+       266: iinc          4, 1
+       269: sipush        224
+       272: iload         7
+       274: bipush        12
+       276: ishr
+       277: ior
+       278: i2b
+       279: bastore
+       280: aload         5
+       282: iload         4
+       284: iinc          4, 1
+       287: sipush        128
+       290: iload         7
+       292: bipush        6
+       294: ishr
+       295: bipush        63
+       297: iand
+       298: ior
+       299: i2b
+       300: bastore
+       301: aload         5
+       303: iload         4
+       305: iinc          4, 1
+       308: sipush        128
+       311: iload         7
+       313: bipush        63
+       315: iand
+       316: ior
+       317: i2b
+       318: bastore
+       319: goto          72
+       322: iload         7
+       324: ldc           #20                 // int 56319
+       326: if_icmple     340
+       329: aload_0
+       330: iload         4
+       332: putfield      #7                  // Field _outPtr:I
+       335: iload         7
+       337: invokestatic  #13                 // Method illegalSurrogate:(I)V
+       340: aload_0
+       341: iload         7
+       343: putfield      #12                 // Field _surrogate:I
+       346: iload_2
+       347: iload_3
+       348: if_icmplt     354
+       351: goto          467
+       354: aload_0
+       355: aload_1
+       356: iload_2
+       357: iinc          2, 1
+       360: invokevirtual #25                 // Method java/lang/String.charAt:(I)C
+       363: invokevirtual #16                 // Method convertSurrogate:(I)I
+       366: istore        7
+       368: iload         7
+       370: ldc           #21                 // int 1114111
+       372: if_icmple     386
+       375: aload_0
+       376: iload         4
+       378: putfield      #7                  // Field _outPtr:I
+       381: iload         7
+       383: invokestatic  #13                 // Method illegalSurrogate:(I)V
+       386: aload         5
+       388: iload         4
+       390: iinc          4, 1
+       393: sipush        240
+       396: iload         7
+       398: bipush        18
+       400: ishr
+       401: ior
+       402: i2b
+       403: bastore
+       404: aload         5
+       406: iload         4
+       408: iinc          4, 1
+       411: sipush        128
+       414: iload         7
+       416: bipush        12
+       418: ishr
+       419: bipush        63
+       421: iand
+       422: ior
+       423: i2b
+       424: bastore
+       425: aload         5
+       427: iload         4
+       429: iinc          4, 1
+       432: sipush        128
+       435: iload         7
+       437: bipush        6
+       439: ishr
+       440: bipush        63
+       442: iand
+       443: ior
+       444: i2b
+       445: bastore
+       446: aload         5
+       448: iload         4
+       450: iinc          4, 1
+       453: sipush        128
+       456: iload         7
+       458: bipush        63
+       460: iand
+       461: ior
+       462: i2b
+       463: bastore
+       464: goto          72
+       467: aload_0
+       468: iload         4
+       470: putfield      #7                  // Field _outPtr:I
+       473: return
+      LineNumberTable:
+        line 253: 0
+        line 254: 5
+        line 255: 10
+        line 257: 19
+        line 261: 20
+        line 262: 27
+        line 263: 37
+        line 264: 40
+        line 268: 50
+        line 269: 56
+        line 270: 62
+        line 273: 68
+        line 276: 72
+        line 280: 77
+        line 281: 84
+        line 282: 96
+        line 285: 99
+        line 287: 109
+        line 288: 117
+        line 290: 128
+        line 291: 133
+        line 293: 140
+        line 294: 147
+        line 296: 151
+        line 299: 157
+        line 300: 163
+        line 302: 166
+        line 303: 176
+        line 304: 184
+        line 306: 187
+        line 311: 201
+        line 312: 209
+        line 313: 227
+        line 316: 248
+        line 317: 262
+        line 318: 280
+        line 319: 301
+        line 320: 319
+        line 323: 322
+        line 324: 329
+        line 325: 335
+        line 327: 340
+        line 329: 346
+        line 330: 351
+        line 332: 354
+        line 333: 368
+        line 334: 375
+        line 335: 381
+        line 337: 386
+        line 338: 404
+        line 339: 425
+        line 340: 446
+        line 342: 464
+        line 343: 467
+        line 344: 473
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           37      13     4 second   C
+          133      68     8 maxInCount   I
+          140      61     9 maxOutCount   I
+          109     355     7     c   I
+            0     474     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+            0     474     1   str   Ljava/lang/String;
+            0     474     2   off   I
+            0     474     3   len   I
+           56     418     4 outPtr   I
+           62     412     5 outBuf   [B
+           68     406     6 outBufLast   I
+      StackMapTable: number_of_entries = 18
+        frame_type = 19 /* same */
+        frame_type = 0 /* same */
+        frame_type = 29 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 21
+          locals = [ int, class "[B", int ]
+        frame_type = 26 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 51
+          locals = [ int, int, int ]
+        frame_type = 5 /* same */
+        frame_type = 8 /* same */
+        frame_type = 20 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 13
+        frame_type = 46 /* same */
+        frame_type = 13 /* same */
+        frame_type = 59 /* same */
+        frame_type = 17 /* same */
+        frame_type = 13 /* same */
+        frame_type = 31 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 77
+        frame_type = 2 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  protected int convertSurrogate(int) throws java.io.IOException;
+    descriptor: (I)I
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=4, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #12                 // Field _surrogate:I
+         4: istore_2
+         5: aload_0
+         6: iconst_0
+         7: putfield      #12                 // Field _surrogate:I
+        10: iload_1
+        11: ldc           #26                 // int 56320
+        13: if_icmplt     22
+        16: iload_1
+        17: ldc           #19                 // int 57343
+        19: if_icmple     69
+        22: new           #27                 // class java/io/IOException
+        25: dup
+        26: new           #28                 // class java/lang/StringBuilder
+        29: dup
+        30: invokespecial #29                 // Method java/lang/StringBuilder."<init>":()V
+        33: ldc           #30                 // String Broken surrogate pair: first char 0x
+        35: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        38: iload_2
+        39: invokestatic  #32                 // Method java/lang/Integer.toHexString:(I)Ljava/lang/String;
+        42: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        45: ldc           #33                 // String , second 0x
+        47: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        50: iload_1
+        51: invokestatic  #32                 // Method java/lang/Integer.toHexString:(I)Ljava/lang/String;
+        54: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        57: ldc           #34                 // String ; illegal combination
+        59: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        62: invokevirtual #35                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        65: invokespecial #36                 // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+        68: athrow
+        69: ldc           #37                 // int 65536
+        71: iload_2
+        72: ldc           #18                 // int 55296
+        74: isub
+        75: bipush        10
+        77: ishl
+        78: iadd
+        79: iload_1
+        80: ldc           #26                 // int 56320
+        82: isub
+        83: iadd
+        84: ireturn
+      LineNumberTable:
+        line 364: 0
+        line 365: 5
+        line 368: 10
+        line 369: 22
+        line 371: 69
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      85     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+            0      85     1 secondPart   I
+            5      80     2 firstPart   I
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ int ]
+        frame_type = 46 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  protected static void illegalSurrogate(int) throws java.io.IOException;
+    descriptor: (I)V
+    flags: (0x000c) ACC_PROTECTED, ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #27                 // class java/io/IOException
+         3: dup
+         4: iload_0
+         5: invokestatic  #38                 // Method illegalSurrogateDesc:(I)Ljava/lang/String;
+         8: invokespecial #36                 // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+        11: athrow
+      LineNumberTable:
+        line 375: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0  code   I
+    Exceptions:
+      throws java.io.IOException
+
+  protected static java.lang.String illegalSurrogateDesc(int);
+    descriptor: (I)Ljava/lang/String;
+    flags: (0x000c) ACC_PROTECTED, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: iload_0
+         1: ldc           #21                 // int 1114111
+         3: if_icmple     34
+         6: new           #28                 // class java/lang/StringBuilder
+         9: dup
+        10: invokespecial #29                 // Method java/lang/StringBuilder."<init>":()V
+        13: ldc           #39                 // String Illegal character point (0x
+        15: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        18: iload_0
+        19: invokestatic  #32                 // Method java/lang/Integer.toHexString:(I)Ljava/lang/String;
+        22: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        25: ldc           #40                 // String ) to output; max is 0x10FFFF as per RFC 4627
+        27: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        30: invokevirtual #35                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        33: areturn
+        34: iload_0
+        35: ldc           #18                 // int 55296
+        37: if_icmplt     102
+        40: iload_0
+        41: ldc           #20                 // int 56319
+        43: if_icmpgt     74
+        46: new           #28                 // class java/lang/StringBuilder
+        49: dup
+        50: invokespecial #29                 // Method java/lang/StringBuilder."<init>":()V
+        53: ldc           #41                 // String Unmatched first part of surrogate pair (0x
+        55: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        58: iload_0
+        59: invokestatic  #32                 // Method java/lang/Integer.toHexString:(I)Ljava/lang/String;
+        62: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        65: ldc           #42                 // String )
+        67: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        70: invokevirtual #35                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        73: areturn
+        74: new           #28                 // class java/lang/StringBuilder
+        77: dup
+        78: invokespecial #29                 // Method java/lang/StringBuilder."<init>":()V
+        81: ldc           #43                 // String Unmatched second part of surrogate pair (0x
+        83: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        86: iload_0
+        87: invokestatic  #32                 // Method java/lang/Integer.toHexString:(I)Ljava/lang/String;
+        90: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        93: ldc           #42                 // String )
+        95: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        98: invokevirtual #35                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       101: areturn
+       102: new           #28                 // class java/lang/StringBuilder
+       105: dup
+       106: invokespecial #29                 // Method java/lang/StringBuilder."<init>":()V
+       109: ldc           #39                 // String Illegal character point (0x
+       111: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       114: iload_0
+       115: invokestatic  #32                 // Method java/lang/Integer.toHexString:(I)Ljava/lang/String;
+       118: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       121: ldc           #44                 // String ) to output
+       123: invokevirtual #31                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       126: invokevirtual #35                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       129: areturn
+      LineNumberTable:
+        line 380: 0
+        line 381: 6
+        line 383: 34
+        line 384: 40
+        line 385: 46
+        line 387: 74
+        line 390: 102
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     130     0  code   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 34 /* same */
+        frame_type = 39 /* same */
+        frame_type = 27 /* same */
+
+  public java.lang.Appendable append(char) throws java.io.IOException;
+    descriptor: (C)Ljava/lang/Appendable;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #45                 // Method append:(C)Ljava/io/Writer;
+         5: areturn
+      LineNumberTable:
+        line 5: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/core/io/UTF8Writer;
+    Exceptions:
+      throws java.io.IOException
+}
+SourceFile: "UTF8Writer.java"

@@ -1,0 +1,1796 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/zaxxer/nuprocess/osx/ProcessKqueue.class
+  Last modified May 29, 2022; size 9395 bytes
+  SHA-256 checksum fa3d16910a75d17dd565e8f865044de8aff2d83e393a132ce6293da1177a4b07
+  Compiled from "ProcessKqueue.java"
+final class com.zaxxer.nuprocess.osx.ProcessKqueue extends com.zaxxer.nuprocess.internal.BaseEventProcessor<com.zaxxer.nuprocess.osx.OsxProcess>
+  minor version: 0
+  major version: 51
+  flags: (0x0030) ACC_FINAL, ACC_SUPER
+  this_class: #1                          // com/zaxxer/nuprocess/osx/ProcessKqueue
+  super_class: #112                       // com/zaxxer/nuprocess/internal/BaseEventProcessor
+  interfaces: 0, fields: 7, methods: 17, attributes: 3
+Constant pool:
+    #1 = Class              #205          // com/zaxxer/nuprocess/osx/ProcessKqueue
+    #2 = Methodref          #1.#206       // com/zaxxer/nuprocess/osx/ProcessKqueue."<init>":(I)V
+    #3 = Methodref          #1.#207       // com/zaxxer/nuprocess/osx/ProcessKqueue.registerProcess:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+    #4 = Methodref          #1.#208       // com/zaxxer/nuprocess/osx/ProcessKqueue.checkAndSetRunning:()Z
+    #5 = Methodref          #112.#206     // com/zaxxer/nuprocess/internal/BaseEventProcessor."<init>":(I)V
+    #6 = Methodref          #209.#210     // com/zaxxer/nuprocess/osx/LibKevent.kqueue:()I
+    #7 = Fieldref           #1.#211       // com/zaxxer/nuprocess/osx/ProcessKqueue.kqueue:I
+    #8 = Class              #212          // java/lang/RuntimeException
+    #9 = String             #213          // Unable to create kqueue
+   #10 = Methodref          #8.#214       // java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+   #11 = Class              #215          // java/util/concurrent/ArrayBlockingQueue
+   #12 = Methodref          #11.#206      // java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+   #13 = Fieldref           #1.#216       // com/zaxxer/nuprocess/osx/ProcessKqueue.closeQueue:Ljava/util/concurrent/BlockingQueue;
+   #14 = Fieldref           #1.#217       // com/zaxxer/nuprocess/osx/ProcessKqueue.wantsWrite:Ljava/util/concurrent/BlockingQueue;
+   #15 = Class              #218          // com/zaxxer/nuprocess/osx/LibKevent$Kevent
+   #16 = Methodref          #15.#219      // com/zaxxer/nuprocess/osx/LibKevent$Kevent."<init>":()V
+   #17 = Methodref          #15.#220      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.toArray:(I)[Lcom/sun/jna/Structure;
+   #18 = Class              #124          // "[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;"
+   #19 = Fieldref           #1.#221       // com/zaxxer/nuprocess/osx/ProcessKqueue.processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+   #20 = Class              #222          // com/zaxxer/nuprocess/internal/LibC
+   #21 = Long               31l
+   #23 = Fieldref           #152.#223     // com/sun/jna/Pointer.NULL:Lcom/sun/jna/Pointer;
+   #24 = Methodref          #15.#224      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+   #25 = Methodref          #1.#225       // com/zaxxer/nuprocess/osx/ProcessKqueue.registerEvents:([Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;I)V
+   #26 = Fieldref           #1.#226       // com/zaxxer/nuprocess/osx/ProcessKqueue.shutdown:Z
+   #27 = Methodref          #77.#227      // com/zaxxer/nuprocess/osx/OsxProcess.getPid:()I
+   #28 = Methodref          #152.#228     // com/sun/jna/Pointer.createConstant:(I)Lcom/sun/jna/Pointer;
+   #29 = Fieldref           #1.#229       // com/zaxxer/nuprocess/osx/ProcessKqueue.pidToProcessMap:Ljava/util/Map;
+   #30 = Methodref          #88.#230      // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #31 = InterfaceMethodref #231.#232     // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #32 = Methodref          #77.#233      // com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+   #33 = Methodref          #234.#235     // com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+   #34 = Methodref          #77.#236      // com/zaxxer/nuprocess/osx/OsxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+   #35 = Methodref          #77.#237      // com/zaxxer/nuprocess/osx/OsxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+   #36 = Integer            -1811939328
+   #37 = Methodref          #88.#238      // java/lang/Integer.intValue:()I
+   #38 = Methodref          #234.#239     // com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+   #39 = Methodref          #15.#240      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.write:()V
+   #40 = Methodref          #15.#241      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.getPointer:()Lcom/sun/jna/Pointer;
+   #41 = Methodref          #209.#242     // com/zaxxer/nuprocess/osx/LibKevent.kevent:(ILcom/sun/jna/Pointer;ILcom/sun/jna/Pointer;ILcom/zaxxer/nuprocess/osx/LibKevent$TimeSpec;)I
+   #42 = Methodref          #15.#243      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.read:()V
+   #43 = String             #244          // Error %d registering events (ret=%d)
+   #44 = Class              #245          // java/lang/Object
+   #45 = Methodref          #246.#247     // com/sun/jna/Native.getLastError:()I
+   #46 = Methodref          #248.#249     // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+   #47 = Class              #250          // java/lang/StringBuilder
+   #48 = Methodref          #47.#219      // java/lang/StringBuilder."<init>":()V
+   #49 = Fieldref           #15.#251      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.data:Lcom/sun/jna/NativeLong;
+   #50 = Methodref          #252.#238     // com/sun/jna/NativeLong.intValue:()I
+   #51 = String             #253          // kevent %d: error %d\n
+   #52 = Methodref          #47.#254      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #53 = Methodref          #47.#255      // java/lang/StringBuilder.length:()I
+   #54 = Methodref          #47.#256      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #55 = InterfaceMethodref #257.#258     // java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+   #56 = Class              #259          // java/lang/InterruptedException
+   #57 = Fieldref           #1.#260       // com/zaxxer/nuprocess/osx/ProcessKqueue.JAVA_PID:I
+   #58 = Methodref          #20.#261      // com/zaxxer/nuprocess/internal/LibC.kill:(II)I
+   #59 = InterfaceMethodref #231.#262     // java/util/Map.isEmpty:()Z
+   #60 = Class              #263          // com/zaxxer/nuprocess/osx/LibKevent$TimeSpec
+   #61 = Methodref          #60.#219      // com/zaxxer/nuprocess/osx/LibKevent$TimeSpec."<init>":()V
+   #62 = Fieldref           #1.#264       // com/zaxxer/nuprocess/osx/ProcessKqueue.LINGER_TIME_MS:I
+   #63 = Fieldref           #60.#265      // com/zaxxer/nuprocess/osx/LibKevent$TimeSpec.tv_sec:J
+   #64 = Fieldref           #266.#267     // java/util/concurrent/TimeUnit.MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+   #65 = Methodref          #266.#268     // java/util/concurrent/TimeUnit.toNanos:(J)J
+   #66 = Fieldref           #60.#269      // com/zaxxer/nuprocess/osx/LibKevent$TimeSpec.tv_nsec:J
+   #67 = String             #270          // Error waiting for kevent
+   #68 = Methodref          #1.#271       // com/zaxxer/nuprocess/osx/ProcessKqueue.processEvent:(Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;)V
+   #69 = Methodref          #20.#272      // com/zaxxer/nuprocess/internal/LibC.close:(I)I
+   #70 = Fieldref           #15.#273      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.ident:Lcom/sun/jna/NativeLong;
+   #71 = Fieldref           #15.#274      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.filter:S
+   #72 = Fieldref           #15.#275      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.udata:Lcom/sun/jna/Pointer;
+   #73 = Methodref          #152.#276     // com/sun/jna/Pointer.nativeValue:(Lcom/sun/jna/Pointer;)J
+   #74 = Methodref          #1.#277       // com/zaxxer/nuprocess/osx/ProcessKqueue.checkStdinCloses:()V
+   #75 = Methodref          #1.#278       // com/zaxxer/nuprocess/osx/ProcessKqueue.checkWaitWrites:()V
+   #76 = InterfaceMethodref #231.#279     // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #77 = Class              #280          // com/zaxxer/nuprocess/osx/OsxProcess
+   #78 = Methodref          #77.#281      // com/zaxxer/nuprocess/osx/OsxProcess.readStdout:(II)V
+   #79 = Fieldref           #15.#282      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.flags:S
+   #80 = Integer            32768
+   #81 = Methodref          #77.#283      // com/zaxxer/nuprocess/osx/OsxProcess.readStderr:(II)V
+   #82 = Methodref          #77.#284      // com/zaxxer/nuprocess/osx/OsxProcess.writeStdin:(II)Z
+   #83 = Fieldref           #15.#285      // com/zaxxer/nuprocess/osx/LibKevent$Kevent.fflags:I
+   #84 = Integer            -2147483648
+   #85 = Methodref          #1.#286       // com/zaxxer/nuprocess/osx/ProcessKqueue.cleanupProcess:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+   #86 = Methodref          #20.#287      // com/zaxxer/nuprocess/internal/LibC.WIFEXITED:(I)Z
+   #87 = Methodref          #20.#288      // com/zaxxer/nuprocess/internal/LibC.WEXITSTATUS:(I)I
+   #88 = Class              #289          // java/lang/Integer
+   #89 = Methodref          #77.#290      // com/zaxxer/nuprocess/osx/OsxProcess.onExit:(I)V
+   #90 = Methodref          #20.#291      // com/zaxxer/nuprocess/internal/LibC.WIFSIGNALED:(I)Z
+   #91 = Methodref          #20.#292      // com/zaxxer/nuprocess/internal/LibC.WTERMSIG:(I)I
+   #92 = Class              #293          // java/util/ArrayList
+   #93 = Methodref          #92.#219      // java/util/ArrayList."<init>":()V
+   #94 = InterfaceMethodref #257.#294     // java/util/concurrent/BlockingQueue.drainTo:(Ljava/util/Collection;)I
+   #95 = InterfaceMethodref #190.#295     // java/util/List.iterator:()Ljava/util/Iterator;
+   #96 = InterfaceMethodref #191.#296     // java/util/Iterator.hasNext:()Z
+   #97 = InterfaceMethodref #191.#297     // java/util/Iterator.next:()Ljava/lang/Object;
+   #98 = Methodref          #234.#298     // com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.close:()V
+   #99 = InterfaceMethodref #257.#299     // java/util/concurrent/BlockingQueue.drainTo:(Ljava/util/Collection;I)I
+  #100 = InterfaceMethodref #190.#262     // java/util/List.isEmpty:()Z
+  #101 = InterfaceMethodref #190.#300     // java/util/List.size:()I
+  #102 = InterfaceMethodref #190.#301     // java/util/List.get:(I)Ljava/lang/Object;
+  #103 = Class              #302          // com/sun/jna/ptr/IntByReference
+  #104 = Methodref          #103.#219     // com/sun/jna/ptr/IntByReference."<init>":()V
+  #105 = Methodref          #20.#303      // com/zaxxer/nuprocess/internal/LibC.waitpid:(ILcom/sun/jna/ptr/IntByReference;I)I
+  #106 = InterfaceMethodref #231.#304     // java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+  #107 = InterfaceMethodref #257.#295     // java/util/concurrent/BlockingQueue.iterator:()Ljava/util/Iterator;
+  #108 = InterfaceMethodref #191.#305     // java/util/Iterator.remove:()V
+  #109 = Methodref          #1.#306       // com/zaxxer/nuprocess/osx/ProcessKqueue.closeStdin:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+  #110 = Methodref          #1.#307       // com/zaxxer/nuprocess/osx/ProcessKqueue.queueWrite:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+  #111 = Methodref          #20.#308      // com/zaxxer/nuprocess/internal/LibC.getpid:()I
+  #112 = Class              #309          // com/zaxxer/nuprocess/internal/BaseEventProcessor
+  #113 = Utf8               LINGER_ITERATIONS
+  #114 = Utf8               I
+  #115 = Utf8               ConstantValue
+  #116 = Integer            0
+  #117 = Utf8               NUM_KEVENTS
+  #118 = Integer            64
+  #119 = Utf8               JAVA_PID
+  #120 = Utf8               kqueue
+  #121 = Utf8               processEvents
+  #122 = Utf8               Kevent
+  #123 = Utf8               InnerClasses
+  #124 = Utf8               [Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+  #125 = Utf8               closeQueue
+  #126 = Utf8               Ljava/util/concurrent/BlockingQueue;
+  #127 = Utf8               Signature
+  #128 = Utf8               Ljava/util/concurrent/BlockingQueue<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+  #129 = Utf8               wantsWrite
+  #130 = Utf8               <init>
+  #131 = Utf8               ()V
+  #132 = Utf8               Code
+  #133 = Utf8               LineNumberTable
+  #134 = Utf8               LocalVariableTable
+  #135 = Utf8               this
+  #136 = Utf8               Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+  #137 = Utf8               (Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+  #138 = Utf8               process
+  #139 = Utf8               Lcom/zaxxer/nuprocess/osx/OsxProcess;
+  #140 = Utf8               (I)V
+  #141 = Utf8               lingerIterations
+  #142 = Utf8               StackMapTable
+  #143 = Utf8               registerProcess
+  #144 = Utf8               events
+  #145 = Utf8               pid
+  #146 = Utf8               pidPointer
+  #147 = Utf8               Lcom/sun/jna/Pointer;
+  #148 = Utf8               stdinFd
+  #149 = Utf8               Ljava/lang/Integer;
+  #150 = Utf8               stdoutFd
+  #151 = Utf8               stderrFd
+  #152 = Class              #310          // com/sun/jna/Pointer
+  #153 = Class              #311          // java/lang/Throwable
+  #154 = Utf8               registerEvents
+  #155 = Utf8               ([Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;I)V
+  #156 = Utf8               i
+  #157 = Utf8               error
+  #158 = Utf8               err
+  #159 = Utf8               Ljava/lang/StringBuilder;
+  #160 = Utf8               keventArray
+  #161 = Utf8               numEvents
+  #162 = Utf8               ret
+  #163 = Utf8               queueWrite
+  #164 = Utf8               e
+  #165 = Utf8               Ljava/lang/InterruptedException;
+  #166 = Utf8               closeStdin
+  #167 = Utf8               ()Z
+  #168 = Utf8               timeout
+  #169 = Utf8               TimeSpec
+  #170 = Utf8               Lcom/zaxxer/nuprocess/osx/LibKevent$TimeSpec;
+  #171 = Utf8               nev
+  #172 = Utf8               close
+  #173 = Utf8               processEvent
+  #174 = Utf8               (Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;)V
+  #175 = Utf8               available
+  #176 = Utf8               userWantsMore
+  #177 = Utf8               Z
+  #178 = Utf8               status
+  #179 = Utf8               kevent
+  #180 = Utf8               Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+  #181 = Utf8               ident
+  #182 = Utf8               filter
+  #183 = Utf8               udata
+  #184 = Utf8               osxProcess
+  #185 = Utf8               checkStdinCloses
+  #186 = Utf8               processes
+  #187 = Utf8               Ljava/util/List;
+  #188 = Utf8               LocalVariableTypeTable
+  #189 = Utf8               Ljava/util/List<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+  #190 = Class              #312          // java/util/List
+  #191 = Class              #313          // java/util/Iterator
+  #192 = Utf8               checkWaitWrites
+  #193 = Utf8               fd
+  #194 = Utf8               kevents
+  #195 = Utf8               numKevents
+  #196 = Utf8               cleanupProcess
+  #197 = Utf8               iterator
+  #198 = Utf8               Ljava/util/Iterator;
+  #199 = Utf8               Ljava/util/Iterator<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+  #200 = Utf8               (Lcom/zaxxer/nuprocess/internal/BasePosixProcess;)V
+  #201 = Utf8               <clinit>
+  #202 = Utf8               Lcom/zaxxer/nuprocess/internal/BaseEventProcessor<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+  #203 = Utf8               SourceFile
+  #204 = Utf8               ProcessKqueue.java
+  #205 = Utf8               com/zaxxer/nuprocess/osx/ProcessKqueue
+  #206 = NameAndType        #130:#140     // "<init>":(I)V
+  #207 = NameAndType        #143:#137     // registerProcess:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+  #208 = NameAndType        #314:#167     // checkAndSetRunning:()Z
+  #209 = Class              #315          // com/zaxxer/nuprocess/osx/LibKevent
+  #210 = NameAndType        #120:#316     // kqueue:()I
+  #211 = NameAndType        #120:#114     // kqueue:I
+  #212 = Utf8               java/lang/RuntimeException
+  #213 = Utf8               Unable to create kqueue
+  #214 = NameAndType        #130:#317     // "<init>":(Ljava/lang/String;)V
+  #215 = Utf8               java/util/concurrent/ArrayBlockingQueue
+  #216 = NameAndType        #125:#126     // closeQueue:Ljava/util/concurrent/BlockingQueue;
+  #217 = NameAndType        #129:#126     // wantsWrite:Ljava/util/concurrent/BlockingQueue;
+  #218 = Utf8               com/zaxxer/nuprocess/osx/LibKevent$Kevent
+  #219 = NameAndType        #130:#131     // "<init>":()V
+  #220 = NameAndType        #318:#319     // toArray:(I)[Lcom/sun/jna/Structure;
+  #221 = NameAndType        #121:#124     // processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+  #222 = Utf8               com/zaxxer/nuprocess/internal/LibC
+  #223 = NameAndType        #320:#147     // NULL:Lcom/sun/jna/Pointer;
+  #224 = NameAndType        #321:#322     // EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+  #225 = NameAndType        #154:#155     // registerEvents:([Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;I)V
+  #226 = NameAndType        #323:#177     // shutdown:Z
+  #227 = NameAndType        #324:#316     // getPid:()I
+  #228 = NameAndType        #325:#326     // createConstant:(I)Lcom/sun/jna/Pointer;
+  #229 = NameAndType        #327:#328     // pidToProcessMap:Ljava/util/Map;
+  #230 = NameAndType        #329:#330     // valueOf:(I)Ljava/lang/Integer;
+  #231 = Class              #331          // java/util/Map
+  #232 = NameAndType        #332:#333     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #233 = NameAndType        #334:#335     // getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+  #234 = Class              #336          // com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor
+  #235 = NameAndType        #337:#316     // acquire:()I
+  #236 = NameAndType        #338:#335     // getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+  #237 = NameAndType        #339:#335     // getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+  #238 = NameAndType        #340:#316     // intValue:()I
+  #239 = NameAndType        #341:#131     // release:()V
+  #240 = NameAndType        #342:#131     // write:()V
+  #241 = NameAndType        #343:#344     // getPointer:()Lcom/sun/jna/Pointer;
+  #242 = NameAndType        #179:#345     // kevent:(ILcom/sun/jna/Pointer;ILcom/sun/jna/Pointer;ILcom/zaxxer/nuprocess/osx/LibKevent$TimeSpec;)I
+  #243 = NameAndType        #346:#131     // read:()V
+  #244 = Utf8               Error %d registering events (ret=%d)
+  #245 = Utf8               java/lang/Object
+  #246 = Class              #347          // com/sun/jna/Native
+  #247 = NameAndType        #348:#316     // getLastError:()I
+  #248 = Class              #349          // java/lang/String
+  #249 = NameAndType        #350:#351     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #250 = Utf8               java/lang/StringBuilder
+  #251 = NameAndType        #352:#353     // data:Lcom/sun/jna/NativeLong;
+  #252 = Class              #354          // com/sun/jna/NativeLong
+  #253 = Utf8               kevent %d: error %d\n
+  #254 = NameAndType        #355:#356     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #255 = NameAndType        #357:#316     // length:()I
+  #256 = NameAndType        #358:#359     // toString:()Ljava/lang/String;
+  #257 = Class              #360          // java/util/concurrent/BlockingQueue
+  #258 = NameAndType        #332:#361     // put:(Ljava/lang/Object;)V
+  #259 = Utf8               java/lang/InterruptedException
+  #260 = NameAndType        #119:#114     // JAVA_PID:I
+  #261 = NameAndType        #362:#363     // kill:(II)I
+  #262 = NameAndType        #364:#167     // isEmpty:()Z
+  #263 = Utf8               com/zaxxer/nuprocess/osx/LibKevent$TimeSpec
+  #264 = NameAndType        #365:#114     // LINGER_TIME_MS:I
+  #265 = NameAndType        #366:#367     // tv_sec:J
+  #266 = Class              #368          // java/util/concurrent/TimeUnit
+  #267 = NameAndType        #369:#370     // MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+  #268 = NameAndType        #371:#372     // toNanos:(J)J
+  #269 = NameAndType        #373:#367     // tv_nsec:J
+  #270 = Utf8               Error waiting for kevent
+  #271 = NameAndType        #173:#174     // processEvent:(Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;)V
+  #272 = NameAndType        #172:#374     // close:(I)I
+  #273 = NameAndType        #181:#353     // ident:Lcom/sun/jna/NativeLong;
+  #274 = NameAndType        #182:#375     // filter:S
+  #275 = NameAndType        #183:#147     // udata:Lcom/sun/jna/Pointer;
+  #276 = NameAndType        #376:#377     // nativeValue:(Lcom/sun/jna/Pointer;)J
+  #277 = NameAndType        #185:#131     // checkStdinCloses:()V
+  #278 = NameAndType        #192:#131     // checkWaitWrites:()V
+  #279 = NameAndType        #378:#379     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #280 = Utf8               com/zaxxer/nuprocess/osx/OsxProcess
+  #281 = NameAndType        #380:#381     // readStdout:(II)V
+  #282 = NameAndType        #382:#375     // flags:S
+  #283 = NameAndType        #383:#381     // readStderr:(II)V
+  #284 = NameAndType        #384:#385     // writeStdin:(II)Z
+  #285 = NameAndType        #386:#114     // fflags:I
+  #286 = NameAndType        #196:#137     // cleanupProcess:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+  #287 = NameAndType        #387:#388     // WIFEXITED:(I)Z
+  #288 = NameAndType        #389:#374     // WEXITSTATUS:(I)I
+  #289 = Utf8               java/lang/Integer
+  #290 = NameAndType        #390:#140     // onExit:(I)V
+  #291 = NameAndType        #391:#388     // WIFSIGNALED:(I)Z
+  #292 = NameAndType        #392:#374     // WTERMSIG:(I)I
+  #293 = Utf8               java/util/ArrayList
+  #294 = NameAndType        #393:#394     // drainTo:(Ljava/util/Collection;)I
+  #295 = NameAndType        #197:#395     // iterator:()Ljava/util/Iterator;
+  #296 = NameAndType        #396:#167     // hasNext:()Z
+  #297 = NameAndType        #397:#398     // next:()Ljava/lang/Object;
+  #298 = NameAndType        #172:#131     // close:()V
+  #299 = NameAndType        #393:#399     // drainTo:(Ljava/util/Collection;I)I
+  #300 = NameAndType        #400:#316     // size:()I
+  #301 = NameAndType        #378:#401     // get:(I)Ljava/lang/Object;
+  #302 = Utf8               com/sun/jna/ptr/IntByReference
+  #303 = NameAndType        #402:#403     // waitpid:(ILcom/sun/jna/ptr/IntByReference;I)I
+  #304 = NameAndType        #404:#379     // remove:(Ljava/lang/Object;)Ljava/lang/Object;
+  #305 = NameAndType        #404:#131     // remove:()V
+  #306 = NameAndType        #166:#137     // closeStdin:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+  #307 = NameAndType        #163:#137     // queueWrite:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+  #308 = NameAndType        #405:#316     // getpid:()I
+  #309 = Utf8               com/zaxxer/nuprocess/internal/BaseEventProcessor
+  #310 = Utf8               com/sun/jna/Pointer
+  #311 = Utf8               java/lang/Throwable
+  #312 = Utf8               java/util/List
+  #313 = Utf8               java/util/Iterator
+  #314 = Utf8               checkAndSetRunning
+  #315 = Utf8               com/zaxxer/nuprocess/osx/LibKevent
+  #316 = Utf8               ()I
+  #317 = Utf8               (Ljava/lang/String;)V
+  #318 = Utf8               toArray
+  #319 = Utf8               (I)[Lcom/sun/jna/Structure;
+  #320 = Utf8               NULL
+  #321 = Utf8               EV_SET
+  #322 = Utf8               (JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+  #323 = Utf8               shutdown
+  #324 = Utf8               getPid
+  #325 = Utf8               createConstant
+  #326 = Utf8               (I)Lcom/sun/jna/Pointer;
+  #327 = Utf8               pidToProcessMap
+  #328 = Utf8               Ljava/util/Map;
+  #329 = Utf8               valueOf
+  #330 = Utf8               (I)Ljava/lang/Integer;
+  #331 = Utf8               java/util/Map
+  #332 = Utf8               put
+  #333 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #334 = Utf8               getStdin
+  #335 = Utf8               ()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+  #336 = Utf8               com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor
+  #337 = Utf8               acquire
+  #338 = Utf8               getStdout
+  #339 = Utf8               getStderr
+  #340 = Utf8               intValue
+  #341 = Utf8               release
+  #342 = Utf8               write
+  #343 = Utf8               getPointer
+  #344 = Utf8               ()Lcom/sun/jna/Pointer;
+  #345 = Utf8               (ILcom/sun/jna/Pointer;ILcom/sun/jna/Pointer;ILcom/zaxxer/nuprocess/osx/LibKevent$TimeSpec;)I
+  #346 = Utf8               read
+  #347 = Utf8               com/sun/jna/Native
+  #348 = Utf8               getLastError
+  #349 = Utf8               java/lang/String
+  #350 = Utf8               format
+  #351 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #352 = Utf8               data
+  #353 = Utf8               Lcom/sun/jna/NativeLong;
+  #354 = Utf8               com/sun/jna/NativeLong
+  #355 = Utf8               append
+  #356 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #357 = Utf8               length
+  #358 = Utf8               toString
+  #359 = Utf8               ()Ljava/lang/String;
+  #360 = Utf8               java/util/concurrent/BlockingQueue
+  #361 = Utf8               (Ljava/lang/Object;)V
+  #362 = Utf8               kill
+  #363 = Utf8               (II)I
+  #364 = Utf8               isEmpty
+  #365 = Utf8               LINGER_TIME_MS
+  #366 = Utf8               tv_sec
+  #367 = Utf8               J
+  #368 = Utf8               java/util/concurrent/TimeUnit
+  #369 = Utf8               MILLISECONDS
+  #370 = Utf8               Ljava/util/concurrent/TimeUnit;
+  #371 = Utf8               toNanos
+  #372 = Utf8               (J)J
+  #373 = Utf8               tv_nsec
+  #374 = Utf8               (I)I
+  #375 = Utf8               S
+  #376 = Utf8               nativeValue
+  #377 = Utf8               (Lcom/sun/jna/Pointer;)J
+  #378 = Utf8               get
+  #379 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #380 = Utf8               readStdout
+  #381 = Utf8               (II)V
+  #382 = Utf8               flags
+  #383 = Utf8               readStderr
+  #384 = Utf8               writeStdin
+  #385 = Utf8               (II)Z
+  #386 = Utf8               fflags
+  #387 = Utf8               WIFEXITED
+  #388 = Utf8               (I)Z
+  #389 = Utf8               WEXITSTATUS
+  #390 = Utf8               onExit
+  #391 = Utf8               WIFSIGNALED
+  #392 = Utf8               WTERMSIG
+  #393 = Utf8               drainTo
+  #394 = Utf8               (Ljava/util/Collection;)I
+  #395 = Utf8               ()Ljava/util/Iterator;
+  #396 = Utf8               hasNext
+  #397 = Utf8               next
+  #398 = Utf8               ()Ljava/lang/Object;
+  #399 = Utf8               (Ljava/util/Collection;I)I
+  #400 = Utf8               size
+  #401 = Utf8               (I)Ljava/lang/Object;
+  #402 = Utf8               waitpid
+  #403 = Utf8               (ILcom/sun/jna/ptr/IntByReference;I)I
+  #404 = Utf8               remove
+  #405 = Utf8               getpid
+{
+  private static final int LINGER_ITERATIONS;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 0
+
+  private static final int NUM_KEVENTS;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 64
+
+  private static final int JAVA_PID;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private volatile int kqueue;
+    descriptor: I
+    flags: (0x0042) ACC_PRIVATE, ACC_VOLATILE
+
+  private com.zaxxer.nuprocess.osx.LibKevent$Kevent[] processEvents;
+    descriptor: [Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.util.concurrent.BlockingQueue<com.zaxxer.nuprocess.osx.OsxProcess> closeQueue;
+    descriptor: Ljava/util/concurrent/BlockingQueue;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #128                         // Ljava/util/concurrent/BlockingQueue<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+
+  private java.util.concurrent.BlockingQueue<com.zaxxer.nuprocess.osx.OsxProcess> wantsWrite;
+    descriptor: Ljava/util/concurrent/BlockingQueue;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #128                         // Ljava/util/concurrent/BlockingQueue<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+
+  com.zaxxer.nuprocess.osx.ProcessKqueue();
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_0
+         2: invokespecial #2                  // Method "<init>":(I)V
+         5: return
+      LineNumberTable:
+        line 63: 0
+        line 64: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+
+  com.zaxxer.nuprocess.osx.ProcessKqueue(com.zaxxer.nuprocess.osx.OsxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+    flags: (0x0000)
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iconst_m1
+         2: invokespecial #2                  // Method "<init>":(I)V
+         5: aload_0
+         6: aload_1
+         7: invokevirtual #3                  // Method registerProcess:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+        10: aload_0
+        11: invokevirtual #4                  // Method checkAndSetRunning:()Z
+        14: pop
+        15: return
+      LineNumberTable:
+        line 68: 0
+        line 70: 5
+        line 71: 10
+        line 72: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            0      16     1 process   Lcom/zaxxer/nuprocess/osx/OsxProcess;
+
+  private com.zaxxer.nuprocess.osx.ProcessKqueue(int);
+    descriptor: (I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=9, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokespecial #5                  // Method com/zaxxer/nuprocess/internal/BaseEventProcessor."<init>":(I)V
+         5: aload_0
+         6: invokestatic  #6                  // Method com/zaxxer/nuprocess/osx/LibKevent.kqueue:()I
+         9: putfield      #7                  // Field kqueue:I
+        12: aload_0
+        13: getfield      #7                  // Field kqueue:I
+        16: ifge          29
+        19: new           #8                  // class java/lang/RuntimeException
+        22: dup
+        23: ldc           #9                  // String Unable to create kqueue
+        25: invokespecial #10                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+        28: athrow
+        29: aload_0
+        30: new           #11                 // class java/util/concurrent/ArrayBlockingQueue
+        33: dup
+        34: sipush        512
+        37: invokespecial #12                 // Method java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+        40: putfield      #13                 // Field closeQueue:Ljava/util/concurrent/BlockingQueue;
+        43: aload_0
+        44: new           #11                 // class java/util/concurrent/ArrayBlockingQueue
+        47: dup
+        48: sipush        512
+        51: invokespecial #12                 // Method java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+        54: putfield      #14                 // Field wantsWrite:Ljava/util/concurrent/BlockingQueue;
+        57: aload_0
+        58: new           #15                 // class com/zaxxer/nuprocess/osx/LibKevent$Kevent
+        61: dup
+        62: invokespecial #16                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent."<init>":()V
+        65: bipush        64
+        67: invokevirtual #17                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.toArray:(I)[Lcom/sun/jna/Structure;
+        70: checkcast     #18                 // class "[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;"
+        73: putfield      #19                 // Field processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+        76: aload_0
+        77: getfield      #19                 // Field processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+        80: iconst_0
+        81: aaload
+        82: ldc2_w        #21                 // long 31l
+        85: bipush        -6
+        87: bipush        65
+        89: iconst_0
+        90: lconst_0
+        91: getstatic     #23                 // Field com/sun/jna/Pointer.NULL:Lcom/sun/jna/Pointer;
+        94: invokevirtual #24                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+        97: pop
+        98: aload_0
+        99: aload_0
+       100: getfield      #19                 // Field processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       103: iconst_1
+       104: invokespecial #25                 // Method registerEvents:([Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;I)V
+       107: return
+      LineNumberTable:
+        line 76: 0
+        line 78: 5
+        line 79: 12
+        line 80: 19
+        line 83: 29
+        line 84: 43
+        line 85: 57
+        line 88: 76
+        line 89: 98
+        line 90: 107
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     108     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            0     108     1 lingerIterations   I
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 29
+          locals = [ class com/zaxxer/nuprocess/osx/ProcessKqueue, int ]
+          stack = []
+
+  public void registerProcess(com.zaxxer.nuprocess.osx.OsxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=9, locals=9, args_size=2
+         0: aload_0
+         1: getfield      #26                 // Field shutdown:Z
+         4: ifeq          8
+         7: return
+         8: aload_1
+         9: invokevirtual #27                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getPid:()I
+        12: istore_2
+        13: iload_2
+        14: invokestatic  #28                 // Method com/sun/jna/Pointer.createConstant:(I)Lcom/sun/jna/Pointer;
+        17: astore_3
+        18: aload_0
+        19: getfield      #29                 // Field pidToProcessMap:Ljava/util/Map;
+        22: iload_2
+        23: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        26: aload_1
+        27: invokeinterface #31,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        32: pop
+        33: aconst_null
+        34: astore        4
+        36: aconst_null
+        37: astore        5
+        39: aconst_null
+        40: astore        6
+        42: aload_1
+        43: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        46: invokevirtual #33                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+        49: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        52: astore        4
+        54: aload_1
+        55: invokevirtual #34                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        58: invokevirtual #33                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+        61: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        64: astore        5
+        66: aload_1
+        67: invokevirtual #35                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        70: invokevirtual #33                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+        73: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        76: astore        6
+        78: new           #15                 // class com/zaxxer/nuprocess/osx/LibKevent$Kevent
+        81: dup
+        82: invokespecial #16                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent."<init>":()V
+        85: iconst_4
+        86: invokevirtual #17                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.toArray:(I)[Lcom/sun/jna/Structure;
+        89: checkcast     #18                 // class "[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;"
+        92: astore        7
+        94: aload         7
+        96: iconst_0
+        97: aaload
+        98: iload_2
+        99: i2l
+       100: bipush        -5
+       102: bipush        81
+       104: ldc           #36                 // int -1811939328
+       106: lconst_0
+       107: aload_3
+       108: invokevirtual #24                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       111: pop
+       112: aload         7
+       114: iconst_1
+       115: aaload
+       116: aload         5
+       118: invokevirtual #37                 // Method java/lang/Integer.intValue:()I
+       121: i2l
+       122: iconst_m1
+       123: bipush        65
+       125: iconst_0
+       126: lconst_0
+       127: aload_3
+       128: invokevirtual #24                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       131: pop
+       132: aload         7
+       134: iconst_2
+       135: aaload
+       136: aload         6
+       138: invokevirtual #37                 // Method java/lang/Integer.intValue:()I
+       141: i2l
+       142: iconst_m1
+       143: bipush        65
+       145: iconst_0
+       146: lconst_0
+       147: aload_3
+       148: invokevirtual #24                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       151: pop
+       152: aload         7
+       154: iconst_3
+       155: aaload
+       156: aload         4
+       158: invokevirtual #37                 // Method java/lang/Integer.intValue:()I
+       161: i2l
+       162: bipush        -2
+       164: bipush        73
+       166: iconst_0
+       167: lconst_0
+       168: aload_3
+       169: invokevirtual #24                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       172: pop
+       173: aload_0
+       174: aload         7
+       176: iconst_4
+       177: invokespecial #25                 // Method registerEvents:([Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;I)V
+       180: aload         4
+       182: ifnull        192
+       185: aload_1
+       186: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       189: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       192: aload         5
+       194: ifnull        204
+       197: aload_1
+       198: invokevirtual #34                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       201: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       204: aload         6
+       206: ifnull        260
+       209: aload_1
+       210: invokevirtual #35                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       213: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       216: goto          260
+       219: astore        8
+       221: aload         4
+       223: ifnull        233
+       226: aload_1
+       227: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       230: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       233: aload         5
+       235: ifnull        245
+       238: aload_1
+       239: invokevirtual #34                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       242: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       245: aload         6
+       247: ifnull        257
+       250: aload_1
+       251: invokevirtual #35                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       254: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       257: aload         8
+       259: athrow
+       260: return
+      Exception table:
+         from    to  target type
+            42   180   219   any
+           219   221   219   any
+      LineNumberTable:
+        line 99: 0
+        line 100: 7
+        line 103: 8
+        line 104: 13
+        line 106: 18
+        line 108: 33
+        line 109: 36
+        line 110: 39
+        line 112: 42
+        line 113: 54
+        line 114: 66
+        line 117: 78
+        line 119: 94
+        line 122: 112
+        line 123: 132
+        line 125: 152
+        line 127: 173
+        line 129: 180
+        line 130: 185
+        line 132: 192
+        line 133: 197
+        line 135: 204
+        line 136: 209
+        line 129: 219
+        line 130: 226
+        line 132: 233
+        line 133: 238
+        line 135: 245
+        line 136: 250
+        line 138: 257
+        line 139: 260
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           94      86     7 events   [Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+            0     261     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            0     261     1 process   Lcom/zaxxer/nuprocess/osx/OsxProcess;
+           13     248     2   pid   I
+           18     243     3 pidPointer   Lcom/sun/jna/Pointer;
+           36     225     4 stdinFd   Ljava/lang/Integer;
+           39     222     5 stdoutFd   Ljava/lang/Integer;
+           42     219     6 stderrFd   Ljava/lang/Integer;
+      StackMapTable: number_of_entries = 8
+        frame_type = 8 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 183
+          locals = [ class com/zaxxer/nuprocess/osx/ProcessKqueue, class com/zaxxer/nuprocess/osx/OsxProcess, int, class com/sun/jna/Pointer, class java/lang/Integer, class java/lang/Integer, class java/lang/Integer ]
+          stack = []
+        frame_type = 11 /* same */
+        frame_type = 78 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 253 /* append */
+          offset_delta = 13
+          locals = [ top, class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 11 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 2
+
+  private void registerEvents(com.zaxxer.nuprocess.osx.LibKevent$Kevent[], int);
+    descriptor: ([Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=7, locals=7, args_size=3
+         0: iconst_0
+         1: istore_3
+         2: iload_3
+         3: iload_2
+         4: if_icmpge     19
+         7: aload_1
+         8: iload_3
+         9: aaload
+        10: invokevirtual #39                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.write:()V
+        13: iinc          3, 1
+        16: goto          2
+        19: aload_0
+        20: getfield      #7                  // Field kqueue:I
+        23: aload_1
+        24: iconst_0
+        25: aaload
+        26: invokevirtual #40                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.getPointer:()Lcom/sun/jna/Pointer;
+        29: iload_2
+        30: aload_1
+        31: iconst_0
+        32: aaload
+        33: invokevirtual #40                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.getPointer:()Lcom/sun/jna/Pointer;
+        36: iload_2
+        37: aconst_null
+        38: invokestatic  #41                 // Method com/zaxxer/nuprocess/osx/LibKevent.kevent:(ILcom/sun/jna/Pointer;ILcom/sun/jna/Pointer;ILcom/zaxxer/nuprocess/osx/LibKevent$TimeSpec;)I
+        41: istore_3
+        42: iconst_0
+        43: istore        4
+        45: iload         4
+        47: iload_2
+        48: if_icmpge     64
+        51: aload_1
+        52: iload         4
+        54: aaload
+        55: invokevirtual #42                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.read:()V
+        58: iinc          4, 1
+        61: goto          45
+        64: iload_3
+        65: iload_2
+        66: if_icmpeq     102
+        69: new           #8                  // class java/lang/RuntimeException
+        72: dup
+        73: ldc           #43                 // String Error %d registering events (ret=%d)
+        75: iconst_2
+        76: anewarray     #44                 // class java/lang/Object
+        79: dup
+        80: iconst_0
+        81: invokestatic  #45                 // Method com/sun/jna/Native.getLastError:()I
+        84: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        87: aastore
+        88: dup
+        89: iconst_1
+        90: iload_3
+        91: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        94: aastore
+        95: invokestatic  #46                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        98: invokespecial #10                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+       101: athrow
+       102: new           #47                 // class java/lang/StringBuilder
+       105: dup
+       106: invokespecial #48                 // Method java/lang/StringBuilder."<init>":()V
+       109: astore        4
+       111: iconst_0
+       112: istore        5
+       114: iload         5
+       116: iload_3
+       117: if_icmpge     174
+       120: aload_1
+       121: iload         5
+       123: aaload
+       124: getfield      #49                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.data:Lcom/sun/jna/NativeLong;
+       127: invokevirtual #50                 // Method com/sun/jna/NativeLong.intValue:()I
+       130: istore        6
+       132: iload         6
+       134: ifeq          168
+       137: aload         4
+       139: ldc           #51                 // String kevent %d: error %d\n
+       141: iconst_2
+       142: anewarray     #44                 // class java/lang/Object
+       145: dup
+       146: iconst_0
+       147: iload         5
+       149: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       152: aastore
+       153: dup
+       154: iconst_1
+       155: iload         6
+       157: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       160: aastore
+       161: invokestatic  #46                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       164: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       167: pop
+       168: iinc          5, 1
+       171: goto          114
+       174: aload         4
+       176: invokevirtual #53                 // Method java/lang/StringBuilder.length:()I
+       179: ifle          195
+       182: new           #8                  // class java/lang/RuntimeException
+       185: dup
+       186: aload         4
+       188: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       191: invokespecial #10                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+       194: athrow
+       195: return
+      LineNumberTable:
+        line 146: 0
+        line 147: 7
+        line 146: 13
+        line 149: 19
+        line 150: 42
+        line 151: 51
+        line 150: 58
+        line 153: 64
+        line 154: 69
+        line 159: 102
+        line 160: 111
+        line 161: 120
+        line 162: 132
+        line 163: 137
+        line 160: 168
+        line 166: 174
+        line 167: 182
+        line 170: 195
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            2      17     3     i   I
+           45      19     4     i   I
+          132      36     6 error   I
+          114      60     5     i   I
+          111      84     4   err   Ljava/lang/StringBuilder;
+            0     196     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            0     196     1 keventArray   [Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+            0     196     2 numEvents   I
+           42     154     3   ret   I
+      StackMapTable: number_of_entries = 9
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 16
+        frame_type = 253 /* append */
+          offset_delta = 25
+          locals = [ int, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 18
+        frame_type = 37 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 11
+          locals = [ class java/lang/StringBuilder, int ]
+        frame_type = 53 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 250 /* chop */
+          offset_delta = 20
+
+  public void queueWrite(com.zaxxer.nuprocess.osx.OsxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #26                 // Field shutdown:Z
+         4: ifeq          8
+         7: return
+         8: aload_0
+         9: getfield      #14                 // Field wantsWrite:Ljava/util/concurrent/BlockingQueue;
+        12: aload_1
+        13: invokeinterface #55,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+        18: goto          23
+        21: astore_2
+        22: return
+        23: getstatic     #57                 // Field JAVA_PID:I
+        26: bipush        31
+        28: invokestatic  #58                 // Method com/zaxxer/nuprocess/internal/LibC.kill:(II)I
+        31: pop
+        32: return
+      Exception table:
+         from    to  target type
+             8    18    21   Class java/lang/InterruptedException
+      LineNumberTable:
+        line 175: 0
+        line 176: 7
+        line 180: 8
+        line 184: 18
+        line 182: 21
+        line 183: 22
+        line 186: 23
+        line 187: 32
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           22       1     2     e   Ljava/lang/InterruptedException;
+            0      33     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            0      33     1 process   Lcom/zaxxer/nuprocess/osx/OsxProcess;
+      StackMapTable: number_of_entries = 3
+        frame_type = 8 /* same */
+        frame_type = 76 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 1 /* same */
+
+  public void closeStdin(com.zaxxer.nuprocess.osx.OsxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #13                 // Field closeQueue:Ljava/util/concurrent/BlockingQueue;
+         4: aload_1
+         5: invokeinterface #55,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+        10: goto          14
+        13: astore_2
+        14: getstatic     #57                 // Field JAVA_PID:I
+        17: bipush        31
+        19: invokestatic  #58                 // Method com/zaxxer/nuprocess/internal/LibC.kill:(II)I
+        22: pop
+        23: return
+      Exception table:
+         from    to  target type
+             0    10    13   Class java/lang/InterruptedException
+      LineNumberTable:
+        line 193: 0
+        line 197: 10
+        line 195: 13
+        line 199: 14
+        line 200: 23
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            0      24     1 process   Lcom/zaxxer/nuprocess/osx/OsxProcess;
+      StackMapTable: number_of_entries = 2
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 0 /* same */
+
+  public boolean process();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #29                 // Field pidToProcessMap:Ljava/util/Map;
+         4: invokeinterface #59,  1           // InterfaceMethod java/util/Map.isEmpty:()Z
+         9: ifeq          53
+        12: new           #60                 // class com/zaxxer/nuprocess/osx/LibKevent$TimeSpec
+        15: dup
+        16: invokespecial #61                 // Method com/zaxxer/nuprocess/osx/LibKevent$TimeSpec."<init>":()V
+        19: astore_1
+        20: aload_1
+        21: getstatic     #62                 // Field LINGER_TIME_MS:I
+        24: sipush        1000
+        27: idiv
+        28: i2l
+        29: putfield      #63                 // Field com/zaxxer/nuprocess/osx/LibKevent$TimeSpec.tv_sec:J
+        32: aload_1
+        33: getstatic     #64                 // Field java/util/concurrent/TimeUnit.MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+        36: getstatic     #62                 // Field LINGER_TIME_MS:I
+        39: sipush        1000
+        42: irem
+        43: i2l
+        44: invokevirtual #65                 // Method java/util/concurrent/TimeUnit.toNanos:(J)J
+        47: putfield      #66                 // Field com/zaxxer/nuprocess/osx/LibKevent$TimeSpec.tv_nsec:J
+        50: goto          55
+        53: aconst_null
+        54: astore_1
+        55: aload_0
+        56: getfield      #7                  // Field kqueue:I
+        59: aconst_null
+        60: iconst_0
+        61: aload_0
+        62: getfield      #19                 // Field processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+        65: iconst_0
+        66: aaload
+        67: invokevirtual #40                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.getPointer:()Lcom/sun/jna/Pointer;
+        70: aload_0
+        71: getfield      #19                 // Field processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+        74: arraylength
+        75: aload_1
+        76: invokestatic  #41                 // Method com/zaxxer/nuprocess/osx/LibKevent.kevent:(ILcom/sun/jna/Pointer;ILcom/sun/jna/Pointer;ILcom/zaxxer/nuprocess/osx/LibKevent$TimeSpec;)I
+        79: istore_2
+        80: iload_2
+        81: iconst_m1
+        82: if_icmpne     95
+        85: new           #8                  // class java/lang/RuntimeException
+        88: dup
+        89: ldc           #67                 // String Error waiting for kevent
+        91: invokespecial #10                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+        94: athrow
+        95: iload_2
+        96: ifne          101
+        99: iconst_0
+       100: ireturn
+       101: iconst_0
+       102: istore_3
+       103: iload_3
+       104: iload_2
+       105: if_icmpge     133
+       108: aload_0
+       109: getfield      #19                 // Field processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       112: iload_3
+       113: aaload
+       114: invokevirtual #42                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.read:()V
+       117: aload_0
+       118: aload_0
+       119: getfield      #19                 // Field processEvents:[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       122: iload_3
+       123: aaload
+       124: invokespecial #68                 // Method processEvent:(Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;)V
+       127: iinc          3, 1
+       130: goto          103
+       133: iconst_1
+       134: ireturn
+      LineNumberTable:
+        line 206: 0
+        line 213: 12
+        line 216: 20
+        line 217: 32
+        line 221: 53
+        line 224: 55
+        line 225: 80
+        line 226: 85
+        line 229: 95
+        line 230: 99
+        line 236: 101
+        line 237: 108
+        line 238: 117
+        line 236: 127
+        line 240: 133
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      33     1 timeout   Lcom/zaxxer/nuprocess/osx/LibKevent$TimeSpec;
+          103      30     3     i   I
+            0     135     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+           55      80     1 timeout   Lcom/zaxxer/nuprocess/osx/LibKevent$TimeSpec;
+           80      55     2   nev   I
+      StackMapTable: number_of_entries = 6
+        frame_type = 53 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 1
+          locals = [ class com/zaxxer/nuprocess/osx/LibKevent$TimeSpec ]
+        frame_type = 252 /* append */
+          offset_delta = 39
+          locals = [ int ]
+        frame_type = 5 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 1
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 29
+
+  protected void close();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #7                  // Field kqueue:I
+         4: invokestatic  #69                 // Method com/zaxxer/nuprocess/internal/LibC.close:(I)I
+         7: pop
+         8: return
+      LineNumberTable:
+        line 251: 0
+        line 252: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+
+  private void processEvent(com.zaxxer.nuprocess.osx.LibKevent$Kevent);
+    descriptor: (Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=9, locals=11, args_size=2
+         0: aload_1
+         1: getfield      #70                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.ident:Lcom/sun/jna/NativeLong;
+         4: invokevirtual #50                 // Method com/sun/jna/NativeLong.intValue:()I
+         7: istore_2
+         8: aload_1
+         9: getfield      #71                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.filter:S
+        12: istore_3
+        13: aload_1
+        14: getfield      #72                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.udata:Lcom/sun/jna/Pointer;
+        17: invokestatic  #73                 // Method com/sun/jna/Pointer.nativeValue:(Lcom/sun/jna/Pointer;)J
+        20: l2i
+        21: istore        4
+        23: iload_3
+        24: bipush        -6
+        26: if_icmpne     38
+        29: aload_0
+        30: invokespecial #74                 // Method checkStdinCloses:()V
+        33: aload_0
+        34: invokespecial #75                 // Method checkWaitWrites:()V
+        37: return
+        38: aload_0
+        39: getfield      #29                 // Field pidToProcessMap:Ljava/util/Map;
+        42: iload         4
+        44: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        47: invokeinterface #76,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        52: checkcast     #77                 // class com/zaxxer/nuprocess/osx/OsxProcess
+        55: astore        5
+        57: aload         5
+        59: ifnonnull     86
+        62: aload_0
+        63: getfield      #29                 // Field pidToProcessMap:Ljava/util/Map;
+        66: iload_2
+        67: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        70: invokeinterface #76,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        75: checkcast     #77                 // class com/zaxxer/nuprocess/osx/OsxProcess
+        78: astore        5
+        80: aload         5
+        82: ifnonnull     86
+        85: return
+        86: iload_3
+        87: iconst_m1
+        88: if_icmpne     246
+        91: aload_1
+        92: getfield      #49                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.data:Lcom/sun/jna/NativeLong;
+        95: invokevirtual #50                 // Method com/sun/jna/NativeLong.intValue:()I
+        98: istore        6
+       100: aload         5
+       102: invokevirtual #34                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       105: invokevirtual #33                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+       108: istore        7
+       110: iload_2
+       111: iload         7
+       113: if_icmpne     152
+       116: aload         5
+       118: iload         6
+       120: iload         7
+       122: invokevirtual #78                 // Method com/zaxxer/nuprocess/osx/OsxProcess.readStdout:(II)V
+       125: aload_1
+       126: getfield      #79                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.flags:S
+       129: ldc           #80                 // int 32768
+       131: iand
+       132: ifeq          143
+       135: aload         5
+       137: iconst_m1
+       138: iload         7
+       140: invokevirtual #78                 // Method com/zaxxer/nuprocess/osx/OsxProcess.readStdout:(II)V
+       143: aload         5
+       145: invokevirtual #34                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       148: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       151: return
+       152: aload         5
+       154: invokevirtual #34                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       157: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       160: goto          176
+       163: astore        8
+       165: aload         5
+       167: invokevirtual #34                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdout:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       170: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       173: aload         8
+       175: athrow
+       176: aload         5
+       178: invokevirtual #35                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       181: invokevirtual #33                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+       184: istore        7
+       186: iload_2
+       187: iload         7
+       189: if_icmpne     219
+       192: aload         5
+       194: iload         6
+       196: iload         7
+       198: invokevirtual #81                 // Method com/zaxxer/nuprocess/osx/OsxProcess.readStderr:(II)V
+       201: aload_1
+       202: getfield      #79                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.flags:S
+       205: ldc           #80                 // int 32768
+       207: iand
+       208: ifeq          219
+       211: aload         5
+       213: iconst_m1
+       214: iload         7
+       216: invokevirtual #81                 // Method com/zaxxer/nuprocess/osx/OsxProcess.readStderr:(II)V
+       219: aload         5
+       221: invokevirtual #35                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       224: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       227: goto          243
+       230: astore        9
+       232: aload         5
+       234: invokevirtual #35                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStderr:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       237: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       240: aload         9
+       242: athrow
+       243: goto          474
+       246: iload_3
+       247: bipush        -2
+       249: if_icmpne     379
+       252: aload         5
+       254: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       257: invokevirtual #33                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+       260: istore        6
+       262: iload_2
+       263: iload         6
+       265: if_icmpne     352
+       268: aload_1
+       269: getfield      #49                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.data:Lcom/sun/jna/NativeLong;
+       272: invokevirtual #50                 // Method com/sun/jna/NativeLong.intValue:()I
+       275: istore        7
+       277: iload         7
+       279: ifle          296
+       282: aload         5
+       284: iload         7
+       286: iload         6
+       288: invokevirtual #82                 // Method com/zaxxer/nuprocess/osx/OsxProcess.writeStdin:(II)Z
+       291: istore        8
+       293: goto          299
+       296: iconst_1
+       297: istore        8
+       299: iload         8
+       301: ifne          352
+       304: new           #15                 // class com/zaxxer/nuprocess/osx/LibKevent$Kevent
+       307: dup
+       308: invokespecial #16                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent."<init>":()V
+       311: iconst_1
+       312: invokevirtual #17                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.toArray:(I)[Lcom/sun/jna/Structure;
+       315: checkcast     #18                 // class "[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;"
+       318: astore        9
+       320: aload         9
+       322: iconst_0
+       323: aaload
+       324: iload         6
+       326: i2l
+       327: bipush        -2
+       329: bipush        72
+       331: iconst_0
+       332: lconst_0
+       333: aload         5
+       335: invokevirtual #27                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getPid:()I
+       338: invokestatic  #28                 // Method com/sun/jna/Pointer.createConstant:(I)Lcom/sun/jna/Pointer;
+       341: invokevirtual #24                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       344: pop
+       345: aload_0
+       346: aload         9
+       348: iconst_1
+       349: invokespecial #25                 // Method registerEvents:([Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;I)V
+       352: aload         5
+       354: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       357: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       360: goto          376
+       363: astore        10
+       365: aload         5
+       367: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       370: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       373: aload         10
+       375: athrow
+       376: goto          474
+       379: aload_1
+       380: getfield      #83                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.fflags:I
+       383: ldc           #84                 // int -2147483648
+       385: iand
+       386: ifeq          474
+       389: aload_0
+       390: aload         5
+       392: invokespecial #85                 // Method cleanupProcess:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+       395: aload_1
+       396: getfield      #49                 // Field com/zaxxer/nuprocess/osx/LibKevent$Kevent.data:Lcom/sun/jna/NativeLong;
+       399: invokevirtual #50                 // Method com/sun/jna/NativeLong.intValue:()I
+       402: istore        6
+       404: iload         6
+       406: invokestatic  #86                 // Method com/zaxxer/nuprocess/internal/LibC.WIFEXITED:(I)Z
+       409: ifeq          446
+       412: iload         6
+       414: invokestatic  #87                 // Method com/zaxxer/nuprocess/internal/LibC.WEXITSTATUS:(I)I
+       417: istore        6
+       419: iload         6
+       421: bipush        127
+       423: if_icmpne     436
+       426: aload         5
+       428: ldc           #84                 // int -2147483648
+       430: invokevirtual #89                 // Method com/zaxxer/nuprocess/osx/OsxProcess.onExit:(I)V
+       433: goto          474
+       436: aload         5
+       438: iload         6
+       440: invokevirtual #89                 // Method com/zaxxer/nuprocess/osx/OsxProcess.onExit:(I)V
+       443: goto          474
+       446: iload         6
+       448: invokestatic  #90                 // Method com/zaxxer/nuprocess/internal/LibC.WIFSIGNALED:(I)Z
+       451: ifeq          467
+       454: aload         5
+       456: iload         6
+       458: invokestatic  #91                 // Method com/zaxxer/nuprocess/internal/LibC.WTERMSIG:(I)I
+       461: invokevirtual #89                 // Method com/zaxxer/nuprocess/osx/OsxProcess.onExit:(I)V
+       464: goto          474
+       467: aload         5
+       469: iload         6
+       471: invokevirtual #89                 // Method com/zaxxer/nuprocess/osx/OsxProcess.onExit:(I)V
+       474: return
+      Exception table:
+         from    to  target type
+           100   143   163   any
+           163   165   163   any
+           176   219   230   any
+           230   232   230   any
+           252   352   363   any
+           363   365   363   any
+      LineNumberTable:
+        line 256: 0
+        line 257: 8
+        line 258: 13
+        line 260: 23
+        line 261: 29
+        line 262: 33
+        line 263: 37
+        line 266: 38
+        line 267: 57
+        line 268: 62
+        line 269: 80
+        line 270: 85
+        line 274: 86
+        line 276: 91
+        line 278: 100
+        line 279: 110
+        line 280: 116
+        line 281: 125
+        line 282: 135
+        line 287: 143
+        line 284: 151
+        line 287: 152
+        line 288: 160
+        line 287: 163
+        line 288: 173
+        line 291: 176
+        line 292: 186
+        line 293: 192
+        line 294: 201
+        line 295: 211
+        line 299: 219
+        line 300: 227
+        line 299: 230
+        line 300: 240
+        line 301: 243
+        line 302: 246
+        line 305: 252
+        line 306: 262
+        line 307: 268
+        line 309: 277
+        line 310: 282
+        line 313: 296
+        line 315: 299
+        line 319: 304
+        line 320: 320
+        line 321: 335
+        line 320: 341
+        line 322: 345
+        line 326: 352
+        line 327: 360
+        line 326: 363
+        line 327: 373
+        line 329: 379
+        line 331: 389
+        line 332: 395
+        line 333: 404
+        line 334: 412
+        line 335: 419
+        line 336: 426
+        line 339: 436
+        line 342: 446
+        line 343: 454
+        line 346: 467
+        line 349: 474
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          110      42     7 stdoutFd   I
+          186      33     7 stderrFd   I
+          100     143     6 available   I
+          293       3     8 userWantsMore   Z
+          320      32     9 events   [Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+          277      75     7 available   I
+          299      53     8 userWantsMore   Z
+          262      90     6 stdinFd   I
+          404      70     6 status   I
+            0     475     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            0     475     1 kevent   Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+            8     467     2 ident   I
+           13     462     3 filter   I
+           23     452     4 udata   I
+           57     418     5 osxProcess   Lcom/zaxxer/nuprocess/osx/OsxProcess;
+      StackMapTable: number_of_entries = 20
+        frame_type = 254 /* append */
+          offset_delta = 38
+          locals = [ int, int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 47
+          locals = [ class com/zaxxer/nuprocess/osx/OsxProcess ]
+        frame_type = 253 /* append */
+          offset_delta = 56
+          locals = [ int, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 8
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 12 /* same */
+        frame_type = 42 /* same */
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 12
+        frame_type = 2 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 49
+          locals = [ int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 248 /* chop */
+          offset_delta = 52
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 12 /* same */
+        frame_type = 2 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 56
+          locals = [ int ]
+        frame_type = 9 /* same */
+        frame_type = 20 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 6
+
+  private void checkStdinCloses();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=4, args_size=1
+         0: new           #92                 // class java/util/ArrayList
+         3: dup
+         4: invokespecial #93                 // Method java/util/ArrayList."<init>":()V
+         7: astore_1
+         8: aload_0
+         9: getfield      #13                 // Field closeQueue:Ljava/util/concurrent/BlockingQueue;
+        12: aload_1
+        13: invokeinterface #94,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.drainTo:(Ljava/util/Collection;)I
+        18: pop
+        19: aload_1
+        20: invokeinterface #95,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        25: astore_2
+        26: aload_2
+        27: invokeinterface #96,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        32: ifeq          55
+        35: aload_2
+        36: invokeinterface #97,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        41: checkcast     #77                 // class com/zaxxer/nuprocess/osx/OsxProcess
+        44: astore_3
+        45: aload_3
+        46: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        49: invokevirtual #98                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.close:()V
+        52: goto          26
+        55: return
+      LineNumberTable:
+        line 357: 0
+        line 359: 8
+        line 360: 19
+        line 361: 45
+        line 362: 52
+        line 363: 55
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           45       7     3 process   Lcom/zaxxer/nuprocess/osx/OsxProcess;
+            0      56     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            8      48     1 processes   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            8      48     1 processes   Ljava/util/List<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 26
+          locals = [ class java/util/List, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 28
+
+  private void checkWaitWrites();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=9, locals=8, args_size=1
+         0: new           #92                 // class java/util/ArrayList
+         3: dup
+         4: invokespecial #93                 // Method java/util/ArrayList."<init>":()V
+         7: astore_1
+         8: aload_0
+         9: getfield      #14                 // Field wantsWrite:Ljava/util/concurrent/BlockingQueue;
+        12: aload_1
+        13: bipush        64
+        15: invokeinterface #99,  3           // InterfaceMethod java/util/concurrent/BlockingQueue.drainTo:(Ljava/util/Collection;I)I
+        20: pop
+        21: aload_1
+        22: invokeinterface #100,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+        27: ifne          158
+        30: new           #15                 // class com/zaxxer/nuprocess/osx/LibKevent$Kevent
+        33: dup
+        34: invokespecial #16                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent."<init>":()V
+        37: aload_1
+        38: invokeinterface #101,  1          // InterfaceMethod java/util/List.size:()I
+        43: invokevirtual #17                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.toArray:(I)[Lcom/sun/jna/Structure;
+        46: checkcast     #18                 // class "[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;"
+        49: astore_2
+        50: iconst_0
+        51: istore_3
+        52: iconst_0
+        53: istore        4
+        55: iload         4
+        57: aload_1
+        58: invokeinterface #101,  1          // InterfaceMethod java/util/List.size:()I
+        63: if_icmpge     152
+        66: aload_1
+        67: iload         4
+        69: invokeinterface #102,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+        74: checkcast     #77                 // class com/zaxxer/nuprocess/osx/OsxProcess
+        77: astore        5
+        79: aload         5
+        81: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+        84: invokevirtual #33                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.acquire:()I
+        87: istore        6
+        89: iload         6
+        91: iconst_m1
+        92: if_icmpeq     122
+        95: aload_2
+        96: iload_3
+        97: aaload
+        98: iload         6
+       100: i2l
+       101: bipush        -2
+       103: bipush        68
+       105: iconst_0
+       106: lconst_0
+       107: aload         5
+       109: invokevirtual #27                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getPid:()I
+       112: invokestatic  #28                 // Method com/sun/jna/Pointer.createConstant:(I)Lcom/sun/jna/Pointer;
+       115: invokevirtual #24                 // Method com/zaxxer/nuprocess/osx/LibKevent$Kevent.EV_SET:(JIIIJLcom/sun/jna/Pointer;)Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+       118: pop
+       119: iinc          3, 1
+       122: aload         5
+       124: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       127: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       130: goto          146
+       133: astore        7
+       135: aload         5
+       137: invokevirtual #32                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getStdin:()Lcom/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor;
+       140: invokevirtual #38                 // Method com/zaxxer/nuprocess/internal/ReferenceCountedFileDescriptor.release:()V
+       143: aload         7
+       145: athrow
+       146: iinc          4, 1
+       149: goto          55
+       152: aload_0
+       153: aload_2
+       154: iload_3
+       155: invokespecial #25                 // Method registerEvents:([Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;I)V
+       158: return
+      Exception table:
+         from    to  target type
+            79   122   133   any
+           133   135   133   any
+      LineNumberTable:
+        line 368: 0
+        line 370: 8
+        line 371: 21
+        line 375: 30
+        line 376: 50
+        line 377: 52
+        line 378: 66
+        line 380: 79
+        line 381: 89
+        line 382: 95
+        line 383: 109
+        line 382: 115
+        line 384: 119
+        line 387: 122
+        line 388: 130
+        line 387: 133
+        line 388: 143
+        line 377: 146
+        line 390: 152
+        line 392: 158
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           89      33     6    fd   I
+           79      67     5 process   Lcom/zaxxer/nuprocess/osx/OsxProcess;
+           55      97     4     i   I
+           50     108     2 kevents   [Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;
+           52     106     3 numKevents   I
+            0     159     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            8     151     1 processes   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            8     151     1 processes   Ljava/util/List<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+      StackMapTable: number_of_entries = 6
+        frame_type = 255 /* full_frame */
+          offset_delta = 55
+          locals = [ class com/zaxxer/nuprocess/osx/ProcessKqueue, class java/util/List, class "[Lcom/zaxxer/nuprocess/osx/LibKevent$Kevent;", int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 66
+          locals = [ class com/zaxxer/nuprocess/osx/OsxProcess ]
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 12
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 249 /* chop */
+          offset_delta = 5
+
+  private void cleanupProcess(com.zaxxer.nuprocess.osx.OsxProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_1
+         1: invokevirtual #27                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getPid:()I
+         4: new           #103                // class com/sun/jna/ptr/IntByReference
+         7: dup
+         8: invokespecial #104                // Method com/sun/jna/ptr/IntByReference."<init>":()V
+        11: iconst_1
+        12: invokestatic  #105                // Method com/zaxxer/nuprocess/internal/LibC.waitpid:(ILcom/sun/jna/ptr/IntByReference;I)I
+        15: pop
+        16: aload_0
+        17: getfield      #29                 // Field pidToProcessMap:Ljava/util/Map;
+        20: aload_1
+        21: invokevirtual #27                 // Method com/zaxxer/nuprocess/osx/OsxProcess.getPid:()I
+        24: invokestatic  #30                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        27: invokeinterface #106,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        32: pop
+        33: aload_0
+        34: getfield      #14                 // Field wantsWrite:Ljava/util/concurrent/BlockingQueue;
+        37: invokeinterface #107,  1          // InterfaceMethod java/util/concurrent/BlockingQueue.iterator:()Ljava/util/Iterator;
+        42: astore_2
+        43: aload_2
+        44: invokeinterface #96,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        49: ifeq          71
+        52: aload_1
+        53: aload_2
+        54: invokeinterface #97,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        59: if_acmpne     43
+        62: aload_2
+        63: invokeinterface #108,  1          // InterfaceMethod java/util/Iterator.remove:()V
+        68: goto          43
+        71: return
+      LineNumberTable:
+        line 396: 0
+        line 399: 16
+        line 400: 33
+        line 401: 43
+        line 402: 52
+        line 403: 62
+        line 406: 71
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      72     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+            0      72     1 osxProcess   Lcom/zaxxer/nuprocess/osx/OsxProcess;
+           43      29     2 iterator   Ljava/util/Iterator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           43      29     2 iterator   Ljava/util/Iterator<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 43
+          locals = [ class java/util/Iterator ]
+        frame_type = 27 /* same */
+
+  public void closeStdin(com.zaxxer.nuprocess.internal.BasePosixProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/internal/BasePosixProcess;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #77                 // class com/zaxxer/nuprocess/osx/OsxProcess
+         5: invokevirtual #109                // Method closeStdin:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+         8: return
+      LineNumberTable:
+        line 42: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+
+  public void queueWrite(com.zaxxer.nuprocess.internal.BasePosixProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/internal/BasePosixProcess;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #77                 // class com/zaxxer/nuprocess/osx/OsxProcess
+         5: invokevirtual #110                // Method queueWrite:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+         8: return
+      LineNumberTable:
+        line 42: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+
+  public void registerProcess(com.zaxxer.nuprocess.internal.BasePosixProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/internal/BasePosixProcess;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #77                 // class com/zaxxer/nuprocess/osx/OsxProcess
+         5: invokevirtual #3                  // Method registerProcess:(Lcom/zaxxer/nuprocess/osx/OsxProcess;)V
+         8: return
+      LineNumberTable:
+        line 42: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/zaxxer/nuprocess/osx/ProcessKqueue;
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: invokestatic  #111                // Method com/zaxxer/nuprocess/internal/LibC.getpid:()I
+         3: putstatic     #57                 // Field JAVA_PID:I
+         6: return
+      LineNumberTable:
+        line 58: 0
+        line 59: 6
+}
+Signature: #202                         // Lcom/zaxxer/nuprocess/internal/BaseEventProcessor<Lcom/zaxxer/nuprocess/osx/OsxProcess;>;
+SourceFile: "ProcessKqueue.java"
+InnerClasses:
+  public static #122= #15 of #209;        // Kevent=class com/zaxxer/nuprocess/osx/LibKevent$Kevent of class com/zaxxer/nuprocess/osx/LibKevent
+  public static #169= #60 of #209;        // TimeSpec=class com/zaxxer/nuprocess/osx/LibKevent$TimeSpec of class com/zaxxer/nuprocess/osx/LibKevent

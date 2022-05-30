@@ -1,0 +1,473 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/scala/collection/parallel/Combiner.class
+  Last modified May 29, 2022; size 5671 bytes
+  SHA-256 checksum 5d53ac11e24d200cb3156451e70465fc3a279e81d67692f879032ed3712a137f
+  Compiled from "Combiner.scala"
+public interface scala.collection.parallel.Combiner<Elem extends java.lang.Object, To extends java.lang.Object> extends scala.collection.mutable.Builder<Elem, To>, scala.collection.generic.Sizing, scala.collection.Parallel
+  minor version: 0
+  major version: 52
+  flags: (0x0601) ACC_PUBLIC, ACC_INTERFACE, ACC_ABSTRACT
+  this_class: #2                          // scala/collection/parallel/Combiner
+  super_class: #5                         // java/lang/Object
+  interfaces: 3, fields: 0, methods: 16, attributes: 7
+Constant pool:
+    #1 = Utf8               scala/collection/parallel/Combiner
+    #2 = Class              #1            // scala/collection/parallel/Combiner
+    #3 = Utf8               <Elem:Ljava/lang/Object;To:Ljava/lang/Object;>Ljava/lang/Object;Lscala/collection/mutable/Builder<TElem;TTo;>;Lscala/collection/generic/Sizing;Lscala/collection/Parallel;
+    #4 = Utf8               java/lang/Object
+    #5 = Class              #4            // java/lang/Object
+    #6 = Utf8               scala/collection/mutable/Builder
+    #7 = Class              #6            // scala/collection/mutable/Builder
+    #8 = Utf8               scala/collection/generic/Sizing
+    #9 = Class              #8            // scala/collection/generic/Sizing
+   #10 = Utf8               scala/collection/Parallel
+   #11 = Class              #10           // scala/collection/Parallel
+   #12 = Utf8               Combiner.scala
+   #13 = Utf8               Lscala/reflect/ScalaSignature;
+   #14 = Utf8               bytes
+   #15 = Utf8               \u0006\u0005I4qAC\u0006\u0011\u0002\u0007\u0005!\u0003C\u00037\u0001\u0011\u0005q\u0007C\u0004<\u0001\u0001\u0007I\u0011\u0001\u001f\t\u000f%\u0003\u0001\u0019!C\u0001\u0015\")Q\n\u0001C\u0001y!)a\n\u0001C\u0001\u001f\")!\u000b\u0001D\u0001\'\")\u0001\r\u0001C\u0001C\")Q\r\u0001C\u0001M\")q\r\u0001C\u0001Q\nA1i\\7cS:,\'O\u0003\u0002\r\u001b\u0005A\u0001/\u0019:bY2,GN\u0003\u0002\u000f\u001f\u0005Q1m\u001c7mK\u000e$\u0018n\u001c8\u000b\u0003A\tQa]2bY\u0006\u001c\u0001!F\u0002\u0014A)\u001aR\u0001\u0001\u000b\u0019YI\u0002\"!\u0006\f\u000e\u0003=I!aF\b\u0003\r\u0005s\u0017PU3g!\u0011IBDH\u0015\u000e\u0003iQ!aG\u0007\u0002\u000f5,H/\u00192mK&\u0011QD\u0007\u0002\b\u0005VLG\u000eZ3s!\ty\u0002\u0005\u0004\u0001\u0005\r\u0005\u0002\u0001R1\u0001#\u0005\u0011)E.Z7\u0012\u0005\r2\u0003CA\u000b%\u0013\t)sBA\u0004O_RD\u0017N\\4\u0011\u0005U9\u0013B\u0001\u0015\u0010\u0005\r\te.\u001f\t\u0003?)\"aa\u000b\u0001\u0005\u0006\u0004\u0011#A\u0001+p!\ti\u0003\'D\u0001/\u0015\tyS\"A\u0004hK:,\'/[2\n\u0005Er#AB*ju&tw\r\u0005\u00024i5\tQ\"\u0003\u00026\u001b\tA\u0001+\u0019:bY2,G.\u0001\u0004%S:LG\u000f\n\u000b\u0002qA\u0011Q#O\u0005\u0003u=\u0011A!\u00168ji\u0006!rlY8nE&tWM\u001d+bg.\u001cV\u000f\u001d9peR,\u0012!\u0010\t\u0003}}j\u0011aC\u0005\u0003\u0001.\u00111\u0002V1tWN+\b\u000f]8si\"\u0012!A\u0011\t\u0003+\rK!\u0001R\b\u0003\u0011Y|G.\u0019;jY\u0016D#A\u0001$\u0011\u0005U9\u0015B\u0001%\u0010\u0005%!(/\u00198tS\u0016tG/\u0001\r`G>l\'-\u001b8feR\u000b7o[*vaB|\'\u000f^0%KF$\"\u0001O&\t\u000f1\u001b\u0011\u0011!a\u0001{\u0005\u0019\u0001\u0010J\u0019\u0002\'\r|WNY5oKJ$\u0016m]6TkB\u0004xN\u001d;\u0002/\r|WNY5oKJ$\u0016m]6TkB\u0004xN\u001d;`I\u0015\fHC\u0001\u001dQ\u0011\u0015\tV\u00011\u0001>\u0003\r\u0019Go]\u0001\bG>l\'-\u001b8f+\r!vk\u0017\u000b\u0003+z\u0003BA\u0010\u0001W5B\u0011qd\u0016\u0003\u00061\u001a\u0011\r!\u0017\u0002\u0002\u001dF\u00111E\b\t\u0003?m#Q\u0001\u0018\u0004C\u0002u\u0013QAT3x)>\f\"!\u000b\u0014\t\u000b}3\u0001\u0019A+\u0002\u000b=$\b.\u001a:\u0002\u0017\r\fgNQ3TQ\u0006\u0014X\rZ\u000b\u0002EB\u0011QcY\u0005\u0003I>\u0011qAQ8pY\u0016\fg.A\u000bsKN,H\u000e^,ji\"$\u0016m]6TkB\u0004xN\u001d;\u0016\u0003%\naB\u001a:p[N+\u0017/^3oi&\fG\u000e\u0006\u0002*S\")!.\u0003a\u0001W\u0006\u00191/Z9\u0011\u00071|gD\u0004\u0002\u0016[&\u0011anD\u0001\ba\u0006\u001c7.Y4f\u0013\t\u0001\u0018O\u0001\u0007Ji\u0016\u0014\u0018M\u00197f\u001f:\u001cWM\u0003\u0002o\u001f\u0001
+   #16 = Utf8               java/lang/invoke/MethodHandles$Lookup
+   #17 = Class              #16           // java/lang/invoke/MethodHandles$Lookup
+   #18 = Utf8               java/lang/invoke/MethodHandles
+   #19 = Class              #18           // java/lang/invoke/MethodHandles
+   #20 = Utf8               Lookup
+   #21 = Utf8               _combinerTaskSupport
+   #22 = Utf8               ()Lscala/collection/parallel/TaskSupport;
+   #23 = Utf8               _combinerTaskSupport_$eq
+   #24 = Utf8               (Lscala/collection/parallel/TaskSupport;)V
+   #25 = Utf8               x$1
+   #26 = Utf8               combinerTaskSupport$
+   #27 = Utf8               (Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/TaskSupport;
+   #28 = Utf8               $this
+   #29 = Utf8               combinerTaskSupport
+   #30 = NameAndType        #29:#22       // combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+   #31 = InterfaceMethodref #2.#30        // scala/collection/parallel/Combiner.combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+   #32 = Utf8               Lscala/collection/parallel/Combiner;
+   #33 = NameAndType        #21:#22       // _combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+   #34 = InterfaceMethodref #2.#33        // scala/collection/parallel/Combiner._combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+   #35 = Utf8               scala/collection/parallel/package$
+   #36 = Class              #35           // scala/collection/parallel/package$
+   #37 = Utf8               MODULE$
+   #38 = Utf8               Lscala/collection/parallel/package$;
+   #39 = NameAndType        #37:#38       // MODULE$:Lscala/collection/parallel/package$;
+   #40 = Fieldref           #36.#39       // scala/collection/parallel/package$.MODULE$:Lscala/collection/parallel/package$;
+   #41 = Utf8               defaultTaskSupport
+   #42 = NameAndType        #41:#22       // defaultTaskSupport:()Lscala/collection/parallel/TaskSupport;
+   #43 = Methodref          #36.#42       // scala/collection/parallel/package$.defaultTaskSupport:()Lscala/collection/parallel/TaskSupport;
+   #44 = NameAndType        #23:#24       // _combinerTaskSupport_$eq:(Lscala/collection/parallel/TaskSupport;)V
+   #45 = InterfaceMethodref #2.#44        // scala/collection/parallel/Combiner._combinerTaskSupport_$eq:(Lscala/collection/parallel/TaskSupport;)V
+   #46 = Utf8               cts
+   #47 = Utf8               Lscala/collection/parallel/TaskSupport;
+   #48 = Utf8               this
+   #49 = Utf8               scala/collection/parallel/TaskSupport
+   #50 = Class              #49           // scala/collection/parallel/TaskSupport
+   #51 = Utf8               combinerTaskSupport_$eq$
+   #52 = Utf8               (Lscala/collection/parallel/Combiner;Lscala/collection/parallel/TaskSupport;)V
+   #53 = Utf8               combinerTaskSupport_$eq
+   #54 = NameAndType        #53:#24       // combinerTaskSupport_$eq:(Lscala/collection/parallel/TaskSupport;)V
+   #55 = InterfaceMethodref #2.#54        // scala/collection/parallel/Combiner.combinerTaskSupport_$eq:(Lscala/collection/parallel/TaskSupport;)V
+   #56 = Utf8               combine
+   #57 = Utf8               (Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+   #58 = Utf8               <N:TElem;NewTo:Ljava/lang/Object;>(Lscala/collection/parallel/Combiner<TN;TNewTo;>;)Lscala/collection/parallel/Combiner<TN;TNewTo;>;
+   #59 = Utf8               other
+   #60 = Utf8               canBeShared$
+   #61 = Utf8               (Lscala/collection/parallel/Combiner;)Z
+   #62 = Utf8               canBeShared
+   #63 = Utf8               ()Z
+   #64 = NameAndType        #62:#63       // canBeShared:()Z
+   #65 = InterfaceMethodref #2.#64        // scala/collection/parallel/Combiner.canBeShared:()Z
+   #66 = Utf8               resultWithTaskSupport$
+   #67 = Utf8               (Lscala/collection/parallel/Combiner;)Ljava/lang/Object;
+   #68 = Utf8               resultWithTaskSupport
+   #69 = Utf8               ()Ljava/lang/Object;
+   #70 = NameAndType        #68:#69       // resultWithTaskSupport:()Ljava/lang/Object;
+   #71 = InterfaceMethodref #2.#70        // scala/collection/parallel/Combiner.resultWithTaskSupport:()Ljava/lang/Object;
+   #72 = Utf8               ()TTo;
+   #73 = Utf8               result
+   #74 = NameAndType        #73:#69       // result:()Ljava/lang/Object;
+   #75 = InterfaceMethodref #2.#74        // scala/collection/parallel/Combiner.result:()Ljava/lang/Object;
+   #76 = Utf8               setTaskSupport
+   #77 = Utf8               (Ljava/lang/Object;Lscala/collection/parallel/TaskSupport;)Ljava/lang/Object;
+   #78 = NameAndType        #76:#77       // setTaskSupport:(Ljava/lang/Object;Lscala/collection/parallel/TaskSupport;)Ljava/lang/Object;
+   #79 = Methodref          #36.#78       // scala/collection/parallel/package$.setTaskSupport:(Ljava/lang/Object;Lscala/collection/parallel/TaskSupport;)Ljava/lang/Object;
+   #80 = Utf8               res
+   #81 = Utf8               Ljava/lang/Object;
+   #82 = Utf8               fromSequential$
+   #83 = Utf8               (Lscala/collection/parallel/Combiner;Lscala/collection/IterableOnce;)Ljava/lang/Object;
+   #84 = Utf8               seq
+   #85 = Utf8               fromSequential
+   #86 = Utf8               (Lscala/collection/IterableOnce;)Ljava/lang/Object;
+   #87 = NameAndType        #85:#86       // fromSequential:(Lscala/collection/IterableOnce;)Ljava/lang/Object;
+   #88 = InterfaceMethodref #2.#87        // scala/collection/parallel/Combiner.fromSequential:(Lscala/collection/IterableOnce;)Ljava/lang/Object;
+   #89 = Utf8               Lscala/collection/IterableOnce;
+   #90 = Utf8               (Lscala/collection/IterableOnce<TElem;>;)TTo;
+   #91 = Utf8               scala/collection/IterableOnce
+   #92 = Class              #91           // scala/collection/IterableOnce
+   #93 = Utf8               iterator
+   #94 = Utf8               ()Lscala/collection/Iterator;
+   #95 = NameAndType        #93:#94       // iterator:()Lscala/collection/Iterator;
+   #96 = InterfaceMethodref #92.#95       // scala/collection/IterableOnce.iterator:()Lscala/collection/Iterator;
+   #97 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+   #98 = MethodType         #97           //  (Ljava/lang/Object;)Ljava/lang/Object;
+   #99 = Utf8               $anonfun$fromSequential$1
+  #100 = Utf8               (Lscala/collection/parallel/Combiner;Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+  #101 = NameAndType        #99:#100      // $anonfun$fromSequential$1:(Lscala/collection/parallel/Combiner;Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+  #102 = InterfaceMethodref #2.#101       // scala/collection/parallel/Combiner.$anonfun$fromSequential$1:(Lscala/collection/parallel/Combiner;Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+  #103 = MethodHandle       6:#102        // REF_invokeStatic scala/collection/parallel/Combiner.$anonfun$fromSequential$1:(Lscala/collection/parallel/Combiner;Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+  #104 = Utf8               (Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+  #105 = MethodType         #104          //  (Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+  #106 = Integer            5
+  #107 = Integer            1
+  #108 = Utf8               java/lang/invoke/LambdaMetafactory
+  #109 = Class              #108          // java/lang/invoke/LambdaMetafactory
+  #110 = Utf8               altMetafactory
+  #111 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #112 = NameAndType        #110:#111     // altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #113 = Methodref          #109.#112     // java/lang/invoke/LambdaMetafactory.altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #114 = MethodHandle       6:#113        // REF_invokeStatic java/lang/invoke/LambdaMetafactory.altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #115 = Utf8               apply
+  #116 = Utf8               (Lscala/collection/parallel/Combiner;)Lscala/Function1;
+  #117 = NameAndType        #115:#116     // apply:(Lscala/collection/parallel/Combiner;)Lscala/Function1;
+  #118 = InvokeDynamic      #0:#117       // #0:apply:(Lscala/collection/parallel/Combiner;)Lscala/Function1;
+  #119 = Utf8               scala/collection/Iterator
+  #120 = Class              #119          // scala/collection/Iterator
+  #121 = Utf8               foreach
+  #122 = Utf8               (Lscala/Function1;)V
+  #123 = NameAndType        #121:#122     // foreach:(Lscala/Function1;)V
+  #124 = InterfaceMethodref #120.#123     // scala/collection/Iterator.foreach:(Lscala/Function1;)V
+  #125 = Utf8               x
+  #126 = Utf8               $plus$eq
+  #127 = Utf8               (Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+  #128 = NameAndType        #126:#127     // $plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+  #129 = InterfaceMethodref #2.#128       // scala/collection/parallel/Combiner.$plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+  #130 = Utf8               $init$
+  #131 = Utf8               (Lscala/collection/parallel/Combiner;)V
+  #132 = Utf8               $deserializeLambda$
+  #133 = Utf8               (Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+  #134 = Utf8               scala/runtime/LambdaDeserialize
+  #135 = Class              #134          // scala/runtime/LambdaDeserialize
+  #136 = Utf8               bootstrap
+  #137 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+  #138 = NameAndType        #136:#137     // bootstrap:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+  #139 = Methodref          #135.#138     // scala/runtime/LambdaDeserialize.bootstrap:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+  #140 = MethodHandle       6:#139        // REF_invokeStatic scala/runtime/LambdaDeserialize.bootstrap:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+  #141 = Utf8               lambdaDeserialize
+  #142 = NameAndType        #141:#133     // lambdaDeserialize:(Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+  #143 = InvokeDynamic      #1:#142       // #1:lambdaDeserialize:(Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+  #144 = Utf8               MethodParameters
+  #145 = Utf8               Code
+  #146 = Utf8               LineNumberTable
+  #147 = Utf8               LocalVariableTable
+  #148 = Utf8               StackMapTable
+  #149 = Utf8               Signature
+  #150 = Utf8               InnerClasses
+  #151 = Utf8               SourceFile
+  #152 = Utf8               RuntimeVisibleAnnotations
+  #153 = Utf8               BootstrapMethods
+  #154 = Utf8               ScalaInlineInfo
+  #155 = Utf8               ScalaSig
+{
+  public abstract scala.collection.parallel.TaskSupport _combinerTaskSupport();
+    descriptor: ()Lscala/collection/parallel/TaskSupport;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public abstract void _combinerTaskSupport_$eq(scala.collection.parallel.TaskSupport);
+    descriptor: (Lscala/collection/parallel/TaskSupport;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public static scala.collection.parallel.TaskSupport combinerTaskSupport$(scala.collection.parallel.Combiner);
+    descriptor: (Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/TaskSupport;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #31                 // InterfaceMethod combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+         4: areturn
+      LineNumberTable:
+        line 39: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0 $this   Lscala/collection/parallel/Combiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+
+  public default scala.collection.parallel.TaskSupport combinerTaskSupport();
+    descriptor: ()Lscala/collection/parallel/TaskSupport;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: invokeinterface #34,  1           // InterfaceMethod _combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+         6: astore_1
+         7: aload_1
+         8: ifnonnull     32
+        11: aload_0
+        12: getstatic     #40                 // Field scala/collection/parallel/package$.MODULE$:Lscala/collection/parallel/package$;
+        15: invokevirtual #43                 // Method scala/collection/parallel/package$.defaultTaskSupport:()Lscala/collection/parallel/TaskSupport;
+        18: invokeinterface #45,  2           // InterfaceMethod _combinerTaskSupport_$eq:(Lscala/collection/parallel/TaskSupport;)V
+        23: getstatic     #40                 // Field scala/collection/parallel/package$.MODULE$:Lscala/collection/parallel/package$;
+        26: invokevirtual #43                 // Method scala/collection/parallel/package$.defaultTaskSupport:()Lscala/collection/parallel/TaskSupport;
+        29: goto          33
+        32: aload_1
+        33: areturn
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 32
+          locals = [ class scala/collection/parallel/TaskSupport ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class scala/collection/parallel/TaskSupport ]
+      LineNumberTable:
+        line 40: 0
+        line 41: 7
+        line 42: 11
+        line 43: 23
+        line 44: 32
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            7      26     1   cts   Lscala/collection/parallel/TaskSupport;
+            0      34     0  this   Lscala/collection/parallel/Combiner;
+
+  public static void combinerTaskSupport_$eq$(scala.collection.parallel.Combiner, scala.collection.parallel.TaskSupport);
+    descriptor: (Lscala/collection/parallel/Combiner;Lscala/collection/parallel/TaskSupport;)V
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokespecial #55                 // InterfaceMethod combinerTaskSupport_$eq:(Lscala/collection/parallel/TaskSupport;)V
+         5: return
+      LineNumberTable:
+        line 47: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0 $this   Lscala/collection/parallel/Combiner;
+            0       6     1   cts   Lscala/collection/parallel/TaskSupport;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+      cts                            final
+
+  public default void combinerTaskSupport_$eq(scala.collection.parallel.TaskSupport);
+    descriptor: (Lscala/collection/parallel/TaskSupport;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokeinterface #45,  2           // InterfaceMethod _combinerTaskSupport_$eq:(Lscala/collection/parallel/TaskSupport;)V
+         7: return
+      LineNumberTable:
+        line 47: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lscala/collection/parallel/Combiner;
+            0       8     1   cts   Lscala/collection/parallel/TaskSupport;
+    MethodParameters:
+      Name                           Flags
+      cts                            final
+
+  public abstract <N extends Elem, NewTo extends java.lang.Object> scala.collection.parallel.Combiner<N, NewTo> combine(scala.collection.parallel.Combiner<N, NewTo>);
+    descriptor: (Lscala/collection/parallel/Combiner;)Lscala/collection/parallel/Combiner;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Signature: #58                          // <N:TElem;NewTo:Ljava/lang/Object;>(Lscala/collection/parallel/Combiner<TN;TNewTo;>;)Lscala/collection/parallel/Combiner<TN;TNewTo;>;
+    MethodParameters:
+      Name                           Flags
+      other                          final
+
+  public static boolean canBeShared$(scala.collection.parallel.Combiner);
+    descriptor: (Lscala/collection/parallel/Combiner;)Z
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #65                 // InterfaceMethod canBeShared:()Z
+         4: ireturn
+      LineNumberTable:
+        line 81: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0 $this   Lscala/collection/parallel/Combiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+
+  public default boolean canBeShared();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 81: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lscala/collection/parallel/Combiner;
+
+  public static java.lang.Object resultWithTaskSupport$(scala.collection.parallel.Combiner);
+    descriptor: (Lscala/collection/parallel/Combiner;)Ljava/lang/Object;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #71                 // InterfaceMethod resultWithTaskSupport:()Ljava/lang/Object;
+         4: areturn
+      LineNumberTable:
+        line 86: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0 $this   Lscala/collection/parallel/Combiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+
+  public default To resultWithTaskSupport();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=1
+         0: aload_0
+         1: invokeinterface #75,  1           // InterfaceMethod result:()Ljava/lang/Object;
+         6: astore_1
+         7: getstatic     #40                 // Field scala/collection/parallel/package$.MODULE$:Lscala/collection/parallel/package$;
+        10: aload_1
+        11: aload_0
+        12: invokeinterface #31,  1           // InterfaceMethod combinerTaskSupport:()Lscala/collection/parallel/TaskSupport;
+        17: invokevirtual #79                 // Method scala/collection/parallel/package$.setTaskSupport:(Ljava/lang/Object;Lscala/collection/parallel/TaskSupport;)Ljava/lang/Object;
+        20: areturn
+      LineNumberTable:
+        line 87: 0
+        line 88: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            7      13     1   res   Ljava/lang/Object;
+            0      21     0  this   Lscala/collection/parallel/Combiner;
+    Signature: #72                          // ()TTo;
+
+  public static java.lang.Object fromSequential$(scala.collection.parallel.Combiner, scala.collection.IterableOnce);
+    descriptor: (Lscala/collection/parallel/Combiner;Lscala/collection/IterableOnce;)Ljava/lang/Object;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokespecial #88                 // InterfaceMethod fromSequential:(Lscala/collection/IterableOnce;)Ljava/lang/Object;
+         5: areturn
+      LineNumberTable:
+        line 93: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0 $this   Lscala/collection/parallel/Combiner;
+            0       6     1   seq   Lscala/collection/IterableOnce;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+      seq                            final
+
+  public default To fromSequential(scala.collection.IterableOnce<Elem>);
+    descriptor: (Lscala/collection/IterableOnce;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: invokeinterface #96,  1           // InterfaceMethod scala/collection/IterableOnce.iterator:()Lscala/collection/Iterator;
+         6: aload_0
+         7: invokedynamic #118,  0            // InvokeDynamic #0:apply:(Lscala/collection/parallel/Combiner;)Lscala/Function1;
+        12: invokeinterface #124,  2          // InterfaceMethod scala/collection/Iterator.foreach:(Lscala/Function1;)V
+        17: aload_0
+        18: invokeinterface #75,  1           // InterfaceMethod result:()Ljava/lang/Object;
+        23: areturn
+      LineNumberTable:
+        line 94: 0
+        line 95: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lscala/collection/parallel/Combiner;
+            0      24     1   seq   Lscala/collection/IterableOnce;
+    Signature: #90                          // (Lscala/collection/IterableOnce<TElem;>;)TTo;
+    MethodParameters:
+      Name                           Flags
+      seq                            final
+
+  public static scala.collection.parallel.Combiner $anonfun$fromSequential$1(scala.collection.parallel.Combiner, java.lang.Object);
+    descriptor: (Lscala/collection/parallel/Combiner;Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokeinterface #129,  2          // InterfaceMethod $plus$eq:(Ljava/lang/Object;)Lscala/collection/mutable/Growable;
+         7: checkcast     #2                  // class scala/collection/parallel/Combiner
+        10: areturn
+      LineNumberTable:
+        line 94: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0 $this   Lscala/collection/parallel/Combiner;
+            0      11     1     x   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+      x                              final
+
+  public static void $init$(scala.collection.parallel.Combiner);
+    descriptor: (Lscala/collection/parallel/Combiner;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getstatic     #40                 // Field scala/collection/parallel/package$.MODULE$:Lscala/collection/parallel/package$;
+         4: invokevirtual #43                 // Method scala/collection/parallel/package$.defaultTaskSupport:()Lscala/collection/parallel/TaskSupport;
+         7: invokeinterface #45,  2           // InterfaceMethod _combinerTaskSupport_$eq:(Lscala/collection/parallel/TaskSupport;)V
+        12: return
+      LineNumberTable:
+        line 37: 0
+        line 33: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0 $this   Lscala/collection/parallel/Combiner;
+    MethodParameters:
+      Name                           Flags
+      $this                          final synthetic
+
+  private static java.lang.Object $deserializeLambda$(java.lang.invoke.SerializedLambda);
+    descriptor: (Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+    flags: (0x100a) ACC_PRIVATE, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokedynamic #143,  0            // InvokeDynamic #1:lambdaDeserialize:(Ljava/lang/invoke/SerializedLambda;)Ljava/lang/Object;
+         6: areturn
+}
+InnerClasses:
+  public static final #20= #17 of #19;    // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+Signature: #3                           // <Elem:Ljava/lang/Object;To:Ljava/lang/Object;>Ljava/lang/Object;Lscala/collection/mutable/Builder<TElem;TTo;>;Lscala/collection/generic/Sizing;Lscala/collection/Parallel;
+SourceFile: "Combiner.scala"
+RuntimeVisibleAnnotations:
+  0: #13(#14=s#15)
+    scala.reflect.ScalaSignature(
+      bytes="\u0006\u0005I4qAC\u0006\u0011\u0002\u0007\u0005!\u0003C\u00037\u0001\u0011\u0005q\u0007C\u0004<\u0001\u0001\u0007I\u0011\u0001\u001f\t\u000f%\u0003\u0001\u0019!C\u0001\u0015\")Q\n\u0001C\u0001y!)a\n\u0001C\u0001\u001f\")!\u000b\u0001D\u0001\'\")\u0001\r\u0001C\u0001C\")Q\r\u0001C\u0001M\")q\r\u0001C\u0001Q\nA1i\\7cS:,\'O\u0003\u0002\r\u001b\u0005A\u0001/\u0019:bY2,GN\u0003\u0002\u000f\u001f\u0005Q1m\u001c7mK\u000e$\u0018n\u001c8\u000b\u0003A\tQa]2bY\u0006\u001c\u0001!F\u0002\u0014A)\u001aR\u0001\u0001\u000b\u0019YI\u0002\"!\u0006\f\u000e\u0003=I!aF\b\u0003\r\u0005s\u0017PU3g!\u0011IBDH\u0015\u000e\u0003iQ!aG\u0007\u0002\u000f5,H/\u00192mK&\u0011QD\u0007\u0002\b\u0005VLG\u000eZ3s!\ty\u0002\u0005\u0004\u0001\u0005\r\u0005\u0002\u0001R1\u0001#\u0005\u0011)E.Z7\u0012\u0005\r2\u0003CA\u000b%\u0013\t)sBA\u0004O_RD\u0017N\\4\u0011\u0005U9\u0013B\u0001\u0015\u0010\u0005\r\te.\u001f\t\u0003?)\"aa\u000b\u0001\u0005\u0006\u0004\u0011#A\u0001+p!\ti\u0003\'D\u0001/\u0015\tyS\"A\u0004hK:,\'/[2\n\u0005Er#AB*ju&tw\r\u0005\u00024i5\tQ\"\u0003\u00026\u001b\tA\u0001+\u0019:bY2,G.\u0001\u0004%S:LG\u000f\n\u000b\u0002qA\u0011Q#O\u0005\u0003u=\u0011A!\u00168ji\u0006!rlY8nE&tWM\u001d+bg.\u001cV\u000f\u001d9peR,\u0012!\u0010\t\u0003}}j\u0011aC\u0005\u0003\u0001.\u00111\u0002V1tWN+\b\u000f]8si\"\u0012!A\u0011\t\u0003+\rK!\u0001R\b\u0003\u0011Y|G.\u0019;jY\u0016D#A\u0001$\u0011\u0005U9\u0015B\u0001%\u0010\u0005%!(/\u00198tS\u0016tG/\u0001\r`G>l\'-\u001b8feR\u000b7o[*vaB|\'\u000f^0%KF$\"\u0001O&\t\u000f1\u001b\u0011\u0011!a\u0001{\u0005\u0019\u0001\u0010J\u0019\u0002\'\r|WNY5oKJ$\u0016m]6TkB\u0004xN\u001d;\u0002/\r|WNY5oKJ$\u0016m]6TkB\u0004xN\u001d;`I\u0015\fHC\u0001\u001dQ\u0011\u0015\tV\u00011\u0001>\u0003\r\u0019Go]\u0001\bG>l\'-\u001b8f+\r!vk\u0017\u000b\u0003+z\u0003BA\u0010\u0001W5B\u0011qd\u0016\u0003\u00061\u001a\u0011\r!\u0017\u0002\u0002\u001dF\u00111E\b\t\u0003?m#Q\u0001\u0018\u0004C\u0002u\u0013QAT3x)>\f\"!\u000b\u0014\t\u000b}3\u0001\u0019A+\u0002\u000b=$\b.\u001a:\u0002\u0017\r\fgNQ3TQ\u0006\u0014X\rZ\u000b\u0002EB\u0011QcY\u0005\u0003I>\u0011qAQ8pY\u0016\fg.A\u000bsKN,H\u000e^,ji\"$\u0016m]6TkB\u0004xN\u001d;\u0016\u0003%\naB\u001a:p[N+\u0017/^3oi&\fG\u000e\u0006\u0002*S\")!.\u0003a\u0001W\u0006\u00191/Z9\u0011\u00071|gD\u0004\u0002\u0016[&\u0011anD\u0001\ba\u0006\u001c7.Y4f\u0013\t\u0001\u0018O\u0001\u0007Ji\u0016\u0014\u0018M\u00197f\u001f:\u001cWM\u0003\u0002o\u001f\u0001"
+    )
+BootstrapMethods:
+  0: #114 REF_invokeStatic java/lang/invoke/LambdaMetafactory.altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #98 (Ljava/lang/Object;)Ljava/lang/Object;
+      #103 REF_invokeStatic scala/collection/parallel/Combiner.$anonfun$fromSequential$1:(Lscala/collection/parallel/Combiner;Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+      #105 (Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+      #106 5
+      #107 1
+      #105 (Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+  1: #140 REF_invokeStatic scala/runtime/LambdaDeserialize.bootstrap:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #103 REF_invokeStatic scala/collection/parallel/Combiner.$anonfun$fromSequential$1:(Lscala/collection/parallel/Combiner;Ljava/lang/Object;)Lscala/collection/parallel/Combiner;
+  ScalaInlineInfo: length = 0x4F (unknown attribute)
+   01 00 00 0F 00 63 00 64 01 00 82 00 83 01 00 15
+   00 16 00 00 17 00 18 00 00 3E 00 3F 00 00 3C 00
+   3D 01 00 38 00 39 00 00 1D 00 16 00 00 1A 00 1B
+   01 00 35 00 18 00 00 33 00 34 01 00 55 00 56 00
+   00 52 00 53 01 00 44 00 45 00 00 42 00 43 01
+  ScalaSig: length = 0x3 (unknown attribute)
+   05 02 00

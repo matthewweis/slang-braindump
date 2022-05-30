@@ -1,0 +1,2034 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/databind/AnnotationIntrospector.class
+  Last modified May 29, 2022; size 25201 bytes
+  SHA-256 checksum 0209caf9fad5782a5b94b5003caac5ad581b57802f84cdade054b7c9600b5928
+  Compiled from "AnnotationIntrospector.java"
+public abstract class com.fasterxml.jackson.databind.AnnotationIntrospector implements com.fasterxml.jackson.core.Versioned,java.io.Serializable
+  minor version: 0
+  major version: 52
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #26                         // com/fasterxml/jackson/databind/AnnotationIntrospector
+  super_class: #27                        // java/lang/Object
+  interfaces: 2, fields: 0, methods: 93, attributes: 2
+Constant pool:
+    #1 = Methodref          #27.#315      // java/lang/Object."<init>":()V
+    #2 = Fieldref           #316.#317     // com/fasterxml/jackson/databind/introspect/NopAnnotationIntrospector.instance:Lcom/fasterxml/jackson/databind/introspect/NopAnnotationIntrospector;
+    #3 = Class              #318          // com/fasterxml/jackson/databind/introspect/AnnotationIntrospectorPair
+    #4 = Methodref          #3.#319       // com/fasterxml/jackson/databind/introspect/AnnotationIntrospectorPair."<init>":(Lcom/fasterxml/jackson/databind/AnnotationIntrospector;Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)V
+    #5 = Methodref          #320.#321     // java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+    #6 = InterfaceMethodref #322.#323     // java/util/Collection.add:(Ljava/lang/Object;)Z
+    #7 = Methodref          #26.#324      // com/fasterxml/jackson/databind/AnnotationIntrospector.findPropertyIgnorals:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+    #8 = Methodref          #86.#325      // com/fasterxml/jackson/annotation/JsonIncludeProperties$Value.all:()Lcom/fasterxml/jackson/annotation/JsonIncludeProperties$Value;
+    #9 = Methodref          #78.#326      // com/fasterxml/jackson/annotation/JsonIgnoreProperties$Value.empty:()Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+   #10 = Methodref          #26.#327      // com/fasterxml/jackson/databind/AnnotationIntrospector.findInjectableValueId:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Object;
+   #11 = Methodref          #139.#328     // com/fasterxml/jackson/annotation/JacksonInject$Value.forId:(Ljava/lang/Object;)Lcom/fasterxml/jackson/annotation/JacksonInject$Value;
+   #12 = Methodref          #150.#329     // com/fasterxml/jackson/annotation/JsonFormat$Value.empty:()Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+   #13 = Methodref          #194.#330     // com/fasterxml/jackson/annotation/JsonInclude$Value.empty:()Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+   #14 = Class              #331          // com/fasterxml/jackson/databind/introspect/AnnotatedMethod
+   #15 = Methodref          #26.#332      // com/fasterxml/jackson/databind/AnnotationIntrospector.hasAsValueAnnotation:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+   #16 = Methodref          #333.#334     // java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+   #17 = Methodref          #26.#335      // com/fasterxml/jackson/databind/AnnotationIntrospector.hasAnyGetterAnnotation:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+   #18 = Methodref          #336.#337     // java/lang/Enum.name:()Ljava/lang/String;
+   #19 = Methodref          #282.#338     // com/fasterxml/jackson/annotation/JsonSetter$Value.empty:()Lcom/fasterxml/jackson/annotation/JsonSetter$Value;
+   #20 = Methodref          #26.#339      // com/fasterxml/jackson/databind/AnnotationIntrospector.hasCreatorAnnotation:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Z
+   #21 = Methodref          #26.#340      // com/fasterxml/jackson/databind/AnnotationIntrospector.findCreatorBinding:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+   #22 = Fieldref           #286.#341     // com/fasterxml/jackson/annotation/JsonCreator$Mode.DEFAULT:Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+   #23 = Methodref          #342.#343     // com/fasterxml/jackson/databind/introspect/Annotated.getAnnotation:(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+   #24 = Methodref          #342.#344     // com/fasterxml/jackson/databind/introspect/Annotated.hasAnnotation:(Ljava/lang/Class;)Z
+   #25 = Methodref          #342.#345     // com/fasterxml/jackson/databind/introspect/Annotated.hasOneOf:([Ljava/lang/Class;)Z
+   #26 = Class              #346          // com/fasterxml/jackson/databind/AnnotationIntrospector
+   #27 = Class              #347          // java/lang/Object
+   #28 = Class              #348          // com/fasterxml/jackson/core/Versioned
+   #29 = Class              #349          // java/io/Serializable
+   #30 = Class              #350          // com/fasterxml/jackson/databind/AnnotationIntrospector$XmlExtensions
+   #31 = Utf8               XmlExtensions
+   #32 = Utf8               InnerClasses
+   #33 = Class              #351          // com/fasterxml/jackson/databind/AnnotationIntrospector$ReferenceProperty
+   #34 = Utf8               ReferenceProperty
+   #35 = Utf8               <init>
+   #36 = Utf8               ()V
+   #37 = Utf8               Code
+   #38 = Utf8               LineNumberTable
+   #39 = Utf8               LocalVariableTable
+   #40 = Utf8               this
+   #41 = Utf8               Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+   #42 = Utf8               nopInstance
+   #43 = Utf8               ()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+   #44 = Utf8               pair
+   #45 = Utf8               (Lcom/fasterxml/jackson/databind/AnnotationIntrospector;Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+   #46 = Utf8               a1
+   #47 = Utf8               a2
+   #48 = Utf8               allIntrospectors
+   #49 = Utf8               ()Ljava/util/Collection;
+   #50 = Utf8               Signature
+   #51 = Utf8               ()Ljava/util/Collection<Lcom/fasterxml/jackson/databind/AnnotationIntrospector;>;
+   #52 = Utf8               (Ljava/util/Collection;)Ljava/util/Collection;
+   #53 = Utf8               result
+   #54 = Utf8               Ljava/util/Collection;
+   #55 = Utf8               LocalVariableTypeTable
+   #56 = Utf8               Ljava/util/Collection<Lcom/fasterxml/jackson/databind/AnnotationIntrospector;>;
+   #57 = Utf8               (Ljava/util/Collection<Lcom/fasterxml/jackson/databind/AnnotationIntrospector;>;)Ljava/util/Collection<Lcom/fasterxml/jackson/databind/AnnotationIntrospector;>;
+   #58 = Utf8               version
+   #59 = Utf8               ()Lcom/fasterxml/jackson/core/Version;
+   #60 = Utf8               isAnnotationBundle
+   #61 = Utf8               (Ljava/lang/annotation/Annotation;)Z
+   #62 = Utf8               ann
+   #63 = Utf8               Ljava/lang/annotation/Annotation;
+   #64 = Utf8               findObjectIdInfo
+   #65 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/databind/introspect/ObjectIdInfo;
+   #66 = Utf8               Lcom/fasterxml/jackson/databind/introspect/Annotated;
+   #67 = Utf8               findObjectReferenceInfo
+   #68 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/introspect/ObjectIdInfo;)Lcom/fasterxml/jackson/databind/introspect/ObjectIdInfo;
+   #69 = Utf8               objectIdInfo
+   #70 = Utf8               Lcom/fasterxml/jackson/databind/introspect/ObjectIdInfo;
+   #71 = Utf8               findRootName
+   #72 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Lcom/fasterxml/jackson/databind/PropertyName;
+   #73 = Utf8               ac
+   #74 = Utf8               Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+   #75 = Utf8               isIgnorableType
+   #76 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Boolean;
+   #77 = Utf8               findPropertyIgnoralByName
+   #78 = Class              #353          // com/fasterxml/jackson/annotation/JsonIgnoreProperties$Value
+   #79 = Utf8               Value
+   #80 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+   #81 = Utf8               config
+   #82 = Utf8               Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+   #83 = Utf8               Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+   #84 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+   #85 = Utf8               findPropertyInclusionByName
+   #86 = Class              #355          // com/fasterxml/jackson/annotation/JsonIncludeProperties$Value
+   #87 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIncludeProperties$Value;
+   #88 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIncludeProperties$Value;
+   #89 = Utf8               findFilterId
+   #90 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+   #91 = Utf8               findNamingStrategy
+   #92 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Object;
+   #93 = Utf8               findClassDescription
+   #94 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/String;
+   #95 = Utf8               findPropertiesToIgnore
+   #96 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Z)[Ljava/lang/String;
+   #97 = Utf8               forSerialization
+   #98 = Utf8               Z
+   #99 = Utf8               Deprecated
+  #100 = Utf8               RuntimeVisibleAnnotations
+  #101 = Utf8               Ljava/lang/Deprecated;
+  #102 = Utf8               findIgnoreUnknownProperties
+  #103 = Utf8               findPropertyIgnorals
+  #104 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+  #105 = Utf8               findAutoDetectVisibility
+  #106 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;)Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;
+  #107 = Utf8               checker
+  #108 = Utf8               Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;
+  #109 = Utf8               Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;
+  #110 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;)Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;
+  #111 = Utf8               findTypeResolver
+  #112 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;
+  #113 = Utf8               baseType
+  #114 = Utf8               Lcom/fasterxml/jackson/databind/JavaType;
+  #115 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;
+  #116 = Utf8               findPropertyTypeResolver
+  #117 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;
+  #118 = Utf8               am
+  #119 = Utf8               Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+  #120 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;
+  #121 = Utf8               findPropertyContentTypeResolver
+  #122 = Utf8               containerType
+  #123 = Utf8               findSubtypes
+  #124 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/util/List;
+  #125 = Utf8               a
+  #126 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/util/List<Lcom/fasterxml/jackson/databind/jsontype/NamedType;>;
+  #127 = Utf8               findTypeName
+  #128 = Utf8               isTypeId
+  #129 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Boolean;
+  #130 = Utf8               findReferenceType
+  #131 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Lcom/fasterxml/jackson/databind/AnnotationIntrospector$ReferenceProperty;
+  #132 = Utf8               member
+  #133 = Utf8               findUnwrappingNameTransformer
+  #134 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Lcom/fasterxml/jackson/databind/util/NameTransformer;
+  #135 = Utf8               hasIgnoreMarker
+  #136 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Z
+  #137 = Utf8               m
+  #138 = Utf8               findInjectableValue
+  #139 = Class              #357          // com/fasterxml/jackson/annotation/JacksonInject$Value
+  #140 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Lcom/fasterxml/jackson/annotation/JacksonInject$Value;
+  #141 = Utf8               id
+  #142 = Utf8               Ljava/lang/Object;
+  #143 = Utf8               StackMapTable
+  #144 = Class              #347          // java/lang/Object
+  #145 = Utf8               hasRequiredMarker
+  #146 = Utf8               findViews
+  #147 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)[Ljava/lang/Class;
+  #148 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)[Ljava/lang/Class<*>;
+  #149 = Utf8               findFormat
+  #150 = Class              #359          // com/fasterxml/jackson/annotation/JsonFormat$Value
+  #151 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #152 = Utf8               memberOrClass
+  #153 = Utf8               findWrapperName
+  #154 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/databind/PropertyName;
+  #155 = Utf8               findPropertyDefaultValue
+  #156 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/String;
+  #157 = Utf8               findPropertyDescription
+  #158 = Utf8               findPropertyIndex
+  #159 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Integer;
+  #160 = Utf8               findImplicitPropertyName
+  #161 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/String;
+  #162 = Utf8               findPropertyAliases
+  #163 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;
+  #164 = Utf8               findPropertyAccess
+  #165 = Class              #361          // com/fasterxml/jackson/annotation/JsonProperty$Access
+  #166 = Utf8               Access
+  #167 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonProperty$Access;
+  #168 = Utf8               resolveSetterConflict
+  #169 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+  #170 = Utf8               setter1
+  #171 = Utf8               Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+  #172 = Utf8               setter2
+  #173 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+  #174 = Utf8               findRenameByField
+  #175 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedField;Lcom/fasterxml/jackson/databind/PropertyName;)Lcom/fasterxml/jackson/databind/PropertyName;
+  #176 = Utf8               f
+  #177 = Utf8               Lcom/fasterxml/jackson/databind/introspect/AnnotatedField;
+  #178 = Utf8               implName
+  #179 = Utf8               Lcom/fasterxml/jackson/databind/PropertyName;
+  #180 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedField;Lcom/fasterxml/jackson/databind/PropertyName;)Lcom/fasterxml/jackson/databind/PropertyName;
+  #181 = Utf8               findInjectableValueId
+  #182 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Object;
+  #183 = Utf8               findSerializer
+  #184 = Utf8               findKeySerializer
+  #185 = Utf8               findContentSerializer
+  #186 = Utf8               findNullSerializer
+  #187 = Utf8               findSerializationTyping
+  #188 = Class              #363          // com/fasterxml/jackson/databind/annotation/JsonSerialize$Typing
+  #189 = Utf8               Typing
+  #190 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/databind/annotation/JsonSerialize$Typing;
+  #191 = Utf8               findSerializationConverter
+  #192 = Utf8               findSerializationContentConverter
+  #193 = Utf8               findPropertyInclusion
+  #194 = Class              #365          // com/fasterxml/jackson/annotation/JsonInclude$Value
+  #195 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+  #196 = Utf8               findSerializationInclusion
+  #197 = Class              #366          // com/fasterxml/jackson/annotation/JsonInclude$Include
+  #198 = Utf8               Include
+  #199 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+  #200 = Utf8               defValue
+  #201 = Utf8               Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+  #202 = Utf8               findSerializationInclusionForContent
+  #203 = Utf8               refineSerializationType
+  #204 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/JavaType;
+  #205 = Utf8               Exceptions
+  #206 = Class              #367          // com/fasterxml/jackson/databind/JsonMappingException
+  #207 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/JavaType;
+  #208 = Utf8               findSerializationType
+  #209 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Class;
+  #210 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Class<*>;
+  #211 = Utf8               findSerializationKeyType
+  #212 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class;
+  #213 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class<*>;
+  #214 = Utf8               findSerializationContentType
+  #215 = Utf8               findSerializationPropertyOrder
+  #216 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)[Ljava/lang/String;
+  #217 = Utf8               findSerializationSortAlphabetically
+  #218 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+  #219 = Utf8               findAndAddVirtualProperties
+  #220 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Ljava/util/List;)V
+  #221 = Utf8               properties
+  #222 = Utf8               Ljava/util/List;
+  #223 = Utf8               Ljava/util/List<Lcom/fasterxml/jackson/databind/ser/BeanPropertyWriter;>;
+  #224 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Ljava/util/List<Lcom/fasterxml/jackson/databind/ser/BeanPropertyWriter;>;)V
+  #225 = Utf8               findNameForSerialization
+  #226 = Utf8               hasAsKey
+  #227 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+  #228 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+  #229 = Utf8               hasAsValue
+  #230 = Utf8               hasAnyGetter
+  #231 = Utf8               findEnumValues
+  #232 = Utf8               (Ljava/lang/Class;[Ljava/lang/Enum;[Ljava/lang/String;)[Ljava/lang/String;
+  #233 = Utf8               enumType
+  #234 = Utf8               Ljava/lang/Class;
+  #235 = Utf8               enumValues
+  #236 = Utf8               [Ljava/lang/Enum;
+  #237 = Utf8               names
+  #238 = Utf8               [Ljava/lang/String;
+  #239 = Utf8               Ljava/lang/Class<*>;
+  #240 = Utf8               [Ljava/lang/Enum<*>;
+  #241 = Utf8               (Ljava/lang/Class<*>;[Ljava/lang/Enum<*>;[Ljava/lang/String;)[Ljava/lang/String;
+  #242 = Utf8               findEnumAliases
+  #243 = Utf8               (Ljava/lang/Class;[Ljava/lang/Enum;[[Ljava/lang/String;)V
+  #244 = Utf8               aliases
+  #245 = Utf8               [[Ljava/lang/String;
+  #246 = Utf8               (Ljava/lang/Class<*>;[Ljava/lang/Enum<*>;[[Ljava/lang/String;)V
+  #247 = Utf8               findDefaultEnumValue
+  #248 = Utf8               (Ljava/lang/Class;)Ljava/lang/Enum;
+  #249 = Utf8               enumCls
+  #250 = Utf8               Ljava/lang/Class<Ljava/lang/Enum<*>;>;
+  #251 = Utf8               (Ljava/lang/Class<Ljava/lang/Enum<*>;>;)Ljava/lang/Enum<*>;
+  #252 = Utf8               findEnumValue
+  #253 = Utf8               (Ljava/lang/Enum;)Ljava/lang/String;
+  #254 = Utf8               value
+  #255 = Utf8               Ljava/lang/Enum;
+  #256 = Utf8               Ljava/lang/Enum<*>;
+  #257 = Utf8               (Ljava/lang/Enum<*>;)Ljava/lang/String;
+  #258 = Utf8               hasAsValueAnnotation
+  #259 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+  #260 = Utf8               hasAnyGetterAnnotation
+  #261 = Utf8               findDeserializer
+  #262 = Utf8               findKeyDeserializer
+  #263 = Utf8               findContentDeserializer
+  #264 = Utf8               findDeserializationConverter
+  #265 = Utf8               findDeserializationContentConverter
+  #266 = Utf8               refineDeserializationType
+  #267 = Utf8               findDeserializationType
+  #268 = Utf8               findDeserializationKeyType
+  #269 = Utf8               baseKeyType
+  #270 = Utf8               findDeserializationContentType
+  #271 = Utf8               baseContentType
+  #272 = Utf8               findValueInstantiator
+  #273 = Utf8               findPOJOBuilder
+  #274 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Class;
+  #275 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Class<*>;
+  #276 = Utf8               findPOJOBuilderConfig
+  #277 = Class              #369          // com/fasterxml/jackson/databind/annotation/JsonPOJOBuilder$Value
+  #278 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Lcom/fasterxml/jackson/databind/annotation/JsonPOJOBuilder$Value;
+  #279 = Utf8               findNameForDeserialization
+  #280 = Utf8               hasAnySetter
+  #281 = Utf8               findSetterInfo
+  #282 = Class              #371          // com/fasterxml/jackson/annotation/JsonSetter$Value
+  #283 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonSetter$Value;
+  #284 = Utf8               findMergeInfo
+  #285 = Utf8               findCreatorAnnotation
+  #286 = Class              #373          // com/fasterxml/jackson/annotation/JsonCreator$Mode
+  #287 = Utf8               Mode
+  #288 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+  #289 = Utf8               mode
+  #290 = Utf8               Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+  #291 = Class              #373          // com/fasterxml/jackson/annotation/JsonCreator$Mode
+  #292 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+  #293 = Utf8               hasCreatorAnnotation
+  #294 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Z
+  #295 = Utf8               findCreatorBinding
+  #296 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+  #297 = Utf8               hasAnySetterAnnotation
+  #298 = Utf8               _findAnnotation
+  #299 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+  #300 = Utf8               annoClass
+  #301 = Utf8               Ljava/lang/Class<TA;>;
+  #302 = Utf8               <A::Ljava/lang/annotation/Annotation;>(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Class<TA;>;)TA;
+  #303 = Utf8               _hasAnnotation
+  #304 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Class;)Z
+  #305 = Utf8               Ljava/lang/Class<+Ljava/lang/annotation/Annotation;>;
+  #306 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Class<+Ljava/lang/annotation/Annotation;>;)Z
+  #307 = Utf8               _hasOneOf
+  #308 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;[Ljava/lang/Class;)Z
+  #309 = Utf8               annoClasses
+  #310 = Utf8               [Ljava/lang/Class;
+  #311 = Utf8               [Ljava/lang/Class<+Ljava/lang/annotation/Annotation;>;
+  #312 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;[Ljava/lang/Class<+Ljava/lang/annotation/Annotation;>;)Z
+  #313 = Utf8               SourceFile
+  #314 = Utf8               AnnotationIntrospector.java
+  #315 = NameAndType        #35:#36       // "<init>":()V
+  #316 = Class              #374          // com/fasterxml/jackson/databind/introspect/NopAnnotationIntrospector
+  #317 = NameAndType        #375:#376     // instance:Lcom/fasterxml/jackson/databind/introspect/NopAnnotationIntrospector;
+  #318 = Utf8               com/fasterxml/jackson/databind/introspect/AnnotationIntrospectorPair
+  #319 = NameAndType        #35:#377      // "<init>":(Lcom/fasterxml/jackson/databind/AnnotationIntrospector;Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)V
+  #320 = Class              #378          // java/util/Collections
+  #321 = NameAndType        #379:#380     // singletonList:(Ljava/lang/Object;)Ljava/util/List;
+  #322 = Class              #381          // java/util/Collection
+  #323 = NameAndType        #382:#383     // add:(Ljava/lang/Object;)Z
+  #324 = NameAndType        #103:#104     // findPropertyIgnorals:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+  #325 = NameAndType        #384:#385     // all:()Lcom/fasterxml/jackson/annotation/JsonIncludeProperties$Value;
+  #326 = NameAndType        #386:#387     // empty:()Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+  #327 = NameAndType        #181:#182     // findInjectableValueId:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Object;
+  #328 = NameAndType        #388:#389     // forId:(Ljava/lang/Object;)Lcom/fasterxml/jackson/annotation/JacksonInject$Value;
+  #329 = NameAndType        #386:#390     // empty:()Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #330 = NameAndType        #386:#391     // empty:()Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+  #331 = Utf8               com/fasterxml/jackson/databind/introspect/AnnotatedMethod
+  #332 = NameAndType        #258:#259     // hasAsValueAnnotation:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+  #333 = Class              #392          // java/lang/Boolean
+  #334 = NameAndType        #393:#394     // valueOf:(Z)Ljava/lang/Boolean;
+  #335 = NameAndType        #260:#259     // hasAnyGetterAnnotation:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+  #336 = Class              #395          // java/lang/Enum
+  #337 = NameAndType        #396:#397     // name:()Ljava/lang/String;
+  #338 = NameAndType        #386:#398     // empty:()Lcom/fasterxml/jackson/annotation/JsonSetter$Value;
+  #339 = NameAndType        #293:#294     // hasCreatorAnnotation:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Z
+  #340 = NameAndType        #295:#296     // findCreatorBinding:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+  #341 = NameAndType        #399:#290     // DEFAULT:Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+  #342 = Class              #400          // com/fasterxml/jackson/databind/introspect/Annotated
+  #343 = NameAndType        #401:#402     // getAnnotation:(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+  #344 = NameAndType        #403:#404     // hasAnnotation:(Ljava/lang/Class;)Z
+  #345 = NameAndType        #405:#406     // hasOneOf:([Ljava/lang/Class;)Z
+  #346 = Utf8               com/fasterxml/jackson/databind/AnnotationIntrospector
+  #347 = Utf8               java/lang/Object
+  #348 = Utf8               com/fasterxml/jackson/core/Versioned
+  #349 = Utf8               java/io/Serializable
+  #350 = Utf8               com/fasterxml/jackson/databind/AnnotationIntrospector$XmlExtensions
+  #351 = Utf8               com/fasterxml/jackson/databind/AnnotationIntrospector$ReferenceProperty
+  #352 = Class              #407          // com/fasterxml/jackson/annotation/JsonIgnoreProperties
+  #353 = Utf8               com/fasterxml/jackson/annotation/JsonIgnoreProperties$Value
+  #354 = Class              #408          // com/fasterxml/jackson/annotation/JsonIncludeProperties
+  #355 = Utf8               com/fasterxml/jackson/annotation/JsonIncludeProperties$Value
+  #356 = Class              #409          // com/fasterxml/jackson/annotation/JacksonInject
+  #357 = Utf8               com/fasterxml/jackson/annotation/JacksonInject$Value
+  #358 = Class              #410          // com/fasterxml/jackson/annotation/JsonFormat
+  #359 = Utf8               com/fasterxml/jackson/annotation/JsonFormat$Value
+  #360 = Class              #411          // com/fasterxml/jackson/annotation/JsonProperty
+  #361 = Utf8               com/fasterxml/jackson/annotation/JsonProperty$Access
+  #362 = Class              #412          // com/fasterxml/jackson/databind/annotation/JsonSerialize
+  #363 = Utf8               com/fasterxml/jackson/databind/annotation/JsonSerialize$Typing
+  #364 = Class              #413          // com/fasterxml/jackson/annotation/JsonInclude
+  #365 = Utf8               com/fasterxml/jackson/annotation/JsonInclude$Value
+  #366 = Utf8               com/fasterxml/jackson/annotation/JsonInclude$Include
+  #367 = Utf8               com/fasterxml/jackson/databind/JsonMappingException
+  #368 = Class              #414          // com/fasterxml/jackson/databind/annotation/JsonPOJOBuilder
+  #369 = Utf8               com/fasterxml/jackson/databind/annotation/JsonPOJOBuilder$Value
+  #370 = Class              #415          // com/fasterxml/jackson/annotation/JsonSetter
+  #371 = Utf8               com/fasterxml/jackson/annotation/JsonSetter$Value
+  #372 = Class              #416          // com/fasterxml/jackson/annotation/JsonCreator
+  #373 = Utf8               com/fasterxml/jackson/annotation/JsonCreator$Mode
+  #374 = Utf8               com/fasterxml/jackson/databind/introspect/NopAnnotationIntrospector
+  #375 = Utf8               instance
+  #376 = Utf8               Lcom/fasterxml/jackson/databind/introspect/NopAnnotationIntrospector;
+  #377 = Utf8               (Lcom/fasterxml/jackson/databind/AnnotationIntrospector;Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)V
+  #378 = Utf8               java/util/Collections
+  #379 = Utf8               singletonList
+  #380 = Utf8               (Ljava/lang/Object;)Ljava/util/List;
+  #381 = Utf8               java/util/Collection
+  #382 = Utf8               add
+  #383 = Utf8               (Ljava/lang/Object;)Z
+  #384 = Utf8               all
+  #385 = Utf8               ()Lcom/fasterxml/jackson/annotation/JsonIncludeProperties$Value;
+  #386 = Utf8               empty
+  #387 = Utf8               ()Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+  #388 = Utf8               forId
+  #389 = Utf8               (Ljava/lang/Object;)Lcom/fasterxml/jackson/annotation/JacksonInject$Value;
+  #390 = Utf8               ()Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #391 = Utf8               ()Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+  #392 = Utf8               java/lang/Boolean
+  #393 = Utf8               valueOf
+  #394 = Utf8               (Z)Ljava/lang/Boolean;
+  #395 = Utf8               java/lang/Enum
+  #396 = Utf8               name
+  #397 = Utf8               ()Ljava/lang/String;
+  #398 = Utf8               ()Lcom/fasterxml/jackson/annotation/JsonSetter$Value;
+  #399 = Utf8               DEFAULT
+  #400 = Utf8               com/fasterxml/jackson/databind/introspect/Annotated
+  #401 = Utf8               getAnnotation
+  #402 = Utf8               (Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+  #403 = Utf8               hasAnnotation
+  #404 = Utf8               (Ljava/lang/Class;)Z
+  #405 = Utf8               hasOneOf
+  #406 = Utf8               ([Ljava/lang/Class;)Z
+  #407 = Utf8               com/fasterxml/jackson/annotation/JsonIgnoreProperties
+  #408 = Utf8               com/fasterxml/jackson/annotation/JsonIncludeProperties
+  #409 = Utf8               com/fasterxml/jackson/annotation/JacksonInject
+  #410 = Utf8               com/fasterxml/jackson/annotation/JsonFormat
+  #411 = Utf8               com/fasterxml/jackson/annotation/JsonProperty
+  #412 = Utf8               com/fasterxml/jackson/databind/annotation/JsonSerialize
+  #413 = Utf8               com/fasterxml/jackson/annotation/JsonInclude
+  #414 = Utf8               com/fasterxml/jackson/databind/annotation/JsonPOJOBuilder
+  #415 = Utf8               com/fasterxml/jackson/annotation/JsonSetter
+  #416 = Utf8               com/fasterxml/jackson/annotation/JsonCreator
+{
+  public com.fasterxml.jackson.databind.AnnotationIntrospector();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 39: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+
+  public static com.fasterxml.jackson.databind.AnnotationIntrospector nopInstance();
+    descriptor: ()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #2                  // Field com/fasterxml/jackson/databind/introspect/NopAnnotationIntrospector.instance:Lcom/fasterxml/jackson/databind/introspect/NopAnnotationIntrospector;
+         3: areturn
+      LineNumberTable:
+        line 165: 0
+
+  public static com.fasterxml.jackson.databind.AnnotationIntrospector pair(com.fasterxml.jackson.databind.AnnotationIntrospector, com.fasterxml.jackson.databind.AnnotationIntrospector);
+    descriptor: (Lcom/fasterxml/jackson/databind/AnnotationIntrospector;Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: new           #3                  // class com/fasterxml/jackson/databind/introspect/AnnotationIntrospectorPair
+         3: dup
+         4: aload_0
+         5: aload_1
+         6: invokespecial #4                  // Method com/fasterxml/jackson/databind/introspect/AnnotationIntrospectorPair."<init>":(Lcom/fasterxml/jackson/databind/AnnotationIntrospector;Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)V
+         9: areturn
+      LineNumberTable:
+        line 169: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0    a1   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0      10     1    a2   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+
+  public java.util.Collection<com.fasterxml.jackson.databind.AnnotationIntrospector> allIntrospectors();
+    descriptor: ()Ljava/util/Collection;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #5                  // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+         4: areturn
+      LineNumberTable:
+        line 193: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+    Signature: #51                          // ()Ljava/util/Collection<Lcom/fasterxml/jackson/databind/AnnotationIntrospector;>;
+
+  public java.util.Collection<com.fasterxml.jackson.databind.AnnotationIntrospector> allIntrospectors(java.util.Collection<com.fasterxml.jackson.databind.AnnotationIntrospector>);
+    descriptor: (Ljava/util/Collection;)Ljava/util/Collection;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: aload_0
+         2: invokeinterface #6,  2            // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+         7: pop
+         8: aload_1
+         9: areturn
+      LineNumberTable:
+        line 212: 0
+        line 213: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0      10     1 result   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      10     1 result   Ljava/util/Collection<Lcom/fasterxml/jackson/databind/AnnotationIntrospector;>;
+    Signature: #57                          // (Ljava/util/Collection<Lcom/fasterxml/jackson/databind/AnnotationIntrospector;>;)Ljava/util/Collection<Lcom/fasterxml/jackson/databind/AnnotationIntrospector;>;
+
+  public abstract com.fasterxml.jackson.core.Version version();
+    descriptor: ()Lcom/fasterxml/jackson/core/Version;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public boolean isAnnotationBundle(java.lang.annotation.Annotation);
+    descriptor: (Ljava/lang/annotation/Annotation;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 242: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Ljava/lang/annotation/Annotation;
+
+  public com.fasterxml.jackson.databind.introspect.ObjectIdInfo findObjectIdInfo(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/databind/introspect/ObjectIdInfo;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 265: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public com.fasterxml.jackson.databind.introspect.ObjectIdInfo findObjectReferenceInfo(com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.databind.introspect.ObjectIdInfo);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/introspect/ObjectIdInfo;)Lcom/fasterxml/jackson/databind/introspect/ObjectIdInfo;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aload_2
+         1: areturn
+      LineNumberTable:
+        line 279: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 objectIdInfo   Lcom/fasterxml/jackson/databind/introspect/ObjectIdInfo;
+
+  public com.fasterxml.jackson.databind.PropertyName findRootName(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Lcom/fasterxml/jackson/databind/PropertyName;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 303: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+
+  public java.lang.Boolean isIgnorableType(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 317: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+
+  public com.fasterxml.jackson.annotation.JsonIgnoreProperties$Value findPropertyIgnoralByName(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_2
+         2: invokevirtual #7                  // Method findPropertyIgnorals:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+         5: areturn
+      LineNumberTable:
+        line 338: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       6     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       6     2   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       6     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Signature: #84                          // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+
+  public com.fasterxml.jackson.annotation.JsonIncludeProperties$Value findPropertyInclusionByName(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIncludeProperties$Value;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: invokestatic  #8                  // Method com/fasterxml/jackson/annotation/JsonIncludeProperties$Value.all:()Lcom/fasterxml/jackson/annotation/JsonIncludeProperties$Value;
+         3: areturn
+      LineNumberTable:
+        line 356: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       4     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       4     2   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       4     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Signature: #88                          // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIncludeProperties$Value;
+
+  public java.lang.Object findFilterId(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 368: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findNamingStrategy(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 383: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+
+  public java.lang.String findClassDescription(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 398: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+
+  public java.lang.String[] findPropertiesToIgnore(com.fasterxml.jackson.databind.introspect.Annotated, boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Z)[Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 413: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 forSerialization   Z
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.Boolean findIgnoreUnknownProperties(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 427: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.annotation.JsonIgnoreProperties$Value findPropertyIgnorals(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: invokestatic  #9                  // Method com/fasterxml/jackson/annotation/JsonIgnoreProperties$Value.empty:()Lcom/fasterxml/jackson/annotation/JsonIgnoreProperties$Value;
+         3: areturn
+      LineNumberTable:
+        line 440: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       4     1    ac   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.databind.introspect.VisibilityChecker<?> findAutoDetectVisibility(com.fasterxml.jackson.databind.introspect.AnnotatedClass, com.fasterxml.jackson.databind.introspect.VisibilityChecker<?>);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;)Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aload_2
+         1: areturn
+      LineNumberTable:
+        line 463: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+            0       2     2 checker   Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     2 checker   Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;
+    Signature: #110                         // (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;)Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;
+
+  public com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder<?> findTypeResolver(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.AnnotatedClass, com.fasterxml.jackson.databind.JavaType);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=4
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 488: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       2     2    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+            0       2     3 baseType   Lcom/fasterxml/jackson/databind/JavaType;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Signature: #115                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;
+
+  public com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder<?> findPropertyTypeResolver(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.AnnotatedMember, com.fasterxml.jackson.databind.JavaType);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=4
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 508: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       2     2    am   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+            0       2     3 baseType   Lcom/fasterxml/jackson/databind/JavaType;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Signature: #120                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;
+
+  public com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder<?> findPropertyContentTypeResolver(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.AnnotatedMember, com.fasterxml.jackson.databind.JavaType);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=4
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 530: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       2     2    am   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+            0       2     3 containerType   Lcom/fasterxml/jackson/databind/JavaType;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Signature: #120                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;
+
+  public java.util.List<com.fasterxml.jackson.databind.jsontype.NamedType> findSubtypes(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/util/List;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 544: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+    Signature: #126                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/util/List<Lcom/fasterxml/jackson/databind/jsontype/NamedType;>;
+
+  public java.lang.String findTypeName(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 553: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+
+  public java.lang.Boolean isTypeId(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 565: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+
+  public com.fasterxml.jackson.databind.AnnotationIntrospector$ReferenceProperty findReferenceType(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Lcom/fasterxml/jackson/databind/AnnotationIntrospector$ReferenceProperty;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 577: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 member   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+
+  public com.fasterxml.jackson.databind.util.NameTransformer findUnwrappingNameTransformer(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Lcom/fasterxml/jackson/databind/util/NameTransformer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 587: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 member   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+
+  public boolean hasIgnoreMarker(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 596: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     m   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+
+  public com.fasterxml.jackson.annotation.JacksonInject$Value findInjectableValue(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Lcom/fasterxml/jackson/annotation/JacksonInject$Value;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #10                 // Method findInjectableValueId:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Object;
+         5: astore_2
+         6: aload_2
+         7: ifnull        15
+        10: aload_2
+        11: invokestatic  #11                 // Method com/fasterxml/jackson/annotation/JacksonInject$Value.forId:(Ljava/lang/Object;)Lcom/fasterxml/jackson/annotation/JacksonInject$Value;
+        14: areturn
+        15: aconst_null
+        16: areturn
+      LineNumberTable:
+        line 616: 0
+        line 617: 6
+        line 618: 10
+        line 620: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0      17     1     m   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+            6      11     2    id   Ljava/lang/Object;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 15
+          locals = [ class java/lang/Object ]
+
+  public java.lang.Boolean hasRequiredMarker(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 628: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     m   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+
+  public java.lang.Class<?>[] findViews(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)[Ljava/lang/Class;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 646: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+    Signature: #148                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;)[Ljava/lang/Class<*>;
+
+  public com.fasterxml.jackson.annotation.JsonFormat$Value findFormat(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: invokestatic  #12                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.empty:()Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+         3: areturn
+      LineNumberTable:
+        line 657: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       4     1 memberOrClass   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public com.fasterxml.jackson.databind.PropertyName findWrapperName(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/databind/PropertyName;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 671: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.String findPropertyDefaultValue(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 681: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.String findPropertyDescription(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 693: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Integer findPropertyIndex(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Integer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 706: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.String findImplicitPropertyName(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 721: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 member   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+
+  public java.util.List<com.fasterxml.jackson.databind.PropertyName> findPropertyAliases(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/util/List;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 731: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+    Signature: #163                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;
+
+  public com.fasterxml.jackson.annotation.JsonProperty$Access findPropertyAccess(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonProperty$Access;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 742: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public com.fasterxml.jackson.databind.introspect.AnnotatedMethod resolveSetterConflict(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.AnnotatedMethod, com.fasterxml.jackson.databind.introspect.AnnotatedMethod);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=4
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 754: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       2     2 setter1   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+            0       2     3 setter2   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Signature: #173                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+
+  public com.fasterxml.jackson.databind.PropertyName findRenameByField(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.AnnotatedField, com.fasterxml.jackson.databind.PropertyName);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedField;Lcom/fasterxml/jackson/databind/PropertyName;)Lcom/fasterxml/jackson/databind/PropertyName;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=4
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 790: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       2     2     f   Lcom/fasterxml/jackson/databind/introspect/AnnotatedField;
+            0       2     3 implName   Lcom/fasterxml/jackson/databind/PropertyName;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Signature: #180                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedField;Lcom/fasterxml/jackson/databind/PropertyName;)Lcom/fasterxml/jackson/databind/PropertyName;
+
+  public java.lang.Object findInjectableValueId(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 798: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     m   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.Object findSerializer(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 814: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findKeySerializer(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 824: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findContentSerializer(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 836: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findNullSerializer(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 846: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public com.fasterxml.jackson.databind.annotation.JsonSerialize$Typing findSerializationTyping(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/databind/annotation/JsonSerialize$Typing;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 858: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findSerializationConverter(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 883: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findSerializationContentConverter(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 905: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+
+  public com.fasterxml.jackson.annotation.JsonInclude$Value findPropertyInclusion(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: invokestatic  #13                 // Method com/fasterxml/jackson/annotation/JsonInclude$Value.empty:()Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+         3: areturn
+      LineNumberTable:
+        line 917: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       4     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public com.fasterxml.jackson.annotation.JsonInclude$Include findSerializationInclusion(com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.annotation.JsonInclude$Include);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aload_2
+         1: areturn
+      LineNumberTable:
+        line 939: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 defValue   Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.annotation.JsonInclude$Include findSerializationInclusionForContent(com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.annotation.JsonInclude$Include);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aload_2
+         1: areturn
+      LineNumberTable:
+        line 953: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 defValue   Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.databind.JavaType refineSerializationType(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.databind.JavaType) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/JavaType;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=4
+         0: aload_3
+         1: areturn
+      LineNumberTable:
+        line 972: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       2     2     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     3 baseType   Lcom/fasterxml/jackson/databind/JavaType;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #207                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/JavaType;
+
+  public java.lang.Class<?> findSerializationType(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Class;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 980: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+    Deprecated: true
+    Signature: #210                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Class<*>;
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.Class<?> findSerializationKeyType(com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.databind.JavaType);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 988: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 baseType   Lcom/fasterxml/jackson/databind/JavaType;
+    Deprecated: true
+    Signature: #213                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class<*>;
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.Class<?> findSerializationContentType(com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.databind.JavaType);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 996: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 baseType   Lcom/fasterxml/jackson/databind/JavaType;
+    Deprecated: true
+    Signature: #213                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class<*>;
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.String[] findSerializationPropertyOrder(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)[Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1010: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+
+  public java.lang.Boolean findSerializationSortAlphabetically(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1019: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public void findAndAddVirtualProperties(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.AnnotatedClass, java.util.List<com.fasterxml.jackson.databind.ser.BeanPropertyWriter>);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Ljava/util/List;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=4, args_size=4
+         0: return
+      LineNumberTable:
+        line 1029: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       1     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       1     2    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+            0       1     3 properties   Ljava/util/List;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       1     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+            0       1     3 properties   Ljava/util/List<Lcom/fasterxml/jackson/databind/ser/BeanPropertyWriter;>;
+    Signature: #224                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;Ljava/util/List<Lcom/fasterxml/jackson/databind/ser/BeanPropertyWriter;>;)V
+
+  public com.fasterxml.jackson.databind.PropertyName findNameForSerialization(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/databind/PropertyName;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1052: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Boolean hasAsKey(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1069: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       2     2     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Signature: #228                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+
+  public java.lang.Boolean hasAsValue(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: instanceof    #14                 // class com/fasterxml/jackson/databind/introspect/AnnotatedMethod
+         4: ifeq          23
+         7: aload_0
+         8: aload_1
+         9: checkcast     #14                 // class com/fasterxml/jackson/databind/introspect/AnnotatedMethod
+        12: invokevirtual #15                 // Method hasAsValueAnnotation:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+        15: ifeq          23
+        18: iconst_1
+        19: invokestatic  #16                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        22: areturn
+        23: aconst_null
+        24: areturn
+      LineNumberTable:
+        line 1087: 0
+        line 1088: 7
+        line 1089: 18
+        line 1092: 23
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0      25     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+      StackMapTable: number_of_entries = 1
+        frame_type = 23 /* same */
+
+  public java.lang.Boolean hasAnyGetter(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: instanceof    #14                 // class com/fasterxml/jackson/databind/introspect/AnnotatedMethod
+         4: ifeq          23
+         7: aload_0
+         8: aload_1
+         9: checkcast     #14                 // class com/fasterxml/jackson/databind/introspect/AnnotatedMethod
+        12: invokevirtual #17                 // Method hasAnyGetterAnnotation:(Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+        15: ifeq          23
+        18: iconst_1
+        19: invokestatic  #16                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        22: areturn
+        23: aconst_null
+        24: areturn
+      LineNumberTable:
+        line 1110: 0
+        line 1111: 7
+        line 1112: 18
+        line 1115: 23
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0      25     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+      StackMapTable: number_of_entries = 1
+        frame_type = 23 /* same */
+
+  public java.lang.String[] findEnumValues(java.lang.Class<?>, java.lang.Enum<?>[], java.lang.String[]);
+    descriptor: (Ljava/lang/Class;[Ljava/lang/Enum;[Ljava/lang/String;)[Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=4
+         0: aload_3
+         1: areturn
+      LineNumberTable:
+        line 1134: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 enumType   Ljava/lang/Class;
+            0       2     2 enumValues   [Ljava/lang/Enum;
+            0       2     3 names   [Ljava/lang/String;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 enumType   Ljava/lang/Class<*>;
+            0       2     2 enumValues   [Ljava/lang/Enum<*>;
+    Signature: #241                         // (Ljava/lang/Class<*>;[Ljava/lang/Enum<*>;[Ljava/lang/String;)[Ljava/lang/String;
+
+  public void findEnumAliases(java.lang.Class<?>, java.lang.Enum<?>[], java.lang.String[][]);
+    descriptor: (Ljava/lang/Class;[Ljava/lang/Enum;[[Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=4, args_size=4
+         0: return
+      LineNumberTable:
+        line 1153: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       1     1 enumType   Ljava/lang/Class;
+            0       1     2 enumValues   [Ljava/lang/Enum;
+            0       1     3 aliases   [[Ljava/lang/String;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       1     1 enumType   Ljava/lang/Class<*>;
+            0       1     2 enumValues   [Ljava/lang/Enum<*>;
+    Signature: #246                         // (Ljava/lang/Class<*>;[Ljava/lang/Enum<*>;[[Ljava/lang/String;)V
+
+  public java.lang.Enum<?> findDefaultEnumValue(java.lang.Class<java.lang.Enum<?>>);
+    descriptor: (Ljava/lang/Class;)Ljava/lang/Enum;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1165: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 enumCls   Ljava/lang/Class;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 enumCls   Ljava/lang/Class<Ljava/lang/Enum<*>;>;
+    Signature: #251                         // (Ljava/lang/Class<Ljava/lang/Enum<*>;>;)Ljava/lang/Enum<*>;
+
+  public java.lang.String findEnumValue(java.lang.Enum<?>);
+    descriptor: (Ljava/lang/Enum;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_1
+         1: invokevirtual #18                 // Method java/lang/Enum.name:()Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 1184: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       5     1 value   Ljava/lang/Enum;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       5     1 value   Ljava/lang/Enum<*>;
+    Deprecated: true
+    Signature: #257                         // (Ljava/lang/Enum<*>;)Ljava/lang/String;
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public boolean hasAsValueAnnotation(com.fasterxml.jackson.databind.introspect.AnnotatedMethod);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 1194: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public boolean hasAnyGetterAnnotation(com.fasterxml.jackson.databind.introspect.AnnotatedMethod);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 1204: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.Object findDeserializer(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1221: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findKeyDeserializer(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1233: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findContentDeserializer(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1246: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findDeserializationConverter(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1272: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Object findDeserializationContentConverter(com.fasterxml.jackson.databind.introspect.AnnotatedMember);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1294: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1     a   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+
+  public com.fasterxml.jackson.databind.JavaType refineDeserializationType(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.databind.JavaType) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/JavaType;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=4
+         0: aload_3
+         1: areturn
+      LineNumberTable:
+        line 1312: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0       2     2     a   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     3 baseType   Lcom/fasterxml/jackson/databind/JavaType;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #207                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/JavaType;
+
+  public java.lang.Class<?> findDeserializationType(com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.databind.JavaType);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1331: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 baseType   Lcom/fasterxml/jackson/databind/JavaType;
+    Deprecated: true
+    Signature: #213                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class<*>;
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.Class<?> findDeserializationKeyType(com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.databind.JavaType);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1349: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 baseKeyType   Lcom/fasterxml/jackson/databind/JavaType;
+    Deprecated: true
+    Signature: #213                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class<*>;
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.Class<?> findDeserializationContentType(com.fasterxml.jackson.databind.introspect.Annotated, com.fasterxml.jackson.databind.JavaType);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1368: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       2     2 baseContentType   Lcom/fasterxml/jackson/databind/JavaType;
+    Deprecated: true
+    Signature: #213                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Class<*>;
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public java.lang.Object findValueInstantiator(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1389: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+
+  public java.lang.Class<?> findPOJOBuilder(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Class;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1410: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+    Signature: #275                         // (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Ljava/lang/Class<*>;
+
+  public com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder$Value findPOJOBuilderConfig(com.fasterxml.jackson.databind.introspect.AnnotatedClass);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;)Lcom/fasterxml/jackson/databind/annotation/JsonPOJOBuilder$Value;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1421: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    ac   Lcom/fasterxml/jackson/databind/introspect/AnnotatedClass;
+
+  public com.fasterxml.jackson.databind.PropertyName findNameForDeserialization(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/databind/PropertyName;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1445: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Boolean hasAnySetter(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1462: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public com.fasterxml.jackson.annotation.JsonSetter$Value findSetterInfo(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonSetter$Value;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: invokestatic  #19                 // Method com/fasterxml/jackson/annotation/JsonSetter$Value.empty:()Lcom/fasterxml/jackson/annotation/JsonSetter$Value;
+         3: areturn
+      LineNumberTable:
+        line 1477: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       4     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public java.lang.Boolean findMergeInfo(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Boolean;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1491: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+
+  public com.fasterxml.jackson.annotation.JsonCreator$Mode findCreatorAnnotation(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=4, args_size=3
+         0: aload_0
+         1: aload_2
+         2: invokevirtual #20                 // Method hasCreatorAnnotation:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Z
+         5: ifeq          24
+         8: aload_0
+         9: aload_2
+        10: invokevirtual #21                 // Method findCreatorBinding:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+        13: astore_3
+        14: aload_3
+        15: ifnonnull     22
+        18: getstatic     #22                 // Field com/fasterxml/jackson/annotation/JsonCreator$Mode.DEFAULT:Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+        21: astore_3
+        22: aload_3
+        23: areturn
+        24: aconst_null
+        25: areturn
+      LineNumberTable:
+        line 1514: 0
+        line 1515: 8
+        line 1516: 14
+        line 1517: 18
+        line 1519: 22
+        line 1521: 24
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           14      10     3  mode   Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+            0      26     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0      26     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0      26     2   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      26     1 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ class com/fasterxml/jackson/annotation/JsonCreator$Mode ]
+        frame_type = 250 /* chop */
+          offset_delta = 1
+    Signature: #292                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+
+  public boolean hasCreatorAnnotation(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 1540: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.annotation.JsonCreator$Mode findCreatorBinding(com.fasterxml.jackson.databind.introspect.Annotated);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Lcom/fasterxml/jackson/annotation/JsonCreator$Mode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 1558: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  public boolean hasAnySetterAnnotation(com.fasterxml.jackson.databind.introspect.AnnotatedMethod);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 1570: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       2     1    am   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMethod;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #101()
+        java.lang.Deprecated
+
+  protected <A extends java.lang.annotation.Annotation> A _findAnnotation(com.fasterxml.jackson.databind.introspect.Annotated, java.lang.Class<A>);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_1
+         1: aload_2
+         2: invokevirtual #23                 // Method com/fasterxml/jackson/databind/introspect/Annotated.getAnnotation:(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+         5: areturn
+      LineNumberTable:
+        line 1603: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       6     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       6     2 annoClass   Ljava/lang/Class;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       6     2 annoClass   Ljava/lang/Class<TA;>;
+    Signature: #302                         // <A::Ljava/lang/annotation/Annotation;>(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Class<TA;>;)TA;
+
+  protected boolean _hasAnnotation(com.fasterxml.jackson.databind.introspect.Annotated, java.lang.Class<? extends java.lang.annotation.Annotation>);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Class;)Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_1
+         1: aload_2
+         2: invokevirtual #24                 // Method com/fasterxml/jackson/databind/introspect/Annotated.hasAnnotation:(Ljava/lang/Class;)Z
+         5: ireturn
+      LineNumberTable:
+        line 1625: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       6     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       6     2 annoClass   Ljava/lang/Class;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       6     2 annoClass   Ljava/lang/Class<+Ljava/lang/annotation/Annotation;>;
+    Signature: #306                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Class<+Ljava/lang/annotation/Annotation;>;)Z
+
+  protected boolean _hasOneOf(com.fasterxml.jackson.databind.introspect.Annotated, java.lang.Class<? extends java.lang.annotation.Annotation>[]);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/Annotated;[Ljava/lang/Class;)Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_1
+         1: aload_2
+         2: invokevirtual #25                 // Method com/fasterxml/jackson/databind/introspect/Annotated.hasOneOf:([Ljava/lang/Class;)Z
+         5: ireturn
+      LineNumberTable:
+        line 1641: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0       6     1   ann   Lcom/fasterxml/jackson/databind/introspect/Annotated;
+            0       6     2 annoClasses   [Ljava/lang/Class;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       6     2 annoClasses   [Ljava/lang/Class<+Ljava/lang/annotation/Annotation;>;
+    Signature: #312                         // (Lcom/fasterxml/jackson/databind/introspect/Annotated;[Ljava/lang/Class<+Ljava/lang/annotation/Annotation;>;)Z
+}
+SourceFile: "AnnotationIntrospector.java"
+InnerClasses:
+  public static #31= #30 of #26;          // XmlExtensions=class com/fasterxml/jackson/databind/AnnotationIntrospector$XmlExtensions of class com/fasterxml/jackson/databind/AnnotationIntrospector
+  public static #34= #33 of #26;          // ReferenceProperty=class com/fasterxml/jackson/databind/AnnotationIntrospector$ReferenceProperty of class com/fasterxml/jackson/databind/AnnotationIntrospector
+  public static #79= #78 of #352;         // Value=class com/fasterxml/jackson/annotation/JsonIgnoreProperties$Value of class com/fasterxml/jackson/annotation/JsonIgnoreProperties
+  public static #79= #86 of #354;         // Value=class com/fasterxml/jackson/annotation/JsonIncludeProperties$Value of class com/fasterxml/jackson/annotation/JsonIncludeProperties
+  public static #79= #139 of #356;        // Value=class com/fasterxml/jackson/annotation/JacksonInject$Value of class com/fasterxml/jackson/annotation/JacksonInject
+  public static #79= #150 of #358;        // Value=class com/fasterxml/jackson/annotation/JsonFormat$Value of class com/fasterxml/jackson/annotation/JsonFormat
+  public static final #166= #165 of #360; // Access=class com/fasterxml/jackson/annotation/JsonProperty$Access of class com/fasterxml/jackson/annotation/JsonProperty
+  public static final #189= #188 of #362; // Typing=class com/fasterxml/jackson/databind/annotation/JsonSerialize$Typing of class com/fasterxml/jackson/databind/annotation/JsonSerialize
+  public static #79= #194 of #364;        // Value=class com/fasterxml/jackson/annotation/JsonInclude$Value of class com/fasterxml/jackson/annotation/JsonInclude
+  public static final #198= #197 of #364; // Include=class com/fasterxml/jackson/annotation/JsonInclude$Include of class com/fasterxml/jackson/annotation/JsonInclude
+  public static #79= #277 of #368;        // Value=class com/fasterxml/jackson/databind/annotation/JsonPOJOBuilder$Value of class com/fasterxml/jackson/databind/annotation/JsonPOJOBuilder
+  public static #79= #282 of #370;        // Value=class com/fasterxml/jackson/annotation/JsonSetter$Value of class com/fasterxml/jackson/annotation/JsonSetter
+  public static final #287= #286 of #372; // Mode=class com/fasterxml/jackson/annotation/JsonCreator$Mode of class com/fasterxml/jackson/annotation/JsonCreator

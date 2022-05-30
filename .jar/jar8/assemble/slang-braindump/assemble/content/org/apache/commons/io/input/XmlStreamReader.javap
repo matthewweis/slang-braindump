@@ -1,0 +1,2673 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/org/apache/commons/io/input/XmlStreamReader.class
+  Last modified May 29, 2022; size 12787 bytes
+  SHA-256 checksum 63fa39d87c14a960c559d1600d808fdaf200b1e9f835bbe4d7f2e1c5a6b58bee
+  Compiled from "XmlStreamReader.java"
+public class org.apache.commons.io.input.XmlStreamReader extends java.io.Reader
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #15                         // org/apache/commons/io/input/XmlStreamReader
+  super_class: #132                       // java/io/Reader
+  interfaces: 0, fields: 22, methods: 24, attributes: 1
+Constant pool:
+    #1 = Class              #265          // org/apache/commons/io/IOUtils
+    #2 = Fieldref           #15.#266      // org/apache/commons/io/input/XmlStreamReader.defaultEncoding:Ljava/lang/String;
+    #3 = Class              #267          // java/io/FileInputStream
+    #4 = Methodref          #268.#269     // java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+    #5 = Class              #270          // java/io/File
+    #6 = Methodref          #3.#271       // java/io/FileInputStream."<init>":(Ljava/io/File;)V
+    #7 = Methodref          #15.#272      // org/apache/commons/io/input/XmlStreamReader."<init>":(Ljava/io/InputStream;)V
+    #8 = Methodref          #15.#273      // org/apache/commons/io/input/XmlStreamReader."<init>":(Ljava/io/InputStream;Z)V
+    #9 = Methodref          #15.#274      // org/apache/commons/io/input/XmlStreamReader."<init>":(Ljava/io/InputStream;ZLjava/lang/String;)V
+   #10 = Methodref          #132.#275     // java/io/Reader."<init>":()V
+   #11 = String             #175          // inputStream
+   #12 = Methodref          #268.#276     // java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+   #13 = Class              #277          // org/apache/commons/io/input/BOMInputStream
+   #14 = Class              #278          // java/io/BufferedInputStream
+   #15 = Class              #279          // org/apache/commons/io/input/XmlStreamReader
+   #16 = Methodref          #14.#280      // java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;I)V
+   #17 = Fieldref           #15.#281      // org/apache/commons/io/input/XmlStreamReader.BOMS:[Lorg/apache/commons/io/ByteOrderMark;
+   #18 = Methodref          #13.#282      // org/apache/commons/io/input/BOMInputStream."<init>":(Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+   #19 = Fieldref           #15.#283      // org/apache/commons/io/input/XmlStreamReader.XML_GUESS_BYTES:[Lorg/apache/commons/io/ByteOrderMark;
+   #20 = Methodref          #15.#284      // org/apache/commons/io/input/XmlStreamReader.doRawStream:(Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Z)Ljava/lang/String;
+   #21 = Fieldref           #15.#285      // org/apache/commons/io/input/XmlStreamReader.encoding:Ljava/lang/String;
+   #22 = Class              #286          // java/io/InputStreamReader
+   #23 = Methodref          #22.#287      // java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+   #24 = Fieldref           #15.#288      // org/apache/commons/io/input/XmlStreamReader.reader:Ljava/io/Reader;
+   #25 = String             #185          // url
+   #26 = Class              #289          // java/net/URL
+   #27 = Methodref          #26.#290      // java/net/URL.openConnection:()Ljava/net/URLConnection;
+   #28 = Methodref          #15.#291      // org/apache/commons/io/input/XmlStreamReader."<init>":(Ljava/net/URLConnection;Ljava/lang/String;)V
+   #29 = String             #292          // conm
+   #30 = Methodref          #293.#294     // java/net/URLConnection.getContentType:()Ljava/lang/String;
+   #31 = Methodref          #293.#295     // java/net/URLConnection.getInputStream:()Ljava/io/InputStream;
+   #32 = Class              #296          // java/net/HttpURLConnection
+   #33 = Methodref          #15.#297      // org/apache/commons/io/input/XmlStreamReader.processHttpStream:(Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Ljava/lang/String;Z)Ljava/lang/String;
+   #34 = Methodref          #15.#298      // org/apache/commons/io/input/XmlStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;Z)V
+   #35 = Methodref          #15.#299      // org/apache/commons/io/input/XmlStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;ZLjava/lang/String;)V
+   #36 = Methodref          #132.#300     // java/io/Reader.read:([CII)I
+   #37 = Methodref          #132.#301     // java/io/Reader.close:()V
+   #38 = Methodref          #13.#302      // org/apache/commons/io/input/BOMInputStream.getBOMCharsetName:()Ljava/lang/String;
+   #39 = Methodref          #15.#303      // org/apache/commons/io/input/XmlStreamReader.getXmlProlog:(Ljava/io/InputStream;Ljava/lang/String;)Ljava/lang/String;
+   #40 = Methodref          #15.#304      // org/apache/commons/io/input/XmlStreamReader.calculateRawEncoding:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #41 = Class              #305          // org/apache/commons/io/input/XmlStreamReaderException
+   #42 = Methodref          #15.#306      // org/apache/commons/io/input/XmlStreamReader.doLenientDetection:(Ljava/lang/String;Lorg/apache/commons/io/input/XmlStreamReaderException;)Ljava/lang/String;
+   #43 = Methodref          #15.#307      // org/apache/commons/io/input/XmlStreamReader.calculateHttpEncoding:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+   #44 = String             #308          // text/html
+   #45 = Methodref          #92.#309      // java/lang/String.startsWith:(Ljava/lang/String;)Z
+   #46 = Methodref          #92.#310      // java/lang/String.length:()I
+   #47 = Methodref          #92.#311      // java/lang/String.substring:(I)Ljava/lang/String;
+   #48 = Class              #312          // java/lang/StringBuilder
+   #49 = Methodref          #48.#275      // java/lang/StringBuilder."<init>":()V
+   #50 = String             #313          // text/xml
+   #51 = Methodref          #48.#314      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #52 = Methodref          #48.#315      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #53 = Methodref          #41.#316      // org/apache/commons/io/input/XmlStreamReaderException.getBomEncoding:()Ljava/lang/String;
+   #54 = Methodref          #41.#317      // org/apache/commons/io/input/XmlStreamReaderException.getXmlGuessEncoding:()Ljava/lang/String;
+   #55 = Methodref          #41.#318      // org/apache/commons/io/input/XmlStreamReaderException.getXmlEncoding:()Ljava/lang/String;
+   #56 = Methodref          #41.#319      // org/apache/commons/io/input/XmlStreamReaderException.getContentTypeEncoding:()Ljava/lang/String;
+   #57 = String             #320          // UTF-8
+   #58 = String             #321          // UTF-16
+   #59 = Methodref          #92.#322      // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #60 = String             #323          // UTF-16BE
+   #61 = String             #324          // UTF-16LE
+   #62 = String             #325          // Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+   #63 = Class              #326          // java/lang/Object
+   #64 = Methodref          #327.#328     // java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+   #65 = Methodref          #41.#329      // org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+   #66 = String             #330          // UTF-32BE
+   #67 = String             #331          // UTF-32LE
+   #68 = String             #332          // UTF-32
+   #69 = String             #333          // Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] unknown BOM
+   #70 = Methodref          #15.#334      // org/apache/commons/io/input/XmlStreamReader.getContentTypeMime:(Ljava/lang/String;)Ljava/lang/String;
+   #71 = Methodref          #15.#335      // org/apache/commons/io/input/XmlStreamReader.getContentTypeEncoding:(Ljava/lang/String;)Ljava/lang/String;
+   #72 = Methodref          #15.#336      // org/apache/commons/io/input/XmlStreamReader.isAppXml:(Ljava/lang/String;)Z
+   #73 = Methodref          #15.#337      // org/apache/commons/io/input/XmlStreamReader.isTextXml:(Ljava/lang/String;)Z
+   #74 = String             #338          // Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], Invalid MIME
+   #75 = Methodref          #41.#339      // org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+   #76 = String             #340          // US-ASCII
+   #77 = String             #341          // Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], BOM must be NULL
+   #78 = String             #342          // Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], encoding mismatch
+   #79 = String             #343          // ;
+   #80 = Methodref          #92.#344      // java/lang/String.indexOf:(Ljava/lang/String;)I
+   #81 = Methodref          #92.#345      // java/lang/String.substring:(II)Ljava/lang/String;
+   #82 = Methodref          #92.#346      // java/lang/String.trim:()Ljava/lang/String;
+   #83 = Fieldref           #15.#347      // org/apache/commons/io/input/XmlStreamReader.CHARSET_PATTERN:Ljava/util/regex/Pattern;
+   #84 = Methodref          #130.#348     // java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+   #85 = Methodref          #349.#350     // java/util/regex/Matcher.find:()Z
+   #86 = Methodref          #349.#351     // java/util/regex/Matcher.group:(I)Ljava/lang/String;
+   #87 = Fieldref           #352.#353     // java/util/Locale.ROOT:Ljava/util/Locale;
+   #88 = Methodref          #92.#354      // java/lang/String.toUpperCase:(Ljava/util/Locale;)Ljava/lang/String;
+   #89 = Methodref          #355.#356     // java/io/InputStream.mark:(I)V
+   #90 = Methodref          #355.#357     // java/io/InputStream.read:([BII)I
+   #91 = String             #358          //
+   #92 = Class              #359          // java/lang/String
+   #93 = Methodref          #92.#360      // java/lang/String."<init>":([BIILjava/lang/String;)V
+   #94 = Methodref          #92.#361      // java/lang/String.indexOf:(I)I
+   #95 = Class              #362          // java/io/IOException
+   #96 = String             #363          // Unexpected end of XML stream
+   #97 = Methodref          #95.#364      // java/io/IOException."<init>":(Ljava/lang/String;)V
+   #98 = String             #365          // XML prolog or ROOT element not found on first
+   #99 = Methodref          #48.#366      // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+  #100 = String             #367          //  bytes
+  #101 = Methodref          #355.#368     // java/io/InputStream.reset:()V
+  #102 = Class              #369          // java/io/BufferedReader
+  #103 = Class              #370          // java/io/StringReader
+  #104 = Methodref          #103.#364     // java/io/StringReader."<init>":(Ljava/lang/String;)V
+  #105 = Methodref          #102.#371     // java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+  #106 = Class              #372          // java/lang/StringBuffer
+  #107 = Methodref          #106.#275     // java/lang/StringBuffer."<init>":()V
+  #108 = Methodref          #102.#373     // java/io/BufferedReader.readLine:()Ljava/lang/String;
+  #109 = Methodref          #106.#374     // java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+  #110 = Fieldref           #15.#375      // org/apache/commons/io/input/XmlStreamReader.ENCODING_PATTERN:Ljava/util/regex/Pattern;
+  #111 = String             #376          // application/xml
+  #112 = String             #377          // application/xml-dtd
+  #113 = String             #378          // application/xml-external-parsed-entity
+  #114 = String             #379          // application/
+  #115 = String             #380          // +xml
+  #116 = Methodref          #92.#381      // java/lang/String.endsWith:(Ljava/lang/String;)Z
+  #117 = String             #382          // text/xml-external-parsed-entity
+  #118 = String             #383          // text/
+  #119 = Class              #384          // org/apache/commons/io/ByteOrderMark
+  #120 = Fieldref           #119.#385     // org/apache/commons/io/ByteOrderMark.UTF_8:Lorg/apache/commons/io/ByteOrderMark;
+  #121 = Fieldref           #119.#386     // org/apache/commons/io/ByteOrderMark.UTF_16BE:Lorg/apache/commons/io/ByteOrderMark;
+  #122 = Fieldref           #119.#387     // org/apache/commons/io/ByteOrderMark.UTF_16LE:Lorg/apache/commons/io/ByteOrderMark;
+  #123 = Fieldref           #119.#388     // org/apache/commons/io/ByteOrderMark.UTF_32BE:Lorg/apache/commons/io/ByteOrderMark;
+  #124 = Fieldref           #119.#389     // org/apache/commons/io/ByteOrderMark.UTF_32LE:Lorg/apache/commons/io/ByteOrderMark;
+  #125 = Methodref          #119.#390     // org/apache/commons/io/ByteOrderMark."<init>":(Ljava/lang/String;[I)V
+  #126 = String             #391          // CP1047
+  #127 = String             #392          // charset=[\"\']?([.[^; \"\']]*)[\"\']?
+  #128 = Methodref          #130.#393     // java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+  #129 = String             #394          // <\\?xml.*encoding[\\s]*=[\\s]*((?:\".[^\"]*\")|(?:\'.[^\']*\'))
+  #130 = Class              #395          // java/util/regex/Pattern
+  #131 = Methodref          #130.#396     // java/util/regex/Pattern.compile:(Ljava/lang/String;I)Ljava/util/regex/Pattern;
+  #132 = Class              #397          // java/io/Reader
+  #133 = Utf8               BUFFER_SIZE
+  #134 = Utf8               I
+  #135 = Utf8               ConstantValue
+  #136 = Integer            8192
+  #137 = Utf8               UTF_8
+  #138 = Utf8               Ljava/lang/String;
+  #139 = Utf8               US_ASCII
+  #140 = Utf8               UTF_16BE
+  #141 = Utf8               UTF_16LE
+  #142 = Utf8               UTF_32BE
+  #143 = Utf8               UTF_32LE
+  #144 = Utf8               UTF_16
+  #145 = Utf8               UTF_32
+  #146 = Utf8               EBCDIC
+  #147 = Utf8               BOMS
+  #148 = Utf8               [Lorg/apache/commons/io/ByteOrderMark;
+  #149 = Utf8               XML_GUESS_BYTES
+  #150 = Utf8               reader
+  #151 = Utf8               Ljava/io/Reader;
+  #152 = Utf8               encoding
+  #153 = Utf8               defaultEncoding
+  #154 = Utf8               CHARSET_PATTERN
+  #155 = Utf8               Ljava/util/regex/Pattern;
+  #156 = Utf8               ENCODING_PATTERN
+  #157 = Utf8               RAW_EX_1
+  #158 = Utf8               RAW_EX_2
+  #159 = Utf8               HTTP_EX_1
+  #160 = Utf8               HTTP_EX_2
+  #161 = Utf8               HTTP_EX_3
+  #162 = Utf8               getDefaultEncoding
+  #163 = Utf8               ()Ljava/lang/String;
+  #164 = Utf8               Code
+  #165 = Utf8               LineNumberTable
+  #166 = Utf8               LocalVariableTable
+  #167 = Utf8               this
+  #168 = Utf8               Lorg/apache/commons/io/input/XmlStreamReader;
+  #169 = Utf8               <init>
+  #170 = Utf8               (Ljava/io/File;)V
+  #171 = Utf8               file
+  #172 = Utf8               Ljava/io/File;
+  #173 = Utf8               Exceptions
+  #174 = Utf8               (Ljava/io/InputStream;)V
+  #175 = Utf8               inputStream
+  #176 = Utf8               Ljava/io/InputStream;
+  #177 = Utf8               (Ljava/io/InputStream;Z)V
+  #178 = Utf8               lenient
+  #179 = Utf8               Z
+  #180 = Utf8               (Ljava/io/InputStream;ZLjava/lang/String;)V
+  #181 = Utf8               bom
+  #182 = Utf8               Lorg/apache/commons/io/input/BOMInputStream;
+  #183 = Utf8               pis
+  #184 = Utf8               (Ljava/net/URL;)V
+  #185 = Utf8               url
+  #186 = Utf8               Ljava/net/URL;
+  #187 = Utf8               (Ljava/net/URLConnection;Ljava/lang/String;)V
+  #188 = Utf8               conn
+  #189 = Utf8               Ljava/net/URLConnection;
+  #190 = Utf8               contentType
+  #191 = Utf8               StackMapTable
+  #192 = Class              #279          // org/apache/commons/io/input/XmlStreamReader
+  #193 = Class              #398          // java/net/URLConnection
+  #194 = Class              #359          // java/lang/String
+  #195 = Class              #399          // java/io/InputStream
+  #196 = Class              #277          // org/apache/commons/io/input/BOMInputStream
+  #197 = Utf8               (Ljava/io/InputStream;Ljava/lang/String;)V
+  #198 = Utf8               httpContentType
+  #199 = Utf8               (Ljava/io/InputStream;Ljava/lang/String;ZLjava/lang/String;)V
+  #200 = Utf8               (Ljava/io/InputStream;Ljava/lang/String;Z)V
+  #201 = Utf8               getEncoding
+  #202 = Utf8               read
+  #203 = Utf8               ([CII)I
+  #204 = Utf8               buf
+  #205 = Utf8               [C
+  #206 = Utf8               offset
+  #207 = Utf8               len
+  #208 = Utf8               close
+  #209 = Utf8               ()V
+  #210 = Utf8               doRawStream
+  #211 = Utf8               (Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Z)Ljava/lang/String;
+  #212 = Utf8               ex
+  #213 = Utf8               Lorg/apache/commons/io/input/XmlStreamReaderException;
+  #214 = Utf8               bomEnc
+  #215 = Utf8               xmlGuessEnc
+  #216 = Utf8               xmlEnc
+  #217 = Class              #305          // org/apache/commons/io/input/XmlStreamReaderException
+  #218 = Utf8               processHttpStream
+  #219 = Utf8               (Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Ljava/lang/String;Z)Ljava/lang/String;
+  #220 = Utf8               doLenientDetection
+  #221 = Utf8               (Ljava/lang/String;Lorg/apache/commons/io/input/XmlStreamReaderException;)Ljava/lang/String;
+  #222 = Utf8               ex2
+  #223 = Utf8               calculateRawEncoding
+  #224 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #225 = Utf8               msg
+  #226 = Utf8               calculateHttpEncoding
+  #227 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+  #228 = Utf8               cTMime
+  #229 = Utf8               cTEnc
+  #230 = Utf8               appXml
+  #231 = Utf8               textXml
+  #232 = Utf8               getContentTypeMime
+  #233 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #234 = Utf8               i
+  #235 = Utf8               mime
+  #236 = Utf8               getContentTypeEncoding
+  #237 = Utf8               postMime
+  #238 = Utf8               m
+  #239 = Utf8               Ljava/util/regex/Matcher;
+  #240 = Class              #400          // java/util/regex/Matcher
+  #241 = Utf8               getXmlProlog
+  #242 = Utf8               (Ljava/io/InputStream;Ljava/lang/String;)Ljava/lang/String;
+  #243 = Utf8               bReader
+  #244 = Utf8               Ljava/io/BufferedReader;
+  #245 = Utf8               prolog
+  #246 = Utf8               Ljava/lang/StringBuffer;
+  #247 = Utf8               line
+  #248 = Utf8               bytes
+  #249 = Utf8               [B
+  #250 = Utf8               max
+  #251 = Utf8               c
+  #252 = Utf8               firstGT
+  #253 = Utf8               xmlProlog
+  #254 = Utf8               bytesRead
+  #255 = Utf8               guessedEnc
+  #256 = Class              #249          // "[B"
+  #257 = Class              #369          // java/io/BufferedReader
+  #258 = Class              #372          // java/lang/StringBuffer
+  #259 = Utf8               isAppXml
+  #260 = Utf8               (Ljava/lang/String;)Z
+  #261 = Utf8               isTextXml
+  #262 = Utf8               <clinit>
+  #263 = Utf8               SourceFile
+  #264 = Utf8               XmlStreamReader.java
+  #265 = Utf8               org/apache/commons/io/IOUtils
+  #266 = NameAndType        #153:#138     // defaultEncoding:Ljava/lang/String;
+  #267 = Utf8               java/io/FileInputStream
+  #268 = Class              #401          // java/util/Objects
+  #269 = NameAndType        #402:#403     // requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+  #270 = Utf8               java/io/File
+  #271 = NameAndType        #169:#170     // "<init>":(Ljava/io/File;)V
+  #272 = NameAndType        #169:#174     // "<init>":(Ljava/io/InputStream;)V
+  #273 = NameAndType        #169:#177     // "<init>":(Ljava/io/InputStream;Z)V
+  #274 = NameAndType        #169:#180     // "<init>":(Ljava/io/InputStream;ZLjava/lang/String;)V
+  #275 = NameAndType        #169:#209     // "<init>":()V
+  #276 = NameAndType        #402:#404     // requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  #277 = Utf8               org/apache/commons/io/input/BOMInputStream
+  #278 = Utf8               java/io/BufferedInputStream
+  #279 = Utf8               org/apache/commons/io/input/XmlStreamReader
+  #280 = NameAndType        #169:#405     // "<init>":(Ljava/io/InputStream;I)V
+  #281 = NameAndType        #147:#148     // BOMS:[Lorg/apache/commons/io/ByteOrderMark;
+  #282 = NameAndType        #169:#406     // "<init>":(Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+  #283 = NameAndType        #149:#148     // XML_GUESS_BYTES:[Lorg/apache/commons/io/ByteOrderMark;
+  #284 = NameAndType        #210:#211     // doRawStream:(Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Z)Ljava/lang/String;
+  #285 = NameAndType        #152:#138     // encoding:Ljava/lang/String;
+  #286 = Utf8               java/io/InputStreamReader
+  #287 = NameAndType        #169:#197     // "<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+  #288 = NameAndType        #150:#151     // reader:Ljava/io/Reader;
+  #289 = Utf8               java/net/URL
+  #290 = NameAndType        #407:#408     // openConnection:()Ljava/net/URLConnection;
+  #291 = NameAndType        #169:#187     // "<init>":(Ljava/net/URLConnection;Ljava/lang/String;)V
+  #292 = Utf8               conm
+  #293 = Class              #398          // java/net/URLConnection
+  #294 = NameAndType        #409:#163     // getContentType:()Ljava/lang/String;
+  #295 = NameAndType        #410:#411     // getInputStream:()Ljava/io/InputStream;
+  #296 = Utf8               java/net/HttpURLConnection
+  #297 = NameAndType        #218:#219     // processHttpStream:(Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Ljava/lang/String;Z)Ljava/lang/String;
+  #298 = NameAndType        #169:#200     // "<init>":(Ljava/io/InputStream;Ljava/lang/String;Z)V
+  #299 = NameAndType        #169:#199     // "<init>":(Ljava/io/InputStream;Ljava/lang/String;ZLjava/lang/String;)V
+  #300 = NameAndType        #202:#203     // read:([CII)I
+  #301 = NameAndType        #208:#209     // close:()V
+  #302 = NameAndType        #412:#163     // getBOMCharsetName:()Ljava/lang/String;
+  #303 = NameAndType        #241:#242     // getXmlProlog:(Ljava/io/InputStream;Ljava/lang/String;)Ljava/lang/String;
+  #304 = NameAndType        #223:#224     // calculateRawEncoding:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #305 = Utf8               org/apache/commons/io/input/XmlStreamReaderException
+  #306 = NameAndType        #220:#221     // doLenientDetection:(Ljava/lang/String;Lorg/apache/commons/io/input/XmlStreamReaderException;)Ljava/lang/String;
+  #307 = NameAndType        #226:#227     // calculateHttpEncoding:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+  #308 = Utf8               text/html
+  #309 = NameAndType        #413:#260     // startsWith:(Ljava/lang/String;)Z
+  #310 = NameAndType        #414:#415     // length:()I
+  #311 = NameAndType        #416:#417     // substring:(I)Ljava/lang/String;
+  #312 = Utf8               java/lang/StringBuilder
+  #313 = Utf8               text/xml
+  #314 = NameAndType        #418:#419     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #315 = NameAndType        #420:#163     // toString:()Ljava/lang/String;
+  #316 = NameAndType        #421:#163     // getBomEncoding:()Ljava/lang/String;
+  #317 = NameAndType        #422:#163     // getXmlGuessEncoding:()Ljava/lang/String;
+  #318 = NameAndType        #423:#163     // getXmlEncoding:()Ljava/lang/String;
+  #319 = NameAndType        #236:#163     // getContentTypeEncoding:()Ljava/lang/String;
+  #320 = Utf8               UTF-8
+  #321 = Utf8               UTF-16
+  #322 = NameAndType        #424:#425     // equals:(Ljava/lang/Object;)Z
+  #323 = Utf8               UTF-16BE
+  #324 = Utf8               UTF-16LE
+  #325 = Utf8               Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+  #326 = Utf8               java/lang/Object
+  #327 = Class              #426          // java/text/MessageFormat
+  #328 = NameAndType        #427:#428     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #329 = NameAndType        #169:#429     // "<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+  #330 = Utf8               UTF-32BE
+  #331 = Utf8               UTF-32LE
+  #332 = Utf8               UTF-32
+  #333 = Utf8               Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] unknown BOM
+  #334 = NameAndType        #232:#233     // getContentTypeMime:(Ljava/lang/String;)Ljava/lang/String;
+  #335 = NameAndType        #236:#233     // getContentTypeEncoding:(Ljava/lang/String;)Ljava/lang/String;
+  #336 = NameAndType        #259:#260     // isAppXml:(Ljava/lang/String;)Z
+  #337 = NameAndType        #261:#260     // isTextXml:(Ljava/lang/String;)Z
+  #338 = Utf8               Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], Invalid MIME
+  #339 = NameAndType        #169:#430     // "<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+  #340 = Utf8               US-ASCII
+  #341 = Utf8               Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], BOM must be NULL
+  #342 = Utf8               Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], encoding mismatch
+  #343 = Utf8               ;
+  #344 = NameAndType        #431:#432     // indexOf:(Ljava/lang/String;)I
+  #345 = NameAndType        #416:#433     // substring:(II)Ljava/lang/String;
+  #346 = NameAndType        #434:#163     // trim:()Ljava/lang/String;
+  #347 = NameAndType        #154:#155     // CHARSET_PATTERN:Ljava/util/regex/Pattern;
+  #348 = NameAndType        #435:#436     // matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+  #349 = Class              #400          // java/util/regex/Matcher
+  #350 = NameAndType        #437:#438     // find:()Z
+  #351 = NameAndType        #439:#417     // group:(I)Ljava/lang/String;
+  #352 = Class              #440          // java/util/Locale
+  #353 = NameAndType        #441:#442     // ROOT:Ljava/util/Locale;
+  #354 = NameAndType        #443:#444     // toUpperCase:(Ljava/util/Locale;)Ljava/lang/String;
+  #355 = Class              #399          // java/io/InputStream
+  #356 = NameAndType        #445:#446     // mark:(I)V
+  #357 = NameAndType        #202:#447     // read:([BII)I
+  #358 = Utf8
+  #359 = Utf8               java/lang/String
+  #360 = NameAndType        #169:#448     // "<init>":([BIILjava/lang/String;)V
+  #361 = NameAndType        #431:#449     // indexOf:(I)I
+  #362 = Utf8               java/io/IOException
+  #363 = Utf8               Unexpected end of XML stream
+  #364 = NameAndType        #169:#450     // "<init>":(Ljava/lang/String;)V
+  #365 = Utf8               XML prolog or ROOT element not found on first
+  #366 = NameAndType        #418:#451     // append:(I)Ljava/lang/StringBuilder;
+  #367 = Utf8                bytes
+  #368 = NameAndType        #452:#209     // reset:()V
+  #369 = Utf8               java/io/BufferedReader
+  #370 = Utf8               java/io/StringReader
+  #371 = NameAndType        #169:#453     // "<init>":(Ljava/io/Reader;)V
+  #372 = Utf8               java/lang/StringBuffer
+  #373 = NameAndType        #454:#163     // readLine:()Ljava/lang/String;
+  #374 = NameAndType        #418:#455     // append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+  #375 = NameAndType        #156:#155     // ENCODING_PATTERN:Ljava/util/regex/Pattern;
+  #376 = Utf8               application/xml
+  #377 = Utf8               application/xml-dtd
+  #378 = Utf8               application/xml-external-parsed-entity
+  #379 = Utf8               application/
+  #380 = Utf8               +xml
+  #381 = NameAndType        #456:#260     // endsWith:(Ljava/lang/String;)Z
+  #382 = Utf8               text/xml-external-parsed-entity
+  #383 = Utf8               text/
+  #384 = Utf8               org/apache/commons/io/ByteOrderMark
+  #385 = NameAndType        #137:#457     // UTF_8:Lorg/apache/commons/io/ByteOrderMark;
+  #386 = NameAndType        #140:#457     // UTF_16BE:Lorg/apache/commons/io/ByteOrderMark;
+  #387 = NameAndType        #141:#457     // UTF_16LE:Lorg/apache/commons/io/ByteOrderMark;
+  #388 = NameAndType        #142:#457     // UTF_32BE:Lorg/apache/commons/io/ByteOrderMark;
+  #389 = NameAndType        #143:#457     // UTF_32LE:Lorg/apache/commons/io/ByteOrderMark;
+  #390 = NameAndType        #169:#458     // "<init>":(Ljava/lang/String;[I)V
+  #391 = Utf8               CP1047
+  #392 = Utf8               charset=[\"\']?([.[^; \"\']]*)[\"\']?
+  #393 = NameAndType        #459:#460     // compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+  #394 = Utf8               <\\?xml.*encoding[\\s]*=[\\s]*((?:\".[^\"]*\")|(?:\'.[^\']*\'))
+  #395 = Utf8               java/util/regex/Pattern
+  #396 = NameAndType        #459:#461     // compile:(Ljava/lang/String;I)Ljava/util/regex/Pattern;
+  #397 = Utf8               java/io/Reader
+  #398 = Utf8               java/net/URLConnection
+  #399 = Utf8               java/io/InputStream
+  #400 = Utf8               java/util/regex/Matcher
+  #401 = Utf8               java/util/Objects
+  #402 = Utf8               requireNonNull
+  #403 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #404 = Utf8               (Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  #405 = Utf8               (Ljava/io/InputStream;I)V
+  #406 = Utf8               (Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+  #407 = Utf8               openConnection
+  #408 = Utf8               ()Ljava/net/URLConnection;
+  #409 = Utf8               getContentType
+  #410 = Utf8               getInputStream
+  #411 = Utf8               ()Ljava/io/InputStream;
+  #412 = Utf8               getBOMCharsetName
+  #413 = Utf8               startsWith
+  #414 = Utf8               length
+  #415 = Utf8               ()I
+  #416 = Utf8               substring
+  #417 = Utf8               (I)Ljava/lang/String;
+  #418 = Utf8               append
+  #419 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #420 = Utf8               toString
+  #421 = Utf8               getBomEncoding
+  #422 = Utf8               getXmlGuessEncoding
+  #423 = Utf8               getXmlEncoding
+  #424 = Utf8               equals
+  #425 = Utf8               (Ljava/lang/Object;)Z
+  #426 = Utf8               java/text/MessageFormat
+  #427 = Utf8               format
+  #428 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #429 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+  #430 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+  #431 = Utf8               indexOf
+  #432 = Utf8               (Ljava/lang/String;)I
+  #433 = Utf8               (II)Ljava/lang/String;
+  #434 = Utf8               trim
+  #435 = Utf8               matcher
+  #436 = Utf8               (Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+  #437 = Utf8               find
+  #438 = Utf8               ()Z
+  #439 = Utf8               group
+  #440 = Utf8               java/util/Locale
+  #441 = Utf8               ROOT
+  #442 = Utf8               Ljava/util/Locale;
+  #443 = Utf8               toUpperCase
+  #444 = Utf8               (Ljava/util/Locale;)Ljava/lang/String;
+  #445 = Utf8               mark
+  #446 = Utf8               (I)V
+  #447 = Utf8               ([BII)I
+  #448 = Utf8               ([BIILjava/lang/String;)V
+  #449 = Utf8               (I)I
+  #450 = Utf8               (Ljava/lang/String;)V
+  #451 = Utf8               (I)Ljava/lang/StringBuilder;
+  #452 = Utf8               reset
+  #453 = Utf8               (Ljava/io/Reader;)V
+  #454 = Utf8               readLine
+  #455 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuffer;
+  #456 = Utf8               endsWith
+  #457 = Utf8               Lorg/apache/commons/io/ByteOrderMark;
+  #458 = Utf8               (Ljava/lang/String;[I)V
+  #459 = Utf8               compile
+  #460 = Utf8               (Ljava/lang/String;)Ljava/util/regex/Pattern;
+  #461 = Utf8               (Ljava/lang/String;I)Ljava/util/regex/Pattern;
+{
+  private static final int BUFFER_SIZE;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 8192
+
+  private static final java.lang.String UTF_8;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String UTF-8
+
+  private static final java.lang.String US_ASCII;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String US-ASCII
+
+  private static final java.lang.String UTF_16BE;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String UTF-16BE
+
+  private static final java.lang.String UTF_16LE;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String UTF-16LE
+
+  private static final java.lang.String UTF_32BE;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String UTF-32BE
+
+  private static final java.lang.String UTF_32LE;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String UTF-32LE
+
+  private static final java.lang.String UTF_16;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String UTF-16
+
+  private static final java.lang.String UTF_32;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String UTF-32
+
+  private static final java.lang.String EBCDIC;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String CP1047
+
+  private static final org.apache.commons.io.ByteOrderMark[] BOMS;
+    descriptor: [Lorg/apache/commons/io/ByteOrderMark;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final org.apache.commons.io.ByteOrderMark[] XML_GUESS_BYTES;
+    descriptor: [Lorg/apache/commons/io/ByteOrderMark;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private final java.io.Reader reader;
+    descriptor: Ljava/io/Reader;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.lang.String encoding;
+    descriptor: Ljava/lang/String;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.lang.String defaultEncoding;
+    descriptor: Ljava/lang/String;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private static final java.util.regex.Pattern CHARSET_PATTERN;
+    descriptor: Ljava/util/regex/Pattern;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  public static final java.util.regex.Pattern ENCODING_PATTERN;
+    descriptor: Ljava/util/regex/Pattern;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  private static final java.lang.String RAW_EX_1;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+
+  private static final java.lang.String RAW_EX_2;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] unknown BOM
+
+  private static final java.lang.String HTTP_EX_1;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], BOM must be NULL
+
+  private static final java.lang.String HTTP_EX_2;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], encoding mismatch
+
+  private static final java.lang.String HTTP_EX_3;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], Invalid MIME
+
+  public java.lang.String getDefaultEncoding();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 128: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+
+  public org.apache.commons.io.input.XmlStreamReader(java.io.File) throws java.io.IOException;
+    descriptor: (Ljava/io/File;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: new           #3                  // class java/io/FileInputStream
+         4: dup
+         5: aload_1
+         6: invokestatic  #4                  // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+         9: checkcast     #5                  // class java/io/File
+        12: invokespecial #6                  // Method java/io/FileInputStream."<init>":(Ljava/io/File;)V
+        15: invokespecial #7                  // Method "<init>":(Ljava/io/InputStream;)V
+        18: return
+      LineNumberTable:
+        line 144: 0
+        line 145: 18
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0      19     1  file   Ljava/io/File;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.apache.commons.io.input.XmlStreamReader(java.io.InputStream) throws java.io.IOException;
+    descriptor: (Ljava/io/InputStream;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: iconst_1
+         3: invokespecial #8                  // Method "<init>":(Ljava/io/InputStream;Z)V
+         6: return
+      LineNumberTable:
+        line 159: 0
+        line 160: 6
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0       7     1 inputStream   Ljava/io/InputStream;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.apache.commons.io.input.XmlStreamReader(java.io.InputStream, boolean) throws java.io.IOException;
+    descriptor: (Ljava/io/InputStream;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: aconst_null
+         4: invokespecial #9                  // Method "<init>":(Ljava/io/InputStream;ZLjava/lang/String;)V
+         7: return
+      LineNumberTable:
+        line 190: 0
+        line 191: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0       8     1 inputStream   Ljava/io/InputStream;
+            0       8     2 lenient   Z
+    Exceptions:
+      throws java.io.IOException
+
+  public org.apache.commons.io.input.XmlStreamReader(java.io.InputStream, boolean, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/io/InputStream;ZLjava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=6, args_size=4
+         0: aload_0
+         1: invokespecial #10                 // Method java/io/Reader."<init>":()V
+         4: aload_1
+         5: ldc           #11                 // String inputStream
+         7: invokestatic  #12                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+        10: pop
+        11: aload_0
+        12: aload_3
+        13: putfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+        16: new           #13                 // class org/apache/commons/io/input/BOMInputStream
+        19: dup
+        20: new           #14                 // class java/io/BufferedInputStream
+        23: dup
+        24: aload_1
+        25: sipush        8192
+        28: invokespecial #16                 // Method java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;I)V
+        31: iconst_0
+        32: getstatic     #17                 // Field BOMS:[Lorg/apache/commons/io/ByteOrderMark;
+        35: invokespecial #18                 // Method org/apache/commons/io/input/BOMInputStream."<init>":(Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+        38: astore        4
+        40: new           #13                 // class org/apache/commons/io/input/BOMInputStream
+        43: dup
+        44: aload         4
+        46: iconst_1
+        47: getstatic     #19                 // Field XML_GUESS_BYTES:[Lorg/apache/commons/io/ByteOrderMark;
+        50: invokespecial #18                 // Method org/apache/commons/io/input/BOMInputStream."<init>":(Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+        53: astore        5
+        55: aload_0
+        56: aload_0
+        57: aload         4
+        59: aload         5
+        61: iload_2
+        62: invokespecial #20                 // Method doRawStream:(Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Z)Ljava/lang/String;
+        65: putfield      #21                 // Field encoding:Ljava/lang/String;
+        68: aload_0
+        69: new           #22                 // class java/io/InputStreamReader
+        72: dup
+        73: aload         5
+        75: aload_0
+        76: getfield      #21                 // Field encoding:Ljava/lang/String;
+        79: invokespecial #23                 // Method java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+        82: putfield      #24                 // Field reader:Ljava/io/Reader;
+        85: return
+      LineNumberTable:
+        line 222: 0
+        line 223: 4
+        line 224: 11
+        line 225: 16
+        line 226: 40
+        line 227: 55
+        line 228: 68
+        line 229: 85
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      86     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0      86     1 inputStream   Ljava/io/InputStream;
+            0      86     2 lenient   Z
+            0      86     3 defaultEncoding   Ljava/lang/String;
+           40      46     4   bom   Lorg/apache/commons/io/input/BOMInputStream;
+           55      31     5   pis   Lorg/apache/commons/io/input/BOMInputStream;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.apache.commons.io.input.XmlStreamReader(java.net.URL) throws java.io.IOException;
+    descriptor: (Ljava/net/URL;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: ldc           #25                 // String url
+         4: invokestatic  #12                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+         7: checkcast     #26                 // class java/net/URL
+        10: invokevirtual #27                 // Method java/net/URL.openConnection:()Ljava/net/URLConnection;
+        13: aconst_null
+        14: invokespecial #28                 // Method "<init>":(Ljava/net/URLConnection;Ljava/lang/String;)V
+        17: return
+      LineNumberTable:
+        line 249: 0
+        line 250: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0      18     1   url   Ljava/net/URL;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.apache.commons.io.input.XmlStreamReader(java.net.URLConnection, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/net/URLConnection;Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=8, args_size=3
+         0: aload_0
+         1: invokespecial #10                 // Method java/io/Reader."<init>":()V
+         4: aload_1
+         5: ldc           #29                 // String conm
+         7: invokestatic  #12                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+        10: pop
+        11: aload_0
+        12: aload_2
+        13: putfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+        16: iconst_1
+        17: istore_3
+        18: aload_1
+        19: invokevirtual #30                 // Method java/net/URLConnection.getContentType:()Ljava/lang/String;
+        22: astore        4
+        24: aload_1
+        25: invokevirtual #31                 // Method java/net/URLConnection.getInputStream:()Ljava/io/InputStream;
+        28: astore        5
+        30: new           #13                 // class org/apache/commons/io/input/BOMInputStream
+        33: dup
+        34: new           #14                 // class java/io/BufferedInputStream
+        37: dup
+        38: aload         5
+        40: sipush        8192
+        43: invokespecial #16                 // Method java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;I)V
+        46: iconst_0
+        47: getstatic     #17                 // Field BOMS:[Lorg/apache/commons/io/ByteOrderMark;
+        50: invokespecial #18                 // Method org/apache/commons/io/input/BOMInputStream."<init>":(Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+        53: astore        6
+        55: new           #13                 // class org/apache/commons/io/input/BOMInputStream
+        58: dup
+        59: aload         6
+        61: iconst_1
+        62: getstatic     #19                 // Field XML_GUESS_BYTES:[Lorg/apache/commons/io/ByteOrderMark;
+        65: invokespecial #18                 // Method org/apache/commons/io/input/BOMInputStream."<init>":(Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+        68: astore        7
+        70: aload_1
+        71: instanceof    #32                 // class java/net/HttpURLConnection
+        74: ifne          82
+        77: aload         4
+        79: ifnull        100
+        82: aload_0
+        83: aload_0
+        84: aload         6
+        86: aload         7
+        88: aload         4
+        90: iconst_1
+        91: invokespecial #33                 // Method processHttpStream:(Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Ljava/lang/String;Z)Ljava/lang/String;
+        94: putfield      #21                 // Field encoding:Ljava/lang/String;
+        97: goto          113
+       100: aload_0
+       101: aload_0
+       102: aload         6
+       104: aload         7
+       106: iconst_1
+       107: invokespecial #20                 // Method doRawStream:(Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Z)Ljava/lang/String;
+       110: putfield      #21                 // Field encoding:Ljava/lang/String;
+       113: aload_0
+       114: new           #22                 // class java/io/InputStreamReader
+       117: dup
+       118: aload         7
+       120: aload_0
+       121: getfield      #21                 // Field encoding:Ljava/lang/String;
+       124: invokespecial #23                 // Method java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+       127: putfield      #24                 // Field reader:Ljava/io/Reader;
+       130: return
+      LineNumberTable:
+        line 271: 0
+        line 272: 4
+        line 273: 11
+        line 274: 16
+        line 275: 18
+        line 276: 24
+        line 277: 30
+        line 278: 55
+        line 279: 70
+        line 280: 82
+        line 282: 100
+        line 284: 113
+        line 285: 130
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     131     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0     131     1  conn   Ljava/net/URLConnection;
+            0     131     2 defaultEncoding   Ljava/lang/String;
+           18     113     3 lenient   Z
+           24     107     4 contentType   Ljava/lang/String;
+           30     101     5 inputStream   Ljava/io/InputStream;
+           55      76     6   bom   Lorg/apache/commons/io/input/BOMInputStream;
+           70      61     7   pis   Lorg/apache/commons/io/input/BOMInputStream;
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 82
+          locals = [ class org/apache/commons/io/input/XmlStreamReader, class java/net/URLConnection, class java/lang/String, int, class java/lang/String, class java/io/InputStream, class org/apache/commons/io/input/BOMInputStream, class org/apache/commons/io/input/BOMInputStream ]
+          stack = []
+        frame_type = 17 /* same */
+        frame_type = 12 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public org.apache.commons.io.input.XmlStreamReader(java.io.InputStream, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/io/InputStream;Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: iconst_1
+         4: invokespecial #34                 // Method "<init>":(Ljava/io/InputStream;Ljava/lang/String;Z)V
+         7: return
+      LineNumberTable:
+        line 306: 0
+        line 307: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0       8     1 inputStream   Ljava/io/InputStream;
+            0       8     2 httpContentType   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.apache.commons.io.input.XmlStreamReader(java.io.InputStream, java.lang.String, boolean, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/io/InputStream;Ljava/lang/String;ZLjava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=7, args_size=5
+         0: aload_0
+         1: invokespecial #10                 // Method java/io/Reader."<init>":()V
+         4: aload_1
+         5: ldc           #11                 // String inputStream
+         7: invokestatic  #12                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+        10: pop
+        11: aload_0
+        12: aload         4
+        14: putfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+        17: new           #13                 // class org/apache/commons/io/input/BOMInputStream
+        20: dup
+        21: new           #14                 // class java/io/BufferedInputStream
+        24: dup
+        25: aload_1
+        26: sipush        8192
+        29: invokespecial #16                 // Method java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;I)V
+        32: iconst_0
+        33: getstatic     #17                 // Field BOMS:[Lorg/apache/commons/io/ByteOrderMark;
+        36: invokespecial #18                 // Method org/apache/commons/io/input/BOMInputStream."<init>":(Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+        39: astore        5
+        41: new           #13                 // class org/apache/commons/io/input/BOMInputStream
+        44: dup
+        45: aload         5
+        47: iconst_1
+        48: getstatic     #19                 // Field XML_GUESS_BYTES:[Lorg/apache/commons/io/ByteOrderMark;
+        51: invokespecial #18                 // Method org/apache/commons/io/input/BOMInputStream."<init>":(Ljava/io/InputStream;Z[Lorg/apache/commons/io/ByteOrderMark;)V
+        54: astore        6
+        56: aload_0
+        57: aload_0
+        58: aload         5
+        60: aload         6
+        62: aload_2
+        63: iload_3
+        64: invokespecial #33                 // Method processHttpStream:(Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Ljava/lang/String;Z)Ljava/lang/String;
+        67: putfield      #21                 // Field encoding:Ljava/lang/String;
+        70: aload_0
+        71: new           #22                 // class java/io/InputStreamReader
+        74: dup
+        75: aload         6
+        77: aload_0
+        78: getfield      #21                 // Field encoding:Ljava/lang/String;
+        81: invokespecial #23                 // Method java/io/InputStreamReader."<init>":(Ljava/io/InputStream;Ljava/lang/String;)V
+        84: putfield      #24                 // Field reader:Ljava/io/Reader;
+        87: return
+      LineNumberTable:
+        line 344: 0
+        line 345: 4
+        line 346: 11
+        line 347: 17
+        line 348: 41
+        line 349: 56
+        line 350: 70
+        line 351: 87
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      88     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0      88     1 inputStream   Ljava/io/InputStream;
+            0      88     2 httpContentType   Ljava/lang/String;
+            0      88     3 lenient   Z
+            0      88     4 defaultEncoding   Ljava/lang/String;
+           41      47     5   bom   Lorg/apache/commons/io/input/BOMInputStream;
+           56      32     6   pis   Lorg/apache/commons/io/input/BOMInputStream;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.apache.commons.io.input.XmlStreamReader(java.io.InputStream, java.lang.String, boolean) throws java.io.IOException;
+    descriptor: (Ljava/io/InputStream;Ljava/lang/String;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: iload_3
+         4: aconst_null
+         5: invokespecial #35                 // Method "<init>":(Ljava/io/InputStream;Ljava/lang/String;ZLjava/lang/String;)V
+         8: return
+      LineNumberTable:
+        line 388: 0
+        line 389: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0       9     1 inputStream   Ljava/io/InputStream;
+            0       9     2 httpContentType   Ljava/lang/String;
+            0       9     3 lenient   Z
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.String getEncoding();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #21                 // Field encoding:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 397: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+
+  public int read(char[], int, int) throws java.io.IOException;
+    descriptor: ([CII)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: getfield      #24                 // Field reader:Ljava/io/Reader;
+         4: aload_1
+         5: iload_2
+         6: iload_3
+         7: invokevirtual #36                 // Method java/io/Reader.read:([CII)I
+        10: ireturn
+      LineNumberTable:
+        line 410: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0      11     1   buf   [C
+            0      11     2 offset   I
+            0      11     3   len   I
+    Exceptions:
+      throws java.io.IOException
+
+  public void close() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #24                 // Field reader:Ljava/io/Reader;
+         4: invokevirtual #37                 // Method java/io/Reader.close:()V
+         7: return
+      LineNumberTable:
+        line 420: 0
+        line 421: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+    Exceptions:
+      throws java.io.IOException
+
+  private java.lang.String doRawStream(org.apache.commons.io.input.BOMInputStream, org.apache.commons.io.input.BOMInputStream, boolean) throws java.io.IOException;
+    descriptor: (Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Z)Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=8, args_size=4
+         0: aload_1
+         1: invokevirtual #38                 // Method org/apache/commons/io/input/BOMInputStream.getBOMCharsetName:()Ljava/lang/String;
+         4: astore        4
+         6: aload_2
+         7: invokevirtual #38                 // Method org/apache/commons/io/input/BOMInputStream.getBOMCharsetName:()Ljava/lang/String;
+        10: astore        5
+        12: aload_2
+        13: aload         5
+        15: invokestatic  #39                 // Method getXmlProlog:(Ljava/io/InputStream;Ljava/lang/String;)Ljava/lang/String;
+        18: astore        6
+        20: aload_0
+        21: aload         4
+        23: aload         5
+        25: aload         6
+        27: invokevirtual #40                 // Method calculateRawEncoding:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        30: areturn
+        31: astore        7
+        33: iload_3
+        34: ifeq          45
+        37: aload_0
+        38: aconst_null
+        39: aload         7
+        41: invokespecial #42                 // Method doLenientDetection:(Ljava/lang/String;Lorg/apache/commons/io/input/XmlStreamReaderException;)Ljava/lang/String;
+        44: areturn
+        45: aload         7
+        47: athrow
+      Exception table:
+         from    to  target type
+            20    30    31   Class org/apache/commons/io/input/XmlStreamReaderException
+      LineNumberTable:
+        line 435: 0
+        line 436: 6
+        line 437: 12
+        line 439: 20
+        line 440: 31
+        line 441: 33
+        line 442: 37
+        line 444: 45
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           33      15     7    ex   Lorg/apache/commons/io/input/XmlStreamReaderException;
+            0      48     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0      48     1   bom   Lorg/apache/commons/io/input/BOMInputStream;
+            0      48     2   pis   Lorg/apache/commons/io/input/BOMInputStream;
+            0      48     3 lenient   Z
+            6      42     4 bomEnc   Ljava/lang/String;
+           12      36     5 xmlGuessEnc   Ljava/lang/String;
+           20      28     6 xmlEnc   Ljava/lang/String;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 31
+          locals = [ class org/apache/commons/io/input/XmlStreamReader, class org/apache/commons/io/input/BOMInputStream, class org/apache/commons/io/input/BOMInputStream, int, class java/lang/String, class java/lang/String, class java/lang/String ]
+          stack = [ class org/apache/commons/io/input/XmlStreamReaderException ]
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class org/apache/commons/io/input/XmlStreamReaderException ]
+    Exceptions:
+      throws java.io.IOException
+
+  private java.lang.String processHttpStream(org.apache.commons.io.input.BOMInputStream, org.apache.commons.io.input.BOMInputStream, java.lang.String, boolean) throws java.io.IOException;
+    descriptor: (Lorg/apache/commons/io/input/BOMInputStream;Lorg/apache/commons/io/input/BOMInputStream;Ljava/lang/String;Z)Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=9, args_size=5
+         0: aload_1
+         1: invokevirtual #38                 // Method org/apache/commons/io/input/BOMInputStream.getBOMCharsetName:()Ljava/lang/String;
+         4: astore        5
+         6: aload_2
+         7: invokevirtual #38                 // Method org/apache/commons/io/input/BOMInputStream.getBOMCharsetName:()Ljava/lang/String;
+        10: astore        6
+        12: aload_2
+        13: aload         6
+        15: invokestatic  #39                 // Method getXmlProlog:(Ljava/io/InputStream;Ljava/lang/String;)Ljava/lang/String;
+        18: astore        7
+        20: aload_0
+        21: aload_3
+        22: aload         5
+        24: aload         6
+        26: aload         7
+        28: iload         4
+        30: invokevirtual #43                 // Method calculateHttpEncoding:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+        33: areturn
+        34: astore        8
+        36: iload         4
+        38: ifeq          49
+        41: aload_0
+        42: aload_3
+        43: aload         8
+        45: invokespecial #42                 // Method doLenientDetection:(Ljava/lang/String;Lorg/apache/commons/io/input/XmlStreamReaderException;)Ljava/lang/String;
+        48: areturn
+        49: aload         8
+        51: athrow
+      Exception table:
+         from    to  target type
+            20    33    34   Class org/apache/commons/io/input/XmlStreamReaderException
+      LineNumberTable:
+        line 461: 0
+        line 462: 6
+        line 463: 12
+        line 465: 20
+        line 466: 34
+        line 467: 36
+        line 468: 41
+        line 470: 49
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           36      16     8    ex   Lorg/apache/commons/io/input/XmlStreamReaderException;
+            0      52     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0      52     1   bom   Lorg/apache/commons/io/input/BOMInputStream;
+            0      52     2   pis   Lorg/apache/commons/io/input/BOMInputStream;
+            0      52     3 httpContentType   Ljava/lang/String;
+            0      52     4 lenient   Z
+            6      46     5 bomEnc   Ljava/lang/String;
+           12      40     6 xmlGuessEnc   Ljava/lang/String;
+           20      32     7 xmlEnc   Ljava/lang/String;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 34
+          locals = [ class org/apache/commons/io/input/XmlStreamReader, class org/apache/commons/io/input/BOMInputStream, class org/apache/commons/io/input/BOMInputStream, class java/lang/String, int, class java/lang/String, class java/lang/String, class java/lang/String ]
+          stack = [ class org/apache/commons/io/input/XmlStreamReaderException ]
+        frame_type = 252 /* append */
+          offset_delta = 14
+          locals = [ class org/apache/commons/io/input/XmlStreamReaderException ]
+    Exceptions:
+      throws java.io.IOException
+
+  private java.lang.String doLenientDetection(java.lang.String, org.apache.commons.io.input.XmlStreamReaderException) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Lorg/apache/commons/io/input/XmlStreamReaderException;)Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=4, args_size=3
+         0: aload_1
+         1: ifnull        65
+         4: aload_1
+         5: ldc           #44                 // String text/html
+         7: invokevirtual #45                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+        10: ifeq          65
+        13: aload_1
+        14: ldc           #44                 // String text/html
+        16: invokevirtual #46                 // Method java/lang/String.length:()I
+        19: invokevirtual #47                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+        22: astore_1
+        23: new           #48                 // class java/lang/StringBuilder
+        26: dup
+        27: invokespecial #49                 // Method java/lang/StringBuilder."<init>":()V
+        30: ldc           #50                 // String text/xml
+        32: invokevirtual #51                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        35: aload_1
+        36: invokevirtual #51                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        39: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        42: astore_1
+        43: aload_0
+        44: aload_1
+        45: aload_2
+        46: invokevirtual #53                 // Method org/apache/commons/io/input/XmlStreamReaderException.getBomEncoding:()Ljava/lang/String;
+        49: aload_2
+        50: invokevirtual #54                 // Method org/apache/commons/io/input/XmlStreamReaderException.getXmlGuessEncoding:()Ljava/lang/String;
+        53: aload_2
+        54: invokevirtual #55                 // Method org/apache/commons/io/input/XmlStreamReaderException.getXmlEncoding:()Ljava/lang/String;
+        57: iconst_1
+        58: invokevirtual #43                 // Method calculateHttpEncoding:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+        61: areturn
+        62: astore_3
+        63: aload_3
+        64: astore_2
+        65: aload_2
+        66: invokevirtual #55                 // Method org/apache/commons/io/input/XmlStreamReaderException.getXmlEncoding:()Ljava/lang/String;
+        69: astore_3
+        70: aload_3
+        71: ifnonnull     79
+        74: aload_2
+        75: invokevirtual #56                 // Method org/apache/commons/io/input/XmlStreamReaderException.getContentTypeEncoding:()Ljava/lang/String;
+        78: astore_3
+        79: aload_3
+        80: ifnonnull     100
+        83: aload_0
+        84: getfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+        87: ifnonnull     95
+        90: ldc           #57                 // String UTF-8
+        92: goto          99
+        95: aload_0
+        96: getfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+        99: astore_3
+       100: aload_3
+       101: areturn
+      Exception table:
+         from    to  target type
+            43    61    62   Class org/apache/commons/io/input/XmlStreamReaderException
+      LineNumberTable:
+        line 485: 0
+        line 486: 13
+        line 487: 23
+        line 489: 43
+        line 490: 50
+        line 489: 58
+        line 491: 62
+        line 492: 63
+        line 495: 65
+        line 496: 70
+        line 497: 74
+        line 499: 79
+        line 500: 83
+        line 502: 100
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           63       2     3   ex2   Lorg/apache/commons/io/input/XmlStreamReaderException;
+            0     102     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0     102     1 httpContentType   Ljava/lang/String;
+            0     102     2    ex   Lorg/apache/commons/io/input/XmlStreamReaderException;
+           70      32     3 encoding   Ljava/lang/String;
+      StackMapTable: number_of_entries = 6
+        frame_type = 126 /* same_locals_1_stack_item */
+          stack = [ class org/apache/commons/io/input/XmlStreamReaderException ]
+        frame_type = 2 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class java/lang/String ]
+        frame_type = 15 /* same */
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 0 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  java.lang.String calculateRawEncoding(java.lang.String, java.lang.String, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x0000)
+    Code:
+      stack=6, locals=5, args_size=4
+         0: aload_1
+         1: ifnonnull     60
+         4: aload_2
+         5: ifnull        12
+         8: aload_3
+         9: ifnonnull     29
+        12: aload_0
+        13: getfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+        16: ifnonnull     24
+        19: ldc           #57                 // String UTF-8
+        21: goto          28
+        24: aload_0
+        25: getfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+        28: areturn
+        29: aload_3
+        30: ldc           #58                 // String UTF-16
+        32: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        35: ifeq          58
+        38: aload_2
+        39: ldc           #60                 // String UTF-16BE
+        41: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        44: ifne          56
+        47: aload_2
+        48: ldc           #61                 // String UTF-16LE
+        50: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        53: ifeq          58
+        56: aload_2
+        57: areturn
+        58: aload_3
+        59: areturn
+        60: aload_1
+        61: ldc           #57                 // String UTF-8
+        63: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        66: ifeq          169
+        69: aload_2
+        70: ifnull        118
+        73: aload_2
+        74: ldc           #57                 // String UTF-8
+        76: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        79: ifne          118
+        82: ldc           #62                 // String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+        84: iconst_3
+        85: anewarray     #63                 // class java/lang/Object
+        88: dup
+        89: iconst_0
+        90: aload_1
+        91: aastore
+        92: dup
+        93: iconst_1
+        94: aload_2
+        95: aastore
+        96: dup
+        97: iconst_2
+        98: aload_3
+        99: aastore
+       100: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       103: astore        4
+       105: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       108: dup
+       109: aload         4
+       111: aload_1
+       112: aload_2
+       113: aload_3
+       114: invokespecial #65                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       117: athrow
+       118: aload_3
+       119: ifnull        167
+       122: aload_3
+       123: ldc           #57                 // String UTF-8
+       125: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       128: ifne          167
+       131: ldc           #62                 // String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+       133: iconst_3
+       134: anewarray     #63                 // class java/lang/Object
+       137: dup
+       138: iconst_0
+       139: aload_1
+       140: aastore
+       141: dup
+       142: iconst_1
+       143: aload_2
+       144: aastore
+       145: dup
+       146: iconst_2
+       147: aload_3
+       148: aastore
+       149: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       152: astore        4
+       154: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       157: dup
+       158: aload         4
+       160: aload_1
+       161: aload_2
+       162: aload_3
+       163: invokespecial #65                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       166: athrow
+       167: aload_1
+       168: areturn
+       169: aload_1
+       170: ldc           #60                 // String UTF-16BE
+       172: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       175: ifne          187
+       178: aload_1
+       179: ldc           #61                 // String UTF-16LE
+       181: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       184: ifeq          294
+       187: aload_2
+       188: ifnull        235
+       191: aload_2
+       192: aload_1
+       193: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       196: ifne          235
+       199: ldc           #62                 // String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+       201: iconst_3
+       202: anewarray     #63                 // class java/lang/Object
+       205: dup
+       206: iconst_0
+       207: aload_1
+       208: aastore
+       209: dup
+       210: iconst_1
+       211: aload_2
+       212: aastore
+       213: dup
+       214: iconst_2
+       215: aload_3
+       216: aastore
+       217: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       220: astore        4
+       222: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       225: dup
+       226: aload         4
+       228: aload_1
+       229: aload_2
+       230: aload_3
+       231: invokespecial #65                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       234: athrow
+       235: aload_3
+       236: ifnull        292
+       239: aload_3
+       240: ldc           #58                 // String UTF-16
+       242: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       245: ifne          292
+       248: aload_3
+       249: aload_1
+       250: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       253: ifne          292
+       256: ldc           #62                 // String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+       258: iconst_3
+       259: anewarray     #63                 // class java/lang/Object
+       262: dup
+       263: iconst_0
+       264: aload_1
+       265: aastore
+       266: dup
+       267: iconst_1
+       268: aload_2
+       269: aastore
+       270: dup
+       271: iconst_2
+       272: aload_3
+       273: aastore
+       274: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       277: astore        4
+       279: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       282: dup
+       283: aload         4
+       285: aload_1
+       286: aload_2
+       287: aload_3
+       288: invokespecial #65                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       291: athrow
+       292: aload_1
+       293: areturn
+       294: aload_1
+       295: ldc           #66                 // String UTF-32BE
+       297: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       300: ifne          312
+       303: aload_1
+       304: ldc           #67                 // String UTF-32LE
+       306: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       309: ifeq          419
+       312: aload_2
+       313: ifnull        360
+       316: aload_2
+       317: aload_1
+       318: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       321: ifne          360
+       324: ldc           #62                 // String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+       326: iconst_3
+       327: anewarray     #63                 // class java/lang/Object
+       330: dup
+       331: iconst_0
+       332: aload_1
+       333: aastore
+       334: dup
+       335: iconst_1
+       336: aload_2
+       337: aastore
+       338: dup
+       339: iconst_2
+       340: aload_3
+       341: aastore
+       342: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       345: astore        4
+       347: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       350: dup
+       351: aload         4
+       353: aload_1
+       354: aload_2
+       355: aload_3
+       356: invokespecial #65                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       359: athrow
+       360: aload_3
+       361: ifnull        417
+       364: aload_3
+       365: ldc           #68                 // String UTF-32
+       367: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       370: ifne          417
+       373: aload_3
+       374: aload_1
+       375: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       378: ifne          417
+       381: ldc           #62                 // String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] encoding mismatch
+       383: iconst_3
+       384: anewarray     #63                 // class java/lang/Object
+       387: dup
+       388: iconst_0
+       389: aload_1
+       390: aastore
+       391: dup
+       392: iconst_1
+       393: aload_2
+       394: aastore
+       395: dup
+       396: iconst_2
+       397: aload_3
+       398: aastore
+       399: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       402: astore        4
+       404: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       407: dup
+       408: aload         4
+       410: aload_1
+       411: aload_2
+       412: aload_3
+       413: invokespecial #65                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       416: athrow
+       417: aload_1
+       418: areturn
+       419: ldc           #69                 // String Invalid encoding, BOM [{0}] XML guess [{1}] XML prolog [{2}] unknown BOM
+       421: iconst_3
+       422: anewarray     #63                 // class java/lang/Object
+       425: dup
+       426: iconst_0
+       427: aload_1
+       428: aastore
+       429: dup
+       430: iconst_1
+       431: aload_2
+       432: aastore
+       433: dup
+       434: iconst_2
+       435: aload_3
+       436: aastore
+       437: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       440: astore        4
+       442: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       445: dup
+       446: aload         4
+       448: aload_1
+       449: aload_2
+       450: aload_3
+       451: invokespecial #65                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       454: athrow
+      LineNumberTable:
+        line 518: 0
+        line 519: 4
+        line 520: 12
+        line 522: 29
+        line 523: 41
+        line 524: 56
+        line 526: 58
+        line 530: 60
+        line 531: 69
+        line 532: 82
+        line 533: 105
+        line 535: 118
+        line 536: 131
+        line 537: 154
+        line 539: 167
+        line 543: 169
+        line 544: 187
+        line 545: 199
+        line 546: 222
+        line 548: 235
+        line 549: 256
+        line 550: 279
+        line 552: 292
+        line 556: 294
+        line 557: 312
+        line 558: 324
+        line 559: 347
+        line 561: 360
+        line 562: 381
+        line 563: 404
+        line 565: 417
+        line 569: 419
+        line 570: 442
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          105      13     4   msg   Ljava/lang/String;
+          154      13     4   msg   Ljava/lang/String;
+          222      13     4   msg   Ljava/lang/String;
+          279      13     4   msg   Ljava/lang/String;
+          347      13     4   msg   Ljava/lang/String;
+          404      13     4   msg   Ljava/lang/String;
+            0     455     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0     455     1 bomEnc   Ljava/lang/String;
+            0     455     2 xmlGuessEnc   Ljava/lang/String;
+            0     455     3 xmlEnc   Ljava/lang/String;
+          442      13     4   msg   Ljava/lang/String;
+      StackMapTable: number_of_entries = 18
+        frame_type = 12 /* same */
+        frame_type = 11 /* same */
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 0 /* same */
+        frame_type = 26 /* same */
+        frame_type = 1 /* same */
+        frame_type = 1 /* same */
+        frame_type = 57 /* same */
+        frame_type = 48 /* same */
+        frame_type = 1 /* same */
+        frame_type = 17 /* same */
+        frame_type = 47 /* same */
+        frame_type = 56 /* same */
+        frame_type = 1 /* same */
+        frame_type = 17 /* same */
+        frame_type = 47 /* same */
+        frame_type = 56 /* same */
+        frame_type = 1 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  java.lang.String calculateHttpEncoding(java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+    flags: (0x0000)
+    Code:
+      stack=8, locals=11, args_size=6
+         0: iload         5
+         2: ifeq          13
+         5: aload         4
+         7: ifnull        13
+        10: aload         4
+        12: areturn
+        13: aload_1
+        14: invokestatic  #70                 // Method getContentTypeMime:(Ljava/lang/String;)Ljava/lang/String;
+        17: astore        6
+        19: aload_1
+        20: invokestatic  #71                 // Method getContentTypeEncoding:(Ljava/lang/String;)Ljava/lang/String;
+        23: astore        7
+        25: aload         6
+        27: invokestatic  #72                 // Method isAppXml:(Ljava/lang/String;)Z
+        30: istore        8
+        32: aload         6
+        34: invokestatic  #73                 // Method isTextXml:(Ljava/lang/String;)Z
+        37: istore        9
+        39: iload         8
+        41: ifne          101
+        44: iload         9
+        46: ifne          101
+        49: ldc           #74                 // String Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], Invalid MIME
+        51: iconst_5
+        52: anewarray     #63                 // class java/lang/Object
+        55: dup
+        56: iconst_0
+        57: aload         6
+        59: aastore
+        60: dup
+        61: iconst_1
+        62: aload         7
+        64: aastore
+        65: dup
+        66: iconst_2
+        67: aload_2
+        68: aastore
+        69: dup
+        70: iconst_3
+        71: aload_3
+        72: aastore
+        73: dup
+        74: iconst_4
+        75: aload         4
+        77: aastore
+        78: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        81: astore        10
+        83: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+        86: dup
+        87: aload         10
+        89: aload         6
+        91: aload         7
+        93: aload_2
+        94: aload_3
+        95: aload         4
+        97: invokespecial #75                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       100: athrow
+       101: aload         7
+       103: ifnonnull     137
+       106: iload         8
+       108: ifeq          120
+       111: aload_0
+       112: aload_2
+       113: aload_3
+       114: aload         4
+       116: invokevirtual #40                 // Method calculateRawEncoding:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+       119: areturn
+       120: aload_0
+       121: getfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+       124: ifnonnull     132
+       127: ldc           #76                 // String US-ASCII
+       129: goto          136
+       132: aload_0
+       133: getfield      #2                  // Field defaultEncoding:Ljava/lang/String;
+       136: areturn
+       137: aload         7
+       139: ldc           #60                 // String UTF-16BE
+       141: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       144: ifne          157
+       147: aload         7
+       149: ldc           #61                 // String UTF-16LE
+       151: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       154: ifeq          216
+       157: aload_2
+       158: ifnull        213
+       161: ldc           #77                 // String Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], BOM must be NULL
+       163: iconst_5
+       164: anewarray     #63                 // class java/lang/Object
+       167: dup
+       168: iconst_0
+       169: aload         6
+       171: aastore
+       172: dup
+       173: iconst_1
+       174: aload         7
+       176: aastore
+       177: dup
+       178: iconst_2
+       179: aload_2
+       180: aastore
+       181: dup
+       182: iconst_3
+       183: aload_3
+       184: aastore
+       185: dup
+       186: iconst_4
+       187: aload         4
+       189: aastore
+       190: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       193: astore        10
+       195: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       198: dup
+       199: aload         10
+       201: aload         6
+       203: aload         7
+       205: aload_2
+       206: aload_3
+       207: aload         4
+       209: invokespecial #75                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       212: athrow
+       213: aload         7
+       215: areturn
+       216: aload         7
+       218: ldc           #58                 // String UTF-16
+       220: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       223: ifeq          293
+       226: aload_2
+       227: ifnull        241
+       230: aload_2
+       231: ldc           #58                 // String UTF-16
+       233: invokevirtual #45                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+       236: ifeq          241
+       239: aload_2
+       240: areturn
+       241: ldc           #78                 // String Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], encoding mismatch
+       243: iconst_5
+       244: anewarray     #63                 // class java/lang/Object
+       247: dup
+       248: iconst_0
+       249: aload         6
+       251: aastore
+       252: dup
+       253: iconst_1
+       254: aload         7
+       256: aastore
+       257: dup
+       258: iconst_2
+       259: aload_2
+       260: aastore
+       261: dup
+       262: iconst_3
+       263: aload_3
+       264: aastore
+       265: dup
+       266: iconst_4
+       267: aload         4
+       269: aastore
+       270: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       273: astore        10
+       275: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       278: dup
+       279: aload         10
+       281: aload         6
+       283: aload         7
+       285: aload_2
+       286: aload_3
+       287: aload         4
+       289: invokespecial #75                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       292: athrow
+       293: aload         7
+       295: ldc           #66                 // String UTF-32BE
+       297: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       300: ifne          313
+       303: aload         7
+       305: ldc           #67                 // String UTF-32LE
+       307: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       310: ifeq          372
+       313: aload_2
+       314: ifnull        369
+       317: ldc           #77                 // String Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], BOM must be NULL
+       319: iconst_5
+       320: anewarray     #63                 // class java/lang/Object
+       323: dup
+       324: iconst_0
+       325: aload         6
+       327: aastore
+       328: dup
+       329: iconst_1
+       330: aload         7
+       332: aastore
+       333: dup
+       334: iconst_2
+       335: aload_2
+       336: aastore
+       337: dup
+       338: iconst_3
+       339: aload_3
+       340: aastore
+       341: dup
+       342: iconst_4
+       343: aload         4
+       345: aastore
+       346: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       349: astore        10
+       351: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       354: dup
+       355: aload         10
+       357: aload         6
+       359: aload         7
+       361: aload_2
+       362: aload_3
+       363: aload         4
+       365: invokespecial #75                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       368: athrow
+       369: aload         7
+       371: areturn
+       372: aload         7
+       374: ldc           #68                 // String UTF-32
+       376: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       379: ifeq          449
+       382: aload_2
+       383: ifnull        397
+       386: aload_2
+       387: ldc           #68                 // String UTF-32
+       389: invokevirtual #45                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+       392: ifeq          397
+       395: aload_2
+       396: areturn
+       397: ldc           #78                 // String Invalid encoding, CT-MIME [{0}] CT-Enc [{1}] BOM [{2}] XML guess [{3}] XML prolog [{4}], encoding mismatch
+       399: iconst_5
+       400: anewarray     #63                 // class java/lang/Object
+       403: dup
+       404: iconst_0
+       405: aload         6
+       407: aastore
+       408: dup
+       409: iconst_1
+       410: aload         7
+       412: aastore
+       413: dup
+       414: iconst_2
+       415: aload_2
+       416: aastore
+       417: dup
+       418: iconst_3
+       419: aload_3
+       420: aastore
+       421: dup
+       422: iconst_4
+       423: aload         4
+       425: aastore
+       426: invokestatic  #64                 // Method java/text/MessageFormat.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       429: astore        10
+       431: new           #41                 // class org/apache/commons/io/input/XmlStreamReaderException
+       434: dup
+       435: aload         10
+       437: aload         6
+       439: aload         7
+       441: aload_2
+       442: aload_3
+       443: aload         4
+       445: invokespecial #75                 // Method org/apache/commons/io/input/XmlStreamReaderException."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+       448: athrow
+       449: aload         7
+       451: areturn
+      LineNumberTable:
+        line 591: 0
+        line 592: 10
+        line 596: 13
+        line 597: 19
+        line 598: 25
+        line 599: 32
+        line 602: 39
+        line 603: 49
+        line 604: 83
+        line 608: 101
+        line 609: 106
+        line 610: 111
+        line 612: 120
+        line 616: 137
+        line 617: 157
+        line 618: 161
+        line 619: 195
+        line 621: 213
+        line 625: 216
+        line 626: 226
+        line 627: 239
+        line 629: 241
+        line 630: 275
+        line 634: 293
+        line 635: 313
+        line 636: 317
+        line 637: 351
+        line 639: 369
+        line 643: 372
+        line 644: 382
+        line 645: 395
+        line 647: 397
+        line 648: 431
+        line 651: 449
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           83      18    10   msg   Ljava/lang/String;
+          195      18    10   msg   Ljava/lang/String;
+          275      18    10   msg   Ljava/lang/String;
+          351      18    10   msg   Ljava/lang/String;
+          431      18    10   msg   Ljava/lang/String;
+            0     452     0  this   Lorg/apache/commons/io/input/XmlStreamReader;
+            0     452     1 httpContentType   Ljava/lang/String;
+            0     452     2 bomEnc   Ljava/lang/String;
+            0     452     3 xmlGuessEnc   Ljava/lang/String;
+            0     452     4 xmlEnc   Ljava/lang/String;
+            0     452     5 lenient   Z
+           19     433     6 cTMime   Ljava/lang/String;
+           25     427     7 cTEnc   Ljava/lang/String;
+           32     420     8 appXml   Z
+           39     413     9 textXml   Z
+      StackMapTable: number_of_entries = 16
+        frame_type = 13 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 87
+          locals = [ class org/apache/commons/io/input/XmlStreamReader, class java/lang/String, class java/lang/String, class java/lang/String, class java/lang/String, int, class java/lang/String, class java/lang/String, int, int ]
+          stack = []
+        frame_type = 18 /* same */
+        frame_type = 11 /* same */
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 0 /* same */
+        frame_type = 19 /* same */
+        frame_type = 55 /* same */
+        frame_type = 2 /* same */
+        frame_type = 24 /* same */
+        frame_type = 51 /* same */
+        frame_type = 19 /* same */
+        frame_type = 55 /* same */
+        frame_type = 2 /* same */
+        frame_type = 24 /* same */
+        frame_type = 51 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  static java.lang.String getContentTypeMime(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: aconst_null
+         1: astore_1
+         2: aload_0
+         3: ifnull        34
+         6: aload_0
+         7: ldc           #79                 // String ;
+         9: invokevirtual #80                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+        12: istore_2
+        13: iload_2
+        14: iflt          27
+        17: aload_0
+        18: iconst_0
+        19: iload_2
+        20: invokevirtual #81                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+        23: astore_1
+        24: goto          29
+        27: aload_0
+        28: astore_1
+        29: aload_1
+        30: invokevirtual #82                 // Method java/lang/String.trim:()Ljava/lang/String;
+        33: astore_1
+        34: aload_1
+        35: areturn
+      LineNumberTable:
+        line 661: 0
+        line 662: 2
+        line 663: 6
+        line 664: 13
+        line 665: 17
+        line 667: 27
+        line 669: 29
+        line 671: 34
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           13      21     2     i   I
+            0      36     0 httpContentType   Ljava/lang/String;
+            2      34     1  mime   Ljava/lang/String;
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 27
+          locals = [ class java/lang/String, int ]
+        frame_type = 1 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  static java.lang.String getContentTypeEncoding(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=5, args_size=1
+         0: aconst_null
+         1: astore_1
+         2: aload_0
+         3: ifnull        70
+         6: aload_0
+         7: ldc           #79                 // String ;
+         9: invokevirtual #80                 // Method java/lang/String.indexOf:(Ljava/lang/String;)I
+        12: istore_2
+        13: iload_2
+        14: iconst_m1
+        15: if_icmple     70
+        18: aload_0
+        19: iload_2
+        20: iconst_1
+        21: iadd
+        22: invokevirtual #47                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+        25: astore_3
+        26: getstatic     #83                 // Field CHARSET_PATTERN:Ljava/util/regex/Pattern;
+        29: aload_3
+        30: invokevirtual #84                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+        33: astore        4
+        35: aload         4
+        37: invokevirtual #85                 // Method java/util/regex/Matcher.find:()Z
+        40: ifeq          52
+        43: aload         4
+        45: iconst_1
+        46: invokevirtual #86                 // Method java/util/regex/Matcher.group:(I)Ljava/lang/String;
+        49: goto          53
+        52: aconst_null
+        53: astore_1
+        54: aload_1
+        55: ifnull        68
+        58: aload_1
+        59: getstatic     #87                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+        62: invokevirtual #88                 // Method java/lang/String.toUpperCase:(Ljava/util/Locale;)Ljava/lang/String;
+        65: goto          69
+        68: aconst_null
+        69: astore_1
+        70: aload_1
+        71: areturn
+      LineNumberTable:
+        line 685: 0
+        line 686: 2
+        line 687: 6
+        line 688: 13
+        line 689: 18
+        line 690: 26
+        line 691: 35
+        line 692: 54
+        line 695: 70
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26      44     3 postMime   Ljava/lang/String;
+           35      35     4     m   Ljava/util/regex/Matcher;
+           13      57     2     i   I
+            0      72     0 httpContentType   Ljava/lang/String;
+            2      70     1 encoding   Ljava/lang/String;
+      StackMapTable: number_of_entries = 5
+        frame_type = 255 /* full_frame */
+          offset_delta = 52
+          locals = [ class java/lang/String, class java/lang/String, int, class java/lang/String, class java/util/regex/Matcher ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 14 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 248 /* chop */
+          offset_delta = 0
+
+  private static java.lang.String getXmlProlog(java.io.InputStream, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/io/InputStream;Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=8, locals=14, args_size=2
+         0: aconst_null
+         1: astore_2
+         2: aload_1
+         3: ifnull        284
+         6: sipush        8192
+         9: newarray       byte
+        11: astore_3
+        12: aload_0
+        13: sipush        8192
+        16: invokevirtual #89                 // Method java/io/InputStream.mark:(I)V
+        19: iconst_0
+        20: istore        4
+        22: sipush        8192
+        25: istore        5
+        27: aload_0
+        28: aload_3
+        29: iload         4
+        31: iload         5
+        33: invokevirtual #90                 // Method java/io/InputStream.read:([BII)I
+        36: istore        6
+        38: iconst_m1
+        39: istore        7
+        41: ldc           #91                 // String
+        43: astore        8
+        45: iload         6
+        47: iconst_m1
+        48: if_icmpeq     116
+        51: iload         7
+        53: iconst_m1
+        54: if_icmpne     116
+        57: iload         4
+        59: sipush        8192
+        62: if_icmpge     116
+        65: iload         4
+        67: iload         6
+        69: iadd
+        70: istore        4
+        72: iload         5
+        74: iload         6
+        76: isub
+        77: istore        5
+        79: aload_0
+        80: aload_3
+        81: iload         4
+        83: iload         5
+        85: invokevirtual #90                 // Method java/io/InputStream.read:([BII)I
+        88: istore        6
+        90: new           #92                 // class java/lang/String
+        93: dup
+        94: aload_3
+        95: iconst_0
+        96: iload         4
+        98: aload_1
+        99: invokespecial #93                 // Method java/lang/String."<init>":([BIILjava/lang/String;)V
+       102: astore        8
+       104: aload         8
+       106: bipush        62
+       108: invokevirtual #94                 // Method java/lang/String.indexOf:(I)I
+       111: istore        7
+       113: goto          45
+       116: iload         7
+       118: iconst_m1
+       119: if_icmpne     171
+       122: iload         6
+       124: iconst_m1
+       125: if_icmpne     138
+       128: new           #95                 // class java/io/IOException
+       131: dup
+       132: ldc           #96                 // String Unexpected end of XML stream
+       134: invokespecial #97                 // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+       137: athrow
+       138: new           #95                 // class java/io/IOException
+       141: dup
+       142: new           #48                 // class java/lang/StringBuilder
+       145: dup
+       146: invokespecial #49                 // Method java/lang/StringBuilder."<init>":()V
+       149: ldc           #98                 // String XML prolog or ROOT element not found on first
+       151: invokevirtual #51                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       154: iload         4
+       156: invokevirtual #99                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       159: ldc           #100                // String  bytes
+       161: invokevirtual #51                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       164: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       167: invokespecial #97                 // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+       170: athrow
+       171: iload         4
+       173: istore        9
+       175: iload         9
+       177: ifle          284
+       180: aload_0
+       181: invokevirtual #101                // Method java/io/InputStream.reset:()V
+       184: new           #102                // class java/io/BufferedReader
+       187: dup
+       188: new           #103                // class java/io/StringReader
+       191: dup
+       192: aload         8
+       194: iconst_0
+       195: iload         7
+       197: iconst_1
+       198: iadd
+       199: invokevirtual #81                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+       202: invokespecial #104                // Method java/io/StringReader."<init>":(Ljava/lang/String;)V
+       205: invokespecial #105                // Method java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+       208: astore        10
+       210: new           #106                // class java/lang/StringBuffer
+       213: dup
+       214: invokespecial #107                // Method java/lang/StringBuffer."<init>":()V
+       217: astore        11
+       219: aload         10
+       221: invokevirtual #108                // Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+       224: dup
+       225: astore        12
+       227: ifnull        241
+       230: aload         11
+       232: aload         12
+       234: invokevirtual #109                // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+       237: pop
+       238: goto          219
+       241: getstatic     #110                // Field ENCODING_PATTERN:Ljava/util/regex/Pattern;
+       244: aload         11
+       246: invokevirtual #84                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+       249: astore        13
+       251: aload         13
+       253: invokevirtual #85                 // Method java/util/regex/Matcher.find:()Z
+       256: ifeq          284
+       259: aload         13
+       261: iconst_1
+       262: invokevirtual #86                 // Method java/util/regex/Matcher.group:(I)Ljava/lang/String;
+       265: getstatic     #87                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+       268: invokevirtual #88                 // Method java/lang/String.toUpperCase:(Ljava/util/Locale;)Ljava/lang/String;
+       271: astore_2
+       272: aload_2
+       273: iconst_1
+       274: aload_2
+       275: invokevirtual #46                 // Method java/lang/String.length:()I
+       278: iconst_1
+       279: isub
+       280: invokevirtual #81                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+       283: astore_2
+       284: aload_2
+       285: areturn
+      LineNumberTable:
+        line 715: 0
+        line 716: 2
+        line 717: 6
+        line 718: 12
+        line 719: 19
+        line 720: 22
+        line 721: 27
+        line 722: 38
+        line 723: 41
+        line 724: 45
+        line 725: 65
+        line 726: 72
+        line 727: 79
+        line 728: 90
+        line 729: 104
+        line 731: 116
+        line 732: 122
+        line 733: 128
+        line 735: 138
+        line 739: 171
+        line 740: 175
+        line 741: 180
+        line 742: 184
+        line 743: 199
+        line 744: 210
+        line 746: 219
+        line 747: 230
+        line 749: 241
+        line 750: 251
+        line 751: 259
+        line 752: 272
+        line 756: 284
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          210      74    10 bReader   Ljava/io/BufferedReader;
+          219      65    11 prolog   Ljava/lang/StringBuffer;
+          227      57    12  line   Ljava/lang/String;
+          251      33    13     m   Ljava/util/regex/Matcher;
+           12     272     3 bytes   [B
+           22     262     4 offset   I
+           27     257     5   max   I
+           38     246     6     c   I
+           41     243     7 firstGT   I
+           45     239     8 xmlProlog   Ljava/lang/String;
+          175     109     9 bytesRead   I
+            0     286     0 inputStream   Ljava/io/InputStream;
+            0     286     1 guessedEnc   Ljava/lang/String;
+            2     284     2 encoding   Ljava/lang/String;
+      StackMapTable: number_of_entries = 7
+        frame_type = 255 /* full_frame */
+          offset_delta = 45
+          locals = [ class java/io/InputStream, class java/lang/String, class java/lang/String, class "[B", int, int, int, int, class java/lang/String ]
+          stack = []
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 70
+        frame_type = 21 /* same */
+        frame_type = 32 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 47
+          locals = [ int, class java/io/BufferedReader, class java/lang/StringBuffer ]
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class java/lang/String ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 42
+          locals = [ class java/io/InputStream, class java/lang/String, class java/lang/String ]
+          stack = []
+    Exceptions:
+      throws java.io.IOException
+
+  static boolean isAppXml(java.lang.String);
+    descriptor: (Ljava/lang/String;)Z
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: ifnull        53
+         4: aload_0
+         5: ldc           #111                // String application/xml
+         7: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        10: ifne          49
+        13: aload_0
+        14: ldc           #112                // String application/xml-dtd
+        16: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        19: ifne          49
+        22: aload_0
+        23: ldc           #113                // String application/xml-external-parsed-entity
+        25: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        28: ifne          49
+        31: aload_0
+        32: ldc           #114                // String application/
+        34: invokevirtual #45                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+        37: ifeq          53
+        40: aload_0
+        41: ldc           #115                // String +xml
+        43: invokevirtual #116                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+        46: ifeq          53
+        49: iconst_1
+        50: goto          54
+        53: iconst_0
+        54: ireturn
+      LineNumberTable:
+        line 767: 0
+        line 768: 7
+        line 769: 16
+        line 770: 25
+        line 771: 34
+        line 767: 54
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      55     0  mime   Ljava/lang/String;
+      StackMapTable: number_of_entries = 3
+        frame_type = 49 /* same */
+        frame_type = 3 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  static boolean isTextXml(java.lang.String);
+    descriptor: (Ljava/lang/String;)Z
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: ifnull        44
+         4: aload_0
+         5: ldc           #50                 // String text/xml
+         7: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        10: ifne          40
+        13: aload_0
+        14: ldc           #117                // String text/xml-external-parsed-entity
+        16: invokevirtual #59                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        19: ifne          40
+        22: aload_0
+        23: ldc           #118                // String text/
+        25: invokevirtual #45                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+        28: ifeq          44
+        31: aload_0
+        32: ldc           #115                // String +xml
+        34: invokevirtual #116                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+        37: ifeq          44
+        40: iconst_1
+        41: goto          45
+        44: iconst_0
+        45: ireturn
+      LineNumberTable:
+        line 782: 0
+        line 783: 7
+        line 784: 16
+        line 785: 25
+        line 782: 45
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      46     0  mime   Ljava/lang/String;
+      StackMapTable: number_of_entries = 3
+        frame_type = 40 /* same */
+        frame_type = 3 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=10, locals=0, args_size=0
+         0: iconst_5
+         1: anewarray     #119                // class org/apache/commons/io/ByteOrderMark
+         4: dup
+         5: iconst_0
+         6: getstatic     #120                // Field org/apache/commons/io/ByteOrderMark.UTF_8:Lorg/apache/commons/io/ByteOrderMark;
+         9: aastore
+        10: dup
+        11: iconst_1
+        12: getstatic     #121                // Field org/apache/commons/io/ByteOrderMark.UTF_16BE:Lorg/apache/commons/io/ByteOrderMark;
+        15: aastore
+        16: dup
+        17: iconst_2
+        18: getstatic     #122                // Field org/apache/commons/io/ByteOrderMark.UTF_16LE:Lorg/apache/commons/io/ByteOrderMark;
+        21: aastore
+        22: dup
+        23: iconst_3
+        24: getstatic     #123                // Field org/apache/commons/io/ByteOrderMark.UTF_32BE:Lorg/apache/commons/io/ByteOrderMark;
+        27: aastore
+        28: dup
+        29: iconst_4
+        30: getstatic     #124                // Field org/apache/commons/io/ByteOrderMark.UTF_32LE:Lorg/apache/commons/io/ByteOrderMark;
+        33: aastore
+        34: putstatic     #17                 // Field BOMS:[Lorg/apache/commons/io/ByteOrderMark;
+        37: bipush        6
+        39: anewarray     #119                // class org/apache/commons/io/ByteOrderMark
+        42: dup
+        43: iconst_0
+        44: new           #119                // class org/apache/commons/io/ByteOrderMark
+        47: dup
+        48: ldc           #57                 // String UTF-8
+        50: iconst_4
+        51: newarray       int
+        53: dup
+        54: iconst_0
+        55: bipush        60
+        57: iastore
+        58: dup
+        59: iconst_1
+        60: bipush        63
+        62: iastore
+        63: dup
+        64: iconst_2
+        65: bipush        120
+        67: iastore
+        68: dup
+        69: iconst_3
+        70: bipush        109
+        72: iastore
+        73: invokespecial #125                // Method org/apache/commons/io/ByteOrderMark."<init>":(Ljava/lang/String;[I)V
+        76: aastore
+        77: dup
+        78: iconst_1
+        79: new           #119                // class org/apache/commons/io/ByteOrderMark
+        82: dup
+        83: ldc           #60                 // String UTF-16BE
+        85: iconst_4
+        86: newarray       int
+        88: dup
+        89: iconst_0
+        90: iconst_0
+        91: iastore
+        92: dup
+        93: iconst_1
+        94: bipush        60
+        96: iastore
+        97: dup
+        98: iconst_2
+        99: iconst_0
+       100: iastore
+       101: dup
+       102: iconst_3
+       103: bipush        63
+       105: iastore
+       106: invokespecial #125                // Method org/apache/commons/io/ByteOrderMark."<init>":(Ljava/lang/String;[I)V
+       109: aastore
+       110: dup
+       111: iconst_2
+       112: new           #119                // class org/apache/commons/io/ByteOrderMark
+       115: dup
+       116: ldc           #61                 // String UTF-16LE
+       118: iconst_4
+       119: newarray       int
+       121: dup
+       122: iconst_0
+       123: bipush        60
+       125: iastore
+       126: dup
+       127: iconst_1
+       128: iconst_0
+       129: iastore
+       130: dup
+       131: iconst_2
+       132: bipush        63
+       134: iastore
+       135: dup
+       136: iconst_3
+       137: iconst_0
+       138: iastore
+       139: invokespecial #125                // Method org/apache/commons/io/ByteOrderMark."<init>":(Ljava/lang/String;[I)V
+       142: aastore
+       143: dup
+       144: iconst_3
+       145: new           #119                // class org/apache/commons/io/ByteOrderMark
+       148: dup
+       149: ldc           #66                 // String UTF-32BE
+       151: bipush        16
+       153: newarray       int
+       155: dup
+       156: iconst_0
+       157: iconst_0
+       158: iastore
+       159: dup
+       160: iconst_1
+       161: iconst_0
+       162: iastore
+       163: dup
+       164: iconst_2
+       165: iconst_0
+       166: iastore
+       167: dup
+       168: iconst_3
+       169: bipush        60
+       171: iastore
+       172: dup
+       173: iconst_4
+       174: iconst_0
+       175: iastore
+       176: dup
+       177: iconst_5
+       178: iconst_0
+       179: iastore
+       180: dup
+       181: bipush        6
+       183: iconst_0
+       184: iastore
+       185: dup
+       186: bipush        7
+       188: bipush        63
+       190: iastore
+       191: dup
+       192: bipush        8
+       194: iconst_0
+       195: iastore
+       196: dup
+       197: bipush        9
+       199: iconst_0
+       200: iastore
+       201: dup
+       202: bipush        10
+       204: iconst_0
+       205: iastore
+       206: dup
+       207: bipush        11
+       209: bipush        120
+       211: iastore
+       212: dup
+       213: bipush        12
+       215: iconst_0
+       216: iastore
+       217: dup
+       218: bipush        13
+       220: iconst_0
+       221: iastore
+       222: dup
+       223: bipush        14
+       225: iconst_0
+       226: iastore
+       227: dup
+       228: bipush        15
+       230: bipush        109
+       232: iastore
+       233: invokespecial #125                // Method org/apache/commons/io/ByteOrderMark."<init>":(Ljava/lang/String;[I)V
+       236: aastore
+       237: dup
+       238: iconst_4
+       239: new           #119                // class org/apache/commons/io/ByteOrderMark
+       242: dup
+       243: ldc           #67                 // String UTF-32LE
+       245: bipush        16
+       247: newarray       int
+       249: dup
+       250: iconst_0
+       251: bipush        60
+       253: iastore
+       254: dup
+       255: iconst_1
+       256: iconst_0
+       257: iastore
+       258: dup
+       259: iconst_2
+       260: iconst_0
+       261: iastore
+       262: dup
+       263: iconst_3
+       264: iconst_0
+       265: iastore
+       266: dup
+       267: iconst_4
+       268: bipush        63
+       270: iastore
+       271: dup
+       272: iconst_5
+       273: iconst_0
+       274: iastore
+       275: dup
+       276: bipush        6
+       278: iconst_0
+       279: iastore
+       280: dup
+       281: bipush        7
+       283: iconst_0
+       284: iastore
+       285: dup
+       286: bipush        8
+       288: bipush        120
+       290: iastore
+       291: dup
+       292: bipush        9
+       294: iconst_0
+       295: iastore
+       296: dup
+       297: bipush        10
+       299: iconst_0
+       300: iastore
+       301: dup
+       302: bipush        11
+       304: iconst_0
+       305: iastore
+       306: dup
+       307: bipush        12
+       309: bipush        109
+       311: iastore
+       312: dup
+       313: bipush        13
+       315: iconst_0
+       316: iastore
+       317: dup
+       318: bipush        14
+       320: iconst_0
+       321: iastore
+       322: dup
+       323: bipush        15
+       325: iconst_0
+       326: iastore
+       327: invokespecial #125                // Method org/apache/commons/io/ByteOrderMark."<init>":(Ljava/lang/String;[I)V
+       330: aastore
+       331: dup
+       332: iconst_5
+       333: new           #119                // class org/apache/commons/io/ByteOrderMark
+       336: dup
+       337: ldc           #126                // String CP1047
+       339: iconst_4
+       340: newarray       int
+       342: dup
+       343: iconst_0
+       344: bipush        76
+       346: iastore
+       347: dup
+       348: iconst_1
+       349: bipush        111
+       351: iastore
+       352: dup
+       353: iconst_2
+       354: sipush        167
+       357: iastore
+       358: dup
+       359: iconst_3
+       360: sipush        148
+       363: iastore
+       364: invokespecial #125                // Method org/apache/commons/io/ByteOrderMark."<init>":(Ljava/lang/String;[I)V
+       367: aastore
+       368: putstatic     #19                 // Field XML_GUESS_BYTES:[Lorg/apache/commons/io/ByteOrderMark;
+       371: ldc           #127                // String charset=[\"\']?([.[^; \"\']]*)[\"\']?
+       373: invokestatic  #128                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+       376: putstatic     #83                 // Field CHARSET_PATTERN:Ljava/util/regex/Pattern;
+       379: ldc           #129                // String <\\?xml.*encoding[\\s]*=[\\s]*((?:\".[^\"]*\")|(?:\'.[^\']*\'))
+       381: bipush        8
+       383: invokestatic  #131                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;I)Ljava/util/regex/Pattern;
+       386: putstatic     #110                // Field ENCODING_PATTERN:Ljava/util/regex/Pattern;
+       389: return
+      LineNumberTable:
+        line 93: 0
+        line 102: 37
+        line 674: 371
+        line 675: 373
+        line 701: 379
+}
+SourceFile: "XmlStreamReader.java"

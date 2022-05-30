@@ -1,0 +1,1488 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/apache/commons/io/input/Tailer.class
+  Last modified May 29, 2022; size 8226 bytes
+  SHA-256 checksum 63a231c0bdb5c7fb5700f3fb562f3bd3fb1aaad85e478836782fe24d148cc9a2
+  Compiled from "Tailer.java"
+public class org.apache.commons.io.input.Tailer implements java.lang.Runnable
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // org/apache/commons/io/input/Tailer
+  super_class: #66                        // java/lang/Object
+  interfaces: 1, fields: 11, methods: 21, attributes: 1
+Constant pool:
+    #1 = Class              #159          // org/apache/commons/io/IOUtils
+    #2 = Class              #160          // org/apache/commons/io/input/Tailer
+    #3 = Long               1000l
+    #5 = Methodref          #2.#161       // org/apache/commons/io/input/Tailer."<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;J)V
+    #6 = Methodref          #2.#162       // org/apache/commons/io/input/Tailer."<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)V
+    #7 = Methodref          #2.#163       // org/apache/commons/io/input/Tailer."<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)V
+    #8 = Methodref          #2.#164       // org/apache/commons/io/input/Tailer."<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+    #9 = Fieldref           #2.#165       // org/apache/commons/io/input/Tailer.DEFAULT_CHARSET:Ljava/nio/charset/Charset;
+   #10 = Methodref          #2.#166       // org/apache/commons/io/input/Tailer."<init>":(Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+   #11 = Methodref          #66.#167      // java/lang/Object."<init>":()V
+   #12 = Fieldref           #2.#168       // org/apache/commons/io/input/Tailer.run:Z
+   #13 = Fieldref           #2.#169       // org/apache/commons/io/input/Tailer.file:Ljava/io/File;
+   #14 = Fieldref           #2.#170       // org/apache/commons/io/input/Tailer.delayMillis:J
+   #15 = Fieldref           #2.#171       // org/apache/commons/io/input/Tailer.end:Z
+   #16 = Fieldref           #2.#172       // org/apache/commons/io/input/Tailer.inbuf:[B
+   #17 = Fieldref           #2.#173       // org/apache/commons/io/input/Tailer.listener:Lorg/apache/commons/io/input/TailerListener;
+   #18 = InterfaceMethodref #174.#175     // org/apache/commons/io/input/TailerListener.init:(Lorg/apache/commons/io/input/Tailer;)V
+   #19 = Fieldref           #2.#176       // org/apache/commons/io/input/Tailer.reOpen:Z
+   #20 = Fieldref           #2.#177       // org/apache/commons/io/input/Tailer.charset:Ljava/nio/charset/Charset;
+   #21 = Methodref          #2.#178       // org/apache/commons/io/input/Tailer.create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+   #22 = Methodref          #2.#179       // org/apache/commons/io/input/Tailer.create:(Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+   #23 = Class              #180          // java/lang/Thread
+   #24 = Methodref          #23.#181      // java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+   #25 = Methodref          #23.#182      // java/lang/Thread.setDaemon:(Z)V
+   #26 = Methodref          #23.#183      // java/lang/Thread.start:()V
+   #27 = Methodref          #2.#184       // org/apache/commons/io/input/Tailer.create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)Lorg/apache/commons/io/input/Tailer;
+   #28 = Methodref          #2.#185       // org/apache/commons/io/input/Tailer.create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)Lorg/apache/commons/io/input/Tailer;
+   #29 = Methodref          #2.#186       // org/apache/commons/io/input/Tailer.getRun:()Z
+   #30 = Class              #187          // java/io/RandomAccessFile
+   #31 = String             #188          // r
+   #32 = Methodref          #30.#189      // java/io/RandomAccessFile."<init>":(Ljava/io/File;Ljava/lang/String;)V
+   #33 = Class              #190          // java/io/FileNotFoundException
+   #34 = InterfaceMethodref #174.#191     // org/apache/commons/io/input/TailerListener.fileNotFound:()V
+   #35 = Methodref          #23.#192      // java/lang/Thread.sleep:(J)V
+   #36 = Methodref          #193.#194     // java/io/File.length:()J
+   #37 = Methodref          #193.#195     // java/io/File.lastModified:()J
+   #38 = Methodref          #30.#196      // java/io/RandomAccessFile.seek:(J)V
+   #39 = Methodref          #197.#198     // org/apache/commons/io/FileUtils.isFileNewer:(Ljava/io/File;J)Z
+   #40 = InterfaceMethodref #174.#199     // org/apache/commons/io/input/TailerListener.fileRotated:()V
+   #41 = Methodref          #2.#200       // org/apache/commons/io/input/Tailer.readLines:(Ljava/io/RandomAccessFile;)J
+   #42 = Class              #201          // java/io/IOException
+   #43 = InterfaceMethodref #174.#202     // org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/Exception;)V
+   #44 = Methodref          #30.#203      // java/io/RandomAccessFile.close:()V
+   #45 = Class              #204          // java/lang/Throwable
+   #46 = Methodref          #45.#205      // java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+   #47 = Methodref          #2.#206       // org/apache/commons/io/input/Tailer.stop:()V
+   #48 = Class              #207          // java/lang/InterruptedException
+   #49 = Methodref          #23.#208      // java/lang/Thread.currentThread:()Ljava/lang/Thread;
+   #50 = Methodref          #23.#209      // java/lang/Thread.interrupt:()V
+   #51 = Class              #210          // java/lang/Exception
+   #52 = Class              #211          // java/io/ByteArrayOutputStream
+   #53 = Methodref          #52.#212      // java/io/ByteArrayOutputStream."<init>":(I)V
+   #54 = Methodref          #30.#213      // java/io/RandomAccessFile.getFilePointer:()J
+   #55 = Methodref          #30.#214      // java/io/RandomAccessFile.read:([B)I
+   #56 = Class              #215          // java/lang/String
+   #57 = Methodref          #52.#216      // java/io/ByteArrayOutputStream.toByteArray:()[B
+   #58 = Methodref          #56.#217      // java/lang/String."<init>":([BLjava/nio/charset/Charset;)V
+   #59 = InterfaceMethodref #174.#218     // org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/String;)V
+   #60 = Methodref          #52.#219      // java/io/ByteArrayOutputStream.reset:()V
+   #61 = Methodref          #52.#220      // java/io/ByteArrayOutputStream.write:(I)V
+   #62 = Class              #221          // org/apache/commons/io/input/TailerListenerAdapter
+   #63 = Methodref          #62.#222      // org/apache/commons/io/input/TailerListenerAdapter.endOfFileReached:()V
+   #64 = Methodref          #52.#203      // java/io/ByteArrayOutputStream.close:()V
+   #65 = Methodref          #223.#224     // java/nio/charset/Charset.defaultCharset:()Ljava/nio/charset/Charset;
+   #66 = Class              #225          // java/lang/Object
+   #67 = Class              #226          // java/lang/Runnable
+   #68 = Utf8               DEFAULT_DELAY_MILLIS
+   #69 = Utf8               I
+   #70 = Utf8               ConstantValue
+   #71 = Integer            1000
+   #72 = Utf8               RAF_MODE
+   #73 = Utf8               Ljava/lang/String;
+   #74 = Utf8               DEFAULT_CHARSET
+   #75 = Utf8               Ljava/nio/charset/Charset;
+   #76 = Utf8               inbuf
+   #77 = Utf8               [B
+   #78 = Utf8               file
+   #79 = Utf8               Ljava/io/File;
+   #80 = Utf8               charset
+   #81 = Utf8               delayMillis
+   #82 = Utf8               J
+   #83 = Utf8               end
+   #84 = Utf8               Z
+   #85 = Utf8               listener
+   #86 = Utf8               Lorg/apache/commons/io/input/TailerListener;
+   #87 = Utf8               reOpen
+   #88 = Utf8               run
+   #89 = Utf8               <init>
+   #90 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;)V
+   #91 = Utf8               Code
+   #92 = Utf8               LineNumberTable
+   #93 = Utf8               LocalVariableTable
+   #94 = Utf8               this
+   #95 = Utf8               Lorg/apache/commons/io/input/Tailer;
+   #96 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;J)V
+   #97 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)V
+   #98 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZ)V
+   #99 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)V
+  #100 = Utf8               bufSize
+  #101 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+  #102 = Utf8               (Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+  #103 = Utf8               create
+  #104 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)Lorg/apache/commons/io/input/Tailer;
+  #105 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+  #106 = Utf8               (Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+  #107 = Utf8               tailer
+  #108 = Utf8               thread
+  #109 = Utf8               Ljava/lang/Thread;
+  #110 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)Lorg/apache/commons/io/input/Tailer;
+  #111 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZ)Lorg/apache/commons/io/input/Tailer;
+  #112 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;J)Lorg/apache/commons/io/input/Tailer;
+  #113 = Utf8               (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;)Lorg/apache/commons/io/input/Tailer;
+  #114 = Utf8               getFile
+  #115 = Utf8               ()Ljava/io/File;
+  #116 = Utf8               getRun
+  #117 = Utf8               ()Z
+  #118 = Utf8               getDelay
+  #119 = Utf8               ()J
+  #120 = Utf8               ()V
+  #121 = Utf8               e
+  #122 = Utf8               Ljava/io/FileNotFoundException;
+  #123 = Utf8               ioe
+  #124 = Utf8               Ljava/io/IOException;
+  #125 = Utf8               save
+  #126 = Utf8               Ljava/io/RandomAccessFile;
+  #127 = Utf8               newer
+  #128 = Utf8               length
+  #129 = Utf8               last
+  #130 = Utf8               position
+  #131 = Utf8               Ljava/lang/InterruptedException;
+  #132 = Utf8               Ljava/lang/Exception;
+  #133 = Utf8               reader
+  #134 = Utf8               StackMapTable
+  #135 = Class              #187          // java/io/RandomAccessFile
+  #136 = Class              #190          // java/io/FileNotFoundException
+  #137 = Class              #160          // org/apache/commons/io/input/Tailer
+  #138 = Class              #204          // java/lang/Throwable
+  #139 = Class              #201          // java/io/IOException
+  #140 = Class              #207          // java/lang/InterruptedException
+  #141 = Class              #210          // java/lang/Exception
+  #142 = Utf8               stop
+  #143 = Utf8               readLines
+  #144 = Utf8               (Ljava/io/RandomAccessFile;)J
+  #145 = Utf8               ch
+  #146 = Utf8               B
+  #147 = Utf8               i
+  #148 = Utf8               num
+  #149 = Utf8               pos
+  #150 = Utf8               rePos
+  #151 = Utf8               seenCR
+  #152 = Utf8               lineBuf
+  #153 = Utf8               Ljava/io/ByteArrayOutputStream;
+  #154 = Class              #211          // java/io/ByteArrayOutputStream
+  #155 = Utf8               Exceptions
+  #156 = Utf8               <clinit>
+  #157 = Utf8               SourceFile
+  #158 = Utf8               Tailer.java
+  #159 = Utf8               org/apache/commons/io/IOUtils
+  #160 = Utf8               org/apache/commons/io/input/Tailer
+  #161 = NameAndType        #89:#96       // "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;J)V
+  #162 = NameAndType        #89:#97       // "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)V
+  #163 = NameAndType        #89:#99       // "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)V
+  #164 = NameAndType        #89:#101      // "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+  #165 = NameAndType        #74:#75       // DEFAULT_CHARSET:Ljava/nio/charset/Charset;
+  #166 = NameAndType        #89:#102      // "<init>":(Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+  #167 = NameAndType        #89:#120      // "<init>":()V
+  #168 = NameAndType        #88:#84       // run:Z
+  #169 = NameAndType        #78:#79       // file:Ljava/io/File;
+  #170 = NameAndType        #81:#82       // delayMillis:J
+  #171 = NameAndType        #83:#84       // end:Z
+  #172 = NameAndType        #76:#77       // inbuf:[B
+  #173 = NameAndType        #85:#86       // listener:Lorg/apache/commons/io/input/TailerListener;
+  #174 = Class              #227          // org/apache/commons/io/input/TailerListener
+  #175 = NameAndType        #228:#229     // init:(Lorg/apache/commons/io/input/Tailer;)V
+  #176 = NameAndType        #87:#84       // reOpen:Z
+  #177 = NameAndType        #80:#75       // charset:Ljava/nio/charset/Charset;
+  #178 = NameAndType        #103:#105     // create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+  #179 = NameAndType        #103:#106     // create:(Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+  #180 = Utf8               java/lang/Thread
+  #181 = NameAndType        #89:#230      // "<init>":(Ljava/lang/Runnable;)V
+  #182 = NameAndType        #231:#232     // setDaemon:(Z)V
+  #183 = NameAndType        #233:#120     // start:()V
+  #184 = NameAndType        #103:#104     // create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)Lorg/apache/commons/io/input/Tailer;
+  #185 = NameAndType        #103:#110     // create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)Lorg/apache/commons/io/input/Tailer;
+  #186 = NameAndType        #116:#117     // getRun:()Z
+  #187 = Utf8               java/io/RandomAccessFile
+  #188 = Utf8               r
+  #189 = NameAndType        #89:#234      // "<init>":(Ljava/io/File;Ljava/lang/String;)V
+  #190 = Utf8               java/io/FileNotFoundException
+  #191 = NameAndType        #235:#120     // fileNotFound:()V
+  #192 = NameAndType        #236:#237     // sleep:(J)V
+  #193 = Class              #238          // java/io/File
+  #194 = NameAndType        #128:#119     // length:()J
+  #195 = NameAndType        #239:#119     // lastModified:()J
+  #196 = NameAndType        #240:#237     // seek:(J)V
+  #197 = Class              #241          // org/apache/commons/io/FileUtils
+  #198 = NameAndType        #242:#243     // isFileNewer:(Ljava/io/File;J)Z
+  #199 = NameAndType        #244:#120     // fileRotated:()V
+  #200 = NameAndType        #143:#144     // readLines:(Ljava/io/RandomAccessFile;)J
+  #201 = Utf8               java/io/IOException
+  #202 = NameAndType        #245:#246     // handle:(Ljava/lang/Exception;)V
+  #203 = NameAndType        #247:#120     // close:()V
+  #204 = Utf8               java/lang/Throwable
+  #205 = NameAndType        #248:#249     // addSuppressed:(Ljava/lang/Throwable;)V
+  #206 = NameAndType        #142:#120     // stop:()V
+  #207 = Utf8               java/lang/InterruptedException
+  #208 = NameAndType        #250:#251     // currentThread:()Ljava/lang/Thread;
+  #209 = NameAndType        #252:#120     // interrupt:()V
+  #210 = Utf8               java/lang/Exception
+  #211 = Utf8               java/io/ByteArrayOutputStream
+  #212 = NameAndType        #89:#253      // "<init>":(I)V
+  #213 = NameAndType        #254:#119     // getFilePointer:()J
+  #214 = NameAndType        #255:#256     // read:([B)I
+  #215 = Utf8               java/lang/String
+  #216 = NameAndType        #257:#258     // toByteArray:()[B
+  #217 = NameAndType        #89:#259      // "<init>":([BLjava/nio/charset/Charset;)V
+  #218 = NameAndType        #245:#260     // handle:(Ljava/lang/String;)V
+  #219 = NameAndType        #261:#120     // reset:()V
+  #220 = NameAndType        #262:#253     // write:(I)V
+  #221 = Utf8               org/apache/commons/io/input/TailerListenerAdapter
+  #222 = NameAndType        #263:#120     // endOfFileReached:()V
+  #223 = Class              #264          // java/nio/charset/Charset
+  #224 = NameAndType        #265:#266     // defaultCharset:()Ljava/nio/charset/Charset;
+  #225 = Utf8               java/lang/Object
+  #226 = Utf8               java/lang/Runnable
+  #227 = Utf8               org/apache/commons/io/input/TailerListener
+  #228 = Utf8               init
+  #229 = Utf8               (Lorg/apache/commons/io/input/Tailer;)V
+  #230 = Utf8               (Ljava/lang/Runnable;)V
+  #231 = Utf8               setDaemon
+  #232 = Utf8               (Z)V
+  #233 = Utf8               start
+  #234 = Utf8               (Ljava/io/File;Ljava/lang/String;)V
+  #235 = Utf8               fileNotFound
+  #236 = Utf8               sleep
+  #237 = Utf8               (J)V
+  #238 = Utf8               java/io/File
+  #239 = Utf8               lastModified
+  #240 = Utf8               seek
+  #241 = Utf8               org/apache/commons/io/FileUtils
+  #242 = Utf8               isFileNewer
+  #243 = Utf8               (Ljava/io/File;J)Z
+  #244 = Utf8               fileRotated
+  #245 = Utf8               handle
+  #246 = Utf8               (Ljava/lang/Exception;)V
+  #247 = Utf8               close
+  #248 = Utf8               addSuppressed
+  #249 = Utf8               (Ljava/lang/Throwable;)V
+  #250 = Utf8               currentThread
+  #251 = Utf8               ()Ljava/lang/Thread;
+  #252 = Utf8               interrupt
+  #253 = Utf8               (I)V
+  #254 = Utf8               getFilePointer
+  #255 = Utf8               read
+  #256 = Utf8               ([B)I
+  #257 = Utf8               toByteArray
+  #258 = Utf8               ()[B
+  #259 = Utf8               ([BLjava/nio/charset/Charset;)V
+  #260 = Utf8               (Ljava/lang/String;)V
+  #261 = Utf8               reset
+  #262 = Utf8               write
+  #263 = Utf8               endOfFileReached
+  #264 = Utf8               java/nio/charset/Charset
+  #265 = Utf8               defaultCharset
+  #266 = Utf8               ()Ljava/nio/charset/Charset;
+{
+  private static final int DEFAULT_DELAY_MILLIS;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 1000
+
+  private static final java.lang.String RAF_MODE;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String r
+
+  private static final java.nio.charset.Charset DEFAULT_CHARSET;
+    descriptor: Ljava/nio/charset/Charset;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private final byte[] inbuf;
+    descriptor: [B
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.io.File file;
+    descriptor: Ljava/io/File;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.nio.charset.Charset charset;
+    descriptor: Ljava/nio/charset/Charset;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final long delayMillis;
+    descriptor: J
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final boolean end;
+    descriptor: Z
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final org.apache.commons.io.input.TailerListener listener;
+    descriptor: Lorg/apache/commons/io/input/TailerListener;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final boolean reOpen;
+    descriptor: Z
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private volatile boolean run;
+    descriptor: Z
+    flags: (0x0042) ACC_PRIVATE, ACC_VOLATILE
+
+  public org.apache.commons.io.input.Tailer(java.io.File, org.apache.commons.io.input.TailerListener);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: ldc2_w        #3                  // long 1000l
+         6: invokespecial #5                  // Method "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;J)V
+         9: return
+      LineNumberTable:
+        line 179: 0
+        line 180: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/apache/commons/io/input/Tailer;
+            0      10     1  file   Ljava/io/File;
+            0      10     2 listener   Lorg/apache/commons/io/input/TailerListener;
+
+  public org.apache.commons.io.input.Tailer(java.io.File, org.apache.commons.io.input.TailerListener, long);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;J)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=5, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: lload_3
+         4: iconst_0
+         5: invokespecial #6                  // Method "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)V
+         8: return
+      LineNumberTable:
+        line 189: 0
+        line 190: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/apache/commons/io/input/Tailer;
+            0       9     1  file   Ljava/io/File;
+            0       9     2 listener   Lorg/apache/commons/io/input/TailerListener;
+            0       9     3 delayMillis   J
+
+  public org.apache.commons.io.input.Tailer(java.io.File, org.apache.commons.io.input.TailerListener, long, boolean);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=6, args_size=5
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: lload_3
+         4: iload         5
+         6: sipush        8192
+         9: invokespecial #7                  // Method "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)V
+        12: return
+      LineNumberTable:
+        line 200: 0
+        line 201: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lorg/apache/commons/io/input/Tailer;
+            0      13     1  file   Ljava/io/File;
+            0      13     2 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      13     3 delayMillis   J
+            0      13     5   end   Z
+
+  public org.apache.commons.io.input.Tailer(java.io.File, org.apache.commons.io.input.TailerListener, long, boolean, boolean);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZ)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=8, locals=7, args_size=6
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: lload_3
+         4: iload         5
+         6: iload         6
+         8: sipush        8192
+        11: invokespecial #8                  // Method "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+        14: return
+      LineNumberTable:
+        line 213: 0
+        line 214: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lorg/apache/commons/io/input/Tailer;
+            0      15     1  file   Ljava/io/File;
+            0      15     2 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      15     3 delayMillis   J
+            0      15     5   end   Z
+            0      15     6 reOpen   Z
+
+  public org.apache.commons.io.input.Tailer(java.io.File, org.apache.commons.io.input.TailerListener, long, boolean, int);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=8, locals=7, args_size=6
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: lload_3
+         4: iload         5
+         6: iconst_0
+         7: iload         6
+         9: invokespecial #8                  // Method "<init>":(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+        12: return
+      LineNumberTable:
+        line 226: 0
+        line 227: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lorg/apache/commons/io/input/Tailer;
+            0      13     1  file   Ljava/io/File;
+            0      13     2 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      13     3 delayMillis   J
+            0      13     5   end   Z
+            0      13     6 bufSize   I
+
+  public org.apache.commons.io.input.Tailer(java.io.File, org.apache.commons.io.input.TailerListener, long, boolean, boolean, int);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=9, locals=8, args_size=7
+         0: aload_0
+         1: aload_1
+         2: getstatic     #9                  // Field DEFAULT_CHARSET:Ljava/nio/charset/Charset;
+         5: aload_2
+         6: lload_3
+         7: iload         5
+         9: iload         6
+        11: iload         7
+        13: invokespecial #10                 // Method "<init>":(Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+        16: return
+      LineNumberTable:
+        line 240: 0
+        line 241: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lorg/apache/commons/io/input/Tailer;
+            0      17     1  file   Ljava/io/File;
+            0      17     2 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      17     3 delayMillis   J
+            0      17     5   end   Z
+            0      17     6 reOpen   Z
+            0      17     7 bufSize   I
+
+  public org.apache.commons.io.input.Tailer(java.io.File, java.nio.charset.Charset, org.apache.commons.io.input.TailerListener, long, boolean, boolean, int);
+    descriptor: (Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=9, args_size=8
+         0: aload_0
+         1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iconst_1
+         6: putfield      #12                 // Field run:Z
+         9: aload_0
+        10: aload_1
+        11: putfield      #13                 // Field file:Ljava/io/File;
+        14: aload_0
+        15: lload         4
+        17: putfield      #14                 // Field delayMillis:J
+        20: aload_0
+        21: iload         6
+        23: putfield      #15                 // Field end:Z
+        26: aload_0
+        27: iload         8
+        29: newarray       byte
+        31: putfield      #16                 // Field inbuf:[B
+        34: aload_0
+        35: aload_3
+        36: putfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+        39: aload_3
+        40: aload_0
+        41: invokeinterface #18,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.init:(Lorg/apache/commons/io/input/Tailer;)V
+        46: aload_0
+        47: iload         7
+        49: putfield      #19                 // Field reOpen:Z
+        52: aload_0
+        53: aload_2
+        54: putfield      #20                 // Field charset:Ljava/nio/charset/Charset;
+        57: return
+      LineNumberTable:
+        line 255: 0
+        line 171: 4
+        line 256: 9
+        line 257: 14
+        line 258: 20
+        line 260: 26
+        line 263: 34
+        line 264: 39
+        line 265: 46
+        line 266: 52
+        line 267: 57
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      58     0  this   Lorg/apache/commons/io/input/Tailer;
+            0      58     1  file   Ljava/io/File;
+            0      58     2 charset   Ljava/nio/charset/Charset;
+            0      58     3 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      58     4 delayMillis   J
+            0      58     6   end   Z
+            0      58     7 reOpen   Z
+            0      58     8 bufSize   I
+
+  public static org.apache.commons.io.input.Tailer create(java.io.File, org.apache.commons.io.input.TailerListener, long, boolean, int);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)Lorg/apache/commons/io/input/Tailer;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=7, locals=6, args_size=5
+         0: aload_0
+         1: aload_1
+         2: lload_2
+         3: iload         4
+         5: iconst_0
+         6: iload         5
+         8: invokestatic  #21                 // Method create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+        11: areturn
+      LineNumberTable:
+        line 281: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0  file   Ljava/io/File;
+            0      12     1 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      12     2 delayMillis   J
+            0      12     4   end   Z
+            0      12     5 bufSize   I
+
+  public static org.apache.commons.io.input.Tailer create(java.io.File, org.apache.commons.io.input.TailerListener, long, boolean, boolean, int);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=8, locals=7, args_size=6
+         0: aload_0
+         1: getstatic     #9                  // Field DEFAULT_CHARSET:Ljava/nio/charset/Charset;
+         4: aload_1
+         5: lload_2
+         6: iload         4
+         8: iload         5
+        10: iload         6
+        12: invokestatic  #22                 // Method create:(Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+        15: areturn
+      LineNumberTable:
+        line 298: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  file   Ljava/io/File;
+            0      16     1 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      16     2 delayMillis   J
+            0      16     4   end   Z
+            0      16     5 reOpen   Z
+            0      16     6 bufSize   I
+
+  public static org.apache.commons.io.input.Tailer create(java.io.File, java.nio.charset.Charset, org.apache.commons.io.input.TailerListener, long, boolean, boolean, int);
+    descriptor: (Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=10, locals=10, args_size=7
+         0: new           #2                  // class org/apache/commons/io/input/Tailer
+         3: dup
+         4: aload_0
+         5: aload_1
+         6: aload_2
+         7: lload_3
+         8: iload         5
+        10: iload         6
+        12: iload         7
+        14: invokespecial #10                 // Method "<init>":(Ljava/io/File;Ljava/nio/charset/Charset;Lorg/apache/commons/io/input/TailerListener;JZZI)V
+        17: astore        8
+        19: new           #23                 // class java/lang/Thread
+        22: dup
+        23: aload         8
+        25: invokespecial #24                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+        28: astore        9
+        30: aload         9
+        32: iconst_1
+        33: invokevirtual #25                 // Method java/lang/Thread.setDaemon:(Z)V
+        36: aload         9
+        38: invokevirtual #26                 // Method java/lang/Thread.start:()V
+        41: aload         8
+        43: areturn
+      LineNumberTable:
+        line 316: 0
+        line 317: 19
+        line 318: 30
+        line 319: 36
+        line 320: 41
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      44     0  file   Ljava/io/File;
+            0      44     1 charset   Ljava/nio/charset/Charset;
+            0      44     2 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      44     3 delayMillis   J
+            0      44     5   end   Z
+            0      44     6 reOpen   Z
+            0      44     7 bufSize   I
+           19      25     8 tailer   Lorg/apache/commons/io/input/Tailer;
+           30      14     9 thread   Ljava/lang/Thread;
+
+  public static org.apache.commons.io.input.Tailer create(java.io.File, org.apache.commons.io.input.TailerListener, long, boolean);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)Lorg/apache/commons/io/input/Tailer;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=5, args_size=4
+         0: aload_0
+         1: aload_1
+         2: lload_2
+         3: iload         4
+         5: sipush        8192
+         8: invokestatic  #27                 // Method create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZI)Lorg/apache/commons/io/input/Tailer;
+        11: areturn
+      LineNumberTable:
+        line 334: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0  file   Ljava/io/File;
+            0      12     1 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      12     2 delayMillis   J
+            0      12     4   end   Z
+
+  public static org.apache.commons.io.input.Tailer create(java.io.File, org.apache.commons.io.input.TailerListener, long, boolean, boolean);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZ)Lorg/apache/commons/io/input/Tailer;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=7, locals=6, args_size=5
+         0: aload_0
+         1: aload_1
+         2: lload_2
+         3: iload         4
+         5: iload         5
+         7: sipush        8192
+        10: invokestatic  #21                 // Method create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZZI)Lorg/apache/commons/io/input/Tailer;
+        13: areturn
+      LineNumberTable:
+        line 349: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  file   Ljava/io/File;
+            0      14     1 listener   Lorg/apache/commons/io/input/TailerListener;
+            0      14     2 delayMillis   J
+            0      14     4   end   Z
+            0      14     5 reOpen   Z
+
+  public static org.apache.commons.io.input.Tailer create(java.io.File, org.apache.commons.io.input.TailerListener, long);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;J)Lorg/apache/commons/io/input/Tailer;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=4, args_size=3
+         0: aload_0
+         1: aload_1
+         2: lload_2
+         3: iconst_0
+         4: invokestatic  #28                 // Method create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)Lorg/apache/commons/io/input/Tailer;
+         7: areturn
+      LineNumberTable:
+        line 361: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  file   Ljava/io/File;
+            0       8     1 listener   Lorg/apache/commons/io/input/TailerListener;
+            0       8     2 delayMillis   J
+
+  public static org.apache.commons.io.input.Tailer create(java.io.File, org.apache.commons.io.input.TailerListener);
+    descriptor: (Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;)Lorg/apache/commons/io/input/Tailer;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: ldc2_w        #3                  // long 1000l
+         5: iconst_0
+         6: invokestatic  #28                 // Method create:(Ljava/io/File;Lorg/apache/commons/io/input/TailerListener;JZ)Lorg/apache/commons/io/input/Tailer;
+         9: areturn
+      LineNumberTable:
+        line 373: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  file   Ljava/io/File;
+            0      10     1 listener   Lorg/apache/commons/io/input/TailerListener;
+
+  public java.io.File getFile();
+    descriptor: ()Ljava/io/File;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field file:Ljava/io/File;
+         4: areturn
+      LineNumberTable:
+        line 382: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/io/input/Tailer;
+
+  protected boolean getRun();
+    descriptor: ()Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #12                 // Field run:Z
+         4: ireturn
+      LineNumberTable:
+        line 392: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/io/input/Tailer;
+
+  public long getDelay();
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #14                 // Field delayMillis:J
+         4: lreturn
+      LineNumberTable:
+        line 401: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/io/input/Tailer;
+
+  public void run();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=16, args_size=1
+         0: aconst_null
+         1: astore_1
+         2: lconst_0
+         3: lstore_2
+         4: lconst_0
+         5: lstore        4
+         7: aload_0
+         8: invokevirtual #29                 // Method getRun:()Z
+        11: ifeq          97
+        14: aload_1
+        15: ifnonnull     97
+        18: new           #30                 // class java/io/RandomAccessFile
+        21: dup
+        22: aload_0
+        23: getfield      #13                 // Field file:Ljava/io/File;
+        26: ldc           #31                 // String r
+        28: invokespecial #32                 // Method java/io/RandomAccessFile."<init>":(Ljava/io/File;Ljava/lang/String;)V
+        31: astore_1
+        32: goto          46
+        35: astore        6
+        37: aload_0
+        38: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+        41: invokeinterface #34,  1           // InterfaceMethod org/apache/commons/io/input/TailerListener.fileNotFound:()V
+        46: aload_1
+        47: ifnonnull     60
+        50: aload_0
+        51: getfield      #14                 // Field delayMillis:J
+        54: invokestatic  #35                 // Method java/lang/Thread.sleep:(J)V
+        57: goto          7
+        60: aload_0
+        61: getfield      #15                 // Field end:Z
+        64: ifeq          77
+        67: aload_0
+        68: getfield      #13                 // Field file:Ljava/io/File;
+        71: invokevirtual #36                 // Method java/io/File.length:()J
+        74: goto          78
+        77: lconst_0
+        78: lstore        4
+        80: aload_0
+        81: getfield      #13                 // Field file:Ljava/io/File;
+        84: invokevirtual #37                 // Method java/io/File.lastModified:()J
+        87: lstore_2
+        88: aload_1
+        89: lload         4
+        91: invokevirtual #38                 // Method java/io/RandomAccessFile.seek:(J)V
+        94: goto          7
+        97: aload_0
+        98: invokevirtual #29                 // Method getRun:()Z
+       101: ifeq          411
+       104: aload_0
+       105: getfield      #13                 // Field file:Ljava/io/File;
+       108: lload_2
+       109: invokestatic  #39                 // Method org/apache/commons/io/FileUtils.isFileNewer:(Ljava/io/File;J)Z
+       112: istore        6
+       114: aload_0
+       115: getfield      #13                 // Field file:Ljava/io/File;
+       118: invokevirtual #36                 // Method java/io/File.length:()J
+       121: lstore        7
+       123: lload         7
+       125: lload         4
+       127: lcmp
+       128: ifge          297
+       131: aload_0
+       132: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       135: invokeinterface #40,  1           // InterfaceMethod org/apache/commons/io/input/TailerListener.fileRotated:()V
+       140: aload_1
+       141: astore        9
+       143: aconst_null
+       144: astore        10
+       146: new           #30                 // class java/io/RandomAccessFile
+       149: dup
+       150: aload_0
+       151: getfield      #13                 // Field file:Ljava/io/File;
+       154: ldc           #31                 // String r
+       156: invokespecial #32                 // Method java/io/RandomAccessFile."<init>":(Ljava/io/File;Ljava/lang/String;)V
+       159: astore_1
+       160: aload_0
+       161: aload         9
+       163: invokespecial #41                 // Method readLines:(Ljava/io/RandomAccessFile;)J
+       166: pop2
+       167: goto          183
+       170: astore        11
+       172: aload_0
+       173: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       176: aload         11
+       178: invokeinterface #43,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/Exception;)V
+       183: lconst_0
+       184: lstore        4
+       186: aload         9
+       188: ifnull        273
+       191: aload         10
+       193: ifnull        216
+       196: aload         9
+       198: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       201: goto          273
+       204: astore        11
+       206: aload         10
+       208: aload         11
+       210: invokevirtual #46                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       213: goto          273
+       216: aload         9
+       218: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       221: goto          273
+       224: astore        11
+       226: aload         11
+       228: astore        10
+       230: aload         11
+       232: athrow
+       233: astore        12
+       235: aload         9
+       237: ifnull        270
+       240: aload         10
+       242: ifnull        265
+       245: aload         9
+       247: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       250: goto          270
+       253: astore        13
+       255: aload         10
+       257: aload         13
+       259: invokevirtual #46                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       262: goto          270
+       265: aload         9
+       267: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       270: aload         12
+       272: athrow
+       273: goto          97
+       276: astore        9
+       278: aload_0
+       279: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       282: invokeinterface #34,  1           // InterfaceMethod org/apache/commons/io/input/TailerListener.fileNotFound:()V
+       287: aload_0
+       288: getfield      #14                 // Field delayMillis:J
+       291: invokestatic  #35                 // Method java/lang/Thread.sleep:(J)V
+       294: goto          97
+       297: lload         7
+       299: lload         4
+       301: lcmp
+       302: ifle          323
+       305: aload_0
+       306: aload_1
+       307: invokespecial #41                 // Method readLines:(Ljava/io/RandomAccessFile;)J
+       310: lstore        4
+       312: aload_0
+       313: getfield      #13                 // Field file:Ljava/io/File;
+       316: invokevirtual #37                 // Method java/io/File.lastModified:()J
+       319: lstore_2
+       320: goto          352
+       323: iload         6
+       325: ifeq          352
+       328: lconst_0
+       329: lstore        4
+       331: aload_1
+       332: lload         4
+       334: invokevirtual #38                 // Method java/io/RandomAccessFile.seek:(J)V
+       337: aload_0
+       338: aload_1
+       339: invokespecial #41                 // Method readLines:(Ljava/io/RandomAccessFile;)J
+       342: lstore        4
+       344: aload_0
+       345: getfield      #13                 // Field file:Ljava/io/File;
+       348: invokevirtual #37                 // Method java/io/File.lastModified:()J
+       351: lstore_2
+       352: aload_0
+       353: getfield      #19                 // Field reOpen:Z
+       356: ifeq          367
+       359: aload_1
+       360: ifnull        367
+       363: aload_1
+       364: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       367: aload_0
+       368: getfield      #14                 // Field delayMillis:J
+       371: invokestatic  #35                 // Method java/lang/Thread.sleep:(J)V
+       374: aload_0
+       375: invokevirtual #29                 // Method getRun:()Z
+       378: ifeq          408
+       381: aload_0
+       382: getfield      #19                 // Field reOpen:Z
+       385: ifeq          408
+       388: new           #30                 // class java/io/RandomAccessFile
+       391: dup
+       392: aload_0
+       393: getfield      #13                 // Field file:Ljava/io/File;
+       396: ldc           #31                 // String r
+       398: invokespecial #32                 // Method java/io/RandomAccessFile."<init>":(Ljava/io/File;Ljava/lang/String;)V
+       401: astore_1
+       402: aload_1
+       403: lload         4
+       405: invokevirtual #38                 // Method java/io/RandomAccessFile.seek:(J)V
+       408: goto          97
+       411: aload_1
+       412: ifnull        419
+       415: aload_1
+       416: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       419: goto          433
+       422: astore_2
+       423: aload_0
+       424: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       427: aload_2
+       428: invokeinterface #43,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/Exception;)V
+       433: aload_0
+       434: invokevirtual #47                 // Method stop:()V
+       437: goto          559
+       440: astore_2
+       441: invokestatic  #49                 // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+       444: invokevirtual #50                 // Method java/lang/Thread.interrupt:()V
+       447: aload_0
+       448: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       451: aload_2
+       452: invokeinterface #43,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/Exception;)V
+       457: aload_1
+       458: ifnull        465
+       461: aload_1
+       462: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       465: goto          479
+       468: astore_2
+       469: aload_0
+       470: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       473: aload_2
+       474: invokeinterface #43,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/Exception;)V
+       479: aload_0
+       480: invokevirtual #47                 // Method stop:()V
+       483: goto          559
+       486: astore_2
+       487: aload_0
+       488: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       491: aload_2
+       492: invokeinterface #43,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/Exception;)V
+       497: aload_1
+       498: ifnull        505
+       501: aload_1
+       502: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       505: goto          519
+       508: astore_2
+       509: aload_0
+       510: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       513: aload_2
+       514: invokeinterface #43,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/Exception;)V
+       519: aload_0
+       520: invokevirtual #47                 // Method stop:()V
+       523: goto          559
+       526: astore        14
+       528: aload_1
+       529: ifnull        536
+       532: aload_1
+       533: invokevirtual #44                 // Method java/io/RandomAccessFile.close:()V
+       536: goto          552
+       539: astore        15
+       541: aload_0
+       542: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       545: aload         15
+       547: invokeinterface #43,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/Exception;)V
+       552: aload_0
+       553: invokevirtual #47                 // Method stop:()V
+       556: aload         14
+       558: athrow
+       559: return
+      Exception table:
+         from    to  target type
+            18    32    35   Class java/io/FileNotFoundException
+           160   167   170   Class java/io/IOException
+           196   201   204   Class java/lang/Throwable
+           146   186   224   Class java/lang/Throwable
+           146   186   233   any
+           245   250   253   Class java/lang/Throwable
+           224   235   233   any
+           140   273   276   Class java/io/FileNotFoundException
+           411   419   422   Class java/io/IOException
+             2   411   440   Class java/lang/InterruptedException
+           457   465   468   Class java/io/IOException
+             2   411   486   Class java/lang/Exception
+           497   505   508   Class java/io/IOException
+             2   411   526   any
+           440   457   526   any
+           486   497   526   any
+           528   536   539   Class java/io/IOException
+           526   528   526   any
+      LineNumberTable:
+        line 409: 0
+        line 411: 2
+        line 412: 4
+        line 414: 7
+        line 416: 18
+        line 419: 32
+        line 417: 35
+        line 418: 37
+        line 420: 46
+        line 421: 50
+        line 424: 60
+        line 425: 80
+        line 426: 88
+        line 429: 97
+        line 430: 104
+        line 432: 114
+        line 433: 123
+        line 435: 131
+        line 438: 140
+        line 439: 146
+        line 443: 160
+        line 446: 167
+        line 444: 170
+        line 445: 172
+        line 447: 183
+        line 448: 186
+        line 438: 224
+        line 448: 233
+        line 452: 273
+        line 448: 276
+        line 450: 278
+        line 451: 287
+        line 453: 294
+        line 457: 297
+        line 459: 305
+        line 460: 312
+        line 461: 323
+        line 466: 328
+        line 467: 331
+        line 470: 337
+        line 471: 344
+        line 473: 352
+        line 474: 363
+        line 476: 367
+        line 477: 374
+        line 478: 388
+        line 479: 402
+        line 481: 408
+        line 489: 411
+        line 490: 415
+        line 495: 419
+        line 493: 422
+        line 494: 423
+        line 496: 433
+        line 497: 437
+        line 482: 440
+        line 483: 441
+        line 484: 447
+        line 489: 457
+        line 490: 461
+        line 495: 465
+        line 493: 468
+        line 494: 469
+        line 496: 479
+        line 497: 483
+        line 485: 486
+        line 486: 487
+        line 489: 497
+        line 490: 501
+        line 495: 505
+        line 493: 508
+        line 494: 509
+        line 496: 519
+        line 497: 523
+        line 488: 526
+        line 489: 528
+        line 490: 532
+        line 495: 536
+        line 493: 539
+        line 494: 541
+        line 496: 552
+        line 497: 556
+        line 498: 559
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           37       9     6     e   Ljava/io/FileNotFoundException;
+          172      11    11   ioe   Ljava/io/IOException;
+          143     130     9  save   Ljava/io/RandomAccessFile;
+          278      16     9     e   Ljava/io/FileNotFoundException;
+          114     294     6 newer   Z
+          123     285     7 length   J
+            4     407     2  last   J
+            7     404     4 position   J
+          423      10     2     e   Ljava/io/IOException;
+          441      16     2     e   Ljava/lang/InterruptedException;
+          469      10     2     e   Ljava/io/IOException;
+          487      10     2     e   Ljava/lang/Exception;
+          509      10     2     e   Ljava/io/IOException;
+          541      11    15     e   Ljava/io/IOException;
+            0     560     0  this   Lorg/apache/commons/io/input/Tailer;
+            2     558     1 reader   Ljava/io/RandomAccessFile;
+      StackMapTable: number_of_entries = 40
+        frame_type = 254 /* append */
+          offset_delta = 7
+          locals = [ class java/io/RandomAccessFile, long, long ]
+        frame_type = 91 /* same_locals_1_stack_item */
+          stack = [ class java/io/FileNotFoundException ]
+        frame_type = 10 /* same */
+        frame_type = 13 /* same */
+        frame_type = 16 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ long ]
+        frame_type = 18 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 72
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, long, long, int, long, class java/io/RandomAccessFile, class java/lang/Throwable ]
+          stack = [ class java/io/IOException ]
+        frame_type = 12 /* same */
+        frame_type = 84 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 71 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, long, long, int, long, class java/io/RandomAccessFile, class java/lang/Throwable, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 4 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, long, long, int, long ]
+          stack = []
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/io/FileNotFoundException ]
+        frame_type = 20 /* same */
+        frame_type = 25 /* same */
+        frame_type = 28 /* same */
+        frame_type = 14 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 40
+        frame_type = 249 /* chop */
+          offset_delta = 2
+        frame_type = 7 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 10 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 24 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 10 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 18 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 10 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, top, top, top, top, top, top, top, top, top, top, top, top, class java/lang/Throwable ]
+          stack = []
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 12 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile ]
+          stack = []
+
+  public void stop();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_0
+         2: putfield      #12                 // Field run:Z
+         5: return
+      LineNumberTable:
+        line 504: 0
+        line 505: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/apache/commons/io/input/Tailer;
+
+  private long readLines(java.io.RandomAccessFile) throws java.io.IOException;
+    descriptor: (Ljava/io/RandomAccessFile;)J
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=5, locals=15, args_size=2
+         0: new           #52                 // class java/io/ByteArrayOutputStream
+         3: dup
+         4: bipush        64
+         6: invokespecial #53                 // Method java/io/ByteArrayOutputStream."<init>":(I)V
+         9: astore_2
+        10: aconst_null
+        11: astore_3
+        12: aload_1
+        13: invokevirtual #54                 // Method java/io/RandomAccessFile.getFilePointer:()J
+        16: lstore        4
+        18: lload         4
+        20: lstore        6
+        22: iconst_0
+        23: istore        9
+        25: aload_0
+        26: invokevirtual #29                 // Method getRun:()Z
+        29: ifeq          224
+        32: aload_1
+        33: aload_0
+        34: getfield      #16                 // Field inbuf:[B
+        37: invokevirtual #55                 // Method java/io/RandomAccessFile.read:([B)I
+        40: dup
+        41: istore        8
+        43: iconst_m1
+        44: if_icmpeq     224
+        47: iconst_0
+        48: istore        10
+        50: iload         10
+        52: iload         8
+        54: if_icmpge     215
+        57: aload_0
+        58: getfield      #16                 // Field inbuf:[B
+        61: iload         10
+        63: baload
+        64: istore        11
+        66: iload         11
+        68: lookupswitch  { // 2
+                      10: 96
+                      13: 140
+                 default: 157
+            }
+        96: iconst_0
+        97: istore        9
+        99: aload_0
+       100: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       103: new           #56                 // class java/lang/String
+       106: dup
+       107: aload_2
+       108: invokevirtual #57                 // Method java/io/ByteArrayOutputStream.toByteArray:()[B
+       111: aload_0
+       112: getfield      #20                 // Field charset:Ljava/nio/charset/Charset;
+       115: invokespecial #58                 // Method java/lang/String."<init>":([BLjava/nio/charset/Charset;)V
+       118: invokeinterface #59,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/String;)V
+       123: aload_2
+       124: invokevirtual #60                 // Method java/io/ByteArrayOutputStream.reset:()V
+       127: lload         4
+       129: iload         10
+       131: i2l
+       132: ladd
+       133: lconst_1
+       134: ladd
+       135: lstore        6
+       137: goto          209
+       140: iload         9
+       142: ifeq          151
+       145: aload_2
+       146: bipush        13
+       148: invokevirtual #61                 // Method java/io/ByteArrayOutputStream.write:(I)V
+       151: iconst_1
+       152: istore        9
+       154: goto          209
+       157: iload         9
+       159: ifeq          203
+       162: iconst_0
+       163: istore        9
+       165: aload_0
+       166: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       169: new           #56                 // class java/lang/String
+       172: dup
+       173: aload_2
+       174: invokevirtual #57                 // Method java/io/ByteArrayOutputStream.toByteArray:()[B
+       177: aload_0
+       178: getfield      #20                 // Field charset:Ljava/nio/charset/Charset;
+       181: invokespecial #58                 // Method java/lang/String."<init>":([BLjava/nio/charset/Charset;)V
+       184: invokeinterface #59,  2           // InterfaceMethod org/apache/commons/io/input/TailerListener.handle:(Ljava/lang/String;)V
+       189: aload_2
+       190: invokevirtual #60                 // Method java/io/ByteArrayOutputStream.reset:()V
+       193: lload         4
+       195: iload         10
+       197: i2l
+       198: ladd
+       199: lconst_1
+       200: ladd
+       201: lstore        6
+       203: aload_2
+       204: iload         11
+       206: invokevirtual #61                 // Method java/io/ByteArrayOutputStream.write:(I)V
+       209: iinc          10, 1
+       212: goto          50
+       215: aload_1
+       216: invokevirtual #54                 // Method java/io/RandomAccessFile.getFilePointer:()J
+       219: lstore        4
+       221: goto          25
+       224: aload_1
+       225: lload         6
+       227: invokevirtual #38                 // Method java/io/RandomAccessFile.seek:(J)V
+       230: aload_0
+       231: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       234: instanceof    #62                 // class org/apache/commons/io/input/TailerListenerAdapter
+       237: ifeq          250
+       240: aload_0
+       241: getfield      #17                 // Field listener:Lorg/apache/commons/io/input/TailerListener;
+       244: checkcast     #62                 // class org/apache/commons/io/input/TailerListenerAdapter
+       247: invokevirtual #63                 // Method org/apache/commons/io/input/TailerListenerAdapter.endOfFileReached:()V
+       250: lload         6
+       252: lstore        10
+       254: aload_2
+       255: ifnull        284
+       258: aload_3
+       259: ifnull        280
+       262: aload_2
+       263: invokevirtual #64                 // Method java/io/ByteArrayOutputStream.close:()V
+       266: goto          284
+       269: astore        12
+       271: aload_3
+       272: aload         12
+       274: invokevirtual #46                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       277: goto          284
+       280: aload_2
+       281: invokevirtual #64                 // Method java/io/ByteArrayOutputStream.close:()V
+       284: lload         10
+       286: lreturn
+       287: astore        4
+       289: aload         4
+       291: astore_3
+       292: aload         4
+       294: athrow
+       295: astore        13
+       297: aload_2
+       298: ifnull        327
+       301: aload_3
+       302: ifnull        323
+       305: aload_2
+       306: invokevirtual #64                 // Method java/io/ByteArrayOutputStream.close:()V
+       309: goto          327
+       312: astore        14
+       314: aload_3
+       315: aload         14
+       317: invokevirtual #46                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       320: goto          327
+       323: aload_2
+       324: invokevirtual #64                 // Method java/io/ByteArrayOutputStream.close:()V
+       327: aload         13
+       329: athrow
+      Exception table:
+         from    to  target type
+           262   266   269   Class java/lang/Throwable
+            12   254   287   Class java/lang/Throwable
+            12   254   295   any
+           305   309   312   Class java/lang/Throwable
+           287   297   295   any
+      LineNumberTable:
+        line 515: 0
+        line 516: 12
+        line 517: 18
+        line 519: 22
+        line 520: 25
+        line 521: 47
+        line 522: 57
+        line 523: 66
+        line 525: 96
+        line 526: 99
+        line 527: 123
+        line 528: 127
+        line 529: 137
+        line 531: 140
+        line 532: 145
+        line 534: 151
+        line 535: 154
+        line 537: 157
+        line 538: 162
+        line 539: 165
+        line 540: 189
+        line 541: 193
+        line 543: 203
+        line 521: 209
+        line 546: 215
+        line 549: 224
+        line 551: 230
+        line 552: 240
+        line 555: 250
+        line 556: 254
+        line 555: 284
+        line 515: 287
+        line 556: 295
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           66     143    11    ch   B
+           50     165    10     i   I
+           43     181     8   num   I
+           18     269     4   pos   J
+           22     265     6 rePos   J
+           25     262     9 seenCR   Z
+           10     320     2 lineBuf   Ljava/io/ByteArrayOutputStream;
+            0     330     0  this   Lorg/apache/commons/io/input/Tailer;
+            0     330     1 reader   Ljava/io/RandomAccessFile;
+      StackMapTable: number_of_entries = 19
+        frame_type = 255 /* full_frame */
+          offset_delta = 25
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, class java/io/ByteArrayOutputStream, class java/lang/Throwable, long, long, top, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 24
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, class java/io/ByteArrayOutputStream, class java/lang/Throwable, long, long, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 45
+          locals = [ int ]
+        frame_type = 43 /* same */
+        frame_type = 10 /* same */
+        frame_type = 5 /* same */
+        frame_type = 45 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 255 /* full_frame */
+          offset_delta = 8
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, class java/io/ByteArrayOutputStream, class java/lang/Throwable, long, long, top, int ]
+          stack = []
+        frame_type = 25 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 18
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, class java/io/ByteArrayOutputStream, class java/lang/Throwable, long, long, top, int, long ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, class java/io/ByteArrayOutputStream, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 71 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/apache/commons/io/input/Tailer, class java/io/RandomAccessFile, class java/io/ByteArrayOutputStream, class java/lang/Throwable, top, top, top, top, top, top, top, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: invokestatic  #65                 // Method java/nio/charset/Charset.defaultCharset:()Ljava/nio/charset/Charset;
+         3: putstatic     #9                  // Field DEFAULT_CHARSET:Ljava/nio/charset/Charset;
+         6: return
+      LineNumberTable:
+        line 131: 0
+}
+SourceFile: "Tailer.java"

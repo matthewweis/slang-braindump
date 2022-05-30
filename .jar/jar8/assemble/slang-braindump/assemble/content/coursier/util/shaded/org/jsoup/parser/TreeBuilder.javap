@@ -1,0 +1,681 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/coursier/util/shaded/org/jsoup/parser/TreeBuilder.class
+  Last modified May 29, 2022; size 5719 bytes
+  SHA-256 checksum 1d6b0596337a938407e6ea7e32b17d25ce0a94a23c042a9d2c2da46aadc528ce
+  Compiled from "TreeBuilder.java"
+abstract class coursier.util.shaded.org.jsoup.parser.TreeBuilder
+  minor version: 0
+  major version: 51
+  flags: (0x0420) ACC_SUPER, ACC_ABSTRACT
+  this_class: #2                          // coursier/util/shaded/org/jsoup/parser/TreeBuilder
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 10, methods: 12, attributes: 2
+Constant pool:
+    #1 = Utf8               coursier/util/shaded/org/jsoup/parser/TreeBuilder
+    #2 = Class              #1            // coursier/util/shaded/org/jsoup/parser/TreeBuilder
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               TreeBuilder.java
+    #6 = Utf8               coursier/util/shaded/org/jsoup/parser/Token$StartTag
+    #7 = Class              #6            // coursier/util/shaded/org/jsoup/parser/Token$StartTag
+    #8 = Utf8               coursier/util/shaded/org/jsoup/parser/Token
+    #9 = Class              #8            // coursier/util/shaded/org/jsoup/parser/Token
+   #10 = Utf8               StartTag
+   #11 = Utf8               coursier/util/shaded/org/jsoup/parser/Token$EndTag
+   #12 = Class              #11           // coursier/util/shaded/org/jsoup/parser/Token$EndTag
+   #13 = Utf8               EndTag
+   #14 = Utf8               coursier/util/shaded/org/jsoup/parser/Token$TokenType
+   #15 = Class              #14           // coursier/util/shaded/org/jsoup/parser/Token$TokenType
+   #16 = Utf8               TokenType
+   #17 = Utf8               coursier/util/shaded/org/jsoup/parser/Token$Tag
+   #18 = Class              #17           // coursier/util/shaded/org/jsoup/parser/Token$Tag
+   #19 = Utf8               Tag
+   #20 = Utf8               parser
+   #21 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/Parser;
+   #22 = Utf8               reader
+   #23 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+   #24 = Utf8               tokeniser
+   #25 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/Tokeniser;
+   #26 = Utf8               doc
+   #27 = Utf8               Lcoursier/util/shaded/org/jsoup/nodes/Document;
+   #28 = Utf8               stack
+   #29 = Utf8               Ljava/util/ArrayList;
+   #30 = Utf8               Ljava/util/ArrayList<Lcoursier/util/shaded/org/jsoup/nodes/Element;>;
+   #31 = Utf8               baseUri
+   #32 = Utf8               Ljava/lang/String;
+   #33 = Utf8               currentToken
+   #34 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/Token;
+   #35 = Utf8               settings
+   #36 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+   #37 = Utf8               start
+   #38 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+   #39 = Utf8               end
+   #40 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/Token$EndTag;
+   #41 = Utf8               <init>
+   #42 = Utf8               ()V
+   #43 = NameAndType        #41:#42       // "<init>":()V
+   #44 = Methodref          #4.#43        // java/lang/Object."<init>":()V
+   #45 = Methodref          #7.#43        // coursier/util/shaded/org/jsoup/parser/Token$StartTag."<init>":()V
+   #46 = NameAndType        #37:#38       // start:Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+   #47 = Fieldref           #2.#46        // coursier/util/shaded/org/jsoup/parser/TreeBuilder.start:Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+   #48 = Methodref          #12.#43       // coursier/util/shaded/org/jsoup/parser/Token$EndTag."<init>":()V
+   #49 = NameAndType        #39:#40       // end:Lcoursier/util/shaded/org/jsoup/parser/Token$EndTag;
+   #50 = Fieldref           #2.#49        // coursier/util/shaded/org/jsoup/parser/TreeBuilder.end:Lcoursier/util/shaded/org/jsoup/parser/Token$EndTag;
+   #51 = Utf8               this
+   #52 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+   #53 = Utf8               defaultSettings
+   #54 = Utf8               ()Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+   #55 = Utf8               initialiseParse
+   #56 = Utf8               (Ljava/io/Reader;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)V
+   #57 = Utf8               String input must not be null
+   #58 = String             #57           // String input must not be null
+   #59 = Utf8               coursier/util/shaded/org/jsoup/helper/Validate
+   #60 = Class              #59           // coursier/util/shaded/org/jsoup/helper/Validate
+   #61 = Utf8               notNull
+   #62 = Utf8               (Ljava/lang/Object;Ljava/lang/String;)V
+   #63 = NameAndType        #61:#62       // notNull:(Ljava/lang/Object;Ljava/lang/String;)V
+   #64 = Methodref          #60.#63       // coursier/util/shaded/org/jsoup/helper/Validate.notNull:(Ljava/lang/Object;Ljava/lang/String;)V
+   #65 = Utf8               BaseURI must not be null
+   #66 = String             #65           // BaseURI must not be null
+   #67 = Utf8               coursier/util/shaded/org/jsoup/nodes/Document
+   #68 = Class              #67           // coursier/util/shaded/org/jsoup/nodes/Document
+   #69 = Utf8               (Ljava/lang/String;)V
+   #70 = NameAndType        #41:#69       // "<init>":(Ljava/lang/String;)V
+   #71 = Methodref          #68.#70       // coursier/util/shaded/org/jsoup/nodes/Document."<init>":(Ljava/lang/String;)V
+   #72 = NameAndType        #26:#27       // doc:Lcoursier/util/shaded/org/jsoup/nodes/Document;
+   #73 = Fieldref           #2.#72        // coursier/util/shaded/org/jsoup/parser/TreeBuilder.doc:Lcoursier/util/shaded/org/jsoup/nodes/Document;
+   #74 = Utf8               (Lcoursier/util/shaded/org/jsoup/parser/Parser;)Lcoursier/util/shaded/org/jsoup/nodes/Document;
+   #75 = NameAndType        #20:#74       // parser:(Lcoursier/util/shaded/org/jsoup/parser/Parser;)Lcoursier/util/shaded/org/jsoup/nodes/Document;
+   #76 = Methodref          #68.#75       // coursier/util/shaded/org/jsoup/nodes/Document.parser:(Lcoursier/util/shaded/org/jsoup/parser/Parser;)Lcoursier/util/shaded/org/jsoup/nodes/Document;
+   #77 = NameAndType        #20:#21       // parser:Lcoursier/util/shaded/org/jsoup/parser/Parser;
+   #78 = Fieldref           #2.#77        // coursier/util/shaded/org/jsoup/parser/TreeBuilder.parser:Lcoursier/util/shaded/org/jsoup/parser/Parser;
+   #79 = Utf8               coursier/util/shaded/org/jsoup/parser/Parser
+   #80 = Class              #79           // coursier/util/shaded/org/jsoup/parser/Parser
+   #81 = NameAndType        #35:#54       // settings:()Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+   #82 = Methodref          #80.#81       // coursier/util/shaded/org/jsoup/parser/Parser.settings:()Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+   #83 = NameAndType        #35:#36       // settings:Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+   #84 = Fieldref           #2.#83        // coursier/util/shaded/org/jsoup/parser/TreeBuilder.settings:Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+   #85 = Utf8               coursier/util/shaded/org/jsoup/parser/CharacterReader
+   #86 = Class              #85           // coursier/util/shaded/org/jsoup/parser/CharacterReader
+   #87 = Utf8               (Ljava/io/Reader;)V
+   #88 = NameAndType        #41:#87       // "<init>":(Ljava/io/Reader;)V
+   #89 = Methodref          #86.#88       // coursier/util/shaded/org/jsoup/parser/CharacterReader."<init>":(Ljava/io/Reader;)V
+   #90 = NameAndType        #22:#23       // reader:Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+   #91 = Fieldref           #2.#90        // coursier/util/shaded/org/jsoup/parser/TreeBuilder.reader:Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+   #92 = NameAndType        #33:#34       // currentToken:Lcoursier/util/shaded/org/jsoup/parser/Token;
+   #93 = Fieldref           #2.#92        // coursier/util/shaded/org/jsoup/parser/TreeBuilder.currentToken:Lcoursier/util/shaded/org/jsoup/parser/Token;
+   #94 = Utf8               coursier/util/shaded/org/jsoup/parser/Tokeniser
+   #95 = Class              #94           // coursier/util/shaded/org/jsoup/parser/Tokeniser
+   #96 = Utf8               getErrors
+   #97 = Utf8               ()Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;
+   #98 = NameAndType        #96:#97       // getErrors:()Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;
+   #99 = Methodref          #80.#98       // coursier/util/shaded/org/jsoup/parser/Parser.getErrors:()Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;
+  #100 = Utf8               (Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;)V
+  #101 = NameAndType        #41:#100      // "<init>":(Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;)V
+  #102 = Methodref          #95.#101      // coursier/util/shaded/org/jsoup/parser/Tokeniser."<init>":(Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;)V
+  #103 = NameAndType        #24:#25       // tokeniser:Lcoursier/util/shaded/org/jsoup/parser/Tokeniser;
+  #104 = Fieldref           #2.#103       // coursier/util/shaded/org/jsoup/parser/TreeBuilder.tokeniser:Lcoursier/util/shaded/org/jsoup/parser/Tokeniser;
+  #105 = Utf8               java/util/ArrayList
+  #106 = Class              #105          // java/util/ArrayList
+  #107 = Utf8               (I)V
+  #108 = NameAndType        #41:#107      // "<init>":(I)V
+  #109 = Methodref          #106.#108     // java/util/ArrayList."<init>":(I)V
+  #110 = NameAndType        #28:#29       // stack:Ljava/util/ArrayList;
+  #111 = Fieldref           #2.#110       // coursier/util/shaded/org/jsoup/parser/TreeBuilder.stack:Ljava/util/ArrayList;
+  #112 = NameAndType        #31:#32       // baseUri:Ljava/lang/String;
+  #113 = Fieldref           #2.#112       // coursier/util/shaded/org/jsoup/parser/TreeBuilder.baseUri:Ljava/lang/String;
+  #114 = Utf8               input
+  #115 = Utf8               Ljava/io/Reader;
+  #116 = Utf8               parse
+  #117 = Utf8               (Ljava/io/Reader;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)Lcoursier/util/shaded/org/jsoup/nodes/Document;
+  #118 = NameAndType        #55:#56       // initialiseParse:(Ljava/io/Reader;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)V
+  #119 = Methodref          #2.#118       // coursier/util/shaded/org/jsoup/parser/TreeBuilder.initialiseParse:(Ljava/io/Reader;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)V
+  #120 = Utf8               runParser
+  #121 = NameAndType        #120:#42      // runParser:()V
+  #122 = Methodref          #2.#121       // coursier/util/shaded/org/jsoup/parser/TreeBuilder.runParser:()V
+  #123 = Utf8               close
+  #124 = NameAndType        #123:#42      // close:()V
+  #125 = Methodref          #86.#124      // coursier/util/shaded/org/jsoup/parser/CharacterReader.close:()V
+  #126 = Utf8               parseFragment
+  #127 = Utf8               (Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Element;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)Ljava/util/List;
+  #128 = Utf8               (Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Element;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)Ljava/util/List<Lcoursier/util/shaded/org/jsoup/nodes/Node;>;
+  #129 = Utf8               EOF
+  #130 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/Token$TokenType;
+  #131 = NameAndType        #129:#130     // EOF:Lcoursier/util/shaded/org/jsoup/parser/Token$TokenType;
+  #132 = Fieldref           #15.#131      // coursier/util/shaded/org/jsoup/parser/Token$TokenType.EOF:Lcoursier/util/shaded/org/jsoup/parser/Token$TokenType;
+  #133 = Utf8               read
+  #134 = Utf8               ()Lcoursier/util/shaded/org/jsoup/parser/Token;
+  #135 = NameAndType        #133:#134     // read:()Lcoursier/util/shaded/org/jsoup/parser/Token;
+  #136 = Methodref          #95.#135      // coursier/util/shaded/org/jsoup/parser/Tokeniser.read:()Lcoursier/util/shaded/org/jsoup/parser/Token;
+  #137 = Utf8               process
+  #138 = Utf8               (Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+  #139 = NameAndType        #137:#138     // process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+  #140 = Methodref          #2.#139       // coursier/util/shaded/org/jsoup/parser/TreeBuilder.process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+  #141 = Utf8               reset
+  #142 = NameAndType        #141:#134     // reset:()Lcoursier/util/shaded/org/jsoup/parser/Token;
+  #143 = Methodref          #9.#142       // coursier/util/shaded/org/jsoup/parser/Token.reset:()Lcoursier/util/shaded/org/jsoup/parser/Token;
+  #144 = Utf8               type
+  #145 = NameAndType        #144:#130     // type:Lcoursier/util/shaded/org/jsoup/parser/Token$TokenType;
+  #146 = Fieldref           #9.#145       // coursier/util/shaded/org/jsoup/parser/Token.type:Lcoursier/util/shaded/org/jsoup/parser/Token$TokenType;
+  #147 = Utf8               token
+  #148 = Utf8               eof
+  #149 = Utf8               processStartTag
+  #150 = Utf8               (Ljava/lang/String;)Z
+  #151 = Utf8               name
+  #152 = Utf8               (Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #153 = NameAndType        #151:#152     // name:(Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #154 = Methodref          #7.#153       // coursier/util/shaded/org/jsoup/parser/Token$StartTag.name:(Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #155 = Utf8               ()Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #156 = NameAndType        #141:#155     // reset:()Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #157 = Methodref          #7.#156       // coursier/util/shaded/org/jsoup/parser/Token$StartTag.reset:()Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #158 = Methodref          #18.#153      // coursier/util/shaded/org/jsoup/parser/Token$Tag.name:(Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #159 = Utf8               (Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Attributes;)Z
+  #160 = Utf8               nameAttr
+  #161 = Utf8               (Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Attributes;)Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+  #162 = NameAndType        #160:#161     // nameAttr:(Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Attributes;)Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+  #163 = Methodref          #7.#162       // coursier/util/shaded/org/jsoup/parser/Token$StartTag.nameAttr:(Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Attributes;)Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+  #164 = Utf8               attrs
+  #165 = Utf8               Lcoursier/util/shaded/org/jsoup/nodes/Attributes;
+  #166 = Utf8               processEndTag
+  #167 = Methodref          #12.#153      // coursier/util/shaded/org/jsoup/parser/Token$EndTag.name:(Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #168 = Methodref          #12.#156      // coursier/util/shaded/org/jsoup/parser/Token$EndTag.reset:()Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+  #169 = Utf8               currentElement
+  #170 = Utf8               ()Lcoursier/util/shaded/org/jsoup/nodes/Element;
+  #171 = Utf8               size
+  #172 = Utf8               ()I
+  #173 = NameAndType        #171:#172     // size:()I
+  #174 = Methodref          #106.#173     // java/util/ArrayList.size:()I
+  #175 = Utf8               get
+  #176 = Utf8               (I)Ljava/lang/Object;
+  #177 = NameAndType        #175:#176     // get:(I)Ljava/lang/Object;
+  #178 = Methodref          #106.#177     // java/util/ArrayList.get:(I)Ljava/lang/Object;
+  #179 = Utf8               coursier/util/shaded/org/jsoup/nodes/Element
+  #180 = Class              #179          // coursier/util/shaded/org/jsoup/nodes/Element
+  #181 = Utf8               I
+  #182 = Utf8               error
+  #183 = Utf8               coursier/util/shaded/org/jsoup/parser/ParseErrorList
+  #184 = Class              #183          // coursier/util/shaded/org/jsoup/parser/ParseErrorList
+  #185 = Utf8               canAddError
+  #186 = Utf8               ()Z
+  #187 = NameAndType        #185:#186     // canAddError:()Z
+  #188 = Methodref          #184.#187     // coursier/util/shaded/org/jsoup/parser/ParseErrorList.canAddError:()Z
+  #189 = Utf8               coursier/util/shaded/org/jsoup/parser/ParseError
+  #190 = Class              #189          // coursier/util/shaded/org/jsoup/parser/ParseError
+  #191 = Utf8               pos
+  #192 = NameAndType        #191:#172     // pos:()I
+  #193 = Methodref          #86.#192      // coursier/util/shaded/org/jsoup/parser/CharacterReader.pos:()I
+  #194 = Utf8               (ILjava/lang/String;)V
+  #195 = NameAndType        #41:#194      // "<init>":(ILjava/lang/String;)V
+  #196 = Methodref          #190.#195     // coursier/util/shaded/org/jsoup/parser/ParseError."<init>":(ILjava/lang/String;)V
+  #197 = Utf8               add
+  #198 = Utf8               (Ljava/lang/Object;)Z
+  #199 = NameAndType        #197:#198     // add:(Ljava/lang/Object;)Z
+  #200 = Methodref          #184.#199     // coursier/util/shaded/org/jsoup/parser/ParseErrorList.add:(Ljava/lang/Object;)Z
+  #201 = Utf8               msg
+  #202 = Utf8               errors
+  #203 = Utf8               Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;
+  #204 = Utf8               Signature
+  #205 = Utf8               Code
+  #206 = Utf8               LineNumberTable
+  #207 = Utf8               LocalVariableTable
+  #208 = Utf8               StackMapTable
+  #209 = Utf8               InnerClasses
+  #210 = Utf8               SourceFile
+{
+  protected coursier.util.shaded.org.jsoup.parser.Parser parser;
+    descriptor: Lcoursier/util/shaded/org/jsoup/parser/Parser;
+    flags: (0x0004) ACC_PROTECTED
+
+  coursier.util.shaded.org.jsoup.parser.CharacterReader reader;
+    descriptor: Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+    flags: (0x0000)
+
+  coursier.util.shaded.org.jsoup.parser.Tokeniser tokeniser;
+    descriptor: Lcoursier/util/shaded/org/jsoup/parser/Tokeniser;
+    flags: (0x0000)
+
+  protected coursier.util.shaded.org.jsoup.nodes.Document doc;
+    descriptor: Lcoursier/util/shaded/org/jsoup/nodes/Document;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected java.util.ArrayList<coursier.util.shaded.org.jsoup.nodes.Element> stack;
+    descriptor: Ljava/util/ArrayList;
+    flags: (0x0004) ACC_PROTECTED
+    Signature: #30                          // Ljava/util/ArrayList<Lcoursier/util/shaded/org/jsoup/nodes/Element;>;
+
+  protected java.lang.String baseUri;
+    descriptor: Ljava/lang/String;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected coursier.util.shaded.org.jsoup.parser.Token currentToken;
+    descriptor: Lcoursier/util/shaded/org/jsoup/parser/Token;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected coursier.util.shaded.org.jsoup.parser.ParseSettings settings;
+    descriptor: Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+    flags: (0x0004) ACC_PROTECTED
+
+  private coursier.util.shaded.org.jsoup.parser.Token$StartTag start;
+    descriptor: Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+    flags: (0x0002) ACC_PRIVATE
+
+  private coursier.util.shaded.org.jsoup.parser.Token$EndTag end;
+    descriptor: Lcoursier/util/shaded/org/jsoup/parser/Token$EndTag;
+    flags: (0x0002) ACC_PRIVATE
+
+  coursier.util.shaded.org.jsoup.parser.TreeBuilder();
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #44                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #7                  // class coursier/util/shaded/org/jsoup/parser/Token$StartTag
+         8: dup
+         9: invokespecial #45                 // Method coursier/util/shaded/org/jsoup/parser/Token$StartTag."<init>":()V
+        12: putfield      #47                 // Field start:Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+        15: aload_0
+        16: new           #12                 // class coursier/util/shaded/org/jsoup/parser/Token$EndTag
+        19: dup
+        20: invokespecial #48                 // Method coursier/util/shaded/org/jsoup/parser/Token$EndTag."<init>":()V
+        23: putfield      #50                 // Field end:Lcoursier/util/shaded/org/jsoup/parser/Token$EndTag;
+        26: return
+      LineNumberTable:
+        line 16: 0
+        line 26: 4
+        line 27: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      27     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+
+  abstract coursier.util.shaded.org.jsoup.parser.ParseSettings defaultSettings();
+    descriptor: ()Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+    flags: (0x0400) ACC_ABSTRACT
+
+  protected void initialiseParse(java.io.Reader, java.lang.String, coursier.util.shaded.org.jsoup.parser.Parser);
+    descriptor: (Ljava/io/Reader;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=5, locals=4, args_size=4
+         0: aload_1
+         1: ldc           #58                 // String String input must not be null
+         3: invokestatic  #64                 // Method coursier/util/shaded/org/jsoup/helper/Validate.notNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_2
+         7: ldc           #66                 // String BaseURI must not be null
+         9: invokestatic  #64                 // Method coursier/util/shaded/org/jsoup/helper/Validate.notNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        12: aload_0
+        13: new           #68                 // class coursier/util/shaded/org/jsoup/nodes/Document
+        16: dup
+        17: aload_2
+        18: invokespecial #71                 // Method coursier/util/shaded/org/jsoup/nodes/Document."<init>":(Ljava/lang/String;)V
+        21: putfield      #73                 // Field doc:Lcoursier/util/shaded/org/jsoup/nodes/Document;
+        24: aload_0
+        25: getfield      #73                 // Field doc:Lcoursier/util/shaded/org/jsoup/nodes/Document;
+        28: aload_3
+        29: invokevirtual #76                 // Method coursier/util/shaded/org/jsoup/nodes/Document.parser:(Lcoursier/util/shaded/org/jsoup/parser/Parser;)Lcoursier/util/shaded/org/jsoup/nodes/Document;
+        32: pop
+        33: aload_0
+        34: aload_3
+        35: putfield      #78                 // Field parser:Lcoursier/util/shaded/org/jsoup/parser/Parser;
+        38: aload_0
+        39: aload_3
+        40: invokevirtual #82                 // Method coursier/util/shaded/org/jsoup/parser/Parser.settings:()Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+        43: putfield      #84                 // Field settings:Lcoursier/util/shaded/org/jsoup/parser/ParseSettings;
+        46: aload_0
+        47: new           #86                 // class coursier/util/shaded/org/jsoup/parser/CharacterReader
+        50: dup
+        51: aload_1
+        52: invokespecial #89                 // Method coursier/util/shaded/org/jsoup/parser/CharacterReader."<init>":(Ljava/io/Reader;)V
+        55: putfield      #91                 // Field reader:Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+        58: aload_0
+        59: aconst_null
+        60: putfield      #93                 // Field currentToken:Lcoursier/util/shaded/org/jsoup/parser/Token;
+        63: aload_0
+        64: new           #95                 // class coursier/util/shaded/org/jsoup/parser/Tokeniser
+        67: dup
+        68: aload_0
+        69: getfield      #91                 // Field reader:Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+        72: aload_3
+        73: invokevirtual #99                 // Method coursier/util/shaded/org/jsoup/parser/Parser.getErrors:()Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;
+        76: invokespecial #102                // Method coursier/util/shaded/org/jsoup/parser/Tokeniser."<init>":(Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;)V
+        79: putfield      #104                // Field tokeniser:Lcoursier/util/shaded/org/jsoup/parser/Tokeniser;
+        82: aload_0
+        83: new           #106                // class java/util/ArrayList
+        86: dup
+        87: bipush        32
+        89: invokespecial #109                // Method java/util/ArrayList."<init>":(I)V
+        92: putfield      #111                // Field stack:Ljava/util/ArrayList;
+        95: aload_0
+        96: aload_2
+        97: putfield      #113                // Field baseUri:Ljava/lang/String;
+       100: return
+      LineNumberTable:
+        line 31: 0
+        line 32: 6
+        line 34: 12
+        line 35: 24
+        line 36: 33
+        line 37: 38
+        line 38: 46
+        line 39: 58
+        line 40: 63
+        line 41: 82
+        line 42: 95
+        line 43: 100
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     101     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+            0     101     1 input   Ljava/io/Reader;
+            0     101     2 baseUri   Ljava/lang/String;
+            0     101     3 parser   Lcoursier/util/shaded/org/jsoup/parser/Parser;
+
+  coursier.util.shaded.org.jsoup.nodes.Document parse(java.io.Reader, java.lang.String, coursier.util.shaded.org.jsoup.parser.Parser);
+    descriptor: (Ljava/io/Reader;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)Lcoursier/util/shaded/org/jsoup/nodes/Document;
+    flags: (0x0000)
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokevirtual #119                // Method initialiseParse:(Ljava/io/Reader;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)V
+         7: aload_0
+         8: invokevirtual #122                // Method runParser:()V
+        11: aload_0
+        12: getfield      #91                 // Field reader:Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+        15: invokevirtual #125                // Method coursier/util/shaded/org/jsoup/parser/CharacterReader.close:()V
+        18: aload_0
+        19: aconst_null
+        20: putfield      #91                 // Field reader:Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+        23: aload_0
+        24: aconst_null
+        25: putfield      #104                // Field tokeniser:Lcoursier/util/shaded/org/jsoup/parser/Tokeniser;
+        28: aload_0
+        29: aconst_null
+        30: putfield      #111                // Field stack:Ljava/util/ArrayList;
+        33: aload_0
+        34: getfield      #73                 // Field doc:Lcoursier/util/shaded/org/jsoup/nodes/Document;
+        37: areturn
+      LineNumberTable:
+        line 46: 0
+        line 47: 7
+        line 50: 11
+        line 51: 18
+        line 52: 23
+        line 53: 28
+        line 55: 33
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      38     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+            0      38     1 input   Ljava/io/Reader;
+            0      38     2 baseUri   Ljava/lang/String;
+            0      38     3 parser   Lcoursier/util/shaded/org/jsoup/parser/Parser;
+
+  abstract java.util.List<coursier.util.shaded.org.jsoup.nodes.Node> parseFragment(java.lang.String, coursier.util.shaded.org.jsoup.nodes.Element, java.lang.String, coursier.util.shaded.org.jsoup.parser.Parser);
+    descriptor: (Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Element;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)Ljava/util/List;
+    flags: (0x0400) ACC_ABSTRACT
+    Signature: #128                         // (Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Element;Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/parser/Parser;)Ljava/util/List<Lcoursier/util/shaded/org/jsoup/nodes/Node;>;
+
+  protected void runParser();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #104                // Field tokeniser:Lcoursier/util/shaded/org/jsoup/parser/Tokeniser;
+         4: astore_1
+         5: getstatic     #132                // Field coursier/util/shaded/org/jsoup/parser/Token$TokenType.EOF:Lcoursier/util/shaded/org/jsoup/parser/Token$TokenType;
+         8: astore_2
+         9: aload_1
+        10: invokevirtual #136                // Method coursier/util/shaded/org/jsoup/parser/Tokeniser.read:()Lcoursier/util/shaded/org/jsoup/parser/Token;
+        13: astore_3
+        14: aload_0
+        15: aload_3
+        16: invokevirtual #140                // Method process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+        19: pop
+        20: aload_3
+        21: invokevirtual #143                // Method coursier/util/shaded/org/jsoup/parser/Token.reset:()Lcoursier/util/shaded/org/jsoup/parser/Token;
+        24: pop
+        25: aload_3
+        26: getfield      #146                // Field coursier/util/shaded/org/jsoup/parser/Token.type:Lcoursier/util/shaded/org/jsoup/parser/Token$TokenType;
+        29: aload_2
+        30: if_acmpne     36
+        33: goto          39
+        36: goto          9
+        39: return
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 9
+          locals = [ class coursier/util/shaded/org/jsoup/parser/Tokeniser, class coursier/util/shaded/org/jsoup/parser/Token$TokenType ]
+        frame_type = 26 /* same */
+        frame_type = 2 /* same */
+      LineNumberTable:
+        line 61: 0
+        line 62: 5
+        line 65: 9
+        line 66: 14
+        line 67: 20
+        line 69: 25
+        line 70: 33
+        line 71: 36
+        line 72: 39
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           14      22     3 token   Lcoursier/util/shaded/org/jsoup/parser/Token;
+            0      40     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+            5      35     1 tokeniser   Lcoursier/util/shaded/org/jsoup/parser/Tokeniser;
+            9      31     2   eof   Lcoursier/util/shaded/org/jsoup/parser/Token$TokenType;
+
+  protected abstract boolean process(coursier.util.shaded.org.jsoup.parser.Token);
+    descriptor: (Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+    flags: (0x0404) ACC_PROTECTED, ACC_ABSTRACT
+
+  protected boolean processStartTag(java.lang.String);
+    descriptor: (Ljava/lang/String;)Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #47                 // Field start:Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+         4: astore_2
+         5: aload_0
+         6: getfield      #93                 // Field currentToken:Lcoursier/util/shaded/org/jsoup/parser/Token;
+         9: aload_2
+        10: if_acmpne     29
+        13: aload_0
+        14: new           #7                  // class coursier/util/shaded/org/jsoup/parser/Token$StartTag
+        17: dup
+        18: invokespecial #45                 // Method coursier/util/shaded/org/jsoup/parser/Token$StartTag."<init>":()V
+        21: aload_1
+        22: invokevirtual #154                // Method coursier/util/shaded/org/jsoup/parser/Token$StartTag.name:(Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+        25: invokevirtual #140                // Method process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+        28: ireturn
+        29: aload_0
+        30: aload_2
+        31: invokevirtual #157                // Method coursier/util/shaded/org/jsoup/parser/Token$StartTag.reset:()Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+        34: aload_1
+        35: invokevirtual #158                // Method coursier/util/shaded/org/jsoup/parser/Token$Tag.name:(Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+        38: invokevirtual #140                // Method process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+        41: ireturn
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 29
+          locals = [ class coursier/util/shaded/org/jsoup/parser/Token$StartTag ]
+      LineNumberTable:
+        line 77: 0
+        line 78: 5
+        line 79: 13
+        line 81: 29
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      42     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+            0      42     1  name   Ljava/lang/String;
+            5      37     2 start   Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+
+  public boolean processStartTag(java.lang.String, coursier.util.shaded.org.jsoup.nodes.Attributes);
+    descriptor: (Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Attributes;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=3
+         0: aload_0
+         1: getfield      #47                 // Field start:Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+         4: astore_3
+         5: aload_0
+         6: getfield      #93                 // Field currentToken:Lcoursier/util/shaded/org/jsoup/parser/Token;
+         9: aload_3
+        10: if_acmpne     30
+        13: aload_0
+        14: new           #7                  // class coursier/util/shaded/org/jsoup/parser/Token$StartTag
+        17: dup
+        18: invokespecial #45                 // Method coursier/util/shaded/org/jsoup/parser/Token$StartTag."<init>":()V
+        21: aload_1
+        22: aload_2
+        23: invokevirtual #163                // Method coursier/util/shaded/org/jsoup/parser/Token$StartTag.nameAttr:(Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Attributes;)Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+        26: invokevirtual #140                // Method process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+        29: ireturn
+        30: aload_3
+        31: invokevirtual #157                // Method coursier/util/shaded/org/jsoup/parser/Token$StartTag.reset:()Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+        34: pop
+        35: aload_3
+        36: aload_1
+        37: aload_2
+        38: invokevirtual #163                // Method coursier/util/shaded/org/jsoup/parser/Token$StartTag.nameAttr:(Ljava/lang/String;Lcoursier/util/shaded/org/jsoup/nodes/Attributes;)Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+        41: pop
+        42: aload_0
+        43: aload_3
+        44: invokevirtual #140                // Method process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+        47: ireturn
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 30
+          locals = [ class coursier/util/shaded/org/jsoup/parser/Token$StartTag ]
+      LineNumberTable:
+        line 85: 0
+        line 86: 5
+        line 87: 13
+        line 89: 30
+        line 90: 35
+        line 91: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      48     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+            0      48     1  name   Ljava/lang/String;
+            0      48     2 attrs   Lcoursier/util/shaded/org/jsoup/nodes/Attributes;
+            5      43     3 start   Lcoursier/util/shaded/org/jsoup/parser/Token$StartTag;
+
+  protected boolean processEndTag(java.lang.String);
+    descriptor: (Ljava/lang/String;)Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #93                 // Field currentToken:Lcoursier/util/shaded/org/jsoup/parser/Token;
+         4: aload_0
+         5: getfield      #50                 // Field end:Lcoursier/util/shaded/org/jsoup/parser/Token$EndTag;
+         8: if_acmpne     27
+        11: aload_0
+        12: new           #12                 // class coursier/util/shaded/org/jsoup/parser/Token$EndTag
+        15: dup
+        16: invokespecial #48                 // Method coursier/util/shaded/org/jsoup/parser/Token$EndTag."<init>":()V
+        19: aload_1
+        20: invokevirtual #167                // Method coursier/util/shaded/org/jsoup/parser/Token$EndTag.name:(Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+        23: invokevirtual #140                // Method process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+        26: ireturn
+        27: aload_0
+        28: aload_0
+        29: getfield      #50                 // Field end:Lcoursier/util/shaded/org/jsoup/parser/Token$EndTag;
+        32: invokevirtual #168                // Method coursier/util/shaded/org/jsoup/parser/Token$EndTag.reset:()Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+        35: aload_1
+        36: invokevirtual #158                // Method coursier/util/shaded/org/jsoup/parser/Token$Tag.name:(Ljava/lang/String;)Lcoursier/util/shaded/org/jsoup/parser/Token$Tag;
+        39: invokevirtual #140                // Method process:(Lcoursier/util/shaded/org/jsoup/parser/Token;)Z
+        42: ireturn
+      StackMapTable: number_of_entries = 1
+        frame_type = 27 /* same */
+      LineNumberTable:
+        line 95: 0
+        line 96: 11
+        line 98: 27
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+            0      43     1  name   Ljava/lang/String;
+
+  protected coursier.util.shaded.org.jsoup.nodes.Element currentElement();
+    descriptor: ()Lcoursier/util/shaded/org/jsoup/nodes/Element;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=2, args_size=1
+         0: aload_0
+         1: getfield      #111                // Field stack:Ljava/util/ArrayList;
+         4: invokevirtual #174                // Method java/util/ArrayList.size:()I
+         7: istore_1
+         8: iload_1
+         9: ifle          28
+        12: aload_0
+        13: getfield      #111                // Field stack:Ljava/util/ArrayList;
+        16: iload_1
+        17: iconst_1
+        18: isub
+        19: invokevirtual #178                // Method java/util/ArrayList.get:(I)Ljava/lang/Object;
+        22: checkcast     #180                // class coursier/util/shaded/org/jsoup/nodes/Element
+        25: goto          29
+        28: aconst_null
+        29: areturn
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 28
+          locals = [ int ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class coursier/util/shaded/org/jsoup/nodes/Element ]
+      LineNumberTable:
+        line 103: 0
+        line 104: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+            8      22     1  size   I
+
+  protected void error(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=5, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #78                 // Field parser:Lcoursier/util/shaded/org/jsoup/parser/Parser;
+         4: invokevirtual #99                 // Method coursier/util/shaded/org/jsoup/parser/Parser.getErrors:()Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;
+         7: astore_2
+         8: aload_2
+         9: invokevirtual #188                // Method coursier/util/shaded/org/jsoup/parser/ParseErrorList.canAddError:()Z
+        12: ifeq          35
+        15: aload_2
+        16: new           #190                // class coursier/util/shaded/org/jsoup/parser/ParseError
+        19: dup
+        20: aload_0
+        21: getfield      #91                 // Field reader:Lcoursier/util/shaded/org/jsoup/parser/CharacterReader;
+        24: invokevirtual #193                // Method coursier/util/shaded/org/jsoup/parser/CharacterReader.pos:()I
+        27: aload_1
+        28: invokespecial #196                // Method coursier/util/shaded/org/jsoup/parser/ParseError."<init>":(ILjava/lang/String;)V
+        31: invokevirtual #200                // Method coursier/util/shaded/org/jsoup/parser/ParseErrorList.add:(Ljava/lang/Object;)Z
+        34: pop
+        35: return
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 35
+          locals = [ class coursier/util/shaded/org/jsoup/parser/ParseErrorList ]
+      LineNumberTable:
+        line 113: 0
+        line 114: 8
+        line 115: 15
+        line 116: 35
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      36     0  this   Lcoursier/util/shaded/org/jsoup/parser/TreeBuilder;
+            0      36     1   msg   Ljava/lang/String;
+            8      28     2 errors   Lcoursier/util/shaded/org/jsoup/parser/ParseErrorList;
+}
+InnerClasses:
+  static final #10= #7 of #9;             // StartTag=class coursier/util/shaded/org/jsoup/parser/Token$StartTag of class coursier/util/shaded/org/jsoup/parser/Token
+  static final #13= #12 of #9;            // EndTag=class coursier/util/shaded/org/jsoup/parser/Token$EndTag of class coursier/util/shaded/org/jsoup/parser/Token
+  public static final #16= #15 of #9;     // TokenType=class coursier/util/shaded/org/jsoup/parser/Token$TokenType of class coursier/util/shaded/org/jsoup/parser/Token
+  static abstract #19= #18 of #9;         // Tag=class coursier/util/shaded/org/jsoup/parser/Token$Tag of class coursier/util/shaded/org/jsoup/parser/Token
+SourceFile: "TreeBuilder.java"

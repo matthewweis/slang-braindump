@@ -1,0 +1,983 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/org/kohsuke/github/GHRateLimit.class
+  Last modified May 29, 2022; size 5696 bytes
+  SHA-256 checksum 8c2cffd38e1aefa0458d0aea25915621d97ea9f0b85bdbad12023cd8c54b7f91
+  Compiled from "GHRateLimit.java"
+public class org.kohsuke.github.GHRateLimit
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #4                          // org/kohsuke/github/GHRateLimit
+  super_class: #46                        // java/lang/Object
+  interfaces: 0, fields: 9, methods: 18, attributes: 3
+Constant pool:
+    #1 = Fieldref           #4.#133       // org/kohsuke/github/GHRateLimit.LOGGER:Ljava/util/logging/Logger;
+    #2 = Fieldref           #134.#135     // org/kohsuke/github/RateLimitTarget.CORE:Lorg/kohsuke/github/RateLimitTarget;
+    #3 = Fieldref           #134.#136     // org/kohsuke/github/RateLimitTarget.NONE:Lorg/kohsuke/github/RateLimitTarget;
+    #4 = Class              #137          // org/kohsuke/github/GHRateLimit
+    #5 = Methodref          #57.#138      // org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+    #6 = Methodref          #4.#139       // org/kohsuke/github/GHRateLimit."<init>":(Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+    #7 = Fieldref           #134.#140     // org/kohsuke/github/RateLimitTarget.SEARCH:Lorg/kohsuke/github/RateLimitTarget;
+    #8 = Fieldref           #134.#141     // org/kohsuke/github/RateLimitTarget.GRAPHQL:Lorg/kohsuke/github/RateLimitTarget;
+    #9 = Fieldref           #134.#142     // org/kohsuke/github/RateLimitTarget.INTEGRATION_MANIFEST:Lorg/kohsuke/github/RateLimitTarget;
+   #10 = Class              #143          // java/lang/IllegalArgumentException
+   #11 = Class              #144          // java/lang/StringBuilder
+   #12 = Methodref          #11.#145      // java/lang/StringBuilder."<init>":()V
+   #13 = String             #146          // Unknown rate limit target:
+   #14 = Methodref          #11.#147      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #15 = Methodref          #134.#148     // org/kohsuke/github/RateLimitTarget.toString:()Ljava/lang/String;
+   #16 = Methodref          #11.#148      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #17 = Methodref          #10.#149      // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+   #18 = Methodref          #46.#145      // java/lang/Object."<init>":()V
+   #19 = Methodref          #150.#151     // java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+   #20 = Fieldref           #4.#152       // org/kohsuke/github/GHRateLimit.core:Lorg/kohsuke/github/GHRateLimit$Record;
+   #21 = Fieldref           #4.#153       // org/kohsuke/github/GHRateLimit.search:Lorg/kohsuke/github/GHRateLimit$Record;
+   #22 = Fieldref           #4.#154       // org/kohsuke/github/GHRateLimit.graphql:Lorg/kohsuke/github/GHRateLimit$Record;
+   #23 = Fieldref           #4.#155       // org/kohsuke/github/GHRateLimit.integrationManifest:Lorg/kohsuke/github/GHRateLimit$Record;
+   #24 = Methodref          #54.#156      // org/kohsuke/github/GHRateLimit$Record.getRemaining:()I
+   #25 = Fieldref           #4.#157       // org/kohsuke/github/GHRateLimit.remaining:I
+   #26 = Methodref          #54.#158      // org/kohsuke/github/GHRateLimit$Record.getLimit:()I
+   #27 = Fieldref           #4.#159       // org/kohsuke/github/GHRateLimit.limit:I
+   #28 = Class              #160          // java/util/Date
+   #29 = Methodref          #54.#161      // org/kohsuke/github/GHRateLimit$Record.getResetEpochSeconds:()J
+   #30 = Methodref          #28.#162      // java/util/Date."<init>":(J)V
+   #31 = Fieldref           #4.#163       // org/kohsuke/github/GHRateLimit.reset:Ljava/util/Date;
+   #32 = Methodref          #4.#164       // org/kohsuke/github/GHRateLimit.getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+   #33 = Methodref          #54.#165      // org/kohsuke/github/GHRateLimit$Record.getResetDate:()Ljava/util/Date;
+   #34 = Methodref          #54.#166      // org/kohsuke/github/GHRateLimit$Record.isExpired:()Z
+   #35 = String             #167          // GHRateLimit {core
+   #36 = Methodref          #54.#148      // org/kohsuke/github/GHRateLimit$Record.toString:()Ljava/lang/String;
+   #37 = String             #168          // , search
+   #38 = Methodref          #4.#169       // org/kohsuke/github/GHRateLimit.getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+   #39 = String             #170          // , graphql
+   #40 = Methodref          #4.#171       // org/kohsuke/github/GHRateLimit.getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+   #41 = String             #172          // , integrationManifest
+   #42 = Methodref          #4.#173       // org/kohsuke/github/GHRateLimit.getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+   #43 = String             #174          // }
+   #44 = Methodref          #46.#175      // java/lang/Object.getClass:()Ljava/lang/Class;
+   #45 = Methodref          #54.#176      // org/kohsuke/github/GHRateLimit$Record.equals:(Ljava/lang/Object;)Z
+   #46 = Class              #177          // java/lang/Object
+   #47 = Methodref          #150.#178     // java/util/Objects.hash:([Ljava/lang/Object;)I
+   #48 = Methodref          #54.#179      // org/kohsuke/github/GHRateLimit$Record.currentOrUpdated:(Lorg/kohsuke/github/GHRateLimit$Record;)Lorg/kohsuke/github/GHRateLimit$Record;
+   #49 = Methodref          #4.#176       // org/kohsuke/github/GHRateLimit.equals:(Ljava/lang/Object;)Z
+   #50 = Fieldref           #4.#180       // org/kohsuke/github/GHRateLimit.DEFAULT:Lorg/kohsuke/github/GHRateLimit;
+   #51 = Class              #181          // org/kohsuke/github/Requester
+   #52 = Methodref          #182.#183     // java/lang/Class.getName:()Ljava/lang/String;
+   #53 = Methodref          #184.#185     // java/util/logging/Logger.getLogger:(Ljava/lang/String;)Ljava/util/logging/Logger;
+   #54 = Class              #186          // org/kohsuke/github/GHRateLimit$Record
+   #55 = Utf8               Record
+   #56 = Utf8               InnerClasses
+   #57 = Class              #187          // org/kohsuke/github/GHRateLimit$UnknownLimitRecord
+   #58 = Utf8               UnknownLimitRecord
+   #59 = Utf8               remaining
+   #60 = Utf8               I
+   #61 = Utf8               Deprecated
+   #62 = Utf8               RuntimeVisibleAnnotations
+   #63 = Utf8               Ljava/lang/Deprecated;
+   #64 = Utf8               limit
+   #65 = Utf8               reset
+   #66 = Utf8               Ljava/util/Date;
+   #67 = Utf8               core
+   #68 = Utf8               Lorg/kohsuke/github/GHRateLimit$Record;
+   #69 = Utf8               Ljavax/annotation/Nonnull;
+   #70 = Utf8               search
+   #71 = Utf8               graphql
+   #72 = Utf8               integrationManifest
+   #73 = Utf8               DEFAULT
+   #74 = Utf8               Lorg/kohsuke/github/GHRateLimit;
+   #75 = Utf8               LOGGER
+   #76 = Utf8               Ljava/util/logging/Logger;
+   #77 = Utf8               fromRecord
+   #78 = Utf8               (Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GHRateLimit;
+   #79 = Utf8               Code
+   #80 = Utf8               LineNumberTable
+   #81 = Utf8               LocalVariableTable
+   #82 = Utf8               record
+   #83 = Utf8               rateLimitTarget
+   #84 = Utf8               Lorg/kohsuke/github/RateLimitTarget;
+   #85 = Utf8               StackMapTable
+   #86 = Utf8               RuntimeVisibleParameterAnnotations
+   #87 = Utf8               <init>
+   #88 = Utf8               (Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+   #89 = Utf8               this
+   #90 = Utf8               Lcom/fasterxml/jackson/annotation/JsonCreator;
+   #91 = Utf8               Lcom/fasterxml/jackson/annotation/JsonProperty;
+   #92 = Utf8               value
+   #93 = Utf8               integration_manifest
+   #94 = Utf8               getResetDate
+   #95 = Utf8               ()Ljava/util/Date;
+   #96 = Utf8               getRemaining
+   #97 = Utf8               ()I
+   #98 = Utf8               getLimit
+   #99 = Utf8               getResetEpochSeconds
+  #100 = Utf8               ()J
+  #101 = Utf8               isExpired
+  #102 = Utf8               ()Z
+  #103 = Utf8               getCore
+  #104 = Utf8               ()Lorg/kohsuke/github/GHRateLimit$Record;
+  #105 = Utf8               getSearch
+  #106 = Utf8               getGraphQL
+  #107 = Utf8               getIntegrationManifest
+  #108 = Utf8               toString
+  #109 = Utf8               ()Ljava/lang/String;
+  #110 = Utf8               equals
+  #111 = Utf8               (Ljava/lang/Object;)Z
+  #112 = Utf8               o
+  #113 = Utf8               Ljava/lang/Object;
+  #114 = Utf8               rateLimit
+  #115 = Utf8               hashCode
+  #116 = Utf8               getMergedRateLimit
+  #117 = Utf8               (Lorg/kohsuke/github/GHRateLimit;)Lorg/kohsuke/github/GHRateLimit;
+  #118 = Utf8               newLimit
+  #119 = Utf8               merged
+  #120 = Utf8               getRecord
+  #121 = Utf8               (Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GHRateLimit$Record;
+  #122 = Utf8               access$100
+  #123 = Utf8               ()Ljava/util/logging/Logger;
+  #124 = Utf8               <clinit>
+  #125 = Utf8               ()V
+  #126 = Utf8               SourceFile
+  #127 = Utf8               GHRateLimit.java
+  #128 = Utf8               RuntimeInvisibleAnnotations
+  #129 = Utf8               Ledu/umd/cs/findbugs/annotations/SuppressFBWarnings;
+  #130 = Utf8               URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD
+  #131 = Utf8               justification
+  #132 = Utf8               JSON API
+  #133 = NameAndType        #75:#76       // LOGGER:Ljava/util/logging/Logger;
+  #134 = Class              #188          // org/kohsuke/github/RateLimitTarget
+  #135 = NameAndType        #189:#84      // CORE:Lorg/kohsuke/github/RateLimitTarget;
+  #136 = NameAndType        #190:#84      // NONE:Lorg/kohsuke/github/RateLimitTarget;
+  #137 = Utf8               org/kohsuke/github/GHRateLimit
+  #138 = NameAndType        #191:#192     // access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+  #139 = NameAndType        #87:#88       // "<init>":(Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+  #140 = NameAndType        #193:#84      // SEARCH:Lorg/kohsuke/github/RateLimitTarget;
+  #141 = NameAndType        #194:#84      // GRAPHQL:Lorg/kohsuke/github/RateLimitTarget;
+  #142 = NameAndType        #195:#84      // INTEGRATION_MANIFEST:Lorg/kohsuke/github/RateLimitTarget;
+  #143 = Utf8               java/lang/IllegalArgumentException
+  #144 = Utf8               java/lang/StringBuilder
+  #145 = NameAndType        #87:#125      // "<init>":()V
+  #146 = Utf8               Unknown rate limit target:
+  #147 = NameAndType        #196:#197     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #148 = NameAndType        #108:#109     // toString:()Ljava/lang/String;
+  #149 = NameAndType        #87:#198      // "<init>":(Ljava/lang/String;)V
+  #150 = Class              #199          // java/util/Objects
+  #151 = NameAndType        #200:#201     // requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+  #152 = NameAndType        #67:#68       // core:Lorg/kohsuke/github/GHRateLimit$Record;
+  #153 = NameAndType        #70:#68       // search:Lorg/kohsuke/github/GHRateLimit$Record;
+  #154 = NameAndType        #71:#68       // graphql:Lorg/kohsuke/github/GHRateLimit$Record;
+  #155 = NameAndType        #72:#68       // integrationManifest:Lorg/kohsuke/github/GHRateLimit$Record;
+  #156 = NameAndType        #96:#97       // getRemaining:()I
+  #157 = NameAndType        #59:#60       // remaining:I
+  #158 = NameAndType        #98:#97       // getLimit:()I
+  #159 = NameAndType        #64:#60       // limit:I
+  #160 = Utf8               java/util/Date
+  #161 = NameAndType        #99:#100      // getResetEpochSeconds:()J
+  #162 = NameAndType        #87:#202      // "<init>":(J)V
+  #163 = NameAndType        #65:#66       // reset:Ljava/util/Date;
+  #164 = NameAndType        #103:#104     // getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+  #165 = NameAndType        #94:#95       // getResetDate:()Ljava/util/Date;
+  #166 = NameAndType        #101:#102     // isExpired:()Z
+  #167 = Utf8               GHRateLimit {core
+  #168 = Utf8               , search
+  #169 = NameAndType        #105:#104     // getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+  #170 = Utf8               , graphql
+  #171 = NameAndType        #106:#104     // getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+  #172 = Utf8               , integrationManifest
+  #173 = NameAndType        #107:#104     // getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+  #174 = Utf8               }
+  #175 = NameAndType        #203:#204     // getClass:()Ljava/lang/Class;
+  #176 = NameAndType        #110:#111     // equals:(Ljava/lang/Object;)Z
+  #177 = Utf8               java/lang/Object
+  #178 = NameAndType        #205:#206     // hash:([Ljava/lang/Object;)I
+  #179 = NameAndType        #207:#208     // currentOrUpdated:(Lorg/kohsuke/github/GHRateLimit$Record;)Lorg/kohsuke/github/GHRateLimit$Record;
+  #180 = NameAndType        #73:#74       // DEFAULT:Lorg/kohsuke/github/GHRateLimit;
+  #181 = Utf8               org/kohsuke/github/Requester
+  #182 = Class              #209          // java/lang/Class
+  #183 = NameAndType        #210:#109     // getName:()Ljava/lang/String;
+  #184 = Class              #211          // java/util/logging/Logger
+  #185 = NameAndType        #212:#213     // getLogger:(Ljava/lang/String;)Ljava/util/logging/Logger;
+  #186 = Utf8               org/kohsuke/github/GHRateLimit$Record
+  #187 = Utf8               org/kohsuke/github/GHRateLimit$UnknownLimitRecord
+  #188 = Utf8               org/kohsuke/github/RateLimitTarget
+  #189 = Utf8               CORE
+  #190 = Utf8               NONE
+  #191 = Utf8               access$000
+  #192 = Utf8               ()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+  #193 = Utf8               SEARCH
+  #194 = Utf8               GRAPHQL
+  #195 = Utf8               INTEGRATION_MANIFEST
+  #196 = Utf8               append
+  #197 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #198 = Utf8               (Ljava/lang/String;)V
+  #199 = Utf8               java/util/Objects
+  #200 = Utf8               requireNonNull
+  #201 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #202 = Utf8               (J)V
+  #203 = Utf8               getClass
+  #204 = Utf8               ()Ljava/lang/Class;
+  #205 = Utf8               hash
+  #206 = Utf8               ([Ljava/lang/Object;)I
+  #207 = Utf8               currentOrUpdated
+  #208 = Utf8               (Lorg/kohsuke/github/GHRateLimit$Record;)Lorg/kohsuke/github/GHRateLimit$Record;
+  #209 = Utf8               java/lang/Class
+  #210 = Utf8               getName
+  #211 = Utf8               java/util/logging/Logger
+  #212 = Utf8               getLogger
+  #213 = Utf8               (Ljava/lang/String;)Ljava/util/logging/Logger;
+{
+  public int remaining;
+    descriptor: I
+    flags: (0x0001) ACC_PUBLIC
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #63()
+        java.lang.Deprecated
+
+  public int limit;
+    descriptor: I
+    flags: (0x0001) ACC_PUBLIC
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #63()
+        java.lang.Deprecated
+
+  public java.util.Date reset;
+    descriptor: Ljava/util/Date;
+    flags: (0x0001) ACC_PUBLIC
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #63()
+        java.lang.Deprecated
+
+  private final org.kohsuke.github.GHRateLimit$Record core;
+    descriptor: Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  private final org.kohsuke.github.GHRateLimit$Record search;
+    descriptor: Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  private final org.kohsuke.github.GHRateLimit$Record graphql;
+    descriptor: Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  private final org.kohsuke.github.GHRateLimit$Record integrationManifest;
+    descriptor: Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  static final org.kohsuke.github.GHRateLimit DEFAULT;
+    descriptor: Lorg/kohsuke/github/GHRateLimit;
+    flags: (0x0018) ACC_STATIC, ACC_FINAL
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  private static final java.util.logging.Logger LOGGER;
+    descriptor: Ljava/util/logging/Logger;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  static org.kohsuke.github.GHRateLimit fromRecord(org.kohsuke.github.GHRateLimit$Record, org.kohsuke.github.RateLimitTarget);
+    descriptor: (Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GHRateLimit;
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=6, locals=2, args_size=2
+         0: aload_1
+         1: getstatic     #2                  // Field org/kohsuke/github/RateLimitTarget.CORE:Lorg/kohsuke/github/RateLimitTarget;
+         4: if_acmpeq     14
+         7: aload_1
+         8: getstatic     #3                  // Field org/kohsuke/github/RateLimitTarget.NONE:Lorg/kohsuke/github/RateLimitTarget;
+        11: if_acmpne     32
+        14: new           #4                  // class org/kohsuke/github/GHRateLimit
+        17: dup
+        18: aload_0
+        19: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        22: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        25: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        28: invokespecial #6                  // Method "<init>":(Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+        31: areturn
+        32: aload_1
+        33: getstatic     #7                  // Field org/kohsuke/github/RateLimitTarget.SEARCH:Lorg/kohsuke/github/RateLimitTarget;
+        36: if_acmpne     57
+        39: new           #4                  // class org/kohsuke/github/GHRateLimit
+        42: dup
+        43: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        46: aload_0
+        47: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        50: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        53: invokespecial #6                  // Method "<init>":(Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+        56: areturn
+        57: aload_1
+        58: getstatic     #8                  // Field org/kohsuke/github/RateLimitTarget.GRAPHQL:Lorg/kohsuke/github/RateLimitTarget;
+        61: if_acmpne     82
+        64: new           #4                  // class org/kohsuke/github/GHRateLimit
+        67: dup
+        68: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        71: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        74: aload_0
+        75: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        78: invokespecial #6                  // Method "<init>":(Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+        81: areturn
+        82: aload_1
+        83: getstatic     #9                  // Field org/kohsuke/github/RateLimitTarget.INTEGRATION_MANIFEST:Lorg/kohsuke/github/RateLimitTarget;
+        86: if_acmpne     107
+        89: new           #4                  // class org/kohsuke/github/GHRateLimit
+        92: dup
+        93: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        96: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        99: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+       102: aload_0
+       103: invokespecial #6                  // Method "<init>":(Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+       106: areturn
+       107: new           #10                 // class java/lang/IllegalArgumentException
+       110: dup
+       111: new           #11                 // class java/lang/StringBuilder
+       114: dup
+       115: invokespecial #12                 // Method java/lang/StringBuilder."<init>":()V
+       118: ldc           #13                 // String Unknown rate limit target:
+       120: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       123: aload_1
+       124: invokevirtual #15                 // Method org/kohsuke/github/RateLimitTarget.toString:()Ljava/lang/String;
+       127: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       130: invokevirtual #16                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       133: invokespecial #17                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+       136: athrow
+      LineNumberTable:
+        line 100: 0
+        line 101: 14
+        line 102: 19
+        line 103: 22
+        line 104: 25
+        line 101: 31
+        line 105: 32
+        line 106: 39
+        line 108: 47
+        line 109: 50
+        line 106: 56
+        line 110: 57
+        line 111: 64
+        line 112: 71
+        line 114: 75
+        line 111: 81
+        line 115: 82
+        line 116: 89
+        line 117: 96
+        line 118: 99
+        line 116: 106
+        line 121: 107
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     137     0 record   Lorg/kohsuke/github/GHRateLimit$Record;
+            0     137     1 rateLimitTarget   Lorg/kohsuke/github/RateLimitTarget;
+      StackMapTable: number_of_entries = 5
+        frame_type = 14 /* same */
+        frame_type = 17 /* same */
+        frame_type = 24 /* same */
+        frame_type = 24 /* same */
+        frame_type = 24 /* same */
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+        0: #69()
+          javax.annotation.Nonnull
+      parameter 1:
+        0: #69()
+          javax.annotation.Nonnull
+
+  org.kohsuke.github.GHRateLimit(org.kohsuke.github.GHRateLimit$Record, org.kohsuke.github.GHRateLimit$Record, org.kohsuke.github.GHRateLimit$Record, org.kohsuke.github.GHRateLimit$Record);
+    descriptor: (Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+    flags: (0x0000)
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_0
+         1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+         4: aload_1
+         5: invokestatic  #19                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+         8: pop
+         9: aload_2
+        10: invokestatic  #19                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+        13: pop
+        14: aload_3
+        15: invokestatic  #19                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+        18: pop
+        19: aload         4
+        21: invokestatic  #19                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+        24: pop
+        25: aload_0
+        26: aload_1
+        27: putfield      #20                 // Field core:Lorg/kohsuke/github/GHRateLimit$Record;
+        30: aload_0
+        31: aload_2
+        32: putfield      #21                 // Field search:Lorg/kohsuke/github/GHRateLimit$Record;
+        35: aload_0
+        36: aload_3
+        37: putfield      #22                 // Field graphql:Lorg/kohsuke/github/GHRateLimit$Record;
+        40: aload_0
+        41: aload         4
+        43: putfield      #23                 // Field integrationManifest:Lorg/kohsuke/github/GHRateLimit$Record;
+        46: aload_0
+        47: aload_1
+        48: invokevirtual #24                 // Method org/kohsuke/github/GHRateLimit$Record.getRemaining:()I
+        51: putfield      #25                 // Field remaining:I
+        54: aload_0
+        55: aload_1
+        56: invokevirtual #26                 // Method org/kohsuke/github/GHRateLimit$Record.getLimit:()I
+        59: putfield      #27                 // Field limit:I
+        62: aload_0
+        63: new           #28                 // class java/util/Date
+        66: dup
+        67: aload_1
+        68: invokevirtual #29                 // Method org/kohsuke/github/GHRateLimit$Record.getResetEpochSeconds:()J
+        71: invokespecial #30                 // Method java/util/Date."<init>":(J)V
+        74: putfield      #31                 // Field reset:Ljava/util/Date;
+        77: return
+      LineNumberTable:
+        line 129: 0
+        line 131: 4
+        line 132: 9
+        line 133: 14
+        line 134: 19
+        line 136: 25
+        line 137: 30
+        line 138: 35
+        line 139: 40
+        line 142: 46
+        line 143: 54
+        line 145: 62
+        line 146: 77
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      78     0  this   Lorg/kohsuke/github/GHRateLimit;
+            0      78     1  core   Lorg/kohsuke/github/GHRateLimit$Record;
+            0      78     2 search   Lorg/kohsuke/github/GHRateLimit$Record;
+            0      78     3 graphql   Lorg/kohsuke/github/GHRateLimit$Record;
+            0      78     4 integrationManifest   Lorg/kohsuke/github/GHRateLimit$Record;
+    RuntimeVisibleAnnotations:
+      0: #90()
+        com.fasterxml.jackson.annotation.JsonCreator
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+        0: #69()
+          javax.annotation.Nonnull
+        1: #91(#92=s#67)
+          com.fasterxml.jackson.annotation.JsonProperty(
+            value="core"
+          )
+      parameter 1:
+        0: #69()
+          javax.annotation.Nonnull
+        1: #91(#92=s#70)
+          com.fasterxml.jackson.annotation.JsonProperty(
+            value="search"
+          )
+      parameter 2:
+        0: #69()
+          javax.annotation.Nonnull
+        1: #91(#92=s#71)
+          com.fasterxml.jackson.annotation.JsonProperty(
+            value="graphql"
+          )
+      parameter 3:
+        0: #69()
+          javax.annotation.Nonnull
+        1: #91(#92=s#93)
+          com.fasterxml.jackson.annotation.JsonProperty(
+            value="integration_manifest"
+          )
+
+  public java.util.Date getResetDate();
+    descriptor: ()Ljava/util/Date;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+         4: invokevirtual #33                 // Method org/kohsuke/github/GHRateLimit$Record.getResetDate:()Ljava/util/Date;
+         7: areturn
+      LineNumberTable:
+        line 155: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHRateLimit;
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  public int getRemaining();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+         4: invokevirtual #24                 // Method org/kohsuke/github/GHRateLimit$Record.getRemaining:()I
+         7: ireturn
+      LineNumberTable:
+        line 165: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHRateLimit;
+
+  public int getLimit();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+         4: invokevirtual #26                 // Method org/kohsuke/github/GHRateLimit$Record.getLimit:()I
+         7: ireturn
+      LineNumberTable:
+        line 175: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHRateLimit;
+
+  public long getResetEpochSeconds();
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+         4: invokevirtual #29                 // Method org/kohsuke/github/GHRateLimit$Record.getResetEpochSeconds:()J
+         7: lreturn
+      LineNumberTable:
+        line 185: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHRateLimit;
+
+  public boolean isExpired();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+         4: invokevirtual #34                 // Method org/kohsuke/github/GHRateLimit$Record.isExpired:()Z
+         7: ireturn
+      LineNumberTable:
+        line 195: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/kohsuke/github/GHRateLimit;
+
+  public org.kohsuke.github.GHRateLimit$Record getCore();
+    descriptor: ()Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #20                 // Field core:Lorg/kohsuke/github/GHRateLimit$Record;
+         4: areturn
+      LineNumberTable:
+        line 206: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHRateLimit;
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  public org.kohsuke.github.GHRateLimit$Record getSearch();
+    descriptor: ()Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #21                 // Field search:Lorg/kohsuke/github/GHRateLimit$Record;
+         4: areturn
+      LineNumberTable:
+        line 217: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHRateLimit;
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  public org.kohsuke.github.GHRateLimit$Record getGraphQL();
+    descriptor: ()Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #22                 // Field graphql:Lorg/kohsuke/github/GHRateLimit$Record;
+         4: areturn
+      LineNumberTable:
+        line 228: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHRateLimit;
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  public org.kohsuke.github.GHRateLimit$Record getIntegrationManifest();
+    descriptor: ()Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #23                 // Field integrationManifest:Lorg/kohsuke/github/GHRateLimit$Record;
+         4: areturn
+      LineNumberTable:
+        line 240: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GHRateLimit;
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+
+  public java.lang.String toString();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: new           #11                 // class java/lang/StringBuilder
+         3: dup
+         4: invokespecial #12                 // Method java/lang/StringBuilder."<init>":()V
+         7: ldc           #35                 // String GHRateLimit {core
+         9: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        12: aload_0
+        13: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+        16: invokevirtual #36                 // Method org/kohsuke/github/GHRateLimit$Record.toString:()Ljava/lang/String;
+        19: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        22: ldc           #37                 // String , search
+        24: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        27: aload_0
+        28: invokevirtual #38                 // Method getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+        31: invokevirtual #36                 // Method org/kohsuke/github/GHRateLimit$Record.toString:()Ljava/lang/String;
+        34: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        37: ldc           #39                 // String , graphql
+        39: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        42: aload_0
+        43: invokevirtual #40                 // Method getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+        46: invokevirtual #36                 // Method org/kohsuke/github/GHRateLimit$Record.toString:()Ljava/lang/String;
+        49: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        52: ldc           #41                 // String , integrationManifest
+        54: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        57: aload_0
+        58: invokevirtual #42                 // Method getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+        61: invokevirtual #36                 // Method org/kohsuke/github/GHRateLimit$Record.toString:()Ljava/lang/String;
+        64: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        67: ldc           #43                 // String }
+        69: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        72: invokevirtual #16                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        75: areturn
+      LineNumberTable:
+        line 245: 0
+        line 246: 43
+        line 245: 75
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      76     0  this   Lorg/kohsuke/github/GHRateLimit;
+
+  public boolean equals(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: aload_1
+         2: if_acmpne     7
+         5: iconst_1
+         6: ireturn
+         7: aload_1
+         8: ifnull        22
+        11: aload_0
+        12: invokevirtual #44                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        15: aload_1
+        16: invokevirtual #44                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        19: if_acmpeq     24
+        22: iconst_0
+        23: ireturn
+        24: aload_1
+        25: checkcast     #4                  // class org/kohsuke/github/GHRateLimit
+        28: astore_2
+        29: aload_0
+        30: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+        33: aload_2
+        34: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+        37: invokevirtual #45                 // Method org/kohsuke/github/GHRateLimit$Record.equals:(Ljava/lang/Object;)Z
+        40: ifeq          89
+        43: aload_0
+        44: invokevirtual #38                 // Method getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+        47: aload_2
+        48: invokevirtual #38                 // Method getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+        51: invokevirtual #45                 // Method org/kohsuke/github/GHRateLimit$Record.equals:(Ljava/lang/Object;)Z
+        54: ifeq          89
+        57: aload_0
+        58: invokevirtual #40                 // Method getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+        61: aload_2
+        62: invokevirtual #40                 // Method getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+        65: invokevirtual #45                 // Method org/kohsuke/github/GHRateLimit$Record.equals:(Ljava/lang/Object;)Z
+        68: ifeq          89
+        71: aload_0
+        72: invokevirtual #42                 // Method getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+        75: aload_2
+        76: invokevirtual #42                 // Method getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+        79: invokevirtual #45                 // Method org/kohsuke/github/GHRateLimit$Record.equals:(Ljava/lang/Object;)Z
+        82: ifeq          89
+        85: iconst_1
+        86: goto          90
+        89: iconst_0
+        90: ireturn
+      LineNumberTable:
+        line 251: 0
+        line 252: 5
+        line 254: 7
+        line 255: 22
+        line 257: 24
+        line 258: 29
+        line 259: 58
+        line 260: 72
+        line 258: 90
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      91     0  this   Lorg/kohsuke/github/GHRateLimit;
+            0      91     1     o   Ljava/lang/Object;
+           29      62     2 rateLimit   Lorg/kohsuke/github/GHRateLimit;
+      StackMapTable: number_of_entries = 5
+        frame_type = 7 /* same */
+        frame_type = 14 /* same */
+        frame_type = 1 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 64
+          locals = [ class org/kohsuke/github/GHRateLimit ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public int hashCode();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: iconst_4
+         1: anewarray     #46                 // class java/lang/Object
+         4: dup
+         5: iconst_0
+         6: aload_0
+         7: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+        10: aastore
+        11: dup
+        12: iconst_1
+        13: aload_0
+        14: invokevirtual #38                 // Method getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+        17: aastore
+        18: dup
+        19: iconst_2
+        20: aload_0
+        21: invokevirtual #40                 // Method getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+        24: aastore
+        25: dup
+        26: iconst_3
+        27: aload_0
+        28: invokevirtual #42                 // Method getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+        31: aastore
+        32: invokestatic  #47                 // Method java/util/Objects.hash:([Ljava/lang/Object;)I
+        35: ireturn
+      LineNumberTable:
+        line 265: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      36     0  this   Lorg/kohsuke/github/GHRateLimit;
+
+  org.kohsuke.github.GHRateLimit getMergedRateLimit(org.kohsuke.github.GHRateLimit);
+    descriptor: (Lorg/kohsuke/github/GHRateLimit;)Lorg/kohsuke/github/GHRateLimit;
+    flags: (0x0000)
+    Code:
+      stack=7, locals=3, args_size=2
+         0: new           #4                  // class org/kohsuke/github/GHRateLimit
+         3: dup
+         4: aload_0
+         5: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+         8: aload_1
+         9: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+        12: invokevirtual #48                 // Method org/kohsuke/github/GHRateLimit$Record.currentOrUpdated:(Lorg/kohsuke/github/GHRateLimit$Record;)Lorg/kohsuke/github/GHRateLimit$Record;
+        15: aload_0
+        16: invokevirtual #38                 // Method getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+        19: aload_1
+        20: invokevirtual #38                 // Method getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+        23: invokevirtual #48                 // Method org/kohsuke/github/GHRateLimit$Record.currentOrUpdated:(Lorg/kohsuke/github/GHRateLimit$Record;)Lorg/kohsuke/github/GHRateLimit$Record;
+        26: aload_0
+        27: invokevirtual #40                 // Method getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+        30: aload_1
+        31: invokevirtual #40                 // Method getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+        34: invokevirtual #48                 // Method org/kohsuke/github/GHRateLimit$Record.currentOrUpdated:(Lorg/kohsuke/github/GHRateLimit$Record;)Lorg/kohsuke/github/GHRateLimit$Record;
+        37: aload_0
+        38: invokevirtual #42                 // Method getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+        41: aload_1
+        42: invokevirtual #42                 // Method getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+        45: invokevirtual #48                 // Method org/kohsuke/github/GHRateLimit$Record.currentOrUpdated:(Lorg/kohsuke/github/GHRateLimit$Record;)Lorg/kohsuke/github/GHRateLimit$Record;
+        48: invokespecial #6                  // Method "<init>":(Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+        51: astore_2
+        52: aload_2
+        53: aload_0
+        54: invokevirtual #49                 // Method equals:(Ljava/lang/Object;)Z
+        57: ifeq          62
+        60: aload_0
+        61: astore_2
+        62: aload_2
+        63: areturn
+      LineNumberTable:
+        line 280: 0
+        line 281: 16
+        line 282: 27
+        line 283: 38
+        line 285: 52
+        line 286: 60
+        line 289: 62
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      64     0  this   Lorg/kohsuke/github/GHRateLimit;
+            0      64     1 newLimit   Lorg/kohsuke/github/GHRateLimit;
+           52      12     2 merged   Lorg/kohsuke/github/GHRateLimit;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 62
+          locals = [ class org/kohsuke/github/GHRateLimit ]
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+        0: #69()
+          javax.annotation.Nonnull
+
+  org.kohsuke.github.GHRateLimit$Record getRecord(org.kohsuke.github.RateLimitTarget);
+    descriptor: (Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GHRateLimit$Record;
+    flags: (0x0000)
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_1
+         1: getstatic     #2                  // Field org/kohsuke/github/RateLimitTarget.CORE:Lorg/kohsuke/github/RateLimitTarget;
+         4: if_acmpne     12
+         7: aload_0
+         8: invokevirtual #32                 // Method getCore:()Lorg/kohsuke/github/GHRateLimit$Record;
+        11: areturn
+        12: aload_1
+        13: getstatic     #7                  // Field org/kohsuke/github/RateLimitTarget.SEARCH:Lorg/kohsuke/github/RateLimitTarget;
+        16: if_acmpne     24
+        19: aload_0
+        20: invokevirtual #38                 // Method getSearch:()Lorg/kohsuke/github/GHRateLimit$Record;
+        23: areturn
+        24: aload_1
+        25: getstatic     #8                  // Field org/kohsuke/github/RateLimitTarget.GRAPHQL:Lorg/kohsuke/github/RateLimitTarget;
+        28: if_acmpne     36
+        31: aload_0
+        32: invokevirtual #40                 // Method getGraphQL:()Lorg/kohsuke/github/GHRateLimit$Record;
+        35: areturn
+        36: aload_1
+        37: getstatic     #9                  // Field org/kohsuke/github/RateLimitTarget.INTEGRATION_MANIFEST:Lorg/kohsuke/github/RateLimitTarget;
+        40: if_acmpne     48
+        43: aload_0
+        44: invokevirtual #42                 // Method getIntegrationManifest:()Lorg/kohsuke/github/GHRateLimit$Record;
+        47: areturn
+        48: aload_1
+        49: getstatic     #3                  // Field org/kohsuke/github/RateLimitTarget.NONE:Lorg/kohsuke/github/RateLimitTarget;
+        52: if_acmpne     59
+        55: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        58: areturn
+        59: new           #10                 // class java/lang/IllegalArgumentException
+        62: dup
+        63: new           #11                 // class java/lang/StringBuilder
+        66: dup
+        67: invokespecial #12                 // Method java/lang/StringBuilder."<init>":()V
+        70: ldc           #13                 // String Unknown rate limit target:
+        72: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        75: aload_1
+        76: invokevirtual #15                 // Method org/kohsuke/github/RateLimitTarget.toString:()Ljava/lang/String;
+        79: invokevirtual #14                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        82: invokevirtual #16                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        85: invokespecial #17                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        88: athrow
+      LineNumberTable:
+        line 304: 0
+        line 305: 7
+        line 306: 12
+        line 307: 19
+        line 308: 24
+        line 309: 31
+        line 310: 36
+        line 311: 43
+        line 312: 48
+        line 313: 55
+        line 315: 59
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      89     0  this   Lorg/kohsuke/github/GHRateLimit;
+            0      89     1 rateLimitTarget   Lorg/kohsuke/github/RateLimitTarget;
+      StackMapTable: number_of_entries = 5
+        frame_type = 12 /* same */
+        frame_type = 11 /* same */
+        frame_type = 11 /* same */
+        frame_type = 11 /* same */
+        frame_type = 10 /* same */
+    RuntimeVisibleAnnotations:
+      0: #69()
+        javax.annotation.Nonnull
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+        0: #69()
+          javax.annotation.Nonnull
+
+  static java.util.logging.Logger access$100();
+    descriptor: ()Ljava/util/logging/Logger;
+    flags: (0x1008) ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #1                  // Field LOGGER:Ljava/util/logging/Logger;
+         3: areturn
+      LineNumberTable:
+        line 30: 0
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=6, locals=0, args_size=0
+         0: new           #4                  // class org/kohsuke/github/GHRateLimit
+         3: dup
+         4: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+         7: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        10: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        13: invokestatic  #5                  // Method org/kohsuke/github/GHRateLimit$UnknownLimitRecord.access$000:()Lorg/kohsuke/github/GHRateLimit$UnknownLimitRecord;
+        16: invokespecial #6                  // Method "<init>":(Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;Lorg/kohsuke/github/GHRateLimit$Record;)V
+        19: putstatic     #50                 // Field DEFAULT:Lorg/kohsuke/github/GHRateLimit;
+        22: ldc           #51                 // class org/kohsuke/github/Requester
+        24: invokevirtual #52                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        27: invokestatic  #53                 // Method java/util/logging/Logger.getLogger:(Ljava/lang/String;)Ljava/util/logging/Logger;
+        30: putstatic     #1                  // Field LOGGER:Ljava/util/logging/Logger;
+        33: return
+      LineNumberTable:
+        line 80: 0
+        line 81: 7
+        line 82: 10
+        line 83: 13
+        line 635: 22
+}
+SourceFile: "GHRateLimit.java"
+RuntimeInvisibleAnnotations:
+  0: #129(#92=[s#130],#131=s#132)
+    edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+      value=["URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD"]
+      justification="JSON API"
+    )
+InnerClasses:
+  public static #55= #54 of #4;           // Record=class org/kohsuke/github/GHRateLimit$Record of class org/kohsuke/github/GHRateLimit
+  public static #58= #57 of #4;           // UnknownLimitRecord=class org/kohsuke/github/GHRateLimit$UnknownLimitRecord of class org/kohsuke/github/GHRateLimit

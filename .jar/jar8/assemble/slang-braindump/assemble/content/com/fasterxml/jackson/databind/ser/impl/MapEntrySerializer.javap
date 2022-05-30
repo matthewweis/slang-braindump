@@ -1,0 +1,1727 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.class
+  Last modified May 29, 2022; size 17366 bytes
+  SHA-256 checksum 8d68d4c8b5644417cad7b68e0a69444fc2b8192b46741c3b2b7fa0d2e0216cdc
+  Compiled from "MapEntrySerializer.java"
+public class com.fasterxml.jackson.databind.ser.impl.MapEntrySerializer extends com.fasterxml.jackson.databind.ser.ContainerSerializer<java.util.Map$Entry<?, ?>> implements com.fasterxml.jackson.databind.ser.ContextualSerializer
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #17                         // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer
+  super_class: #84                        // com/fasterxml/jackson/databind/ser/ContainerSerializer
+  interfaces: 1, fields: 12, methods: 21, attributes: 4
+Constant pool:
+    #1 = Methodref          #84.#245      // com/fasterxml/jackson/databind/ser/ContainerSerializer."<init>":(Lcom/fasterxml/jackson/databind/JavaType;)V
+    #2 = Fieldref           #17.#246      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._entryType:Lcom/fasterxml/jackson/databind/JavaType;
+    #3 = Fieldref           #17.#247      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._keyType:Lcom/fasterxml/jackson/databind/JavaType;
+    #4 = Fieldref           #17.#248      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._valueType:Lcom/fasterxml/jackson/databind/JavaType;
+    #5 = Fieldref           #17.#249      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._valueTypeIsStatic:Z
+    #6 = Fieldref           #17.#250      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+    #7 = Fieldref           #17.#251      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._property:Lcom/fasterxml/jackson/databind/BeanProperty;
+    #8 = Methodref          #252.#253     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.emptyForProperties:()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+    #9 = Fieldref           #17.#254      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+   #10 = Fieldref           #17.#255      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._suppressableValue:Ljava/lang/Object;
+   #11 = Fieldref           #17.#256      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._suppressNulls:Z
+   #12 = Methodref          #17.#257      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer."<init>":(Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)V
+   #13 = Class              #258          // java/util/Map
+   #14 = Methodref          #84.#259      // com/fasterxml/jackson/databind/ser/ContainerSerializer."<init>":(Ljava/lang/Class;Z)V
+   #15 = Fieldref           #17.#260      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._keySerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #16 = Fieldref           #17.#261      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #17 = Class              #262          // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer
+   #18 = Methodref          #263.#264     // com/fasterxml/jackson/databind/SerializerProvider.getAnnotationIntrospector:()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+   #19 = InterfaceMethodref #265.#266     // com/fasterxml/jackson/databind/BeanProperty.getMember:()Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+   #20 = Methodref          #267.#268     // com/fasterxml/jackson/databind/AnnotationIntrospector.findKeySerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+   #21 = Methodref          #263.#269     // com/fasterxml/jackson/databind/SerializerProvider.serializerInstance:(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #22 = Methodref          #267.#270     // com/fasterxml/jackson/databind/AnnotationIntrospector.findContentSerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+   #23 = Methodref          #17.#271      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.findContextualConvertingSerializer:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #24 = Methodref          #272.#273     // com/fasterxml/jackson/databind/JavaType.isJavaLangObject:()Z
+   #25 = Methodref          #263.#274     // com/fasterxml/jackson/databind/SerializerProvider.findContentValueSerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #26 = Methodref          #263.#275     // com/fasterxml/jackson/databind/SerializerProvider.findKeySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #27 = Methodref          #263.#276     // com/fasterxml/jackson/databind/SerializerProvider.handleSecondaryContextualization:(Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #28 = Methodref          #263.#277     // com/fasterxml/jackson/databind/SerializerProvider.getConfig:()Lcom/fasterxml/jackson/databind/SerializationConfig;
+   #29 = InterfaceMethodref #265.#278     // com/fasterxml/jackson/databind/BeanProperty.findPropertyInclusion:(Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+   #30 = Methodref          #155.#279     // com/fasterxml/jackson/annotation/JsonInclude$Value.getContentInclusion:()Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+   #31 = Fieldref           #151.#280     // com/fasterxml/jackson/annotation/JsonInclude$Include.USE_DEFAULTS:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+   #32 = Fieldref           #86.#281      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer$1.$SwitchMap$com$fasterxml$jackson$annotation$JsonInclude$Include:[I
+   #33 = Methodref          #151.#282     // com/fasterxml/jackson/annotation/JsonInclude$Include.ordinal:()I
+   #34 = Methodref          #283.#284     // com/fasterxml/jackson/databind/util/BeanUtil.getDefaultValue:(Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Object;
+   #35 = Methodref          #285.#286     // java/lang/Object.getClass:()Ljava/lang/Class;
+   #36 = Methodref          #287.#288     // java/lang/Class.isArray:()Z
+   #37 = Methodref          #289.#290     // com/fasterxml/jackson/databind/util/ArrayBuilders.getArrayComparator:(Ljava/lang/Object;)Ljava/lang/Object;
+   #38 = Methodref          #272.#291     // com/fasterxml/jackson/databind/JavaType.isReferenceType:()Z
+   #39 = Fieldref           #17.#292      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.MARKER_FOR_EMPTY:Ljava/lang/Object;
+   #40 = Methodref          #155.#293     // com/fasterxml/jackson/annotation/JsonInclude$Value.getContentFilter:()Ljava/lang/Class;
+   #41 = Methodref          #263.#294     // com/fasterxml/jackson/databind/SerializerProvider.includeFilterInstance:(Lcom/fasterxml/jackson/databind/introspect/BeanPropertyDefinition;Ljava/lang/Class;)Ljava/lang/Object;
+   #42 = Methodref          #263.#295     // com/fasterxml/jackson/databind/SerializerProvider.includeFilterSuppressNulls:(Ljava/lang/Object;)Z
+   #43 = Methodref          #17.#296      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.withResolved:(Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+   #44 = InterfaceMethodref #78.#297      // java/util/Map$Entry.getValue:()Ljava/lang/Object;
+   #45 = Methodref          #252.#298     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.serializerFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #46 = Methodref          #17.#299      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #47 = Class              #300          // com/fasterxml/jackson/databind/JsonMappingException
+   #48 = Methodref          #301.#302     // com/fasterxml/jackson/databind/JsonSerializer.isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+   #49 = Methodref          #285.#303     // java/lang/Object.equals:(Ljava/lang/Object;)Z
+   #50 = Methodref          #304.#305     // com/fasterxml/jackson/core/JsonGenerator.writeStartObject:(Ljava/lang/Object;)V
+   #51 = Methodref          #17.#306      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.serializeDynamic:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+   #52 = Methodref          #304.#307     // com/fasterxml/jackson/core/JsonGenerator.writeEndObject:()V
+   #53 = Methodref          #304.#308     // com/fasterxml/jackson/core/JsonGenerator.setCurrentValue:(Ljava/lang/Object;)V
+   #54 = Fieldref           #309.#310     // com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+   #55 = Methodref          #311.#312     // com/fasterxml/jackson/databind/jsontype/TypeSerializer.typeId:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonToken;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+   #56 = Methodref          #311.#313     // com/fasterxml/jackson/databind/jsontype/TypeSerializer.writeTypePrefix:(Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+   #57 = Methodref          #311.#314     // com/fasterxml/jackson/databind/jsontype/TypeSerializer.writeTypeSuffix:(Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+   #58 = InterfaceMethodref #78.#315      // java/util/Map$Entry.getKey:()Ljava/lang/Object;
+   #59 = Methodref          #263.#316     // com/fasterxml/jackson/databind/SerializerProvider.findNullKeySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #60 = Methodref          #263.#317     // com/fasterxml/jackson/databind/SerializerProvider.getDefaultNullValueSerializer:()Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #61 = Methodref          #272.#318     // com/fasterxml/jackson/databind/JavaType.hasGenericTypes:()Z
+   #62 = Methodref          #263.#319     // com/fasterxml/jackson/databind/SerializerProvider.constructSpecializedType:(Lcom/fasterxml/jackson/databind/JavaType;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JavaType;
+   #63 = Methodref          #17.#320      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer._findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #64 = Methodref          #301.#321     // com/fasterxml/jackson/databind/JsonSerializer.serialize:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+   #65 = Methodref          #301.#322     // com/fasterxml/jackson/databind/JsonSerializer.serializeWithType:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+   #66 = Class              #323          // java/lang/Exception
+   #67 = Class              #324          // java/lang/StringBuilder
+   #68 = Methodref          #67.#325      // java/lang/StringBuilder."<init>":()V
+   #69 = String             #326          //
+   #70 = Methodref          #67.#327      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #71 = Methodref          #67.#328      // java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+   #72 = Methodref          #67.#329      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #73 = Methodref          #17.#330      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.wrapAndThrow:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;)V
+   #74 = Methodref          #252.#331     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.findAndAddSecondarySerializer:(Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+   #75 = Fieldref           #228.#332     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+   #76 = Fieldref           #228.#333     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.serializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #77 = Methodref          #252.#334     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.findAndAddSecondarySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+   #78 = Class              #335          // java/util/Map$Entry
+   #79 = Methodref          #17.#336      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.hasSingleElement:(Ljava/util/Map$Entry;)Z
+   #80 = Methodref          #17.#337      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.serialize:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+   #81 = Methodref          #17.#338      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/util/Map$Entry;)Z
+   #82 = Methodref          #17.#339      // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer.serializeWithType:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+   #83 = Fieldref           #151.#340     // com/fasterxml/jackson/annotation/JsonInclude$Include.NON_EMPTY:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+   #84 = Class              #341          // com/fasterxml/jackson/databind/ser/ContainerSerializer
+   #85 = Class              #342          // com/fasterxml/jackson/databind/ser/ContextualSerializer
+   #86 = Class              #343          // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer$1
+   #87 = Utf8               InnerClasses
+   #88 = Utf8               MARKER_FOR_EMPTY
+   #89 = Utf8               Ljava/lang/Object;
+   #90 = Utf8               _property
+   #91 = Utf8               Lcom/fasterxml/jackson/databind/BeanProperty;
+   #92 = Utf8               _valueTypeIsStatic
+   #93 = Utf8               Z
+   #94 = Utf8               _entryType
+   #95 = Utf8               Lcom/fasterxml/jackson/databind/JavaType;
+   #96 = Utf8               _keyType
+   #97 = Utf8               _valueType
+   #98 = Utf8               _keySerializer
+   #99 = Utf8               Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #100 = Utf8               Signature
+  #101 = Utf8               Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+  #102 = Utf8               _valueSerializer
+  #103 = Utf8               _valueTypeSerializer
+  #104 = Utf8               Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+  #105 = Utf8               _dynamicValueSerializers
+  #106 = Utf8               Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #107 = Utf8               _suppressableValue
+  #108 = Utf8               _suppressNulls
+  #109 = Utf8               <init>
+  #110 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/BeanProperty;)V
+  #111 = Utf8               Code
+  #112 = Utf8               LineNumberTable
+  #113 = Utf8               LocalVariableTable
+  #114 = Utf8               this
+  #115 = Utf8               Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+  #116 = Utf8               type
+  #117 = Utf8               keyType
+  #118 = Utf8               valueType
+  #119 = Utf8               staticTyping
+  #120 = Utf8               vts
+  #121 = Utf8               property
+  #122 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+  #123 = Utf8               src
+  #124 = Utf8               keySer
+  #125 = Utf8               valueSer
+  #126 = Utf8               LocalVariableTypeTable
+  #127 = Utf8               Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+  #128 = Utf8               Deprecated
+  #129 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;)V
+  #130 = Utf8               RuntimeVisibleAnnotations
+  #131 = Utf8               Ljava/lang/Deprecated;
+  #132 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)V
+  #133 = Utf8               suppressableValue
+  #134 = Utf8               suppressNulls
+  #135 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Ljava/lang/Object;Z)V
+  #136 = Utf8               _withValueTypeSerializer
+  #137 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)Lcom/fasterxml/jackson/databind/ser/ContainerSerializer;
+  #138 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)Lcom/fasterxml/jackson/databind/ser/ContainerSerializer<*>;
+  #139 = Utf8               withResolved
+  #140 = Utf8               (Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+  #141 = Utf8               keySerializer
+  #142 = Utf8               valueSerializer
+  #143 = Utf8               (Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+  #144 = Utf8               withContentInclusion
+  #145 = Utf8               (Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+  #146 = Utf8               StackMapTable
+  #147 = Utf8               createContextual
+  #148 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #149 = Utf8               serDef
+  #150 = Utf8               incl
+  #151 = Class              #345          // com/fasterxml/jackson/annotation/JsonInclude$Include
+  #152 = Utf8               Include
+  #153 = Utf8               Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+  #154 = Utf8               inclV
+  #155 = Class              #346          // com/fasterxml/jackson/annotation/JsonInclude$Value
+  #156 = Utf8               Value
+  #157 = Utf8               Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+  #158 = Utf8               provider
+  #159 = Utf8               Lcom/fasterxml/jackson/databind/SerializerProvider;
+  #160 = Utf8               ser
+  #161 = Utf8               intr
+  #162 = Utf8               Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+  #163 = Utf8               propertyAcc
+  #164 = Utf8               Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+  #165 = Utf8               valueToSuppress
+  #166 = Utf8               mser
+  #167 = Class              #347          // com/fasterxml/jackson/databind/JsonSerializer
+  #168 = Class              #348          // com/fasterxml/jackson/databind/AnnotationIntrospector
+  #169 = Class              #349          // com/fasterxml/jackson/databind/introspect/AnnotatedMember
+  #170 = Class              #350          // java/lang/Object
+  #171 = Class              #262          // com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer
+  #172 = Class              #351          // com/fasterxml/jackson/databind/SerializerProvider
+  #173 = Class              #352          // com/fasterxml/jackson/databind/BeanProperty
+  #174 = Class              #346          // com/fasterxml/jackson/annotation/JsonInclude$Value
+  #175 = Class              #345          // com/fasterxml/jackson/annotation/JsonInclude$Include
+  #176 = Utf8               Exceptions
+  #177 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+  #178 = Utf8               getContentType
+  #179 = Utf8               ()Lcom/fasterxml/jackson/databind/JavaType;
+  #180 = Utf8               getContentSerializer
+  #181 = Utf8               ()Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #182 = Utf8               ()Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+  #183 = Utf8               hasSingleElement
+  #184 = Utf8               Entry
+  #185 = Utf8               (Ljava/util/Map$Entry;)Z
+  #186 = Utf8               value
+  #187 = Utf8               Ljava/util/Map$Entry;
+  #188 = Utf8               Ljava/util/Map$Entry<**>;
+  #189 = Utf8               (Ljava/util/Map$Entry<**>;)Z
+  #190 = Utf8               isEmpty
+  #191 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/util/Map$Entry;)Z
+  #192 = Utf8               e
+  #193 = Utf8               Lcom/fasterxml/jackson/databind/JsonMappingException;
+  #194 = Utf8               cc
+  #195 = Utf8               Ljava/lang/Class;
+  #196 = Utf8               prov
+  #197 = Utf8               entry
+  #198 = Utf8               Ljava/lang/Class<*>;
+  #199 = Class              #335          // java/util/Map$Entry
+  #200 = Class              #353          // java/lang/Class
+  #201 = Class              #300          // com/fasterxml/jackson/databind/JsonMappingException
+  #202 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/util/Map$Entry<**>;)Z
+  #203 = Utf8               serialize
+  #204 = Utf8               (Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #205 = Utf8               gen
+  #206 = Utf8               Lcom/fasterxml/jackson/core/JsonGenerator;
+  #207 = Class              #354          // java/io/IOException
+  #208 = Utf8               (Ljava/util/Map$Entry<**>;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #209 = Utf8               serializeWithType
+  #210 = Utf8               (Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+  #211 = Utf8               g
+  #212 = Utf8               typeSer
+  #213 = Utf8               typeIdDef
+  #214 = Utf8               Lcom/fasterxml/jackson/core/type/WritableTypeId;
+  #215 = Utf8               (Ljava/util/Map$Entry<**>;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+  #216 = Utf8               serializeDynamic
+  #217 = Utf8               keyDesc
+  #218 = Utf8               Ljava/lang/String;
+  #219 = Utf8               Ljava/lang/Exception;
+  #220 = Utf8               keyElem
+  #221 = Utf8               valueElem
+  #222 = Class              #355          // com/fasterxml/jackson/databind/jsontype/TypeSerializer
+  #223 = Class              #323          // java/lang/Exception
+  #224 = Utf8               _findAndAddDynamic
+  #225 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #226 = Utf8               map
+  #227 = Utf8               result
+  #228 = Class              #356          // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult
+  #229 = Utf8               SerializerAndMapResult
+  #230 = Utf8               Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #231 = Class              #356          // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult
+  #232 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class<*>;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+  #233 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #234 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+  #235 = Utf8               (Ljava/lang/Object;)Z
+  #236 = Utf8               (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #237 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+  #238 = Utf8               (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+  #239 = Utf8               <clinit>
+  #240 = Utf8               ()V
+  #241 = Utf8               Lcom/fasterxml/jackson/databind/ser/ContainerSerializer<Ljava/util/Map$Entry<**>;>;Lcom/fasterxml/jackson/databind/ser/ContextualSerializer;
+  #242 = Utf8               SourceFile
+  #243 = Utf8               MapEntrySerializer.java
+  #244 = Utf8               Lcom/fasterxml/jackson/databind/annotation/JacksonStdImpl;
+  #245 = NameAndType        #109:#357     // "<init>":(Lcom/fasterxml/jackson/databind/JavaType;)V
+  #246 = NameAndType        #94:#95       // _entryType:Lcom/fasterxml/jackson/databind/JavaType;
+  #247 = NameAndType        #96:#95       // _keyType:Lcom/fasterxml/jackson/databind/JavaType;
+  #248 = NameAndType        #97:#95       // _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+  #249 = NameAndType        #92:#93       // _valueTypeIsStatic:Z
+  #250 = NameAndType        #103:#104     // _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+  #251 = NameAndType        #90:#91       // _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+  #252 = Class              #358          // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap
+  #253 = NameAndType        #359:#360     // emptyForProperties:()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #254 = NameAndType        #105:#106     // _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #255 = NameAndType        #107:#89      // _suppressableValue:Ljava/lang/Object;
+  #256 = NameAndType        #108:#93      // _suppressNulls:Z
+  #257 = NameAndType        #109:#132     // "<init>":(Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)V
+  #258 = Utf8               java/util/Map
+  #259 = NameAndType        #109:#361     // "<init>":(Ljava/lang/Class;Z)V
+  #260 = NameAndType        #98:#99       // _keySerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #261 = NameAndType        #102:#99      // _valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #262 = Utf8               com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer
+  #263 = Class              #351          // com/fasterxml/jackson/databind/SerializerProvider
+  #264 = NameAndType        #362:#363     // getAnnotationIntrospector:()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+  #265 = Class              #352          // com/fasterxml/jackson/databind/BeanProperty
+  #266 = NameAndType        #364:#365     // getMember:()Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+  #267 = Class              #348          // com/fasterxml/jackson/databind/AnnotationIntrospector
+  #268 = NameAndType        #366:#367     // findKeySerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+  #269 = NameAndType        #368:#369     // serializerInstance:(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #270 = NameAndType        #370:#367     // findContentSerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+  #271 = NameAndType        #371:#372     // findContextualConvertingSerializer:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #272 = Class              #373          // com/fasterxml/jackson/databind/JavaType
+  #273 = NameAndType        #374:#375     // isJavaLangObject:()Z
+  #274 = NameAndType        #376:#377     // findContentValueSerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #275 = NameAndType        #366:#377     // findKeySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #276 = NameAndType        #378:#379     // handleSecondaryContextualization:(Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #277 = NameAndType        #380:#381     // getConfig:()Lcom/fasterxml/jackson/databind/SerializationConfig;
+  #278 = NameAndType        #382:#383     // findPropertyInclusion:(Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+  #279 = NameAndType        #384:#385     // getContentInclusion:()Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+  #280 = NameAndType        #386:#153     // USE_DEFAULTS:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+  #281 = NameAndType        #387:#388     // $SwitchMap$com$fasterxml$jackson$annotation$JsonInclude$Include:[I
+  #282 = NameAndType        #389:#390     // ordinal:()I
+  #283 = Class              #391          // com/fasterxml/jackson/databind/util/BeanUtil
+  #284 = NameAndType        #392:#393     // getDefaultValue:(Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Object;
+  #285 = Class              #350          // java/lang/Object
+  #286 = NameAndType        #394:#395     // getClass:()Ljava/lang/Class;
+  #287 = Class              #353          // java/lang/Class
+  #288 = NameAndType        #396:#375     // isArray:()Z
+  #289 = Class              #397          // com/fasterxml/jackson/databind/util/ArrayBuilders
+  #290 = NameAndType        #398:#399     // getArrayComparator:(Ljava/lang/Object;)Ljava/lang/Object;
+  #291 = NameAndType        #400:#375     // isReferenceType:()Z
+  #292 = NameAndType        #88:#89       // MARKER_FOR_EMPTY:Ljava/lang/Object;
+  #293 = NameAndType        #401:#395     // getContentFilter:()Ljava/lang/Class;
+  #294 = NameAndType        #402:#403     // includeFilterInstance:(Lcom/fasterxml/jackson/databind/introspect/BeanPropertyDefinition;Ljava/lang/Class;)Ljava/lang/Object;
+  #295 = NameAndType        #404:#235     // includeFilterSuppressNulls:(Ljava/lang/Object;)Z
+  #296 = NameAndType        #139:#140     // withResolved:(Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+  #297 = NameAndType        #405:#406     // getValue:()Ljava/lang/Object;
+  #298 = NameAndType        #407:#408     // serializerFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #299 = NameAndType        #224:#225     // _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #300 = Utf8               com/fasterxml/jackson/databind/JsonMappingException
+  #301 = Class              #347          // com/fasterxml/jackson/databind/JsonSerializer
+  #302 = NameAndType        #190:#237     // isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+  #303 = NameAndType        #409:#235     // equals:(Ljava/lang/Object;)Z
+  #304 = Class              #410          // com/fasterxml/jackson/core/JsonGenerator
+  #305 = NameAndType        #411:#412     // writeStartObject:(Ljava/lang/Object;)V
+  #306 = NameAndType        #216:#204     // serializeDynamic:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #307 = NameAndType        #413:#240     // writeEndObject:()V
+  #308 = NameAndType        #414:#412     // setCurrentValue:(Ljava/lang/Object;)V
+  #309 = Class              #415          // com/fasterxml/jackson/core/JsonToken
+  #310 = NameAndType        #416:#417     // START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+  #311 = Class              #355          // com/fasterxml/jackson/databind/jsontype/TypeSerializer
+  #312 = NameAndType        #418:#419     // typeId:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonToken;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+  #313 = NameAndType        #420:#421     // writeTypePrefix:(Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+  #314 = NameAndType        #422:#421     // writeTypeSuffix:(Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+  #315 = NameAndType        #423:#406     // getKey:()Ljava/lang/Object;
+  #316 = NameAndType        #424:#377     // findNullKeySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #317 = NameAndType        #425:#181     // getDefaultNullValueSerializer:()Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #318 = NameAndType        #426:#375     // hasGenericTypes:()Z
+  #319 = NameAndType        #427:#428     // constructSpecializedType:(Lcom/fasterxml/jackson/databind/JavaType;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JavaType;
+  #320 = NameAndType        #224:#233     // _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #321 = NameAndType        #203:#236     // serialize:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #322 = NameAndType        #209:#238     // serializeWithType:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+  #323 = Utf8               java/lang/Exception
+  #324 = Utf8               java/lang/StringBuilder
+  #325 = NameAndType        #109:#240     // "<init>":()V
+  #326 = Utf8
+  #327 = NameAndType        #429:#430     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #328 = NameAndType        #429:#431     // append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #329 = NameAndType        #432:#433     // toString:()Ljava/lang/String;
+  #330 = NameAndType        #434:#435     // wrapAndThrow:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;)V
+  #331 = NameAndType        #436:#437     // findAndAddSecondarySerializer:(Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #332 = NameAndType        #226:#106     // map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #333 = NameAndType        #438:#99      // serializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #334 = NameAndType        #436:#439     // findAndAddSecondarySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #335 = Utf8               java/util/Map$Entry
+  #336 = NameAndType        #183:#185     // hasSingleElement:(Ljava/util/Map$Entry;)Z
+  #337 = NameAndType        #203:#204     // serialize:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #338 = NameAndType        #190:#191     // isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/util/Map$Entry;)Z
+  #339 = NameAndType        #209:#210     // serializeWithType:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+  #340 = NameAndType        #440:#153     // NON_EMPTY:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+  #341 = Utf8               com/fasterxml/jackson/databind/ser/ContainerSerializer
+  #342 = Utf8               com/fasterxml/jackson/databind/ser/ContextualSerializer
+  #343 = Utf8               com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer$1
+  #344 = Class              #441          // com/fasterxml/jackson/annotation/JsonInclude
+  #345 = Utf8               com/fasterxml/jackson/annotation/JsonInclude$Include
+  #346 = Utf8               com/fasterxml/jackson/annotation/JsonInclude$Value
+  #347 = Utf8               com/fasterxml/jackson/databind/JsonSerializer
+  #348 = Utf8               com/fasterxml/jackson/databind/AnnotationIntrospector
+  #349 = Utf8               com/fasterxml/jackson/databind/introspect/AnnotatedMember
+  #350 = Utf8               java/lang/Object
+  #351 = Utf8               com/fasterxml/jackson/databind/SerializerProvider
+  #352 = Utf8               com/fasterxml/jackson/databind/BeanProperty
+  #353 = Utf8               java/lang/Class
+  #354 = Utf8               java/io/IOException
+  #355 = Utf8               com/fasterxml/jackson/databind/jsontype/TypeSerializer
+  #356 = Utf8               com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult
+  #357 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;)V
+  #358 = Utf8               com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap
+  #359 = Utf8               emptyForProperties
+  #360 = Utf8               ()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #361 = Utf8               (Ljava/lang/Class;Z)V
+  #362 = Utf8               getAnnotationIntrospector
+  #363 = Utf8               ()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+  #364 = Utf8               getMember
+  #365 = Utf8               ()Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+  #366 = Utf8               findKeySerializer
+  #367 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+  #368 = Utf8               serializerInstance
+  #369 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #370 = Utf8               findContentSerializer
+  #371 = Utf8               findContextualConvertingSerializer
+  #372 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #373 = Utf8               com/fasterxml/jackson/databind/JavaType
+  #374 = Utf8               isJavaLangObject
+  #375 = Utf8               ()Z
+  #376 = Utf8               findContentValueSerializer
+  #377 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #378 = Utf8               handleSecondaryContextualization
+  #379 = Utf8               (Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #380 = Utf8               getConfig
+  #381 = Utf8               ()Lcom/fasterxml/jackson/databind/SerializationConfig;
+  #382 = Utf8               findPropertyInclusion
+  #383 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+  #384 = Utf8               getContentInclusion
+  #385 = Utf8               ()Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+  #386 = Utf8               USE_DEFAULTS
+  #387 = Utf8               $SwitchMap$com$fasterxml$jackson$annotation$JsonInclude$Include
+  #388 = Utf8               [I
+  #389 = Utf8               ordinal
+  #390 = Utf8               ()I
+  #391 = Utf8               com/fasterxml/jackson/databind/util/BeanUtil
+  #392 = Utf8               getDefaultValue
+  #393 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Object;
+  #394 = Utf8               getClass
+  #395 = Utf8               ()Ljava/lang/Class;
+  #396 = Utf8               isArray
+  #397 = Utf8               com/fasterxml/jackson/databind/util/ArrayBuilders
+  #398 = Utf8               getArrayComparator
+  #399 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #400 = Utf8               isReferenceType
+  #401 = Utf8               getContentFilter
+  #402 = Utf8               includeFilterInstance
+  #403 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/BeanPropertyDefinition;Ljava/lang/Class;)Ljava/lang/Object;
+  #404 = Utf8               includeFilterSuppressNulls
+  #405 = Utf8               getValue
+  #406 = Utf8               ()Ljava/lang/Object;
+  #407 = Utf8               serializerFor
+  #408 = Utf8               (Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #409 = Utf8               equals
+  #410 = Utf8               com/fasterxml/jackson/core/JsonGenerator
+  #411 = Utf8               writeStartObject
+  #412 = Utf8               (Ljava/lang/Object;)V
+  #413 = Utf8               writeEndObject
+  #414 = Utf8               setCurrentValue
+  #415 = Utf8               com/fasterxml/jackson/core/JsonToken
+  #416 = Utf8               START_OBJECT
+  #417 = Utf8               Lcom/fasterxml/jackson/core/JsonToken;
+  #418 = Utf8               typeId
+  #419 = Utf8               (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonToken;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+  #420 = Utf8               writeTypePrefix
+  #421 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+  #422 = Utf8               writeTypeSuffix
+  #423 = Utf8               getKey
+  #424 = Utf8               findNullKeySerializer
+  #425 = Utf8               getDefaultNullValueSerializer
+  #426 = Utf8               hasGenericTypes
+  #427 = Utf8               constructSpecializedType
+  #428 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JavaType;
+  #429 = Utf8               append
+  #430 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #431 = Utf8               (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #432 = Utf8               toString
+  #433 = Utf8               ()Ljava/lang/String;
+  #434 = Utf8               wrapAndThrow
+  #435 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;)V
+  #436 = Utf8               findAndAddSecondarySerializer
+  #437 = Utf8               (Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #438 = Utf8               serializer
+  #439 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #440 = Utf8               NON_EMPTY
+  #441 = Utf8               com/fasterxml/jackson/annotation/JsonInclude
+{
+  public static final java.lang.Object MARKER_FOR_EMPTY;
+    descriptor: Ljava/lang/Object;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  protected final com.fasterxml.jackson.databind.BeanProperty _property;
+    descriptor: Lcom/fasterxml/jackson/databind/BeanProperty;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final boolean _valueTypeIsStatic;
+    descriptor: Z
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final com.fasterxml.jackson.databind.JavaType _entryType;
+    descriptor: Lcom/fasterxml/jackson/databind/JavaType;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final com.fasterxml.jackson.databind.JavaType _keyType;
+    descriptor: Lcom/fasterxml/jackson/databind/JavaType;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final com.fasterxml.jackson.databind.JavaType _valueType;
+    descriptor: Lcom/fasterxml/jackson/databind/JavaType;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object> _keySerializer;
+    descriptor: Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0004) ACC_PROTECTED
+    Signature: #101                         // Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+
+  protected com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object> _valueSerializer;
+    descriptor: Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0004) ACC_PROTECTED
+    Signature: #101                         // Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+
+  protected final com.fasterxml.jackson.databind.jsontype.TypeSerializer _valueTypeSerializer;
+    descriptor: Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected com.fasterxml.jackson.databind.ser.impl.PropertySerializerMap _dynamicValueSerializers;
+    descriptor: Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected final java.lang.Object _suppressableValue;
+    descriptor: Ljava/lang/Object;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final boolean _suppressNulls;
+    descriptor: Z
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  public com.fasterxml.jackson.databind.ser.impl.MapEntrySerializer(com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.JavaType, boolean, com.fasterxml.jackson.databind.jsontype.TypeSerializer, com.fasterxml.jackson.databind.BeanProperty);
+    descriptor: (Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/BeanProperty;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=7, args_size=7
+         0: aload_0
+         1: aload_1
+         2: invokespecial #1                  // Method com/fasterxml/jackson/databind/ser/ContainerSerializer."<init>":(Lcom/fasterxml/jackson/databind/JavaType;)V
+         5: aload_0
+         6: aload_1
+         7: putfield      #2                  // Field _entryType:Lcom/fasterxml/jackson/databind/JavaType;
+        10: aload_0
+        11: aload_2
+        12: putfield      #3                  // Field _keyType:Lcom/fasterxml/jackson/databind/JavaType;
+        15: aload_0
+        16: aload_3
+        17: putfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+        20: aload_0
+        21: iload         4
+        23: putfield      #5                  // Field _valueTypeIsStatic:Z
+        26: aload_0
+        27: aload         5
+        29: putfield      #6                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        32: aload_0
+        33: aload         6
+        35: putfield      #7                  // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+        38: aload_0
+        39: invokestatic  #8                  // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.emptyForProperties:()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        42: putfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        45: aload_0
+        46: aconst_null
+        47: putfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+        50: aload_0
+        51: iconst_0
+        52: putfield      #11                 // Field _suppressNulls:Z
+        55: return
+      LineNumberTable:
+        line 111: 0
+        line 112: 5
+        line 113: 10
+        line 114: 15
+        line 115: 20
+        line 116: 26
+        line 117: 32
+        line 118: 38
+        line 119: 45
+        line 120: 50
+        line 121: 55
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      56     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      56     1  type   Lcom/fasterxml/jackson/databind/JavaType;
+            0      56     2 keyType   Lcom/fasterxml/jackson/databind/JavaType;
+            0      56     3 valueType   Lcom/fasterxml/jackson/databind/JavaType;
+            0      56     4 staticTyping   Z
+            0      56     5   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+            0      56     6 property   Lcom/fasterxml/jackson/databind/BeanProperty;
+
+  protected com.fasterxml.jackson.databind.ser.impl.MapEntrySerializer(com.fasterxml.jackson.databind.ser.impl.MapEntrySerializer, com.fasterxml.jackson.databind.BeanProperty, com.fasterxml.jackson.databind.jsontype.TypeSerializer, com.fasterxml.jackson.databind.JsonSerializer<?>, com.fasterxml.jackson.databind.JsonSerializer<?>);
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=8, locals=6, args_size=6
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: aload         4
+         6: aload         5
+         8: aload_1
+         9: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+        12: aload_1
+        13: getfield      #11                 // Field _suppressNulls:Z
+        16: invokespecial #12                 // Method "<init>":(Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)V
+        19: return
+      LineNumberTable:
+        line 128: 0
+        line 130: 19
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      20     1   src   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      20     2 property   Lcom/fasterxml/jackson/databind/BeanProperty;
+            0      20     3   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+            0      20     4 keySer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            0      20     5 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      20     4 keySer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+            0      20     5 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+    Deprecated: true
+    Signature: #129                         // (Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;)V
+    RuntimeVisibleAnnotations:
+      0: #131()
+        java.lang.Deprecated
+
+  protected com.fasterxml.jackson.databind.ser.impl.MapEntrySerializer(com.fasterxml.jackson.databind.ser.impl.MapEntrySerializer, com.fasterxml.jackson.databind.BeanProperty, com.fasterxml.jackson.databind.jsontype.TypeSerializer, com.fasterxml.jackson.databind.JsonSerializer<?>, com.fasterxml.jackson.databind.JsonSerializer<?>, java.lang.Object, boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=8, args_size=8
+         0: aload_0
+         1: ldc           #13                 // class java/util/Map
+         3: iconst_0
+         4: invokespecial #14                 // Method com/fasterxml/jackson/databind/ser/ContainerSerializer."<init>":(Ljava/lang/Class;Z)V
+         7: aload_0
+         8: aload_1
+         9: getfield      #2                  // Field _entryType:Lcom/fasterxml/jackson/databind/JavaType;
+        12: putfield      #2                  // Field _entryType:Lcom/fasterxml/jackson/databind/JavaType;
+        15: aload_0
+        16: aload_1
+        17: getfield      #3                  // Field _keyType:Lcom/fasterxml/jackson/databind/JavaType;
+        20: putfield      #3                  // Field _keyType:Lcom/fasterxml/jackson/databind/JavaType;
+        23: aload_0
+        24: aload_1
+        25: getfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+        28: putfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+        31: aload_0
+        32: aload_1
+        33: getfield      #5                  // Field _valueTypeIsStatic:Z
+        36: putfield      #5                  // Field _valueTypeIsStatic:Z
+        39: aload_0
+        40: aload_1
+        41: getfield      #6                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        44: putfield      #6                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        47: aload_0
+        48: aload         4
+        50: putfield      #15                 // Field _keySerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        53: aload_0
+        54: aload         5
+        56: putfield      #16                 // Field _valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        59: aload_0
+        60: invokestatic  #8                  // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.emptyForProperties:()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        63: putfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        66: aload_0
+        67: aload_1
+        68: getfield      #7                  // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+        71: putfield      #7                  // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+        74: aload_0
+        75: aload         6
+        77: putfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+        80: aload_0
+        81: iload         7
+        83: putfield      #11                 // Field _suppressNulls:Z
+        86: return
+      LineNumberTable:
+        line 138: 0
+        line 139: 7
+        line 140: 15
+        line 141: 23
+        line 142: 31
+        line 143: 39
+        line 144: 47
+        line 145: 53
+        line 147: 59
+        line 148: 66
+        line 149: 74
+        line 150: 80
+        line 151: 86
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      87     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      87     1   src   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      87     2 property   Lcom/fasterxml/jackson/databind/BeanProperty;
+            0      87     3   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+            0      87     4 keySer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            0      87     5 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            0      87     6 suppressableValue   Ljava/lang/Object;
+            0      87     7 suppressNulls   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      87     4 keySer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+            0      87     5 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+    Signature: #135                         // (Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Ljava/lang/Object;Z)V
+
+  public com.fasterxml.jackson.databind.ser.ContainerSerializer<?> _withValueTypeSerializer(com.fasterxml.jackson.databind.jsontype.TypeSerializer);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)Lcom/fasterxml/jackson/databind/ser/ContainerSerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=9, locals=2, args_size=2
+         0: new           #17                 // class com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer
+         3: dup
+         4: aload_0
+         5: aload_0
+         6: getfield      #7                  // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+         9: aload_1
+        10: aload_0
+        11: getfield      #15                 // Field _keySerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        14: aload_0
+        15: getfield      #16                 // Field _valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        18: aload_0
+        19: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+        22: aload_0
+        23: getfield      #11                 // Field _suppressNulls:Z
+        26: invokespecial #12                 // Method "<init>":(Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)V
+        29: areturn
+      LineNumberTable:
+        line 155: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      30     1   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+    Signature: #138                         // (Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)Lcom/fasterxml/jackson/databind/ser/ContainerSerializer<*>;
+
+  public com.fasterxml.jackson.databind.ser.impl.MapEntrySerializer withResolved(com.fasterxml.jackson.databind.BeanProperty, com.fasterxml.jackson.databind.JsonSerializer<?>, com.fasterxml.jackson.databind.JsonSerializer<?>, java.lang.Object, boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=9, locals=6, args_size=6
+         0: new           #17                 // class com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer
+         3: dup
+         4: aload_0
+         5: aload_1
+         6: aload_0
+         7: getfield      #6                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        10: aload_2
+        11: aload_3
+        12: aload         4
+        14: iload         5
+        16: invokespecial #12                 // Method "<init>":(Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)V
+        19: areturn
+      LineNumberTable:
+        line 165: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      20     1 property   Lcom/fasterxml/jackson/databind/BeanProperty;
+            0      20     2 keySerializer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            0      20     3 valueSerializer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            0      20     4 suppressableValue   Ljava/lang/Object;
+            0      20     5 suppressNulls   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      20     2 keySerializer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+            0      20     3 valueSerializer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+    Signature: #143                         // (Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+
+  public com.fasterxml.jackson.databind.ser.impl.MapEntrySerializer withContentInclusion(java.lang.Object, boolean);
+    descriptor: (Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=9, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+         4: aload_1
+         5: if_acmpne     18
+         8: aload_0
+         9: getfield      #11                 // Field _suppressNulls:Z
+        12: iload_2
+        13: if_icmpne     18
+        16: aload_0
+        17: areturn
+        18: new           #17                 // class com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer
+        21: dup
+        22: aload_0
+        23: aload_0
+        24: getfield      #7                  // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+        27: aload_0
+        28: getfield      #6                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        31: aload_0
+        32: getfield      #15                 // Field _keySerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        35: aload_0
+        36: getfield      #16                 // Field _valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        39: aload_1
+        40: iload_2
+        41: invokespecial #12                 // Method "<init>":(Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)V
+        44: areturn
+      LineNumberTable:
+        line 174: 0
+        line 176: 16
+        line 178: 18
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      45     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      45     1 suppressableValue   Ljava/lang/Object;
+            0      45     2 suppressNulls   Z
+      StackMapTable: number_of_entries = 1
+        frame_type = 18 /* same */
+
+  public com.fasterxml.jackson.databind.JsonSerializer<?> createContextual(com.fasterxml.jackson.databind.SerializerProvider, com.fasterxml.jackson.databind.BeanProperty) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=11, args_size=3
+         0: aconst_null
+         1: astore_3
+         2: aconst_null
+         3: astore        4
+         5: aload_1
+         6: invokevirtual #18                 // Method com/fasterxml/jackson/databind/SerializerProvider.getAnnotationIntrospector:()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+         9: astore        5
+        11: aload_2
+        12: ifnonnull     19
+        15: aconst_null
+        16: goto          25
+        19: aload_2
+        20: invokeinterface #19,  1           // InterfaceMethod com/fasterxml/jackson/databind/BeanProperty.getMember:()Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+        25: astore        6
+        27: aload         6
+        29: ifnull        84
+        32: aload         5
+        34: ifnull        84
+        37: aload         5
+        39: aload         6
+        41: invokevirtual #20                 // Method com/fasterxml/jackson/databind/AnnotationIntrospector.findKeySerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+        44: astore        7
+        46: aload         7
+        48: ifnull        61
+        51: aload_1
+        52: aload         6
+        54: aload         7
+        56: invokevirtual #21                 // Method com/fasterxml/jackson/databind/SerializerProvider.serializerInstance:(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        59: astore        4
+        61: aload         5
+        63: aload         6
+        65: invokevirtual #22                 // Method com/fasterxml/jackson/databind/AnnotationIntrospector.findContentSerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+        68: astore        7
+        70: aload         7
+        72: ifnull        84
+        75: aload_1
+        76: aload         6
+        78: aload         7
+        80: invokevirtual #21                 // Method com/fasterxml/jackson/databind/SerializerProvider.serializerInstance:(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        83: astore_3
+        84: aload_3
+        85: ifnonnull     93
+        88: aload_0
+        89: getfield      #16                 // Field _valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        92: astore_3
+        93: aload_0
+        94: aload_1
+        95: aload_2
+        96: aload_3
+        97: invokevirtual #23                 // Method findContextualConvertingSerializer:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       100: astore_3
+       101: aload_3
+       102: ifnonnull     132
+       105: aload_0
+       106: getfield      #5                  // Field _valueTypeIsStatic:Z
+       109: ifeq          132
+       112: aload_0
+       113: getfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+       116: invokevirtual #24                 // Method com/fasterxml/jackson/databind/JavaType.isJavaLangObject:()Z
+       119: ifne          132
+       122: aload_1
+       123: aload_0
+       124: getfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+       127: aload_2
+       128: invokevirtual #25                 // Method com/fasterxml/jackson/databind/SerializerProvider.findContentValueSerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       131: astore_3
+       132: aload         4
+       134: ifnonnull     143
+       137: aload_0
+       138: getfield      #15                 // Field _keySerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+       141: astore        4
+       143: aload         4
+       145: ifnonnull     162
+       148: aload_1
+       149: aload_0
+       150: getfield      #3                  // Field _keyType:Lcom/fasterxml/jackson/databind/JavaType;
+       153: aload_2
+       154: invokevirtual #26                 // Method com/fasterxml/jackson/databind/SerializerProvider.findKeySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       157: astore        4
+       159: goto          171
+       162: aload_1
+       163: aload         4
+       165: aload_2
+       166: invokevirtual #27                 // Method com/fasterxml/jackson/databind/SerializerProvider.handleSecondaryContextualization:(Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       169: astore        4
+       171: aload_0
+       172: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+       175: astore        7
+       177: aload_0
+       178: getfield      #11                 // Field _suppressNulls:Z
+       181: istore        8
+       183: aload_2
+       184: ifnull        391
+       187: aload_2
+       188: aload_1
+       189: invokevirtual #28                 // Method com/fasterxml/jackson/databind/SerializerProvider.getConfig:()Lcom/fasterxml/jackson/databind/SerializationConfig;
+       192: aconst_null
+       193: invokeinterface #29,  3           // InterfaceMethod com/fasterxml/jackson/databind/BeanProperty.findPropertyInclusion:(Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+       198: astore        9
+       200: aload         9
+       202: ifnull        391
+       205: aload         9
+       207: invokevirtual #30                 // Method com/fasterxml/jackson/annotation/JsonInclude$Value.getContentInclusion:()Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+       210: astore        10
+       212: aload         10
+       214: getstatic     #31                 // Field com/fasterxml/jackson/annotation/JsonInclude$Include.USE_DEFAULTS:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+       217: if_acmpeq     391
+       220: getstatic     #32                 // Field com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer$1.$SwitchMap$com$fasterxml$jackson$annotation$JsonInclude$Include:[I
+       223: aload         10
+       225: invokevirtual #33                 // Method com/fasterxml/jackson/annotation/JsonInclude$Include.ordinal:()I
+       228: iaload
+       229: tableswitch   { // 1 to 6
+                       1: 268
+                       2: 306
+                       3: 331
+                       4: 342
+                       5: 376
+                       6: 385
+                 default: 385
+            }
+       268: aload_0
+       269: getfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+       272: invokestatic  #34                 // Method com/fasterxml/jackson/databind/util/BeanUtil.getDefaultValue:(Lcom/fasterxml/jackson/databind/JavaType;)Ljava/lang/Object;
+       275: astore        7
+       277: iconst_1
+       278: istore        8
+       280: aload         7
+       282: ifnull        391
+       285: aload         7
+       287: invokevirtual #35                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       290: invokevirtual #36                 // Method java/lang/Class.isArray:()Z
+       293: ifeq          391
+       296: aload         7
+       298: invokestatic  #37                 // Method com/fasterxml/jackson/databind/util/ArrayBuilders.getArrayComparator:(Ljava/lang/Object;)Ljava/lang/Object;
+       301: astore        7
+       303: goto          391
+       306: iconst_1
+       307: istore        8
+       309: aload_0
+       310: getfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+       313: invokevirtual #38                 // Method com/fasterxml/jackson/databind/JavaType.isReferenceType:()Z
+       316: ifeq          325
+       319: getstatic     #39                 // Field MARKER_FOR_EMPTY:Ljava/lang/Object;
+       322: goto          326
+       325: aconst_null
+       326: astore        7
+       328: goto          391
+       331: iconst_1
+       332: istore        8
+       334: getstatic     #39                 // Field MARKER_FOR_EMPTY:Ljava/lang/Object;
+       337: astore        7
+       339: goto          391
+       342: aload_1
+       343: aconst_null
+       344: aload         9
+       346: invokevirtual #40                 // Method com/fasterxml/jackson/annotation/JsonInclude$Value.getContentFilter:()Ljava/lang/Class;
+       349: invokevirtual #41                 // Method com/fasterxml/jackson/databind/SerializerProvider.includeFilterInstance:(Lcom/fasterxml/jackson/databind/introspect/BeanPropertyDefinition;Ljava/lang/Class;)Ljava/lang/Object;
+       352: astore        7
+       354: aload         7
+       356: ifnonnull     365
+       359: iconst_1
+       360: istore        8
+       362: goto          391
+       365: aload_1
+       366: aload         7
+       368: invokevirtual #42                 // Method com/fasterxml/jackson/databind/SerializerProvider.includeFilterSuppressNulls:(Ljava/lang/Object;)Z
+       371: istore        8
+       373: goto          391
+       376: aconst_null
+       377: astore        7
+       379: iconst_1
+       380: istore        8
+       382: goto          391
+       385: aconst_null
+       386: astore        7
+       388: iconst_0
+       389: istore        8
+       391: aload_0
+       392: aload_2
+       393: aload         4
+       395: aload_3
+       396: aload         7
+       398: iload         8
+       400: invokevirtual #43                 // Method withResolved:(Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Object;Z)Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+       403: astore        9
+       405: aload         9
+       407: areturn
+      LineNumberTable:
+        line 186: 0
+        line 187: 2
+        line 188: 5
+        line 189: 11
+        line 192: 27
+        line 193: 37
+        line 194: 46
+        line 195: 51
+        line 197: 61
+        line 198: 70
+        line 199: 75
+        line 202: 84
+        line 203: 88
+        line 206: 93
+        line 207: 101
+        line 211: 105
+        line 212: 122
+        line 215: 132
+        line 216: 137
+        line 218: 143
+        line 219: 148
+        line 221: 162
+        line 224: 171
+        line 225: 177
+        line 226: 183
+        line 227: 187
+        line 228: 200
+        line 229: 205
+        line 230: 212
+        line 231: 220
+        line 233: 268
+        line 234: 277
+        line 235: 280
+        line 236: 285
+        line 237: 296
+        line 242: 306
+        line 243: 309
+        line 244: 328
+        line 246: 331
+        line 247: 334
+        line 248: 339
+        line 250: 342
+        line 251: 354
+        line 252: 359
+        line 254: 365
+        line 256: 373
+        line 258: 376
+        line 259: 379
+        line 260: 382
+        line 263: 385
+        line 266: 388
+        line 273: 391
+        line 276: 405
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           46      38     7 serDef   Ljava/lang/Object;
+          212     179    10  incl   Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+          200     191     9 inclV   Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+            0     408     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0     408     1 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0     408     2 property   Lcom/fasterxml/jackson/databind/BeanProperty;
+            2     406     3   ser   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            5     403     4 keySer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+           11     397     5  intr   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+           27     381     6 propertyAcc   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+          177     231     7 valueToSuppress   Ljava/lang/Object;
+          183     225     8 suppressNulls   Z
+          405       3     9  mser   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            2     406     3   ser   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+            5     403     4 keySer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+      StackMapTable: number_of_entries = 19
+        frame_type = 254 /* append */
+          offset_delta = 19
+          locals = [ class com/fasterxml/jackson/databind/JsonSerializer, class com/fasterxml/jackson/databind/JsonSerializer, class com/fasterxml/jackson/databind/AnnotationIntrospector ]
+        frame_type = 69 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/introspect/AnnotatedMember ]
+        frame_type = 253 /* append */
+          offset_delta = 35
+          locals = [ class com/fasterxml/jackson/databind/introspect/AnnotatedMember, class java/lang/Object ]
+        frame_type = 250 /* chop */
+          offset_delta = 22
+        frame_type = 8 /* same */
+        frame_type = 38 /* same */
+        frame_type = 10 /* same */
+        frame_type = 18 /* same */
+        frame_type = 8 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 96
+          locals = [ class com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer, class com/fasterxml/jackson/databind/SerializerProvider, class com/fasterxml/jackson/databind/BeanProperty, class com/fasterxml/jackson/databind/JsonSerializer, class com/fasterxml/jackson/databind/JsonSerializer, class com/fasterxml/jackson/databind/AnnotationIntrospector, class com/fasterxml/jackson/databind/introspect/AnnotatedMember, class java/lang/Object, int, class com/fasterxml/jackson/annotation/JsonInclude$Value, class com/fasterxml/jackson/annotation/JsonInclude$Include ]
+          stack = []
+        frame_type = 37 /* same */
+        frame_type = 18 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Object ]
+        frame_type = 4 /* same */
+        frame_type = 10 /* same */
+        frame_type = 22 /* same */
+        frame_type = 10 /* same */
+        frame_type = 8 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 5
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #177                         // (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+
+  public com.fasterxml.jackson.databind.JavaType getContentType();
+    descriptor: ()Lcom/fasterxml/jackson/databind/JavaType;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+         4: areturn
+      LineNumberTable:
+        line 287: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+
+  public com.fasterxml.jackson.databind.JsonSerializer<?> getContentSerializer();
+    descriptor: ()Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #16                 // Field _valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+         4: areturn
+      LineNumberTable:
+        line 292: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+    Signature: #182                         // ()Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+
+  public boolean hasSingleElement(java.util.Map$Entry<?, ?>);
+    descriptor: (Ljava/util/Map$Entry;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iconst_1
+         1: ireturn
+      LineNumberTable:
+        line 297: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0       2     1 value   Ljava/util/Map$Entry;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     1 value   Ljava/util/Map$Entry<**>;
+    Signature: #189                         // (Ljava/util/Map$Entry<**>;)Z
+
+  public boolean isEmpty(com.fasterxml.jackson.databind.SerializerProvider, java.util.Map$Entry<?, ?>);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/util/Map$Entry;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=7, args_size=3
+         0: aload_2
+         1: invokeinterface #44,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+         6: astore_3
+         7: aload_3
+         8: ifnonnull     16
+        11: aload_0
+        12: getfield      #11                 // Field _suppressNulls:Z
+        15: ireturn
+        16: aload_0
+        17: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+        20: ifnonnull     25
+        23: iconst_0
+        24: ireturn
+        25: aload_0
+        26: getfield      #16                 // Field _valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        29: astore        4
+        31: aload         4
+        33: ifnonnull     78
+        36: aload_3
+        37: invokevirtual #35                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        40: astore        5
+        42: aload_0
+        43: getfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        46: aload         5
+        48: invokevirtual #45                 // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.serializerFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        51: astore        4
+        53: aload         4
+        55: ifnonnull     78
+        58: aload_0
+        59: aload_0
+        60: getfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        63: aload         5
+        65: aload_1
+        66: invokevirtual #46                 // Method _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        69: astore        4
+        71: goto          78
+        74: astore        6
+        76: iconst_0
+        77: ireturn
+        78: aload_0
+        79: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+        82: getstatic     #39                 // Field MARKER_FOR_EMPTY:Ljava/lang/Object;
+        85: if_acmpne     96
+        88: aload         4
+        90: aload_1
+        91: aload_3
+        92: invokevirtual #48                 // Method com/fasterxml/jackson/databind/JsonSerializer.isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+        95: ireturn
+        96: aload_0
+        97: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+       100: aload_3
+       101: invokevirtual #49                 // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+       104: ireturn
+      Exception table:
+         from    to  target type
+            58    71    74   Class com/fasterxml/jackson/databind/JsonMappingException
+      LineNumberTable:
+        line 303: 0
+        line 304: 7
+        line 305: 11
+        line 307: 16
+        line 308: 23
+        line 310: 25
+        line 311: 31
+        line 314: 36
+        line 315: 42
+        line 316: 53
+        line 318: 58
+        line 321: 71
+        line 319: 74
+        line 320: 76
+        line 324: 78
+        line 325: 88
+        line 327: 96
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           76       2     6     e   Lcom/fasterxml/jackson/databind/JsonMappingException;
+           42      36     5    cc   Ljava/lang/Class;
+            0     105     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0     105     1  prov   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0     105     2 entry   Ljava/util/Map$Entry;
+            7      98     3 value   Ljava/lang/Object;
+           31      74     4 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           42      36     5    cc   Ljava/lang/Class<*>;
+            0     105     2 entry   Ljava/util/Map$Entry<**>;
+           31      74     4 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+      StackMapTable: number_of_entries = 5
+        frame_type = 252 /* append */
+          offset_delta = 16
+          locals = [ class java/lang/Object ]
+        frame_type = 8 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 48
+          locals = [ class com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer, class com/fasterxml/jackson/databind/SerializerProvider, class java/util/Map$Entry, class java/lang/Object, class com/fasterxml/jackson/databind/JsonSerializer, class java/lang/Class ]
+          stack = [ class com/fasterxml/jackson/databind/JsonMappingException ]
+        frame_type = 250 /* chop */
+          offset_delta = 3
+        frame_type = 17 /* same */
+    Signature: #202                         // (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/util/Map$Entry<**>;)Z
+
+  public void serialize(java.util.Map$Entry<?, ?>, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: (Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_2
+         1: aload_1
+         2: invokevirtual #50                 // Method com/fasterxml/jackson/core/JsonGenerator.writeStartObject:(Ljava/lang/Object;)V
+         5: aload_0
+         6: aload_1
+         7: aload_2
+         8: aload_3
+         9: invokevirtual #51                 // Method serializeDynamic:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        12: aload_2
+        13: invokevirtual #52                 // Method com/fasterxml/jackson/core/JsonGenerator.writeEndObject:()V
+        16: return
+      LineNumberTable:
+        line 340: 0
+        line 341: 5
+        line 342: 12
+        line 343: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      17     1 value   Ljava/util/Map$Entry;
+            0      17     2   gen   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      17     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      17     1 value   Ljava/util/Map$Entry<**>;
+    Exceptions:
+      throws java.io.IOException
+    Signature: #208                         // (Ljava/util/Map$Entry<**>;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+
+  public void serializeWithType(java.util.Map$Entry<?, ?>, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider, com.fasterxml.jackson.databind.jsontype.TypeSerializer) throws java.io.IOException;
+    descriptor: (Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=6, args_size=5
+         0: aload_2
+         1: aload_1
+         2: invokevirtual #53                 // Method com/fasterxml/jackson/core/JsonGenerator.setCurrentValue:(Ljava/lang/Object;)V
+         5: aload         4
+         7: aload_2
+         8: aload         4
+        10: aload_1
+        11: getstatic     #54                 // Field com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+        14: invokevirtual #55                 // Method com/fasterxml/jackson/databind/jsontype/TypeSerializer.typeId:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonToken;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+        17: invokevirtual #56                 // Method com/fasterxml/jackson/databind/jsontype/TypeSerializer.writeTypePrefix:(Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+        20: astore        5
+        22: aload_0
+        23: aload_1
+        24: aload_2
+        25: aload_3
+        26: invokevirtual #51                 // Method serializeDynamic:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        29: aload         4
+        31: aload_2
+        32: aload         5
+        34: invokevirtual #57                 // Method com/fasterxml/jackson/databind/jsontype/TypeSerializer.writeTypeSuffix:(Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+        37: pop
+        38: return
+      LineNumberTable:
+        line 350: 0
+        line 351: 5
+        line 352: 14
+        line 351: 17
+        line 353: 22
+        line 354: 29
+        line 355: 38
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      39     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      39     1 value   Ljava/util/Map$Entry;
+            0      39     2     g   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      39     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0      39     4 typeSer   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+           22      17     5 typeIdDef   Lcom/fasterxml/jackson/core/type/WritableTypeId;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      39     1 value   Ljava/util/Map$Entry<**>;
+    Exceptions:
+      throws java.io.IOException
+    Signature: #215                         // (Ljava/util/Map$Entry<**>;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+
+  protected void serializeDynamic(java.util.Map$Entry<?, ?>, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: (Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=5, locals=11, args_size=4
+         0: aload_0
+         1: getfield      #6                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+         4: astore        4
+         6: aload_1
+         7: invokeinterface #58,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        12: astore        5
+        14: aload         5
+        16: ifnonnull     36
+        19: aload_3
+        20: aload_0
+        21: getfield      #3                  // Field _keyType:Lcom/fasterxml/jackson/databind/JavaType;
+        24: aload_0
+        25: getfield      #7                  // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+        28: invokevirtual #59                 // Method com/fasterxml/jackson/databind/SerializerProvider.findNullKeySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        31: astore        6
+        33: goto          42
+        36: aload_0
+        37: getfield      #15                 // Field _keySerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        40: astore        6
+        42: aload_1
+        43: invokeinterface #44,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        48: astore        7
+        50: aload         7
+        52: ifnonnull     72
+        55: aload_0
+        56: getfield      #11                 // Field _suppressNulls:Z
+        59: ifeq          63
+        62: return
+        63: aload_3
+        64: invokevirtual #60                 // Method com/fasterxml/jackson/databind/SerializerProvider.getDefaultNullValueSerializer:()Lcom/fasterxml/jackson/databind/JsonSerializer;
+        67: astore        8
+        69: goto          195
+        72: aload_0
+        73: getfield      #16                 // Field _valueSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        76: astore        8
+        78: aload         8
+        80: ifnonnull     153
+        83: aload         7
+        85: invokevirtual #35                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        88: astore        9
+        90: aload_0
+        91: getfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        94: aload         9
+        96: invokevirtual #45                 // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.serializerFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        99: astore        8
+       101: aload         8
+       103: ifnonnull     153
+       106: aload_0
+       107: getfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+       110: invokevirtual #61                 // Method com/fasterxml/jackson/databind/JavaType.hasGenericTypes:()Z
+       113: ifeq          140
+       116: aload_0
+       117: aload_0
+       118: getfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+       121: aload_3
+       122: aload_0
+       123: getfield      #4                  // Field _valueType:Lcom/fasterxml/jackson/databind/JavaType;
+       126: aload         9
+       128: invokevirtual #62                 // Method com/fasterxml/jackson/databind/SerializerProvider.constructSpecializedType:(Lcom/fasterxml/jackson/databind/JavaType;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JavaType;
+       131: aload_3
+       132: invokevirtual #63                 // Method _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       135: astore        8
+       137: goto          153
+       140: aload_0
+       141: aload_0
+       142: getfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+       145: aload         9
+       147: aload_3
+       148: invokevirtual #46                 // Method _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       151: astore        8
+       153: aload_0
+       154: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+       157: ifnull        195
+       160: aload_0
+       161: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+       164: getstatic     #39                 // Field MARKER_FOR_EMPTY:Ljava/lang/Object;
+       167: if_acmpne     182
+       170: aload         8
+       172: aload_3
+       173: aload         7
+       175: invokevirtual #48                 // Method com/fasterxml/jackson/databind/JsonSerializer.isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+       178: ifeq          182
+       181: return
+       182: aload_0
+       183: getfield      #10                 // Field _suppressableValue:Ljava/lang/Object;
+       186: aload         7
+       188: invokevirtual #49                 // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+       191: ifeq          195
+       194: return
+       195: aload         6
+       197: aload         5
+       199: aload_2
+       200: aload_3
+       201: invokevirtual #64                 // Method com/fasterxml/jackson/databind/JsonSerializer.serialize:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+       204: aload         4
+       206: ifnonnull     221
+       209: aload         8
+       211: aload         7
+       213: aload_2
+       214: aload_3
+       215: invokevirtual #64                 // Method com/fasterxml/jackson/databind/JsonSerializer.serialize:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+       218: goto          232
+       221: aload         8
+       223: aload         7
+       225: aload_2
+       226: aload_3
+       227: aload         4
+       229: invokevirtual #65                 // Method com/fasterxml/jackson/databind/JsonSerializer.serializeWithType:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+       232: goto          269
+       235: astore        9
+       237: new           #67                 // class java/lang/StringBuilder
+       240: dup
+       241: invokespecial #68                 // Method java/lang/StringBuilder."<init>":()V
+       244: ldc           #69                 // String
+       246: invokevirtual #70                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       249: aload         5
+       251: invokevirtual #71                 // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       254: invokevirtual #72                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       257: astore        10
+       259: aload_0
+       260: aload_3
+       261: aload         9
+       263: aload_1
+       264: aload         10
+       266: invokevirtual #73                 // Method wrapAndThrow:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;)V
+       269: return
+      Exception table:
+         from    to  target type
+           204   232   235   Class java/lang/Exception
+      LineNumberTable:
+        line 361: 0
+        line 362: 6
+        line 365: 14
+        line 366: 19
+        line 368: 36
+        line 371: 42
+        line 374: 50
+        line 375: 55
+        line 376: 62
+        line 378: 63
+        line 380: 72
+        line 381: 78
+        line 382: 83
+        line 383: 90
+        line 384: 101
+        line 385: 106
+        line 386: 116
+        line 387: 128
+        line 386: 132
+        line 389: 140
+        line 394: 153
+        line 395: 160
+        line 396: 170
+        line 397: 181
+        line 399: 182
+        line 400: 194
+        line 404: 195
+        line 406: 204
+        line 407: 209
+        line 409: 221
+        line 414: 232
+        line 411: 235
+        line 412: 237
+        line 413: 259
+        line 415: 269
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           33       3     6 keySerializer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+           69       3     8 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+           90      63     9    cc   Ljava/lang/Class;
+          259      10    10 keyDesc   Ljava/lang/String;
+          237      32     9     e   Ljava/lang/Exception;
+            0     270     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0     270     1 value   Ljava/util/Map$Entry;
+            0     270     2   gen   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     270     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            6     264     4   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+           14     256     5 keyElem   Ljava/lang/Object;
+           42     228     6 keySerializer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+           50     220     7 valueElem   Ljava/lang/Object;
+           78     192     8 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           33       3     6 keySerializer   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+           69       3     8 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+           90      63     9    cc   Ljava/lang/Class<*>;
+            0     270     1 value   Ljava/util/Map$Entry<**>;
+           42     228     6 keySerializer   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+           78     192     8 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+      StackMapTable: number_of_entries = 12
+        frame_type = 253 /* append */
+          offset_delta = 36
+          locals = [ class com/fasterxml/jackson/databind/jsontype/TypeSerializer, class java/lang/Object ]
+        frame_type = 252 /* append */
+          offset_delta = 5
+          locals = [ class com/fasterxml/jackson/databind/JsonSerializer ]
+        frame_type = 252 /* append */
+          offset_delta = 20
+          locals = [ class java/lang/Object ]
+        frame_type = 8 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 67
+          locals = [ class com/fasterxml/jackson/databind/JsonSerializer, class java/lang/Class ]
+        frame_type = 250 /* chop */
+          offset_delta = 12
+        frame_type = 28 /* same */
+        frame_type = 12 /* same */
+        frame_type = 25 /* same */
+        frame_type = 10 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 33 /* same */
+    Exceptions:
+      throws java.io.IOException
+    Signature: #208                         // (Ljava/util/Map$Entry<**>;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+
+  protected final com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object> _findAndAddDynamic(com.fasterxml.jackson.databind.ser.impl.PropertySerializerMap, java.lang.Class<?>, com.fasterxml.jackson.databind.SerializerProvider) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=4, locals=5, args_size=4
+         0: aload_1
+         1: aload_2
+         2: aload_3
+         3: aload_0
+         4: getfield      #7                  // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+         7: invokevirtual #74                 // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.findAndAddSecondarySerializer:(Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+        10: astore        4
+        12: aload_1
+        13: aload         4
+        15: getfield      #75                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        18: if_acmpeq     30
+        21: aload_0
+        22: aload         4
+        24: getfield      #75                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        27: putfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        30: aload         4
+        32: getfield      #76                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.serializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        35: areturn
+      LineNumberTable:
+        line 426: 0
+        line 427: 12
+        line 428: 21
+        line 430: 30
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      36     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      36     1   map   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+            0      36     2  type   Ljava/lang/Class;
+            0      36     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+           12      24     4 result   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      36     2  type   Ljava/lang/Class<*>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 30
+          locals = [ class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult ]
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #232                         // (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class<*>;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+
+  protected final com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object> _findAndAddDynamic(com.fasterxml.jackson.databind.ser.impl.PropertySerializerMap, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.SerializerProvider) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=4, locals=5, args_size=4
+         0: aload_1
+         1: aload_2
+         2: aload_3
+         3: aload_0
+         4: getfield      #7                  // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+         7: invokevirtual #77                 // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.findAndAddSecondarySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+        10: astore        4
+        12: aload_1
+        13: aload         4
+        15: getfield      #75                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        18: if_acmpeq     30
+        21: aload_0
+        22: aload         4
+        24: getfield      #75                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        27: putfield      #9                  // Field _dynamicValueSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        30: aload         4
+        32: getfield      #76                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.serializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        35: areturn
+      LineNumberTable:
+        line 436: 0
+        line 437: 12
+        line 438: 21
+        line 440: 30
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      36     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+            0      36     1   map   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+            0      36     2  type   Lcom/fasterxml/jackson/databind/JavaType;
+            0      36     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+           12      24     4 result   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 30
+          locals = [ class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult ]
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #234                         // (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+
+  public boolean hasSingleElement(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #78                 // class java/util/Map$Entry
+         5: invokevirtual #79                 // Method hasSingleElement:(Ljava/util/Map$Entry;)Z
+         8: ireturn
+      LineNumberTable:
+        line 24: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+
+  public void serialize(java.lang.Object, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: checkcast     #78                 // class java/util/Map$Entry
+         5: aload_2
+         6: aload_3
+         7: invokevirtual #80                 // Method serialize:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        10: return
+      LineNumberTable:
+        line 24: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean isEmpty(com.fasterxml.jackson.databind.SerializerProvider, java.lang.Object);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: checkcast     #78                 // class java/util/Map$Entry
+         6: invokevirtual #81                 // Method isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/util/Map$Entry;)Z
+         9: ireturn
+      LineNumberTable:
+        line 24: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+
+  public void serializeWithType(java.lang.Object, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider, com.fasterxml.jackson.databind.jsontype.TypeSerializer) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_0
+         1: aload_1
+         2: checkcast     #78                 // class java/util/Map$Entry
+         5: aload_2
+         6: aload_3
+         7: aload         4
+         9: invokevirtual #82                 // Method serializeWithType:(Ljava/util/Map$Entry;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+        12: return
+      LineNumberTable:
+        line 24: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/ser/impl/MapEntrySerializer;
+    Exceptions:
+      throws java.io.IOException
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #83                 // Field com/fasterxml/jackson/annotation/JsonInclude$Include.NON_EMPTY:Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+         3: putstatic     #39                 // Field MARKER_FOR_EMPTY:Ljava/lang/Object;
+         6: return
+      LineNumberTable:
+        line 33: 0
+}
+Signature: #241                         // Lcom/fasterxml/jackson/databind/ser/ContainerSerializer<Ljava/util/Map$Entry<**>;>;Lcom/fasterxml/jackson/databind/ser/ContextualSerializer;
+SourceFile: "MapEntrySerializer.java"
+RuntimeVisibleAnnotations:
+  0: #244()
+    com.fasterxml.jackson.databind.annotation.JacksonStdImpl
+InnerClasses:
+  static #86;                             // class com/fasterxml/jackson/databind/ser/impl/MapEntrySerializer$1
+  public static final #152= #151 of #344; // Include=class com/fasterxml/jackson/annotation/JsonInclude$Include of class com/fasterxml/jackson/annotation/JsonInclude
+  public static #156= #155 of #344;       // Value=class com/fasterxml/jackson/annotation/JsonInclude$Value of class com/fasterxml/jackson/annotation/JsonInclude
+  public static #184= #78 of #13;         // Entry=class java/util/Map$Entry of class java/util/Map
+  public static final #229= #228 of #252; // SerializerAndMapResult=class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult of class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap

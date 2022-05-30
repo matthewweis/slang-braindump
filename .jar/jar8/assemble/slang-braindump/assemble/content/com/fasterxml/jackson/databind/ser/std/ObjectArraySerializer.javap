@@ -1,0 +1,1550 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.class
+  Last modified May 29, 2022; size 15904 bytes
+  SHA-256 checksum 19f8a884f2206cea9669a1e418eec6f7495d67d01b347bc0ff22fcea5ae917ba
+  Compiled from "ObjectArraySerializer.java"
+public class com.fasterxml.jackson.databind.ser.std.ObjectArraySerializer extends com.fasterxml.jackson.databind.ser.std.ArraySerializerBase<java.lang.Object[]> implements com.fasterxml.jackson.databind.ser.ContextualSerializer
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #11                         // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer
+  super_class: #59                        // com/fasterxml/jackson/databind/ser/std/ArraySerializerBase
+  interfaces: 1, fields: 5, methods: 22, attributes: 4
+Constant pool:
+    #1 = Class              #138          // "[Ljava/lang/Object;"
+    #2 = Methodref          #59.#202      // com/fasterxml/jackson/databind/ser/std/ArraySerializerBase."<init>":(Ljava/lang/Class;)V
+    #3 = Fieldref           #11.#203      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._elementType:Lcom/fasterxml/jackson/databind/JavaType;
+    #4 = Fieldref           #11.#204      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._staticTyping:Z
+    #5 = Fieldref           #11.#205      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+    #6 = Methodref          #206.#207     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.emptyForProperties:()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+    #7 = Fieldref           #11.#208      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+    #8 = Fieldref           #11.#209      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+    #9 = Methodref          #59.#210      // com/fasterxml/jackson/databind/ser/std/ArraySerializerBase."<init>":(Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase;)V
+   #10 = Methodref          #59.#211      // com/fasterxml/jackson/databind/ser/std/ArraySerializerBase."<init>":(Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Boolean;)V
+   #11 = Class              #212          // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer
+   #12 = Methodref          #11.#213      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer."<init>":(Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)V
+   #13 = Methodref          #11.#214      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer."<init>":(Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+   #14 = Fieldref           #11.#215      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._property:Lcom/fasterxml/jackson/databind/BeanProperty;
+   #15 = Fieldref           #11.#216      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._unwrapSingle:Ljava/lang/Boolean;
+   #16 = Methodref          #217.#218     // java/util/Objects.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+   #17 = Methodref          #219.#220     // com/fasterxml/jackson/databind/jsontype/TypeSerializer.forProperty:(Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+   #18 = InterfaceMethodref #221.#222     // com/fasterxml/jackson/databind/BeanProperty.getMember:()Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+   #19 = Methodref          #223.#224     // com/fasterxml/jackson/databind/SerializerProvider.getAnnotationIntrospector:()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+   #20 = Methodref          #225.#226     // com/fasterxml/jackson/databind/AnnotationIntrospector.findContentSerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+   #21 = Methodref          #223.#227     // com/fasterxml/jackson/databind/SerializerProvider.serializerInstance:(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #22 = Methodref          #11.#228      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.handledType:()Ljava/lang/Class;
+   #23 = Methodref          #11.#229      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.findFormatOverrides:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+   #24 = Fieldref           #230.#231     // com/fasterxml/jackson/annotation/JsonFormat$Feature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED:Lcom/fasterxml/jackson/annotation/JsonFormat$Feature;
+   #25 = Methodref          #118.#232     // com/fasterxml/jackson/annotation/JsonFormat$Value.getFeature:(Lcom/fasterxml/jackson/annotation/JsonFormat$Feature;)Ljava/lang/Boolean;
+   #26 = Methodref          #11.#233      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.findContextualConvertingSerializer:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #27 = Methodref          #234.#235     // com/fasterxml/jackson/databind/JavaType.isJavaLangObject:()Z
+   #28 = Methodref          #223.#236     // com/fasterxml/jackson/databind/SerializerProvider.findContentValueSerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #29 = Methodref          #11.#237      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.withResolved:(Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+   #30 = Fieldref           #238.#239     // com/fasterxml/jackson/databind/SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED:Lcom/fasterxml/jackson/databind/SerializationFeature;
+   #31 = Methodref          #223.#240     // com/fasterxml/jackson/databind/SerializerProvider.isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+   #32 = Fieldref           #241.#242     // java/lang/Boolean.TRUE:Ljava/lang/Boolean;
+   #33 = Methodref          #11.#243      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.serializeContents:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+   #34 = Methodref          #244.#245     // com/fasterxml/jackson/core/JsonGenerator.writeStartArray:(Ljava/lang/Object;I)V
+   #35 = Methodref          #244.#246     // com/fasterxml/jackson/core/JsonGenerator.writeEndArray:()V
+   #36 = Methodref          #11.#247      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.serializeContentsUsing:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+   #37 = Methodref          #11.#248      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.serializeTypedContents:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+   #38 = Methodref          #223.#249     // com/fasterxml/jackson/databind/SerializerProvider.defaultSerializeNull:(Lcom/fasterxml/jackson/core/JsonGenerator;)V
+   #39 = Methodref          #250.#251     // java/lang/Object.getClass:()Ljava/lang/Class;
+   #40 = Methodref          #206.#252     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.serializerFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #41 = Methodref          #234.#253     // com/fasterxml/jackson/databind/JavaType.hasGenericTypes:()Z
+   #42 = Methodref          #223.#254     // com/fasterxml/jackson/databind/SerializerProvider.constructSpecializedType:(Lcom/fasterxml/jackson/databind/JavaType;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JavaType;
+   #43 = Methodref          #11.#255      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #44 = Methodref          #11.#256      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer._findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #45 = Methodref          #257.#258     // com/fasterxml/jackson/databind/JsonSerializer.serialize:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+   #46 = Class              #259          // java/lang/Exception
+   #47 = Methodref          #11.#260      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.wrapAndThrow:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;I)V
+   #48 = Methodref          #257.#261     // com/fasterxml/jackson/databind/JsonSerializer.serializeWithType:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+   #49 = InterfaceMethodref #262.#263     // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper.expectArrayFormat:(Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor;
+   #50 = InterfaceMethodref #262.#264     // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper.getProvider:()Lcom/fasterxml/jackson/databind/SerializerProvider;
+   #51 = InterfaceMethodref #265.#266     // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor.itemsFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitable;Lcom/fasterxml/jackson/databind/JavaType;)V
+   #52 = Methodref          #206.#267     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.findAndAddSecondarySerializer:(Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+   #53 = Fieldref           #187.#268     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+   #54 = Fieldref           #187.#269     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.serializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #55 = Methodref          #206.#270     // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.findAndAddSecondarySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+   #56 = Methodref          #11.#271      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.serialize:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+   #57 = Methodref          #11.#272      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.hasSingleElement:([Ljava/lang/Object;)Z
+   #58 = Methodref          #11.#273      // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer.isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;[Ljava/lang/Object;)Z
+   #59 = Class              #274          // com/fasterxml/jackson/databind/ser/std/ArraySerializerBase
+   #60 = Class              #275          // com/fasterxml/jackson/databind/ser/ContextualSerializer
+   #61 = Utf8               _staticTyping
+   #62 = Utf8               Z
+   #63 = Utf8               _elementType
+   #64 = Utf8               Lcom/fasterxml/jackson/databind/JavaType;
+   #65 = Utf8               _valueTypeSerializer
+   #66 = Utf8               Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+   #67 = Utf8               _elementSerializer
+   #68 = Utf8               Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #69 = Utf8               Signature
+   #70 = Utf8               Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+   #71 = Utf8               _dynamicSerializers
+   #72 = Utf8               Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+   #73 = Utf8               <init>
+   #74 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+   #75 = Utf8               Code
+   #76 = Utf8               LineNumberTable
+   #77 = Utf8               LocalVariableTable
+   #78 = Utf8               this
+   #79 = Utf8               Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+   #80 = Utf8               elemType
+   #81 = Utf8               staticTyping
+   #82 = Utf8               vts
+   #83 = Utf8               elementSerializer
+   #84 = Utf8               LocalVariableTypeTable
+   #85 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;)V
+   #86 = Utf8               (Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+   #87 = Utf8               src
+   #88 = Utf8               (Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)V
+   #89 = Utf8               property
+   #90 = Utf8               Lcom/fasterxml/jackson/databind/BeanProperty;
+   #91 = Utf8               unwrapSingle
+   #92 = Utf8               Ljava/lang/Boolean;
+   #93 = Utf8               Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+   #94 = Utf8               (Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Ljava/lang/Boolean;)V
+   #95 = Utf8               _withResolved
+   #96 = Utf8               (Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+   #97 = Utf8               prop
+   #98 = Utf8               (Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+   #99 = Utf8               _withValueTypeSerializer
+  #100 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)Lcom/fasterxml/jackson/databind/ser/ContainerSerializer;
+  #101 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)Lcom/fasterxml/jackson/databind/ser/ContainerSerializer<*>;
+  #102 = Utf8               withResolved
+  #103 = Utf8               (Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+  #104 = Utf8               ser
+  #105 = Utf8               StackMapTable
+  #106 = Utf8               (Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+  #107 = Utf8               createContextual
+  #108 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #109 = Utf8               serDef
+  #110 = Utf8               Ljava/lang/Object;
+  #111 = Utf8               m
+  #112 = Utf8               Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+  #113 = Utf8               intr
+  #114 = Utf8               Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+  #115 = Utf8               serializers
+  #116 = Utf8               Lcom/fasterxml/jackson/databind/SerializerProvider;
+  #117 = Utf8               format
+  #118 = Class              #277          // com/fasterxml/jackson/annotation/JsonFormat$Value
+  #119 = Utf8               Value
+  #120 = Utf8               InnerClasses
+  #121 = Utf8               Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #122 = Class              #278          // com/fasterxml/jackson/databind/jsontype/TypeSerializer
+  #123 = Class              #279          // com/fasterxml/jackson/databind/JsonSerializer
+  #124 = Class              #280          // java/lang/Boolean
+  #125 = Class              #277          // com/fasterxml/jackson/annotation/JsonFormat$Value
+  #126 = Utf8               Exceptions
+  #127 = Class              #281          // com/fasterxml/jackson/databind/JsonMappingException
+  #128 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+  #129 = Utf8               getContentType
+  #130 = Utf8               ()Lcom/fasterxml/jackson/databind/JavaType;
+  #131 = Utf8               getContentSerializer
+  #132 = Utf8               ()Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #133 = Utf8               ()Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+  #134 = Utf8               isEmpty
+  #135 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;[Ljava/lang/Object;)Z
+  #136 = Utf8               prov
+  #137 = Utf8               value
+  #138 = Utf8               [Ljava/lang/Object;
+  #139 = Utf8               hasSingleElement
+  #140 = Utf8               ([Ljava/lang/Object;)Z
+  #141 = Utf8               serialize
+  #142 = Utf8               ([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #143 = Utf8               gen
+  #144 = Utf8               Lcom/fasterxml/jackson/core/JsonGenerator;
+  #145 = Utf8               provider
+  #146 = Utf8               len
+  #147 = Utf8               I
+  #148 = Class              #282          // java/io/IOException
+  #149 = Utf8               serializeContents
+  #150 = Utf8               cc
+  #151 = Utf8               Ljava/lang/Class;
+  #152 = Utf8               serializer
+  #153 = Utf8               e
+  #154 = Utf8               Ljava/lang/Exception;
+  #155 = Utf8               i
+  #156 = Utf8               elem
+  #157 = Utf8               Ljava/lang/Class<*>;
+  #158 = Class              #283          // java/lang/Object
+  #159 = Class              #284          // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap
+  #160 = Class              #285          // java/lang/Class
+  #161 = Class              #259          // java/lang/Exception
+  #162 = Utf8               serializeContentsUsing
+  #163 = Utf8               ([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+  #164 = Utf8               jgen
+  #165 = Utf8               typeSer
+  #166 = Class              #212          // com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer
+  #167 = Class              #286          // com/fasterxml/jackson/core/JsonGenerator
+  #168 = Class              #287          // com/fasterxml/jackson/databind/SerializerProvider
+  #169 = Utf8               ([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;)V
+  #170 = Utf8               serializeTypedContents
+  #171 = Utf8               acceptJsonFormatVisitor
+  #172 = Utf8               (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;)V
+  #173 = Utf8               contentType
+  #174 = Utf8               valueSer
+  #175 = Utf8               visitor
+  #176 = Utf8               Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;
+  #177 = Utf8               typeHint
+  #178 = Utf8               arrayVisitor
+  #179 = Utf8               Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor;
+  #180 = Class              #288          // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor
+  #181 = Class              #289          // com/fasterxml/jackson/databind/JavaType
+  #182 = Utf8               _findAndAddDynamic
+  #183 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #184 = Utf8               map
+  #185 = Utf8               type
+  #186 = Utf8               result
+  #187 = Class              #290          // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult
+  #188 = Utf8               SerializerAndMapResult
+  #189 = Utf8               Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #190 = Class              #290          // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult
+  #191 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class<*>;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+  #192 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #193 = Utf8               (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+  #194 = Utf8               (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #195 = Utf8               (Ljava/lang/Object;)Z
+  #196 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+  #197 = Utf8               Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase<[Ljava/lang/Object;>;Lcom/fasterxml/jackson/databind/ser/ContextualSerializer;
+  #198 = Utf8               SourceFile
+  #199 = Utf8               ObjectArraySerializer.java
+  #200 = Utf8               RuntimeVisibleAnnotations
+  #201 = Utf8               Lcom/fasterxml/jackson/databind/annotation/JacksonStdImpl;
+  #202 = NameAndType        #73:#291      // "<init>":(Ljava/lang/Class;)V
+  #203 = NameAndType        #63:#64       // _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+  #204 = NameAndType        #61:#62       // _staticTyping:Z
+  #205 = NameAndType        #65:#66       // _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+  #206 = Class              #284          // com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap
+  #207 = NameAndType        #292:#293     // emptyForProperties:()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #208 = NameAndType        #71:#72       // _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #209 = NameAndType        #67:#68       // _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #210 = NameAndType        #73:#294      // "<init>":(Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase;)V
+  #211 = NameAndType        #73:#295      // "<init>":(Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Boolean;)V
+  #212 = Utf8               com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer
+  #213 = NameAndType        #73:#88       // "<init>":(Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)V
+  #214 = NameAndType        #73:#74       // "<init>":(Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+  #215 = NameAndType        #296:#90      // _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+  #216 = NameAndType        #297:#92      // _unwrapSingle:Ljava/lang/Boolean;
+  #217 = Class              #298          // java/util/Objects
+  #218 = NameAndType        #299:#300     // equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #219 = Class              #278          // com/fasterxml/jackson/databind/jsontype/TypeSerializer
+  #220 = NameAndType        #301:#302     // forProperty:(Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+  #221 = Class              #303          // com/fasterxml/jackson/databind/BeanProperty
+  #222 = NameAndType        #304:#305     // getMember:()Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+  #223 = Class              #287          // com/fasterxml/jackson/databind/SerializerProvider
+  #224 = NameAndType        #306:#307     // getAnnotationIntrospector:()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+  #225 = Class              #308          // com/fasterxml/jackson/databind/AnnotationIntrospector
+  #226 = NameAndType        #309:#310     // findContentSerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+  #227 = NameAndType        #311:#312     // serializerInstance:(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #228 = NameAndType        #313:#314     // handledType:()Ljava/lang/Class;
+  #229 = NameAndType        #315:#316     // findFormatOverrides:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #230 = Class              #317          // com/fasterxml/jackson/annotation/JsonFormat$Feature
+  #231 = NameAndType        #319:#320     // WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED:Lcom/fasterxml/jackson/annotation/JsonFormat$Feature;
+  #232 = NameAndType        #321:#322     // getFeature:(Lcom/fasterxml/jackson/annotation/JsonFormat$Feature;)Ljava/lang/Boolean;
+  #233 = NameAndType        #323:#324     // findContextualConvertingSerializer:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #234 = Class              #289          // com/fasterxml/jackson/databind/JavaType
+  #235 = NameAndType        #325:#326     // isJavaLangObject:()Z
+  #236 = NameAndType        #327:#328     // findContentValueSerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #237 = NameAndType        #102:#103     // withResolved:(Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+  #238 = Class              #329          // com/fasterxml/jackson/databind/SerializationFeature
+  #239 = NameAndType        #319:#330     // WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED:Lcom/fasterxml/jackson/databind/SerializationFeature;
+  #240 = NameAndType        #331:#332     // isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+  #241 = Class              #280          // java/lang/Boolean
+  #242 = NameAndType        #333:#92      // TRUE:Ljava/lang/Boolean;
+  #243 = NameAndType        #149:#142     // serializeContents:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #244 = Class              #286          // com/fasterxml/jackson/core/JsonGenerator
+  #245 = NameAndType        #334:#335     // writeStartArray:(Ljava/lang/Object;I)V
+  #246 = NameAndType        #336:#337     // writeEndArray:()V
+  #247 = NameAndType        #162:#163     // serializeContentsUsing:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+  #248 = NameAndType        #170:#142     // serializeTypedContents:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #249 = NameAndType        #338:#339     // defaultSerializeNull:(Lcom/fasterxml/jackson/core/JsonGenerator;)V
+  #250 = Class              #283          // java/lang/Object
+  #251 = NameAndType        #340:#314     // getClass:()Ljava/lang/Class;
+  #252 = NameAndType        #341:#342     // serializerFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #253 = NameAndType        #343:#326     // hasGenericTypes:()Z
+  #254 = NameAndType        #344:#345     // constructSpecializedType:(Lcom/fasterxml/jackson/databind/JavaType;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JavaType;
+  #255 = NameAndType        #182:#192     // _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #256 = NameAndType        #182:#183     // _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #257 = Class              #279          // com/fasterxml/jackson/databind/JsonSerializer
+  #258 = NameAndType        #141:#194     // serialize:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #259 = Utf8               java/lang/Exception
+  #260 = NameAndType        #346:#347     // wrapAndThrow:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;I)V
+  #261 = NameAndType        #348:#349     // serializeWithType:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+  #262 = Class              #350          // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper
+  #263 = NameAndType        #351:#352     // expectArrayFormat:(Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor;
+  #264 = NameAndType        #353:#354     // getProvider:()Lcom/fasterxml/jackson/databind/SerializerProvider;
+  #265 = Class              #288          // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor
+  #266 = NameAndType        #355:#356     // itemsFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitable;Lcom/fasterxml/jackson/databind/JavaType;)V
+  #267 = NameAndType        #357:#358     // findAndAddSecondarySerializer:(Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #268 = NameAndType        #184:#72      // map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #269 = NameAndType        #152:#68      // serializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #270 = NameAndType        #357:#359     // findAndAddSecondarySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #271 = NameAndType        #141:#142     // serialize:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #272 = NameAndType        #139:#140     // hasSingleElement:([Ljava/lang/Object;)Z
+  #273 = NameAndType        #134:#135     // isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;[Ljava/lang/Object;)Z
+  #274 = Utf8               com/fasterxml/jackson/databind/ser/std/ArraySerializerBase
+  #275 = Utf8               com/fasterxml/jackson/databind/ser/ContextualSerializer
+  #276 = Class              #360          // com/fasterxml/jackson/annotation/JsonFormat
+  #277 = Utf8               com/fasterxml/jackson/annotation/JsonFormat$Value
+  #278 = Utf8               com/fasterxml/jackson/databind/jsontype/TypeSerializer
+  #279 = Utf8               com/fasterxml/jackson/databind/JsonSerializer
+  #280 = Utf8               java/lang/Boolean
+  #281 = Utf8               com/fasterxml/jackson/databind/JsonMappingException
+  #282 = Utf8               java/io/IOException
+  #283 = Utf8               java/lang/Object
+  #284 = Utf8               com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap
+  #285 = Utf8               java/lang/Class
+  #286 = Utf8               com/fasterxml/jackson/core/JsonGenerator
+  #287 = Utf8               com/fasterxml/jackson/databind/SerializerProvider
+  #288 = Utf8               com/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor
+  #289 = Utf8               com/fasterxml/jackson/databind/JavaType
+  #290 = Utf8               com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult
+  #291 = Utf8               (Ljava/lang/Class;)V
+  #292 = Utf8               emptyForProperties
+  #293 = Utf8               ()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+  #294 = Utf8               (Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase;)V
+  #295 = Utf8               (Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Boolean;)V
+  #296 = Utf8               _property
+  #297 = Utf8               _unwrapSingle
+  #298 = Utf8               java/util/Objects
+  #299 = Utf8               equals
+  #300 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Z
+  #301 = Utf8               forProperty
+  #302 = Utf8               (Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+  #303 = Utf8               com/fasterxml/jackson/databind/BeanProperty
+  #304 = Utf8               getMember
+  #305 = Utf8               ()Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+  #306 = Utf8               getAnnotationIntrospector
+  #307 = Utf8               ()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+  #308 = Utf8               com/fasterxml/jackson/databind/AnnotationIntrospector
+  #309 = Utf8               findContentSerializer
+  #310 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+  #311 = Utf8               serializerInstance
+  #312 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #313 = Utf8               handledType
+  #314 = Utf8               ()Ljava/lang/Class;
+  #315 = Utf8               findFormatOverrides
+  #316 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #317 = Utf8               com/fasterxml/jackson/annotation/JsonFormat$Feature
+  #318 = Utf8               Feature
+  #319 = Utf8               WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED
+  #320 = Utf8               Lcom/fasterxml/jackson/annotation/JsonFormat$Feature;
+  #321 = Utf8               getFeature
+  #322 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonFormat$Feature;)Ljava/lang/Boolean;
+  #323 = Utf8               findContextualConvertingSerializer
+  #324 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #325 = Utf8               isJavaLangObject
+  #326 = Utf8               ()Z
+  #327 = Utf8               findContentValueSerializer
+  #328 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #329 = Utf8               com/fasterxml/jackson/databind/SerializationFeature
+  #330 = Utf8               Lcom/fasterxml/jackson/databind/SerializationFeature;
+  #331 = Utf8               isEnabled
+  #332 = Utf8               (Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+  #333 = Utf8               TRUE
+  #334 = Utf8               writeStartArray
+  #335 = Utf8               (Ljava/lang/Object;I)V
+  #336 = Utf8               writeEndArray
+  #337 = Utf8               ()V
+  #338 = Utf8               defaultSerializeNull
+  #339 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator;)V
+  #340 = Utf8               getClass
+  #341 = Utf8               serializerFor
+  #342 = Utf8               (Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #343 = Utf8               hasGenericTypes
+  #344 = Utf8               constructSpecializedType
+  #345 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JavaType;
+  #346 = Utf8               wrapAndThrow
+  #347 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;I)V
+  #348 = Utf8               serializeWithType
+  #349 = Utf8               (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+  #350 = Utf8               com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper
+  #351 = Utf8               expectArrayFormat
+  #352 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor;
+  #353 = Utf8               getProvider
+  #354 = Utf8               ()Lcom/fasterxml/jackson/databind/SerializerProvider;
+  #355 = Utf8               itemsFormat
+  #356 = Utf8               (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitable;Lcom/fasterxml/jackson/databind/JavaType;)V
+  #357 = Utf8               findAndAddSecondarySerializer
+  #358 = Utf8               (Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #359 = Utf8               (Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+  #360 = Utf8               com/fasterxml/jackson/annotation/JsonFormat
+{
+  protected final boolean _staticTyping;
+    descriptor: Z
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final com.fasterxml.jackson.databind.JavaType _elementType;
+    descriptor: Lcom/fasterxml/jackson/databind/JavaType;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final com.fasterxml.jackson.databind.jsontype.TypeSerializer _valueTypeSerializer;
+    descriptor: Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object> _elementSerializer;
+    descriptor: Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0004) ACC_PROTECTED
+    Signature: #70                          // Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+
+  protected com.fasterxml.jackson.databind.ser.impl.PropertySerializerMap _dynamicSerializers;
+    descriptor: Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+    flags: (0x0004) ACC_PROTECTED
+
+  public com.fasterxml.jackson.databind.ser.std.ObjectArraySerializer(com.fasterxml.jackson.databind.JavaType, boolean, com.fasterxml.jackson.databind.jsontype.TypeSerializer, com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object>);
+    descriptor: (Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=5, args_size=5
+         0: aload_0
+         1: ldc           #1                  // class "[Ljava/lang/Object;"
+         3: invokespecial #2                  // Method com/fasterxml/jackson/databind/ser/std/ArraySerializerBase."<init>":(Ljava/lang/Class;)V
+         6: aload_0
+         7: aload_1
+         8: putfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+        11: aload_0
+        12: iload_2
+        13: putfield      #4                  // Field _staticTyping:Z
+        16: aload_0
+        17: aload_3
+        18: putfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        21: aload_0
+        22: invokestatic  #6                  // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.emptyForProperties:()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        25: putfield      #7                  // Field _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        28: aload_0
+        29: aload         4
+        31: putfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        34: return
+      LineNumberTable:
+        line 65: 0
+        line 66: 6
+        line 67: 11
+        line 68: 16
+        line 69: 21
+        line 70: 28
+        line 71: 34
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      35     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      35     1 elemType   Lcom/fasterxml/jackson/databind/JavaType;
+            0      35     2 staticTyping   Z
+            0      35     3   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+            0      35     4 elementSerializer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      35     4 elementSerializer   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+    Signature: #85                          // (Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;)V
+
+  public com.fasterxml.jackson.databind.ser.std.ObjectArraySerializer(com.fasterxml.jackson.databind.ser.std.ObjectArraySerializer, com.fasterxml.jackson.databind.jsontype.TypeSerializer);
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokespecial #9                  // Method com/fasterxml/jackson/databind/ser/std/ArraySerializerBase."<init>":(Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase;)V
+         5: aload_0
+         6: aload_1
+         7: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+        10: putfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+        13: aload_0
+        14: aload_2
+        15: putfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        18: aload_0
+        19: aload_1
+        20: getfield      #4                  // Field _staticTyping:Z
+        23: putfield      #4                  // Field _staticTyping:Z
+        26: aload_0
+        27: aload_1
+        28: getfield      #7                  // Field _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        31: putfield      #7                  // Field _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        34: aload_0
+        35: aload_1
+        36: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        39: putfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        42: return
+      LineNumberTable:
+        line 75: 0
+        line 76: 5
+        line 77: 13
+        line 78: 18
+        line 81: 26
+        line 82: 34
+        line 83: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      43     1   src   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      43     2   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+
+  public com.fasterxml.jackson.databind.ser.std.ObjectArraySerializer(com.fasterxml.jackson.databind.ser.std.ObjectArraySerializer, com.fasterxml.jackson.databind.BeanProperty, com.fasterxml.jackson.databind.jsontype.TypeSerializer, com.fasterxml.jackson.databind.JsonSerializer<?>, java.lang.Boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=6, args_size=6
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload         5
+         5: invokespecial #10                 // Method com/fasterxml/jackson/databind/ser/std/ArraySerializerBase."<init>":(Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Boolean;)V
+         8: aload_0
+         9: aload_1
+        10: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+        13: putfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+        16: aload_0
+        17: aload_3
+        18: putfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        21: aload_0
+        22: aload_1
+        23: getfield      #4                  // Field _staticTyping:Z
+        26: putfield      #4                  // Field _staticTyping:Z
+        29: aload_0
+        30: invokestatic  #6                  // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.emptyForProperties:()Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        33: putfield      #7                  // Field _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        36: aload_0
+        37: aload         4
+        39: putfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        42: return
+      LineNumberTable:
+        line 90: 0
+        line 91: 8
+        line 92: 16
+        line 93: 21
+        line 95: 29
+        line 96: 36
+        line 97: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      43     1   src   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      43     2 property   Lcom/fasterxml/jackson/databind/BeanProperty;
+            0      43     3   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+            0      43     4 elementSerializer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            0      43     5 unwrapSingle   Ljava/lang/Boolean;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      43     4 elementSerializer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+    Signature: #94                          // (Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Ljava/lang/Boolean;)V
+
+  public com.fasterxml.jackson.databind.JsonSerializer<?> _withResolved(com.fasterxml.jackson.databind.BeanProperty, java.lang.Boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=3, args_size=3
+         0: new           #11                 // class com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer
+         3: dup
+         4: aload_0
+         5: aload_1
+         6: aload_0
+         7: getfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        10: aload_0
+        11: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        14: aload_2
+        15: invokespecial #12                 // Method "<init>":(Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)V
+        18: areturn
+      LineNumberTable:
+        line 101: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      19     1  prop   Lcom/fasterxml/jackson/databind/BeanProperty;
+            0      19     2 unwrapSingle   Ljava/lang/Boolean;
+    Signature: #98                          // (Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+
+  public com.fasterxml.jackson.databind.ser.ContainerSerializer<?> _withValueTypeSerializer(com.fasterxml.jackson.databind.jsontype.TypeSerializer);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)Lcom/fasterxml/jackson/databind/ser/ContainerSerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=2, args_size=2
+         0: new           #11                 // class com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer
+         3: dup
+         4: aload_0
+         5: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+         8: aload_0
+         9: getfield      #4                  // Field _staticTyping:Z
+        12: aload_1
+        13: aload_0
+        14: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        17: invokespecial #13                 // Method "<init>":(Lcom/fasterxml/jackson/databind/JavaType;ZLcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+        20: areturn
+      LineNumberTable:
+        line 107: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      21     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      21     1   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+    Signature: #101                         // (Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)Lcom/fasterxml/jackson/databind/ser/ContainerSerializer<*>;
+
+  public com.fasterxml.jackson.databind.ser.std.ObjectArraySerializer withResolved(com.fasterxml.jackson.databind.BeanProperty, com.fasterxml.jackson.databind.jsontype.TypeSerializer, com.fasterxml.jackson.databind.JsonSerializer<?>, java.lang.Boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=5, args_size=5
+         0: aload_0
+         1: getfield      #14                 // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+         4: aload_1
+         5: if_acmpne     38
+         8: aload_3
+         9: aload_0
+        10: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        13: if_acmpne     38
+        16: aload_0
+        17: getfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        20: aload_2
+        21: if_acmpne     38
+        24: aload_0
+        25: getfield      #15                 // Field _unwrapSingle:Ljava/lang/Boolean;
+        28: aload         4
+        30: invokestatic  #16                 // Method java/util/Objects.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        33: ifeq          38
+        36: aload_0
+        37: areturn
+        38: new           #11                 // class com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer
+        41: dup
+        42: aload_0
+        43: aload_1
+        44: aload_2
+        45: aload_3
+        46: aload         4
+        48: invokespecial #12                 // Method "<init>":(Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)V
+        51: areturn
+      LineNumberTable:
+        line 112: 0
+        line 113: 30
+        line 114: 36
+        line 116: 38
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      52     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      52     1  prop   Lcom/fasterxml/jackson/databind/BeanProperty;
+            0      52     2   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+            0      52     3   ser   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            0      52     4 unwrapSingle   Ljava/lang/Boolean;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      52     3   ser   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 38 /* same */
+    Signature: #106                         // (Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer<*>;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+
+  public com.fasterxml.jackson.databind.JsonSerializer<?> createContextual(com.fasterxml.jackson.databind.SerializerProvider, com.fasterxml.jackson.databind.BeanProperty) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=9, args_size=3
+         0: aload_0
+         1: getfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+         4: astore_3
+         5: aload_3
+         6: ifnull        15
+         9: aload_3
+        10: aload_2
+        11: invokevirtual #17                 // Method com/fasterxml/jackson/databind/jsontype/TypeSerializer.forProperty:(Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        14: astore_3
+        15: aconst_null
+        16: astore        4
+        18: aconst_null
+        19: astore        5
+        21: aload_2
+        22: ifnull        68
+        25: aload_2
+        26: invokeinterface #18,  1           // InterfaceMethod com/fasterxml/jackson/databind/BeanProperty.getMember:()Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+        31: astore        6
+        33: aload_1
+        34: invokevirtual #19                 // Method com/fasterxml/jackson/databind/SerializerProvider.getAnnotationIntrospector:()Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+        37: astore        7
+        39: aload         6
+        41: ifnull        68
+        44: aload         7
+        46: aload         6
+        48: invokevirtual #20                 // Method com/fasterxml/jackson/databind/AnnotationIntrospector.findContentSerializer:(Lcom/fasterxml/jackson/databind/introspect/Annotated;)Ljava/lang/Object;
+        51: astore        8
+        53: aload         8
+        55: ifnull        68
+        58: aload_1
+        59: aload         6
+        61: aload         8
+        63: invokevirtual #21                 // Method com/fasterxml/jackson/databind/SerializerProvider.serializerInstance:(Lcom/fasterxml/jackson/databind/introspect/Annotated;Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        66: astore        4
+        68: aload_0
+        69: aload_1
+        70: aload_2
+        71: aload_0
+        72: invokevirtual #22                 // Method handledType:()Ljava/lang/Class;
+        75: invokevirtual #23                 // Method findFormatOverrides:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+        78: astore        6
+        80: aload         6
+        82: ifnull        95
+        85: aload         6
+        87: getstatic     #24                 // Field com/fasterxml/jackson/annotation/JsonFormat$Feature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED:Lcom/fasterxml/jackson/annotation/JsonFormat$Feature;
+        90: invokevirtual #25                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getFeature:(Lcom/fasterxml/jackson/annotation/JsonFormat$Feature;)Ljava/lang/Boolean;
+        93: astore        5
+        95: aload         4
+        97: ifnonnull     106
+       100: aload_0
+       101: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+       104: astore        4
+       106: aload_0
+       107: aload_1
+       108: aload_2
+       109: aload         4
+       111: invokevirtual #26                 // Method findContextualConvertingSerializer:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/JsonSerializer;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       114: astore        4
+       116: aload         4
+       118: ifnonnull     156
+       121: aload_0
+       122: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+       125: ifnull        156
+       128: aload_0
+       129: getfield      #4                  // Field _staticTyping:Z
+       132: ifeq          156
+       135: aload_0
+       136: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+       139: invokevirtual #27                 // Method com/fasterxml/jackson/databind/JavaType.isJavaLangObject:()Z
+       142: ifne          156
+       145: aload_1
+       146: aload_0
+       147: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+       150: aload_2
+       151: invokevirtual #28                 // Method com/fasterxml/jackson/databind/SerializerProvider.findContentValueSerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       154: astore        4
+       156: aload_0
+       157: aload_2
+       158: aload_3
+       159: aload         4
+       161: aload         5
+       163: invokevirtual #29                 // Method withResolved:(Lcom/fasterxml/jackson/databind/BeanProperty;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;Lcom/fasterxml/jackson/databind/JsonSerializer;Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+       166: areturn
+      LineNumberTable:
+        line 130: 0
+        line 131: 5
+        line 132: 9
+        line 134: 15
+        line 135: 18
+        line 138: 21
+        line 139: 25
+        line 140: 33
+        line 141: 39
+        line 142: 44
+        line 143: 53
+        line 144: 58
+        line 148: 68
+        line 149: 80
+        line 150: 85
+        line 152: 95
+        line 153: 100
+        line 156: 106
+        line 157: 116
+        line 160: 121
+        line 161: 128
+        line 162: 145
+        line 166: 156
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           53      15     8 serDef   Ljava/lang/Object;
+           33      35     6     m   Lcom/fasterxml/jackson/databind/introspect/AnnotatedMember;
+           39      29     7  intr   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+            0     167     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0     167     1 serializers   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0     167     2 property   Lcom/fasterxml/jackson/databind/BeanProperty;
+            5     162     3   vts   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+           18     149     4   ser   Lcom/fasterxml/jackson/databind/JsonSerializer;
+           21     146     5 unwrapSingle   Ljava/lang/Boolean;
+           80      87     6 format   Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           18     149     4   ser   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+      StackMapTable: number_of_entries = 5
+        frame_type = 252 /* append */
+          offset_delta = 15
+          locals = [ class com/fasterxml/jackson/databind/jsontype/TypeSerializer ]
+        frame_type = 253 /* append */
+          offset_delta = 52
+          locals = [ class com/fasterxml/jackson/databind/JsonSerializer, class java/lang/Boolean ]
+        frame_type = 252 /* append */
+          offset_delta = 26
+          locals = [ class com/fasterxml/jackson/annotation/JsonFormat$Value ]
+        frame_type = 10 /* same */
+        frame_type = 49 /* same */
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #128                         // (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+
+  public com.fasterxml.jackson.databind.JavaType getContentType();
+    descriptor: ()Lcom/fasterxml/jackson/databind/JavaType;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+         4: areturn
+      LineNumberTable:
+        line 177: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+
+  public com.fasterxml.jackson.databind.JsonSerializer<?> getContentSerializer();
+    descriptor: ()Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+         4: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+    Signature: #133                         // ()Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+
+  public boolean isEmpty(com.fasterxml.jackson.databind.SerializerProvider, java.lang.Object[]);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;[Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aload_2
+         1: arraylength
+         2: ifne          9
+         5: iconst_1
+         6: goto          10
+         9: iconst_0
+        10: ireturn
+      LineNumberTable:
+        line 187: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      11     1  prov   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0      11     2 value   [Ljava/lang/Object;
+      StackMapTable: number_of_entries = 2
+        frame_type = 9 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public boolean hasSingleElement(java.lang.Object[]);
+    descriptor: ([Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: arraylength
+         2: iconst_1
+         3: if_icmpne     10
+         6: iconst_1
+         7: goto          11
+        10: iconst_0
+        11: ireturn
+      LineNumberTable:
+        line 192: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      12     1 value   [Ljava/lang/Object;
+      StackMapTable: number_of_entries = 2
+        frame_type = 10 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public final void serialize(java.lang.Object[], com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: ([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=4, locals=5, args_size=4
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: iconst_1
+         7: if_icmpne     45
+        10: aload_0
+        11: getfield      #15                 // Field _unwrapSingle:Ljava/lang/Boolean;
+        14: ifnonnull     27
+        17: aload_3
+        18: getstatic     #30                 // Field com/fasterxml/jackson/databind/SerializationFeature.WRITE_SINGLE_ELEM_ARRAYS_UNWRAPPED:Lcom/fasterxml/jackson/databind/SerializationFeature;
+        21: invokevirtual #31                 // Method com/fasterxml/jackson/databind/SerializerProvider.isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+        24: ifne          37
+        27: aload_0
+        28: getfield      #15                 // Field _unwrapSingle:Ljava/lang/Boolean;
+        31: getstatic     #32                 // Field java/lang/Boolean.TRUE:Ljava/lang/Boolean;
+        34: if_acmpne     45
+        37: aload_0
+        38: aload_1
+        39: aload_2
+        40: aload_3
+        41: invokevirtual #33                 // Method serializeContents:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        44: return
+        45: aload_2
+        46: aload_1
+        47: iload         4
+        49: invokevirtual #34                 // Method com/fasterxml/jackson/core/JsonGenerator.writeStartArray:(Ljava/lang/Object;I)V
+        52: aload_0
+        53: aload_1
+        54: aload_2
+        55: aload_3
+        56: invokevirtual #33                 // Method serializeContents:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        59: aload_2
+        60: invokevirtual #35                 // Method com/fasterxml/jackson/core/JsonGenerator.writeEndArray:()V
+        63: return
+      LineNumberTable:
+        line 204: 0
+        line 205: 4
+        line 206: 10
+        line 207: 21
+        line 209: 37
+        line 210: 44
+        line 213: 45
+        line 214: 52
+        line 215: 59
+        line 216: 63
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      64     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      64     1 value   [Ljava/lang/Object;
+            0      64     2   gen   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      64     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            4      60     4   len   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 27
+          locals = [ int ]
+        frame_type = 9 /* same */
+        frame_type = 7 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void serializeContents(java.lang.Object[], com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: ([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=10, args_size=4
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: iload         4
+         6: ifne          10
+         9: return
+        10: aload_0
+        11: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        14: ifnull        29
+        17: aload_0
+        18: aload_1
+        19: aload_2
+        20: aload_3
+        21: aload_0
+        22: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        25: invokevirtual #36                 // Method serializeContentsUsing:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+        28: return
+        29: aload_0
+        30: getfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+        33: ifnull        44
+        36: aload_0
+        37: aload_1
+        38: aload_2
+        39: aload_3
+        40: invokevirtual #37                 // Method serializeTypedContents:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        43: return
+        44: iconst_0
+        45: istore        5
+        47: aconst_null
+        48: astore        6
+        50: aload_0
+        51: getfield      #7                  // Field _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        54: astore        7
+        56: iload         5
+        58: iload         4
+        60: if_icmpge     161
+        63: aload_1
+        64: iload         5
+        66: aaload
+        67: astore        6
+        69: aload         6
+        71: ifnonnull     82
+        74: aload_3
+        75: aload_2
+        76: invokevirtual #38                 // Method com/fasterxml/jackson/databind/SerializerProvider.defaultSerializeNull:(Lcom/fasterxml/jackson/core/JsonGenerator;)V
+        79: goto          155
+        82: aload         6
+        84: invokevirtual #39                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        87: astore        8
+        89: aload         7
+        91: aload         8
+        93: invokevirtual #40                 // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.serializerFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        96: astore        9
+        98: aload         9
+       100: ifnonnull     146
+       103: aload_0
+       104: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+       107: invokevirtual #41                 // Method com/fasterxml/jackson/databind/JavaType.hasGenericTypes:()Z
+       110: ifeq          135
+       113: aload_0
+       114: aload         7
+       116: aload_3
+       117: aload_0
+       118: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+       121: aload         8
+       123: invokevirtual #42                 // Method com/fasterxml/jackson/databind/SerializerProvider.constructSpecializedType:(Lcom/fasterxml/jackson/databind/JavaType;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JavaType;
+       126: aload_3
+       127: invokevirtual #43                 // Method _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       130: astore        9
+       132: goto          146
+       135: aload_0
+       136: aload         7
+       138: aload         8
+       140: aload_3
+       141: invokevirtual #44                 // Method _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+       144: astore        9
+       146: aload         9
+       148: aload         6
+       150: aload_2
+       151: aload_3
+       152: invokevirtual #45                 // Method com/fasterxml/jackson/databind/JsonSerializer.serialize:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+       155: iinc          5, 1
+       158: goto          56
+       161: goto          177
+       164: astore        7
+       166: aload_0
+       167: aload_3
+       168: aload         7
+       170: aload         6
+       172: iload         5
+       174: invokevirtual #47                 // Method wrapAndThrow:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;I)V
+       177: return
+      Exception table:
+         from    to  target type
+            50   161   164   Class java/lang/Exception
+      LineNumberTable:
+        line 221: 0
+        line 222: 4
+        line 223: 9
+        line 225: 10
+        line 226: 17
+        line 227: 28
+        line 229: 29
+        line 230: 36
+        line 231: 43
+        line 233: 44
+        line 234: 47
+        line 236: 50
+        line 237: 56
+        line 238: 63
+        line 239: 69
+        line 240: 74
+        line 241: 79
+        line 243: 82
+        line 244: 89
+        line 245: 98
+        line 246: 103
+        line 247: 113
+        line 248: 123
+        line 247: 127
+        line 250: 135
+        line 253: 146
+        line 237: 155
+        line 257: 161
+        line 255: 164
+        line 256: 166
+        line 258: 177
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           89      66     8    cc   Ljava/lang/Class;
+           98      57     9 serializer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+           56     105     7 serializers   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+          166      11     7     e   Ljava/lang/Exception;
+            0     178     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0     178     1 value   [Ljava/lang/Object;
+            0     178     2   gen   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     178     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            4     174     4   len   I
+           47     131     5     i   I
+           50     128     6  elem   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           89      66     8    cc   Ljava/lang/Class<*>;
+           98      57     9 serializer   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+      StackMapTable: number_of_entries = 11
+        frame_type = 252 /* append */
+          offset_delta = 10
+          locals = [ int ]
+        frame_type = 18 /* same */
+        frame_type = 14 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 11
+          locals = [ int, class java/lang/Object, class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap ]
+        frame_type = 25 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 52
+          locals = [ class java/lang/Class, class com/fasterxml/jackson/databind/JsonSerializer ]
+        frame_type = 10 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 8
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 12 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void serializeContentsUsing(java.lang.Object[], com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider, com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object>) throws java.io.IOException;
+    descriptor: ([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/JsonSerializer;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=10, args_size=5
+         0: aload_1
+         1: arraylength
+         2: istore        5
+         4: aload_0
+         5: getfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+         8: astore        6
+        10: iconst_0
+        11: istore        7
+        13: aconst_null
+        14: astore        8
+        16: iload         7
+        18: iload         5
+        20: if_icmpge     76
+        23: aload_1
+        24: iload         7
+        26: aaload
+        27: astore        8
+        29: aload         8
+        31: ifnonnull     42
+        34: aload_3
+        35: aload_2
+        36: invokevirtual #38                 // Method com/fasterxml/jackson/databind/SerializerProvider.defaultSerializeNull:(Lcom/fasterxml/jackson/core/JsonGenerator;)V
+        39: goto          70
+        42: aload         6
+        44: ifnonnull     59
+        47: aload         4
+        49: aload         8
+        51: aload_2
+        52: aload_3
+        53: invokevirtual #45                 // Method com/fasterxml/jackson/databind/JsonSerializer.serialize:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        56: goto          70
+        59: aload         4
+        61: aload         8
+        63: aload_2
+        64: aload_3
+        65: aload         6
+        67: invokevirtual #48                 // Method com/fasterxml/jackson/databind/JsonSerializer.serializeWithType:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+        70: iinc          7, 1
+        73: goto          16
+        76: goto          92
+        79: astore        9
+        81: aload_0
+        82: aload_3
+        83: aload         9
+        85: aload         8
+        87: iload         7
+        89: invokevirtual #47                 // Method wrapAndThrow:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;I)V
+        92: return
+      Exception table:
+         from    to  target type
+            16    76    79   Class java/lang/Exception
+      LineNumberTable:
+        line 263: 0
+        line 264: 4
+        line 266: 10
+        line 267: 13
+        line 269: 16
+        line 270: 23
+        line 271: 29
+        line 272: 34
+        line 273: 39
+        line 275: 42
+        line 276: 47
+        line 278: 59
+        line 269: 70
+        line 283: 76
+        line 281: 79
+        line 282: 81
+        line 284: 92
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           81      11     9     e   Ljava/lang/Exception;
+            0      93     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      93     1 value   [Ljava/lang/Object;
+            0      93     2  jgen   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      93     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0      93     4   ser   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            4      89     5   len   I
+           10      83     6 typeSer   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+           13      80     7     i   I
+           16      77     8  elem   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      93     4   ser   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+      StackMapTable: number_of_entries = 7
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer, class "[Ljava/lang/Object;", class com/fasterxml/jackson/core/JsonGenerator, class com/fasterxml/jackson/databind/SerializerProvider, class com/fasterxml/jackson/databind/JsonSerializer, int, class com/fasterxml/jackson/databind/jsontype/TypeSerializer, int, class java/lang/Object ]
+          stack = []
+        frame_type = 25 /* same */
+        frame_type = 16 /* same */
+        frame_type = 10 /* same */
+        frame_type = 5 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 12 /* same */
+    Exceptions:
+      throws java.io.IOException
+    Signature: #169                         // ([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;)V
+
+  public void serializeTypedContents(java.lang.Object[], com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: ([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=11, args_size=4
+         0: aload_1
+         1: arraylength
+         2: istore        4
+         4: aload_0
+         5: getfield      #5                  // Field _valueTypeSerializer:Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+         8: astore        5
+        10: iconst_0
+        11: istore        6
+        13: aconst_null
+        14: astore        7
+        16: aload_0
+        17: getfield      #7                  // Field _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        20: astore        8
+        22: iload         6
+        24: iload         4
+        26: if_icmpge     97
+        29: aload_1
+        30: iload         6
+        32: aaload
+        33: astore        7
+        35: aload         7
+        37: ifnonnull     48
+        40: aload_3
+        41: aload_2
+        42: invokevirtual #38                 // Method com/fasterxml/jackson/databind/SerializerProvider.defaultSerializeNull:(Lcom/fasterxml/jackson/core/JsonGenerator;)V
+        45: goto          91
+        48: aload         7
+        50: invokevirtual #39                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        53: astore        9
+        55: aload         8
+        57: aload         9
+        59: invokevirtual #40                 // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.serializerFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        62: astore        10
+        64: aload         10
+        66: ifnonnull     80
+        69: aload_0
+        70: aload         8
+        72: aload         9
+        74: aload_3
+        75: invokevirtual #44                 // Method _findAndAddDynamic:(Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        78: astore        10
+        80: aload         10
+        82: aload         7
+        84: aload_2
+        85: aload_3
+        86: aload         5
+        88: invokevirtual #48                 // Method com/fasterxml/jackson/databind/JsonSerializer.serializeWithType:(Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;)V
+        91: iinc          6, 1
+        94: goto          22
+        97: goto          113
+       100: astore        8
+       102: aload_0
+       103: aload_3
+       104: aload         8
+       106: aload         7
+       108: iload         6
+       110: invokevirtual #47                 // Method wrapAndThrow:(Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Throwable;Ljava/lang/Object;I)V
+       113: return
+      Exception table:
+         from    to  target type
+            16    97   100   Class java/lang/Exception
+      LineNumberTable:
+        line 288: 0
+        line 289: 4
+        line 290: 10
+        line 291: 13
+        line 293: 16
+        line 294: 22
+        line 295: 29
+        line 296: 35
+        line 297: 40
+        line 298: 45
+        line 300: 48
+        line 301: 55
+        line 302: 64
+        line 303: 69
+        line 305: 80
+        line 294: 91
+        line 309: 97
+        line 307: 100
+        line 308: 102
+        line 310: 113
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           55      36     9    cc   Ljava/lang/Class;
+           64      27    10 serializer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+           22      75     8 serializers   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+          102      11     8     e   Ljava/lang/Exception;
+            0     114     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0     114     1 value   [Ljava/lang/Object;
+            0     114     2  jgen   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     114     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            4     110     4   len   I
+           10     104     5 typeSer   Lcom/fasterxml/jackson/databind/jsontype/TypeSerializer;
+           13     101     6     i   I
+           16      98     7  elem   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           55      36     9    cc   Ljava/lang/Class<*>;
+           64      27    10 serializer   Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+      StackMapTable: number_of_entries = 7
+        frame_type = 255 /* full_frame */
+          offset_delta = 22
+          locals = [ class com/fasterxml/jackson/databind/ser/std/ObjectArraySerializer, class "[Ljava/lang/Object;", class com/fasterxml/jackson/core/JsonGenerator, class com/fasterxml/jackson/databind/SerializerProvider, int, class com/fasterxml/jackson/databind/jsontype/TypeSerializer, int, class java/lang/Object, class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap ]
+          stack = []
+        frame_type = 25 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 31
+          locals = [ class java/lang/Class, class com/fasterxml/jackson/databind/JsonSerializer ]
+        frame_type = 249 /* chop */
+          offset_delta = 10
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 12 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void acceptJsonFormatVisitor(com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper, com.fasterxml.jackson.databind.JavaType) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=6, args_size=3
+         0: aload_1
+         1: aload_2
+         2: invokeinterface #49,  2           // InterfaceMethod com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper.expectArrayFormat:(Lcom/fasterxml/jackson/databind/JavaType;)Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor;
+         7: astore_3
+         8: aload_3
+         9: ifnull        56
+        12: aload_0
+        13: getfield      #3                  // Field _elementType:Lcom/fasterxml/jackson/databind/JavaType;
+        16: astore        4
+        18: aload_0
+        19: getfield      #8                  // Field _elementSerializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        22: astore        5
+        24: aload         5
+        26: ifnonnull     46
+        29: aload_1
+        30: invokeinterface #50,  1           // InterfaceMethod com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper.getProvider:()Lcom/fasterxml/jackson/databind/SerializerProvider;
+        35: aload         4
+        37: aload_0
+        38: getfield      #14                 // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+        41: invokevirtual #28                 // Method com/fasterxml/jackson/databind/SerializerProvider.findContentValueSerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+        44: astore        5
+        46: aload_3
+        47: aload         5
+        49: aload         4
+        51: invokeinterface #51,  3           // InterfaceMethod com/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor.itemsFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitable;Lcom/fasterxml/jackson/databind/JavaType;)V
+        56: return
+      LineNumberTable:
+        line 316: 0
+        line 317: 8
+        line 318: 12
+        line 329: 18
+        line 330: 24
+        line 331: 29
+        line 333: 46
+        line 335: 56
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           18      38     4 contentType   Lcom/fasterxml/jackson/databind/JavaType;
+           24      32     5 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer;
+            0      57     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      57     1 visitor   Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;
+            0      57     2 typeHint   Lcom/fasterxml/jackson/databind/JavaType;
+            8      49     3 arrayVisitor   Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           24      32     5 valueSer   Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 46
+          locals = [ class com/fasterxml/jackson/databind/jsonFormatVisitors/JsonArrayFormatVisitor, class com/fasterxml/jackson/databind/JavaType, class com/fasterxml/jackson/databind/JsonSerializer ]
+        frame_type = 249 /* chop */
+          offset_delta = 9
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+
+  protected final com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object> _findAndAddDynamic(com.fasterxml.jackson.databind.ser.impl.PropertySerializerMap, java.lang.Class<?>, com.fasterxml.jackson.databind.SerializerProvider) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=4, locals=5, args_size=4
+         0: aload_1
+         1: aload_2
+         2: aload_3
+         3: aload_0
+         4: getfield      #14                 // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+         7: invokevirtual #52                 // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.findAndAddSecondarySerializer:(Ljava/lang/Class;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+        10: astore        4
+        12: aload_1
+        13: aload         4
+        15: getfield      #53                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        18: if_acmpeq     30
+        21: aload_0
+        22: aload         4
+        24: getfield      #53                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        27: putfield      #7                  // Field _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        30: aload         4
+        32: getfield      #54                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.serializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        35: areturn
+      LineNumberTable:
+        line 340: 0
+        line 342: 12
+        line 343: 21
+        line 345: 30
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      36     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      36     1   map   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+            0      36     2  type   Ljava/lang/Class;
+            0      36     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+           12      24     4 result   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      36     2  type   Ljava/lang/Class<*>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 30
+          locals = [ class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult ]
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #191                         // (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Ljava/lang/Class<*>;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+
+  protected final com.fasterxml.jackson.databind.JsonSerializer<java.lang.Object> _findAndAddDynamic(com.fasterxml.jackson.databind.ser.impl.PropertySerializerMap, com.fasterxml.jackson.databind.JavaType, com.fasterxml.jackson.databind.SerializerProvider) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=4, locals=5, args_size=4
+         0: aload_1
+         1: aload_2
+         2: aload_3
+         3: aload_0
+         4: getfield      #14                 // Field _property:Lcom/fasterxml/jackson/databind/BeanProperty;
+         7: invokevirtual #55                 // Method com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap.findAndAddSecondarySerializer:(Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+        10: astore        4
+        12: aload_1
+        13: aload         4
+        15: getfield      #53                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        18: if_acmpeq     30
+        21: aload_0
+        22: aload         4
+        24: getfield      #53                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.map:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        27: putfield      #7                  // Field _dynamicSerializers:Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+        30: aload         4
+        32: getfield      #54                 // Field com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult.serializer:Lcom/fasterxml/jackson/databind/JsonSerializer;
+        35: areturn
+      LineNumberTable:
+        line 351: 0
+        line 353: 12
+        line 354: 21
+        line 356: 30
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      36     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+            0      36     1   map   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;
+            0      36     2  type   Lcom/fasterxml/jackson/databind/JavaType;
+            0      36     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+           12      24     4 result   Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 30
+          locals = [ class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult ]
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #193                         // (Lcom/fasterxml/jackson/databind/ser/impl/PropertySerializerMap;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/SerializerProvider;)Lcom/fasterxml/jackson/databind/JsonSerializer<Ljava/lang/Object;>;
+
+  public void serializeContents(java.lang.Object, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: checkcast     #1                  // class "[Ljava/lang/Object;"
+         5: aload_2
+         6: aload_3
+         7: invokevirtual #33                 // Method serializeContents:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        10: return
+      LineNumberTable:
+        line 23: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+    Exceptions:
+      throws java.io.IOException
+
+  public void serialize(java.lang.Object, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: checkcast     #1                  // class "[Ljava/lang/Object;"
+         5: aload_2
+         6: aload_3
+         7: invokevirtual #56                 // Method serialize:([Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+        10: return
+      LineNumberTable:
+        line 23: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean hasSingleElement(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #1                  // class "[Ljava/lang/Object;"
+         5: invokevirtual #57                 // Method hasSingleElement:([Ljava/lang/Object;)Z
+         8: ireturn
+      LineNumberTable:
+        line 23: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+
+  public boolean isEmpty(com.fasterxml.jackson.databind.SerializerProvider, java.lang.Object);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: checkcast     #1                  // class "[Ljava/lang/Object;"
+         6: invokevirtual #58                 // Method isEmpty:(Lcom/fasterxml/jackson/databind/SerializerProvider;[Ljava/lang/Object;)Z
+         9: ireturn
+      LineNumberTable:
+        line 23: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/ser/std/ObjectArraySerializer;
+}
+Signature: #197                         // Lcom/fasterxml/jackson/databind/ser/std/ArraySerializerBase<[Ljava/lang/Object;>;Lcom/fasterxml/jackson/databind/ser/ContextualSerializer;
+SourceFile: "ObjectArraySerializer.java"
+RuntimeVisibleAnnotations:
+  0: #201()
+    com.fasterxml.jackson.databind.annotation.JacksonStdImpl
+InnerClasses:
+  public static #119= #118 of #276;       // Value=class com/fasterxml/jackson/annotation/JsonFormat$Value of class com/fasterxml/jackson/annotation/JsonFormat
+  public static final #188= #187 of #206; // SerializerAndMapResult=class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap$SerializerAndMapResult of class com/fasterxml/jackson/databind/ser/impl/PropertySerializerMap
+  public static final #318= #230 of #276; // Feature=class com/fasterxml/jackson/annotation/JsonFormat$Feature of class com/fasterxml/jackson/annotation/JsonFormat

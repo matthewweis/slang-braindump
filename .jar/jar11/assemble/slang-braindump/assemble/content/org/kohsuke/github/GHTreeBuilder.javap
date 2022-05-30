@@ -1,0 +1,594 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/org/kohsuke/github/GHTreeBuilder.class
+  Last modified May 29, 2022; size 4903 bytes
+  SHA-256 checksum 3336c6bd6d32ffc2cab719fdebad4c60c8f9c601e3c55f8837b9524a2f5999be
+  Compiled from "GHTreeBuilder.java"
+public class org.kohsuke.github.GHTreeBuilder
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #52                         // org/kohsuke/github/GHTreeBuilder
+  super_class: #37                        // java/lang/Object
+  interfaces: 0, fields: 3, methods: 9, attributes: 2
+Constant pool:
+    #1 = Methodref          #37.#104      // java/lang/Object."<init>":()V
+    #2 = Class              #105          // java/util/ArrayList
+    #3 = Methodref          #2.#104       // java/util/ArrayList."<init>":()V
+    #4 = Fieldref           #52.#106      // org/kohsuke/github/GHTreeBuilder.treeEntries:Ljava/util/List;
+    #5 = Fieldref           #52.#107      // org/kohsuke/github/GHTreeBuilder.repo:Lorg/kohsuke/github/GHRepository;
+    #6 = Methodref          #108.#109     // org/kohsuke/github/GHRepository.root:()Lorg/kohsuke/github/GitHub;
+    #7 = Methodref          #110.#111     // org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+    #8 = Fieldref           #52.#112      // org/kohsuke/github/GHTreeBuilder.req:Lorg/kohsuke/github/Requester;
+    #9 = String             #113          // base_tree
+   #10 = Methodref          #45.#114      // org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #11 = Class              #115          // org/kohsuke/github/GHTreeBuilder$TreeEntry
+   #12 = Methodref          #11.#116      // org/kohsuke/github/GHTreeBuilder$TreeEntry."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHTreeBuilder$1;)V
+   #13 = Methodref          #11.#117      // org/kohsuke/github/GHTreeBuilder$TreeEntry.access$102:(Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+   #14 = Methodref          #11.#118      // org/kohsuke/github/GHTreeBuilder$TreeEntry.access$202:(Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+   #15 = InterfaceMethodref #119.#120     // java/util/List.add:(Ljava/lang/Object;)Z
+   #16 = String             #121          // 100755
+   #17 = String             #122          // 100644
+   #18 = String             #123          // blob
+   #19 = Methodref          #108.#124     // org/kohsuke/github/GHRepository.createBlob:()Lorg/kohsuke/github/GHBlobBuilder;
+   #20 = Methodref          #125.#126     // org/kohsuke/github/GHBlobBuilder.binaryContent:([B)Lorg/kohsuke/github/GHBlobBuilder;
+   #21 = Methodref          #125.#127     // org/kohsuke/github/GHBlobBuilder.create:()Lorg/kohsuke/github/GHBlob;
+   #22 = Methodref          #128.#129     // org/kohsuke/github/GHBlob.getSha:()Ljava/lang/String;
+   #23 = Methodref          #52.#130      // org/kohsuke/github/GHTreeBuilder.shaEntry:(Ljava/lang/String;Ljava/lang/String;Z)Lorg/kohsuke/github/GHTreeBuilder;
+   #24 = Class              #131          // java/io/IOException
+   #25 = Class              #132          // org/kohsuke/github/GHException
+   #26 = Class              #133          // java/lang/StringBuilder
+   #27 = Methodref          #26.#104      // java/lang/StringBuilder."<init>":()V
+   #28 = String             #134          // Cannot create binary content of \'
+   #29 = Methodref          #26.#135      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #30 = String             #136          // \'
+   #31 = Methodref          #26.#137      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #32 = Methodref          #25.#138      // org/kohsuke/github/GHException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+   #33 = Fieldref           #139.#140     // java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+   #34 = Methodref          #47.#141      // java/lang/String.getBytes:(Ljava/nio/charset/Charset;)[B
+   #35 = Methodref          #52.#142      // org/kohsuke/github/GHTreeBuilder.add:(Ljava/lang/String;[BZ)Lorg/kohsuke/github/GHTreeBuilder;
+   #36 = String             #143          // /repos/%s/%s/git/trees
+   #37 = Class              #144          // java/lang/Object
+   #38 = Methodref          #108.#145     // org/kohsuke/github/GHRepository.getOwnerName:()Ljava/lang/String;
+   #39 = Methodref          #108.#146     // org/kohsuke/github/GHRepository.getName:()Ljava/lang/String;
+   #40 = Methodref          #47.#147      // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+   #41 = String             #148          // tree
+   #42 = Methodref          #45.#149      // org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #43 = String             #150          // POST
+   #44 = Methodref          #45.#151      // org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #45 = Class              #152          // org/kohsuke/github/Requester
+   #46 = Methodref          #52.#153      // org/kohsuke/github/GHTreeBuilder.getApiTail:()Ljava/lang/String;
+   #47 = Class              #154          // java/lang/String
+   #48 = Methodref          #45.#155      // org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #49 = Class              #156          // org/kohsuke/github/GHTree
+   #50 = Methodref          #45.#157      // org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+   #51 = Methodref          #49.#158      // org/kohsuke/github/GHTree.wrap:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHTree;
+   #52 = Class              #159          // org/kohsuke/github/GHTreeBuilder
+   #53 = Class              #160          // org/kohsuke/github/GHTreeBuilder$1
+   #54 = Utf8               InnerClasses
+   #55 = Utf8               TreeEntry
+   #56 = Utf8               repo
+   #57 = Utf8               Lorg/kohsuke/github/GHRepository;
+   #58 = Utf8               req
+   #59 = Utf8               Lorg/kohsuke/github/Requester;
+   #60 = Utf8               treeEntries
+   #61 = Utf8               Ljava/util/List;
+   #62 = Utf8               Signature
+   #63 = Utf8               Ljava/util/List<Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;>;
+   #64 = Utf8               <init>
+   #65 = Utf8               (Lorg/kohsuke/github/GHRepository;)V
+   #66 = Utf8               Code
+   #67 = Utf8               LineNumberTable
+   #68 = Utf8               LocalVariableTable
+   #69 = Utf8               this
+   #70 = Utf8               Lorg/kohsuke/github/GHTreeBuilder;
+   #71 = Utf8               baseTree
+   #72 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GHTreeBuilder;
+   #73 = Utf8               Ljava/lang/String;
+   #74 = Utf8               entry
+   #75 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GHTreeBuilder;
+   #76 = Utf8               path
+   #77 = Utf8               mode
+   #78 = Utf8               type
+   #79 = Utf8               sha
+   #80 = Utf8               content
+   #81 = Utf8               Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;
+   #82 = Utf8               Deprecated
+   #83 = Utf8               RuntimeVisibleAnnotations
+   #84 = Utf8               Ljava/lang/Deprecated;
+   #85 = Utf8               shaEntry
+   #86 = Utf8               (Ljava/lang/String;Ljava/lang/String;Z)Lorg/kohsuke/github/GHTreeBuilder;
+   #87 = Utf8               executable
+   #88 = Utf8               Z
+   #89 = Utf8               StackMapTable
+   #90 = Utf8               textEntry
+   #91 = Utf8               add
+   #92 = Utf8               (Ljava/lang/String;[BZ)Lorg/kohsuke/github/GHTreeBuilder;
+   #93 = Utf8               dataSha
+   #94 = Utf8               e
+   #95 = Utf8               Ljava/io/IOException;
+   #96 = Utf8               [B
+   #97 = Utf8               getApiTail
+   #98 = Utf8               ()Ljava/lang/String;
+   #99 = Utf8               create
+  #100 = Utf8               ()Lorg/kohsuke/github/GHTree;
+  #101 = Utf8               Exceptions
+  #102 = Utf8               SourceFile
+  #103 = Utf8               GHTreeBuilder.java
+  #104 = NameAndType        #64:#161      // "<init>":()V
+  #105 = Utf8               java/util/ArrayList
+  #106 = NameAndType        #60:#61       // treeEntries:Ljava/util/List;
+  #107 = NameAndType        #56:#57       // repo:Lorg/kohsuke/github/GHRepository;
+  #108 = Class              #162          // org/kohsuke/github/GHRepository
+  #109 = NameAndType        #163:#164     // root:()Lorg/kohsuke/github/GitHub;
+  #110 = Class              #165          // org/kohsuke/github/GitHub
+  #111 = NameAndType        #166:#167     // createRequest:()Lorg/kohsuke/github/Requester;
+  #112 = NameAndType        #58:#59       // req:Lorg/kohsuke/github/Requester;
+  #113 = Utf8               base_tree
+  #114 = NameAndType        #168:#171     // with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #115 = Utf8               org/kohsuke/github/GHTreeBuilder$TreeEntry
+  #116 = NameAndType        #64:#172      // "<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHTreeBuilder$1;)V
+  #117 = NameAndType        #173:#174     // access$102:(Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+  #118 = NameAndType        #175:#174     // access$202:(Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+  #119 = Class              #176          // java/util/List
+  #120 = NameAndType        #91:#177      // add:(Ljava/lang/Object;)Z
+  #121 = Utf8               100755
+  #122 = Utf8               100644
+  #123 = Utf8               blob
+  #124 = NameAndType        #178:#179     // createBlob:()Lorg/kohsuke/github/GHBlobBuilder;
+  #125 = Class              #180          // org/kohsuke/github/GHBlobBuilder
+  #126 = NameAndType        #181:#182     // binaryContent:([B)Lorg/kohsuke/github/GHBlobBuilder;
+  #127 = NameAndType        #99:#183      // create:()Lorg/kohsuke/github/GHBlob;
+  #128 = Class              #184          // org/kohsuke/github/GHBlob
+  #129 = NameAndType        #185:#98      // getSha:()Ljava/lang/String;
+  #130 = NameAndType        #85:#86       // shaEntry:(Ljava/lang/String;Ljava/lang/String;Z)Lorg/kohsuke/github/GHTreeBuilder;
+  #131 = Utf8               java/io/IOException
+  #132 = Utf8               org/kohsuke/github/GHException
+  #133 = Utf8               java/lang/StringBuilder
+  #134 = Utf8               Cannot create binary content of \'
+  #135 = NameAndType        #186:#187     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #136 = Utf8               \'
+  #137 = NameAndType        #188:#98      // toString:()Ljava/lang/String;
+  #138 = NameAndType        #64:#189      // "<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+  #139 = Class              #190          // java/nio/charset/StandardCharsets
+  #140 = NameAndType        #191:#192     // UTF_8:Ljava/nio/charset/Charset;
+  #141 = NameAndType        #193:#194     // getBytes:(Ljava/nio/charset/Charset;)[B
+  #142 = NameAndType        #91:#92       // add:(Ljava/lang/String;[BZ)Lorg/kohsuke/github/GHTreeBuilder;
+  #143 = Utf8               /repos/%s/%s/git/trees
+  #144 = Utf8               java/lang/Object
+  #145 = NameAndType        #195:#98      // getOwnerName:()Ljava/lang/String;
+  #146 = NameAndType        #196:#98      // getName:()Ljava/lang/String;
+  #147 = NameAndType        #197:#198     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #148 = Utf8               tree
+  #149 = NameAndType        #168:#199     // with:(Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #150 = Utf8               POST
+  #151 = NameAndType        #200:#201     // method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #152 = Utf8               org/kohsuke/github/Requester
+  #153 = NameAndType        #97:#98       // getApiTail:()Ljava/lang/String;
+  #154 = Utf8               java/lang/String
+  #155 = NameAndType        #202:#203     // withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #156 = Utf8               org/kohsuke/github/GHTree
+  #157 = NameAndType        #204:#205     // fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+  #158 = NameAndType        #206:#207     // wrap:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHTree;
+  #159 = Utf8               org/kohsuke/github/GHTreeBuilder
+  #160 = Utf8               org/kohsuke/github/GHTreeBuilder$1
+  #161 = Utf8               ()V
+  #162 = Utf8               org/kohsuke/github/GHRepository
+  #163 = Utf8               root
+  #164 = Utf8               ()Lorg/kohsuke/github/GitHub;
+  #165 = Utf8               org/kohsuke/github/GitHub
+  #166 = Utf8               createRequest
+  #167 = Utf8               ()Lorg/kohsuke/github/Requester;
+  #168 = Utf8               with
+  #169 = Class              #209          // org/kohsuke/github/GitHubRequest$Builder
+  #170 = Utf8               Builder
+  #171 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #172 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHTreeBuilder$1;)V
+  #173 = Utf8               access$102
+  #174 = Utf8               (Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+  #175 = Utf8               access$202
+  #176 = Utf8               java/util/List
+  #177 = Utf8               (Ljava/lang/Object;)Z
+  #178 = Utf8               createBlob
+  #179 = Utf8               ()Lorg/kohsuke/github/GHBlobBuilder;
+  #180 = Utf8               org/kohsuke/github/GHBlobBuilder
+  #181 = Utf8               binaryContent
+  #182 = Utf8               ([B)Lorg/kohsuke/github/GHBlobBuilder;
+  #183 = Utf8               ()Lorg/kohsuke/github/GHBlob;
+  #184 = Utf8               org/kohsuke/github/GHBlob
+  #185 = Utf8               getSha
+  #186 = Utf8               append
+  #187 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #188 = Utf8               toString
+  #189 = Utf8               (Ljava/lang/String;Ljava/lang/Throwable;)V
+  #190 = Utf8               java/nio/charset/StandardCharsets
+  #191 = Utf8               UTF_8
+  #192 = Utf8               Ljava/nio/charset/Charset;
+  #193 = Utf8               getBytes
+  #194 = Utf8               (Ljava/nio/charset/Charset;)[B
+  #195 = Utf8               getOwnerName
+  #196 = Utf8               getName
+  #197 = Utf8               format
+  #198 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #199 = Utf8               (Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #200 = Utf8               method
+  #201 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #202 = Utf8               withUrlPath
+  #203 = Utf8               (Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #204 = Utf8               fetch
+  #205 = Utf8               (Ljava/lang/Class;)Ljava/lang/Object;
+  #206 = Utf8               wrap
+  #207 = Utf8               (Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHTree;
+  #208 = Class              #210          // org/kohsuke/github/GitHubRequest
+  #209 = Utf8               org/kohsuke/github/GitHubRequest$Builder
+  #210 = Utf8               org/kohsuke/github/GitHubRequest
+{
+  private final org.kohsuke.github.GHRepository repo;
+    descriptor: Lorg/kohsuke/github/GHRepository;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final org.kohsuke.github.Requester req;
+    descriptor: Lorg/kohsuke/github/Requester;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.util.List<org.kohsuke.github.GHTreeBuilder$TreeEntry> treeEntries;
+    descriptor: Ljava/util/List;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #63                          // Ljava/util/List<Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;>;
+
+  org.kohsuke.github.GHTreeBuilder(org.kohsuke.github.GHRepository);
+    descriptor: (Lorg/kohsuke/github/GHRepository;)V
+    flags: (0x0000)
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #2                  // class java/util/ArrayList
+         8: dup
+         9: invokespecial #3                  // Method java/util/ArrayList."<init>":()V
+        12: putfield      #4                  // Field treeEntries:Ljava/util/List;
+        15: aload_0
+        16: aload_1
+        17: putfield      #5                  // Field repo:Lorg/kohsuke/github/GHRepository;
+        20: aload_0
+        21: aload_1
+        22: invokevirtual #6                  // Method org/kohsuke/github/GHRepository.root:()Lorg/kohsuke/github/GitHub;
+        25: invokevirtual #7                  // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+        28: putfield      #8                  // Field req:Lorg/kohsuke/github/Requester;
+        31: return
+      LineNumberTable:
+        line 39: 0
+        line 19: 4
+        line 40: 15
+        line 41: 20
+        line 42: 31
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      32     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+            0      32     1  repo   Lorg/kohsuke/github/GHRepository;
+
+  public org.kohsuke.github.GHTreeBuilder baseTree(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GHTreeBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #8                  // Field req:Lorg/kohsuke/github/Requester;
+         4: ldc           #9                  // String base_tree
+         6: aload_1
+         7: invokevirtual #10                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        10: pop
+        11: aload_0
+        12: areturn
+      LineNumberTable:
+        line 52: 0
+        line 53: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+            0      13     1 baseTree   Ljava/lang/String;
+
+  public org.kohsuke.github.GHTreeBuilder entry(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GHTreeBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=7, args_size=6
+         0: new           #11                 // class org/kohsuke/github/GHTreeBuilder$TreeEntry
+         3: dup
+         4: aload_1
+         5: aload_2
+         6: aload_3
+         7: aconst_null
+         8: invokespecial #12                 // Method org/kohsuke/github/GHTreeBuilder$TreeEntry."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHTreeBuilder$1;)V
+        11: astore        6
+        13: aload         6
+        15: aload         4
+        17: invokestatic  #13                 // Method org/kohsuke/github/GHTreeBuilder$TreeEntry.access$102:(Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+        20: pop
+        21: aload         6
+        23: aload         5
+        25: invokestatic  #14                 // Method org/kohsuke/github/GHTreeBuilder$TreeEntry.access$202:(Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+        28: pop
+        29: aload_0
+        30: getfield      #4                  // Field treeEntries:Ljava/util/List;
+        33: aload         6
+        35: invokeinterface #15,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+        40: pop
+        41: aload_0
+        42: areturn
+      LineNumberTable:
+        line 74: 0
+        line 75: 13
+        line 76: 21
+        line 77: 29
+        line 78: 41
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+            0      43     1  path   Ljava/lang/String;
+            0      43     2  mode   Ljava/lang/String;
+            0      43     3  type   Ljava/lang/String;
+            0      43     4   sha   Ljava/lang/String;
+            0      43     5 content   Ljava/lang/String;
+           13      30     6 entry   Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #84()
+        java.lang.Deprecated
+
+  public org.kohsuke.github.GHTreeBuilder shaEntry(java.lang.String, java.lang.String, boolean);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Z)Lorg/kohsuke/github/GHTreeBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=5, args_size=4
+         0: new           #11                 // class org/kohsuke/github/GHTreeBuilder$TreeEntry
+         3: dup
+         4: aload_1
+         5: iload_3
+         6: ifeq          14
+         9: ldc           #16                 // String 100755
+        11: goto          16
+        14: ldc           #17                 // String 100644
+        16: ldc           #18                 // String blob
+        18: aconst_null
+        19: invokespecial #12                 // Method org/kohsuke/github/GHTreeBuilder$TreeEntry."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHTreeBuilder$1;)V
+        22: astore        4
+        24: aload         4
+        26: aload_2
+        27: invokestatic  #13                 // Method org/kohsuke/github/GHTreeBuilder$TreeEntry.access$102:(Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+        30: pop
+        31: aload_0
+        32: getfield      #4                  // Field treeEntries:Ljava/util/List;
+        35: aload         4
+        37: invokeinterface #15,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+        42: pop
+        43: aload_0
+        44: areturn
+      LineNumberTable:
+        line 96: 0
+        line 97: 24
+        line 98: 31
+        line 99: 43
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      45     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+            0      45     1  path   Ljava/lang/String;
+            0      45     2   sha   Ljava/lang/String;
+            0      45     3 executable   Z
+           24      21     4 entry   Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 14
+          locals = [ class org/kohsuke/github/GHTreeBuilder, class java/lang/String, class java/lang/String, int ]
+          stack = [ uninitialized 0, uninitialized 0, class java/lang/String ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class org/kohsuke/github/GHTreeBuilder, class java/lang/String, class java/lang/String, int ]
+          stack = [ uninitialized 0, uninitialized 0, class java/lang/String, class java/lang/String ]
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #84()
+        java.lang.Deprecated
+
+  public org.kohsuke.github.GHTreeBuilder textEntry(java.lang.String, java.lang.String, boolean);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Z)Lorg/kohsuke/github/GHTreeBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=5, args_size=4
+         0: new           #11                 // class org/kohsuke/github/GHTreeBuilder$TreeEntry
+         3: dup
+         4: aload_1
+         5: iload_3
+         6: ifeq          14
+         9: ldc           #16                 // String 100755
+        11: goto          16
+        14: ldc           #17                 // String 100644
+        16: ldc           #18                 // String blob
+        18: aconst_null
+        19: invokespecial #12                 // Method org/kohsuke/github/GHTreeBuilder$TreeEntry."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/kohsuke/github/GHTreeBuilder$1;)V
+        22: astore        4
+        24: aload         4
+        26: aload_2
+        27: invokestatic  #14                 // Method org/kohsuke/github/GHTreeBuilder$TreeEntry.access$202:(Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;Ljava/lang/String;)Ljava/lang/String;
+        30: pop
+        31: aload_0
+        32: getfield      #4                  // Field treeEntries:Ljava/util/List;
+        35: aload         4
+        37: invokeinterface #15,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+        42: pop
+        43: aload_0
+        44: areturn
+      LineNumberTable:
+        line 117: 0
+        line 118: 24
+        line 119: 31
+        line 120: 43
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      45     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+            0      45     1  path   Ljava/lang/String;
+            0      45     2 content   Ljava/lang/String;
+            0      45     3 executable   Z
+           24      21     4 entry   Lorg/kohsuke/github/GHTreeBuilder$TreeEntry;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 14
+          locals = [ class org/kohsuke/github/GHTreeBuilder, class java/lang/String, class java/lang/String, int ]
+          stack = [ uninitialized 0, uninitialized 0, class java/lang/String ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class org/kohsuke/github/GHTreeBuilder, class java/lang/String, class java/lang/String, int ]
+          stack = [ uninitialized 0, uninitialized 0, class java/lang/String, class java/lang/String ]
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #84()
+        java.lang.Deprecated
+
+  public org.kohsuke.github.GHTreeBuilder add(java.lang.String, byte[], boolean);
+    descriptor: (Ljava/lang/String;[BZ)Lorg/kohsuke/github/GHTreeBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=5, args_size=4
+         0: aload_0
+         1: getfield      #5                  // Field repo:Lorg/kohsuke/github/GHRepository;
+         4: invokevirtual #19                 // Method org/kohsuke/github/GHRepository.createBlob:()Lorg/kohsuke/github/GHBlobBuilder;
+         7: aload_2
+         8: invokevirtual #20                 // Method org/kohsuke/github/GHBlobBuilder.binaryContent:([B)Lorg/kohsuke/github/GHBlobBuilder;
+        11: invokevirtual #21                 // Method org/kohsuke/github/GHBlobBuilder.create:()Lorg/kohsuke/github/GHBlob;
+        14: invokevirtual #22                 // Method org/kohsuke/github/GHBlob.getSha:()Ljava/lang/String;
+        17: astore        4
+        19: aload_0
+        20: aload_1
+        21: aload         4
+        23: iload_3
+        24: invokevirtual #23                 // Method shaEntry:(Ljava/lang/String;Ljava/lang/String;Z)Lorg/kohsuke/github/GHTreeBuilder;
+        27: areturn
+        28: astore        4
+        30: new           #25                 // class org/kohsuke/github/GHException
+        33: dup
+        34: new           #26                 // class java/lang/StringBuilder
+        37: dup
+        38: invokespecial #27                 // Method java/lang/StringBuilder."<init>":()V
+        41: ldc           #28                 // String Cannot create binary content of \'
+        43: invokevirtual #29                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        46: aload_1
+        47: invokevirtual #29                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        50: ldc           #30                 // String \'
+        52: invokevirtual #29                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        55: invokevirtual #31                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        58: aload         4
+        60: invokespecial #32                 // Method org/kohsuke/github/GHException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+        63: athrow
+      Exception table:
+         from    to  target type
+             0    27    28   Class java/io/IOException
+      LineNumberTable:
+        line 136: 0
+        line 137: 19
+        line 138: 28
+        line 139: 30
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           19       9     4 dataSha   Ljava/lang/String;
+           30      34     4     e   Ljava/io/IOException;
+            0      64     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+            0      64     1  path   Ljava/lang/String;
+            0      64     2 content   [B
+            0      64     3 executable   Z
+      StackMapTable: number_of_entries = 1
+        frame_type = 92 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+
+  public org.kohsuke.github.GHTreeBuilder add(java.lang.String, java.lang.String, boolean);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Z)Lorg/kohsuke/github/GHTreeBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: getstatic     #33                 // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+         6: invokevirtual #34                 // Method java/lang/String.getBytes:(Ljava/nio/charset/Charset;)[B
+         9: iload_3
+        10: invokevirtual #35                 // Method add:(Ljava/lang/String;[BZ)Lorg/kohsuke/github/GHTreeBuilder;
+        13: areturn
+      LineNumberTable:
+        line 155: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+            0      14     1  path   Ljava/lang/String;
+            0      14     2 content   Ljava/lang/String;
+            0      14     3 executable   Z
+
+  private java.lang.String getApiTail();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=5, locals=1, args_size=1
+         0: ldc           #36                 // String /repos/%s/%s/git/trees
+         2: iconst_2
+         3: anewarray     #37                 // class java/lang/Object
+         6: dup
+         7: iconst_0
+         8: aload_0
+         9: getfield      #5                  // Field repo:Lorg/kohsuke/github/GHRepository;
+        12: invokevirtual #38                 // Method org/kohsuke/github/GHRepository.getOwnerName:()Ljava/lang/String;
+        15: aastore
+        16: dup
+        17: iconst_1
+        18: aload_0
+        19: getfield      #5                  // Field repo:Lorg/kohsuke/github/GHRepository;
+        22: invokevirtual #39                 // Method org/kohsuke/github/GHRepository.getName:()Ljava/lang/String;
+        25: aastore
+        26: invokestatic  #40                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        29: areturn
+      LineNumberTable:
+        line 159: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+
+  public org.kohsuke.github.GHTree create() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GHTree;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #8                  // Field req:Lorg/kohsuke/github/Requester;
+         4: ldc           #41                 // String tree
+         6: aload_0
+         7: getfield      #4                  // Field treeEntries:Ljava/util/List;
+        10: invokevirtual #42                 // Method org/kohsuke/github/Requester.with:(Ljava/lang/String;Ljava/util/Collection;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        13: pop
+        14: aload_0
+        15: getfield      #8                  // Field req:Lorg/kohsuke/github/Requester;
+        18: ldc           #43                 // String POST
+        20: invokevirtual #44                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        23: checkcast     #45                 // class org/kohsuke/github/Requester
+        26: aload_0
+        27: invokespecial #46                 // Method getApiTail:()Ljava/lang/String;
+        30: iconst_0
+        31: anewarray     #47                 // class java/lang/String
+        34: invokevirtual #48                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        37: checkcast     #45                 // class org/kohsuke/github/Requester
+        40: ldc           #49                 // class org/kohsuke/github/GHTree
+        42: invokevirtual #50                 // Method org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+        45: checkcast     #49                 // class org/kohsuke/github/GHTree
+        48: aload_0
+        49: getfield      #5                  // Field repo:Lorg/kohsuke/github/GHRepository;
+        52: invokevirtual #51                 // Method org/kohsuke/github/GHTree.wrap:(Lorg/kohsuke/github/GHRepository;)Lorg/kohsuke/github/GHTree;
+        55: areturn
+      LineNumberTable:
+        line 170: 0
+        line 171: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      56     0  this   Lorg/kohsuke/github/GHTreeBuilder;
+    Exceptions:
+      throws java.io.IOException
+}
+SourceFile: "GHTreeBuilder.java"
+InnerClasses:
+  static #53;                             // class org/kohsuke/github/GHTreeBuilder$1
+  private static final #55= #11 of #52;   // TreeEntry=class org/kohsuke/github/GHTreeBuilder$TreeEntry of class org/kohsuke/github/GHTreeBuilder
+  static #170= #169 of #208;              // Builder=class org/kohsuke/github/GitHubRequest$Builder of class org/kohsuke/github/GitHubRequest

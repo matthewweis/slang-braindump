@@ -1,0 +1,1339 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/org/kohsuke/github/GitHubBuilder.class
+  Last modified May 29, 2022; size 10912 bytes
+  SHA-256 checksum 5befc2fdb2962750fba71f655988a9ec355fdeb9ea6a5b03da986eeafa1e6215
+  Compiled from "GitHubBuilder.java"
+public class org.kohsuke.github.GitHubBuilder implements java.lang.Cloneable
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #60                         // org/kohsuke/github/GitHubBuilder
+  super_class: #97                        // java/lang/Object
+  interfaces: 1, fields: 7, methods: 30, attributes: 3
+Constant pool:
+    #1 = Methodref          #97.#220      // java/lang/Object."<init>":()V
+    #2 = Class              #221          // org/kohsuke/github/GitHubClient
+    #3 = String             #222          // https://api.github.com
+    #4 = Fieldref           #60.#223      // org/kohsuke/github/GitHubBuilder.endpoint:Ljava/lang/String;
+    #5 = Fieldref           #224.#225     // org/kohsuke/github/RateLimitHandler.WAIT:Lorg/kohsuke/github/RateLimitHandler;
+    #6 = Fieldref           #60.#226      // org/kohsuke/github/GitHubBuilder.rateLimitHandler:Lorg/kohsuke/github/GitHubRateLimitHandler;
+    #7 = Fieldref           #227.#228     // org/kohsuke/github/AbuseLimitHandler.WAIT:Lorg/kohsuke/github/AbuseLimitHandler;
+    #8 = Fieldref           #60.#229      // org/kohsuke/github/GitHubBuilder.abuseLimitHandler:Lorg/kohsuke/github/GitHubAbuseLimitHandler;
+    #9 = Class              #230          // org/kohsuke/github/GitHubRateLimitChecker
+   #10 = Methodref          #9.#220       // org/kohsuke/github/GitHubRateLimitChecker."<init>":()V
+   #11 = Fieldref           #60.#231      // org/kohsuke/github/GitHubBuilder.rateLimitChecker:Lorg/kohsuke/github/GitHubRateLimitChecker;
+   #12 = Fieldref           #232.#233     // org/kohsuke/github/authorization/AuthorizationProvider.ANONYMOUS:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+   #13 = Fieldref           #60.#234      // org/kohsuke/github/GitHubBuilder.authorizationProvider:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+   #14 = Methodref          #60.#235      // org/kohsuke/github/GitHubBuilder.fromEnvironment:()Lorg/kohsuke/github/GitHubBuilder;
+   #15 = Methodref          #60.#236      // org/kohsuke/github/GitHubBuilder.fromPropertyFile:()Lorg/kohsuke/github/GitHubBuilder;
+   #16 = Class              #237          // java/io/FileNotFoundException
+   #17 = Class              #238          // java/io/IOException
+   #18 = String             #239          // Failed to resolve credentials from ~/.github or the environment.
+   #19 = Methodref          #17.#240      // java/io/IOException."<init>":(Ljava/lang/String;)V
+   #20 = Methodref          #17.#241      // java/io/IOException.initCause:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+   #21 = String             #242          //
+   #22 = Methodref          #60.#243      // org/kohsuke/github/GitHubBuilder.fromEnvironment:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+   #23 = Methodref          #244.#245     // java/lang/System.getenv:(Ljava/lang/String;)Ljava/lang/String;
+   #24 = Methodref          #25.#246      // java/util/Properties.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #25 = Class              #247          // java/util/Properties
+   #26 = Methodref          #25.#220      // java/util/Properties."<init>":()V
+   #27 = String             #169          // login
+   #28 = Methodref          #60.#248      // org/kohsuke/github/GitHubBuilder.loadIfSet:(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/String;)V
+   #29 = String             #170          // password
+   #30 = String             #167          // oauth
+   #31 = String             #101          // endpoint
+   #32 = Methodref          #60.#249      // org/kohsuke/github/GitHubBuilder.fromProperties:(Ljava/util/Properties;)Lorg/kohsuke/github/GitHubBuilder;
+   #33 = Methodref          #244.#250     // java/lang/System.getenv:()Ljava/util/Map;
+   #34 = InterfaceMethodref #251.#252     // java/util/Map.entrySet:()Ljava/util/Set;
+   #35 = InterfaceMethodref #253.#254     // java/util/Set.iterator:()Ljava/util/Iterator;
+   #36 = InterfaceMethodref #155.#255     // java/util/Iterator.hasNext:()Z
+   #37 = InterfaceMethodref #155.#256     // java/util/Iterator.next:()Ljava/lang/Object;
+   #38 = Class              #257          // java/util/Map$Entry
+   #39 = InterfaceMethodref #38.#258      // java/util/Map$Entry.getKey:()Ljava/lang/Object;
+   #40 = Class              #259          // java/lang/String
+   #41 = Fieldref           #260.#261     // java/util/Locale.ENGLISH:Ljava/util/Locale;
+   #42 = Methodref          #40.#262      // java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+   #43 = String             #263          // github_
+   #44 = Methodref          #40.#264      // java/lang/String.startsWith:(Ljava/lang/String;)Z
+   #45 = Methodref          #40.#265      // java/lang/String.substring:(I)Ljava/lang/String;
+   #46 = InterfaceMethodref #38.#266      // java/util/Map$Entry.getValue:()Ljava/lang/Object;
+   #47 = Fieldref           #60.#267      // org/kohsuke/github/GitHubBuilder.HOME_DIRECTORY:Ljava/io/File;
+   #48 = Class              #268          // java/io/File
+   #49 = String             #269          // user.home
+   #50 = Methodref          #244.#270     // java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+   #51 = Methodref          #48.#240      // java/io/File."<init>":(Ljava/lang/String;)V
+   #52 = String             #271          // .github
+   #53 = Methodref          #48.#272      // java/io/File."<init>":(Ljava/io/File;Ljava/lang/String;)V
+   #54 = Methodref          #48.#273      // java/io/File.getPath:()Ljava/lang/String;
+   #55 = Methodref          #60.#274      // org/kohsuke/github/GitHubBuilder.fromPropertyFile:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+   #56 = Class              #275          // java/io/FileInputStream
+   #57 = Methodref          #56.#240      // java/io/FileInputStream."<init>":(Ljava/lang/String;)V
+   #58 = Methodref          #25.#276      // java/util/Properties.load:(Ljava/io/InputStream;)V
+   #59 = Methodref          #277.#278     // org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+   #60 = Class              #279          // org/kohsuke/github/GitHubBuilder
+   #61 = Methodref          #60.#220      // org/kohsuke/github/GitHubBuilder."<init>":()V
+   #62 = Methodref          #25.#270      // java/util/Properties.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+   #63 = String             #168          // jwt
+   #64 = Methodref          #60.#280      // org/kohsuke/github/GitHubBuilder.withOAuthToken:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+   #65 = Methodref          #60.#281      // org/kohsuke/github/GitHubBuilder.withJwtToken:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+   #66 = Methodref          #60.#282      // org/kohsuke/github/GitHubBuilder.withPassword:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+   #67 = Methodref          #25.#283      // java/util/Properties.getProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #68 = Methodref          #60.#284      // org/kohsuke/github/GitHubBuilder.withEndpoint:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+   #69 = Methodref          #285.#286     // org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromLoginAndPassword:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+   #70 = Methodref          #60.#287      // org/kohsuke/github/GitHubBuilder.withAuthorizationProvider:(Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+   #71 = Methodref          #285.#288     // org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromOauthToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+   #72 = Methodref          #285.#289     // org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromOauthToken:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+   #73 = Methodref          #285.#290     // org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromAppInstallationToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+   #74 = Methodref          #285.#291     // org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromJwtToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+   #75 = Methodref          #292.#293     // org/kohsuke/github/internal/GitHubConnectorHttpConnectorAdapter.adapt:(Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/connector/GitHubConnector;
+   #76 = Methodref          #60.#294      // org/kohsuke/github/GitHubBuilder.withConnector:(Lorg/kohsuke/github/connector/GitHubConnector;)Lorg/kohsuke/github/GitHubBuilder;
+   #77 = Fieldref           #60.#295      // org/kohsuke/github/GitHubBuilder.connector:Lorg/kohsuke/github/connector/GitHubConnector;
+   #78 = Methodref          #60.#296      // org/kohsuke/github/GitHubBuilder.withRateLimitHandler:(Lorg/kohsuke/github/GitHubRateLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+   #79 = Methodref          #60.#297      // org/kohsuke/github/GitHubBuilder.withAbuseLimitHandler:(Lorg/kohsuke/github/GitHubAbuseLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+   #80 = Fieldref           #298.#299     // org/kohsuke/github/RateLimitTarget.CORE:Lorg/kohsuke/github/RateLimitTarget;
+   #81 = Methodref          #60.#300      // org/kohsuke/github/GitHubBuilder.withRateLimitChecker:(Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubBuilder;
+   #82 = Methodref          #9.#301       // org/kohsuke/github/GitHubRateLimitChecker.with:(Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubRateLimitChecker;
+   #83 = Class              #302          // org/kohsuke/github/extras/ImpatientHttpConnector
+   #84 = InvokeDynamic      #0:#307       // #0:connect:(Ljava/net/Proxy;)Lorg/kohsuke/github/HttpConnector;
+   #85 = Methodref          #83.#308      // org/kohsuke/github/extras/ImpatientHttpConnector."<init>":(Lorg/kohsuke/github/HttpConnector;)V
+   #86 = Methodref          #60.#309      // org/kohsuke/github/GitHubBuilder.withConnector:(Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/GitHubBuilder;
+   #87 = Class              #310          // org/kohsuke/github/GitHub
+   #88 = Methodref          #87.#311      // org/kohsuke/github/GitHub."<init>":(Ljava/lang/String;Lorg/kohsuke/github/connector/GitHubConnector;Lorg/kohsuke/github/GitHubRateLimitHandler;Lorg/kohsuke/github/GitHubAbuseLimitHandler;Lorg/kohsuke/github/GitHubRateLimitChecker;Lorg/kohsuke/github/authorization/AuthorizationProvider;)V
+   #89 = Methodref          #97.#312      // java/lang/Object.clone:()Ljava/lang/Object;
+   #90 = Class              #313          // java/lang/CloneNotSupportedException
+   #91 = Class              #314          // java/lang/RuntimeException
+   #92 = String             #315          // Clone should be supported
+   #93 = Methodref          #91.#316      // java/lang/RuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+   #94 = Methodref          #60.#317      // org/kohsuke/github/GitHubBuilder.clone:()Lorg/kohsuke/github/GitHubBuilder;
+   #95 = Methodref          #318.#319     // java/net/URL.openConnection:(Ljava/net/Proxy;)Ljava/net/URLConnection;
+   #96 = Class              #320          // java/net/HttpURLConnection
+   #97 = Class              #321          // java/lang/Object
+   #98 = Class              #322          // java/lang/Cloneable
+   #99 = Utf8               HOME_DIRECTORY
+  #100 = Utf8               Ljava/io/File;
+  #101 = Utf8               endpoint
+  #102 = Utf8               Ljava/lang/String;
+  #103 = Utf8               connector
+  #104 = Utf8               Lorg/kohsuke/github/connector/GitHubConnector;
+  #105 = Utf8               rateLimitHandler
+  #106 = Utf8               Lorg/kohsuke/github/GitHubRateLimitHandler;
+  #107 = Utf8               abuseLimitHandler
+  #108 = Utf8               Lorg/kohsuke/github/GitHubAbuseLimitHandler;
+  #109 = Utf8               rateLimitChecker
+  #110 = Utf8               Lorg/kohsuke/github/GitHubRateLimitChecker;
+  #111 = Utf8               authorizationProvider
+  #112 = Utf8               Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #113 = Utf8               <init>
+  #114 = Utf8               ()V
+  #115 = Utf8               Code
+  #116 = Utf8               LineNumberTable
+  #117 = Utf8               LocalVariableTable
+  #118 = Utf8               this
+  #119 = Utf8               Lorg/kohsuke/github/GitHubBuilder;
+  #120 = Utf8               fromCredentials
+  #121 = Utf8               ()Lorg/kohsuke/github/GitHubBuilder;
+  #122 = Utf8               e
+  #123 = Utf8               Ljava/io/FileNotFoundException;
+  #124 = Utf8               cause
+  #125 = Utf8               Ljava/lang/Exception;
+  #126 = Utf8               builder
+  #127 = Utf8               StackMapTable
+  #128 = Class              #323          // java/lang/Exception
+  #129 = Utf8               Exceptions
+  #130 = Utf8               fromEnvironment
+  #131 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #132 = Utf8               loginVariableName
+  #133 = Utf8               passwordVariableName
+  #134 = Utf8               oauthVariableName
+  #135 = Utf8               Deprecated
+  #136 = Utf8               RuntimeVisibleAnnotations
+  #137 = Utf8               Ljava/lang/Deprecated;
+  #138 = Utf8               loadIfSet
+  #139 = Utf8               (Ljava/lang/String;Ljava/util/Properties;Ljava/lang/String;)V
+  #140 = Utf8               envName
+  #141 = Utf8               p
+  #142 = Utf8               Ljava/util/Properties;
+  #143 = Utf8               propName
+  #144 = Utf8               v
+  #145 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #146 = Utf8               endpointVariableName
+  #147 = Utf8               env
+  #148 = Utf8               name
+  #149 = Utf8               Entry
+  #150 = Utf8               InnerClasses
+  #151 = Utf8               Ljava/util/Map$Entry;
+  #152 = Utf8               props
+  #153 = Utf8               LocalVariableTypeTable
+  #154 = Utf8               Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/String;>;
+  #155 = Class              #324          // java/util/Iterator
+  #156 = Utf8               fromPropertyFile
+  #157 = Utf8               homeDir
+  #158 = Utf8               propertyFile
+  #159 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #160 = Utf8               propertyFileName
+  #161 = Utf8               in
+  #162 = Utf8               Ljava/io/FileInputStream;
+  #163 = Class              #325          // java/lang/Throwable
+  #164 = Utf8               fromProperties
+  #165 = Utf8               (Ljava/util/Properties;)Lorg/kohsuke/github/GitHubBuilder;
+  #166 = Utf8               self
+  #167 = Utf8               oauth
+  #168 = Utf8               jwt
+  #169 = Utf8               login
+  #170 = Utf8               password
+  #171 = Utf8               withEndpoint
+  #172 = Utf8               withPassword
+  #173 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #174 = Utf8               user
+  #175 = Utf8               withOAuthToken
+  #176 = Utf8               oauthToken
+  #177 = Utf8               withAuthorizationProvider
+  #178 = Utf8               (Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+  #179 = Utf8               withAppInstallationToken
+  #180 = Utf8               appInstallationToken
+  #181 = Utf8               withJwtToken
+  #182 = Utf8               jwtToken
+  #183 = Utf8               withConnector
+  #184 = Utf8               (Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/GitHubBuilder;
+  #185 = Utf8               Lorg/kohsuke/github/HttpConnector;
+  #186 = Utf8               RuntimeVisibleParameterAnnotations
+  #187 = Utf8               Ljavax/annotation/Nonnull;
+  #188 = Utf8               (Lorg/kohsuke/github/connector/GitHubConnector;)Lorg/kohsuke/github/GitHubBuilder;
+  #189 = Utf8               withRateLimitHandler
+  #190 = Utf8               (Lorg/kohsuke/github/RateLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+  #191 = Utf8               handler
+  #192 = Utf8               Lorg/kohsuke/github/RateLimitHandler;
+  #193 = Utf8               (Lorg/kohsuke/github/GitHubRateLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+  #194 = Utf8               withAbuseLimitHandler
+  #195 = Utf8               (Lorg/kohsuke/github/AbuseLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+  #196 = Utf8               Lorg/kohsuke/github/AbuseLimitHandler;
+  #197 = Utf8               (Lorg/kohsuke/github/GitHubAbuseLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+  #198 = Utf8               withRateLimitChecker
+  #199 = Utf8               (Lorg/kohsuke/github/RateLimitChecker;)Lorg/kohsuke/github/GitHubBuilder;
+  #200 = Utf8               coreRateLimitChecker
+  #201 = Utf8               Lorg/kohsuke/github/RateLimitChecker;
+  #202 = Utf8               (Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubBuilder;
+  #203 = Utf8               rateLimitTarget
+  #204 = Utf8               Lorg/kohsuke/github/RateLimitTarget;
+  #205 = Utf8               withProxy
+  #206 = Utf8               (Ljava/net/Proxy;)Lorg/kohsuke/github/GitHubBuilder;
+  #207 = Utf8               Ljava/net/Proxy;
+  #208 = Utf8               build
+  #209 = Utf8               ()Lorg/kohsuke/github/GitHub;
+  #210 = Utf8               clone
+  #211 = Utf8               Ljava/lang/CloneNotSupportedException;
+  #212 = Utf8               ()Ljava/lang/Object;
+  #213 = Utf8               lambda$withProxy$0
+  #214 = Utf8               (Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/HttpURLConnection;
+  #215 = Utf8               url
+  #216 = Utf8               Ljava/net/URL;
+  #217 = Utf8               <clinit>
+  #218 = Utf8               SourceFile
+  #219 = Utf8               GitHubBuilder.java
+  #220 = NameAndType        #113:#114     // "<init>":()V
+  #221 = Utf8               org/kohsuke/github/GitHubClient
+  #222 = Utf8               https://api.github.com
+  #223 = NameAndType        #101:#102     // endpoint:Ljava/lang/String;
+  #224 = Class              #326          // org/kohsuke/github/RateLimitHandler
+  #225 = NameAndType        #327:#192     // WAIT:Lorg/kohsuke/github/RateLimitHandler;
+  #226 = NameAndType        #105:#106     // rateLimitHandler:Lorg/kohsuke/github/GitHubRateLimitHandler;
+  #227 = Class              #328          // org/kohsuke/github/AbuseLimitHandler
+  #228 = NameAndType        #327:#196     // WAIT:Lorg/kohsuke/github/AbuseLimitHandler;
+  #229 = NameAndType        #107:#108     // abuseLimitHandler:Lorg/kohsuke/github/GitHubAbuseLimitHandler;
+  #230 = Utf8               org/kohsuke/github/GitHubRateLimitChecker
+  #231 = NameAndType        #109:#110     // rateLimitChecker:Lorg/kohsuke/github/GitHubRateLimitChecker;
+  #232 = Class              #329          // org/kohsuke/github/authorization/AuthorizationProvider
+  #233 = NameAndType        #330:#112     // ANONYMOUS:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #234 = NameAndType        #111:#112     // authorizationProvider:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #235 = NameAndType        #130:#121     // fromEnvironment:()Lorg/kohsuke/github/GitHubBuilder;
+  #236 = NameAndType        #156:#121     // fromPropertyFile:()Lorg/kohsuke/github/GitHubBuilder;
+  #237 = Utf8               java/io/FileNotFoundException
+  #238 = Utf8               java/io/IOException
+  #239 = Utf8               Failed to resolve credentials from ~/.github or the environment.
+  #240 = NameAndType        #113:#331     // "<init>":(Ljava/lang/String;)V
+  #241 = NameAndType        #332:#333     // initCause:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+  #242 = Utf8
+  #243 = NameAndType        #130:#145     // fromEnvironment:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #244 = Class              #334          // java/lang/System
+  #245 = NameAndType        #335:#336     // getenv:(Ljava/lang/String;)Ljava/lang/String;
+  #246 = NameAndType        #337:#338     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #247 = Utf8               java/util/Properties
+  #248 = NameAndType        #138:#139     // loadIfSet:(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/String;)V
+  #249 = NameAndType        #164:#165     // fromProperties:(Ljava/util/Properties;)Lorg/kohsuke/github/GitHubBuilder;
+  #250 = NameAndType        #335:#339     // getenv:()Ljava/util/Map;
+  #251 = Class              #340          // java/util/Map
+  #252 = NameAndType        #341:#342     // entrySet:()Ljava/util/Set;
+  #253 = Class              #343          // java/util/Set
+  #254 = NameAndType        #344:#345     // iterator:()Ljava/util/Iterator;
+  #255 = NameAndType        #346:#347     // hasNext:()Z
+  #256 = NameAndType        #348:#212     // next:()Ljava/lang/Object;
+  #257 = Utf8               java/util/Map$Entry
+  #258 = NameAndType        #349:#212     // getKey:()Ljava/lang/Object;
+  #259 = Utf8               java/lang/String
+  #260 = Class              #350          // java/util/Locale
+  #261 = NameAndType        #351:#352     // ENGLISH:Ljava/util/Locale;
+  #262 = NameAndType        #353:#354     // toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+  #263 = Utf8               github_
+  #264 = NameAndType        #355:#356     // startsWith:(Ljava/lang/String;)Z
+  #265 = NameAndType        #357:#358     // substring:(I)Ljava/lang/String;
+  #266 = NameAndType        #359:#212     // getValue:()Ljava/lang/Object;
+  #267 = NameAndType        #99:#100      // HOME_DIRECTORY:Ljava/io/File;
+  #268 = Utf8               java/io/File
+  #269 = Utf8               user.home
+  #270 = NameAndType        #360:#336     // getProperty:(Ljava/lang/String;)Ljava/lang/String;
+  #271 = Utf8               .github
+  #272 = NameAndType        #113:#361     // "<init>":(Ljava/io/File;Ljava/lang/String;)V
+  #273 = NameAndType        #362:#363     // getPath:()Ljava/lang/String;
+  #274 = NameAndType        #156:#159     // fromPropertyFile:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #275 = Utf8               java/io/FileInputStream
+  #276 = NameAndType        #364:#365     // load:(Ljava/io/InputStream;)V
+  #277 = Class              #366          // org/apache/commons/io/IOUtils
+  #278 = NameAndType        #367:#365     // closeQuietly:(Ljava/io/InputStream;)V
+  #279 = Utf8               org/kohsuke/github/GitHubBuilder
+  #280 = NameAndType        #175:#173     // withOAuthToken:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #281 = NameAndType        #181:#159     // withJwtToken:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #282 = NameAndType        #172:#173     // withPassword:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #283 = NameAndType        #360:#368     // getProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #284 = NameAndType        #171:#159     // withEndpoint:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+  #285 = Class              #369          // org/kohsuke/github/authorization/ImmutableAuthorizationProvider
+  #286 = NameAndType        #370:#371     // fromLoginAndPassword:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #287 = NameAndType        #177:#178     // withAuthorizationProvider:(Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+  #288 = NameAndType        #372:#373     // fromOauthToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #289 = NameAndType        #372:#371     // fromOauthToken:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #290 = NameAndType        #374:#373     // fromAppInstallationToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #291 = NameAndType        #375:#373     // fromJwtToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #292 = Class              #376          // org/kohsuke/github/internal/GitHubConnectorHttpConnectorAdapter
+  #293 = NameAndType        #377:#378     // adapt:(Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/connector/GitHubConnector;
+  #294 = NameAndType        #183:#188     // withConnector:(Lorg/kohsuke/github/connector/GitHubConnector;)Lorg/kohsuke/github/GitHubBuilder;
+  #295 = NameAndType        #103:#104     // connector:Lorg/kohsuke/github/connector/GitHubConnector;
+  #296 = NameAndType        #189:#193     // withRateLimitHandler:(Lorg/kohsuke/github/GitHubRateLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+  #297 = NameAndType        #194:#197     // withAbuseLimitHandler:(Lorg/kohsuke/github/GitHubAbuseLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+  #298 = Class              #379          // org/kohsuke/github/RateLimitTarget
+  #299 = NameAndType        #380:#204     // CORE:Lorg/kohsuke/github/RateLimitTarget;
+  #300 = NameAndType        #198:#202     // withRateLimitChecker:(Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubBuilder;
+  #301 = NameAndType        #381:#382     // with:(Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubRateLimitChecker;
+  #302 = Utf8               org/kohsuke/github/extras/ImpatientHttpConnector
+  #303 = Utf8               BootstrapMethods
+  #304 = MethodHandle       6:#383        // REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #305 = MethodType         #384          //  (Ljava/net/URL;)Ljava/net/HttpURLConnection;
+  #306 = MethodHandle       6:#385        // REF_invokeStatic org/kohsuke/github/GitHubBuilder.lambda$withProxy$0:(Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/HttpURLConnection;
+  #307 = NameAndType        #386:#387     // connect:(Ljava/net/Proxy;)Lorg/kohsuke/github/HttpConnector;
+  #308 = NameAndType        #113:#388     // "<init>":(Lorg/kohsuke/github/HttpConnector;)V
+  #309 = NameAndType        #183:#184     // withConnector:(Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/GitHubBuilder;
+  #310 = Utf8               org/kohsuke/github/GitHub
+  #311 = NameAndType        #113:#389     // "<init>":(Ljava/lang/String;Lorg/kohsuke/github/connector/GitHubConnector;Lorg/kohsuke/github/GitHubRateLimitHandler;Lorg/kohsuke/github/GitHubAbuseLimitHandler;Lorg/kohsuke/github/GitHubRateLimitChecker;Lorg/kohsuke/github/authorization/AuthorizationProvider;)V
+  #312 = NameAndType        #210:#212     // clone:()Ljava/lang/Object;
+  #313 = Utf8               java/lang/CloneNotSupportedException
+  #314 = Utf8               java/lang/RuntimeException
+  #315 = Utf8               Clone should be supported
+  #316 = NameAndType        #113:#390     // "<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+  #317 = NameAndType        #210:#121     // clone:()Lorg/kohsuke/github/GitHubBuilder;
+  #318 = Class              #391          // java/net/URL
+  #319 = NameAndType        #392:#393     // openConnection:(Ljava/net/Proxy;)Ljava/net/URLConnection;
+  #320 = Utf8               java/net/HttpURLConnection
+  #321 = Utf8               java/lang/Object
+  #322 = Utf8               java/lang/Cloneable
+  #323 = Utf8               java/lang/Exception
+  #324 = Utf8               java/util/Iterator
+  #325 = Utf8               java/lang/Throwable
+  #326 = Utf8               org/kohsuke/github/RateLimitHandler
+  #327 = Utf8               WAIT
+  #328 = Utf8               org/kohsuke/github/AbuseLimitHandler
+  #329 = Utf8               org/kohsuke/github/authorization/AuthorizationProvider
+  #330 = Utf8               ANONYMOUS
+  #331 = Utf8               (Ljava/lang/String;)V
+  #332 = Utf8               initCause
+  #333 = Utf8               (Ljava/lang/Throwable;)Ljava/lang/Throwable;
+  #334 = Utf8               java/lang/System
+  #335 = Utf8               getenv
+  #336 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #337 = Utf8               put
+  #338 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #339 = Utf8               ()Ljava/util/Map;
+  #340 = Utf8               java/util/Map
+  #341 = Utf8               entrySet
+  #342 = Utf8               ()Ljava/util/Set;
+  #343 = Utf8               java/util/Set
+  #344 = Utf8               iterator
+  #345 = Utf8               ()Ljava/util/Iterator;
+  #346 = Utf8               hasNext
+  #347 = Utf8               ()Z
+  #348 = Utf8               next
+  #349 = Utf8               getKey
+  #350 = Utf8               java/util/Locale
+  #351 = Utf8               ENGLISH
+  #352 = Utf8               Ljava/util/Locale;
+  #353 = Utf8               toLowerCase
+  #354 = Utf8               (Ljava/util/Locale;)Ljava/lang/String;
+  #355 = Utf8               startsWith
+  #356 = Utf8               (Ljava/lang/String;)Z
+  #357 = Utf8               substring
+  #358 = Utf8               (I)Ljava/lang/String;
+  #359 = Utf8               getValue
+  #360 = Utf8               getProperty
+  #361 = Utf8               (Ljava/io/File;Ljava/lang/String;)V
+  #362 = Utf8               getPath
+  #363 = Utf8               ()Ljava/lang/String;
+  #364 = Utf8               load
+  #365 = Utf8               (Ljava/io/InputStream;)V
+  #366 = Utf8               org/apache/commons/io/IOUtils
+  #367 = Utf8               closeQuietly
+  #368 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #369 = Utf8               org/kohsuke/github/authorization/ImmutableAuthorizationProvider
+  #370 = Utf8               fromLoginAndPassword
+  #371 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #372 = Utf8               fromOauthToken
+  #373 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+  #374 = Utf8               fromAppInstallationToken
+  #375 = Utf8               fromJwtToken
+  #376 = Utf8               org/kohsuke/github/internal/GitHubConnectorHttpConnectorAdapter
+  #377 = Utf8               adapt
+  #378 = Utf8               (Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/connector/GitHubConnector;
+  #379 = Utf8               org/kohsuke/github/RateLimitTarget
+  #380 = Utf8               CORE
+  #381 = Utf8               with
+  #382 = Utf8               (Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubRateLimitChecker;
+  #383 = Methodref          #394.#395     // java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #384 = Utf8               (Ljava/net/URL;)Ljava/net/HttpURLConnection;
+  #385 = Methodref          #60.#396      // org/kohsuke/github/GitHubBuilder.lambda$withProxy$0:(Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/HttpURLConnection;
+  #386 = Utf8               connect
+  #387 = Utf8               (Ljava/net/Proxy;)Lorg/kohsuke/github/HttpConnector;
+  #388 = Utf8               (Lorg/kohsuke/github/HttpConnector;)V
+  #389 = Utf8               (Ljava/lang/String;Lorg/kohsuke/github/connector/GitHubConnector;Lorg/kohsuke/github/GitHubRateLimitHandler;Lorg/kohsuke/github/GitHubAbuseLimitHandler;Lorg/kohsuke/github/GitHubRateLimitChecker;Lorg/kohsuke/github/authorization/AuthorizationProvider;)V
+  #390 = Utf8               (Ljava/lang/String;Ljava/lang/Throwable;)V
+  #391 = Utf8               java/net/URL
+  #392 = Utf8               openConnection
+  #393 = Utf8               (Ljava/net/Proxy;)Ljava/net/URLConnection;
+  #394 = Class              #397          // java/lang/invoke/LambdaMetafactory
+  #395 = NameAndType        #398:#401     // metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #396 = NameAndType        #213:#214     // lambda$withProxy$0:(Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/HttpURLConnection;
+  #397 = Utf8               java/lang/invoke/LambdaMetafactory
+  #398 = Utf8               metafactory
+  #399 = Class              #403          // java/lang/invoke/MethodHandles$Lookup
+  #400 = Utf8               Lookup
+  #401 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #402 = Class              #404          // java/lang/invoke/MethodHandles
+  #403 = Utf8               java/lang/invoke/MethodHandles$Lookup
+  #404 = Utf8               java/lang/invoke/MethodHandles
+{
+  static java.io.File HOME_DIRECTORY;
+    descriptor: Ljava/io/File;
+    flags: (0x0008) ACC_STATIC
+
+  java.lang.String endpoint;
+    descriptor: Ljava/lang/String;
+    flags: (0x0000)
+
+  private org.kohsuke.github.connector.GitHubConnector connector;
+    descriptor: Lorg/kohsuke/github/connector/GitHubConnector;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GitHubRateLimitHandler rateLimitHandler;
+    descriptor: Lorg/kohsuke/github/GitHubRateLimitHandler;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GitHubAbuseLimitHandler abuseLimitHandler;
+    descriptor: Lorg/kohsuke/github/GitHubAbuseLimitHandler;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GitHubRateLimitChecker rateLimitChecker;
+    descriptor: Lorg/kohsuke/github/GitHubRateLimitChecker;
+    flags: (0x0002) ACC_PRIVATE
+
+  org.kohsuke.github.authorization.AuthorizationProvider authorizationProvider;
+    descriptor: Lorg/kohsuke/github/authorization/AuthorizationProvider;
+    flags: (0x0000)
+
+  public org.kohsuke.github.GitHubBuilder();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: ldc           #3                  // String https://api.github.com
+         7: putfield      #4                  // Field endpoint:Ljava/lang/String;
+        10: aload_0
+        11: getstatic     #5                  // Field org/kohsuke/github/RateLimitHandler.WAIT:Lorg/kohsuke/github/RateLimitHandler;
+        14: putfield      #6                  // Field rateLimitHandler:Lorg/kohsuke/github/GitHubRateLimitHandler;
+        17: aload_0
+        18: getstatic     #7                  // Field org/kohsuke/github/AbuseLimitHandler.WAIT:Lorg/kohsuke/github/AbuseLimitHandler;
+        21: putfield      #8                  // Field abuseLimitHandler:Lorg/kohsuke/github/GitHubAbuseLimitHandler;
+        24: aload_0
+        25: new           #9                  // class org/kohsuke/github/GitHubRateLimitChecker
+        28: dup
+        29: invokespecial #10                 // Method org/kohsuke/github/GitHubRateLimitChecker."<init>":()V
+        32: putfield      #11                 // Field rateLimitChecker:Lorg/kohsuke/github/GitHubRateLimitChecker;
+        35: aload_0
+        36: getstatic     #12                 // Field org/kohsuke/github/authorization/AuthorizationProvider.ANONYMOUS:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+        39: putfield      #13                 // Field authorizationProvider:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+        42: return
+      LineNumberTable:
+        line 46: 0
+        line 34: 4
+        line 38: 10
+        line 39: 17
+        line 40: 24
+        line 41: 35
+        line 47: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0  this   Lorg/kohsuke/github/GitHubBuilder;
+
+  static org.kohsuke.github.GitHubBuilder fromCredentials() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=3, args_size=0
+         0: aconst_null
+         1: astore_0
+         2: aconst_null
+         3: astore_1
+         4: invokestatic  #14                 // Method fromEnvironment:()Lorg/kohsuke/github/GitHubBuilder;
+         7: astore_1
+         8: aload_1
+         9: getfield      #13                 // Field authorizationProvider:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+        12: getstatic     #12                 // Field org/kohsuke/github/authorization/AuthorizationProvider.ANONYMOUS:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+        15: if_acmpeq     20
+        18: aload_1
+        19: areturn
+        20: invokestatic  #15                 // Method fromPropertyFile:()Lorg/kohsuke/github/GitHubBuilder;
+        23: astore_1
+        24: aload_1
+        25: getfield      #13                 // Field authorizationProvider:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+        28: getstatic     #12                 // Field org/kohsuke/github/authorization/AuthorizationProvider.ANONYMOUS:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+        31: if_acmpeq     36
+        34: aload_1
+        35: areturn
+        36: goto          42
+        39: astore_2
+        40: aload_2
+        41: astore_0
+        42: new           #17                 // class java/io/IOException
+        45: dup
+        46: ldc           #18                 // String Failed to resolve credentials from ~/.github or the environment.
+        48: invokespecial #19                 // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+        51: aload_0
+        52: invokevirtual #20                 // Method java/io/IOException.initCause:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+        55: checkcast     #17                 // class java/io/IOException
+        58: athrow
+      Exception table:
+         from    to  target type
+            20    35    39   Class java/io/FileNotFoundException
+      LineNumberTable:
+        line 64: 0
+        line 65: 2
+        line 67: 4
+        line 69: 8
+        line 70: 18
+        line 73: 20
+        line 75: 24
+        line 76: 34
+        line 80: 36
+        line 77: 39
+        line 79: 40
+        line 81: 42
+        line 82: 52
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           40       2     2     e   Ljava/io/FileNotFoundException;
+            2      57     0 cause   Ljava/lang/Exception;
+            4      55     1 builder   Lorg/kohsuke/github/GitHubBuilder;
+      StackMapTable: number_of_entries = 4
+        frame_type = 253 /* append */
+          offset_delta = 20
+          locals = [ class java/lang/Exception, class org/kohsuke/github/GitHubBuilder ]
+        frame_type = 15 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/io/FileNotFoundException ]
+        frame_type = 2 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public static org.kohsuke.github.GitHubBuilder fromEnvironment(java.lang.String, java.lang.String, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: ldc           #21                 // String
+         5: invokestatic  #22                 // Method fromEnvironment:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+         8: areturn
+      LineNumberTable:
+        line 104: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0 loginVariableName   Ljava/lang/String;
+            0       9     1 passwordVariableName   Ljava/lang/String;
+            0       9     2 oauthVariableName   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #137()
+        java.lang.Deprecated
+
+  private static void loadIfSet(java.lang.String, java.util.Properties, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/util/Properties;Ljava/lang/String;)V
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=4, args_size=3
+         0: aload_0
+         1: invokestatic  #23                 // Method java/lang/System.getenv:(Ljava/lang/String;)Ljava/lang/String;
+         4: astore_3
+         5: aload_3
+         6: ifnull        16
+         9: aload_1
+        10: aload_2
+        11: aload_3
+        12: invokevirtual #24                 // Method java/util/Properties.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        15: pop
+        16: return
+      LineNumberTable:
+        line 108: 0
+        line 109: 5
+        line 110: 9
+        line 111: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0 envName   Ljava/lang/String;
+            0      17     1     p   Ljava/util/Properties;
+            0      17     2 propName   Ljava/lang/String;
+            5      12     3     v   Ljava/lang/String;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 16
+          locals = [ class java/lang/String ]
+
+  public static org.kohsuke.github.GitHubBuilder fromEnvironment(java.lang.String, java.lang.String, java.lang.String, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=5, args_size=4
+         0: new           #25                 // class java/util/Properties
+         3: dup
+         4: invokespecial #26                 // Method java/util/Properties."<init>":()V
+         7: astore        4
+         9: aload_0
+        10: aload         4
+        12: ldc           #27                 // String login
+        14: invokestatic  #28                 // Method loadIfSet:(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/String;)V
+        17: aload_1
+        18: aload         4
+        20: ldc           #29                 // String password
+        22: invokestatic  #28                 // Method loadIfSet:(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/String;)V
+        25: aload_2
+        26: aload         4
+        28: ldc           #30                 // String oauth
+        30: invokestatic  #28                 // Method loadIfSet:(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/String;)V
+        33: aload_3
+        34: aload         4
+        36: ldc           #31                 // String endpoint
+        38: invokestatic  #28                 // Method loadIfSet:(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/String;)V
+        41: aload         4
+        43: invokestatic  #32                 // Method fromProperties:(Ljava/util/Properties;)Lorg/kohsuke/github/GitHubBuilder;
+        46: areturn
+      LineNumberTable:
+        line 135: 0
+        line 136: 9
+        line 137: 17
+        line 138: 25
+        line 139: 33
+        line 140: 41
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      47     0 loginVariableName   Ljava/lang/String;
+            0      47     1 passwordVariableName   Ljava/lang/String;
+            0      47     2 oauthVariableName   Ljava/lang/String;
+            0      47     3 endpointVariableName   Ljava/lang/String;
+            9      38     4   env   Ljava/util/Properties;
+    Exceptions:
+      throws java.io.IOException
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #137()
+        java.lang.Deprecated
+
+  public static org.kohsuke.github.GitHubBuilder fromEnvironment() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=4, args_size=0
+         0: new           #25                 // class java/util/Properties
+         3: dup
+         4: invokespecial #26                 // Method java/util/Properties."<init>":()V
+         7: astore_0
+         8: invokestatic  #33                 // Method java/lang/System.getenv:()Ljava/util/Map;
+        11: invokeinterface #34,  1           // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+        16: invokeinterface #35,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        21: astore_1
+        22: aload_1
+        23: invokeinterface #36,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        28: ifeq          88
+        31: aload_1
+        32: invokeinterface #37,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        37: checkcast     #38                 // class java/util/Map$Entry
+        40: astore_2
+        41: aload_2
+        42: invokeinterface #39,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        47: checkcast     #40                 // class java/lang/String
+        50: getstatic     #41                 // Field java/util/Locale.ENGLISH:Ljava/util/Locale;
+        53: invokevirtual #42                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+        56: astore_3
+        57: aload_3
+        58: ldc           #43                 // String github_
+        60: invokevirtual #44                 // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+        63: ifeq          73
+        66: aload_3
+        67: bipush        7
+        69: invokevirtual #45                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+        72: astore_3
+        73: aload_0
+        74: aload_3
+        75: aload_2
+        76: invokeinterface #46,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        81: invokevirtual #24                 // Method java/util/Properties.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        84: pop
+        85: goto          22
+        88: aload_0
+        89: invokestatic  #32                 // Method fromProperties:(Ljava/util/Properties;)Lorg/kohsuke/github/GitHubBuilder;
+        92: areturn
+      LineNumberTable:
+        line 169: 0
+        line 170: 8
+        line 171: 41
+        line 172: 57
+        line 173: 66
+        line 174: 73
+        line 175: 85
+        line 176: 88
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           57      28     3  name   Ljava/lang/String;
+           41      44     2     e   Ljava/util/Map$Entry;
+            8      85     0 props   Ljava/util/Properties;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           41      44     2     e   Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/String;>;
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 22
+          locals = [ class java/util/Properties, class java/util/Iterator ]
+        frame_type = 253 /* append */
+          offset_delta = 50
+          locals = [ class java/util/Map$Entry, class java/lang/String ]
+        frame_type = 248 /* chop */
+          offset_delta = 14
+    Exceptions:
+      throws java.io.IOException
+
+  public static org.kohsuke.github.GitHubBuilder fromPropertyFile() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=2, args_size=0
+         0: getstatic     #47                 // Field HOME_DIRECTORY:Ljava/io/File;
+         3: ifnull        12
+         6: getstatic     #47                 // Field HOME_DIRECTORY:Ljava/io/File;
+         9: goto          24
+        12: new           #48                 // class java/io/File
+        15: dup
+        16: ldc           #49                 // String user.home
+        18: invokestatic  #50                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+        21: invokespecial #51                 // Method java/io/File."<init>":(Ljava/lang/String;)V
+        24: astore_0
+        25: new           #48                 // class java/io/File
+        28: dup
+        29: aload_0
+        30: ldc           #52                 // String .github
+        32: invokespecial #53                 // Method java/io/File."<init>":(Ljava/io/File;Ljava/lang/String;)V
+        35: astore_1
+        36: aload_1
+        37: invokevirtual #54                 // Method java/io/File.getPath:()Ljava/lang/String;
+        40: invokestatic  #55                 // Method fromPropertyFile:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+        43: areturn
+      LineNumberTable:
+        line 187: 0
+        line 188: 25
+        line 189: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           25      19     0 homeDir   Ljava/io/File;
+           36       8     1 propertyFile   Ljava/io/File;
+      StackMapTable: number_of_entries = 2
+        frame_type = 12 /* same */
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/io/File ]
+    Exceptions:
+      throws java.io.IOException
+
+  public static org.kohsuke.github.GitHubBuilder fromPropertyFile(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=4, args_size=1
+         0: new           #25                 // class java/util/Properties
+         3: dup
+         4: invokespecial #26                 // Method java/util/Properties."<init>":()V
+         7: astore_1
+         8: aconst_null
+         9: astore_2
+        10: new           #56                 // class java/io/FileInputStream
+        13: dup
+        14: aload_0
+        15: invokespecial #57                 // Method java/io/FileInputStream."<init>":(Ljava/lang/String;)V
+        18: astore_2
+        19: aload_1
+        20: aload_2
+        21: invokevirtual #58                 // Method java/util/Properties.load:(Ljava/io/InputStream;)V
+        24: aload_2
+        25: invokestatic  #59                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        28: goto          38
+        31: astore_3
+        32: aload_2
+        33: invokestatic  #59                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        36: aload_3
+        37: athrow
+        38: aload_1
+        39: invokestatic  #32                 // Method fromProperties:(Ljava/util/Properties;)Lorg/kohsuke/github/GitHubBuilder;
+        42: areturn
+      Exception table:
+         from    to  target type
+            10    24    31   any
+      LineNumberTable:
+        line 202: 0
+        line 203: 8
+        line 205: 10
+        line 206: 19
+        line 208: 24
+        line 209: 28
+        line 208: 31
+        line 209: 36
+        line 211: 38
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0 propertyFileName   Ljava/lang/String;
+            8      35     1 props   Ljava/util/Properties;
+           10      33     2    in   Ljava/io/FileInputStream;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 31
+          locals = [ class java/lang/String, class java/util/Properties, class java/io/FileInputStream ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 6 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public static org.kohsuke.github.GitHubBuilder fromProperties(java.util.Properties);
+    descriptor: (Ljava/util/Properties;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=6, args_size=1
+         0: new           #60                 // class org/kohsuke/github/GitHubBuilder
+         3: dup
+         4: invokespecial #61                 // Method "<init>":()V
+         7: astore_1
+         8: aload_0
+         9: ldc           #30                 // String oauth
+        11: invokevirtual #62                 // Method java/util/Properties.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+        14: astore_2
+        15: aload_0
+        16: ldc           #63                 // String jwt
+        18: invokevirtual #62                 // Method java/util/Properties.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+        21: astore_3
+        22: aload_0
+        23: ldc           #27                 // String login
+        25: invokevirtual #62                 // Method java/util/Properties.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+        28: astore        4
+        30: aload_0
+        31: ldc           #29                 // String password
+        33: invokevirtual #62                 // Method java/util/Properties.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+        36: astore        5
+        38: aload_2
+        39: ifnull        50
+        42: aload_1
+        43: aload_2
+        44: aload         4
+        46: invokevirtual #64                 // Method withOAuthToken:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+        49: pop
+        50: aload_3
+        51: ifnull        60
+        54: aload_1
+        55: aload_3
+        56: invokevirtual #65                 // Method withJwtToken:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+        59: pop
+        60: aload         5
+        62: ifnull        74
+        65: aload_1
+        66: aload         4
+        68: aload         5
+        70: invokevirtual #66                 // Method withPassword:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+        73: pop
+        74: aload_1
+        75: aload_0
+        76: ldc           #31                 // String endpoint
+        78: ldc           #3                  // String https://api.github.com
+        80: invokevirtual #67                 // Method java/util/Properties.getProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        83: invokevirtual #68                 // Method withEndpoint:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+        86: pop
+        87: aload_1
+        88: areturn
+      LineNumberTable:
+        line 222: 0
+        line 223: 8
+        line 224: 15
+        line 225: 22
+        line 226: 30
+        line 228: 38
+        line 229: 42
+        line 231: 50
+        line 232: 54
+        line 234: 60
+        line 235: 65
+        line 237: 74
+        line 238: 87
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      89     0 props   Ljava/util/Properties;
+            8      81     1  self   Lorg/kohsuke/github/GitHubBuilder;
+           15      74     2 oauth   Ljava/lang/String;
+           22      67     3   jwt   Ljava/lang/String;
+           30      59     4 login   Ljava/lang/String;
+           38      51     5 password   Ljava/lang/String;
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 50
+          locals = [ class java/util/Properties, class org/kohsuke/github/GitHubBuilder, class java/lang/String, class java/lang/String, class java/lang/String, class java/lang/String ]
+          stack = []
+        frame_type = 9 /* same */
+        frame_type = 13 /* same */
+
+  public org.kohsuke.github.GitHubBuilder withEndpoint(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #4                  // Field endpoint:Ljava/lang/String;
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 252: 0
+        line 253: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       7     1 endpoint   Ljava/lang/String;
+
+  public org.kohsuke.github.GitHubBuilder withPassword(java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #69                 // Method org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromLoginAndPassword:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+         6: invokevirtual #70                 // Method withAuthorizationProvider:(Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+         9: areturn
+      LineNumberTable:
+        line 266: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0      10     1  user   Ljava/lang/String;
+            0      10     2 password   Ljava/lang/String;
+
+  public org.kohsuke.github.GitHubBuilder withOAuthToken(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #71                 // Method org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromOauthToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+         5: invokevirtual #70                 // Method withAuthorizationProvider:(Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+         8: areturn
+      LineNumberTable:
+        line 277: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       9     1 oauthToken   Ljava/lang/String;
+
+  public org.kohsuke.github.GitHubBuilder withOAuthToken(java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #72                 // Method org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromOauthToken:(Ljava/lang/String;Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+         6: invokevirtual #70                 // Method withAuthorizationProvider:(Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+         9: areturn
+      LineNumberTable:
+        line 290: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0      10     1 oauthToken   Ljava/lang/String;
+            0      10     2  user   Ljava/lang/String;
+
+  public org.kohsuke.github.GitHubBuilder withAuthorizationProvider(org.kohsuke.github.authorization.AuthorizationProvider);
+    descriptor: (Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #13                 // Field authorizationProvider:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 304: 0
+        line 305: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       7     1 authorizationProvider   Lorg/kohsuke/github/authorization/AuthorizationProvider;
+
+  public org.kohsuke.github.GitHubBuilder withAppInstallationToken(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #73                 // Method org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromAppInstallationToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+         5: invokevirtual #70                 // Method withAuthorizationProvider:(Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+         8: areturn
+      LineNumberTable:
+        line 317: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       9     1 appInstallationToken   Ljava/lang/String;
+
+  public org.kohsuke.github.GitHubBuilder withJwtToken(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #74                 // Method org/kohsuke/github/authorization/ImmutableAuthorizationProvider.fromJwtToken:(Ljava/lang/String;)Lorg/kohsuke/github/authorization/AuthorizationProvider;
+         5: invokevirtual #70                 // Method withAuthorizationProvider:(Lorg/kohsuke/github/authorization/AuthorizationProvider;)Lorg/kohsuke/github/GitHubBuilder;
+         8: areturn
+      LineNumberTable:
+        line 328: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       9     1 jwtToken   Ljava/lang/String;
+
+  public org.kohsuke.github.GitHubBuilder withConnector(org.kohsuke.github.HttpConnector);
+    descriptor: (Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #75                 // Method org/kohsuke/github/internal/GitHubConnectorHttpConnectorAdapter.adapt:(Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/connector/GitHubConnector;
+         5: invokevirtual #76                 // Method withConnector:(Lorg/kohsuke/github/connector/GitHubConnector;)Lorg/kohsuke/github/GitHubBuilder;
+         8: areturn
+      LineNumberTable:
+        line 340: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       9     1 connector   Lorg/kohsuke/github/HttpConnector;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #137()
+        java.lang.Deprecated
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+        0: #187()
+          javax.annotation.Nonnull
+
+  public org.kohsuke.github.GitHubBuilder withConnector(org.kohsuke.github.connector.GitHubConnector);
+    descriptor: (Lorg/kohsuke/github/connector/GitHubConnector;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #77                 // Field connector:Lorg/kohsuke/github/connector/GitHubConnector;
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 351: 0
+        line 352: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       7     1 connector   Lorg/kohsuke/github/connector/GitHubConnector;
+
+  public org.kohsuke.github.GitHubBuilder withRateLimitHandler(org.kohsuke.github.RateLimitHandler);
+    descriptor: (Lorg/kohsuke/github/RateLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #78                 // Method withRateLimitHandler:(Lorg/kohsuke/github/GitHubRateLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+         5: areturn
+      LineNumberTable:
+        line 378: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       6     1 handler   Lorg/kohsuke/github/RateLimitHandler;
+
+  public org.kohsuke.github.GitHubBuilder withRateLimitHandler(org.kohsuke.github.GitHubRateLimitHandler);
+    descriptor: (Lorg/kohsuke/github/GitHubRateLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #6                  // Field rateLimitHandler:Lorg/kohsuke/github/GitHubRateLimitHandler;
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 404: 0
+        line 405: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       7     1 handler   Lorg/kohsuke/github/GitHubRateLimitHandler;
+
+  public org.kohsuke.github.GitHubBuilder withAbuseLimitHandler(org.kohsuke.github.AbuseLimitHandler);
+    descriptor: (Lorg/kohsuke/github/AbuseLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #79                 // Method withAbuseLimitHandler:(Lorg/kohsuke/github/GitHubAbuseLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+         5: areturn
+      LineNumberTable:
+        line 422: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       6     1 handler   Lorg/kohsuke/github/AbuseLimitHandler;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #137()
+        java.lang.Deprecated
+
+  public org.kohsuke.github.GitHubBuilder withAbuseLimitHandler(org.kohsuke.github.GitHubAbuseLimitHandler);
+    descriptor: (Lorg/kohsuke/github/GitHubAbuseLimitHandler;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #8                  // Field abuseLimitHandler:Lorg/kohsuke/github/GitHubAbuseLimitHandler;
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 438: 0
+        line 439: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       7     1 handler   Lorg/kohsuke/github/GitHubAbuseLimitHandler;
+
+  public org.kohsuke.github.GitHubBuilder withRateLimitChecker(org.kohsuke.github.RateLimitChecker);
+    descriptor: (Lorg/kohsuke/github/RateLimitChecker;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: getstatic     #80                 // Field org/kohsuke/github/RateLimitTarget.CORE:Lorg/kohsuke/github/RateLimitTarget;
+         5: invokevirtual #81                 // Method withRateLimitChecker:(Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubBuilder;
+         8: areturn
+      LineNumberTable:
+        line 451: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0       9     1 coreRateLimitChecker   Lorg/kohsuke/github/RateLimitChecker;
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+        0: #187()
+          javax.annotation.Nonnull
+
+  public org.kohsuke.github.GitHubBuilder withRateLimitChecker(org.kohsuke.github.RateLimitChecker, org.kohsuke.github.RateLimitTarget);
+    descriptor: (Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_0
+         2: getfield      #11                 // Field rateLimitChecker:Lorg/kohsuke/github/GitHubRateLimitChecker;
+         5: aload_1
+         6: aload_2
+         7: invokevirtual #82                 // Method org/kohsuke/github/GitHubRateLimitChecker.with:(Lorg/kohsuke/github/RateLimitChecker;Lorg/kohsuke/github/RateLimitTarget;)Lorg/kohsuke/github/GitHubRateLimitChecker;
+        10: putfield      #11                 // Field rateLimitChecker:Lorg/kohsuke/github/GitHubRateLimitChecker;
+        13: aload_0
+        14: areturn
+      LineNumberTable:
+        line 480: 0
+        line 481: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0      15     1 rateLimitChecker   Lorg/kohsuke/github/RateLimitChecker;
+            0      15     2 rateLimitTarget   Lorg/kohsuke/github/RateLimitTarget;
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+        0: #187()
+          javax.annotation.Nonnull
+      parameter 1:
+        0: #187()
+          javax.annotation.Nonnull
+
+  public org.kohsuke.github.GitHubBuilder withProxy(java.net.Proxy);
+    descriptor: (Ljava/net/Proxy;)Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: new           #83                 // class org/kohsuke/github/extras/ImpatientHttpConnector
+         4: dup
+         5: aload_1
+         6: invokedynamic #84,  0             // InvokeDynamic #0:connect:(Ljava/net/Proxy;)Lorg/kohsuke/github/HttpConnector;
+        11: invokespecial #85                 // Method org/kohsuke/github/extras/ImpatientHttpConnector."<init>":(Lorg/kohsuke/github/HttpConnector;)V
+        14: invokevirtual #86                 // Method withConnector:(Lorg/kohsuke/github/HttpConnector;)Lorg/kohsuke/github/GitHubBuilder;
+        17: areturn
+      LineNumberTable:
+        line 493: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lorg/kohsuke/github/GitHubBuilder;
+            0      18     1     p   Ljava/net/Proxy;
+
+  public org.kohsuke.github.GitHub build() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GitHub;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=8, locals=1, args_size=1
+         0: new           #87                 // class org/kohsuke/github/GitHub
+         3: dup
+         4: aload_0
+         5: getfield      #4                  // Field endpoint:Ljava/lang/String;
+         8: aload_0
+         9: getfield      #77                 // Field connector:Lorg/kohsuke/github/connector/GitHubConnector;
+        12: aload_0
+        13: getfield      #6                  // Field rateLimitHandler:Lorg/kohsuke/github/GitHubRateLimitHandler;
+        16: aload_0
+        17: getfield      #8                  // Field abuseLimitHandler:Lorg/kohsuke/github/GitHubAbuseLimitHandler;
+        20: aload_0
+        21: getfield      #11                 // Field rateLimitChecker:Lorg/kohsuke/github/GitHubRateLimitChecker;
+        24: aload_0
+        25: getfield      #13                 // Field authorizationProvider:Lorg/kohsuke/github/authorization/AuthorizationProvider;
+        28: invokespecial #88                 // Method org/kohsuke/github/GitHub."<init>":(Ljava/lang/String;Lorg/kohsuke/github/connector/GitHubConnector;Lorg/kohsuke/github/GitHubRateLimitHandler;Lorg/kohsuke/github/GitHubAbuseLimitHandler;Lorg/kohsuke/github/GitHubRateLimitChecker;Lorg/kohsuke/github/authorization/AuthorizationProvider;)V
+        31: areturn
+      LineNumberTable:
+        line 504: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      32     0  this   Lorg/kohsuke/github/GitHubBuilder;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.kohsuke.github.GitHubBuilder clone();
+    descriptor: ()Lorg/kohsuke/github/GitHubBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=1
+         0: aload_0
+         1: invokespecial #89                 // Method java/lang/Object.clone:()Ljava/lang/Object;
+         4: checkcast     #60                 // class org/kohsuke/github/GitHubBuilder
+         7: areturn
+         8: astore_1
+         9: new           #91                 // class java/lang/RuntimeException
+        12: dup
+        13: ldc           #92                 // String Clone should be supported
+        15: aload_1
+        16: invokespecial #93                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+        19: athrow
+      Exception table:
+         from    to  target type
+             0     7     8   Class java/lang/CloneNotSupportedException
+      LineNumberTable:
+        line 515: 0
+        line 516: 8
+        line 517: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            9      11     1     e   Ljava/lang/CloneNotSupportedException;
+            0      20     0  this   Lorg/kohsuke/github/GitHubBuilder;
+      StackMapTable: number_of_entries = 1
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ class java/lang/CloneNotSupportedException ]
+
+  public java.lang.Object clone() throws java.lang.CloneNotSupportedException;
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #94                 // Method clone:()Lorg/kohsuke/github/GitHubBuilder;
+         4: areturn
+      LineNumberTable:
+        line 28: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/kohsuke/github/GitHubBuilder;
+    Exceptions:
+      throws java.lang.CloneNotSupportedException
+
+  private static java.net.HttpURLConnection lambda$withProxy$0(java.net.Proxy, java.net.URL) throws java.io.IOException;
+    descriptor: (Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/HttpURLConnection;
+    flags: (0x100a) ACC_PRIVATE, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: aload_0
+         2: invokevirtual #95                 // Method java/net/URL.openConnection:(Ljava/net/Proxy;)Ljava/net/URLConnection;
+         5: checkcast     #96                 // class java/net/HttpURLConnection
+         8: areturn
+      LineNumberTable:
+        line 493: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0     p   Ljava/net/Proxy;
+            0       9     1   url   Ljava/net/URL;
+    Exceptions:
+      throws java.io.IOException
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: aconst_null
+         1: putstatic     #47                 // Field HOME_DIRECTORY:Ljava/io/File;
+         4: return
+      LineNumberTable:
+        line 31: 0
+}
+SourceFile: "GitHubBuilder.java"
+InnerClasses:
+  public static #149= #38 of #251;        // Entry=class java/util/Map$Entry of class java/util/Map
+  public static final #400= #399 of #402; // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+BootstrapMethods:
+  0: #304 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #305 (Ljava/net/URL;)Ljava/net/HttpURLConnection;
+      #306 REF_invokeStatic org/kohsuke/github/GitHubBuilder.lambda$withProxy$0:(Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/HttpURLConnection;
+      #305 (Ljava/net/URL;)Ljava/net/HttpURLConnection;

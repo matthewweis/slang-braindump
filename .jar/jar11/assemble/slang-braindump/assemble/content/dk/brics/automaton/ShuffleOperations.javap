@@ -1,0 +1,1407 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/dk/brics/automaton/ShuffleOperations.class
+  Last modified May 29, 2022; size 7130 bytes
+  SHA-256 checksum cd197725a80e4374ce160e8e61c32cb74e2a91dee385dacaf2fe89df99f96946
+  Compiled from "ShuffleOperations.java"
+public final class dk.brics.automaton.ShuffleOperations
+  minor version: 0
+  major version: 52
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #81                         // dk/brics/automaton/ShuffleOperations
+  super_class: #82                        // java/lang/Object
+  interfaces: 0, fields: 0, methods: 4, attributes: 2
+Constant pool:
+    #1 = Methodref          #82.#106      // java/lang/Object."<init>":()V
+    #2 = Methodref          #5.#107       // dk/brics/automaton/Automaton.determinize:()V
+    #3 = Methodref          #5.#108       // dk/brics/automaton/Automaton.getStates:()Ljava/util/Set;
+    #4 = Methodref          #5.#109       // dk/brics/automaton/Automaton.getSortedTransitions:(Ljava/util/Set;)[[Ldk/brics/automaton/Transition;
+    #5 = Class              #110          // dk/brics/automaton/Automaton
+    #6 = Methodref          #5.#106       // dk/brics/automaton/Automaton."<init>":()V
+    #7 = Class              #111          // java/util/LinkedList
+    #8 = Methodref          #7.#106       // java/util/LinkedList."<init>":()V
+    #9 = Class              #112          // java/util/HashMap
+   #10 = Methodref          #9.#106       // java/util/HashMap."<init>":()V
+   #11 = Class              #113          // dk/brics/automaton/State
+   #12 = Methodref          #11.#106      // dk/brics/automaton/State."<init>":()V
+   #13 = Fieldref           #5.#114       // dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+   #14 = Class              #115          // dk/brics/automaton/StatePair
+   #15 = Methodref          #14.#116      // dk/brics/automaton/StatePair."<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+   #16 = Methodref          #7.#117       // java/util/LinkedList.add:(Ljava/lang/Object;)Z
+   #17 = Methodref          #9.#118       // java/util/HashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #18 = Methodref          #7.#119       // java/util/LinkedList.size:()I
+   #19 = Methodref          #7.#120       // java/util/LinkedList.removeFirst:()Ljava/lang/Object;
+   #20 = Fieldref           #14.#121      // dk/brics/automaton/StatePair.s:Ldk/brics/automaton/State;
+   #21 = Fieldref           #14.#122      // dk/brics/automaton/StatePair.s1:Ldk/brics/automaton/State;
+   #22 = Fieldref           #11.#123      // dk/brics/automaton/State.accept:Z
+   #23 = Fieldref           #14.#124      // dk/brics/automaton/StatePair.s2:Ldk/brics/automaton/State;
+   #24 = Fieldref           #11.#125      // dk/brics/automaton/State.number:I
+   #25 = Fieldref           #29.#126      // dk/brics/automaton/Transition.to:Ldk/brics/automaton/State;
+   #26 = Methodref          #14.#127      // dk/brics/automaton/StatePair."<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+   #27 = Methodref          #9.#128       // java/util/HashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #28 = Fieldref           #11.#129      // dk/brics/automaton/State.transitions:Ljava/util/Set;
+   #29 = Class              #130          // dk/brics/automaton/Transition
+   #30 = Fieldref           #29.#131      // dk/brics/automaton/Transition.min:I
+   #31 = Fieldref           #29.#132      // dk/brics/automaton/Transition.max:I
+   #32 = Methodref          #29.#133      // dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+   #33 = InterfaceMethodref #97.#117      // java/util/Set.add:(Ljava/lang/Object;)Z
+   #34 = Fieldref           #5.#134       // dk/brics/automaton/Automaton.deterministic:Z
+   #35 = Methodref          #5.#135       // dk/brics/automaton/Automaton.removeDeadTransitions:()V
+   #36 = Methodref          #5.#136       // dk/brics/automaton/Automaton.checkMinimizeAlways:()V
+   #37 = InterfaceMethodref #96.#119      // java/util/Collection.size:()I
+   #38 = InterfaceMethodref #96.#137      // java/util/Collection.iterator:()Ljava/util/Iterator;
+   #39 = InterfaceMethodref #95.#138      // java/util/Iterator.next:()Ljava/lang/Object;
+   #40 = Methodref          #5.#139       // dk/brics/automaton/Automaton.isSingleton:()Z
+   #41 = Fieldref           #5.#140       // dk/brics/automaton/Automaton.singleton:Ljava/lang/String;
+   #42 = Methodref          #5.#141       // dk/brics/automaton/Automaton.run:(Ljava/lang/String;)Z
+   #43 = Class              #142          // "[[Ldk/brics/automaton/Transition;"
+   #44 = InterfaceMethodref #95.#143      // java/util/Iterator.hasNext:()Z
+   #45 = Class              #144          // dk/brics/automaton/TransitionComparator
+   #46 = Methodref          #45.#145      // dk/brics/automaton/TransitionComparator."<init>":(Z)V
+   #47 = Class              #146          // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration
+   #48 = Methodref          #47.#147      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration."<init>":(Ljava/util/Collection;Ldk/brics/automaton/Automaton;)V
+   #49 = Class              #148          // java/util/HashSet
+   #50 = Methodref          #49.#106      // java/util/HashSet."<init>":()V
+   #51 = Methodref          #7.#149       // java/util/LinkedList.isEmpty:()Z
+   #52 = Fieldref           #47.#150      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.ca_states:[Ldk/brics/automaton/State;
+   #53 = Fieldref           #47.#151      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.a_state:Ldk/brics/automaton/State;
+   #54 = Class              #152          // java/lang/StringBuilder
+   #55 = Methodref          #54.#106      // java/lang/StringBuilder."<init>":()V
+   #56 = Fieldref           #47.#153      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.prev:Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;
+   #57 = Fieldref           #47.#131      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.min:I
+   #58 = Methodref          #54.#154      // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+   #59 = Methodref          #54.#155      // java/lang/StringBuilder.length:()I
+   #60 = Methodref          #54.#156      // java/lang/StringBuilder.charAt:(I)C
+   #61 = Methodref          #54.#157      // java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+   #62 = Methodref          #54.#158      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #63 = Fieldref           #47.#159      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.shuffle_suspended:Z
+   #64 = Fieldref           #47.#160      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.suspended1:I
+   #65 = Class              #161          // java/util/ArrayList
+   #66 = Methodref          #65.#106      // java/util/ArrayList."<init>":()V
+   #67 = Methodref          #162.#163     // java/util/Arrays.binarySearch:([Ljava/lang/Object;Ljava/lang/Object;Ljava/util/Comparator;)I
+   #68 = Methodref          #164.#165     // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #69 = Methodref          #81.#166      // dk/brics/automaton/ShuffleOperations.add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+   #70 = InterfaceMethodref #98.#117      // java/util/List.add:(Ljava/lang/Object;)Z
+   #71 = InterfaceMethodref #98.#119      // java/util/List.size:()I
+   #72 = InterfaceMethodref #98.#167      // java/util/List.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+   #73 = Class              #168          // "[Ldk/brics/automaton/Transition;"
+   #74 = Methodref          #162.#169     // java/util/Arrays.sort:([Ljava/lang/Object;Ljava/util/Comparator;)V
+   #75 = Methodref          #47.#170      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration."<init>":(Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/State;I)V
+   #76 = Methodref          #171.#172     // dk/brics/automaton/BasicOperations.getShortestExample:(Ldk/brics/automaton/State;Z)Ljava/lang/String;
+   #77 = Methodref          #54.#173      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #78 = Methodref          #164.#174     // java/lang/Integer.intValue:()I
+   #79 = Methodref          #47.#175      // dk/brics/automaton/ShuffleOperations$ShuffleConfiguration."<init>":(Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/State;Ldk/brics/automaton/State;I)V
+   #80 = InterfaceMethodref #97.#176      // java/util/Set.contains:(Ljava/lang/Object;)Z
+   #81 = Class              #177          // dk/brics/automaton/ShuffleOperations
+   #82 = Class              #178          // java/lang/Object
+   #83 = Utf8               ShuffleConfiguration
+   #84 = Utf8               InnerClasses
+   #85 = Utf8               <init>
+   #86 = Utf8               ()V
+   #87 = Utf8               Code
+   #88 = Utf8               LineNumberTable
+   #89 = Utf8               shuffle
+   #90 = Utf8               (Ldk/brics/automaton/Automaton;Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+   #91 = Utf8               StackMapTable
+   #92 = Utf8               shuffleSubsetOf
+   #93 = Utf8               (Ljava/util/Collection;Ldk/brics/automaton/Automaton;II)Ljava/lang/String;
+   #94 = Class              #179          // "[[[Ldk/brics/automaton/Transition;"
+   #95 = Class              #180          // java/util/Iterator
+   #96 = Class              #181          // java/util/Collection
+   #97 = Class              #182          // java/util/Set
+   #98 = Class              #183          // java/util/List
+   #99 = Utf8               Signature
+  #100 = Utf8               (Ljava/util/Collection<Ldk/brics/automaton/Automaton;>;Ldk/brics/automaton/Automaton;II)Ljava/lang/String;
+  #101 = Utf8               add
+  #102 = Utf8               (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+  #103 = Utf8               (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList<Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;>;Ljava/util/Set<Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;>;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+  #104 = Utf8               SourceFile
+  #105 = Utf8               ShuffleOperations.java
+  #106 = NameAndType        #85:#86       // "<init>":()V
+  #107 = NameAndType        #184:#86      // determinize:()V
+  #108 = NameAndType        #185:#186     // getStates:()Ljava/util/Set;
+  #109 = NameAndType        #187:#188     // getSortedTransitions:(Ljava/util/Set;)[[Ldk/brics/automaton/Transition;
+  #110 = Utf8               dk/brics/automaton/Automaton
+  #111 = Utf8               java/util/LinkedList
+  #112 = Utf8               java/util/HashMap
+  #113 = Utf8               dk/brics/automaton/State
+  #114 = NameAndType        #189:#190     // initial:Ldk/brics/automaton/State;
+  #115 = Utf8               dk/brics/automaton/StatePair
+  #116 = NameAndType        #85:#191      // "<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+  #117 = NameAndType        #101:#192     // add:(Ljava/lang/Object;)Z
+  #118 = NameAndType        #193:#194     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #119 = NameAndType        #195:#196     // size:()I
+  #120 = NameAndType        #197:#198     // removeFirst:()Ljava/lang/Object;
+  #121 = NameAndType        #199:#190     // s:Ldk/brics/automaton/State;
+  #122 = NameAndType        #200:#190     // s1:Ldk/brics/automaton/State;
+  #123 = NameAndType        #201:#202     // accept:Z
+  #124 = NameAndType        #203:#190     // s2:Ldk/brics/automaton/State;
+  #125 = NameAndType        #204:#205     // number:I
+  #126 = NameAndType        #206:#190     // to:Ldk/brics/automaton/State;
+  #127 = NameAndType        #85:#207      // "<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+  #128 = NameAndType        #208:#209     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #129 = NameAndType        #210:#211     // transitions:Ljava/util/Set;
+  #130 = Utf8               dk/brics/automaton/Transition
+  #131 = NameAndType        #212:#205     // min:I
+  #132 = NameAndType        #213:#205     // max:I
+  #133 = NameAndType        #85:#214      // "<init>":(IILdk/brics/automaton/State;)V
+  #134 = NameAndType        #215:#202     // deterministic:Z
+  #135 = NameAndType        #216:#86      // removeDeadTransitions:()V
+  #136 = NameAndType        #217:#86      // checkMinimizeAlways:()V
+  #137 = NameAndType        #218:#219     // iterator:()Ljava/util/Iterator;
+  #138 = NameAndType        #220:#198     // next:()Ljava/lang/Object;
+  #139 = NameAndType        #221:#222     // isSingleton:()Z
+  #140 = NameAndType        #223:#224     // singleton:Ljava/lang/String;
+  #141 = NameAndType        #225:#226     // run:(Ljava/lang/String;)Z
+  #142 = Utf8               [[Ldk/brics/automaton/Transition;
+  #143 = NameAndType        #227:#222     // hasNext:()Z
+  #144 = Utf8               dk/brics/automaton/TransitionComparator
+  #145 = NameAndType        #85:#228      // "<init>":(Z)V
+  #146 = Utf8               dk/brics/automaton/ShuffleOperations$ShuffleConfiguration
+  #147 = NameAndType        #85:#229      // "<init>":(Ljava/util/Collection;Ldk/brics/automaton/Automaton;)V
+  #148 = Utf8               java/util/HashSet
+  #149 = NameAndType        #230:#222     // isEmpty:()Z
+  #150 = NameAndType        #231:#232     // ca_states:[Ldk/brics/automaton/State;
+  #151 = NameAndType        #233:#190     // a_state:Ldk/brics/automaton/State;
+  #152 = Utf8               java/lang/StringBuilder
+  #153 = NameAndType        #234:#235     // prev:Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;
+  #154 = NameAndType        #236:#237     // append:(I)Ljava/lang/StringBuilder;
+  #155 = NameAndType        #238:#196     // length:()I
+  #156 = NameAndType        #239:#240     // charAt:(I)C
+  #157 = NameAndType        #236:#241     // append:(C)Ljava/lang/StringBuilder;
+  #158 = NameAndType        #242:#243     // toString:()Ljava/lang/String;
+  #159 = NameAndType        #244:#202     // shuffle_suspended:Z
+  #160 = NameAndType        #245:#205     // suspended1:I
+  #161 = Utf8               java/util/ArrayList
+  #162 = Class              #246          // java/util/Arrays
+  #163 = NameAndType        #247:#248     // binarySearch:([Ljava/lang/Object;Ljava/lang/Object;Ljava/util/Comparator;)I
+  #164 = Class              #249          // java/lang/Integer
+  #165 = NameAndType        #250:#251     // valueOf:(I)Ljava/lang/Integer;
+  #166 = NameAndType        #101:#102     // add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+  #167 = NameAndType        #252:#253     // toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+  #168 = Utf8               [Ldk/brics/automaton/Transition;
+  #169 = NameAndType        #254:#255     // sort:([Ljava/lang/Object;Ljava/util/Comparator;)V
+  #170 = NameAndType        #85:#256      // "<init>":(Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/State;I)V
+  #171 = Class              #257          // dk/brics/automaton/BasicOperations
+  #172 = NameAndType        #258:#259     // getShortestExample:(Ldk/brics/automaton/State;Z)Ljava/lang/String;
+  #173 = NameAndType        #236:#260     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #174 = NameAndType        #261:#196     // intValue:()I
+  #175 = NameAndType        #85:#262      // "<init>":(Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/State;Ldk/brics/automaton/State;I)V
+  #176 = NameAndType        #263:#192     // contains:(Ljava/lang/Object;)Z
+  #177 = Utf8               dk/brics/automaton/ShuffleOperations
+  #178 = Utf8               java/lang/Object
+  #179 = Utf8               [[[Ldk/brics/automaton/Transition;
+  #180 = Utf8               java/util/Iterator
+  #181 = Utf8               java/util/Collection
+  #182 = Utf8               java/util/Set
+  #183 = Utf8               java/util/List
+  #184 = Utf8               determinize
+  #185 = Utf8               getStates
+  #186 = Utf8               ()Ljava/util/Set;
+  #187 = Utf8               getSortedTransitions
+  #188 = Utf8               (Ljava/util/Set;)[[Ldk/brics/automaton/Transition;
+  #189 = Utf8               initial
+  #190 = Utf8               Ldk/brics/automaton/State;
+  #191 = Utf8               (Ldk/brics/automaton/State;Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+  #192 = Utf8               (Ljava/lang/Object;)Z
+  #193 = Utf8               put
+  #194 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #195 = Utf8               size
+  #196 = Utf8               ()I
+  #197 = Utf8               removeFirst
+  #198 = Utf8               ()Ljava/lang/Object;
+  #199 = Utf8               s
+  #200 = Utf8               s1
+  #201 = Utf8               accept
+  #202 = Utf8               Z
+  #203 = Utf8               s2
+  #204 = Utf8               number
+  #205 = Utf8               I
+  #206 = Utf8               to
+  #207 = Utf8               (Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+  #208 = Utf8               get
+  #209 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #210 = Utf8               transitions
+  #211 = Utf8               Ljava/util/Set;
+  #212 = Utf8               min
+  #213 = Utf8               max
+  #214 = Utf8               (IILdk/brics/automaton/State;)V
+  #215 = Utf8               deterministic
+  #216 = Utf8               removeDeadTransitions
+  #217 = Utf8               checkMinimizeAlways
+  #218 = Utf8               iterator
+  #219 = Utf8               ()Ljava/util/Iterator;
+  #220 = Utf8               next
+  #221 = Utf8               isSingleton
+  #222 = Utf8               ()Z
+  #223 = Utf8               singleton
+  #224 = Utf8               Ljava/lang/String;
+  #225 = Utf8               run
+  #226 = Utf8               (Ljava/lang/String;)Z
+  #227 = Utf8               hasNext
+  #228 = Utf8               (Z)V
+  #229 = Utf8               (Ljava/util/Collection;Ldk/brics/automaton/Automaton;)V
+  #230 = Utf8               isEmpty
+  #231 = Utf8               ca_states
+  #232 = Utf8               [Ldk/brics/automaton/State;
+  #233 = Utf8               a_state
+  #234 = Utf8               prev
+  #235 = Utf8               Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;
+  #236 = Utf8               append
+  #237 = Utf8               (I)Ljava/lang/StringBuilder;
+  #238 = Utf8               length
+  #239 = Utf8               charAt
+  #240 = Utf8               (I)C
+  #241 = Utf8               (C)Ljava/lang/StringBuilder;
+  #242 = Utf8               toString
+  #243 = Utf8               ()Ljava/lang/String;
+  #244 = Utf8               shuffle_suspended
+  #245 = Utf8               suspended1
+  #246 = Utf8               java/util/Arrays
+  #247 = Utf8               binarySearch
+  #248 = Utf8               ([Ljava/lang/Object;Ljava/lang/Object;Ljava/util/Comparator;)I
+  #249 = Utf8               java/lang/Integer
+  #250 = Utf8               valueOf
+  #251 = Utf8               (I)Ljava/lang/Integer;
+  #252 = Utf8               toArray
+  #253 = Utf8               ([Ljava/lang/Object;)[Ljava/lang/Object;
+  #254 = Utf8               sort
+  #255 = Utf8               ([Ljava/lang/Object;Ljava/util/Comparator;)V
+  #256 = Utf8               (Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/State;I)V
+  #257 = Utf8               dk/brics/automaton/BasicOperations
+  #258 = Utf8               getShortestExample
+  #259 = Utf8               (Ldk/brics/automaton/State;Z)Ljava/lang/String;
+  #260 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #261 = Utf8               intValue
+  #262 = Utf8               (Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/State;Ldk/brics/automaton/State;I)V
+  #263 = Utf8               contains
+{
+  private dk.brics.automaton.ShuffleOperations();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 46: 0
+
+  public static dk.brics.automaton.Automaton shuffle(dk.brics.automaton.Automaton, dk.brics.automaton.Automaton);
+    descriptor: (Ldk/brics/automaton/Automaton;Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=14, args_size=2
+         0: aload_0
+         1: invokevirtual #2                  // Method dk/brics/automaton/Automaton.determinize:()V
+         4: aload_1
+         5: invokevirtual #2                  // Method dk/brics/automaton/Automaton.determinize:()V
+         8: aload_0
+         9: invokevirtual #3                  // Method dk/brics/automaton/Automaton.getStates:()Ljava/util/Set;
+        12: invokestatic  #4                  // Method dk/brics/automaton/Automaton.getSortedTransitions:(Ljava/util/Set;)[[Ldk/brics/automaton/Transition;
+        15: astore_2
+        16: aload_1
+        17: invokevirtual #3                  // Method dk/brics/automaton/Automaton.getStates:()Ljava/util/Set;
+        20: invokestatic  #4                  // Method dk/brics/automaton/Automaton.getSortedTransitions:(Ljava/util/Set;)[[Ldk/brics/automaton/Transition;
+        23: astore_3
+        24: new           #5                  // class dk/brics/automaton/Automaton
+        27: dup
+        28: invokespecial #6                  // Method dk/brics/automaton/Automaton."<init>":()V
+        31: astore        4
+        33: new           #7                  // class java/util/LinkedList
+        36: dup
+        37: invokespecial #8                  // Method java/util/LinkedList."<init>":()V
+        40: astore        5
+        42: new           #9                  // class java/util/HashMap
+        45: dup
+        46: invokespecial #10                 // Method java/util/HashMap."<init>":()V
+        49: astore        6
+        51: new           #11                 // class dk/brics/automaton/State
+        54: dup
+        55: invokespecial #12                 // Method dk/brics/automaton/State."<init>":()V
+        58: astore        7
+        60: aload         4
+        62: aload         7
+        64: putfield      #13                 // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+        67: new           #14                 // class dk/brics/automaton/StatePair
+        70: dup
+        71: aload         7
+        73: aload_0
+        74: getfield      #13                 // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+        77: aload_1
+        78: getfield      #13                 // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+        81: invokespecial #15                 // Method dk/brics/automaton/StatePair."<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+        84: astore        8
+        86: aload         5
+        88: aload         8
+        90: invokevirtual #16                 // Method java/util/LinkedList.add:(Ljava/lang/Object;)Z
+        93: pop
+        94: aload         6
+        96: aload         8
+        98: aload         8
+       100: invokevirtual #17                 // Method java/util/HashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       103: pop
+       104: aload         5
+       106: invokevirtual #18                 // Method java/util/LinkedList.size:()I
+       109: ifle          448
+       112: aload         5
+       114: invokevirtual #19                 // Method java/util/LinkedList.removeFirst:()Ljava/lang/Object;
+       117: checkcast     #14                 // class dk/brics/automaton/StatePair
+       120: astore        8
+       122: aload         8
+       124: getfield      #20                 // Field dk/brics/automaton/StatePair.s:Ldk/brics/automaton/State;
+       127: aload         8
+       129: getfield      #21                 // Field dk/brics/automaton/StatePair.s1:Ldk/brics/automaton/State;
+       132: getfield      #22                 // Field dk/brics/automaton/State.accept:Z
+       135: ifeq          153
+       138: aload         8
+       140: getfield      #23                 // Field dk/brics/automaton/StatePair.s2:Ldk/brics/automaton/State;
+       143: getfield      #22                 // Field dk/brics/automaton/State.accept:Z
+       146: ifeq          153
+       149: iconst_1
+       150: goto          154
+       153: iconst_0
+       154: putfield      #22                 // Field dk/brics/automaton/State.accept:Z
+       157: aload_2
+       158: aload         8
+       160: getfield      #21                 // Field dk/brics/automaton/StatePair.s1:Ldk/brics/automaton/State;
+       163: getfield      #24                 // Field dk/brics/automaton/State.number:I
+       166: aaload
+       167: astore        9
+       169: iconst_0
+       170: istore        10
+       172: iload         10
+       174: aload         9
+       176: arraylength
+       177: if_icmpge     301
+       180: new           #14                 // class dk/brics/automaton/StatePair
+       183: dup
+       184: aload         9
+       186: iload         10
+       188: aaload
+       189: getfield      #25                 // Field dk/brics/automaton/Transition.to:Ldk/brics/automaton/State;
+       192: aload         8
+       194: getfield      #23                 // Field dk/brics/automaton/StatePair.s2:Ldk/brics/automaton/State;
+       197: invokespecial #26                 // Method dk/brics/automaton/StatePair."<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+       200: astore        11
+       202: aload         6
+       204: aload         11
+       206: invokevirtual #27                 // Method java/util/HashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       209: checkcast     #14                 // class dk/brics/automaton/StatePair
+       212: astore        12
+       214: aload         12
+       216: ifnonnull     253
+       219: aload         11
+       221: new           #11                 // class dk/brics/automaton/State
+       224: dup
+       225: invokespecial #12                 // Method dk/brics/automaton/State."<init>":()V
+       228: putfield      #20                 // Field dk/brics/automaton/StatePair.s:Ldk/brics/automaton/State;
+       231: aload         5
+       233: aload         11
+       235: invokevirtual #16                 // Method java/util/LinkedList.add:(Ljava/lang/Object;)Z
+       238: pop
+       239: aload         6
+       241: aload         11
+       243: aload         11
+       245: invokevirtual #17                 // Method java/util/HashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       248: pop
+       249: aload         11
+       251: astore        12
+       253: aload         8
+       255: getfield      #20                 // Field dk/brics/automaton/StatePair.s:Ldk/brics/automaton/State;
+       258: getfield      #28                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+       261: new           #29                 // class dk/brics/automaton/Transition
+       264: dup
+       265: aload         9
+       267: iload         10
+       269: aaload
+       270: getfield      #30                 // Field dk/brics/automaton/Transition.min:I
+       273: aload         9
+       275: iload         10
+       277: aaload
+       278: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       281: aload         12
+       283: getfield      #20                 // Field dk/brics/automaton/StatePair.s:Ldk/brics/automaton/State;
+       286: invokespecial #32                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+       289: invokeinterface #33,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       294: pop
+       295: iinc          10, 1
+       298: goto          172
+       301: aload_3
+       302: aload         8
+       304: getfield      #23                 // Field dk/brics/automaton/StatePair.s2:Ldk/brics/automaton/State;
+       307: getfield      #24                 // Field dk/brics/automaton/State.number:I
+       310: aaload
+       311: astore        10
+       313: iconst_0
+       314: istore        11
+       316: iload         11
+       318: aload         10
+       320: arraylength
+       321: if_icmpge     445
+       324: new           #14                 // class dk/brics/automaton/StatePair
+       327: dup
+       328: aload         8
+       330: getfield      #21                 // Field dk/brics/automaton/StatePair.s1:Ldk/brics/automaton/State;
+       333: aload         10
+       335: iload         11
+       337: aaload
+       338: getfield      #25                 // Field dk/brics/automaton/Transition.to:Ldk/brics/automaton/State;
+       341: invokespecial #26                 // Method dk/brics/automaton/StatePair."<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+       344: astore        12
+       346: aload         6
+       348: aload         12
+       350: invokevirtual #27                 // Method java/util/HashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       353: checkcast     #14                 // class dk/brics/automaton/StatePair
+       356: astore        13
+       358: aload         13
+       360: ifnonnull     397
+       363: aload         12
+       365: new           #11                 // class dk/brics/automaton/State
+       368: dup
+       369: invokespecial #12                 // Method dk/brics/automaton/State."<init>":()V
+       372: putfield      #20                 // Field dk/brics/automaton/StatePair.s:Ldk/brics/automaton/State;
+       375: aload         5
+       377: aload         12
+       379: invokevirtual #16                 // Method java/util/LinkedList.add:(Ljava/lang/Object;)Z
+       382: pop
+       383: aload         6
+       385: aload         12
+       387: aload         12
+       389: invokevirtual #17                 // Method java/util/HashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       392: pop
+       393: aload         12
+       395: astore        13
+       397: aload         8
+       399: getfield      #20                 // Field dk/brics/automaton/StatePair.s:Ldk/brics/automaton/State;
+       402: getfield      #28                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+       405: new           #29                 // class dk/brics/automaton/Transition
+       408: dup
+       409: aload         10
+       411: iload         11
+       413: aaload
+       414: getfield      #30                 // Field dk/brics/automaton/Transition.min:I
+       417: aload         10
+       419: iload         11
+       421: aaload
+       422: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       425: aload         13
+       427: getfield      #20                 // Field dk/brics/automaton/StatePair.s:Ldk/brics/automaton/State;
+       430: invokespecial #32                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+       433: invokeinterface #33,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       438: pop
+       439: iinc          11, 1
+       442: goto          316
+       445: goto          104
+       448: aload         4
+       450: iconst_0
+       451: putfield      #34                 // Field dk/brics/automaton/Automaton.deterministic:Z
+       454: aload         4
+       456: invokevirtual #35                 // Method dk/brics/automaton/Automaton.removeDeadTransitions:()V
+       459: aload         4
+       461: invokevirtual #36                 // Method dk/brics/automaton/Automaton.checkMinimizeAlways:()V
+       464: aload         4
+       466: areturn
+      LineNumberTable:
+        line 60: 0
+        line 61: 4
+        line 62: 8
+        line 63: 16
+        line 64: 24
+        line 65: 33
+        line 66: 42
+        line 67: 51
+        line 68: 60
+        line 69: 67
+        line 70: 86
+        line 71: 94
+        line 72: 104
+        line 73: 112
+        line 74: 122
+        line 75: 157
+        line 76: 169
+        line 77: 180
+        line 78: 202
+        line 79: 214
+        line 80: 219
+        line 81: 231
+        line 82: 239
+        line 83: 249
+        line 85: 253
+        line 76: 295
+        line 87: 301
+        line 88: 313
+        line 89: 324
+        line 90: 346
+        line 91: 358
+        line 92: 363
+        line 93: 375
+        line 94: 383
+        line 95: 393
+        line 97: 397
+        line 88: 439
+        line 99: 445
+        line 100: 448
+        line 101: 454
+        line 102: 459
+        line 103: 464
+      StackMapTable: number_of_entries = 10
+        frame_type = 255 /* full_frame */
+          offset_delta = 104
+          locals = [ class dk/brics/automaton/Automaton, class dk/brics/automaton/Automaton, class "[[Ldk/brics/automaton/Transition;", class "[[Ldk/brics/automaton/Transition;", class dk/brics/automaton/Automaton, class java/util/LinkedList, class java/util/HashMap, class dk/brics/automaton/State, class dk/brics/automaton/StatePair ]
+          stack = []
+        frame_type = 112 /* same_locals_1_stack_item */
+          stack = [ class dk/brics/automaton/State ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class dk/brics/automaton/Automaton, class dk/brics/automaton/Automaton, class "[[Ldk/brics/automaton/Transition;", class "[[Ldk/brics/automaton/Transition;", class dk/brics/automaton/Automaton, class java/util/LinkedList, class java/util/HashMap, class dk/brics/automaton/State, class dk/brics/automaton/StatePair ]
+          stack = [ class dk/brics/automaton/State, int ]
+        frame_type = 253 /* append */
+          offset_delta = 17
+          locals = [ class "[Ldk/brics/automaton/Transition;", int ]
+        frame_type = 253 /* append */
+          offset_delta = 80
+          locals = [ class dk/brics/automaton/StatePair, class dk/brics/automaton/StatePair ]
+        frame_type = 248 /* chop */
+          offset_delta = 47
+        frame_type = 253 /* append */
+          offset_delta = 14
+          locals = [ class "[Ldk/brics/automaton/Transition;", int ]
+        frame_type = 253 /* append */
+          offset_delta = 80
+          locals = [ class dk/brics/automaton/StatePair, class dk/brics/automaton/StatePair ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 47
+          locals = [ class dk/brics/automaton/Automaton, class dk/brics/automaton/Automaton, class "[[Ldk/brics/automaton/Transition;", class "[[Ldk/brics/automaton/Transition;", class dk/brics/automaton/Automaton, class java/util/LinkedList, class java/util/HashMap, class dk/brics/automaton/State, class dk/brics/automaton/StatePair ]
+          stack = []
+        frame_type = 2 /* same */
+
+  public static java.lang.String shuffleSubsetOf(java.util.Collection<dk.brics.automaton.Automaton>, dk.brics.automaton.Automaton, int, int);
+    descriptor: (Ljava/util/Collection;Ldk/brics/automaton/Automaton;II)Ljava/lang/String;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=10, locals=28, args_size=4
+         0: aload_0
+         1: invokeinterface #37,  1           // InterfaceMethod java/util/Collection.size:()I
+         6: ifne          11
+         9: aconst_null
+        10: areturn
+        11: aload_0
+        12: invokeinterface #37,  1           // InterfaceMethod java/util/Collection.size:()I
+        17: iconst_1
+        18: if_icmpne     73
+        21: aload_0
+        22: invokeinterface #38,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+        27: invokeinterface #39,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        32: checkcast     #5                  // class dk/brics/automaton/Automaton
+        35: astore        4
+        37: aload         4
+        39: invokevirtual #40                 // Method dk/brics/automaton/Automaton.isSingleton:()Z
+        42: ifeq          65
+        45: aload_1
+        46: aload         4
+        48: getfield      #41                 // Field dk/brics/automaton/Automaton.singleton:Ljava/lang/String;
+        51: invokevirtual #42                 // Method dk/brics/automaton/Automaton.run:(Ljava/lang/String;)Z
+        54: ifeq          59
+        57: aconst_null
+        58: areturn
+        59: aload         4
+        61: getfield      #41                 // Field dk/brics/automaton/Automaton.singleton:Ljava/lang/String;
+        64: areturn
+        65: aload         4
+        67: aload_1
+        68: if_acmpne     73
+        71: aconst_null
+        72: areturn
+        73: aload_1
+        74: invokevirtual #2                  // Method dk/brics/automaton/Automaton.determinize:()V
+        77: aload_0
+        78: invokeinterface #37,  1           // InterfaceMethod java/util/Collection.size:()I
+        83: anewarray     #43                 // class "[[Ldk/brics/automaton/Transition;"
+        86: astore        4
+        88: iconst_0
+        89: istore        5
+        91: aload_0
+        92: invokeinterface #38,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+        97: astore        6
+        99: aload         6
+       101: invokeinterface #44,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+       106: ifeq          140
+       109: aload         6
+       111: invokeinterface #39,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       116: checkcast     #5                  // class dk/brics/automaton/Automaton
+       119: astore        7
+       121: aload         4
+       123: iload         5
+       125: iinc          5, 1
+       128: aload         7
+       130: invokevirtual #3                  // Method dk/brics/automaton/Automaton.getStates:()Ljava/util/Set;
+       133: invokestatic  #4                  // Method dk/brics/automaton/Automaton.getSortedTransitions:(Ljava/util/Set;)[[Ldk/brics/automaton/Transition;
+       136: aastore
+       137: goto          99
+       140: aload_1
+       141: invokevirtual #3                  // Method dk/brics/automaton/Automaton.getStates:()Ljava/util/Set;
+       144: invokestatic  #4                  // Method dk/brics/automaton/Automaton.getSortedTransitions:(Ljava/util/Set;)[[Ldk/brics/automaton/Transition;
+       147: astore        6
+       149: new           #45                 // class dk/brics/automaton/TransitionComparator
+       152: dup
+       153: iconst_0
+       154: invokespecial #46                 // Method dk/brics/automaton/TransitionComparator."<init>":(Z)V
+       157: astore        7
+       159: new           #47                 // class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration
+       162: dup
+       163: aload_0
+       164: aload_1
+       165: invokespecial #48                 // Method dk/brics/automaton/ShuffleOperations$ShuffleConfiguration."<init>":(Ljava/util/Collection;Ldk/brics/automaton/Automaton;)V
+       168: astore        8
+       170: new           #7                  // class java/util/LinkedList
+       173: dup
+       174: invokespecial #8                  // Method java/util/LinkedList."<init>":()V
+       177: astore        9
+       179: new           #49                 // class java/util/HashSet
+       182: dup
+       183: invokespecial #50                 // Method java/util/HashSet."<init>":()V
+       186: astore        10
+       188: aload         9
+       190: aload         8
+       192: invokevirtual #16                 // Method java/util/LinkedList.add:(Ljava/lang/Object;)Z
+       195: pop
+       196: aload         10
+       198: aload         8
+       200: invokeinterface #33,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       205: pop
+       206: aload         9
+       208: invokevirtual #51                 // Method java/util/LinkedList.isEmpty:()Z
+       211: ifne          957
+       214: aload         9
+       216: invokevirtual #19                 // Method java/util/LinkedList.removeFirst:()Ljava/lang/Object;
+       219: checkcast     #47                 // class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration
+       222: astore        11
+       224: iconst_1
+       225: istore        12
+       227: iconst_0
+       228: istore        13
+       230: iload         13
+       232: aload_0
+       233: invokeinterface #37,  1           // InterfaceMethod java/util/Collection.size:()I
+       238: if_icmpge     267
+       241: aload         11
+       243: getfield      #52                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.ca_states:[Ldk/brics/automaton/State;
+       246: iload         13
+       248: aaload
+       249: getfield      #22                 // Field dk/brics/automaton/State.accept:Z
+       252: ifne          261
+       255: iconst_0
+       256: istore        12
+       258: goto          267
+       261: iinc          13, 1
+       264: goto          230
+       267: aload         11
+       269: getfield      #53                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.a_state:Ldk/brics/automaton/State;
+       272: getfield      #22                 // Field dk/brics/automaton/State.accept:Z
+       275: ifeq          281
+       278: iconst_0
+       279: istore        12
+       281: iload         12
+       283: ifeq          372
+       286: new           #54                 // class java/lang/StringBuilder
+       289: dup
+       290: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+       293: astore        13
+       295: aload         11
+       297: getfield      #56                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.prev:Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;
+       300: ifnull        324
+       303: aload         13
+       305: aload         11
+       307: getfield      #57                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.min:I
+       310: invokevirtual #58                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       313: pop
+       314: aload         11
+       316: getfield      #56                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.prev:Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;
+       319: astore        11
+       321: goto          295
+       324: new           #54                 // class java/lang/StringBuilder
+       327: dup
+       328: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+       331: astore        14
+       333: aload         13
+       335: invokevirtual #59                 // Method java/lang/StringBuilder.length:()I
+       338: iconst_1
+       339: isub
+       340: istore        15
+       342: iload         15
+       344: iflt          366
+       347: aload         14
+       349: aload         13
+       351: iload         15
+       353: invokevirtual #60                 // Method java/lang/StringBuilder.charAt:(I)C
+       356: invokevirtual #61                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+       359: pop
+       360: iinc          15, -1
+       363: goto          342
+       366: aload         14
+       368: invokevirtual #62                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       371: areturn
+       372: aload         6
+       374: aload         11
+       376: getfield      #53                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.a_state:Ldk/brics/automaton/State;
+       379: getfield      #24                 // Field dk/brics/automaton/State.number:I
+       382: aaload
+       383: astore        13
+       385: iconst_0
+       386: istore        14
+       388: iload         14
+       390: aload_0
+       391: invokeinterface #37,  1           // InterfaceMethod java/util/Collection.size:()I
+       396: if_icmpge     954
+       399: aload         11
+       401: getfield      #63                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.shuffle_suspended:Z
+       404: ifeq          414
+       407: aload         11
+       409: getfield      #64                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.suspended1:I
+       412: istore        14
+       414: aload         4
+       416: iload         14
+       418: aaload
+       419: aload         11
+       421: getfield      #52                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.ca_states:[Ldk/brics/automaton/State;
+       424: iload         14
+       426: aaload
+       427: getfield      #24                 // Field dk/brics/automaton/State.number:I
+       430: aaload
+       431: astore        15
+       433: aload         15
+       435: arraylength
+       436: istore        16
+       438: iconst_0
+       439: istore        17
+       441: iload         17
+       443: iload         16
+       445: if_icmpge     937
+       448: aload         15
+       450: iload         17
+       452: aaload
+       453: astore        18
+       455: new           #65                 // class java/util/ArrayList
+       458: dup
+       459: invokespecial #66                 // Method java/util/ArrayList."<init>":()V
+       462: astore        19
+       464: aload         13
+       466: aload         18
+       468: aload         7
+       470: invokestatic  #67                 // Method java/util/Arrays.binarySearch:([Ljava/lang/Object;Ljava/lang/Object;Ljava/util/Comparator;)I
+       473: istore        20
+       475: iload         20
+       477: ifge          487
+       480: iload         20
+       482: ineg
+       483: iconst_1
+       484: isub
+       485: istore        20
+       487: iload         20
+       489: ifle          513
+       492: aload         13
+       494: iload         20
+       496: iconst_1
+       497: isub
+       498: aaload
+       499: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       502: aload         18
+       504: getfield      #30                 // Field dk/brics/automaton/Transition.min:I
+       507: if_icmplt     513
+       510: iinc          20, -1
+       513: iload         20
+       515: aload         13
+       517: arraylength
+       518: if_icmpge     636
+       521: aload         13
+       523: iload         20
+       525: iinc          20, 1
+       528: aaload
+       529: astore        21
+       531: aload         18
+       533: getfield      #30                 // Field dk/brics/automaton/Transition.min:I
+       536: istore        22
+       538: aload         18
+       540: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       543: istore        23
+       545: aload         21
+       547: getfield      #30                 // Field dk/brics/automaton/Transition.min:I
+       550: iload         22
+       552: if_icmple     562
+       555: aload         21
+       557: getfield      #30                 // Field dk/brics/automaton/Transition.min:I
+       560: istore        22
+       562: aload         21
+       564: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       567: iload         23
+       569: if_icmpge     579
+       572: aload         21
+       574: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       577: istore        23
+       579: iload         22
+       581: iload         23
+       583: if_icmpgt     636
+       586: iload_2
+       587: invokestatic  #68                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       590: iload_3
+       591: invokestatic  #68                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       594: aload         9
+       596: aload         10
+       598: aload         11
+       600: iload         14
+       602: aload         18
+       604: aload         21
+       606: iload         22
+       608: iload         23
+       610: invokestatic  #69                 // Method add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+       613: aload         19
+       615: new           #29                 // class dk/brics/automaton/Transition
+       618: dup
+       619: iload         22
+       621: iload         23
+       623: aconst_null
+       624: invokespecial #32                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+       627: invokeinterface #70,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       632: pop
+       633: goto          513
+       636: aload         19
+       638: aload         19
+       640: invokeinterface #71,  1           // InterfaceMethod java/util/List.size:()I
+       645: anewarray     #29                 // class dk/brics/automaton/Transition
+       648: invokeinterface #72,  2           // InterfaceMethod java/util/List.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+       653: checkcast     #73                 // class "[Ldk/brics/automaton/Transition;"
+       656: astore        21
+       658: aload         21
+       660: aload         7
+       662: invokestatic  #74                 // Method java/util/Arrays.sort:([Ljava/lang/Object;Ljava/util/Comparator;)V
+       665: aload         18
+       667: getfield      #30                 // Field dk/brics/automaton/Transition.min:I
+       670: istore        22
+       672: iconst_0
+       673: istore        23
+       675: iload         23
+       677: aload         21
+       679: arraylength
+       680: if_icmpge     736
+       683: aload         21
+       685: iload         23
+       687: aaload
+       688: getfield      #30                 // Field dk/brics/automaton/Transition.min:I
+       691: iload         22
+       693: if_icmple     699
+       696: goto          736
+       699: aload         21
+       701: iload         23
+       703: aaload
+       704: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       707: aload         18
+       709: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       712: if_icmplt     718
+       715: goto          931
+       718: aload         21
+       720: iload         23
+       722: aaload
+       723: getfield      #31                 // Field dk/brics/automaton/Transition.max:I
+       726: iconst_1
+       727: iadd
+       728: istore        22
+       730: iinc          23, 1
+       733: goto          675
+       736: new           #47                 // class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration
+       739: dup
+       740: aload         11
+       742: iload         14
+       744: aload         18
+       746: getfield      #25                 // Field dk/brics/automaton/Transition.to:Ldk/brics/automaton/State;
+       749: iload         22
+       751: invokespecial #75                 // Method dk/brics/automaton/ShuffleOperations$ShuffleConfiguration."<init>":(Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/State;I)V
+       754: astore        23
+       756: new           #54                 // class java/lang/StringBuilder
+       759: dup
+       760: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+       763: astore        24
+       765: aload         23
+       767: astore        25
+       769: aload         25
+       771: getfield      #56                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.prev:Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;
+       774: ifnull        798
+       777: aload         24
+       779: aload         25
+       781: getfield      #57                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.min:I
+       784: invokevirtual #58                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       787: pop
+       788: aload         25
+       790: getfield      #56                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.prev:Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;
+       793: astore        25
+       795: goto          769
+       798: new           #54                 // class java/lang/StringBuilder
+       801: dup
+       802: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+       805: astore        26
+       807: aload         24
+       809: invokevirtual #59                 // Method java/lang/StringBuilder.length:()I
+       812: iconst_1
+       813: isub
+       814: istore        27
+       816: iload         27
+       818: iflt          840
+       821: aload         26
+       823: aload         24
+       825: iload         27
+       827: invokevirtual #60                 // Method java/lang/StringBuilder.charAt:(I)C
+       830: invokevirtual #61                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+       833: pop
+       834: iinc          27, -1
+       837: goto          816
+       840: aload         11
+       842: getfield      #63                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.shuffle_suspended:Z
+       845: ifeq          869
+       848: aload         26
+       850: aload         23
+       852: getfield      #52                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.ca_states:[Ldk/brics/automaton/State;
+       855: aload         11
+       857: getfield      #64                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.suspended1:I
+       860: aaload
+       861: iconst_1
+       862: invokestatic  #76                 // Method dk/brics/automaton/BasicOperations.getShortestExample:(Ldk/brics/automaton/State;Z)Ljava/lang/String;
+       865: invokevirtual #77                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       868: pop
+       869: iconst_0
+       870: istore        14
+       872: iload         14
+       874: aload_0
+       875: invokeinterface #37,  1           // InterfaceMethod java/util/Collection.size:()I
+       880: if_icmpge     925
+       883: aload         11
+       885: getfield      #63                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.shuffle_suspended:Z
+       888: ifeq          901
+       891: iload         14
+       893: aload         11
+       895: getfield      #64                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.suspended1:I
+       898: if_icmpeq     919
+       901: aload         26
+       903: aload         23
+       905: getfield      #52                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.ca_states:[Ldk/brics/automaton/State;
+       908: iload         14
+       910: aaload
+       911: iconst_1
+       912: invokestatic  #76                 // Method dk/brics/automaton/BasicOperations.getShortestExample:(Ldk/brics/automaton/State;Z)Ljava/lang/String;
+       915: invokevirtual #77                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       918: pop
+       919: iinc          14, 1
+       922: goto          872
+       925: aload         26
+       927: invokevirtual #62                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       930: areturn
+       931: iinc          17, 1
+       934: goto          441
+       937: aload         11
+       939: getfield      #63                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.shuffle_suspended:Z
+       942: ifeq          948
+       945: goto          954
+       948: iinc          14, 1
+       951: goto          388
+       954: goto          206
+       957: aconst_null
+       958: areturn
+      LineNumberTable:
+        line 118: 0
+        line 119: 9
+        line 120: 11
+        line 121: 21
+        line 122: 37
+        line 123: 45
+        line 124: 57
+        line 126: 59
+        line 128: 65
+        line 129: 71
+        line 131: 73
+        line 132: 77
+        line 133: 88
+        line 134: 91
+        line 135: 121
+        line 136: 140
+        line 137: 149
+        line 138: 159
+        line 139: 170
+        line 140: 179
+        line 141: 188
+        line 142: 196
+        line 143: 206
+        line 144: 214
+        line 145: 224
+        line 146: 227
+        line 147: 241
+        line 148: 255
+        line 149: 258
+        line 146: 261
+        line 151: 267
+        line 152: 278
+        line 153: 281
+        line 154: 286
+        line 155: 295
+        line 156: 303
+        line 157: 314
+        line 159: 324
+        line 160: 333
+        line 161: 347
+        line 160: 360
+        line 162: 366
+        line 164: 372
+        line 165: 385
+        line 166: 399
+        line 167: 407
+        line 168: 414
+        line 169: 455
+        line 170: 464
+        line 171: 475
+        line 172: 480
+        line 173: 487
+        line 174: 510
+        line 175: 513
+        line 176: 521
+        line 177: 531
+        line 178: 538
+        line 179: 545
+        line 180: 555
+        line 181: 562
+        line 182: 572
+        line 183: 579
+        line 184: 586
+        line 185: 613
+        line 188: 633
+        line 189: 636
+        line 190: 658
+        line 191: 665
+        line 192: 672
+        line 193: 683
+        line 194: 696
+        line 195: 699
+        line 196: 715
+        line 197: 718
+        line 192: 730
+        line 199: 736
+        line 200: 756
+        line 201: 765
+        line 202: 769
+        line 203: 777
+        line 204: 788
+        line 206: 798
+        line 207: 807
+        line 208: 821
+        line 207: 834
+        line 209: 840
+        line 210: 848
+        line 211: 869
+        line 212: 883
+        line 213: 901
+        line 211: 919
+        line 214: 925
+        line 168: 931
+        line 216: 937
+        line 217: 945
+        line 165: 948
+        line 219: 954
+        line 220: 957
+      StackMapTable: number_of_entries = 42
+        frame_type = 11 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 47
+          locals = [ class dk/brics/automaton/Automaton ]
+        frame_type = 5 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 7
+        frame_type = 254 /* append */
+          offset_delta = 25
+          locals = [ class "[[[Ldk/brics/automaton/Transition;", int, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 40
+        frame_type = 255 /* full_frame */
+          offset_delta = 65
+          locals = [ class java/util/Collection, class dk/brics/automaton/Automaton, int, int, class "[[[Ldk/brics/automaton/Transition;", int, class "[[Ldk/brics/automaton/Transition;", class dk/brics/automaton/TransitionComparator, class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration, class java/util/LinkedList, class java/util/Set ]
+          stack = []
+        frame_type = 254 /* append */
+          offset_delta = 23
+          locals = [ class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration, int, int ]
+        frame_type = 30 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 13 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class java/lang/StringBuilder ]
+        frame_type = 28 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 17
+          locals = [ class java/lang/StringBuilder, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 23
+        frame_type = 249 /* chop */
+          offset_delta = 5
+        frame_type = 253 /* append */
+          offset_delta = 15
+          locals = [ class "[Ldk/brics/automaton/Transition;", int ]
+        frame_type = 25 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 26
+          locals = [ class "[Ldk/brics/automaton/Transition;", int, int ]
+        frame_type = 254 /* append */
+          offset_delta = 45
+          locals = [ class dk/brics/automaton/Transition, class java/util/List, int ]
+        frame_type = 25 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 48
+          locals = [ class dk/brics/automaton/Transition, int, int ]
+        frame_type = 16 /* same */
+        frame_type = 248 /* chop */
+          offset_delta = 56
+        frame_type = 254 /* append */
+          offset_delta = 38
+          locals = [ class "[Ldk/brics/automaton/Transition;", int, int ]
+        frame_type = 23 /* same */
+        frame_type = 18 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 17
+        frame_type = 254 /* append */
+          offset_delta = 32
+          locals = [ class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration, class java/lang/StringBuilder, class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration ]
+        frame_type = 28 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 17
+          locals = [ class java/lang/StringBuilder, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 23
+        frame_type = 28 /* same */
+        frame_type = 2 /* same */
+        frame_type = 28 /* same */
+        frame_type = 17 /* same */
+        frame_type = 5 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 5
+          locals = [ class java/util/Collection, class dk/brics/automaton/Automaton, int, int, class "[[[Ldk/brics/automaton/Transition;", int, class "[[Ldk/brics/automaton/Transition;", class dk/brics/automaton/TransitionComparator, class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration, class java/util/LinkedList, class java/util/Set, class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration, int, class "[Ldk/brics/automaton/Transition;", int, class "[Ldk/brics/automaton/Transition;", int, int ]
+          stack = []
+        frame_type = 248 /* chop */
+          offset_delta = 5
+        frame_type = 10 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 5
+          locals = [ class java/util/Collection, class dk/brics/automaton/Automaton, int, int, class "[[[Ldk/brics/automaton/Transition;", int, class "[[Ldk/brics/automaton/Transition;", class dk/brics/automaton/TransitionComparator, class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration, class java/util/LinkedList, class java/util/Set ]
+          stack = []
+        frame_type = 2 /* same */
+    Signature: #100                         // (Ljava/util/Collection<Ldk/brics/automaton/Automaton;>;Ldk/brics/automaton/Automaton;II)Ljava/lang/String;
+
+  private static void add(java.lang.Integer, java.lang.Integer, java.util.LinkedList<dk.brics.automaton.ShuffleOperations$ShuffleConfiguration>, java.util.Set<dk.brics.automaton.ShuffleOperations$ShuffleConfiguration>, dk.brics.automaton.ShuffleOperations$ShuffleConfiguration, int, dk.brics.automaton.Transition, dk.brics.automaton.Transition, int, int);
+    descriptor: (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=11, locals=11, args_size=10
+         0: aload_0
+         1: ifnull        119
+         4: iload         8
+         6: aload_0
+         7: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+        10: if_icmpgt     119
+        13: aload_0
+        14: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+        17: iload         9
+        19: if_icmpgt     119
+        22: iload         8
+        24: iload         9
+        26: if_icmpeq     119
+        29: iload         8
+        31: aload_0
+        32: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+        35: if_icmpge     61
+        38: aload_0
+        39: aload_1
+        40: aload_2
+        41: aload_3
+        42: aload         4
+        44: iload         5
+        46: aload         6
+        48: aload         7
+        50: iload         8
+        52: aload_0
+        53: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+        56: iconst_1
+        57: isub
+        58: invokestatic  #69                 // Method add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+        61: aload_0
+        62: aload_1
+        63: aload_2
+        64: aload_3
+        65: aload         4
+        67: iload         5
+        69: aload         6
+        71: aload         7
+        73: aload_0
+        74: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+        77: aload_0
+        78: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+        81: invokestatic  #69                 // Method add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+        84: aload_0
+        85: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+        88: iload         9
+        90: if_icmpge     338
+        93: aload_0
+        94: aload_1
+        95: aload_2
+        96: aload_3
+        97: aload         4
+        99: iload         5
+       101: aload         6
+       103: aload         7
+       105: aload_0
+       106: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       109: iconst_1
+       110: iadd
+       111: iload         9
+       113: invokestatic  #69                 // Method add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+       116: goto          338
+       119: aload_1
+       120: ifnull        238
+       123: iload         8
+       125: aload_1
+       126: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       129: if_icmpgt     238
+       132: aload_1
+       133: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       136: iload         9
+       138: if_icmpgt     238
+       141: iload         8
+       143: iload         9
+       145: if_icmpeq     238
+       148: iload         8
+       150: aload_1
+       151: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       154: if_icmpge     180
+       157: aload_0
+       158: aload_1
+       159: aload_2
+       160: aload_3
+       161: aload         4
+       163: iload         5
+       165: aload         6
+       167: aload         7
+       169: iload         8
+       171: aload_1
+       172: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       175: iconst_1
+       176: isub
+       177: invokestatic  #69                 // Method add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+       180: aload_0
+       181: aload_1
+       182: aload_2
+       183: aload_3
+       184: aload         4
+       186: iload         5
+       188: aload         6
+       190: aload         7
+       192: aload_1
+       193: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       196: aload_1
+       197: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       200: invokestatic  #69                 // Method add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+       203: aload_1
+       204: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       207: iload         9
+       209: if_icmpge     338
+       212: aload_0
+       213: aload_1
+       214: aload_2
+       215: aload_3
+       216: aload         4
+       218: iload         5
+       220: aload         6
+       222: aload         7
+       224: aload_1
+       225: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       228: iconst_1
+       229: iadd
+       230: iload         9
+       232: invokestatic  #69                 // Method add:(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList;Ljava/util/Set;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+       235: goto          338
+       238: new           #47                 // class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration
+       241: dup
+       242: aload         4
+       244: iload         5
+       246: aload         6
+       248: getfield      #25                 // Field dk/brics/automaton/Transition.to:Ldk/brics/automaton/State;
+       251: aload         7
+       253: getfield      #25                 // Field dk/brics/automaton/Transition.to:Ldk/brics/automaton/State;
+       256: iload         8
+       258: invokespecial #79                 // Method dk/brics/automaton/ShuffleOperations$ShuffleConfiguration."<init>":(Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/State;Ldk/brics/automaton/State;I)V
+       261: astore        10
+       263: aload_0
+       264: ifnull        292
+       267: iload         8
+       269: aload_0
+       270: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       273: if_icmpne     292
+       276: aload         10
+       278: iconst_1
+       279: putfield      #63                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.shuffle_suspended:Z
+       282: aload         10
+       284: iload         5
+       286: putfield      #64                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.suspended1:I
+       289: goto          311
+       292: aload_1
+       293: ifnull        311
+       296: iload         8
+       298: aload_1
+       299: invokevirtual #78                 // Method java/lang/Integer.intValue:()I
+       302: if_icmpne     311
+       305: aload         10
+       307: iconst_0
+       308: putfield      #63                 // Field dk/brics/automaton/ShuffleOperations$ShuffleConfiguration.shuffle_suspended:Z
+       311: aload_3
+       312: aload         10
+       314: invokeinterface #80,  2           // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+       319: ifne          338
+       322: aload_2
+       323: aload         10
+       325: invokevirtual #16                 // Method java/util/LinkedList.add:(Ljava/lang/Object;)Z
+       328: pop
+       329: aload_3
+       330: aload         10
+       332: invokeinterface #33,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       337: pop
+       338: return
+      LineNumberTable:
+        line 228: 0
+        line 229: 29
+        line 230: 38
+        line 231: 61
+        line 232: 84
+        line 233: 93
+        line 234: 119
+        line 235: 148
+        line 236: 157
+        line 237: 180
+        line 238: 203
+        line 239: 212
+        line 247: 238
+        line 248: 263
+        line 249: 276
+        line 250: 282
+        line 251: 292
+        line 252: 305
+        line 258: 311
+        line 259: 322
+        line 260: 329
+        line 263: 338
+      StackMapTable: number_of_entries = 7
+        frame_type = 61 /* same */
+        frame_type = 57 /* same */
+        frame_type = 60 /* same */
+        frame_type = 57 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 53
+          locals = [ class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration ]
+        frame_type = 18 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 26
+    Signature: #103                         // (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/LinkedList<Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;>;Ljava/util/Set<Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;>;Ldk/brics/automaton/ShuffleOperations$ShuffleConfiguration;ILdk/brics/automaton/Transition;Ldk/brics/automaton/Transition;II)V
+}
+SourceFile: "ShuffleOperations.java"
+InnerClasses:
+  static #83= #47 of #81;                 // ShuffleConfiguration=class dk/brics/automaton/ShuffleOperations$ShuffleConfiguration of class dk/brics/automaton/ShuffleOperations

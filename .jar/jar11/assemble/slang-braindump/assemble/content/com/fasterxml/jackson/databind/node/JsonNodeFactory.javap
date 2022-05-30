@@ -1,0 +1,1093 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/databind/node/JsonNodeFactory.class
+  Last modified May 29, 2022; size 8909 bytes
+  SHA-256 checksum ebb55c49d57ec696953624b3caa4c1242efeffc1a2b5d886f1704f1fddf2dc46
+  Compiled from "JsonNodeFactory.java"
+public class com.fasterxml.jackson.databind.node.JsonNodeFactory implements java.io.Serializable,com.fasterxml.jackson.databind.node.JsonNodeCreator
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #48                         // com/fasterxml/jackson/databind/node/JsonNodeFactory
+  super_class: #50                        // java/lang/Object
+  interfaces: 2, fields: 5, methods: 41, attributes: 1
+Constant pool:
+    #1 = Methodref          #50.#158      // java/lang/Object."<init>":()V
+    #2 = Fieldref           #48.#159      // com/fasterxml/jackson/databind/node/JsonNodeFactory._cfgBigDecimalExact:Z
+    #3 = Methodref          #48.#160      // com/fasterxml/jackson/databind/node/JsonNodeFactory."<init>":(Z)V
+    #4 = Fieldref           #48.#161      // com/fasterxml/jackson/databind/node/JsonNodeFactory.decimalsAsIs:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    #5 = Fieldref           #48.#162      // com/fasterxml/jackson/databind/node/JsonNodeFactory.decimalsNormalized:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    #6 = Methodref          #163.#164     // com/fasterxml/jackson/databind/node/BooleanNode.getTrue:()Lcom/fasterxml/jackson/databind/node/BooleanNode;
+    #7 = Methodref          #163.#165     // com/fasterxml/jackson/databind/node/BooleanNode.getFalse:()Lcom/fasterxml/jackson/databind/node/BooleanNode;
+    #8 = Methodref          #166.#167     // com/fasterxml/jackson/databind/node/NullNode.getInstance:()Lcom/fasterxml/jackson/databind/node/NullNode;
+    #9 = Methodref          #168.#169     // com/fasterxml/jackson/databind/node/MissingNode.getInstance:()Lcom/fasterxml/jackson/databind/node/MissingNode;
+   #10 = Methodref          #170.#171     // com/fasterxml/jackson/databind/node/IntNode.valueOf:(I)Lcom/fasterxml/jackson/databind/node/IntNode;
+   #11 = Methodref          #48.#172      // com/fasterxml/jackson/databind/node/JsonNodeFactory.nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+   #12 = Methodref          #173.#174     // java/lang/Byte.intValue:()I
+   #13 = Methodref          #175.#176     // com/fasterxml/jackson/databind/node/ShortNode.valueOf:(S)Lcom/fasterxml/jackson/databind/node/ShortNode;
+   #14 = Methodref          #177.#178     // java/lang/Short.shortValue:()S
+   #15 = Methodref          #179.#174     // java/lang/Integer.intValue:()I
+   #16 = Methodref          #180.#181     // com/fasterxml/jackson/databind/node/LongNode.valueOf:(J)Lcom/fasterxml/jackson/databind/node/LongNode;
+   #17 = Methodref          #182.#183     // java/lang/Long.longValue:()J
+   #18 = Methodref          #184.#185     // com/fasterxml/jackson/databind/node/BigIntegerNode.valueOf:(Ljava/math/BigInteger;)Lcom/fasterxml/jackson/databind/node/BigIntegerNode;
+   #19 = Methodref          #186.#187     // com/fasterxml/jackson/databind/node/FloatNode.valueOf:(F)Lcom/fasterxml/jackson/databind/node/FloatNode;
+   #20 = Methodref          #188.#189     // java/lang/Float.floatValue:()F
+   #21 = Methodref          #190.#191     // com/fasterxml/jackson/databind/node/DoubleNode.valueOf:(D)Lcom/fasterxml/jackson/databind/node/DoubleNode;
+   #22 = Methodref          #192.#193     // java/lang/Double.doubleValue:()D
+   #23 = Methodref          #194.#195     // com/fasterxml/jackson/databind/node/DecimalNode.valueOf:(Ljava/math/BigDecimal;)Lcom/fasterxml/jackson/databind/node/DecimalNode;
+   #24 = Methodref          #196.#197     // java/math/BigDecimal.signum:()I
+   #25 = Fieldref           #194.#198     // com/fasterxml/jackson/databind/node/DecimalNode.ZERO:Lcom/fasterxml/jackson/databind/node/DecimalNode;
+   #26 = Methodref          #196.#199     // java/math/BigDecimal.stripTrailingZeros:()Ljava/math/BigDecimal;
+   #27 = Class              #200          // java/lang/ArithmeticException
+   #28 = Methodref          #201.#202     // com/fasterxml/jackson/databind/node/TextNode.valueOf:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/TextNode;
+   #29 = Methodref          #203.#204     // com/fasterxml/jackson/databind/node/BinaryNode.valueOf:([B)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+   #30 = Methodref          #203.#205     // com/fasterxml/jackson/databind/node/BinaryNode.valueOf:([BII)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+   #31 = Class              #206          // com/fasterxml/jackson/databind/node/ArrayNode
+   #32 = Methodref          #31.#207      // com/fasterxml/jackson/databind/node/ArrayNode."<init>":(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)V
+   #33 = Methodref          #31.#208      // com/fasterxml/jackson/databind/node/ArrayNode."<init>":(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;I)V
+   #34 = Class              #209          // com/fasterxml/jackson/databind/node/ObjectNode
+   #35 = Methodref          #34.#207      // com/fasterxml/jackson/databind/node/ObjectNode."<init>":(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)V
+   #36 = Class              #210          // com/fasterxml/jackson/databind/node/POJONode
+   #37 = Methodref          #36.#211      // com/fasterxml/jackson/databind/node/POJONode."<init>":(Ljava/lang/Object;)V
+   #38 = Methodref          #48.#212      // com/fasterxml/jackson/databind/node/JsonNodeFactory.binaryNode:([BII)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+   #39 = Methodref          #48.#213      // com/fasterxml/jackson/databind/node/JsonNodeFactory.binaryNode:([B)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+   #40 = Methodref          #48.#214      // com/fasterxml/jackson/databind/node/JsonNodeFactory.textNode:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/TextNode;
+   #41 = Methodref          #48.#215      // com/fasterxml/jackson/databind/node/JsonNodeFactory.numberNode:(D)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #42 = Methodref          #48.#216      // com/fasterxml/jackson/databind/node/JsonNodeFactory.numberNode:(F)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #43 = Methodref          #48.#217      // com/fasterxml/jackson/databind/node/JsonNodeFactory.numberNode:(J)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #44 = Methodref          #48.#218      // com/fasterxml/jackson/databind/node/JsonNodeFactory.numberNode:(I)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #45 = Methodref          #48.#219      // com/fasterxml/jackson/databind/node/JsonNodeFactory.numberNode:(S)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #46 = Methodref          #48.#220      // com/fasterxml/jackson/databind/node/JsonNodeFactory.numberNode:(B)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #47 = Methodref          #48.#221      // com/fasterxml/jackson/databind/node/JsonNodeFactory.booleanNode:(Z)Lcom/fasterxml/jackson/databind/node/BooleanNode;
+   #48 = Class              #222          // com/fasterxml/jackson/databind/node/JsonNodeFactory
+   #49 = Fieldref           #48.#223      // com/fasterxml/jackson/databind/node/JsonNodeFactory.instance:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+   #50 = Class              #224          // java/lang/Object
+   #51 = Class              #225          // java/io/Serializable
+   #52 = Class              #226          // com/fasterxml/jackson/databind/node/JsonNodeCreator
+   #53 = Utf8               serialVersionUID
+   #54 = Utf8               J
+   #55 = Utf8               ConstantValue
+   #56 = Long               1l
+   #58 = Utf8               _cfgBigDecimalExact
+   #59 = Utf8               Z
+   #60 = Utf8               decimalsNormalized
+   #61 = Utf8               Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+   #62 = Utf8               decimalsAsIs
+   #63 = Utf8               instance
+   #64 = Utf8               <init>
+   #65 = Utf8               (Z)V
+   #66 = Utf8               Code
+   #67 = Utf8               LineNumberTable
+   #68 = Utf8               LocalVariableTable
+   #69 = Utf8               this
+   #70 = Utf8               bigDecimalExact
+   #71 = Utf8               ()V
+   #72 = Utf8               withExactBigDecimals
+   #73 = Utf8               (Z)Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+   #74 = Utf8               StackMapTable
+   #75 = Class              #222          // com/fasterxml/jackson/databind/node/JsonNodeFactory
+   #76 = Utf8               booleanNode
+   #77 = Utf8               (Z)Lcom/fasterxml/jackson/databind/node/BooleanNode;
+   #78 = Utf8               v
+   #79 = Class              #227          // com/fasterxml/jackson/databind/node/BooleanNode
+   #80 = Utf8               nullNode
+   #81 = Utf8               ()Lcom/fasterxml/jackson/databind/node/NullNode;
+   #82 = Utf8               missingNode
+   #83 = Utf8               ()Lcom/fasterxml/jackson/databind/JsonNode;
+   #84 = Utf8               numberNode
+   #85 = Utf8               (B)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #86 = Utf8               B
+   #87 = Utf8               (Ljava/lang/Byte;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+   #88 = Utf8               value
+   #89 = Utf8               Ljava/lang/Byte;
+   #90 = Class              #228          // com/fasterxml/jackson/databind/node/ValueNode
+   #91 = Utf8               (S)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #92 = Utf8               S
+   #93 = Utf8               (Ljava/lang/Short;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+   #94 = Utf8               Ljava/lang/Short;
+   #95 = Utf8               (I)Lcom/fasterxml/jackson/databind/node/NumericNode;
+   #96 = Utf8               I
+   #97 = Utf8               (Ljava/lang/Integer;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+   #98 = Utf8               Ljava/lang/Integer;
+   #99 = Utf8               (J)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #100 = Utf8               (Ljava/lang/Long;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #101 = Utf8               Ljava/lang/Long;
+  #102 = Utf8               (Ljava/math/BigInteger;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #103 = Utf8               Ljava/math/BigInteger;
+  #104 = Utf8               (F)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #105 = Utf8               F
+  #106 = Utf8               (Ljava/lang/Float;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #107 = Utf8               Ljava/lang/Float;
+  #108 = Utf8               (D)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #109 = Utf8               D
+  #110 = Utf8               (Ljava/lang/Double;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #111 = Utf8               Ljava/lang/Double;
+  #112 = Utf8               (Ljava/math/BigDecimal;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #113 = Utf8               Ljava/math/BigDecimal;
+  #114 = Class              #200          // java/lang/ArithmeticException
+  #115 = Utf8               textNode
+  #116 = Utf8               (Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/TextNode;
+  #117 = Utf8               text
+  #118 = Utf8               Ljava/lang/String;
+  #119 = Utf8               binaryNode
+  #120 = Utf8               ([B)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+  #121 = Utf8               data
+  #122 = Utf8               [B
+  #123 = Utf8               ([BII)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+  #124 = Utf8               offset
+  #125 = Utf8               length
+  #126 = Utf8               arrayNode
+  #127 = Utf8               ()Lcom/fasterxml/jackson/databind/node/ArrayNode;
+  #128 = Utf8               (I)Lcom/fasterxml/jackson/databind/node/ArrayNode;
+  #129 = Utf8               capacity
+  #130 = Utf8               objectNode
+  #131 = Utf8               ()Lcom/fasterxml/jackson/databind/node/ObjectNode;
+  #132 = Utf8               pojoNode
+  #133 = Utf8               (Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #134 = Utf8               pojo
+  #135 = Utf8               Ljava/lang/Object;
+  #136 = Utf8               rawValueNode
+  #137 = Utf8               (Lcom/fasterxml/jackson/databind/util/RawValue;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #138 = Utf8               Lcom/fasterxml/jackson/databind/util/RawValue;
+  #139 = Utf8               _inIntRange
+  #140 = Utf8               (J)Z
+  #141 = Utf8               l
+  #142 = Utf8               i
+  #143 = Utf8               l2
+  #144 = Utf8               ([BII)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #145 = Utf8               ([B)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #146 = Utf8               (Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #147 = Utf8               (D)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #148 = Utf8               (F)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #149 = Utf8               (J)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #150 = Utf8               (I)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #151 = Utf8               (S)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #152 = Utf8               (B)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #153 = Utf8               ()Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #154 = Utf8               (Z)Lcom/fasterxml/jackson/databind/node/ValueNode;
+  #155 = Utf8               <clinit>
+  #156 = Utf8               SourceFile
+  #157 = Utf8               JsonNodeFactory.java
+  #158 = NameAndType        #64:#71       // "<init>":()V
+  #159 = NameAndType        #58:#59       // _cfgBigDecimalExact:Z
+  #160 = NameAndType        #64:#65       // "<init>":(Z)V
+  #161 = NameAndType        #62:#61       // decimalsAsIs:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+  #162 = NameAndType        #60:#61       // decimalsNormalized:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+  #163 = Class              #227          // com/fasterxml/jackson/databind/node/BooleanNode
+  #164 = NameAndType        #229:#230     // getTrue:()Lcom/fasterxml/jackson/databind/node/BooleanNode;
+  #165 = NameAndType        #231:#230     // getFalse:()Lcom/fasterxml/jackson/databind/node/BooleanNode;
+  #166 = Class              #232          // com/fasterxml/jackson/databind/node/NullNode
+  #167 = NameAndType        #233:#81      // getInstance:()Lcom/fasterxml/jackson/databind/node/NullNode;
+  #168 = Class              #234          // com/fasterxml/jackson/databind/node/MissingNode
+  #169 = NameAndType        #233:#235     // getInstance:()Lcom/fasterxml/jackson/databind/node/MissingNode;
+  #170 = Class              #236          // com/fasterxml/jackson/databind/node/IntNode
+  #171 = NameAndType        #237:#238     // valueOf:(I)Lcom/fasterxml/jackson/databind/node/IntNode;
+  #172 = NameAndType        #80:#81       // nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+  #173 = Class              #239          // java/lang/Byte
+  #174 = NameAndType        #240:#241     // intValue:()I
+  #175 = Class              #242          // com/fasterxml/jackson/databind/node/ShortNode
+  #176 = NameAndType        #237:#243     // valueOf:(S)Lcom/fasterxml/jackson/databind/node/ShortNode;
+  #177 = Class              #244          // java/lang/Short
+  #178 = NameAndType        #245:#246     // shortValue:()S
+  #179 = Class              #247          // java/lang/Integer
+  #180 = Class              #248          // com/fasterxml/jackson/databind/node/LongNode
+  #181 = NameAndType        #237:#249     // valueOf:(J)Lcom/fasterxml/jackson/databind/node/LongNode;
+  #182 = Class              #250          // java/lang/Long
+  #183 = NameAndType        #251:#252     // longValue:()J
+  #184 = Class              #253          // com/fasterxml/jackson/databind/node/BigIntegerNode
+  #185 = NameAndType        #237:#254     // valueOf:(Ljava/math/BigInteger;)Lcom/fasterxml/jackson/databind/node/BigIntegerNode;
+  #186 = Class              #255          // com/fasterxml/jackson/databind/node/FloatNode
+  #187 = NameAndType        #237:#256     // valueOf:(F)Lcom/fasterxml/jackson/databind/node/FloatNode;
+  #188 = Class              #257          // java/lang/Float
+  #189 = NameAndType        #258:#259     // floatValue:()F
+  #190 = Class              #260          // com/fasterxml/jackson/databind/node/DoubleNode
+  #191 = NameAndType        #237:#261     // valueOf:(D)Lcom/fasterxml/jackson/databind/node/DoubleNode;
+  #192 = Class              #262          // java/lang/Double
+  #193 = NameAndType        #263:#264     // doubleValue:()D
+  #194 = Class              #265          // com/fasterxml/jackson/databind/node/DecimalNode
+  #195 = NameAndType        #237:#266     // valueOf:(Ljava/math/BigDecimal;)Lcom/fasterxml/jackson/databind/node/DecimalNode;
+  #196 = Class              #267          // java/math/BigDecimal
+  #197 = NameAndType        #268:#241     // signum:()I
+  #198 = NameAndType        #269:#270     // ZERO:Lcom/fasterxml/jackson/databind/node/DecimalNode;
+  #199 = NameAndType        #271:#272     // stripTrailingZeros:()Ljava/math/BigDecimal;
+  #200 = Utf8               java/lang/ArithmeticException
+  #201 = Class              #273          // com/fasterxml/jackson/databind/node/TextNode
+  #202 = NameAndType        #237:#116     // valueOf:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/TextNode;
+  #203 = Class              #274          // com/fasterxml/jackson/databind/node/BinaryNode
+  #204 = NameAndType        #237:#120     // valueOf:([B)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+  #205 = NameAndType        #237:#123     // valueOf:([BII)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+  #206 = Utf8               com/fasterxml/jackson/databind/node/ArrayNode
+  #207 = NameAndType        #64:#275      // "<init>":(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)V
+  #208 = NameAndType        #64:#276      // "<init>":(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;I)V
+  #209 = Utf8               com/fasterxml/jackson/databind/node/ObjectNode
+  #210 = Utf8               com/fasterxml/jackson/databind/node/POJONode
+  #211 = NameAndType        #64:#277      // "<init>":(Ljava/lang/Object;)V
+  #212 = NameAndType        #119:#123     // binaryNode:([BII)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+  #213 = NameAndType        #119:#120     // binaryNode:([B)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+  #214 = NameAndType        #115:#116     // textNode:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/TextNode;
+  #215 = NameAndType        #84:#108      // numberNode:(D)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #216 = NameAndType        #84:#104      // numberNode:(F)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #217 = NameAndType        #84:#99       // numberNode:(J)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #218 = NameAndType        #84:#95       // numberNode:(I)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #219 = NameAndType        #84:#91       // numberNode:(S)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #220 = NameAndType        #84:#85       // numberNode:(B)Lcom/fasterxml/jackson/databind/node/NumericNode;
+  #221 = NameAndType        #76:#77       // booleanNode:(Z)Lcom/fasterxml/jackson/databind/node/BooleanNode;
+  #222 = Utf8               com/fasterxml/jackson/databind/node/JsonNodeFactory
+  #223 = NameAndType        #63:#61       // instance:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+  #224 = Utf8               java/lang/Object
+  #225 = Utf8               java/io/Serializable
+  #226 = Utf8               com/fasterxml/jackson/databind/node/JsonNodeCreator
+  #227 = Utf8               com/fasterxml/jackson/databind/node/BooleanNode
+  #228 = Utf8               com/fasterxml/jackson/databind/node/ValueNode
+  #229 = Utf8               getTrue
+  #230 = Utf8               ()Lcom/fasterxml/jackson/databind/node/BooleanNode;
+  #231 = Utf8               getFalse
+  #232 = Utf8               com/fasterxml/jackson/databind/node/NullNode
+  #233 = Utf8               getInstance
+  #234 = Utf8               com/fasterxml/jackson/databind/node/MissingNode
+  #235 = Utf8               ()Lcom/fasterxml/jackson/databind/node/MissingNode;
+  #236 = Utf8               com/fasterxml/jackson/databind/node/IntNode
+  #237 = Utf8               valueOf
+  #238 = Utf8               (I)Lcom/fasterxml/jackson/databind/node/IntNode;
+  #239 = Utf8               java/lang/Byte
+  #240 = Utf8               intValue
+  #241 = Utf8               ()I
+  #242 = Utf8               com/fasterxml/jackson/databind/node/ShortNode
+  #243 = Utf8               (S)Lcom/fasterxml/jackson/databind/node/ShortNode;
+  #244 = Utf8               java/lang/Short
+  #245 = Utf8               shortValue
+  #246 = Utf8               ()S
+  #247 = Utf8               java/lang/Integer
+  #248 = Utf8               com/fasterxml/jackson/databind/node/LongNode
+  #249 = Utf8               (J)Lcom/fasterxml/jackson/databind/node/LongNode;
+  #250 = Utf8               java/lang/Long
+  #251 = Utf8               longValue
+  #252 = Utf8               ()J
+  #253 = Utf8               com/fasterxml/jackson/databind/node/BigIntegerNode
+  #254 = Utf8               (Ljava/math/BigInteger;)Lcom/fasterxml/jackson/databind/node/BigIntegerNode;
+  #255 = Utf8               com/fasterxml/jackson/databind/node/FloatNode
+  #256 = Utf8               (F)Lcom/fasterxml/jackson/databind/node/FloatNode;
+  #257 = Utf8               java/lang/Float
+  #258 = Utf8               floatValue
+  #259 = Utf8               ()F
+  #260 = Utf8               com/fasterxml/jackson/databind/node/DoubleNode
+  #261 = Utf8               (D)Lcom/fasterxml/jackson/databind/node/DoubleNode;
+  #262 = Utf8               java/lang/Double
+  #263 = Utf8               doubleValue
+  #264 = Utf8               ()D
+  #265 = Utf8               com/fasterxml/jackson/databind/node/DecimalNode
+  #266 = Utf8               (Ljava/math/BigDecimal;)Lcom/fasterxml/jackson/databind/node/DecimalNode;
+  #267 = Utf8               java/math/BigDecimal
+  #268 = Utf8               signum
+  #269 = Utf8               ZERO
+  #270 = Utf8               Lcom/fasterxml/jackson/databind/node/DecimalNode;
+  #271 = Utf8               stripTrailingZeros
+  #272 = Utf8               ()Ljava/math/BigDecimal;
+  #273 = Utf8               com/fasterxml/jackson/databind/node/TextNode
+  #274 = Utf8               com/fasterxml/jackson/databind/node/BinaryNode
+  #275 = Utf8               (Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)V
+  #276 = Utf8               (Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;I)V
+  #277 = Utf8               (Ljava/lang/Object;)V
+{
+  private static final long serialVersionUID;
+    descriptor: J
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: long 1l
+
+  private final boolean _cfgBigDecimalExact;
+    descriptor: Z
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private static final com.fasterxml.jackson.databind.node.JsonNodeFactory decimalsNormalized;
+    descriptor: Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final com.fasterxml.jackson.databind.node.JsonNodeFactory decimalsAsIs;
+    descriptor: Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  public static final com.fasterxml.jackson.databind.node.JsonNodeFactory instance;
+    descriptor: Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public com.fasterxml.jackson.databind.node.JsonNodeFactory(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iload_1
+         6: putfield      #2                  // Field _cfgBigDecimalExact:Z
+         9: return
+      LineNumberTable:
+        line 63: 0
+        line 64: 4
+        line 65: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      10     1 bigDecimalExact   Z
+
+  protected com.fasterxml.jackson.databind.node.JsonNodeFactory();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_0
+         2: invokespecial #3                  // Method "<init>":(Z)V
+         5: return
+      LineNumberTable:
+        line 75: 0
+        line 76: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public static com.fasterxml.jackson.databind.node.JsonNodeFactory withExactBigDecimals(boolean);
+    descriptor: (Z)Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iload_0
+         1: ifeq          10
+         4: getstatic     #4                  // Field decimalsAsIs:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+         7: goto          13
+        10: getstatic     #5                  // Field decimalsNormalized:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+        13: areturn
+      LineNumberTable:
+        line 87: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0 bigDecimalExact   Z
+      StackMapTable: number_of_entries = 2
+        frame_type = 10 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/node/JsonNodeFactory ]
+
+  public com.fasterxml.jackson.databind.node.BooleanNode booleanNode(boolean);
+    descriptor: (Z)Lcom/fasterxml/jackson/databind/node/BooleanNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iload_1
+         1: ifeq          10
+         4: invokestatic  #6                  // Method com/fasterxml/jackson/databind/node/BooleanNode.getTrue:()Lcom/fasterxml/jackson/databind/node/BooleanNode;
+         7: goto          13
+        10: invokestatic  #7                  // Method com/fasterxml/jackson/databind/node/BooleanNode.getFalse:()Lcom/fasterxml/jackson/databind/node/BooleanNode;
+        13: areturn
+      LineNumberTable:
+        line 102: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      14     1     v   Z
+      StackMapTable: number_of_entries = 2
+        frame_type = 10 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/node/BooleanNode ]
+
+  public com.fasterxml.jackson.databind.node.NullNode nullNode();
+    descriptor: ()Lcom/fasterxml/jackson/databind/node/NullNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: invokestatic  #8                  // Method com/fasterxml/jackson/databind/node/NullNode.getInstance:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         3: areturn
+      LineNumberTable:
+        line 110: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.JsonNode missingNode();
+    descriptor: ()Lcom/fasterxml/jackson/databind/JsonNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: invokestatic  #9                  // Method com/fasterxml/jackson/databind/node/MissingNode.getInstance:()Lcom/fasterxml/jackson/databind/node/MissingNode;
+         3: areturn
+      LineNumberTable:
+        line 113: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.NumericNode numberNode(byte);
+    descriptor: (B)Lcom/fasterxml/jackson/databind/node/NumericNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iload_1
+         1: invokestatic  #10                 // Method com/fasterxml/jackson/databind/node/IntNode.valueOf:(I)Lcom/fasterxml/jackson/databind/node/IntNode;
+         4: areturn
+      LineNumberTable:
+        line 127: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       5     1     v   B
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(java.lang.Byte);
+    descriptor: (Ljava/lang/Byte;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     11
+         4: aload_0
+         5: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         8: goto          18
+        11: aload_1
+        12: invokevirtual #12                 // Method java/lang/Byte.intValue:()I
+        15: invokestatic  #10                 // Method com/fasterxml/jackson/databind/node/IntNode.valueOf:(I)Lcom/fasterxml/jackson/databind/node/IntNode;
+        18: areturn
+      LineNumberTable:
+        line 137: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      19     1 value   Ljava/lang/Byte;
+      StackMapTable: number_of_entries = 2
+        frame_type = 11 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/node/ValueNode ]
+
+  public com.fasterxml.jackson.databind.node.NumericNode numberNode(short);
+    descriptor: (S)Lcom/fasterxml/jackson/databind/node/NumericNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iload_1
+         1: invokestatic  #13                 // Method com/fasterxml/jackson/databind/node/ShortNode.valueOf:(S)Lcom/fasterxml/jackson/databind/node/ShortNode;
+         4: areturn
+      LineNumberTable:
+        line 145: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       5     1     v   S
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(java.lang.Short);
+    descriptor: (Ljava/lang/Short;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     11
+         4: aload_0
+         5: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         8: goto          18
+        11: aload_1
+        12: invokevirtual #14                 // Method java/lang/Short.shortValue:()S
+        15: invokestatic  #13                 // Method com/fasterxml/jackson/databind/node/ShortNode.valueOf:(S)Lcom/fasterxml/jackson/databind/node/ShortNode;
+        18: areturn
+      LineNumberTable:
+        line 155: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      19     1 value   Ljava/lang/Short;
+      StackMapTable: number_of_entries = 2
+        frame_type = 11 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/node/ValueNode ]
+
+  public com.fasterxml.jackson.databind.node.NumericNode numberNode(int);
+    descriptor: (I)Lcom/fasterxml/jackson/databind/node/NumericNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iload_1
+         1: invokestatic  #10                 // Method com/fasterxml/jackson/databind/node/IntNode.valueOf:(I)Lcom/fasterxml/jackson/databind/node/IntNode;
+         4: areturn
+      LineNumberTable:
+        line 163: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       5     1     v   I
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(java.lang.Integer);
+    descriptor: (Ljava/lang/Integer;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     11
+         4: aload_0
+         5: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         8: goto          18
+        11: aload_1
+        12: invokevirtual #15                 // Method java/lang/Integer.intValue:()I
+        15: invokestatic  #10                 // Method com/fasterxml/jackson/databind/node/IntNode.valueOf:(I)Lcom/fasterxml/jackson/databind/node/IntNode;
+        18: areturn
+      LineNumberTable:
+        line 173: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      19     1 value   Ljava/lang/Integer;
+      StackMapTable: number_of_entries = 2
+        frame_type = 11 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/node/ValueNode ]
+
+  public com.fasterxml.jackson.databind.node.NumericNode numberNode(long);
+    descriptor: (J)Lcom/fasterxml/jackson/databind/node/NumericNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: lload_1
+         1: invokestatic  #16                 // Method com/fasterxml/jackson/databind/node/LongNode.valueOf:(J)Lcom/fasterxml/jackson/databind/node/LongNode;
+         4: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       5     1     v   J
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(java.lang.Long);
+    descriptor: (Ljava/lang/Long;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     9
+         4: aload_0
+         5: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         8: areturn
+         9: aload_1
+        10: invokevirtual #17                 // Method java/lang/Long.longValue:()J
+        13: invokestatic  #16                 // Method com/fasterxml/jackson/databind/node/LongNode.valueOf:(J)Lcom/fasterxml/jackson/databind/node/LongNode;
+        16: areturn
+      LineNumberTable:
+        line 192: 0
+        line 193: 4
+        line 195: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      17     1     v   Ljava/lang/Long;
+      StackMapTable: number_of_entries = 1
+        frame_type = 9 /* same */
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(java.math.BigInteger);
+    descriptor: (Ljava/math/BigInteger;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     9
+         4: aload_0
+         5: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         8: areturn
+         9: aload_1
+        10: invokestatic  #18                 // Method com/fasterxml/jackson/databind/node/BigIntegerNode.valueOf:(Ljava/math/BigInteger;)Lcom/fasterxml/jackson/databind/node/BigIntegerNode;
+        13: areturn
+      LineNumberTable:
+        line 204: 0
+        line 205: 4
+        line 207: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      14     1     v   Ljava/math/BigInteger;
+      StackMapTable: number_of_entries = 1
+        frame_type = 9 /* same */
+
+  public com.fasterxml.jackson.databind.node.NumericNode numberNode(float);
+    descriptor: (F)Lcom/fasterxml/jackson/databind/node/NumericNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: fload_1
+         1: invokestatic  #19                 // Method com/fasterxml/jackson/databind/node/FloatNode.valueOf:(F)Lcom/fasterxml/jackson/databind/node/FloatNode;
+         4: areturn
+      LineNumberTable:
+        line 215: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       5     1     v   F
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(java.lang.Float);
+    descriptor: (Ljava/lang/Float;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     11
+         4: aload_0
+         5: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         8: goto          18
+        11: aload_1
+        12: invokevirtual #20                 // Method java/lang/Float.floatValue:()F
+        15: invokestatic  #19                 // Method com/fasterxml/jackson/databind/node/FloatNode.valueOf:(F)Lcom/fasterxml/jackson/databind/node/FloatNode;
+        18: areturn
+      LineNumberTable:
+        line 225: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      19     1 value   Ljava/lang/Float;
+      StackMapTable: number_of_entries = 2
+        frame_type = 11 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/node/ValueNode ]
+
+  public com.fasterxml.jackson.databind.node.NumericNode numberNode(double);
+    descriptor: (D)Lcom/fasterxml/jackson/databind/node/NumericNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: dload_1
+         1: invokestatic  #21                 // Method com/fasterxml/jackson/databind/node/DoubleNode.valueOf:(D)Lcom/fasterxml/jackson/databind/node/DoubleNode;
+         4: areturn
+      LineNumberTable:
+        line 233: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       5     1     v   D
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(java.lang.Double);
+    descriptor: (Ljava/lang/Double;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     11
+         4: aload_0
+         5: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         8: goto          18
+        11: aload_1
+        12: invokevirtual #22                 // Method java/lang/Double.doubleValue:()D
+        15: invokestatic  #21                 // Method com/fasterxml/jackson/databind/node/DoubleNode.valueOf:(D)Lcom/fasterxml/jackson/databind/node/DoubleNode;
+        18: areturn
+      LineNumberTable:
+        line 243: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      19     1 value   Ljava/lang/Double;
+      StackMapTable: number_of_entries = 2
+        frame_type = 11 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/node/ValueNode ]
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(java.math.BigDecimal);
+    descriptor: (Ljava/math/BigDecimal;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=2
+         0: aload_1
+         1: ifnonnull     9
+         4: aload_0
+         5: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         8: areturn
+         9: aload_0
+        10: getfield      #2                  // Field _cfgBigDecimalExact:Z
+        13: ifeq          21
+        16: aload_1
+        17: invokestatic  #23                 // Method com/fasterxml/jackson/databind/node/DecimalNode.valueOf:(Ljava/math/BigDecimal;)Lcom/fasterxml/jackson/databind/node/DecimalNode;
+        20: areturn
+        21: aload_1
+        22: invokevirtual #24                 // Method java/math/BigDecimal.signum:()I
+        25: ifne          32
+        28: getstatic     #25                 // Field com/fasterxml/jackson/databind/node/DecimalNode.ZERO:Lcom/fasterxml/jackson/databind/node/DecimalNode;
+        31: areturn
+        32: aload_1
+        33: invokevirtual #26                 // Method java/math/BigDecimal.stripTrailingZeros:()Ljava/math/BigDecimal;
+        36: astore_1
+        37: goto          41
+        40: astore_2
+        41: aload_1
+        42: invokestatic  #23                 // Method com/fasterxml/jackson/databind/node/DecimalNode.valueOf:(Ljava/math/BigDecimal;)Lcom/fasterxml/jackson/databind/node/DecimalNode;
+        45: areturn
+      Exception table:
+         from    to  target type
+            32    37    40   Class java/lang/ArithmeticException
+      LineNumberTable:
+        line 259: 0
+        line 260: 4
+        line 267: 9
+        line 268: 16
+        line 281: 21
+        line 282: 28
+        line 288: 32
+        line 292: 37
+        line 289: 40
+        line 293: 41
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      46     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      46     1     v   Ljava/math/BigDecimal;
+      StackMapTable: number_of_entries = 5
+        frame_type = 9 /* same */
+        frame_type = 11 /* same */
+        frame_type = 10 /* same */
+        frame_type = 71 /* same_locals_1_stack_item */
+          stack = [ class java/lang/ArithmeticException ]
+        frame_type = 0 /* same */
+
+  public com.fasterxml.jackson.databind.node.TextNode textNode(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/TextNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_1
+         1: invokestatic  #28                 // Method com/fasterxml/jackson/databind/node/TextNode.valueOf:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/TextNode;
+         4: areturn
+      LineNumberTable:
+        line 307: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       5     1  text   Ljava/lang/String;
+
+  public com.fasterxml.jackson.databind.node.BinaryNode binaryNode(byte[]);
+    descriptor: ([B)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_1
+         1: invokestatic  #29                 // Method com/fasterxml/jackson/databind/node/BinaryNode.valueOf:([B)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+         4: areturn
+      LineNumberTable:
+        line 315: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       5     1  data   [B
+
+  public com.fasterxml.jackson.databind.node.BinaryNode binaryNode(byte[], int, int);
+    descriptor: ([BII)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_1
+         1: iload_2
+         2: iload_3
+         3: invokestatic  #30                 // Method com/fasterxml/jackson/databind/node/BinaryNode.valueOf:([BII)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+         6: areturn
+      LineNumberTable:
+        line 324: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       7     1  data   [B
+            0       7     2 offset   I
+            0       7     3 length   I
+
+  public com.fasterxml.jackson.databind.node.ArrayNode arrayNode();
+    descriptor: ()Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #31                 // class com/fasterxml/jackson/databind/node/ArrayNode
+         3: dup
+         4: aload_0
+         5: invokespecial #32                 // Method com/fasterxml/jackson/databind/node/ArrayNode."<init>":(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)V
+         8: areturn
+      LineNumberTable:
+        line 337: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ArrayNode arrayNode(int);
+    descriptor: (I)Lcom/fasterxml/jackson/databind/node/ArrayNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: new           #31                 // class com/fasterxml/jackson/databind/node/ArrayNode
+         3: dup
+         4: aload_0
+         5: iload_1
+         6: invokespecial #33                 // Method com/fasterxml/jackson/databind/node/ArrayNode."<init>":(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;I)V
+         9: areturn
+      LineNumberTable:
+        line 345: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      10     1 capacity   I
+
+  public com.fasterxml.jackson.databind.node.ObjectNode objectNode();
+    descriptor: ()Lcom/fasterxml/jackson/databind/node/ObjectNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: new           #34                 // class com/fasterxml/jackson/databind/node/ObjectNode
+         3: dup
+         4: aload_0
+         5: invokespecial #35                 // Method com/fasterxml/jackson/databind/node/ObjectNode."<init>":(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)V
+         8: areturn
+      LineNumberTable:
+        line 351: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode pojoNode(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: new           #36                 // class com/fasterxml/jackson/databind/node/POJONode
+         3: dup
+         4: aload_1
+         5: invokespecial #37                 // Method com/fasterxml/jackson/databind/node/POJONode."<init>":(Ljava/lang/Object;)V
+         8: areturn
+      LineNumberTable:
+        line 360: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       9     1  pojo   Ljava/lang/Object;
+
+  public com.fasterxml.jackson.databind.node.ValueNode rawValueNode(com.fasterxml.jackson.databind.util.RawValue);
+    descriptor: (Lcom/fasterxml/jackson/databind/util/RawValue;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: new           #36                 // class com/fasterxml/jackson/databind/node/POJONode
+         3: dup
+         4: aload_1
+         5: invokespecial #37                 // Method com/fasterxml/jackson/databind/node/POJONode."<init>":(Ljava/lang/Object;)V
+         8: areturn
+      LineNumberTable:
+        line 364: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0       9     1 value   Lcom/fasterxml/jackson/databind/util/RawValue;
+
+  protected boolean _inIntRange(long);
+    descriptor: (J)Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=4, locals=6, args_size=2
+         0: lload_1
+         1: l2i
+         2: istore_3
+         3: iload_3
+         4: i2l
+         5: lstore        4
+         7: lload         4
+         9: lload_1
+        10: lcmp
+        11: ifne          18
+        14: iconst_1
+        15: goto          19
+        18: iconst_0
+        19: ireturn
+      LineNumberTable:
+        line 375: 0
+        line 376: 3
+        line 377: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+            0      20     1     l   J
+            3      17     3     i   I
+            7      13     4    l2   J
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 18
+          locals = [ int, long ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public com.fasterxml.jackson.databind.node.ValueNode binaryNode(byte[], int, int);
+    descriptor: ([BII)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: iload_3
+         4: invokevirtual #38                 // Method binaryNode:([BII)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+         7: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode binaryNode(byte[]);
+    descriptor: ([B)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #39                 // Method binaryNode:([B)Lcom/fasterxml/jackson/databind/node/BinaryNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode textNode(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #40                 // Method textNode:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/node/TextNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(double);
+    descriptor: (D)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: dload_1
+         2: invokevirtual #41                 // Method numberNode:(D)Lcom/fasterxml/jackson/databind/node/NumericNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(float);
+    descriptor: (F)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: fload_1
+         2: invokevirtual #42                 // Method numberNode:(F)Lcom/fasterxml/jackson/databind/node/NumericNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(long);
+    descriptor: (J)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: lload_1
+         2: invokevirtual #43                 // Method numberNode:(J)Lcom/fasterxml/jackson/databind/node/NumericNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(int);
+    descriptor: (I)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #44                 // Method numberNode:(I)Lcom/fasterxml/jackson/databind/node/NumericNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(short);
+    descriptor: (S)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #45                 // Method numberNode:(S)Lcom/fasterxml/jackson/databind/node/NumericNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode numberNode(byte);
+    descriptor: (B)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #46                 // Method numberNode:(B)Lcom/fasterxml/jackson/databind/node/NumericNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode nullNode();
+    descriptor: ()Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #11                 // Method nullNode:()Lcom/fasterxml/jackson/databind/node/NullNode;
+         4: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  public com.fasterxml.jackson.databind.node.ValueNode booleanNode(boolean);
+    descriptor: (Z)Lcom/fasterxml/jackson/databind/node/ValueNode;
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #47                 // Method booleanNode:(Z)Lcom/fasterxml/jackson/databind/node/BooleanNode;
+         5: areturn
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=0, args_size=0
+         0: new           #48                 // class com/fasterxml/jackson/databind/node/JsonNodeFactory
+         3: dup
+         4: iconst_0
+         5: invokespecial #3                  // Method "<init>":(Z)V
+         8: putstatic     #5                  // Field decimalsNormalized:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+        11: new           #48                 // class com/fasterxml/jackson/databind/node/JsonNodeFactory
+        14: dup
+        15: iconst_1
+        16: invokespecial #3                  // Method "<init>":(Z)V
+        19: putstatic     #4                  // Field decimalsAsIs:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+        22: getstatic     #5                  // Field decimalsNormalized:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+        25: putstatic     #49                 // Field instance:Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+        28: return
+      LineNumberTable:
+        line 25: 0
+        line 27: 11
+        line 35: 22
+}
+SourceFile: "JsonNodeFactory.java"

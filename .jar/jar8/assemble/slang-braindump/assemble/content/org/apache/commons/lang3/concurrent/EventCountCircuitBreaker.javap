@@ -1,0 +1,800 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.class
+  Last modified May 29, 2022; size 7097 bytes
+  SHA-256 checksum 2392ff395b92546dbf682007de6ab5cf636188ec626bf9d6a93770d7690f9356
+  Compiled from "EventCountCircuitBreaker.java"
+public class org.apache.commons.lang3.concurrent.EventCountCircuitBreaker extends org.apache.commons.lang3.concurrent.AbstractCircuitBreaker<java.lang.Integer>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #51                         // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker
+  super_class: #52                        // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker
+  interfaces: 0, fields: 6, methods: 21, attributes: 3
+Constant pool:
+    #1 = Methodref          #52.#133      // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker."<init>":()V
+    #2 = Class              #134          // java/util/concurrent/atomic/AtomicReference
+    #3 = Class              #135          // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData
+    #4 = Methodref          #3.#136       // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData."<init>":(IJ)V
+    #5 = Methodref          #2.#137       // java/util/concurrent/atomic/AtomicReference."<init>":(Ljava/lang/Object;)V
+    #6 = Fieldref           #51.#138      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.checkIntervalData:Ljava/util/concurrent/atomic/AtomicReference;
+    #7 = Fieldref           #51.#139      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.openingThreshold:I
+    #8 = Methodref          #140.#141     // java/util/concurrent/TimeUnit.toNanos:(J)J
+    #9 = Fieldref           #51.#142      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.openingInterval:J
+   #10 = Fieldref           #51.#143      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.closingThreshold:I
+   #11 = Fieldref           #51.#144      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.closingInterval:J
+   #12 = Methodref          #51.#145      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker."<init>":(IJLjava/util/concurrent/TimeUnit;IJLjava/util/concurrent/TimeUnit;)V
+   #13 = Methodref          #51.#146      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker."<init>":(IJLjava/util/concurrent/TimeUnit;I)V
+   #14 = Methodref          #51.#147      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.performStateCheck:(I)Z
+   #15 = Methodref          #49.#148      // java/lang/Integer.intValue:()I
+   #16 = Methodref          #49.#149      // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #17 = Methodref          #51.#150      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.incrementAndCheckState:(Ljava/lang/Integer;)Z
+   #18 = Methodref          #52.#151      // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker.open:()V
+   #19 = Methodref          #51.#152      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.now:()J
+   #20 = Methodref          #2.#153       // java/util/concurrent/atomic/AtomicReference.set:(Ljava/lang/Object;)V
+   #21 = Methodref          #52.#154      // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker.close:()V
+   #22 = Fieldref           #51.#155      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.state:Ljava/util/concurrent/atomic/AtomicReference;
+   #23 = Methodref          #2.#156       // java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+   #24 = Class              #157          // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State
+   #25 = Methodref          #51.#158      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.nextCheckIntervalData:(ILorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;J)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+   #26 = Methodref          #51.#159      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.updateCheckIntervalData:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+   #27 = Methodref          #51.#160      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.stateStrategy:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;
+   #28 = Methodref          #39.#161      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy.isStateTransition:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+   #29 = Methodref          #24.#162      // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State.oppositeState:()Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+   #30 = Methodref          #51.#163      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.changeStateAndStartNewCheckInterval:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)V
+   #31 = Methodref          #51.#164      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.isOpen:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Z
+   #32 = Methodref          #2.#165       // java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+   #33 = Methodref          #51.#166      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.changeState:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)V
+   #34 = Methodref          #39.#167      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy.isCheckIntervalFinished:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;J)Z
+   #35 = Methodref          #3.#168       // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData.increment:(I)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+   #36 = Methodref          #169.#170     // java/lang/System.nanoTime:()J
+   #37 = Fieldref           #51.#171      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.STRATEGY_MAP:Ljava/util/Map;
+   #38 = InterfaceMethodref #172.#173     // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #39 = Class              #174          // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy
+   #40 = Class              #175          // java/util/EnumMap
+   #41 = Methodref          #40.#176      // java/util/EnumMap."<init>":(Ljava/lang/Class;)V
+   #42 = Fieldref           #24.#177      // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State.CLOSED:Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+   #43 = Class              #178          // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyClosed
+   #44 = Methodref          #43.#179      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyClosed."<init>":(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1;)V
+   #45 = InterfaceMethodref #172.#180     // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #46 = Fieldref           #24.#181      // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State.OPEN:Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+   #47 = Class              #182          // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyOpen
+   #48 = Methodref          #47.#179      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyOpen."<init>":(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1;)V
+   #49 = Class              #183          // java/lang/Integer
+   #50 = Methodref          #51.#184      // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker.createStrategyMap:()Ljava/util/Map;
+   #51 = Class              #185          // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker
+   #52 = Class              #186          // org/apache/commons/lang3/concurrent/AbstractCircuitBreaker
+   #53 = Class              #187          // org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1
+   #54 = Utf8               InnerClasses
+   #55 = Utf8               StateStrategyOpen
+   #56 = Utf8               StateStrategyClosed
+   #57 = Utf8               StateStrategy
+   #58 = Utf8               CheckIntervalData
+   #59 = Utf8               STRATEGY_MAP
+   #60 = Utf8               Ljava/util/Map;
+   #61 = Utf8               Signature
+   #62 = Utf8               State
+   #63 = Utf8               Ljava/util/Map<Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;>;
+   #64 = Utf8               checkIntervalData
+   #65 = Utf8               Ljava/util/concurrent/atomic/AtomicReference;
+   #66 = Utf8               Ljava/util/concurrent/atomic/AtomicReference<Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;>;
+   #67 = Utf8               openingThreshold
+   #68 = Utf8               I
+   #69 = Utf8               openingInterval
+   #70 = Utf8               J
+   #71 = Utf8               closingThreshold
+   #72 = Utf8               closingInterval
+   #73 = Utf8               <init>
+   #74 = Utf8               (IJLjava/util/concurrent/TimeUnit;IJLjava/util/concurrent/TimeUnit;)V
+   #75 = Utf8               Code
+   #76 = Utf8               LineNumberTable
+   #77 = Utf8               LocalVariableTable
+   #78 = Utf8               this
+   #79 = Utf8               Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+   #80 = Utf8               openingUnit
+   #81 = Utf8               Ljava/util/concurrent/TimeUnit;
+   #82 = Utf8               closingUnit
+   #83 = Utf8               (IJLjava/util/concurrent/TimeUnit;I)V
+   #84 = Utf8               checkInterval
+   #85 = Utf8               checkUnit
+   #86 = Utf8               (IJLjava/util/concurrent/TimeUnit;)V
+   #87 = Utf8               threshold
+   #88 = Utf8               getOpeningThreshold
+   #89 = Utf8               ()I
+   #90 = Utf8               getOpeningInterval
+   #91 = Utf8               ()J
+   #92 = Utf8               getClosingThreshold
+   #93 = Utf8               getClosingInterval
+   #94 = Utf8               checkState
+   #95 = Utf8               ()Z
+   #96 = Utf8               incrementAndCheckState
+   #97 = Utf8               (Ljava/lang/Integer;)Z
+   #98 = Utf8               increment
+   #99 = Utf8               Ljava/lang/Integer;
+  #100 = Utf8               open
+  #101 = Utf8               ()V
+  #102 = Utf8               close
+  #103 = Utf8               performStateCheck
+  #104 = Utf8               (I)Z
+  #105 = Utf8               time
+  #106 = Utf8               currentData
+  #107 = Utf8               Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+  #108 = Utf8               nextData
+  #109 = Utf8               currentState
+  #110 = Utf8               Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+  #111 = Utf8               StackMapTable
+  #112 = Utf8               updateCheckIntervalData
+  #113 = Utf8               (Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+  #114 = Utf8               changeStateAndStartNewCheckInterval
+  #115 = Utf8               (Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)V
+  #116 = Utf8               newState
+  #117 = Utf8               nextCheckIntervalData
+  #118 = Utf8               (ILorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;J)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+  #119 = Utf8               now
+  #120 = Utf8               stateStrategy
+  #121 = Utf8               (Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;
+  #122 = Utf8               state
+  #123 = Utf8               createStrategyMap
+  #124 = Utf8               ()Ljava/util/Map;
+  #125 = Utf8               map
+  #126 = Utf8               LocalVariableTypeTable
+  #127 = Utf8               ()Ljava/util/Map<Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;>;
+  #128 = Utf8               (Ljava/lang/Object;)Z
+  #129 = Utf8               <clinit>
+  #130 = Utf8               Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker<Ljava/lang/Integer;>;
+  #131 = Utf8               SourceFile
+  #132 = Utf8               EventCountCircuitBreaker.java
+  #133 = NameAndType        #73:#101      // "<init>":()V
+  #134 = Utf8               java/util/concurrent/atomic/AtomicReference
+  #135 = Utf8               org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData
+  #136 = NameAndType        #73:#188      // "<init>":(IJ)V
+  #137 = NameAndType        #73:#189      // "<init>":(Ljava/lang/Object;)V
+  #138 = NameAndType        #64:#65       // checkIntervalData:Ljava/util/concurrent/atomic/AtomicReference;
+  #139 = NameAndType        #67:#68       // openingThreshold:I
+  #140 = Class              #190          // java/util/concurrent/TimeUnit
+  #141 = NameAndType        #191:#192     // toNanos:(J)J
+  #142 = NameAndType        #69:#70       // openingInterval:J
+  #143 = NameAndType        #71:#68       // closingThreshold:I
+  #144 = NameAndType        #72:#70       // closingInterval:J
+  #145 = NameAndType        #73:#74       // "<init>":(IJLjava/util/concurrent/TimeUnit;IJLjava/util/concurrent/TimeUnit;)V
+  #146 = NameAndType        #73:#83       // "<init>":(IJLjava/util/concurrent/TimeUnit;I)V
+  #147 = NameAndType        #103:#104     // performStateCheck:(I)Z
+  #148 = NameAndType        #193:#89      // intValue:()I
+  #149 = NameAndType        #194:#195     // valueOf:(I)Ljava/lang/Integer;
+  #150 = NameAndType        #96:#97       // incrementAndCheckState:(Ljava/lang/Integer;)Z
+  #151 = NameAndType        #100:#101     // open:()V
+  #152 = NameAndType        #119:#91      // now:()J
+  #153 = NameAndType        #196:#189     // set:(Ljava/lang/Object;)V
+  #154 = NameAndType        #102:#101     // close:()V
+  #155 = NameAndType        #122:#65      // state:Ljava/util/concurrent/atomic/AtomicReference;
+  #156 = NameAndType        #197:#198     // get:()Ljava/lang/Object;
+  #157 = Utf8               org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State
+  #158 = NameAndType        #117:#118     // nextCheckIntervalData:(ILorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;J)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+  #159 = NameAndType        #112:#113     // updateCheckIntervalData:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+  #160 = NameAndType        #120:#121     // stateStrategy:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;
+  #161 = NameAndType        #199:#200     // isStateTransition:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+  #162 = NameAndType        #201:#202     // oppositeState:()Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+  #163 = NameAndType        #114:#115     // changeStateAndStartNewCheckInterval:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)V
+  #164 = NameAndType        #203:#204     // isOpen:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Z
+  #165 = NameAndType        #205:#206     // compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #166 = NameAndType        #207:#115     // changeState:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)V
+  #167 = NameAndType        #208:#209     // isCheckIntervalFinished:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;J)Z
+  #168 = NameAndType        #98:#210      // increment:(I)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+  #169 = Class              #211          // java/lang/System
+  #170 = NameAndType        #212:#91      // nanoTime:()J
+  #171 = NameAndType        #59:#60       // STRATEGY_MAP:Ljava/util/Map;
+  #172 = Class              #213          // java/util/Map
+  #173 = NameAndType        #197:#214     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #174 = Utf8               org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy
+  #175 = Utf8               java/util/EnumMap
+  #176 = NameAndType        #73:#215      // "<init>":(Ljava/lang/Class;)V
+  #177 = NameAndType        #216:#110     // CLOSED:Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+  #178 = Utf8               org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyClosed
+  #179 = NameAndType        #73:#217      // "<init>":(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1;)V
+  #180 = NameAndType        #218:#219     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #181 = NameAndType        #220:#110     // OPEN:Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+  #182 = Utf8               org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyOpen
+  #183 = Utf8               java/lang/Integer
+  #184 = NameAndType        #123:#124     // createStrategyMap:()Ljava/util/Map;
+  #185 = Utf8               org/apache/commons/lang3/concurrent/EventCountCircuitBreaker
+  #186 = Utf8               org/apache/commons/lang3/concurrent/AbstractCircuitBreaker
+  #187 = Utf8               org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1
+  #188 = Utf8               (IJ)V
+  #189 = Utf8               (Ljava/lang/Object;)V
+  #190 = Utf8               java/util/concurrent/TimeUnit
+  #191 = Utf8               toNanos
+  #192 = Utf8               (J)J
+  #193 = Utf8               intValue
+  #194 = Utf8               valueOf
+  #195 = Utf8               (I)Ljava/lang/Integer;
+  #196 = Utf8               set
+  #197 = Utf8               get
+  #198 = Utf8               ()Ljava/lang/Object;
+  #199 = Utf8               isStateTransition
+  #200 = Utf8               (Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+  #201 = Utf8               oppositeState
+  #202 = Utf8               ()Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+  #203 = Utf8               isOpen
+  #204 = Utf8               (Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Z
+  #205 = Utf8               compareAndSet
+  #206 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Z
+  #207 = Utf8               changeState
+  #208 = Utf8               isCheckIntervalFinished
+  #209 = Utf8               (Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;J)Z
+  #210 = Utf8               (I)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+  #211 = Utf8               java/lang/System
+  #212 = Utf8               nanoTime
+  #213 = Utf8               java/util/Map
+  #214 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #215 = Utf8               (Ljava/lang/Class;)V
+  #216 = Utf8               CLOSED
+  #217 = Utf8               (Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1;)V
+  #218 = Utf8               put
+  #219 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #220 = Utf8               OPEN
+{
+  private static final java.util.Map<org.apache.commons.lang3.concurrent.AbstractCircuitBreaker$State, org.apache.commons.lang3.concurrent.EventCountCircuitBreaker$StateStrategy> STRATEGY_MAP;
+    descriptor: Ljava/util/Map;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    Signature: #63                          // Ljava/util/Map<Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;>;
+
+  private final java.util.concurrent.atomic.AtomicReference<org.apache.commons.lang3.concurrent.EventCountCircuitBreaker$CheckIntervalData> checkIntervalData;
+    descriptor: Ljava/util/concurrent/atomic/AtomicReference;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #66                          // Ljava/util/concurrent/atomic/AtomicReference<Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;>;
+
+  private final int openingThreshold;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final long openingInterval;
+    descriptor: J
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final int closingThreshold;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final long closingInterval;
+    descriptor: J
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  public org.apache.commons.lang3.concurrent.EventCountCircuitBreaker(int, long, java.util.concurrent.TimeUnit, int, long, java.util.concurrent.TimeUnit);
+    descriptor: (IJLjava/util/concurrent/TimeUnit;IJLjava/util/concurrent/TimeUnit;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=8, locals=9, args_size=7
+         0: aload_0
+         1: invokespecial #1                  // Method org/apache/commons/lang3/concurrent/AbstractCircuitBreaker."<init>":()V
+         4: aload_0
+         5: new           #2                  // class java/util/concurrent/atomic/AtomicReference
+         8: dup
+         9: new           #3                  // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData
+        12: dup
+        13: iconst_0
+        14: lconst_0
+        15: invokespecial #4                  // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData."<init>":(IJ)V
+        18: invokespecial #5                  // Method java/util/concurrent/atomic/AtomicReference."<init>":(Ljava/lang/Object;)V
+        21: putfield      #6                  // Field checkIntervalData:Ljava/util/concurrent/atomic/AtomicReference;
+        24: aload_0
+        25: iload_1
+        26: putfield      #7                  // Field openingThreshold:I
+        29: aload_0
+        30: aload         4
+        32: lload_2
+        33: invokevirtual #8                  // Method java/util/concurrent/TimeUnit.toNanos:(J)J
+        36: putfield      #9                  // Field openingInterval:J
+        39: aload_0
+        40: iload         5
+        42: putfield      #10                 // Field closingThreshold:I
+        45: aload_0
+        46: aload         8
+        48: lload         6
+        50: invokevirtual #8                  // Method java/util/concurrent/TimeUnit.toNanos:(J)J
+        53: putfield      #11                 // Field closingInterval:J
+        56: return
+      LineNumberTable:
+        line 177: 0
+        line 178: 4
+        line 179: 24
+        line 180: 29
+        line 181: 39
+        line 182: 45
+        line 183: 56
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      57     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+            0      57     1 openingThreshold   I
+            0      57     2 openingInterval   J
+            0      57     4 openingUnit   Ljava/util/concurrent/TimeUnit;
+            0      57     5 closingThreshold   I
+            0      57     6 closingInterval   J
+            0      57     8 closingUnit   Ljava/util/concurrent/TimeUnit;
+
+  public org.apache.commons.lang3.concurrent.EventCountCircuitBreaker(int, long, java.util.concurrent.TimeUnit, int);
+    descriptor: (IJLjava/util/concurrent/TimeUnit;I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=9, locals=6, args_size=5
+         0: aload_0
+         1: iload_1
+         2: lload_2
+         3: aload         4
+         5: iload         5
+         7: lload_2
+         8: aload         4
+        10: invokespecial #12                 // Method "<init>":(IJLjava/util/concurrent/TimeUnit;IJLjava/util/concurrent/TimeUnit;)V
+        13: return
+      LineNumberTable:
+        line 200: 0
+        line 202: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+            0      14     1 openingThreshold   I
+            0      14     2 checkInterval   J
+            0      14     4 checkUnit   Ljava/util/concurrent/TimeUnit;
+            0      14     5 closingThreshold   I
+
+  public org.apache.commons.lang3.concurrent.EventCountCircuitBreaker(int, long, java.util.concurrent.TimeUnit);
+    descriptor: (IJLjava/util/concurrent/TimeUnit;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=5, args_size=4
+         0: aload_0
+         1: iload_1
+         2: lload_2
+         3: aload         4
+         5: iload_1
+         6: invokespecial #13                 // Method "<init>":(IJLjava/util/concurrent/TimeUnit;I)V
+         9: return
+      LineNumberTable:
+        line 215: 0
+        line 216: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+            0      10     1 threshold   I
+            0      10     2 checkInterval   J
+            0      10     4 checkUnit   Ljava/util/concurrent/TimeUnit;
+
+  public int getOpeningThreshold();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #7                  // Field openingThreshold:I
+         4: ireturn
+      LineNumberTable:
+        line 226: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  public long getOpeningInterval();
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #9                  // Field openingInterval:J
+         4: lreturn
+      LineNumberTable:
+        line 235: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  public int getClosingThreshold();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field closingThreshold:I
+         4: ireturn
+      LineNumberTable:
+        line 246: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  public long getClosingInterval();
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #11                 // Field closingInterval:J
+         4: lreturn
+      LineNumberTable:
+        line 255: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  public boolean checkState();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_0
+         2: invokespecial #14                 // Method performStateCheck:(I)Z
+         5: ireturn
+      LineNumberTable:
+        line 265: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  public boolean incrementAndCheckState(java.lang.Integer);
+    descriptor: (Ljava/lang/Integer;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #15                 // Method java/lang/Integer.intValue:()I
+         5: invokespecial #14                 // Method performStateCheck:(I)Z
+         8: ireturn
+      LineNumberTable:
+        line 273: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+            0       9     1 increment   Ljava/lang/Integer;
+
+  public boolean incrementAndCheckState();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: invokestatic  #16                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+         5: invokevirtual #17                 // Method incrementAndCheckState:(Ljava/lang/Integer;)Z
+         8: ireturn
+      LineNumberTable:
+        line 285: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  public void open();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #18                 // Method org/apache/commons/lang3/concurrent/AbstractCircuitBreaker.open:()V
+         4: aload_0
+         5: getfield      #6                  // Field checkIntervalData:Ljava/util/concurrent/atomic/AtomicReference;
+         8: new           #3                  // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData
+        11: dup
+        12: iconst_0
+        13: aload_0
+        14: invokevirtual #19                 // Method now:()J
+        17: invokespecial #4                  // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData."<init>":(IJ)V
+        20: invokevirtual #20                 // Method java/util/concurrent/atomic/AtomicReference.set:(Ljava/lang/Object;)V
+        23: return
+      LineNumberTable:
+        line 296: 0
+        line 297: 4
+        line 298: 23
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  public void close();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #21                 // Method org/apache/commons/lang3/concurrent/AbstractCircuitBreaker.close:()V
+         4: aload_0
+         5: getfield      #6                  // Field checkIntervalData:Ljava/util/concurrent/atomic/AtomicReference;
+         8: new           #3                  // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData
+        11: dup
+        12: iconst_0
+        13: aload_0
+        14: invokevirtual #19                 // Method now:()J
+        17: invokespecial #4                  // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData."<init>":(IJ)V
+        20: invokevirtual #20                 // Method java/util/concurrent/atomic/AtomicReference.set:(Ljava/lang/Object;)V
+        23: return
+      LineNumberTable:
+        line 308: 0
+        line 309: 4
+        line 310: 23
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  private boolean performStateCheck(int);
+    descriptor: (I)Z
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=7, args_size=2
+         0: aload_0
+         1: invokevirtual #19                 // Method now:()J
+         4: lstore        5
+         6: aload_0
+         7: getfield      #22                 // Field state:Ljava/util/concurrent/atomic/AtomicReference;
+        10: invokevirtual #23                 // Method java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+        13: checkcast     #24                 // class org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State
+        16: astore        4
+        18: aload_0
+        19: getfield      #6                  // Field checkIntervalData:Ljava/util/concurrent/atomic/AtomicReference;
+        22: invokevirtual #23                 // Method java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+        25: checkcast     #3                  // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData
+        28: astore_2
+        29: aload_0
+        30: iload_1
+        31: aload_2
+        32: aload         4
+        34: lload         5
+        36: invokespecial #25                 // Method nextCheckIntervalData:(ILorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;J)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+        39: astore_3
+        40: aload_0
+        41: aload_2
+        42: aload_3
+        43: invokespecial #26                 // Method updateCheckIntervalData:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+        46: ifeq          0
+        49: aload         4
+        51: invokestatic  #27                 // Method stateStrategy:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;
+        54: aload_0
+        55: aload_2
+        56: aload_3
+        57: invokevirtual #28                 // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy.isStateTransition:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+        60: ifeq          76
+        63: aload         4
+        65: invokevirtual #29                 // Method org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State.oppositeState:()Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+        68: astore        4
+        70: aload_0
+        71: aload         4
+        73: invokespecial #30                 // Method changeStateAndStartNewCheckInterval:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)V
+        76: aload         4
+        78: invokestatic  #31                 // Method isOpen:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Z
+        81: ifne          88
+        84: iconst_1
+        85: goto          89
+        88: iconst_0
+        89: ireturn
+      LineNumberTable:
+        line 325: 0
+        line 326: 6
+        line 327: 18
+        line 328: 29
+        line 329: 40
+        line 333: 49
+        line 334: 63
+        line 335: 70
+        line 337: 76
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            6      34     5  time   J
+            0      90     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+            0      90     1 increment   I
+           29      61     2 currentData   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+           40      50     3 nextData   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+           18      72     4 currentState   Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+      StackMapTable: number_of_entries = 4
+        frame_type = 0 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 75
+          locals = [ class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData, class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData, class org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State ]
+        frame_type = 11 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  private boolean updateCheckIntervalData(org.apache.commons.lang3.concurrent.EventCountCircuitBreaker$CheckIntervalData, org.apache.commons.lang3.concurrent.EventCountCircuitBreaker$CheckIntervalData);
+    descriptor: (Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;)Z
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_1
+         1: aload_2
+         2: if_acmpeq     17
+         5: aload_0
+         6: getfield      #6                  // Field checkIntervalData:Ljava/util/concurrent/atomic/AtomicReference;
+         9: aload_1
+        10: aload_2
+        11: invokevirtual #32                 // Method java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        14: ifeq          21
+        17: iconst_1
+        18: goto          22
+        21: iconst_0
+        22: ireturn
+      LineNumberTable:
+        line 352: 0
+        line 353: 11
+        line 352: 22
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+            0      23     1 currentData   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+            0      23     2 nextData   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+      StackMapTable: number_of_entries = 3
+        frame_type = 17 /* same */
+        frame_type = 3 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  private void changeStateAndStartNewCheckInterval(org.apache.commons.lang3.concurrent.AbstractCircuitBreaker$State);
+    descriptor: (Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #33                 // Method changeState:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)V
+         5: aload_0
+         6: getfield      #6                  // Field checkIntervalData:Ljava/util/concurrent/atomic/AtomicReference;
+         9: new           #3                  // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData
+        12: dup
+        13: iconst_0
+        14: aload_0
+        15: invokevirtual #19                 // Method now:()J
+        18: invokespecial #4                  // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData."<init>":(IJ)V
+        21: invokevirtual #20                 // Method java/util/concurrent/atomic/AtomicReference.set:(Ljava/lang/Object;)V
+        24: return
+      LineNumberTable:
+        line 363: 0
+        line 364: 5
+        line 365: 24
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+            0      25     1 newState   Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+
+  private org.apache.commons.lang3.concurrent.EventCountCircuitBreaker$CheckIntervalData nextCheckIntervalData(int, org.apache.commons.lang3.concurrent.EventCountCircuitBreaker$CheckIntervalData, org.apache.commons.lang3.concurrent.AbstractCircuitBreaker$State, long);
+    descriptor: (ILorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;J)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=5, locals=7, args_size=5
+         0: aload_3
+         1: invokestatic  #27                 // Method stateStrategy:(Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;
+         4: aload_0
+         5: aload_2
+         6: lload         4
+         8: invokevirtual #34                 // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy.isCheckIntervalFinished:(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;J)Z
+        11: ifeq          29
+        14: new           #3                  // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData
+        17: dup
+        18: iload_1
+        19: lload         4
+        21: invokespecial #4                  // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData."<init>":(IJ)V
+        24: astore        6
+        26: goto          36
+        29: aload_2
+        30: iload_1
+        31: invokevirtual #35                 // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData.increment:(I)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+        34: astore        6
+        36: aload         6
+        38: areturn
+      LineNumberTable:
+        line 381: 0
+        line 382: 14
+        line 384: 29
+        line 386: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26       3     6 nextData   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+            0      39     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+            0      39     1 increment   I
+            0      39     2 currentData   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+            0      39     3 currentState   Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+            0      39     4  time   J
+           36       3     6 nextData   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData;
+      StackMapTable: number_of_entries = 2
+        frame_type = 29 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 6
+          locals = [ class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData ]
+
+  long now();
+    descriptor: ()J
+    flags: (0x0000)
+    Code:
+      stack=2, locals=1, args_size=1
+         0: invokestatic  #36                 // Method java/lang/System.nanoTime:()J
+         3: lreturn
+      LineNumberTable:
+        line 396: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  private static org.apache.commons.lang3.concurrent.EventCountCircuitBreaker$StateStrategy stateStrategy(org.apache.commons.lang3.concurrent.AbstractCircuitBreaker$State);
+    descriptor: (Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;)Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #37                 // Field STRATEGY_MAP:Ljava/util/Map;
+         3: aload_0
+         4: invokeinterface #38,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+         9: checkcast     #39                 // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy
+        12: areturn
+      LineNumberTable:
+        line 407: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0 state   Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+
+  private static java.util.Map<org.apache.commons.lang3.concurrent.AbstractCircuitBreaker$State, org.apache.commons.lang3.concurrent.EventCountCircuitBreaker$StateStrategy> createStrategyMap();
+    descriptor: ()Ljava/util/Map;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=5, locals=1, args_size=0
+         0: new           #40                 // class java/util/EnumMap
+         3: dup
+         4: ldc           #24                 // class org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State
+         6: invokespecial #41                 // Method java/util/EnumMap."<init>":(Ljava/lang/Class;)V
+         9: astore_0
+        10: aload_0
+        11: getstatic     #42                 // Field org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State.CLOSED:Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+        14: new           #43                 // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyClosed
+        17: dup
+        18: aconst_null
+        19: invokespecial #44                 // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyClosed."<init>":(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1;)V
+        22: invokeinterface #45,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        27: pop
+        28: aload_0
+        29: getstatic     #46                 // Field org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State.OPEN:Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;
+        32: new           #47                 // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyOpen
+        35: dup
+        36: aconst_null
+        37: invokespecial #48                 // Method org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyOpen."<init>":(Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1;)V
+        40: invokeinterface #45,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        45: pop
+        46: aload_0
+        47: areturn
+      LineNumberTable:
+        line 417: 0
+        line 418: 10
+        line 419: 28
+        line 420: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           10      38     0   map   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           10      38     0   map   Ljava/util/Map<Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;>;
+    Signature: #127                         // ()Ljava/util/Map<Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State;Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy;>;
+
+  public boolean incrementAndCheckState(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #49                 // class java/lang/Integer
+         5: invokevirtual #17                 // Method incrementAndCheckState:(Ljava/lang/Integer;)Z
+         8: ireturn
+      LineNumberTable:
+        line 138: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lorg/apache/commons/lang3/concurrent/EventCountCircuitBreaker;
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: invokestatic  #50                 // Method createStrategyMap:()Ljava/util/Map;
+         3: putstatic     #37                 // Field STRATEGY_MAP:Ljava/util/Map;
+         6: return
+      LineNumberTable:
+        line 141: 0
+}
+Signature: #130                         // Lorg/apache/commons/lang3/concurrent/AbstractCircuitBreaker<Ljava/lang/Integer;>;
+SourceFile: "EventCountCircuitBreaker.java"
+InnerClasses:
+  static #53;                             // class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$1
+  private static #55= #47 of #51;         // StateStrategyOpen=class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyOpen of class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker
+  private static #56= #43 of #51;         // StateStrategyClosed=class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategyClosed of class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker
+  private static abstract #57= #39 of #51; // StateStrategy=class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$StateStrategy of class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker
+  private static #58= #3 of #51;          // CheckIntervalData=class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker$CheckIntervalData of class org/apache/commons/lang3/concurrent/EventCountCircuitBreaker
+  protected static abstract #62= #24 of #52; // State=class org/apache/commons/lang3/concurrent/AbstractCircuitBreaker$State of class org/apache/commons/lang3/concurrent/AbstractCircuitBreaker

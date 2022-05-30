@@ -1,0 +1,1446 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.class
+  Last modified May 29, 2022; size 10446 bytes
+  SHA-256 checksum 658152187b2509a19adb94b71310c215c415917c40b097a3253eb31fae7cf427
+  Compiled from "ParHashSet.scala"
+public class scala.collection.parallel.mutable.ParHashSetCombiner$AddingFlatHashTable extends java.lang.Object implements scala.collection.mutable.FlatHashTable<T>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable
+  super_class: #5                         // java/lang/Object
+  interfaces: 1, fields: 7, methods: 52, attributes: 5
+Constant pool:
+    #1 = Utf8               scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable
+    #2 = Class              #1            // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable
+    #3 = Utf8               Ljava/lang/Object;Lscala/collection/mutable/FlatHashTable<TT;>;
+    #4 = Utf8               java/lang/Object
+    #5 = Class              #4            // java/lang/Object
+    #6 = Utf8               scala/collection/mutable/FlatHashTable
+    #7 = Class              #6            // scala/collection/mutable/FlatHashTable
+    #8 = Utf8               ParHashSet.scala
+    #9 = Utf8               scala/collection/mutable/FlatHashTable$Contents
+   #10 = Class              #9            // scala/collection/mutable/FlatHashTable$Contents
+   #11 = Utf8               Contents
+   #12 = Utf8               scala/collection/mutable/FlatHashTable$HashUtils
+   #13 = Class              #12           // scala/collection/mutable/FlatHashTable$HashUtils
+   #14 = Utf8               HashUtils
+   #15 = Utf8               scala/collection/parallel/mutable/ParHashSetCombiner
+   #16 = Class              #15           // scala/collection/parallel/mutable/ParHashSetCombiner
+   #17 = Utf8               AddingFlatHashTable
+   #18 = Utf8               _loadFactor
+   #19 = Utf8               I
+   #20 = Utf8               table
+   #21 = Utf8               [Ljava/lang/Object;
+   #22 = Utf8               tableSize
+   #23 = Utf8               threshold
+   #24 = Utf8               sizemap
+   #25 = Utf8               [I
+   #26 = Utf8               seedvalue
+   #27 = Utf8               $outer
+   #28 = Utf8               Lscala/collection/parallel/mutable/ParHashSetCombiner;
+   #29 = Utf8               capacity
+   #30 = Utf8               (I)I
+   #31 = Utf8               expectedSize
+   #32 = Utf8               capacity$
+   #33 = Utf8               (Lscala/collection/mutable/FlatHashTable;I)I
+   #34 = NameAndType        #32:#33       // capacity$:(Lscala/collection/mutable/FlatHashTable;I)I
+   #35 = InterfaceMethodref #7.#34        // scala/collection/mutable/FlatHashTable.capacity$:(Lscala/collection/mutable/FlatHashTable;I)I
+   #36 = Utf8               this
+   #37 = Utf8               Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+   #38 = Utf8               initialSize
+   #39 = Utf8               ()I
+   #40 = Utf8               initialSize$
+   #41 = Utf8               (Lscala/collection/mutable/FlatHashTable;)I
+   #42 = NameAndType        #40:#41       // initialSize$:(Lscala/collection/mutable/FlatHashTable;)I
+   #43 = InterfaceMethodref #7.#42        // scala/collection/mutable/FlatHashTable.initialSize$:(Lscala/collection/mutable/FlatHashTable;)I
+   #44 = Utf8               size
+   #45 = Utf8               size$
+   #46 = NameAndType        #45:#41       // size$:(Lscala/collection/mutable/FlatHashTable;)I
+   #47 = InterfaceMethodref #7.#46        // scala/collection/mutable/FlatHashTable.size$:(Lscala/collection/mutable/FlatHashTable;)I
+   #48 = Utf8               randomSeed
+   #49 = Utf8               randomSeed$
+   #50 = NameAndType        #49:#41       // randomSeed$:(Lscala/collection/mutable/FlatHashTable;)I
+   #51 = InterfaceMethodref #7.#50        // scala/collection/mutable/FlatHashTable.randomSeed$:(Lscala/collection/mutable/FlatHashTable;)I
+   #52 = Utf8               tableSizeSeed
+   #53 = Utf8               tableSizeSeed$
+   #54 = NameAndType        #53:#41       // tableSizeSeed$:(Lscala/collection/mutable/FlatHashTable;)I
+   #55 = InterfaceMethodref #7.#54        // scala/collection/mutable/FlatHashTable.tableSizeSeed$:(Lscala/collection/mutable/FlatHashTable;)I
+   #56 = Utf8               init
+   #57 = Utf8               (Ljava/io/ObjectInputStream;Lscala/Function1;)V
+   #58 = Utf8               (Ljava/io/ObjectInputStream;Lscala/Function1<TT;Lscala/runtime/BoxedUnit;>;)V
+   #59 = Utf8               in
+   #60 = Utf8               f
+   #61 = Utf8               init$
+   #62 = Utf8               (Lscala/collection/mutable/FlatHashTable;Ljava/io/ObjectInputStream;Lscala/Function1;)V
+   #63 = NameAndType        #61:#62       // init$:(Lscala/collection/mutable/FlatHashTable;Ljava/io/ObjectInputStream;Lscala/Function1;)V
+   #64 = InterfaceMethodref #7.#63        // scala/collection/mutable/FlatHashTable.init$:(Lscala/collection/mutable/FlatHashTable;Ljava/io/ObjectInputStream;Lscala/Function1;)V
+   #65 = Utf8               Ljava/io/ObjectInputStream;
+   #66 = Utf8               Lscala/Function1;
+   #67 = Utf8               serializeTo
+   #68 = Utf8               (Ljava/io/ObjectOutputStream;)V
+   #69 = Utf8               out
+   #70 = Utf8               serializeTo$
+   #71 = Utf8               (Lscala/collection/mutable/FlatHashTable;Ljava/io/ObjectOutputStream;)V
+   #72 = NameAndType        #70:#71       // serializeTo$:(Lscala/collection/mutable/FlatHashTable;Ljava/io/ObjectOutputStream;)V
+   #73 = InterfaceMethodref #7.#72        // scala/collection/mutable/FlatHashTable.serializeTo$:(Lscala/collection/mutable/FlatHashTable;Ljava/io/ObjectOutputStream;)V
+   #74 = Utf8               Ljava/io/ObjectOutputStream;
+   #75 = Utf8               findEntry
+   #76 = Utf8               (Ljava/lang/Object;)Lscala/Option;
+   #77 = Utf8               (TT;)Lscala/Option<TT;>;
+   #78 = Utf8               elem
+   #79 = Utf8               findEntry$
+   #80 = Utf8               (Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Lscala/Option;
+   #81 = NameAndType        #79:#80       // findEntry$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Lscala/Option;
+   #82 = InterfaceMethodref #7.#81        // scala/collection/mutable/FlatHashTable.findEntry$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Lscala/Option;
+   #83 = Utf8               Ljava/lang/Object;
+   #84 = Utf8               containsElem
+   #85 = Utf8               (Ljava/lang/Object;)Z
+   #86 = Utf8               (TT;)Z
+   #87 = Utf8               containsElem$
+   #88 = Utf8               (Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+   #89 = NameAndType        #87:#88       // containsElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+   #90 = InterfaceMethodref #7.#89        // scala/collection/mutable/FlatHashTable.containsElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+   #91 = Utf8               addElem
+   #92 = Utf8               addElem$
+   #93 = NameAndType        #92:#88       // addElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+   #94 = InterfaceMethodref #7.#93        // scala/collection/mutable/FlatHashTable.addElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+   #95 = Utf8               addEntry
+   #96 = Utf8               newEntry
+   #97 = Utf8               addEntry$
+   #98 = NameAndType        #97:#88       // addEntry$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+   #99 = InterfaceMethodref #7.#98        // scala/collection/mutable/FlatHashTable.addEntry$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+  #100 = Utf8               removeElem
+  #101 = Utf8               removeElem$
+  #102 = NameAndType        #101:#88      // removeElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+  #103 = InterfaceMethodref #7.#102       // scala/collection/mutable/FlatHashTable.removeElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+  #104 = Utf8               iterator
+  #105 = Utf8               ()Lscala/collection/Iterator;
+  #106 = Utf8               ()Lscala/collection/Iterator<TT;>;
+  #107 = Utf8               iterator$
+  #108 = Utf8               (Lscala/collection/mutable/FlatHashTable;)Lscala/collection/Iterator;
+  #109 = NameAndType        #107:#108     // iterator$:(Lscala/collection/mutable/FlatHashTable;)Lscala/collection/Iterator;
+  #110 = InterfaceMethodref #7.#109       // scala/collection/mutable/FlatHashTable.iterator$:(Lscala/collection/mutable/FlatHashTable;)Lscala/collection/Iterator;
+  #111 = Utf8               nnSizeMapAdd
+  #112 = Utf8               (I)V
+  #113 = Utf8               h
+  #114 = Utf8               nnSizeMapAdd$
+  #115 = Utf8               (Lscala/collection/mutable/FlatHashTable;I)V
+  #116 = NameAndType        #114:#115     // nnSizeMapAdd$:(Lscala/collection/mutable/FlatHashTable;I)V
+  #117 = InterfaceMethodref #7.#116       // scala/collection/mutable/FlatHashTable.nnSizeMapAdd$:(Lscala/collection/mutable/FlatHashTable;I)V
+  #118 = Utf8               nnSizeMapRemove
+  #119 = Utf8               nnSizeMapRemove$
+  #120 = NameAndType        #119:#115     // nnSizeMapRemove$:(Lscala/collection/mutable/FlatHashTable;I)V
+  #121 = InterfaceMethodref #7.#120       // scala/collection/mutable/FlatHashTable.nnSizeMapRemove$:(Lscala/collection/mutable/FlatHashTable;I)V
+  #122 = Utf8               nnSizeMapReset
+  #123 = Utf8               tableLength
+  #124 = Utf8               nnSizeMapReset$
+  #125 = NameAndType        #124:#115     // nnSizeMapReset$:(Lscala/collection/mutable/FlatHashTable;I)V
+  #126 = InterfaceMethodref #7.#125       // scala/collection/mutable/FlatHashTable.nnSizeMapReset$:(Lscala/collection/mutable/FlatHashTable;I)V
+  #127 = Utf8               totalSizeMapBuckets
+  #128 = Utf8               totalSizeMapBuckets$
+  #129 = NameAndType        #128:#41      // totalSizeMapBuckets$:(Lscala/collection/mutable/FlatHashTable;)I
+  #130 = InterfaceMethodref #7.#129       // scala/collection/mutable/FlatHashTable.totalSizeMapBuckets$:(Lscala/collection/mutable/FlatHashTable;)I
+  #131 = Utf8               calcSizeMapSize
+  #132 = Utf8               calcSizeMapSize$
+  #133 = NameAndType        #132:#33      // calcSizeMapSize$:(Lscala/collection/mutable/FlatHashTable;I)I
+  #134 = InterfaceMethodref #7.#133       // scala/collection/mutable/FlatHashTable.calcSizeMapSize$:(Lscala/collection/mutable/FlatHashTable;I)I
+  #135 = Utf8               sizeMapInit
+  #136 = Utf8               sizeMapInit$
+  #137 = NameAndType        #136:#115     // sizeMapInit$:(Lscala/collection/mutable/FlatHashTable;I)V
+  #138 = InterfaceMethodref #7.#137       // scala/collection/mutable/FlatHashTable.sizeMapInit$:(Lscala/collection/mutable/FlatHashTable;I)V
+  #139 = Utf8               sizeMapInitAndRebuild
+  #140 = Utf8               ()V
+  #141 = Utf8               sizeMapInitAndRebuild$
+  #142 = Utf8               (Lscala/collection/mutable/FlatHashTable;)V
+  #143 = NameAndType        #141:#142     // sizeMapInitAndRebuild$:(Lscala/collection/mutable/FlatHashTable;)V
+  #144 = InterfaceMethodref #7.#143       // scala/collection/mutable/FlatHashTable.sizeMapInitAndRebuild$:(Lscala/collection/mutable/FlatHashTable;)V
+  #145 = Utf8               printSizeMap
+  #146 = Utf8               printSizeMap$
+  #147 = NameAndType        #146:#142     // printSizeMap$:(Lscala/collection/mutable/FlatHashTable;)V
+  #148 = InterfaceMethodref #7.#147       // scala/collection/mutable/FlatHashTable.printSizeMap$:(Lscala/collection/mutable/FlatHashTable;)V
+  #149 = Utf8               printContents
+  #150 = Utf8               printContents$
+  #151 = NameAndType        #150:#142     // printContents$:(Lscala/collection/mutable/FlatHashTable;)V
+  #152 = InterfaceMethodref #7.#151       // scala/collection/mutable/FlatHashTable.printContents$:(Lscala/collection/mutable/FlatHashTable;)V
+  #153 = Utf8               sizeMapDisable
+  #154 = Utf8               sizeMapDisable$
+  #155 = NameAndType        #154:#142     // sizeMapDisable$:(Lscala/collection/mutable/FlatHashTable;)V
+  #156 = InterfaceMethodref #7.#155       // scala/collection/mutable/FlatHashTable.sizeMapDisable$:(Lscala/collection/mutable/FlatHashTable;)V
+  #157 = Utf8               isSizeMapDefined
+  #158 = Utf8               ()Z
+  #159 = Utf8               isSizeMapDefined$
+  #160 = Utf8               (Lscala/collection/mutable/FlatHashTable;)Z
+  #161 = NameAndType        #159:#160     // isSizeMapDefined$:(Lscala/collection/mutable/FlatHashTable;)Z
+  #162 = InterfaceMethodref #7.#161       // scala/collection/mutable/FlatHashTable.isSizeMapDefined$:(Lscala/collection/mutable/FlatHashTable;)Z
+  #163 = Utf8               alwaysInitSizeMap
+  #164 = Utf8               alwaysInitSizeMap$
+  #165 = NameAndType        #164:#160     // alwaysInitSizeMap$:(Lscala/collection/mutable/FlatHashTable;)Z
+  #166 = InterfaceMethodref #7.#165       // scala/collection/mutable/FlatHashTable.alwaysInitSizeMap$:(Lscala/collection/mutable/FlatHashTable;)Z
+  #167 = Utf8               index
+  #168 = Utf8               hcode
+  #169 = Utf8               index$
+  #170 = NameAndType        #169:#33      // index$:(Lscala/collection/mutable/FlatHashTable;I)I
+  #171 = InterfaceMethodref #7.#170       // scala/collection/mutable/FlatHashTable.index$:(Lscala/collection/mutable/FlatHashTable;I)I
+  #172 = Utf8               clearTable
+  #173 = Utf8               clearTable$
+  #174 = NameAndType        #173:#142     // clearTable$:(Lscala/collection/mutable/FlatHashTable;)V
+  #175 = InterfaceMethodref #7.#174       // scala/collection/mutable/FlatHashTable.clearTable$:(Lscala/collection/mutable/FlatHashTable;)V
+  #176 = Utf8               hashTableContents
+  #177 = Utf8               ()Lscala/collection/mutable/FlatHashTable$Contents;
+  #178 = Utf8               ()Lscala/collection/mutable/FlatHashTable$Contents<TT;>;
+  #179 = Utf8               hashTableContents$
+  #180 = Utf8               (Lscala/collection/mutable/FlatHashTable;)Lscala/collection/mutable/FlatHashTable$Contents;
+  #181 = NameAndType        #179:#180     // hashTableContents$:(Lscala/collection/mutable/FlatHashTable;)Lscala/collection/mutable/FlatHashTable$Contents;
+  #182 = InterfaceMethodref #7.#181       // scala/collection/mutable/FlatHashTable.hashTableContents$:(Lscala/collection/mutable/FlatHashTable;)Lscala/collection/mutable/FlatHashTable$Contents;
+  #183 = Utf8               initWithContents
+  #184 = Utf8               (Lscala/collection/mutable/FlatHashTable$Contents;)V
+  #185 = Utf8               (Lscala/collection/mutable/FlatHashTable$Contents<TT;>;)V
+  #186 = Utf8               c
+  #187 = Utf8               initWithContents$
+  #188 = Utf8               (Lscala/collection/mutable/FlatHashTable;Lscala/collection/mutable/FlatHashTable$Contents;)V
+  #189 = NameAndType        #187:#188     // initWithContents$:(Lscala/collection/mutable/FlatHashTable;Lscala/collection/mutable/FlatHashTable$Contents;)V
+  #190 = InterfaceMethodref #7.#189       // scala/collection/mutable/FlatHashTable.initWithContents$:(Lscala/collection/mutable/FlatHashTable;Lscala/collection/mutable/FlatHashTable$Contents;)V
+  #191 = Utf8               Lscala/collection/mutable/FlatHashTable$Contents;
+  #192 = Utf8               sizeMapBucketBitSize
+  #193 = Utf8               sizeMapBucketBitSize$
+  #194 = Utf8               (Lscala/collection/mutable/FlatHashTable$HashUtils;)I
+  #195 = NameAndType        #193:#194     // sizeMapBucketBitSize$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)I
+  #196 = InterfaceMethodref #13.#195      // scala/collection/mutable/FlatHashTable$HashUtils.sizeMapBucketBitSize$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)I
+  #197 = Utf8               sizeMapBucketSize
+  #198 = Utf8               sizeMapBucketSize$
+  #199 = NameAndType        #198:#194     // sizeMapBucketSize$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)I
+  #200 = InterfaceMethodref #13.#199      // scala/collection/mutable/FlatHashTable$HashUtils.sizeMapBucketSize$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)I
+  #201 = Utf8               improve
+  #202 = Utf8               (II)I
+  #203 = Utf8               seed
+  #204 = Utf8               improve$
+  #205 = Utf8               (Lscala/collection/mutable/FlatHashTable$HashUtils;II)I
+  #206 = NameAndType        #204:#205     // improve$:(Lscala/collection/mutable/FlatHashTable$HashUtils;II)I
+  #207 = InterfaceMethodref #13.#206      // scala/collection/mutable/FlatHashTable$HashUtils.improve$:(Lscala/collection/mutable/FlatHashTable$HashUtils;II)I
+  #208 = Utf8               elemToEntry
+  #209 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #210 = Utf8               (TT;)Ljava/lang/Object;
+  #211 = Utf8               elemToEntry$
+  #212 = Utf8               (Lscala/collection/mutable/FlatHashTable$HashUtils;Ljava/lang/Object;)Ljava/lang/Object;
+  #213 = NameAndType        #211:#212     // elemToEntry$:(Lscala/collection/mutable/FlatHashTable$HashUtils;Ljava/lang/Object;)Ljava/lang/Object;
+  #214 = InterfaceMethodref #13.#213      // scala/collection/mutable/FlatHashTable$HashUtils.elemToEntry$:(Lscala/collection/mutable/FlatHashTable$HashUtils;Ljava/lang/Object;)Ljava/lang/Object;
+  #215 = Utf8               entryToElem
+  #216 = Utf8               (Ljava/lang/Object;)TT;
+  #217 = Utf8               entry
+  #218 = Utf8               entryToElem$
+  #219 = NameAndType        #218:#212     // entryToElem$:(Lscala/collection/mutable/FlatHashTable$HashUtils;Ljava/lang/Object;)Ljava/lang/Object;
+  #220 = InterfaceMethodref #13.#219      // scala/collection/mutable/FlatHashTable$HashUtils.entryToElem$:(Lscala/collection/mutable/FlatHashTable$HashUtils;Ljava/lang/Object;)Ljava/lang/Object;
+  #221 = NameAndType        #18:#19       // _loadFactor:I
+  #222 = Fieldref           #2.#221       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable._loadFactor:I
+  #223 = Utf8               _loadFactor_$eq
+  #224 = Utf8               x$1
+  #225 = Utf8               ()[Ljava/lang/Object;
+  #226 = NameAndType        #20:#21       // table:[Ljava/lang/Object;
+  #227 = Fieldref           #2.#226       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.table:[Ljava/lang/Object;
+  #228 = Utf8               table_$eq
+  #229 = Utf8               ([Ljava/lang/Object;)V
+  #230 = NameAndType        #22:#19       // tableSize:I
+  #231 = Fieldref           #2.#230       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.tableSize:I
+  #232 = Utf8               tableSize_$eq
+  #233 = NameAndType        #23:#19       // threshold:I
+  #234 = Fieldref           #2.#233       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.threshold:I
+  #235 = Utf8               threshold_$eq
+  #236 = Utf8               ()[I
+  #237 = NameAndType        #24:#25       // sizemap:[I
+  #238 = Fieldref           #2.#237       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.sizemap:[I
+  #239 = Utf8               sizemap_$eq
+  #240 = Utf8               ([I)V
+  #241 = NameAndType        #26:#19       // seedvalue:I
+  #242 = Fieldref           #2.#241       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.seedvalue:I
+  #243 = Utf8               seedvalue_$eq
+  #244 = Utf8               toString
+  #245 = Utf8               ()Ljava/lang/String;
+  #246 = Utf8               scala/collection/StringOps$
+  #247 = Class              #246          // scala/collection/StringOps$
+  #248 = Utf8               MODULE$
+  #249 = Utf8               Lscala/collection/StringOps$;
+  #250 = NameAndType        #248:#249     // MODULE$:Lscala/collection/StringOps$;
+  #251 = Fieldref           #247.#250     // scala/collection/StringOps$.MODULE$:Lscala/collection/StringOps$;
+  #252 = Utf8               scala/Predef$
+  #253 = Class              #252          // scala/Predef$
+  #254 = Utf8               Lscala/Predef$;
+  #255 = NameAndType        #248:#254     // MODULE$:Lscala/Predef$;
+  #256 = Fieldref           #253.#255     // scala/Predef$.MODULE$:Lscala/Predef$;
+  #257 = Utf8               AFHT(%s)
+  #258 = String             #257          // AFHT(%s)
+  #259 = Utf8               augmentString
+  #260 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #261 = NameAndType        #259:#260     // augmentString:(Ljava/lang/String;)Ljava/lang/String;
+  #262 = Methodref          #253.#261     // scala/Predef$.augmentString:(Ljava/lang/String;)Ljava/lang/String;
+  #263 = Utf8               scala/runtime/ScalaRunTime$
+  #264 = Class              #263          // scala/runtime/ScalaRunTime$
+  #265 = Utf8               Lscala/runtime/ScalaRunTime$;
+  #266 = NameAndType        #248:#265     // MODULE$:Lscala/runtime/ScalaRunTime$;
+  #267 = Fieldref           #264.#266     // scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+  #268 = NameAndType        #20:#225      // table:()[Ljava/lang/Object;
+  #269 = Methodref          #2.#268       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.table:()[Ljava/lang/Object;
+  #270 = Utf8               scala/runtime/BoxesRunTime
+  #271 = Class              #270          // scala/runtime/BoxesRunTime
+  #272 = Utf8               boxToInteger
+  #273 = Utf8               (I)Ljava/lang/Integer;
+  #274 = NameAndType        #272:#273     // boxToInteger:(I)Ljava/lang/Integer;
+  #275 = Methodref          #271.#274     // scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+  #276 = Utf8               genericWrapArray
+  #277 = Utf8               (Ljava/lang/Object;)Lscala/collection/immutable/ArraySeq;
+  #278 = NameAndType        #276:#277     // genericWrapArray:(Ljava/lang/Object;)Lscala/collection/immutable/ArraySeq;
+  #279 = Methodref          #264.#278     // scala/runtime/ScalaRunTime$.genericWrapArray:(Ljava/lang/Object;)Lscala/collection/immutable/ArraySeq;
+  #280 = Utf8               format$extension
+  #281 = Utf8               (Ljava/lang/String;Lscala/collection/immutable/Seq;)Ljava/lang/String;
+  #282 = NameAndType        #280:#281     // format$extension:(Ljava/lang/String;Lscala/collection/immutable/Seq;)Ljava/lang/String;
+  #283 = Methodref          #247.#282     // scala/collection/StringOps$.format$extension:(Ljava/lang/String;Lscala/collection/immutable/Seq;)Ljava/lang/String;
+  #284 = Utf8               setSize
+  #285 = Utf8               sz
+  #286 = NameAndType        #232:#112     // tableSize_$eq:(I)V
+  #287 = Methodref          #2.#286       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.tableSize_$eq:(I)V
+  #288 = Utf8               insertEntry
+  #289 = Utf8               (IILjava/lang/Object;)I
+  #290 = Utf8               insertAt
+  #291 = Utf8               comesBefore
+  #292 = Utf8               hashCode
+  #293 = NameAndType        #292:#39      // hashCode:()I
+  #294 = Methodref          #5.#293       // java/lang/Object.hashCode:()I
+  #295 = NameAndType        #167:#30      // index:(I)I
+  #296 = Methodref          #2.#295       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.index:(I)I
+  #297 = Utf8               equals
+  #298 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Z
+  #299 = NameAndType        #297:#298     // equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #300 = Methodref          #271.#299     // scala/runtime/BoxesRunTime.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #301 = NameAndType        #111:#112     // nnSizeMapAdd:(I)V
+  #302 = Methodref          #2.#301       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.nnSizeMapAdd:(I)V
+  #303 = Utf8               curEntry
+  #304 = Utf8               scala$collection$parallel$mutable$ParHashSetCombiner$AddingFlatHashTable$$$outer
+  #305 = Utf8               ()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+  #306 = NameAndType        #27:#28       // $outer:Lscala/collection/parallel/mutable/ParHashSetCombiner;
+  #307 = Fieldref           #2.#306       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.$outer:Lscala/collection/parallel/mutable/ParHashSetCombiner;
+  #308 = Utf8               <init>
+  #309 = Utf8               (Lscala/collection/parallel/mutable/ParHashSetCombiner;III)V
+  #310 = Utf8               numelems
+  #311 = Utf8               lf
+  #312 = Utf8               inseedvalue
+  #313 = NameAndType        #308:#140     // "<init>":()V
+  #314 = Methodref          #5.#313       // java/lang/Object."<init>":()V
+  #315 = Utf8               $init$
+  #316 = Utf8               (Lscala/collection/mutable/FlatHashTable$HashUtils;)V
+  #317 = NameAndType        #315:#316     // $init$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)V
+  #318 = InterfaceMethodref #13.#317      // scala/collection/mutable/FlatHashTable$HashUtils.$init$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)V
+  #319 = NameAndType        #315:#142     // $init$:(Lscala/collection/mutable/FlatHashTable;)V
+  #320 = InterfaceMethodref #7.#319       // scala/collection/mutable/FlatHashTable.$init$:(Lscala/collection/mutable/FlatHashTable;)V
+  #321 = NameAndType        #223:#112     // _loadFactor_$eq:(I)V
+  #322 = Methodref          #2.#321       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable._loadFactor_$eq:(I)V
+  #323 = Utf8               scala/collection/mutable/FlatHashTable$
+  #324 = Class              #323          // scala/collection/mutable/FlatHashTable$
+  #325 = Utf8               Lscala/collection/mutable/FlatHashTable$;
+  #326 = NameAndType        #248:#325     // MODULE$:Lscala/collection/mutable/FlatHashTable$;
+  #327 = Fieldref           #324.#326     // scala/collection/mutable/FlatHashTable$.MODULE$:Lscala/collection/mutable/FlatHashTable$;
+  #328 = NameAndType        #18:#39       // _loadFactor:()I
+  #329 = Methodref          #2.#328       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable._loadFactor:()I
+  #330 = Utf8               sizeForThreshold
+  #331 = NameAndType        #330:#202     // sizeForThreshold:(II)I
+  #332 = Methodref          #324.#331     // scala/collection/mutable/FlatHashTable$.sizeForThreshold:(II)I
+  #333 = NameAndType        #29:#30       // capacity:(I)I
+  #334 = Methodref          #2.#333       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.capacity:(I)I
+  #335 = NameAndType        #228:#229     // table_$eq:([Ljava/lang/Object;)V
+  #336 = Methodref          #2.#335       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.table_$eq:([Ljava/lang/Object;)V
+  #337 = Utf8               newThreshold
+  #338 = NameAndType        #337:#202     // newThreshold:(II)I
+  #339 = Methodref          #324.#338     // scala/collection/mutable/FlatHashTable$.newThreshold:(II)I
+  #340 = NameAndType        #235:#112     // threshold_$eq:(I)V
+  #341 = Methodref          #2.#340       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.threshold_$eq:(I)V
+  #342 = NameAndType        #243:#112     // seedvalue_$eq:(I)V
+  #343 = Methodref          #2.#342       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.seedvalue_$eq:(I)V
+  #344 = NameAndType        #135:#112     // sizeMapInit:(I)V
+  #345 = Methodref          #2.#344       // scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable.sizeMapInit:(I)V
+  #346 = Utf8               Code
+  #347 = Utf8               LineNumberTable
+  #348 = Utf8               LocalVariableTable
+  #349 = Utf8               MethodParameters
+  #350 = Utf8               Signature
+  #351 = Utf8               StackMapTable
+  #352 = Utf8               InnerClasses
+  #353 = Utf8               SourceFile
+  #354 = Utf8               ScalaInlineInfo
+  #355 = Utf8               Scala
+{
+  private int _loadFactor;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.Object[] table;
+    descriptor: [Ljava/lang/Object;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int tableSize;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int threshold;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int[] sizemap;
+    descriptor: [I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int seedvalue;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  public final scala.collection.parallel.mutable.ParHashSetCombiner $outer;
+    descriptor: Lscala/collection/parallel/mutable/ParHashSetCombiner;
+    flags: (0x1011) ACC_PUBLIC, ACC_FINAL, ACC_SYNTHETIC
+
+  public int capacity(int);
+    descriptor: (I)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #35                 // InterfaceMethod scala/collection/mutable/FlatHashTable.capacity$:(Lscala/collection/mutable/FlatHashTable;I)I
+         5: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1 expectedSize   I
+    MethodParameters:
+      Name                           Flags
+      expectedSize                   final
+
+  public int initialSize();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #43                 // InterfaceMethod scala/collection/mutable/FlatHashTable.initialSize$:(Lscala/collection/mutable/FlatHashTable;)I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public int size();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #47                 // InterfaceMethod scala/collection/mutable/FlatHashTable.size$:(Lscala/collection/mutable/FlatHashTable;)I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public int randomSeed();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #51                 // InterfaceMethod scala/collection/mutable/FlatHashTable.randomSeed$:(Lscala/collection/mutable/FlatHashTable;)I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public int tableSizeSeed();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #55                 // InterfaceMethod scala/collection/mutable/FlatHashTable.tableSizeSeed$:(Lscala/collection/mutable/FlatHashTable;)I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void init(java.io.ObjectInputStream, scala.Function1<T, scala.runtime.BoxedUnit>);
+    descriptor: (Ljava/io/ObjectInputStream;Lscala/Function1;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokestatic  #64                 // InterfaceMethod scala/collection/mutable/FlatHashTable.init$:(Lscala/collection/mutable/FlatHashTable;Ljava/io/ObjectInputStream;Lscala/Function1;)V
+         6: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       7     1    in   Ljava/io/ObjectInputStream;
+            0       7     2     f   Lscala/Function1;
+    Signature: #58                          // (Ljava/io/ObjectInputStream;Lscala/Function1<TT;Lscala/runtime/BoxedUnit;>;)V
+    MethodParameters:
+      Name                           Flags
+      in                             final
+      f                              final
+
+  public void serializeTo(java.io.ObjectOutputStream);
+    descriptor: (Ljava/io/ObjectOutputStream;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #73                 // InterfaceMethod scala/collection/mutable/FlatHashTable.serializeTo$:(Lscala/collection/mutable/FlatHashTable;Ljava/io/ObjectOutputStream;)V
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1   out   Ljava/io/ObjectOutputStream;
+    MethodParameters:
+      Name                           Flags
+      out                            final
+
+  public scala.Option<T> findEntry(T);
+    descriptor: (Ljava/lang/Object;)Lscala/Option;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #82                 // InterfaceMethod scala/collection/mutable/FlatHashTable.findEntry$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Lscala/Option;
+         5: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1  elem   Ljava/lang/Object;
+    Signature: #77                          // (TT;)Lscala/Option<TT;>;
+    MethodParameters:
+      Name                           Flags
+      elem                           final
+
+  public boolean containsElem(T);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #90                 // InterfaceMethod scala/collection/mutable/FlatHashTable.containsElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+         5: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1  elem   Ljava/lang/Object;
+    Signature: #86                          // (TT;)Z
+    MethodParameters:
+      Name                           Flags
+      elem                           final
+
+  public boolean addElem(T);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #94                 // InterfaceMethod scala/collection/mutable/FlatHashTable.addElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+         5: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1  elem   Ljava/lang/Object;
+    Signature: #86                          // (TT;)Z
+    MethodParameters:
+      Name                           Flags
+      elem                           final
+
+  public boolean addEntry(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #99                 // InterfaceMethod scala/collection/mutable/FlatHashTable.addEntry$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+         5: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1 newEntry   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      newEntry                       final
+
+  public boolean removeElem(T);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #103                // InterfaceMethod scala/collection/mutable/FlatHashTable.removeElem$:(Lscala/collection/mutable/FlatHashTable;Ljava/lang/Object;)Z
+         5: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1  elem   Ljava/lang/Object;
+    Signature: #86                          // (TT;)Z
+    MethodParameters:
+      Name                           Flags
+      elem                           final
+
+  public scala.collection.Iterator<T> iterator();
+    descriptor: ()Lscala/collection/Iterator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #110                // InterfaceMethod scala/collection/mutable/FlatHashTable.iterator$:(Lscala/collection/mutable/FlatHashTable;)Lscala/collection/Iterator;
+         4: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+    Signature: #106                         // ()Lscala/collection/Iterator<TT;>;
+
+  public final void nnSizeMapAdd(int);
+    descriptor: (I)V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #117                // InterfaceMethod scala/collection/mutable/FlatHashTable.nnSizeMapAdd$:(Lscala/collection/mutable/FlatHashTable;I)V
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1     h   I
+    MethodParameters:
+      Name                           Flags
+      h                              final
+
+  public final void nnSizeMapRemove(int);
+    descriptor: (I)V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #121                // InterfaceMethod scala/collection/mutable/FlatHashTable.nnSizeMapRemove$:(Lscala/collection/mutable/FlatHashTable;I)V
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1     h   I
+    MethodParameters:
+      Name                           Flags
+      h                              final
+
+  public final void nnSizeMapReset(int);
+    descriptor: (I)V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #126                // InterfaceMethod scala/collection/mutable/FlatHashTable.nnSizeMapReset$:(Lscala/collection/mutable/FlatHashTable;I)V
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1 tableLength   I
+    MethodParameters:
+      Name                           Flags
+      tableLength                    final
+
+  public final int totalSizeMapBuckets();
+    descriptor: ()I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #130                // InterfaceMethod scala/collection/mutable/FlatHashTable.totalSizeMapBuckets$:(Lscala/collection/mutable/FlatHashTable;)I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public final int calcSizeMapSize(int);
+    descriptor: (I)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #134                // InterfaceMethod scala/collection/mutable/FlatHashTable.calcSizeMapSize$:(Lscala/collection/mutable/FlatHashTable;I)I
+         5: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1 tableLength   I
+    MethodParameters:
+      Name                           Flags
+      tableLength                    final
+
+  public final void sizeMapInit(int);
+    descriptor: (I)V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #138                // InterfaceMethod scala/collection/mutable/FlatHashTable.sizeMapInit$:(Lscala/collection/mutable/FlatHashTable;I)V
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1 tableLength   I
+    MethodParameters:
+      Name                           Flags
+      tableLength                    final
+
+  public final void sizeMapInitAndRebuild();
+    descriptor: ()V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #144                // InterfaceMethod scala/collection/mutable/FlatHashTable.sizeMapInitAndRebuild$:(Lscala/collection/mutable/FlatHashTable;)V
+         4: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void printSizeMap();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #148                // InterfaceMethod scala/collection/mutable/FlatHashTable.printSizeMap$:(Lscala/collection/mutable/FlatHashTable;)V
+         4: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void printContents();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #152                // InterfaceMethod scala/collection/mutable/FlatHashTable.printContents$:(Lscala/collection/mutable/FlatHashTable;)V
+         4: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void sizeMapDisable();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #156                // InterfaceMethod scala/collection/mutable/FlatHashTable.sizeMapDisable$:(Lscala/collection/mutable/FlatHashTable;)V
+         4: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public boolean isSizeMapDefined();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #162                // InterfaceMethod scala/collection/mutable/FlatHashTable.isSizeMapDefined$:(Lscala/collection/mutable/FlatHashTable;)Z
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public boolean alwaysInitSizeMap();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #166                // InterfaceMethod scala/collection/mutable/FlatHashTable.alwaysInitSizeMap$:(Lscala/collection/mutable/FlatHashTable;)Z
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public int index(int);
+    descriptor: (I)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokestatic  #171                // InterfaceMethod scala/collection/mutable/FlatHashTable.index$:(Lscala/collection/mutable/FlatHashTable;I)I
+         5: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1 hcode   I
+    MethodParameters:
+      Name                           Flags
+      hcode                          final
+
+  public void clearTable();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #175                // InterfaceMethod scala/collection/mutable/FlatHashTable.clearTable$:(Lscala/collection/mutable/FlatHashTable;)V
+         4: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public scala.collection.mutable.FlatHashTable$Contents<T> hashTableContents();
+    descriptor: ()Lscala/collection/mutable/FlatHashTable$Contents;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #182                // InterfaceMethod scala/collection/mutable/FlatHashTable.hashTableContents$:(Lscala/collection/mutable/FlatHashTable;)Lscala/collection/mutable/FlatHashTable$Contents;
+         4: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+    Signature: #178                         // ()Lscala/collection/mutable/FlatHashTable$Contents<TT;>;
+
+  public void initWithContents(scala.collection.mutable.FlatHashTable$Contents<T>);
+    descriptor: (Lscala/collection/mutable/FlatHashTable$Contents;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #190                // InterfaceMethod scala/collection/mutable/FlatHashTable.initWithContents$:(Lscala/collection/mutable/FlatHashTable;Lscala/collection/mutable/FlatHashTable$Contents;)V
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1     c   Lscala/collection/mutable/FlatHashTable$Contents;
+    Signature: #185                         // (Lscala/collection/mutable/FlatHashTable$Contents<TT;>;)V
+    MethodParameters:
+      Name                           Flags
+      c                              final
+
+  public final int sizeMapBucketBitSize();
+    descriptor: ()I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #196                // InterfaceMethod scala/collection/mutable/FlatHashTable$HashUtils.sizeMapBucketBitSize$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public final int sizeMapBucketSize();
+    descriptor: ()I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #200                // InterfaceMethod scala/collection/mutable/FlatHashTable$HashUtils.sizeMapBucketSize$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public final int improve(int, int);
+    descriptor: (II)I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokestatic  #207                // InterfaceMethod scala/collection/mutable/FlatHashTable$HashUtils.improve$:(Lscala/collection/mutable/FlatHashTable$HashUtils;II)I
+         6: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       7     1 hcode   I
+            0       7     2  seed   I
+    MethodParameters:
+      Name                           Flags
+      hcode                          final
+      seed                           final
+
+  public final java.lang.Object elemToEntry(T);
+    descriptor: (Ljava/lang/Object;)Ljava/lang/Object;
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #214                // InterfaceMethod scala/collection/mutable/FlatHashTable$HashUtils.elemToEntry$:(Lscala/collection/mutable/FlatHashTable$HashUtils;Ljava/lang/Object;)Ljava/lang/Object;
+         5: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1  elem   Ljava/lang/Object;
+    Signature: #210                         // (TT;)Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      elem                           final
+
+  public final T entryToElem(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Ljava/lang/Object;
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #220                // InterfaceMethod scala/collection/mutable/FlatHashTable$HashUtils.entryToElem$:(Lscala/collection/mutable/FlatHashTable$HashUtils;Ljava/lang/Object;)Ljava/lang/Object;
+         5: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1 entry   Ljava/lang/Object;
+    Signature: #216                         // (Ljava/lang/Object;)TT;
+    MethodParameters:
+      Name                           Flags
+      entry                          final
+
+  public int _loadFactor();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #222                // Field _loadFactor:I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void _loadFactor_$eq(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #222                // Field _loadFactor:I
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1   x$1   I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public java.lang.Object[] table();
+    descriptor: ()[Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #227                // Field table:[Ljava/lang/Object;
+         4: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void table_$eq(java.lang.Object[]);
+    descriptor: ([Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #227                // Field table:[Ljava/lang/Object;
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1   x$1   [Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public int tableSize();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #231                // Field tableSize:I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void tableSize_$eq(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #231                // Field tableSize:I
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1   x$1   I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public int threshold();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #234                // Field threshold:I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void threshold_$eq(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #234                // Field threshold:I
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1   x$1   I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public int[] sizemap();
+    descriptor: ()[I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #238                // Field sizemap:[I
+         4: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void sizemap_$eq(int[]);
+    descriptor: ([I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #238                // Field sizemap:[I
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1   x$1   [I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public int seedvalue();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #242                // Field seedvalue:I
+         4: ireturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void seedvalue_$eq(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #242                // Field seedvalue:I
+         5: return
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1   x$1   I
+    MethodParameters:
+      Name                           Flags
+      x$1                            final
+
+  public java.lang.String toString();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=1, args_size=1
+         0: getstatic     #251                // Field scala/collection/StringOps$.MODULE$:Lscala/collection/StringOps$;
+         3: getstatic     #256                // Field scala/Predef$.MODULE$:Lscala/Predef$;
+         6: ldc_w         #258                // String AFHT(%s)
+         9: invokevirtual #262                // Method scala/Predef$.augmentString:(Ljava/lang/String;)Ljava/lang/String;
+        12: getstatic     #267                // Field scala/runtime/ScalaRunTime$.MODULE$:Lscala/runtime/ScalaRunTime$;
+        15: iconst_1
+        16: anewarray     #5                  // class java/lang/Object
+        19: dup
+        20: iconst_0
+        21: aload_0
+        22: invokevirtual #269                // Method table:()[Ljava/lang/Object;
+        25: arraylength
+        26: invokestatic  #275                // Method scala/runtime/BoxesRunTime.boxToInteger:(I)Ljava/lang/Integer;
+        29: aastore
+        30: invokevirtual #279                // Method scala/runtime/ScalaRunTime$.genericWrapArray:(Ljava/lang/Object;)Lscala/collection/immutable/ArraySeq;
+        33: invokevirtual #283                // Method scala/collection/StringOps$.format$extension:(Ljava/lang/String;Lscala/collection/immutable/Seq;)Ljava/lang/String;
+        36: areturn
+      LineNumberTable:
+        line 190: 3
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      37     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public int tableLength();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #269                // Method table:()[Ljava/lang/Object;
+         4: arraylength
+         5: ireturn
+      LineNumberTable:
+        line 192: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public void setSize(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #287                // Method tableSize_$eq:(I)V
+         5: return
+      LineNumberTable:
+        line 194: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0       6     1    sz   I
+    MethodParameters:
+      Name                           Flags
+      sz                             final
+
+  public int insertEntry(int, int, java.lang.Object);
+    descriptor: (IILjava/lang/Object;)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=6, args_size=4
+         0: iload_1
+         1: istore        4
+         3: iload         4
+         5: iconst_m1
+         6: if_icmpne     22
+         9: aload_0
+        10: aload_3
+        11: invokevirtual #294                // Method java/lang/Object.hashCode:()I
+        14: invokevirtual #296                // Method index:(I)I
+        17: istore        4
+        19: goto          22
+        22: aload_0
+        23: invokevirtual #269                // Method table:()[Ljava/lang/Object;
+        26: iload         4
+        28: aaload
+        29: astore        5
+        31: aload         5
+        33: ifnull        73
+        36: aload         5
+        38: aload_3
+        39: invokestatic  #300                // Method scala/runtime/BoxesRunTime.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        42: ifeq          47
+        45: iconst_0
+        46: ireturn
+        47: iload         4
+        49: iconst_1
+        50: iadd
+        51: istore        4
+        53: iload         4
+        55: iload_2
+        56: if_icmplt     61
+        59: iconst_m1
+        60: ireturn
+        61: aload_0
+        62: invokevirtual #269                // Method table:()[Ljava/lang/Object;
+        65: iload         4
+        67: aaload
+        68: astore        5
+        70: goto          31
+        73: aload_0
+        74: invokevirtual #269                // Method table:()[Ljava/lang/Object;
+        77: iload         4
+        79: aload_3
+        80: aastore
+        81: aload_0
+        82: iload         4
+        84: invokevirtual #302                // Method nnSizeMapAdd:(I)V
+        87: iconst_1
+        88: ireturn
+      StackMapTable: number_of_entries = 5
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 8
+          locals = [ class java/lang/Object ]
+        frame_type = 15 /* same */
+        frame_type = 13 /* same */
+        frame_type = 11 /* same */
+      LineNumberTable:
+        line 215: 0
+        line 216: 3
+        line 217: 22
+        line 218: 31
+        line 219: 36
+        line 220: 47
+        line 221: 53
+        line 222: 61
+        line 218: 70
+        line 224: 73
+        line 234: 81
+        line 235: 87
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            3      85     4     h   I
+           31      57     5 curEntry   Ljava/lang/Object;
+            0      89     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0      89     1 insertAt   I
+            0      89     2 comesBefore   I
+            0      89     3 newEntry   Ljava/lang/Object;
+    MethodParameters:
+      Name                           Flags
+      insertAt                       final
+      comesBefore                    final
+      newEntry                       final
+
+  public scala.collection.parallel.mutable.ParHashSetCombiner scala$collection$parallel$mutable$ParHashSetCombiner$AddingFlatHashTable$$$outer();
+    descriptor: ()Lscala/collection/parallel/mutable/ParHashSetCombiner;
+    flags: (0x1001) ACC_PUBLIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #307                // Field $outer:Lscala/collection/parallel/mutable/ParHashSetCombiner;
+         4: areturn
+      LineNumberTable:
+        line 182: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+
+  public scala.collection.parallel.mutable.ParHashSetCombiner$AddingFlatHashTable(scala.collection.parallel.mutable.ParHashSetCombiner, int, int, int);
+    descriptor: (Lscala/collection/parallel/mutable/ParHashSetCombiner;III)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_1
+         1: ifnonnull     6
+         4: aconst_null
+         5: athrow
+         6: aload_0
+         7: aload_1
+         8: putfield      #307                // Field $outer:Lscala/collection/parallel/mutable/ParHashSetCombiner;
+        11: aload_0
+        12: invokespecial #314                // Method java/lang/Object."<init>":()V
+        15: aload_0
+        16: invokestatic  #318                // InterfaceMethod scala/collection/mutable/FlatHashTable$HashUtils.$init$:(Lscala/collection/mutable/FlatHashTable$HashUtils;)V
+        19: aload_0
+        20: invokestatic  #320                // InterfaceMethod scala/collection/mutable/FlatHashTable.$init$:(Lscala/collection/mutable/FlatHashTable;)V
+        23: aload_0
+        24: iload_3
+        25: invokevirtual #322                // Method _loadFactor_$eq:(I)V
+        28: aload_0
+        29: aload_0
+        30: getstatic     #327                // Field scala/collection/mutable/FlatHashTable$.MODULE$:Lscala/collection/mutable/FlatHashTable$;
+        33: iload_2
+        34: aload_0
+        35: invokevirtual #329                // Method _loadFactor:()I
+        38: invokevirtual #332                // Method scala/collection/mutable/FlatHashTable$.sizeForThreshold:(II)I
+        41: invokevirtual #334                // Method capacity:(I)I
+        44: anewarray     #5                  // class java/lang/Object
+        47: invokevirtual #336                // Method table_$eq:([Ljava/lang/Object;)V
+        50: aload_0
+        51: iconst_0
+        52: invokevirtual #287                // Method tableSize_$eq:(I)V
+        55: aload_0
+        56: getstatic     #327                // Field scala/collection/mutable/FlatHashTable$.MODULE$:Lscala/collection/mutable/FlatHashTable$;
+        59: aload_0
+        60: invokevirtual #329                // Method _loadFactor:()I
+        63: aload_0
+        64: invokevirtual #269                // Method table:()[Ljava/lang/Object;
+        67: arraylength
+        68: invokevirtual #339                // Method scala/collection/mutable/FlatHashTable$.newThreshold:(II)I
+        71: invokevirtual #341                // Method threshold_$eq:(I)V
+        74: aload_0
+        75: iload         4
+        77: invokevirtual #343                // Method seedvalue_$eq:(I)V
+        80: aload_0
+        81: aload_0
+        82: invokevirtual #269                // Method table:()[Ljava/lang/Object;
+        85: arraylength
+        86: invokevirtual #345                // Method sizeMapInit:(I)V
+        89: return
+      StackMapTable: number_of_entries = 1
+        frame_type = 6 /* same */
+      LineNumberTable:
+        line 182: 0
+        line 183: 23
+        line 184: 28
+        line 185: 50
+        line 186: 55
+        line 187: 74
+        line 188: 80
+        line 182: 89
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      90     0  this   Lscala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable;
+            0      90     1 $outer   Lscala/collection/parallel/mutable/ParHashSetCombiner;
+            0      90     2 numelems   I
+            0      90     3    lf   I
+            0      90     4 inseedvalue   I
+    MethodParameters:
+      Name                           Flags
+      $outer                         final synthetic
+      numelems                       final
+      lf                             final
+      inseedvalue                    final
+}
+InnerClasses:
+  public static #11= #10 of #7;           // Contents=class scala/collection/mutable/FlatHashTable$Contents of class scala/collection/mutable/FlatHashTable
+  public static #14= #13 of #7;           // HashUtils=class scala/collection/mutable/FlatHashTable$HashUtils of class scala/collection/mutable/FlatHashTable
+  public #17= #2 of #16;                  // AddingFlatHashTable=class scala/collection/parallel/mutable/ParHashSetCombiner$AddingFlatHashTable of class scala/collection/parallel/mutable/ParHashSetCombiner
+Signature: #3                           // Ljava/lang/Object;Lscala/collection/mutable/FlatHashTable<TT;>;
+SourceFile: "ParHashSet.scala"
+  ScalaInlineInfo: length = 0x108 (unknown attribute)
+   01 00 00 34 01 34 01 35 00 00 12 00 27 00 00 DF
+   00 70 00 00 5B 00 55 00 00 5F 00 55 00 00 A3 00
+   9E 00 00 83 00 1E 01 00 1D 00 1E 00 00 AC 00 8C
+   00 00 54 00 55 00 00 D0 00 D1 01 00 D7 00 D1 01
+   00 4B 00 4C 00 00 B0 00 B1 00 00 C9 00 CA 01 00
+   A7 00 1E 00 00 38 00 39 00 00 B7 00 B8 00 00 26
+   00 27 00 01 20 01 21 00 00 9D 00 9E 00 00 68 00
+   69 00 00 6F 00 70 01 00 76 00 70 01 00 7A 00 70
+   01 00 95 00 8C 00 00 91 00 8C 00 00 30 00 27 00
+   00 64 00 55 00 01 30 01 31 00 00 1A 00 27 00 00
+   F3 00 70 00 00 43 00 44 00 01 1C 00 70 00 00 2C
+   00 27 00 00 C0 00 27 01 00 C5 00 27 01 00 99 00
+   8C 00 00 87 00 70 01 00 8B 00 8C 01 00 18 00 EC
+   00 00 EF 00 F0 00 00 14 00 E1 00 00 7B 00 27 00
+   00 16 00 27 00 00 34 00 27 00 00 E8 00 70 00 00
+   E4 00 E5 00 00 17 00 27 00 00 EB 00 70 00 00 F4
+   00 F5 00 00 7F 00 27 01
+  Scala: length = 0x0 (unknown attribute)
+

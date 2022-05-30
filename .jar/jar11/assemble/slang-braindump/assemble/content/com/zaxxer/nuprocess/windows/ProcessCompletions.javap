@@ -1,0 +1,1807 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/zaxxer/nuprocess/windows/ProcessCompletions.class
+  Last modified May 29, 2022; size 11125 bytes
+  SHA-256 checksum c49f015425f66cfc3eaad328e1004cbadfbc4de024192885f43c19ab05144052
+  Compiled from "ProcessCompletions.java"
+public final class com.zaxxer.nuprocess.windows.ProcessCompletions implements java.lang.Runnable
+  minor version: 0
+  major version: 51
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #63                         // com/zaxxer/nuprocess/windows/ProcessCompletions
+  super_class: #128                       // java/lang/Object
+  interfaces: 1, fields: 16, methods: 18, attributes: 2
+Constant pool:
+    #1 = Fieldref           #63.#227      // com/zaxxer/nuprocess/windows/ProcessCompletions.LINGER_ITERATIONS:I
+    #2 = Methodref          #63.#228      // com/zaxxer/nuprocess/windows/ProcessCompletions."<init>":(I)V
+    #3 = Class              #229          // java/lang/IllegalArgumentException
+    #4 = String             #176          // process
+    #5 = Methodref          #3.#230       // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+    #6 = Methodref          #63.#231      // com/zaxxer/nuprocess/windows/ProcessCompletions.registerProcess:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+    #7 = Methodref          #63.#232      // com/zaxxer/nuprocess/windows/ProcessCompletions.checkAndSetRunning:()Z
+    #8 = Methodref          #128.#233     // java/lang/Object."<init>":()V
+    #9 = Fieldref           #63.#234      // com/zaxxer/nuprocess/windows/ProcessCompletions.lingerIterations:I
+   #10 = Class              #235          // java/util/HashMap
+   #11 = Methodref          #10.#233      // java/util/HashMap."<init>":()V
+   #12 = Fieldref           #63.#236      // com/zaxxer/nuprocess/windows/ProcessCompletions.completionKeyToProcessMap:Ljava/util/Map;
+   #13 = Class              #237          // java/util/concurrent/ArrayBlockingQueue
+   #14 = Methodref          #13.#228      // java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+   #15 = Fieldref           #63.#238      // com/zaxxer/nuprocess/windows/ProcessCompletions.wantsWrite:Ljava/util/concurrent/BlockingQueue;
+   #16 = Class              #239          // java/util/concurrent/LinkedBlockingQueue
+   #17 = Methodref          #16.#233      // java/util/concurrent/LinkedBlockingQueue."<init>":()V
+   #18 = Fieldref           #63.#240      // com/zaxxer/nuprocess/windows/ProcessCompletions.pendingPool:Ljava/util/concurrent/BlockingQueue;
+   #19 = Class              #241          // java/util/LinkedList
+   #20 = Methodref          #19.#233      // java/util/LinkedList."<init>":()V
+   #21 = Fieldref           #63.#242      // com/zaxxer/nuprocess/windows/ProcessCompletions.deadPool:Ljava/util/List;
+   #22 = Class              #243          // java/util/concurrent/atomic/AtomicBoolean
+   #23 = Methodref          #22.#233      // java/util/concurrent/atomic/AtomicBoolean."<init>":()V
+   #24 = Fieldref           #63.#244      // com/zaxxer/nuprocess/windows/ProcessCompletions.isRunning:Ljava/util/concurrent/atomic/AtomicBoolean;
+   #25 = Class              #245          // com/sun/jna/ptr/IntByReference
+   #26 = Methodref          #25.#233      // com/sun/jna/ptr/IntByReference."<init>":()V
+   #27 = Fieldref           #63.#246      // com/zaxxer/nuprocess/windows/ProcessCompletions.numberOfBytes:Lcom/sun/jna/ptr/IntByReference;
+   #28 = Class              #247          // com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference
+   #29 = Methodref          #28.#233      // com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference."<init>":()V
+   #30 = Fieldref           #63.#248      // com/zaxxer/nuprocess/windows/ProcessCompletions.completionKey:Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;
+   #31 = Class              #249          // com/sun/jna/ptr/PointerByReference
+   #32 = Methodref          #31.#233      // com/sun/jna/ptr/PointerByReference."<init>":()V
+   #33 = Fieldref           #63.#250      // com/zaxxer/nuprocess/windows/ProcessCompletions.lpOverlapped:Lcom/sun/jna/ptr/PointerByReference;
+   #34 = Methodref          #63.#251      // com/zaxxer/nuprocess/windows/ProcessCompletions.initCompletionPort:()V
+   #35 = Fieldref           #63.#252      // com/zaxxer/nuprocess/windows/ProcessCompletions.startBarrier:Ljava/util/concurrent/CyclicBarrier;
+   #36 = Methodref          #81.#253      // java/util/concurrent/CyclicBarrier.await:()I
+   #37 = InterfaceMethodref #254.#255     // java/util/Map.isEmpty:()Z
+   #38 = InterfaceMethodref #256.#255     // java/util/List.isEmpty:()Z
+   #39 = InterfaceMethodref #257.#255     // java/util/concurrent/BlockingQueue.isEmpty:()Z
+   #40 = Methodref          #22.#258      // java/util/concurrent/atomic/AtomicBoolean.compareAndSet:(ZZ)Z
+   #41 = Fieldref           #63.#259      // com/zaxxer/nuprocess/windows/ProcessCompletions.shutdown:Z
+   #42 = Methodref          #63.#260      // com/zaxxer/nuprocess/windows/ProcessCompletions.process:()Z
+   #43 = Fieldref           #63.#261      // com/zaxxer/nuprocess/windows/ProcessCompletions.ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+   #44 = Methodref          #262.#263     // com/zaxxer/nuprocess/windows/NuKernel32.CloseHandle:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;)Z
+   #45 = Class              #264          // java/lang/Exception
+   #46 = Methodref          #45.#265      // java/lang/Exception.printStackTrace:()V
+   #47 = Methodref          #22.#266      // java/util/concurrent/atomic/AtomicBoolean.set:(Z)V
+   #48 = Fieldref           #63.#267      // com/zaxxer/nuprocess/windows/ProcessCompletions.DEADPOOL_POLL_INTERVAL:I
+   #49 = Methodref          #262.#268     // com/zaxxer/nuprocess/windows/NuKernel32.GetQueuedCompletionStatus:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;Lcom/sun/jna/ptr/PointerByReference;I)I
+   #50 = Methodref          #31.#269      // com/sun/jna/ptr/PointerByReference.getValue:()Lcom/sun/jna/Pointer;
+   #51 = Methodref          #63.#270      // com/zaxxer/nuprocess/windows/ProcessCompletions.checkWaitWrites:()V
+   #52 = Methodref          #63.#271      // com/zaxxer/nuprocess/windows/ProcessCompletions.checkPendingPool:()V
+   #53 = Methodref          #63.#272      // com/zaxxer/nuprocess/windows/ProcessCompletions.checkDeadPool:()V
+   #54 = Methodref          #28.#273      // com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference.getValue:()Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;
+   #55 = Methodref          #84.#274      // com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR.longValue:()J
+   #56 = Methodref          #275.#276     // java/lang/Long.valueOf:(J)Ljava/lang/Long;
+   #57 = InterfaceMethodref #254.#277     // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #58 = Class              #278          // com/zaxxer/nuprocess/windows/WindowsProcess
+   #59 = Methodref          #25.#279      // com/sun/jna/ptr/IntByReference.getValue:()I
+   #60 = Methodref          #58.#280      // com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+   #61 = Fieldref           #204.#281     // com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+   #62 = Methodref          #58.#282      // com/zaxxer/nuprocess/windows/WindowsProcess.readStdout:(I)V
+   #63 = Class              #283          // com/zaxxer/nuprocess/windows/ProcessCompletions
+   #64 = Methodref          #63.#284      // com/zaxxer/nuprocess/windows/ProcessCompletions.queueRead:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;I)V
+   #65 = Methodref          #58.#285      // com/zaxxer/nuprocess/windows/WindowsProcess.getStdinPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+   #66 = Methodref          #58.#286      // com/zaxxer/nuprocess/windows/WindowsProcess.writeStdin:(I)Z
+   #67 = Methodref          #63.#287      // com/zaxxer/nuprocess/windows/ProcessCompletions.queueWrite:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+   #68 = Methodref          #58.#288      // com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+   #69 = Methodref          #58.#289      // com/zaxxer/nuprocess/windows/WindowsProcess.readStderr:(I)V
+   #70 = Methodref          #58.#290      // com/zaxxer/nuprocess/windows/WindowsProcess.isSoftExit:()Z
+   #71 = Methodref          #63.#291      // com/zaxxer/nuprocess/windows/ProcessCompletions.cleanupProcess:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+   #72 = InterfaceMethodref #254.#292     // java/util/Map.values:()Ljava/util/Collection;
+   #73 = InterfaceMethodref #194.#293     // java/util/Collection.iterator:()Ljava/util/Iterator;
+   #74 = InterfaceMethodref #195.#294     // java/util/Iterator.hasNext:()Z
+   #75 = InterfaceMethodref #195.#295     // java/util/Iterator.next:()Ljava/lang/Object;
+   #76 = Methodref          #58.#296      // com/zaxxer/nuprocess/windows/WindowsProcess.getPidHandle:()Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+   #77 = Class              #297          // java/lang/Integer
+   #78 = Integer            2147483646
+   #79 = Methodref          #262.#298     // com/zaxxer/nuprocess/windows/NuKernel32.TerminateProcess:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;I)Z
+   #80 = Methodref          #58.#299      // com/zaxxer/nuprocess/windows/WindowsProcess.onExit:(I)V
+   #81 = Class              #300          // java/util/concurrent/CyclicBarrier
+   #82 = Methodref          #81.#228      // java/util/concurrent/CyclicBarrier."<init>":(I)V
+   #83 = InterfaceMethodref #257.#301     // java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+   #84 = Class              #302          // com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR
+   #85 = Methodref          #84.#304      // com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR."<init>":(J)V
+   #86 = Methodref          #262.#305     // com/zaxxer/nuprocess/windows/NuKernel32.PostQueuedCompletionStatus:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;ILcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)Z
+   #87 = Class              #306          // java/lang/InterruptedException
+   #88 = Fieldref           #204.#307     // com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.registered:Z
+   #89 = Fieldref           #204.#308     // com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.pipeHandle:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+   #90 = Fieldref           #309.#310     // com/zaxxer/nuprocess/internal/Constants.NUMBER_OF_THREADS:I
+   #91 = Methodref          #262.#311     // com/zaxxer/nuprocess/windows/NuKernel32.CreateIoCompletionPort:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;I)Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+   #92 = Methodref          #140.#312     // com/zaxxer/nuprocess/windows/NuWinNT$HANDLE.equals:(Ljava/lang/Object;)Z
+   #93 = Class              #313          // java/lang/RuntimeException
+   #94 = Class              #314          // java/lang/StringBuilder
+   #95 = Methodref          #94.#233      // java/lang/StringBuilder."<init>":()V
+   #96 = String             #315          // CreateIoCompletionPort() failed, error code:
+   #97 = Methodref          #94.#316      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #98 = Methodref          #317.#318     // com/sun/jna/Native.getLastError:()I
+   #99 = Methodref          #94.#319      // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+  #100 = Methodref          #94.#320      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #101 = Methodref          #93.#230      // java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+  #102 = InterfaceMethodref #254.#321     // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #103 = Fieldref           #204.#322     // com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.buffer:Ljava/nio/ByteBuffer;
+  #104 = Fieldref           #204.#323     // com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.overlapped:Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;
+  #105 = Methodref          #262.#324     // com/zaxxer/nuprocess/windows/NuKernel32.WriteFile:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Ljava/nio/ByteBuffer;ILcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)I
+  #106 = Class              #325          // com/zaxxer/nuprocess/windows/NuWinNT
+  #107 = Methodref          #58.#326      // com/zaxxer/nuprocess/windows/WindowsProcess.stdinClose:()V
+  #108 = Methodref          #327.#328     // java/nio/ByteBuffer.hasRemaining:()Z
+  #109 = String             #329          // stdout / stderr buffer has no bytes remaining
+  #110 = Methodref          #327.#330     // java/nio/ByteBuffer.remaining:()I
+  #111 = Methodref          #262.#331     // com/zaxxer/nuprocess/windows/NuKernel32.ReadFile:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Ljava/nio/ByteBuffer;ILcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)I
+  #112 = Fieldref           #332.#333     // java/lang/System.err:Ljava/io/PrintStream;
+  #113 = String             #334          // Some other error occurred reading the pipe:
+  #114 = Methodref          #335.#336     // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #115 = InterfaceMethodref #257.#337     // java/util/concurrent/BlockingQueue.poll:()Ljava/lang/Object;
+  #116 = InterfaceMethodref #256.#293     // java/util/List.iterator:()Ljava/util/Iterator;
+  #117 = Methodref          #262.#338     // com/zaxxer/nuprocess/windows/NuKernel32.GetExitCodeProcess:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;)Z
+  #118 = InterfaceMethodref #195.#339     // java/util/Iterator.remove:()V
+  #119 = InterfaceMethodref #254.#340     // java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+  #120 = InterfaceMethodref #256.#341     // java/util/List.add:(Ljava/lang/Object;)Z
+  #121 = Fieldref           #106.#342     // com/zaxxer/nuprocess/windows/NuWinNT.INVALID_HANDLE_VALUE:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #122 = String             #343          // com.zaxxer.nuprocess.lingerTimeMs
+  #123 = Methodref          #77.#344      // java/lang/Integer.getInteger:(Ljava/lang/String;I)Ljava/lang/Integer;
+  #124 = Methodref          #77.#345      // java/lang/Integer.intValue:()I
+  #125 = Methodref          #346.#347     // java/lang/Math.max:(II)I
+  #126 = String             #348          // com.zaxxer.nuprocess.deadPoolPollMs
+  #127 = Methodref          #346.#349     // java/lang/Math.min:(II)I
+  #128 = Class              #350          // java/lang/Object
+  #129 = Class              #351          // java/lang/Runnable
+  #130 = Utf8               DEADPOOL_POLL_INTERVAL
+  #131 = Utf8               I
+  #132 = Utf8               LINGER_ITERATIONS
+  #133 = Utf8               STDOUT
+  #134 = Utf8               ConstantValue
+  #135 = Integer            0
+  #136 = Utf8               STDERR
+  #137 = Integer            1
+  #138 = Utf8               lingerIterations
+  #139 = Utf8               ioCompletionPort
+  #140 = Class              #352          // com/zaxxer/nuprocess/windows/NuWinNT$HANDLE
+  #141 = Utf8               HANDLE
+  #142 = Utf8               InnerClasses
+  #143 = Utf8               Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #144 = Utf8               deadPool
+  #145 = Utf8               Ljava/util/List;
+  #146 = Utf8               Signature
+  #147 = Utf8               Ljava/util/List<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+  #148 = Utf8               pendingPool
+  #149 = Utf8               Ljava/util/concurrent/BlockingQueue;
+  #150 = Utf8               Ljava/util/concurrent/BlockingQueue<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+  #151 = Utf8               wantsWrite
+  #152 = Utf8               completionKeyToProcessMap
+  #153 = Utf8               Ljava/util/Map;
+  #154 = Utf8               Ljava/util/Map<Ljava/lang/Long;Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+  #155 = Utf8               startBarrier
+  #156 = Utf8               Ljava/util/concurrent/CyclicBarrier;
+  #157 = Utf8               shutdown
+  #158 = Utf8               Z
+  #159 = Utf8               isRunning
+  #160 = Utf8               Ljava/util/concurrent/atomic/AtomicBoolean;
+  #161 = Utf8               numberOfBytes
+  #162 = Utf8               Lcom/sun/jna/ptr/IntByReference;
+  #163 = Utf8               completionKey
+  #164 = Utf8               ULONG_PTRByReference
+  #165 = Utf8               Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;
+  #166 = Utf8               lpOverlapped
+  #167 = Utf8               Lcom/sun/jna/ptr/PointerByReference;
+  #168 = Utf8               <init>
+  #169 = Utf8               ()V
+  #170 = Utf8               Code
+  #171 = Utf8               LineNumberTable
+  #172 = Utf8               LocalVariableTable
+  #173 = Utf8               this
+  #174 = Utf8               Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+  #175 = Utf8               (Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+  #176 = Utf8               process
+  #177 = Utf8               Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+  #178 = Utf8               StackMapTable
+  #179 = Utf8               (I)V
+  #180 = Utf8               run
+  #181 = Utf8               idleCount
+  #182 = Utf8               e
+  #183 = Utf8               Ljava/lang/Exception;
+  #184 = Class              #353          // java/lang/Throwable
+  #185 = Utf8               ()Z
+  #186 = Utf8               status
+  #187 = Utf8               key
+  #188 = Utf8               J
+  #189 = Utf8               transferred
+  #190 = Utf8               processes
+  #191 = Utf8               Ljava/util/Collection;
+  #192 = Utf8               LocalVariableTypeTable
+  #193 = Utf8               Ljava/util/Collection<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+  #194 = Class              #354          // java/util/Collection
+  #195 = Class              #355          // java/util/Iterator
+  #196 = Utf8               getSpawnBarrier
+  #197 = Utf8               ()Ljava/util/concurrent/CyclicBarrier;
+  #198 = Utf8               checkAndSetRunning
+  #199 = Utf8               wantWrite
+  #200 = Utf8               registerProcess
+  #201 = Utf8               queueWrite
+  #202 = Utf8               completionPort
+  #203 = Utf8               stdinPipe
+  #204 = Class              #356          // com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle
+  #205 = Utf8               PipeBundle
+  #206 = Utf8               Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+  #207 = Utf8               queueRead
+  #208 = Utf8               (Lcom/zaxxer/nuprocess/windows/WindowsProcess;Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;I)V
+  #209 = Utf8               lastError
+  #210 = Utf8               pipe
+  #211 = Utf8               stdX
+  #212 = Utf8               checkPendingPool
+  #213 = Utf8               completionPort1
+  #214 = Utf8               completionPort2
+  #215 = Utf8               checkWaitWrites
+  #216 = Utf8               checkDeadPool
+  #217 = Utf8               exitCode
+  #218 = Utf8               iterator
+  #219 = Utf8               Ljava/util/Iterator;
+  #220 = Utf8               Ljava/util/Iterator<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+  #221 = Utf8               cleanupProcess
+  #222 = Utf8               initCompletionPort
+  #223 = Utf8               <clinit>
+  #224 = Utf8               lingerTimeMs
+  #225 = Utf8               SourceFile
+  #226 = Utf8               ProcessCompletions.java
+  #227 = NameAndType        #132:#131     // LINGER_ITERATIONS:I
+  #228 = NameAndType        #168:#179     // "<init>":(I)V
+  #229 = Utf8               java/lang/IllegalArgumentException
+  #230 = NameAndType        #168:#357     // "<init>":(Ljava/lang/String;)V
+  #231 = NameAndType        #200:#175     // registerProcess:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+  #232 = NameAndType        #198:#185     // checkAndSetRunning:()Z
+  #233 = NameAndType        #168:#169     // "<init>":()V
+  #234 = NameAndType        #138:#131     // lingerIterations:I
+  #235 = Utf8               java/util/HashMap
+  #236 = NameAndType        #152:#153     // completionKeyToProcessMap:Ljava/util/Map;
+  #237 = Utf8               java/util/concurrent/ArrayBlockingQueue
+  #238 = NameAndType        #151:#149     // wantsWrite:Ljava/util/concurrent/BlockingQueue;
+  #239 = Utf8               java/util/concurrent/LinkedBlockingQueue
+  #240 = NameAndType        #148:#149     // pendingPool:Ljava/util/concurrent/BlockingQueue;
+  #241 = Utf8               java/util/LinkedList
+  #242 = NameAndType        #144:#145     // deadPool:Ljava/util/List;
+  #243 = Utf8               java/util/concurrent/atomic/AtomicBoolean
+  #244 = NameAndType        #159:#160     // isRunning:Ljava/util/concurrent/atomic/AtomicBoolean;
+  #245 = Utf8               com/sun/jna/ptr/IntByReference
+  #246 = NameAndType        #161:#162     // numberOfBytes:Lcom/sun/jna/ptr/IntByReference;
+  #247 = Utf8               com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference
+  #248 = NameAndType        #163:#165     // completionKey:Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;
+  #249 = Utf8               com/sun/jna/ptr/PointerByReference
+  #250 = NameAndType        #166:#167     // lpOverlapped:Lcom/sun/jna/ptr/PointerByReference;
+  #251 = NameAndType        #222:#169     // initCompletionPort:()V
+  #252 = NameAndType        #155:#156     // startBarrier:Ljava/util/concurrent/CyclicBarrier;
+  #253 = NameAndType        #358:#359     // await:()I
+  #254 = Class              #360          // java/util/Map
+  #255 = NameAndType        #361:#185     // isEmpty:()Z
+  #256 = Class              #362          // java/util/List
+  #257 = Class              #363          // java/util/concurrent/BlockingQueue
+  #258 = NameAndType        #364:#365     // compareAndSet:(ZZ)Z
+  #259 = NameAndType        #157:#158     // shutdown:Z
+  #260 = NameAndType        #176:#185     // process:()Z
+  #261 = NameAndType        #139:#143     // ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #262 = Class              #366          // com/zaxxer/nuprocess/windows/NuKernel32
+  #263 = NameAndType        #367:#368     // CloseHandle:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;)Z
+  #264 = Utf8               java/lang/Exception
+  #265 = NameAndType        #369:#169     // printStackTrace:()V
+  #266 = NameAndType        #370:#371     // set:(Z)V
+  #267 = NameAndType        #130:#131     // DEADPOOL_POLL_INTERVAL:I
+  #268 = NameAndType        #372:#373     // GetQueuedCompletionStatus:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;Lcom/sun/jna/ptr/PointerByReference;I)I
+  #269 = NameAndType        #374:#375     // getValue:()Lcom/sun/jna/Pointer;
+  #270 = NameAndType        #215:#169     // checkWaitWrites:()V
+  #271 = NameAndType        #212:#169     // checkPendingPool:()V
+  #272 = NameAndType        #216:#169     // checkDeadPool:()V
+  #273 = NameAndType        #374:#376     // getValue:()Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;
+  #274 = NameAndType        #377:#378     // longValue:()J
+  #275 = Class              #379          // java/lang/Long
+  #276 = NameAndType        #380:#381     // valueOf:(J)Ljava/lang/Long;
+  #277 = NameAndType        #382:#383     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #278 = Utf8               com/zaxxer/nuprocess/windows/WindowsProcess
+  #279 = NameAndType        #374:#359     // getValue:()I
+  #280 = NameAndType        #384:#385     // getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+  #281 = NameAndType        #386:#188     // ioCompletionKey:J
+  #282 = NameAndType        #387:#179     // readStdout:(I)V
+  #283 = Utf8               com/zaxxer/nuprocess/windows/ProcessCompletions
+  #284 = NameAndType        #207:#208     // queueRead:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;I)V
+  #285 = NameAndType        #388:#385     // getStdinPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+  #286 = NameAndType        #389:#390     // writeStdin:(I)Z
+  #287 = NameAndType        #201:#175     // queueWrite:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+  #288 = NameAndType        #391:#385     // getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+  #289 = NameAndType        #392:#179     // readStderr:(I)V
+  #290 = NameAndType        #393:#185     // isSoftExit:()Z
+  #291 = NameAndType        #221:#175     // cleanupProcess:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+  #292 = NameAndType        #394:#395     // values:()Ljava/util/Collection;
+  #293 = NameAndType        #218:#396     // iterator:()Ljava/util/Iterator;
+  #294 = NameAndType        #397:#185     // hasNext:()Z
+  #295 = NameAndType        #398:#399     // next:()Ljava/lang/Object;
+  #296 = NameAndType        #400:#401     // getPidHandle:()Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #297 = Utf8               java/lang/Integer
+  #298 = NameAndType        #402:#403     // TerminateProcess:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;I)Z
+  #299 = NameAndType        #404:#179     // onExit:(I)V
+  #300 = Utf8               java/util/concurrent/CyclicBarrier
+  #301 = NameAndType        #405:#406     // put:(Ljava/lang/Object;)V
+  #302 = Utf8               com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR
+  #303 = Utf8               ULONG_PTR
+  #304 = NameAndType        #168:#407     // "<init>":(J)V
+  #305 = NameAndType        #408:#411     // PostQueuedCompletionStatus:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;ILcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)Z
+  #306 = Utf8               java/lang/InterruptedException
+  #307 = NameAndType        #412:#158     // registered:Z
+  #308 = NameAndType        #413:#143     // pipeHandle:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #309 = Class              #414          // com/zaxxer/nuprocess/internal/Constants
+  #310 = NameAndType        #415:#131     // NUMBER_OF_THREADS:I
+  #311 = NameAndType        #416:#417     // CreateIoCompletionPort:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;I)Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #312 = NameAndType        #418:#419     // equals:(Ljava/lang/Object;)Z
+  #313 = Utf8               java/lang/RuntimeException
+  #314 = Utf8               java/lang/StringBuilder
+  #315 = Utf8               CreateIoCompletionPort() failed, error code:
+  #316 = NameAndType        #420:#421     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #317 = Class              #422          // com/sun/jna/Native
+  #318 = NameAndType        #423:#359     // getLastError:()I
+  #319 = NameAndType        #420:#424     // append:(I)Ljava/lang/StringBuilder;
+  #320 = NameAndType        #425:#426     // toString:()Ljava/lang/String;
+  #321 = NameAndType        #405:#427     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #322 = NameAndType        #428:#429     // buffer:Ljava/nio/ByteBuffer;
+  #323 = NameAndType        #430:#431     // overlapped:Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;
+  #324 = NameAndType        #432:#433     // WriteFile:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Ljava/nio/ByteBuffer;ILcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)I
+  #325 = Utf8               com/zaxxer/nuprocess/windows/NuWinNT
+  #326 = NameAndType        #434:#169     // stdinClose:()V
+  #327 = Class              #435          // java/nio/ByteBuffer
+  #328 = NameAndType        #436:#185     // hasRemaining:()Z
+  #329 = Utf8               stdout / stderr buffer has no bytes remaining
+  #330 = NameAndType        #437:#359     // remaining:()I
+  #331 = NameAndType        #438:#433     // ReadFile:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Ljava/nio/ByteBuffer;ILcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)I
+  #332 = Class              #439          // java/lang/System
+  #333 = NameAndType        #440:#441     // err:Ljava/io/PrintStream;
+  #334 = Utf8               Some other error occurred reading the pipe:
+  #335 = Class              #442          // java/io/PrintStream
+  #336 = NameAndType        #443:#357     // println:(Ljava/lang/String;)V
+  #337 = NameAndType        #444:#399     // poll:()Ljava/lang/Object;
+  #338 = NameAndType        #445:#446     // GetExitCodeProcess:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;)Z
+  #339 = NameAndType        #447:#169     // remove:()V
+  #340 = NameAndType        #447:#383     // remove:(Ljava/lang/Object;)Ljava/lang/Object;
+  #341 = NameAndType        #448:#419     // add:(Ljava/lang/Object;)Z
+  #342 = NameAndType        #449:#143     // INVALID_HANDLE_VALUE:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #343 = Utf8               com.zaxxer.nuprocess.lingerTimeMs
+  #344 = NameAndType        #450:#451     // getInteger:(Ljava/lang/String;I)Ljava/lang/Integer;
+  #345 = NameAndType        #452:#359     // intValue:()I
+  #346 = Class              #453          // java/lang/Math
+  #347 = NameAndType        #454:#455     // max:(II)I
+  #348 = Utf8               com.zaxxer.nuprocess.deadPoolPollMs
+  #349 = NameAndType        #456:#455     // min:(II)I
+  #350 = Utf8               java/lang/Object
+  #351 = Utf8               java/lang/Runnable
+  #352 = Utf8               com/zaxxer/nuprocess/windows/NuWinNT$HANDLE
+  #353 = Utf8               java/lang/Throwable
+  #354 = Utf8               java/util/Collection
+  #355 = Utf8               java/util/Iterator
+  #356 = Utf8               com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle
+  #357 = Utf8               (Ljava/lang/String;)V
+  #358 = Utf8               await
+  #359 = Utf8               ()I
+  #360 = Utf8               java/util/Map
+  #361 = Utf8               isEmpty
+  #362 = Utf8               java/util/List
+  #363 = Utf8               java/util/concurrent/BlockingQueue
+  #364 = Utf8               compareAndSet
+  #365 = Utf8               (ZZ)Z
+  #366 = Utf8               com/zaxxer/nuprocess/windows/NuKernel32
+  #367 = Utf8               CloseHandle
+  #368 = Utf8               (Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;)Z
+  #369 = Utf8               printStackTrace
+  #370 = Utf8               set
+  #371 = Utf8               (Z)V
+  #372 = Utf8               GetQueuedCompletionStatus
+  #373 = Utf8               (Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;Lcom/sun/jna/ptr/PointerByReference;I)I
+  #374 = Utf8               getValue
+  #375 = Utf8               ()Lcom/sun/jna/Pointer;
+  #376 = Utf8               ()Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;
+  #377 = Utf8               longValue
+  #378 = Utf8               ()J
+  #379 = Utf8               java/lang/Long
+  #380 = Utf8               valueOf
+  #381 = Utf8               (J)Ljava/lang/Long;
+  #382 = Utf8               get
+  #383 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #384 = Utf8               getStdoutPipe
+  #385 = Utf8               ()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+  #386 = Utf8               ioCompletionKey
+  #387 = Utf8               readStdout
+  #388 = Utf8               getStdinPipe
+  #389 = Utf8               writeStdin
+  #390 = Utf8               (I)Z
+  #391 = Utf8               getStderrPipe
+  #392 = Utf8               readStderr
+  #393 = Utf8               isSoftExit
+  #394 = Utf8               values
+  #395 = Utf8               ()Ljava/util/Collection;
+  #396 = Utf8               ()Ljava/util/Iterator;
+  #397 = Utf8               hasNext
+  #398 = Utf8               next
+  #399 = Utf8               ()Ljava/lang/Object;
+  #400 = Utf8               getPidHandle
+  #401 = Utf8               ()Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #402 = Utf8               TerminateProcess
+  #403 = Utf8               (Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;I)Z
+  #404 = Utf8               onExit
+  #405 = Utf8               put
+  #406 = Utf8               (Ljava/lang/Object;)V
+  #407 = Utf8               (J)V
+  #408 = Utf8               PostQueuedCompletionStatus
+  #409 = Class              #457          // com/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED
+  #410 = Utf8               OVERLAPPED
+  #411 = Utf8               (Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;ILcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)Z
+  #412 = Utf8               registered
+  #413 = Utf8               pipeHandle
+  #414 = Utf8               com/zaxxer/nuprocess/internal/Constants
+  #415 = Utf8               NUMBER_OF_THREADS
+  #416 = Utf8               CreateIoCompletionPort
+  #417 = Utf8               (Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;I)Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+  #418 = Utf8               equals
+  #419 = Utf8               (Ljava/lang/Object;)Z
+  #420 = Utf8               append
+  #421 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #422 = Utf8               com/sun/jna/Native
+  #423 = Utf8               getLastError
+  #424 = Utf8               (I)Ljava/lang/StringBuilder;
+  #425 = Utf8               toString
+  #426 = Utf8               ()Ljava/lang/String;
+  #427 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #428 = Utf8               buffer
+  #429 = Utf8               Ljava/nio/ByteBuffer;
+  #430 = Utf8               overlapped
+  #431 = Utf8               Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;
+  #432 = Utf8               WriteFile
+  #433 = Utf8               (Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Ljava/nio/ByteBuffer;ILcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)I
+  #434 = Utf8               stdinClose
+  #435 = Utf8               java/nio/ByteBuffer
+  #436 = Utf8               hasRemaining
+  #437 = Utf8               remaining
+  #438 = Utf8               ReadFile
+  #439 = Utf8               java/lang/System
+  #440 = Utf8               err
+  #441 = Utf8               Ljava/io/PrintStream;
+  #442 = Utf8               java/io/PrintStream
+  #443 = Utf8               println
+  #444 = Utf8               poll
+  #445 = Utf8               GetExitCodeProcess
+  #446 = Utf8               (Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;)Z
+  #447 = Utf8               remove
+  #448 = Utf8               add
+  #449 = Utf8               INVALID_HANDLE_VALUE
+  #450 = Utf8               getInteger
+  #451 = Utf8               (Ljava/lang/String;I)Ljava/lang/Integer;
+  #452 = Utf8               intValue
+  #453 = Utf8               java/lang/Math
+  #454 = Utf8               max
+  #455 = Utf8               (II)I
+  #456 = Utf8               min
+  #457 = Utf8               com/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED
+{
+  private static final int DEADPOOL_POLL_INTERVAL;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final int LINGER_ITERATIONS;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final int STDOUT;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 0
+
+  private static final int STDERR;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 1
+
+  private final int lingerIterations;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private com.zaxxer.nuprocess.windows.NuWinNT$HANDLE ioCompletionPort;
+    descriptor: Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.util.List<com.zaxxer.nuprocess.windows.WindowsProcess> deadPool;
+    descriptor: Ljava/util/List;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #147                         // Ljava/util/List<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+
+  private java.util.concurrent.BlockingQueue<com.zaxxer.nuprocess.windows.WindowsProcess> pendingPool;
+    descriptor: Ljava/util/concurrent/BlockingQueue;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #150                         // Ljava/util/concurrent/BlockingQueue<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+
+  private java.util.concurrent.BlockingQueue<com.zaxxer.nuprocess.windows.WindowsProcess> wantsWrite;
+    descriptor: Ljava/util/concurrent/BlockingQueue;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #150                         // Ljava/util/concurrent/BlockingQueue<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+
+  private java.util.Map<java.lang.Long, com.zaxxer.nuprocess.windows.WindowsProcess> completionKeyToProcessMap;
+    descriptor: Ljava/util/Map;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #154                         // Ljava/util/Map<Ljava/lang/Long;Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+
+  private volatile java.util.concurrent.CyclicBarrier startBarrier;
+    descriptor: Ljava/util/concurrent/CyclicBarrier;
+    flags: (0x0042) ACC_PRIVATE, ACC_VOLATILE
+
+  private volatile boolean shutdown;
+    descriptor: Z
+    flags: (0x0042) ACC_PRIVATE, ACC_VOLATILE
+
+  private java.util.concurrent.atomic.AtomicBoolean isRunning;
+    descriptor: Ljava/util/concurrent/atomic/AtomicBoolean;
+    flags: (0x0002) ACC_PRIVATE
+
+  private com.sun.jna.ptr.IntByReference numberOfBytes;
+    descriptor: Lcom/sun/jna/ptr/IntByReference;
+    flags: (0x0002) ACC_PRIVATE
+
+  private com.zaxxer.nuprocess.windows.NuWinNT$ULONG_PTRByReference completionKey;
+    descriptor: Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;
+    flags: (0x0002) ACC_PRIVATE
+
+  private com.sun.jna.ptr.PointerByReference lpOverlapped;
+    descriptor: Lcom/sun/jna/ptr/PointerByReference;
+    flags: (0x0002) ACC_PRIVATE
+
+  com.zaxxer.nuprocess.windows.ProcessCompletions();
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getstatic     #1                  // Field LINGER_ITERATIONS:I
+         4: invokespecial #2                  // Method "<init>":(I)V
+         7: return
+      LineNumberTable:
+        line 74: 0
+        line 75: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+
+  com.zaxxer.nuprocess.windows.ProcessCompletions(com.zaxxer.nuprocess.windows.WindowsProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+    flags: (0x0000)
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: iconst_m1
+         2: invokespecial #2                  // Method "<init>":(I)V
+         5: aload_1
+         6: ifnonnull     19
+         9: new           #3                  // class java/lang/IllegalArgumentException
+        12: dup
+        13: ldc           #4                  // String process
+        15: invokespecial #5                  // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        18: athrow
+        19: aload_0
+        20: aload_1
+        21: invokevirtual #6                  // Method registerProcess:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+        24: aload_0
+        25: invokevirtual #7                  // Method checkAndSetRunning:()Z
+        28: pop
+        29: return
+      LineNumberTable:
+        line 79: 0
+        line 81: 5
+        line 82: 9
+        line 85: 19
+        line 86: 24
+        line 87: 29
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+            0      30     1 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = [ class com/zaxxer/nuprocess/windows/ProcessCompletions, class com/zaxxer/nuprocess/windows/WindowsProcess ]
+          stack = []
+
+  private com.zaxxer.nuprocess.windows.ProcessCompletions(int);
+    descriptor: (I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iload_1
+         6: putfield      #9                  // Field lingerIterations:I
+         9: aload_0
+        10: new           #10                 // class java/util/HashMap
+        13: dup
+        14: invokespecial #11                 // Method java/util/HashMap."<init>":()V
+        17: putfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+        20: aload_0
+        21: new           #13                 // class java/util/concurrent/ArrayBlockingQueue
+        24: dup
+        25: sipush        512
+        28: invokespecial #14                 // Method java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+        31: putfield      #15                 // Field wantsWrite:Ljava/util/concurrent/BlockingQueue;
+        34: aload_0
+        35: new           #16                 // class java/util/concurrent/LinkedBlockingQueue
+        38: dup
+        39: invokespecial #17                 // Method java/util/concurrent/LinkedBlockingQueue."<init>":()V
+        42: putfield      #18                 // Field pendingPool:Ljava/util/concurrent/BlockingQueue;
+        45: aload_0
+        46: new           #19                 // class java/util/LinkedList
+        49: dup
+        50: invokespecial #20                 // Method java/util/LinkedList."<init>":()V
+        53: putfield      #21                 // Field deadPool:Ljava/util/List;
+        56: aload_0
+        57: new           #22                 // class java/util/concurrent/atomic/AtomicBoolean
+        60: dup
+        61: invokespecial #23                 // Method java/util/concurrent/atomic/AtomicBoolean."<init>":()V
+        64: putfield      #24                 // Field isRunning:Ljava/util/concurrent/atomic/AtomicBoolean;
+        67: aload_0
+        68: new           #25                 // class com/sun/jna/ptr/IntByReference
+        71: dup
+        72: invokespecial #26                 // Method com/sun/jna/ptr/IntByReference."<init>":()V
+        75: putfield      #27                 // Field numberOfBytes:Lcom/sun/jna/ptr/IntByReference;
+        78: aload_0
+        79: new           #28                 // class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference
+        82: dup
+        83: invokespecial #29                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference."<init>":()V
+        86: putfield      #30                 // Field completionKey:Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;
+        89: aload_0
+        90: new           #31                 // class com/sun/jna/ptr/PointerByReference
+        93: dup
+        94: invokespecial #32                 // Method com/sun/jna/ptr/PointerByReference."<init>":()V
+        97: putfield      #33                 // Field lpOverlapped:Lcom/sun/jna/ptr/PointerByReference;
+       100: aload_0
+       101: invokespecial #34                 // Method initCompletionPort:()V
+       104: return
+      LineNumberTable:
+        line 90: 0
+        line 91: 4
+        line 93: 9
+        line 94: 20
+        line 95: 34
+        line 96: 45
+        line 97: 56
+        line 99: 67
+        line 100: 78
+        line 101: 89
+        line 103: 100
+        line 104: 104
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     105     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+            0     105     1 lingerIterations   I
+
+  public void run();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: aload_0
+         1: getfield      #35                 // Field startBarrier:Ljava/util/concurrent/CyclicBarrier;
+         4: ifnull        15
+         7: aload_0
+         8: getfield      #35                 // Field startBarrier:Ljava/util/concurrent/CyclicBarrier;
+        11: invokevirtual #36                 // Method java/util/concurrent/CyclicBarrier.await:()I
+        14: pop
+        15: iconst_0
+        16: istore_1
+        17: aload_0
+        18: getfield      #24                 // Field isRunning:Ljava/util/concurrent/atomic/AtomicBoolean;
+        21: iload_1
+        22: aload_0
+        23: getfield      #9                  // Field lingerIterations:I
+        26: if_icmple     69
+        29: aload_0
+        30: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+        33: invokeinterface #37,  1           // InterfaceMethod java/util/Map.isEmpty:()Z
+        38: ifeq          69
+        41: aload_0
+        42: getfield      #21                 // Field deadPool:Ljava/util/List;
+        45: invokeinterface #38,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+        50: ifeq          69
+        53: aload_0
+        54: getfield      #18                 // Field pendingPool:Ljava/util/concurrent/BlockingQueue;
+        57: invokeinterface #39,  1           // InterfaceMethod java/util/concurrent/BlockingQueue.isEmpty:()Z
+        62: ifeq          69
+        65: iconst_1
+        66: goto          70
+        69: iconst_0
+        70: iconst_0
+        71: invokevirtual #40                 // Method java/util/concurrent/atomic/AtomicBoolean.compareAndSet:(ZZ)Z
+        74: ifne          102
+        77: aload_0
+        78: getfield      #41                 // Field shutdown:Z
+        81: ifne          95
+        84: aload_0
+        85: invokevirtual #42                 // Method process:()Z
+        88: ifeq          95
+        91: iconst_0
+        92: goto          98
+        95: iload_1
+        96: iconst_1
+        97: iadd
+        98: istore_1
+        99: goto          17
+       102: aload_0
+       103: getfield      #35                 // Field startBarrier:Ljava/util/concurrent/CyclicBarrier;
+       106: ifnonnull     169
+       109: aload_0
+       110: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+       113: invokestatic  #44                 // Method com/zaxxer/nuprocess/windows/NuKernel32.CloseHandle:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;)Z
+       116: pop
+       117: goto          169
+       120: astore_1
+       121: aload_1
+       122: invokevirtual #46                 // Method java/lang/Exception.printStackTrace:()V
+       125: aload_0
+       126: getfield      #24                 // Field isRunning:Ljava/util/concurrent/atomic/AtomicBoolean;
+       129: iconst_0
+       130: invokevirtual #47                 // Method java/util/concurrent/atomic/AtomicBoolean.set:(Z)V
+       133: aload_0
+       134: getfield      #35                 // Field startBarrier:Ljava/util/concurrent/CyclicBarrier;
+       137: ifnonnull     169
+       140: aload_0
+       141: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+       144: invokestatic  #44                 // Method com/zaxxer/nuprocess/windows/NuKernel32.CloseHandle:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;)Z
+       147: pop
+       148: goto          169
+       151: astore_2
+       152: aload_0
+       153: getfield      #35                 // Field startBarrier:Ljava/util/concurrent/CyclicBarrier;
+       156: ifnonnull     167
+       159: aload_0
+       160: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+       163: invokestatic  #44                 // Method com/zaxxer/nuprocess/windows/NuKernel32.CloseHandle:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;)Z
+       166: pop
+       167: aload_2
+       168: athrow
+       169: return
+      Exception table:
+         from    to  target type
+             0   102   120   Class java/lang/Exception
+             0   102   151   any
+           120   133   151   any
+      LineNumberTable:
+        line 114: 0
+        line 115: 7
+        line 118: 15
+        line 119: 17
+        line 120: 77
+        line 129: 102
+        line 132: 109
+        line 123: 120
+        line 125: 121
+        line 126: 125
+        line 129: 133
+        line 132: 140
+        line 129: 151
+        line 132: 159
+        line 134: 167
+        line 135: 169
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           17      85     1 idleCount   I
+          121      12     1     e   Ljava/lang/Exception;
+            0     170     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+      StackMapTable: number_of_entries = 11
+        frame_type = 15 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 1
+          locals = [ int ]
+        frame_type = 115 /* same_locals_1_stack_item */
+          stack = [ class java/util/concurrent/atomic/AtomicBoolean ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class com/zaxxer/nuprocess/windows/ProcessCompletions, int ]
+          stack = [ class java/util/concurrent/atomic/AtomicBoolean, int ]
+        frame_type = 24 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 3
+        frame_type = 81 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 94 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 253 /* append */
+          offset_delta = 15
+          locals = [ top, class java/lang/Throwable ]
+        frame_type = 249 /* chop */
+          offset_delta = 1
+
+  public boolean process();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=8, args_size=1
+         0: aload_0
+         1: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+         4: aload_0
+         5: getfield      #27                 // Field numberOfBytes:Lcom/sun/jna/ptr/IntByReference;
+         8: aload_0
+         9: getfield      #30                 // Field completionKey:Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;
+        12: aload_0
+        13: getfield      #33                 // Field lpOverlapped:Lcom/sun/jna/ptr/PointerByReference;
+        16: getstatic     #48                 // Field DEADPOOL_POLL_INTERVAL:I
+        19: invokestatic  #49                 // Method com/zaxxer/nuprocess/windows/NuKernel32.GetQueuedCompletionStatus:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;Lcom/sun/jna/ptr/PointerByReference;I)I
+        22: istore_1
+        23: iload_1
+        24: ifne          53
+        27: aload_0
+        28: getfield      #33                 // Field lpOverlapped:Lcom/sun/jna/ptr/PointerByReference;
+        31: invokevirtual #50                 // Method com/sun/jna/ptr/PointerByReference.getValue:()Lcom/sun/jna/Pointer;
+        34: ifnonnull     53
+        37: aload_0
+        38: invokespecial #51                 // Method checkWaitWrites:()V
+        41: aload_0
+        42: invokespecial #52                 // Method checkPendingPool:()V
+        45: iconst_0
+        46: istore_2
+        47: aload_0
+        48: invokespecial #53                 // Method checkDeadPool:()V
+        51: iload_2
+        52: ireturn
+        53: aload_0
+        54: getfield      #30                 // Field completionKey:Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference;
+        57: invokevirtual #54                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference.getValue:()Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;
+        60: invokevirtual #55                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR.longValue:()J
+        63: lstore_2
+        64: lload_2
+        65: lconst_0
+        66: lcmp
+        67: ifne          88
+        70: aload_0
+        71: invokespecial #51                 // Method checkWaitWrites:()V
+        74: aload_0
+        75: invokespecial #52                 // Method checkPendingPool:()V
+        78: iconst_1
+        79: istore        4
+        81: aload_0
+        82: invokespecial #53                 // Method checkDeadPool:()V
+        85: iload         4
+        87: ireturn
+        88: aload_0
+        89: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+        92: lload_2
+        93: invokestatic  #56                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+        96: invokeinterface #57,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       101: checkcast     #58                 // class com/zaxxer/nuprocess/windows/WindowsProcess
+       104: astore        4
+       106: aload         4
+       108: ifnonnull     121
+       111: iconst_1
+       112: istore        5
+       114: aload_0
+       115: invokespecial #53                 // Method checkDeadPool:()V
+       118: iload         5
+       120: ireturn
+       121: aload_0
+       122: getfield      #27                 // Field numberOfBytes:Lcom/sun/jna/ptr/IntByReference;
+       125: invokevirtual #59                 // Method com/sun/jna/ptr/IntByReference.getValue:()I
+       128: istore        5
+       130: aload         4
+       132: invokevirtual #60                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       135: ifnull        187
+       138: aload         4
+       140: invokevirtual #60                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       143: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+       146: lload_2
+       147: lcmp
+       148: ifne          187
+       151: iload         5
+       153: ifle          178
+       156: aload         4
+       158: iload         5
+       160: invokevirtual #62                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.readStdout:(I)V
+       163: aload_0
+       164: aload         4
+       166: aload         4
+       168: invokevirtual #60                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       171: iconst_0
+       172: invokespecial #64                 // Method queueRead:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;I)V
+       175: goto          281
+       178: aload         4
+       180: iconst_m1
+       181: invokevirtual #62                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.readStdout:(I)V
+       184: goto          281
+       187: aload         4
+       189: invokevirtual #65                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdinPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       192: ifnull        227
+       195: aload         4
+       197: invokevirtual #65                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdinPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       200: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+       203: lload_2
+       204: lcmp
+       205: ifne          227
+       208: aload         4
+       210: iload         5
+       212: invokevirtual #66                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.writeStdin:(I)Z
+       215: ifeq          281
+       218: aload_0
+       219: aload         4
+       221: invokespecial #67                 // Method queueWrite:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+       224: goto          281
+       227: aload         4
+       229: invokevirtual #68                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       232: ifnull        281
+       235: aload         4
+       237: invokevirtual #68                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       240: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+       243: lload_2
+       244: lcmp
+       245: ifne          281
+       248: iload         5
+       250: ifle          275
+       253: aload         4
+       255: iload         5
+       257: invokevirtual #69                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.readStderr:(I)V
+       260: aload_0
+       261: aload         4
+       263: aload         4
+       265: invokevirtual #68                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       268: iconst_1
+       269: invokespecial #64                 // Method queueRead:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;I)V
+       272: goto          281
+       275: aload         4
+       277: iconst_m1
+       278: invokevirtual #69                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.readStderr:(I)V
+       281: aload         4
+       283: invokevirtual #70                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.isSoftExit:()Z
+       286: ifeq          295
+       289: aload_0
+       290: aload         4
+       292: invokespecial #71                 // Method cleanupProcess:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+       295: iconst_1
+       296: istore        6
+       298: aload_0
+       299: invokespecial #53                 // Method checkDeadPool:()V
+       302: iload         6
+       304: ireturn
+       305: astore        7
+       307: aload_0
+       308: invokespecial #53                 // Method checkDeadPool:()V
+       311: aload         7
+       313: athrow
+      Exception table:
+         from    to  target type
+             0    47   305   any
+            53    81   305   any
+            88   114   305   any
+           121   298   305   any
+           305   307   305   any
+      LineNumberTable:
+        line 140: 0
+        line 141: 23
+        line 143: 37
+        line 144: 41
+        line 145: 45
+        line 193: 47
+        line 145: 51
+        line 148: 53
+        line 150: 64
+        line 151: 70
+        line 152: 74
+        line 153: 78
+        line 193: 81
+        line 153: 85
+        line 156: 88
+        line 157: 106
+        line 158: 111
+        line 193: 114
+        line 158: 118
+        line 161: 121
+        line 162: 130
+        line 163: 151
+        line 164: 156
+        line 165: 163
+        line 168: 178
+        line 171: 187
+        line 172: 208
+        line 173: 218
+        line 176: 227
+        line 177: 248
+        line 178: 253
+        line 179: 260
+        line 182: 275
+        line 186: 281
+        line 187: 289
+        line 190: 295
+        line 193: 298
+        line 190: 302
+        line 193: 305
+        line 194: 311
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           23     282     1 status   I
+           64     241     2   key   J
+          106     199     4 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+          130     175     5 transferred   I
+            0     314     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+      StackMapTable: number_of_entries = 10
+        frame_type = 252 /* append */
+          offset_delta = 53
+          locals = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 34
+          locals = [ long ]
+        frame_type = 252 /* append */
+          offset_delta = 32
+          locals = [ class com/zaxxer/nuprocess/windows/WindowsProcess ]
+        frame_type = 252 /* append */
+          offset_delta = 56
+          locals = [ int ]
+        frame_type = 8 /* same */
+        frame_type = 39 /* same */
+        frame_type = 47 /* same */
+        frame_type = 5 /* same */
+        frame_type = 13 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class com/zaxxer/nuprocess/windows/ProcessCompletions ]
+          stack = [ class java/lang/Throwable ]
+
+  void shutdown();
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=2, locals=4, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: putfield      #41                 // Field shutdown:Z
+         5: aload_0
+         6: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+         9: invokeinterface #72,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+        14: astore_1
+        15: aload_1
+        16: invokeinterface #73,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+        21: astore_2
+        22: aload_2
+        23: invokeinterface #74,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        28: ifeq          60
+        31: aload_2
+        32: invokeinterface #75,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        37: checkcast     #58                 // class com/zaxxer/nuprocess/windows/WindowsProcess
+        40: astore_3
+        41: aload_3
+        42: invokevirtual #76                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getPidHandle:()Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        45: ldc           #78                 // int 2147483646
+        47: invokestatic  #79                 // Method com/zaxxer/nuprocess/windows/NuKernel32.TerminateProcess:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;I)Z
+        50: pop
+        51: aload_3
+        52: ldc           #78                 // int 2147483646
+        54: invokevirtual #80                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.onExit:(I)V
+        57: goto          22
+        60: return
+      LineNumberTable:
+        line 199: 0
+        line 200: 5
+        line 201: 15
+        line 202: 41
+        line 203: 51
+        line 204: 57
+        line 205: 60
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           41      16     3 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+            0      61     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+           15      46     1 processes   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           15      46     1 processes   Ljava/util/Collection<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 22
+          locals = [ class java/util/Collection, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 37
+
+  java.util.concurrent.CyclicBarrier getSpawnBarrier();
+    descriptor: ()Ljava/util/concurrent/CyclicBarrier;
+    flags: (0x0000)
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: new           #81                 // class java/util/concurrent/CyclicBarrier
+         4: dup
+         5: iconst_2
+         6: invokespecial #82                 // Method java/util/concurrent/CyclicBarrier."<init>":(I)V
+         9: putfield      #35                 // Field startBarrier:Ljava/util/concurrent/CyclicBarrier;
+        12: aload_0
+        13: getfield      #35                 // Field startBarrier:Ljava/util/concurrent/CyclicBarrier;
+        16: areturn
+      LineNumberTable:
+        line 209: 0
+        line 210: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+
+  boolean checkAndSetRunning();
+    descriptor: ()Z
+    flags: (0x0000)
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #24                 // Field isRunning:Ljava/util/concurrent/atomic/AtomicBoolean;
+         4: iconst_0
+         5: iconst_1
+         6: invokevirtual #40                 // Method java/util/concurrent/atomic/AtomicBoolean.compareAndSet:(ZZ)Z
+         9: ireturn
+      LineNumberTable:
+        line 215: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+
+  void wantWrite(com.zaxxer.nuprocess.windows.WindowsProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+    flags: (0x0000)
+    Code:
+      stack=6, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #15                 // Field wantsWrite:Ljava/util/concurrent/BlockingQueue;
+         4: aload_1
+         5: invokeinterface #83,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+        10: aload_0
+        11: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        14: iconst_0
+        15: new           #84                 // class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR
+        18: dup
+        19: lconst_0
+        20: invokespecial #85                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR."<init>":(J)V
+        23: aconst_null
+        24: invokestatic  #86                 // Method com/zaxxer/nuprocess/windows/NuKernel32.PostQueuedCompletionStatus:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;ILcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)Z
+        27: pop
+        28: goto          32
+        31: astore_2
+        32: return
+      Exception table:
+         from    to  target type
+             0    28    31   Class java/lang/InterruptedException
+      LineNumberTable:
+        line 221: 0
+        line 222: 10
+        line 226: 28
+        line 224: 31
+        line 227: 32
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      33     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+            0      33     1 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+      StackMapTable: number_of_entries = 2
+        frame_type = 95 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 0 /* same */
+
+  void registerProcess(com.zaxxer.nuprocess.windows.WindowsProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+    flags: (0x0000)
+    Code:
+      stack=6, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #41                 // Field shutdown:Z
+         4: ifeq          8
+         7: return
+         8: aload_0
+         9: getfield      #18                 // Field pendingPool:Ljava/util/concurrent/BlockingQueue;
+        12: aload_1
+        13: invokeinterface #83,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+        18: aload_0
+        19: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        22: iconst_0
+        23: new           #84                 // class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR
+        26: dup
+        27: lconst_0
+        28: invokespecial #85                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR."<init>":(J)V
+        31: aconst_null
+        32: invokestatic  #86                 // Method com/zaxxer/nuprocess/windows/NuKernel32.PostQueuedCompletionStatus:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;ILcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)Z
+        35: pop
+        36: goto          40
+        39: astore_2
+        40: return
+      Exception table:
+         from    to  target type
+             8    36    39   Class java/lang/InterruptedException
+      LineNumberTable:
+        line 231: 0
+        line 232: 7
+        line 236: 8
+        line 237: 18
+        line 241: 36
+        line 239: 39
+        line 242: 40
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+            0      41     1 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+      StackMapTable: number_of_entries = 3
+        frame_type = 8 /* same */
+        frame_type = 94 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 0 /* same */
+
+  private void queueWrite(com.zaxxer.nuprocess.windows.WindowsProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=4, args_size=2
+         0: aload_0
+         1: getfield      #41                 // Field shutdown:Z
+         4: ifeq          8
+         7: return
+         8: aload_1
+         9: invokevirtual #65                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdinPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+        12: astore_2
+        13: aload_2
+        14: getfield      #88                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.registered:Z
+        17: ifne          109
+        20: aload_2
+        21: getfield      #89                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.pipeHandle:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        24: aload_0
+        25: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        28: new           #84                 // class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR
+        31: dup
+        32: aload_2
+        33: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+        36: invokespecial #85                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR."<init>":(J)V
+        39: getstatic     #90                 // Field com/zaxxer/nuprocess/internal/Constants.NUMBER_OF_THREADS:I
+        42: invokestatic  #91                 // Method com/zaxxer/nuprocess/windows/NuKernel32.CreateIoCompletionPort:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;I)Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        45: astore_3
+        46: aload_0
+        47: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        50: aload_3
+        51: invokevirtual #92                 // Method com/zaxxer/nuprocess/windows/NuWinNT$HANDLE.equals:(Ljava/lang/Object;)Z
+        54: ifne          86
+        57: new           #93                 // class java/lang/RuntimeException
+        60: dup
+        61: new           #94                 // class java/lang/StringBuilder
+        64: dup
+        65: invokespecial #95                 // Method java/lang/StringBuilder."<init>":()V
+        68: ldc           #96                 // String CreateIoCompletionPort() failed, error code:
+        70: invokevirtual #97                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        73: invokestatic  #98                 // Method com/sun/jna/Native.getLastError:()I
+        76: invokevirtual #99                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        79: invokevirtual #100                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        82: invokespecial #101                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+        85: athrow
+        86: aload_0
+        87: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+        90: aload_2
+        91: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+        94: invokestatic  #56                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+        97: aload_1
+        98: invokeinterface #102,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       103: pop
+       104: aload_2
+       105: iconst_1
+       106: putfield      #88                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.registered:Z
+       109: aload_2
+       110: getfield      #89                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.pipeHandle:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+       113: aload_2
+       114: getfield      #103                // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.buffer:Ljava/nio/ByteBuffer;
+       117: iconst_0
+       118: aconst_null
+       119: aload_2
+       120: getfield      #104                // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.overlapped:Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;
+       123: invokestatic  #105                // Method com/zaxxer/nuprocess/windows/NuKernel32.WriteFile:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Ljava/nio/ByteBuffer;ILcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)I
+       126: ifne          142
+       129: invokestatic  #98                 // Method com/sun/jna/Native.getLastError:()I
+       132: sipush        997
+       135: if_icmpeq     142
+       138: aload_1
+       139: invokevirtual #107                // Method com/zaxxer/nuprocess/windows/WindowsProcess.stdinClose:()V
+       142: return
+      LineNumberTable:
+        line 246: 0
+        line 247: 7
+        line 250: 8
+        line 252: 13
+        line 253: 20
+        line 257: 46
+        line 258: 57
+        line 261: 86
+        line 262: 104
+        line 265: 109
+        line 266: 129
+        line 267: 138
+        line 269: 142
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           46      63     3 completionPort   Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+            0     143     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+            0     143     1 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+           13     130     2 stdinPipe   Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+      StackMapTable: number_of_entries = 4
+        frame_type = 8 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 77
+          locals = [ class com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle, class com/zaxxer/nuprocess/windows/NuWinNT$HANDLE ]
+        frame_type = 250 /* chop */
+          offset_delta = 22
+        frame_type = 32 /* same */
+
+  private void queueRead(com.zaxxer.nuprocess.windows.WindowsProcess, com.zaxxer.nuprocess.windows.WindowsProcess$PipeBundle, int);
+    descriptor: (Lcom/zaxxer/nuprocess/windows/WindowsProcess;Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=5, locals=5, args_size=4
+         0: aload_2
+         1: getfield      #103                // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.buffer:Ljava/nio/ByteBuffer;
+         4: invokevirtual #108                // Method java/nio/ByteBuffer.hasRemaining:()Z
+         7: ifne          20
+        10: new           #93                 // class java/lang/RuntimeException
+        13: dup
+        14: ldc           #109                // String stdout / stderr buffer has no bytes remaining
+        16: invokespecial #101                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+        19: athrow
+        20: aload_2
+        21: getfield      #89                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.pipeHandle:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        24: aload_2
+        25: getfield      #103                // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.buffer:Ljava/nio/ByteBuffer;
+        28: aload_2
+        29: getfield      #103                // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.buffer:Ljava/nio/ByteBuffer;
+        32: invokevirtual #110                // Method java/nio/ByteBuffer.remaining:()I
+        35: aconst_null
+        36: aload_2
+        37: getfield      #104                // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.overlapped:Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;
+        40: invokestatic  #111                // Method com/zaxxer/nuprocess/windows/NuKernel32.ReadFile:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Ljava/nio/ByteBuffer;ILcom/sun/jna/ptr/IntByReference;Lcom/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED;)I
+        43: ifne          145
+        46: invokestatic  #98                 // Method com/sun/jna/Native.getLastError:()I
+        49: istore        4
+        51: iload         4
+        53: lookupswitch  { // 4
+                       0: 96
+                     109: 99
+                     233: 99
+                     997: 96
+                 default: 119
+            }
+        96: goto          145
+        99: iload_3
+       100: ifne          111
+       103: aload_1
+       104: iconst_m1
+       105: invokevirtual #62                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.readStdout:(I)V
+       108: goto          145
+       111: aload_1
+       112: iconst_m1
+       113: invokevirtual #69                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.readStderr:(I)V
+       116: goto          145
+       119: getstatic     #112                // Field java/lang/System.err:Ljava/io/PrintStream;
+       122: new           #94                 // class java/lang/StringBuilder
+       125: dup
+       126: invokespecial #95                 // Method java/lang/StringBuilder."<init>":()V
+       129: ldc           #113                // String Some other error occurred reading the pipe:
+       131: invokevirtual #97                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       134: iload         4
+       136: invokevirtual #99                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       139: invokevirtual #100                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       142: invokevirtual #114                // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       145: return
+      LineNumberTable:
+        line 275: 0
+        line 276: 10
+        line 278: 20
+        line 279: 46
+        line 280: 51
+        line 283: 96
+        line 286: 99
+        line 287: 103
+        line 290: 111
+        line 292: 116
+        line 294: 119
+        line 298: 145
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           51      94     4 lastError   I
+            0     146     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+            0     146     1 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+            0     146     2  pipe   Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+            0     146     3  stdX   I
+      StackMapTable: number_of_entries = 6
+        frame_type = 20 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 75
+          locals = [ int ]
+        frame_type = 2 /* same */
+        frame_type = 11 /* same */
+        frame_type = 7 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 25
+
+  private void checkPendingPool();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field pendingPool:Ljava/util/concurrent/BlockingQueue;
+         4: invokeinterface #115,  1          // InterfaceMethod java/util/concurrent/BlockingQueue.poll:()Ljava/lang/Object;
+         9: checkcast     #58                 // class com/zaxxer/nuprocess/windows/WindowsProcess
+        12: dup
+        13: astore_1
+        14: ifnull        226
+        17: aload_1
+        18: invokevirtual #60                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+        21: getfield      #89                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.pipeHandle:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        24: aload_0
+        25: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        28: new           #84                 // class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR
+        31: dup
+        32: aload_1
+        33: invokevirtual #60                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+        36: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+        39: invokespecial #85                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR."<init>":(J)V
+        42: getstatic     #90                 // Field com/zaxxer/nuprocess/internal/Constants.NUMBER_OF_THREADS:I
+        45: invokestatic  #91                 // Method com/zaxxer/nuprocess/windows/NuKernel32.CreateIoCompletionPort:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;I)Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        48: astore_2
+        49: aload_0
+        50: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        53: aload_2
+        54: invokevirtual #92                 // Method com/zaxxer/nuprocess/windows/NuWinNT$HANDLE.equals:(Ljava/lang/Object;)Z
+        57: ifne          89
+        60: new           #93                 // class java/lang/RuntimeException
+        63: dup
+        64: new           #94                 // class java/lang/StringBuilder
+        67: dup
+        68: invokespecial #95                 // Method java/lang/StringBuilder."<init>":()V
+        71: ldc           #96                 // String CreateIoCompletionPort() failed, error code:
+        73: invokevirtual #97                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        76: invokestatic  #98                 // Method com/sun/jna/Native.getLastError:()I
+        79: invokevirtual #99                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        82: invokevirtual #100                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        85: invokespecial #101                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+        88: athrow
+        89: aload_1
+        90: invokevirtual #68                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+        93: getfield      #89                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.pipeHandle:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        96: aload_0
+        97: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+       100: new           #84                 // class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR
+       103: dup
+       104: aload_1
+       105: invokevirtual #68                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       108: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+       111: invokespecial #85                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR."<init>":(J)V
+       114: getstatic     #90                 // Field com/zaxxer/nuprocess/internal/Constants.NUMBER_OF_THREADS:I
+       117: invokestatic  #91                 // Method com/zaxxer/nuprocess/windows/NuKernel32.CreateIoCompletionPort:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;I)Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+       120: astore_3
+       121: aload_0
+       122: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+       125: aload_3
+       126: invokevirtual #92                 // Method com/zaxxer/nuprocess/windows/NuWinNT$HANDLE.equals:(Ljava/lang/Object;)Z
+       129: ifne          161
+       132: new           #93                 // class java/lang/RuntimeException
+       135: dup
+       136: new           #94                 // class java/lang/StringBuilder
+       139: dup
+       140: invokespecial #95                 // Method java/lang/StringBuilder."<init>":()V
+       143: ldc           #96                 // String CreateIoCompletionPort() failed, error code:
+       145: invokevirtual #97                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       148: invokestatic  #98                 // Method com/sun/jna/Native.getLastError:()I
+       151: invokevirtual #99                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       154: invokevirtual #100                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       157: invokespecial #101                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+       160: athrow
+       161: aload_0
+       162: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+       165: aload_1
+       166: invokevirtual #60                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       169: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+       172: invokestatic  #56                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       175: aload_1
+       176: invokeinterface #102,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       181: pop
+       182: aload_0
+       183: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+       186: aload_1
+       187: invokevirtual #68                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       190: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+       193: invokestatic  #56                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       196: aload_1
+       197: invokeinterface #102,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       202: pop
+       203: aload_0
+       204: aload_1
+       205: aload_1
+       206: invokevirtual #60                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       209: iconst_0
+       210: invokespecial #64                 // Method queueRead:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;I)V
+       213: aload_0
+       214: aload_1
+       215: aload_1
+       216: invokevirtual #68                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+       219: iconst_1
+       220: invokespecial #64                 // Method queueRead:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;I)V
+       223: goto          0
+       226: return
+      LineNumberTable:
+        line 303: 0
+        line 304: 17
+        line 305: 18
+        line 306: 33
+        line 304: 45
+        line 308: 49
+        line 309: 60
+        line 312: 89
+        line 313: 90
+        line 314: 105
+        line 312: 117
+        line 316: 121
+        line 317: 132
+        line 320: 161
+        line 321: 182
+        line 323: 203
+        line 324: 213
+        line 325: 223
+        line 326: 226
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           49     174     2 completionPort1   Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+          121     102     3 completionPort2   Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+            0     227     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+           14     213     1 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+      StackMapTable: number_of_entries = 4
+        frame_type = 0 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 88
+          locals = [ class com/zaxxer/nuprocess/windows/WindowsProcess, class com/zaxxer/nuprocess/windows/NuWinNT$HANDLE ]
+        frame_type = 252 /* append */
+          offset_delta = 71
+          locals = [ class com/zaxxer/nuprocess/windows/NuWinNT$HANDLE ]
+        frame_type = 249 /* chop */
+          offset_delta = 64
+
+  private void checkWaitWrites();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: getfield      #15                 // Field wantsWrite:Ljava/util/concurrent/BlockingQueue;
+         4: invokeinterface #115,  1          // InterfaceMethod java/util/concurrent/BlockingQueue.poll:()Ljava/lang/Object;
+         9: checkcast     #58                 // class com/zaxxer/nuprocess/windows/WindowsProcess
+        12: dup
+        13: astore_1
+        14: ifnull        25
+        17: aload_0
+        18: aload_1
+        19: invokespecial #67                 // Method queueWrite:(Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+        22: goto          0
+        25: return
+      LineNumberTable:
+        line 331: 0
+        line 332: 17
+        line 334: 25
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      26     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+           14      12     1 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+      StackMapTable: number_of_entries = 2
+        frame_type = 0 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ class com/zaxxer/nuprocess/windows/WindowsProcess ]
+
+  private void checkDeadPool();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #21                 // Field deadPool:Ljava/util/List;
+         4: invokeinterface #38,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+         9: ifeq          13
+        12: return
+        13: new           #25                 // class com/sun/jna/ptr/IntByReference
+        16: dup
+        17: invokespecial #26                 // Method com/sun/jna/ptr/IntByReference."<init>":()V
+        20: astore_1
+        21: aload_0
+        22: getfield      #21                 // Field deadPool:Ljava/util/List;
+        25: invokeinterface #116,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        30: astore_2
+        31: aload_2
+        32: invokeinterface #74,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        37: ifeq          88
+        40: aload_2
+        41: invokeinterface #75,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        46: checkcast     #58                 // class com/zaxxer/nuprocess/windows/WindowsProcess
+        49: astore_3
+        50: aload_3
+        51: invokevirtual #76                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getPidHandle:()Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        54: aload_1
+        55: invokestatic  #117                // Method com/zaxxer/nuprocess/windows/NuKernel32.GetExitCodeProcess:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;)Z
+        58: ifeq          85
+        61: aload_1
+        62: invokevirtual #59                 // Method com/sun/jna/ptr/IntByReference.getValue:()I
+        65: sipush        259
+        68: if_icmpeq     85
+        71: aload_2
+        72: invokeinterface #118,  1          // InterfaceMethod java/util/Iterator.remove:()V
+        77: aload_3
+        78: aload_1
+        79: invokevirtual #59                 // Method com/sun/jna/ptr/IntByReference.getValue:()I
+        82: invokevirtual #80                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.onExit:(I)V
+        85: goto          31
+        88: return
+      LineNumberTable:
+        line 338: 0
+        line 339: 12
+        line 342: 13
+        line 343: 21
+        line 344: 31
+        line 345: 40
+        line 346: 50
+        line 347: 71
+        line 348: 77
+        line 350: 85
+        line 351: 88
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           50      35     3 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+            0      89     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+           21      68     1 exitCode   Lcom/sun/jna/ptr/IntByReference;
+           31      58     2 iterator   Ljava/util/Iterator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           31      58     2 iterator   Ljava/util/Iterator<Lcom/zaxxer/nuprocess/windows/WindowsProcess;>;
+      StackMapTable: number_of_entries = 4
+        frame_type = 13 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 17
+          locals = [ class com/sun/jna/ptr/IntByReference, class java/util/Iterator ]
+        frame_type = 53 /* same */
+        frame_type = 2 /* same */
+
+  private void cleanupProcess(com.zaxxer.nuprocess.windows.WindowsProcess);
+    descriptor: (Lcom/zaxxer/nuprocess/windows/WindowsProcess;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+         4: aload_1
+         5: invokevirtual #65                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdinPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+         8: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+        11: invokestatic  #56                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+        14: invokeinterface #119,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        19: pop
+        20: aload_0
+        21: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+        24: aload_1
+        25: invokevirtual #60                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStdoutPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+        28: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+        31: invokestatic  #56                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+        34: invokeinterface #119,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        39: pop
+        40: aload_0
+        41: getfield      #12                 // Field completionKeyToProcessMap:Ljava/util/Map;
+        44: aload_1
+        45: invokevirtual #68                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getStderrPipe:()Lcom/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle;
+        48: getfield      #61                 // Field com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle.ioCompletionKey:J
+        51: invokestatic  #56                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+        54: invokeinterface #119,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        59: pop
+        60: new           #25                 // class com/sun/jna/ptr/IntByReference
+        63: dup
+        64: invokespecial #26                 // Method com/sun/jna/ptr/IntByReference."<init>":()V
+        67: astore_2
+        68: aload_1
+        69: invokevirtual #76                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.getPidHandle:()Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        72: aload_2
+        73: invokestatic  #117                // Method com/zaxxer/nuprocess/windows/NuKernel32.GetExitCodeProcess:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/sun/jna/ptr/IntByReference;)Z
+        76: ifeq          100
+        79: aload_2
+        80: invokevirtual #59                 // Method com/sun/jna/ptr/IntByReference.getValue:()I
+        83: sipush        259
+        86: if_icmpeq     100
+        89: aload_1
+        90: aload_2
+        91: invokevirtual #59                 // Method com/sun/jna/ptr/IntByReference.getValue:()I
+        94: invokevirtual #80                 // Method com/zaxxer/nuprocess/windows/WindowsProcess.onExit:(I)V
+        97: goto          111
+       100: aload_0
+       101: getfield      #21                 // Field deadPool:Ljava/util/List;
+       104: aload_1
+       105: invokeinterface #120,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       110: pop
+       111: return
+      LineNumberTable:
+        line 355: 0
+        line 356: 20
+        line 357: 40
+        line 359: 60
+        line 360: 68
+        line 361: 89
+        line 364: 100
+        line 366: 111
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     112     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+            0     112     1 process   Lcom/zaxxer/nuprocess/windows/WindowsProcess;
+           68      44     2 exitCode   Lcom/sun/jna/ptr/IntByReference;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 100
+          locals = [ class com/sun/jna/ptr/IntByReference ]
+        frame_type = 10 /* same */
+
+  private void initCompletionPort();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=7, locals=1, args_size=1
+         0: aload_0
+         1: getstatic     #121                // Field com/zaxxer/nuprocess/windows/NuWinNT.INVALID_HANDLE_VALUE:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+         4: aconst_null
+         5: new           #84                 // class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR
+         8: dup
+         9: lconst_0
+        10: invokespecial #85                 // Method com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR."<init>":(J)V
+        13: getstatic     #90                 // Field com/zaxxer/nuprocess/internal/Constants.NUMBER_OF_THREADS:I
+        16: invokestatic  #91                 // Method com/zaxxer/nuprocess/windows/NuKernel32.CreateIoCompletionPort:(Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;Lcom/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR;I)Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        19: putfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        22: aload_0
+        23: getfield      #43                 // Field ioCompletionPort:Lcom/zaxxer/nuprocess/windows/NuWinNT$HANDLE;
+        26: ifnonnull     58
+        29: new           #93                 // class java/lang/RuntimeException
+        32: dup
+        33: new           #94                 // class java/lang/StringBuilder
+        36: dup
+        37: invokespecial #95                 // Method java/lang/StringBuilder."<init>":()V
+        40: ldc           #96                 // String CreateIoCompletionPort() failed, error code:
+        42: invokevirtual #97                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        45: invokestatic  #98                 // Method com/sun/jna/Native.getLastError:()I
+        48: invokevirtual #99                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        51: invokevirtual #100                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        54: invokespecial #101                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+        57: athrow
+        58: return
+      LineNumberTable:
+        line 370: 0
+        line 372: 22
+        line 373: 29
+        line 375: 58
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      59     0  this   Lcom/zaxxer/nuprocess/windows/ProcessCompletions;
+      StackMapTable: number_of_entries = 1
+        frame_type = 58 /* same */
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=4, locals=1, args_size=0
+         0: sipush        1000
+         3: ldc           #122                // String com.zaxxer.nuprocess.lingerTimeMs
+         5: sipush        2500
+         8: invokestatic  #123                // Method java/lang/Integer.getInteger:(Ljava/lang/String;I)Ljava/lang/Integer;
+        11: invokevirtual #124                // Method java/lang/Integer.intValue:()I
+        14: invokestatic  #125                // Method java/lang/Math.max:(II)I
+        17: istore_0
+        18: iload_0
+        19: bipush        100
+        21: ldc           #126                // String com.zaxxer.nuprocess.deadPoolPollMs
+        23: sipush        250
+        26: invokestatic  #123                // Method java/lang/Integer.getInteger:(Ljava/lang/String;I)Ljava/lang/Integer;
+        29: invokevirtual #124                // Method java/lang/Integer.intValue:()I
+        32: invokestatic  #125                // Method java/lang/Math.max:(II)I
+        35: invokestatic  #127                // Method java/lang/Math.min:(II)I
+        38: putstatic     #48                 // Field DEADPOOL_POLL_INTERVAL:I
+        41: iload_0
+        42: getstatic     #48                 // Field DEADPOOL_POLL_INTERVAL:I
+        45: idiv
+        46: putstatic     #1                  // Field LINGER_ITERATIONS:I
+        49: return
+      LineNumberTable:
+        line 65: 0
+        line 67: 18
+        line 69: 41
+        line 70: 49
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           18      31     0 lingerTimeMs   I
+}
+SourceFile: "ProcessCompletions.java"
+InnerClasses:
+  public static #141= #140 of #106;       // HANDLE=class com/zaxxer/nuprocess/windows/NuWinNT$HANDLE of class com/zaxxer/nuprocess/windows/NuWinNT
+  public static #164= #28 of #106;        // ULONG_PTRByReference=class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTRByReference of class com/zaxxer/nuprocess/windows/NuWinNT
+  static final #205= #204 of #58;         // PipeBundle=class com/zaxxer/nuprocess/windows/WindowsProcess$PipeBundle of class com/zaxxer/nuprocess/windows/WindowsProcess
+  public static #303= #84 of #106;        // ULONG_PTR=class com/zaxxer/nuprocess/windows/NuWinNT$ULONG_PTR of class com/zaxxer/nuprocess/windows/NuWinNT
+  public static #410= #409 of #262;       // OVERLAPPED=class com/zaxxer/nuprocess/windows/NuKernel32$OVERLAPPED of class com/zaxxer/nuprocess/windows/NuKernel32

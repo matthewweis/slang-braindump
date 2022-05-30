@@ -1,0 +1,3701 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/core/JsonGenerator.class
+  Last modified May 29, 2022; size 21586 bytes
+  SHA-256 checksum 537038bcb39b783e74ba1029863a77e46ecf1bcdfab8525ff24beb73872a2836
+  Compiled from "JsonGenerator.java"
+public abstract class com.fasterxml.jackson.core.JsonGenerator implements java.io.Closeable,java.io.Flushable,com.fasterxml.jackson.core.Versioned
+  minor version: 0
+  major version: 50
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #153                        // com/fasterxml/jackson/core/JsonGenerator
+  super_class: #16                        // java/lang/Object
+  interfaces: 3, fields: 4, methods: 122, attributes: 2
+Constant pool:
+    #1 = Class              #415          // com/fasterxml/jackson/core/JsonTokenId
+    #2 = Methodref          #16.#416      // java/lang/Object."<init>":()V
+    #3 = Methodref          #153.#417     // com/fasterxml/jackson/core/JsonGenerator.getCurrentValue:()Ljava/lang/Object;
+    #4 = Methodref          #153.#418     // com/fasterxml/jackson/core/JsonGenerator.setCurrentValue:(Ljava/lang/Object;)V
+    #5 = Methodref          #153.#419     // com/fasterxml/jackson/core/JsonGenerator.getOutputContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+    #6 = Methodref          #420.#417     // com/fasterxml/jackson/core/JsonStreamContext.getCurrentValue:()Ljava/lang/Object;
+    #7 = Methodref          #420.#418     // com/fasterxml/jackson/core/JsonStreamContext.setCurrentValue:(Ljava/lang/Object;)V
+    #8 = Methodref          #153.#421     // com/fasterxml/jackson/core/JsonGenerator.enable:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+    #9 = Methodref          #153.#422     // com/fasterxml/jackson/core/JsonGenerator.disable:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+   #10 = Methodref          #423.#424     // com/fasterxml/jackson/core/StreamWriteFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+   #11 = Methodref          #153.#425     // com/fasterxml/jackson/core/JsonGenerator.isEnabled:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+   #12 = Methodref          #153.#426     // com/fasterxml/jackson/core/JsonGenerator.getFeatureMask:()I
+   #13 = Methodref          #153.#427     // com/fasterxml/jackson/core/JsonGenerator.setFeatureMask:(I)Lcom/fasterxml/jackson/core/JsonGenerator;
+   #14 = Class              #428          // java/lang/UnsupportedOperationException
+   #15 = String             #429          // Generator of type %s does not support schema of type \'%s\'
+   #16 = Class              #430          // java/lang/Object
+   #17 = Methodref          #16.#431      // java/lang/Object.getClass:()Ljava/lang/Class;
+   #18 = Methodref          #432.#433     // java/lang/Class.getName:()Ljava/lang/String;
+   #19 = InterfaceMethodref #434.#435     // com/fasterxml/jackson/core/FormatSchema.getSchemaType:()Ljava/lang/String;
+   #20 = Methodref          #47.#436      // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+   #21 = Methodref          #14.#437      // java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+   #22 = Fieldref           #153.#438     // com/fasterxml/jackson/core/JsonGenerator._cfgPrettyPrinter:Lcom/fasterxml/jackson/core/PrettyPrinter;
+   #23 = Methodref          #14.#416      // java/lang/UnsupportedOperationException."<init>":()V
+   #24 = Fieldref           #153.#439     // com/fasterxml/jackson/core/JsonGenerator.DEFAULT_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+   #25 = Methodref          #153.#440     // com/fasterxml/jackson/core/JsonGenerator.writeStartArray:()V
+   #26 = Methodref          #153.#441     // com/fasterxml/jackson/core/JsonGenerator.writeStartArray:(I)V
+   #27 = Methodref          #153.#442     // com/fasterxml/jackson/core/JsonGenerator.writeStartObject:()V
+   #28 = Methodref          #124.#443     // java/lang/Long.toString:(J)Ljava/lang/String;
+   #29 = Methodref          #153.#444     // com/fasterxml/jackson/core/JsonGenerator.writeFieldName:(Ljava/lang/String;)V
+   #30 = Class              #445          // java/lang/IllegalArgumentException
+   #31 = String             #446          // null array
+   #32 = Methodref          #30.#437      // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+   #33 = Methodref          #153.#447     // com/fasterxml/jackson/core/JsonGenerator._verifyOffsets:(III)V
+   #34 = Methodref          #153.#448     // com/fasterxml/jackson/core/JsonGenerator.writeStartArray:(Ljava/lang/Object;I)V
+   #35 = Methodref          #153.#449     // com/fasterxml/jackson/core/JsonGenerator.writeNumber:(I)V
+   #36 = Methodref          #153.#450     // com/fasterxml/jackson/core/JsonGenerator.writeEndArray:()V
+   #37 = Methodref          #153.#451     // com/fasterxml/jackson/core/JsonGenerator.writeNumber:(J)V
+   #38 = Methodref          #153.#452     // com/fasterxml/jackson/core/JsonGenerator.writeNumber:(D)V
+   #39 = Methodref          #153.#453     // com/fasterxml/jackson/core/JsonGenerator.writeString:(Ljava/lang/String;)V
+   #40 = Methodref          #153.#454     // com/fasterxml/jackson/core/JsonGenerator._reportUnsupportedOperation:()V
+   #41 = InterfaceMethodref #455.#456     // com/fasterxml/jackson/core/SerializableString.getValue:()Ljava/lang/String;
+   #42 = Methodref          #153.#457     // com/fasterxml/jackson/core/JsonGenerator.writeRaw:(Ljava/lang/String;)V
+   #43 = Methodref          #153.#458     // com/fasterxml/jackson/core/JsonGenerator.writeRawValue:(Ljava/lang/String;)V
+   #44 = Methodref          #459.#460     // com/fasterxml/jackson/core/Base64Variants.getDefaultVariant:()Lcom/fasterxml/jackson/core/Base64Variant;
+   #45 = Methodref          #153.#461     // com/fasterxml/jackson/core/JsonGenerator.writeBinary:(Lcom/fasterxml/jackson/core/Base64Variant;[BII)V
+   #46 = Methodref          #153.#462     // com/fasterxml/jackson/core/JsonGenerator.writeBinary:(Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/InputStream;I)I
+   #47 = Class              #463          // java/lang/String
+   #48 = Methodref          #47.#464      // java/lang/String."<init>":([CII)V
+   #49 = Methodref          #153.#465     // com/fasterxml/jackson/core/JsonGenerator.writeNumber:(Ljava/lang/String;)V
+   #50 = Methodref          #153.#466     // com/fasterxml/jackson/core/JsonGenerator.writeNull:()V
+   #51 = Class              #313          // "[B"
+   #52 = Methodref          #153.#467     // com/fasterxml/jackson/core/JsonGenerator.writeBinary:([B)V
+   #53 = Class              #468          // com/fasterxml/jackson/core/JsonGenerationException
+   #54 = Class              #469          // java/lang/StringBuilder
+   #55 = Methodref          #54.#416      // java/lang/StringBuilder."<init>":()V
+   #56 = String             #470          // No native support for writing embedded objects of type
+   #57 = Methodref          #54.#471      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #58 = Methodref          #54.#472      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #59 = Methodref          #53.#473      // com/fasterxml/jackson/core/JsonGenerationException."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+   #60 = String             #474          // No native support for writing Object Ids
+   #61 = String             #475          // No native support for writing Type Ids
+   #62 = Fieldref           #476.#477     // com/fasterxml/jackson/core/type/WritableTypeId.id:Ljava/lang/Object;
+   #63 = Fieldref           #476.#478     // com/fasterxml/jackson/core/type/WritableTypeId.valueShape:Lcom/fasterxml/jackson/core/JsonToken;
+   #64 = Methodref          #153.#479     // com/fasterxml/jackson/core/JsonGenerator.canWriteTypeId:()Z
+   #65 = Fieldref           #476.#480     // com/fasterxml/jackson/core/type/WritableTypeId.wrapperWritten:Z
+   #66 = Methodref          #153.#481     // com/fasterxml/jackson/core/JsonGenerator.writeTypeId:(Ljava/lang/Object;)V
+   #67 = Methodref          #47.#482      // java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+   #68 = Fieldref           #476.#483     // com/fasterxml/jackson/core/type/WritableTypeId.include:Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+   #69 = Fieldref           #484.#485     // com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+   #70 = Methodref          #342.#486     // com/fasterxml/jackson/core/type/WritableTypeId$Inclusion.requiresObjectContext:()Z
+   #71 = Fieldref           #342.#487     // com/fasterxml/jackson/core/type/WritableTypeId$Inclusion.WRAPPER_ARRAY:Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+   #72 = Fieldref           #157.#488     // com/fasterxml/jackson/core/JsonGenerator$1.$SwitchMap$com$fasterxml$jackson$core$type$WritableTypeId$Inclusion:[I
+   #73 = Methodref          #342.#489     // com/fasterxml/jackson/core/type/WritableTypeId$Inclusion.ordinal:()I
+   #74 = Fieldref           #476.#490     // com/fasterxml/jackson/core/type/WritableTypeId.forValue:Ljava/lang/Object;
+   #75 = Methodref          #153.#491     // com/fasterxml/jackson/core/JsonGenerator.writeStartObject:(Ljava/lang/Object;)V
+   #76 = Fieldref           #476.#492     // com/fasterxml/jackson/core/type/WritableTypeId.asProperty:Ljava/lang/String;
+   #77 = Methodref          #153.#493     // com/fasterxml/jackson/core/JsonGenerator.writeStringField:(Ljava/lang/String;Ljava/lang/String;)V
+   #78 = Fieldref           #484.#494     // com/fasterxml/jackson/core/JsonToken.START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+   #79 = Methodref          #153.#495     // com/fasterxml/jackson/core/JsonGenerator.writeEndObject:()V
+   #80 = Methodref          #153.#496     // com/fasterxml/jackson/core/JsonGenerator.writeObject:(Ljava/lang/Object;)V
+   #81 = Methodref          #153.#497     // com/fasterxml/jackson/core/JsonGenerator.writeBoolean:(Z)V
+   #82 = Methodref          #153.#498     // com/fasterxml/jackson/core/JsonGenerator.writeNumber:(S)V
+   #83 = Methodref          #153.#499     // com/fasterxml/jackson/core/JsonGenerator.writeNumber:(Ljava/math/BigInteger;)V
+   #84 = Methodref          #153.#500     // com/fasterxml/jackson/core/JsonGenerator.writeNumber:(F)V
+   #85 = Methodref          #153.#501     // com/fasterxml/jackson/core/JsonGenerator.writeNumber:(Ljava/math/BigDecimal;)V
+   #86 = Methodref          #153.#502     // com/fasterxml/jackson/core/JsonGenerator.writeObjectField:(Ljava/lang/String;Ljava/lang/Object;)V
+   #87 = Methodref          #503.#504     // com/fasterxml/jackson/core/JsonParser.currentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+   #88 = Methodref          #484.#505     // com/fasterxml/jackson/core/JsonToken.id:()I
+   #89 = String             #506          // No current event to copy
+   #90 = Methodref          #153.#507     // com/fasterxml/jackson/core/JsonGenerator._reportError:(Ljava/lang/String;)V
+   #91 = Methodref          #503.#508     // com/fasterxml/jackson/core/JsonParser.getCurrentName:()Ljava/lang/String;
+   #92 = Methodref          #503.#509     // com/fasterxml/jackson/core/JsonParser.hasTextCharacters:()Z
+   #93 = Methodref          #503.#510     // com/fasterxml/jackson/core/JsonParser.getTextCharacters:()[C
+   #94 = Methodref          #503.#511     // com/fasterxml/jackson/core/JsonParser.getTextOffset:()I
+   #95 = Methodref          #503.#512     // com/fasterxml/jackson/core/JsonParser.getTextLength:()I
+   #96 = Methodref          #153.#513     // com/fasterxml/jackson/core/JsonGenerator.writeString:([CII)V
+   #97 = Methodref          #503.#514     // com/fasterxml/jackson/core/JsonParser.getText:()Ljava/lang/String;
+   #98 = Methodref          #503.#515     // com/fasterxml/jackson/core/JsonParser.getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+   #99 = Fieldref           #388.#516     // com/fasterxml/jackson/core/JsonParser$NumberType.INT:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #100 = Methodref          #503.#517     // com/fasterxml/jackson/core/JsonParser.getIntValue:()I
+  #101 = Fieldref           #388.#518     // com/fasterxml/jackson/core/JsonParser$NumberType.BIG_INTEGER:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #102 = Methodref          #503.#519     // com/fasterxml/jackson/core/JsonParser.getBigIntegerValue:()Ljava/math/BigInteger;
+  #103 = Methodref          #503.#520     // com/fasterxml/jackson/core/JsonParser.getLongValue:()J
+  #104 = Fieldref           #388.#521     // com/fasterxml/jackson/core/JsonParser$NumberType.BIG_DECIMAL:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #105 = Methodref          #503.#522     // com/fasterxml/jackson/core/JsonParser.getDecimalValue:()Ljava/math/BigDecimal;
+  #106 = Fieldref           #388.#523     // com/fasterxml/jackson/core/JsonParser$NumberType.FLOAT:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #107 = Methodref          #503.#524     // com/fasterxml/jackson/core/JsonParser.getFloatValue:()F
+  #108 = Methodref          #503.#525     // com/fasterxml/jackson/core/JsonParser.getDoubleValue:()D
+  #109 = Methodref          #503.#526     // com/fasterxml/jackson/core/JsonParser.getEmbeddedObject:()Ljava/lang/Object;
+  #110 = Class              #527          // java/lang/IllegalStateException
+  #111 = String             #528          // Internal error: unknown current token,
+  #112 = Methodref          #54.#529      // java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #113 = Methodref          #110.#437     // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+  #114 = Methodref          #503.#530     // com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+  #115 = Methodref          #153.#531     // com/fasterxml/jackson/core/JsonGenerator._copyCurrentContents:(Lcom/fasterxml/jackson/core/JsonParser;)V
+  #116 = Methodref          #153.#532     // com/fasterxml/jackson/core/JsonGenerator.copyCurrentEvent:(Lcom/fasterxml/jackson/core/JsonParser;)V
+  #117 = Methodref          #533.#534     // com/fasterxml/jackson/core/util/VersionUtil.throwInternal:()V
+  #118 = String             #535          // Operation not supported by generator of type
+  #119 = String             #536          // invalid argument(s) (offset=%d, length=%d) for input array of %d element
+  #120 = Methodref          #122.#537     // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+  #121 = Class              #538          // java/lang/Number
+  #122 = Class              #539          // java/lang/Integer
+  #123 = Methodref          #121.#540     // java/lang/Number.intValue:()I
+  #124 = Class              #541          // java/lang/Long
+  #125 = Methodref          #121.#542     // java/lang/Number.longValue:()J
+  #126 = Class              #543          // java/lang/Double
+  #127 = Methodref          #121.#544     // java/lang/Number.doubleValue:()D
+  #128 = Class              #545          // java/lang/Float
+  #129 = Methodref          #121.#546     // java/lang/Number.floatValue:()F
+  #130 = Class              #547          // java/lang/Short
+  #131 = Methodref          #121.#548     // java/lang/Number.shortValue:()S
+  #132 = Class              #549          // java/lang/Byte
+  #133 = Methodref          #121.#550     // java/lang/Number.byteValue:()B
+  #134 = Class              #551          // java/math/BigInteger
+  #135 = Class              #552          // java/math/BigDecimal
+  #136 = Class              #553          // java/util/concurrent/atomic/AtomicInteger
+  #137 = Methodref          #136.#554     // java/util/concurrent/atomic/AtomicInteger.get:()I
+  #138 = Class              #555          // java/util/concurrent/atomic/AtomicLong
+  #139 = Methodref          #138.#556     // java/util/concurrent/atomic/AtomicLong.get:()J
+  #140 = Class              #557          // java/lang/Boolean
+  #141 = Methodref          #140.#558     // java/lang/Boolean.booleanValue:()Z
+  #142 = Class              #559          // java/util/concurrent/atomic/AtomicBoolean
+  #143 = Methodref          #142.#560     // java/util/concurrent/atomic/AtomicBoolean.get:()Z
+  #144 = String             #561          // No ObjectCodec defined for the generator, can only serialize simple wrapper types (type passed
+  #145 = String             #562          // )
+  #146 = Methodref          #563.#564     // com/fasterxml/jackson/core/StreamWriteCapability.values:()[Lcom/fasterxml/jackson/core/StreamWriteCapability;
+  #147 = Methodref          #565.#566     // com/fasterxml/jackson/core/util/JacksonFeatureSet.fromDefaults:([Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #148 = Fieldref           #563.#567     // com/fasterxml/jackson/core/StreamWriteCapability.CAN_WRITE_FORMATTED_NUMBERS:Lcom/fasterxml/jackson/core/StreamWriteCapability;
+  #149 = Methodref          #565.#568     // com/fasterxml/jackson/core/util/JacksonFeatureSet.with:(Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #150 = Fieldref           #153.#569     // com/fasterxml/jackson/core/JsonGenerator.DEFAULT_TEXTUAL_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #151 = Fieldref           #563.#570     // com/fasterxml/jackson/core/StreamWriteCapability.CAN_WRITE_BINARY_NATIVELY:Lcom/fasterxml/jackson/core/StreamWriteCapability;
+  #152 = Fieldref           #153.#571     // com/fasterxml/jackson/core/JsonGenerator.DEFAULT_BINARY_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #153 = Class              #572          // com/fasterxml/jackson/core/JsonGenerator
+  #154 = Class              #573          // java/io/Closeable
+  #155 = Class              #574          // java/io/Flushable
+  #156 = Class              #575          // com/fasterxml/jackson/core/Versioned
+  #157 = Class              #576          // com/fasterxml/jackson/core/JsonGenerator$1
+  #158 = Utf8               InnerClasses
+  #159 = Class              #577          // com/fasterxml/jackson/core/JsonGenerator$Feature
+  #160 = Utf8               Feature
+  #161 = Utf8               DEFAULT_WRITE_CAPABILITIES
+  #162 = Utf8               Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #163 = Utf8               Signature
+  #164 = Utf8               Lcom/fasterxml/jackson/core/util/JacksonFeatureSet<Lcom/fasterxml/jackson/core/StreamWriteCapability;>;
+  #165 = Utf8               DEFAULT_TEXTUAL_WRITE_CAPABILITIES
+  #166 = Utf8               DEFAULT_BINARY_WRITE_CAPABILITIES
+  #167 = Utf8               _cfgPrettyPrinter
+  #168 = Utf8               Lcom/fasterxml/jackson/core/PrettyPrinter;
+  #169 = Utf8               <init>
+  #170 = Utf8               ()V
+  #171 = Utf8               Code
+  #172 = Utf8               LineNumberTable
+  #173 = Utf8               LocalVariableTable
+  #174 = Utf8               this
+  #175 = Utf8               Lcom/fasterxml/jackson/core/JsonGenerator;
+  #176 = Utf8               setCodec
+  #177 = Utf8               (Lcom/fasterxml/jackson/core/ObjectCodec;)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #178 = Utf8               getCodec
+  #179 = Utf8               ()Lcom/fasterxml/jackson/core/ObjectCodec;
+  #180 = Utf8               version
+  #181 = Utf8               ()Lcom/fasterxml/jackson/core/Version;
+  #182 = Utf8               getOutputContext
+  #183 = Utf8               ()Lcom/fasterxml/jackson/core/JsonStreamContext;
+  #184 = Utf8               getOutputTarget
+  #185 = Utf8               ()Ljava/lang/Object;
+  #186 = Utf8               currentValue
+  #187 = Utf8               assignCurrentValue
+  #188 = Utf8               (Ljava/lang/Object;)V
+  #189 = Utf8               v
+  #190 = Utf8               Ljava/lang/Object;
+  #191 = Utf8               getCurrentValue
+  #192 = Utf8               ctxt
+  #193 = Utf8               Lcom/fasterxml/jackson/core/JsonStreamContext;
+  #194 = Utf8               StackMapTable
+  #195 = Class              #578          // com/fasterxml/jackson/core/JsonStreamContext
+  #196 = Class              #430          // java/lang/Object
+  #197 = Utf8               setCurrentValue
+  #198 = Utf8               enable
+  #199 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #200 = Utf8               disable
+  #201 = Utf8               configure
+  #202 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #203 = Utf8               f
+  #204 = Utf8               Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+  #205 = Utf8               state
+  #206 = Utf8               Z
+  #207 = Utf8               isEnabled
+  #208 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+  #209 = Utf8               (Lcom/fasterxml/jackson/core/StreamWriteFeature;)Z
+  #210 = Utf8               Lcom/fasterxml/jackson/core/StreamWriteFeature;
+  #211 = Utf8               getFeatureMask
+  #212 = Utf8               ()I
+  #213 = Utf8               setFeatureMask
+  #214 = Utf8               (I)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #215 = Utf8               Deprecated
+  #216 = Utf8               RuntimeVisibleAnnotations
+  #217 = Utf8               Ljava/lang/Deprecated;
+  #218 = Utf8               overrideStdFeatures
+  #219 = Utf8               (II)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #220 = Utf8               values
+  #221 = Utf8               I
+  #222 = Utf8               mask
+  #223 = Utf8               oldState
+  #224 = Utf8               newState
+  #225 = Utf8               getFormatFeatures
+  #226 = Utf8               overrideFormatFeatures
+  #227 = Utf8               setSchema
+  #228 = Utf8               (Lcom/fasterxml/jackson/core/FormatSchema;)V
+  #229 = Utf8               schema
+  #230 = Utf8               Lcom/fasterxml/jackson/core/FormatSchema;
+  #231 = Utf8               getSchema
+  #232 = Utf8               ()Lcom/fasterxml/jackson/core/FormatSchema;
+  #233 = Utf8               setPrettyPrinter
+  #234 = Utf8               (Lcom/fasterxml/jackson/core/PrettyPrinter;)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #235 = Utf8               pp
+  #236 = Utf8               getPrettyPrinter
+  #237 = Utf8               ()Lcom/fasterxml/jackson/core/PrettyPrinter;
+  #238 = Utf8               useDefaultPrettyPrinter
+  #239 = Utf8               ()Lcom/fasterxml/jackson/core/JsonGenerator;
+  #240 = Utf8               setHighestNonEscapedChar
+  #241 = Utf8               charCode
+  #242 = Utf8               getHighestEscapedChar
+  #243 = Utf8               getCharacterEscapes
+  #244 = Utf8               ()Lcom/fasterxml/jackson/core/io/CharacterEscapes;
+  #245 = Utf8               setCharacterEscapes
+  #246 = Utf8               (Lcom/fasterxml/jackson/core/io/CharacterEscapes;)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #247 = Utf8               esc
+  #248 = Utf8               Lcom/fasterxml/jackson/core/io/CharacterEscapes;
+  #249 = Utf8               setRootValueSeparator
+  #250 = Utf8               (Lcom/fasterxml/jackson/core/SerializableString;)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #251 = Utf8               sep
+  #252 = Utf8               Lcom/fasterxml/jackson/core/SerializableString;
+  #253 = Utf8               getOutputBuffered
+  #254 = Utf8               canUseSchema
+  #255 = Utf8               (Lcom/fasterxml/jackson/core/FormatSchema;)Z
+  #256 = Utf8               canWriteObjectId
+  #257 = Utf8               ()Z
+  #258 = Utf8               canWriteTypeId
+  #259 = Utf8               canWriteBinaryNatively
+  #260 = Utf8               canOmitFields
+  #261 = Utf8               canWriteFormattedNumbers
+  #262 = Utf8               getWriteCapabilities
+  #263 = Utf8               ()Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #264 = Utf8               ()Lcom/fasterxml/jackson/core/util/JacksonFeatureSet<Lcom/fasterxml/jackson/core/StreamWriteCapability;>;
+  #265 = Utf8               writeStartArray
+  #266 = Utf8               Exceptions
+  #267 = Class              #579          // java/io/IOException
+  #268 = Utf8               (I)V
+  #269 = Utf8               size
+  #270 = Utf8               forValue
+  #271 = Utf8               (Ljava/lang/Object;I)V
+  #272 = Utf8               writeEndArray
+  #273 = Utf8               writeStartObject
+  #274 = Utf8               writeEndObject
+  #275 = Utf8               writeFieldName
+  #276 = Utf8               (Ljava/lang/String;)V
+  #277 = Utf8               (Lcom/fasterxml/jackson/core/SerializableString;)V
+  #278 = Utf8               writeFieldId
+  #279 = Utf8               (J)V
+  #280 = Utf8               id
+  #281 = Utf8               J
+  #282 = Utf8               writeArray
+  #283 = Utf8               ([III)V
+  #284 = Utf8               i
+  #285 = Utf8               end
+  #286 = Utf8               array
+  #287 = Utf8               [I
+  #288 = Utf8               offset
+  #289 = Utf8               length
+  #290 = Utf8               ([JII)V
+  #291 = Utf8               [J
+  #292 = Utf8               ([DII)V
+  #293 = Utf8               [D
+  #294 = Utf8               ([Ljava/lang/String;II)V
+  #295 = Utf8               [Ljava/lang/String;
+  #296 = Utf8               writeString
+  #297 = Utf8               (Ljava/io/Reader;I)V
+  #298 = Utf8               reader
+  #299 = Utf8               Ljava/io/Reader;
+  #300 = Utf8               len
+  #301 = Utf8               ([CII)V
+  #302 = Utf8               writeRawUTF8String
+  #303 = Utf8               ([BII)V
+  #304 = Utf8               writeUTF8String
+  #305 = Utf8               writeRaw
+  #306 = Utf8               (Ljava/lang/String;II)V
+  #307 = Utf8               (C)V
+  #308 = Utf8               raw
+  #309 = Utf8               writeRawValue
+  #310 = Utf8               writeBinary
+  #311 = Utf8               (Lcom/fasterxml/jackson/core/Base64Variant;[BII)V
+  #312 = Utf8               data
+  #313 = Utf8               [B
+  #314 = Utf8               ([B)V
+  #315 = Utf8               (Ljava/io/InputStream;I)I
+  #316 = Utf8               Ljava/io/InputStream;
+  #317 = Utf8               dataLength
+  #318 = Utf8               (Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/InputStream;I)I
+  #319 = Utf8               writeNumber
+  #320 = Utf8               (S)V
+  #321 = Utf8               S
+  #322 = Utf8               (Ljava/math/BigInteger;)V
+  #323 = Utf8               (D)V
+  #324 = Utf8               (F)V
+  #325 = Utf8               (Ljava/math/BigDecimal;)V
+  #326 = Utf8               encodedValueBuffer
+  #327 = Utf8               [C
+  #328 = Utf8               writeBoolean
+  #329 = Utf8               (Z)V
+  #330 = Utf8               writeNull
+  #331 = Utf8               writeEmbeddedObject
+  #332 = Utf8               object
+  #333 = Utf8               writeObjectId
+  #334 = Utf8               writeObjectRef
+  #335 = Utf8               referenced
+  #336 = Utf8               writeTypeId
+  #337 = Utf8               writeTypePrefix
+  #338 = Utf8               (Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+  #339 = Utf8               idStr
+  #340 = Utf8               Ljava/lang/String;
+  #341 = Utf8               incl
+  #342 = Class              #580          // com/fasterxml/jackson/core/type/WritableTypeId$Inclusion
+  #343 = Utf8               Inclusion
+  #344 = Utf8               Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+  #345 = Utf8               typeIdDef
+  #346 = Utf8               Lcom/fasterxml/jackson/core/type/WritableTypeId;
+  #347 = Utf8               valueShape
+  #348 = Utf8               Lcom/fasterxml/jackson/core/JsonToken;
+  #349 = Class              #581          // com/fasterxml/jackson/core/JsonToken
+  #350 = Class              #463          // java/lang/String
+  #351 = Class              #580          // com/fasterxml/jackson/core/type/WritableTypeId$Inclusion
+  #352 = Utf8               writeTypeSuffix
+  #353 = Utf8               writePOJO
+  #354 = Utf8               pojo
+  #355 = Utf8               writeObject
+  #356 = Utf8               writeTree
+  #357 = Utf8               (Lcom/fasterxml/jackson/core/TreeNode;)V
+  #358 = Utf8               writeBinaryField
+  #359 = Utf8               (Ljava/lang/String;[B)V
+  #360 = Utf8               fieldName
+  #361 = Utf8               writeBooleanField
+  #362 = Utf8               (Ljava/lang/String;Z)V
+  #363 = Utf8               value
+  #364 = Utf8               writeNullField
+  #365 = Utf8               writeStringField
+  #366 = Utf8               (Ljava/lang/String;Ljava/lang/String;)V
+  #367 = Utf8               writeNumberField
+  #368 = Utf8               (Ljava/lang/String;S)V
+  #369 = Utf8               (Ljava/lang/String;I)V
+  #370 = Utf8               (Ljava/lang/String;J)V
+  #371 = Utf8               (Ljava/lang/String;Ljava/math/BigInteger;)V
+  #372 = Utf8               Ljava/math/BigInteger;
+  #373 = Utf8               (Ljava/lang/String;F)V
+  #374 = Utf8               F
+  #375 = Utf8               (Ljava/lang/String;D)V
+  #376 = Utf8               D
+  #377 = Utf8               (Ljava/lang/String;Ljava/math/BigDecimal;)V
+  #378 = Utf8               Ljava/math/BigDecimal;
+  #379 = Utf8               writeArrayFieldStart
+  #380 = Utf8               writeObjectFieldStart
+  #381 = Utf8               writePOJOField
+  #382 = Utf8               (Ljava/lang/String;Ljava/lang/Object;)V
+  #383 = Utf8               writeObjectField
+  #384 = Utf8               writeOmittedField
+  #385 = Utf8               copyCurrentEvent
+  #386 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser;)V
+  #387 = Utf8               n
+  #388 = Class              #582          // com/fasterxml/jackson/core/JsonParser$NumberType
+  #389 = Utf8               NumberType
+  #390 = Utf8               Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #391 = Utf8               p
+  #392 = Utf8               Lcom/fasterxml/jackson/core/JsonParser;
+  #393 = Utf8               t
+  #394 = Utf8               token
+  #395 = Class              #582          // com/fasterxml/jackson/core/JsonParser$NumberType
+  #396 = Utf8               copyCurrentStructure
+  #397 = Utf8               _copyCurrentContents
+  #398 = Utf8               depth
+  #399 = Utf8               flush
+  #400 = Utf8               isClosed
+  #401 = Utf8               close
+  #402 = Utf8               _reportError
+  #403 = Utf8               msg
+  #404 = Utf8               _throwInternal
+  #405 = Utf8               _reportUnsupportedOperation
+  #406 = Utf8               _verifyOffsets
+  #407 = Utf8               (III)V
+  #408 = Utf8               arrayLength
+  #409 = Utf8               _writeSimpleObject
+  #410 = Utf8               Ljava/lang/Number;
+  #411 = Class              #538          // java/lang/Number
+  #412 = Utf8               <clinit>
+  #413 = Utf8               SourceFile
+  #414 = Utf8               JsonGenerator.java
+  #415 = Utf8               com/fasterxml/jackson/core/JsonTokenId
+  #416 = NameAndType        #169:#170     // "<init>":()V
+  #417 = NameAndType        #191:#185     // getCurrentValue:()Ljava/lang/Object;
+  #418 = NameAndType        #197:#188     // setCurrentValue:(Ljava/lang/Object;)V
+  #419 = NameAndType        #182:#183     // getOutputContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+  #420 = Class              #578          // com/fasterxml/jackson/core/JsonStreamContext
+  #421 = NameAndType        #198:#199     // enable:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #422 = NameAndType        #200:#199     // disable:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #423 = Class              #583          // com/fasterxml/jackson/core/StreamWriteFeature
+  #424 = NameAndType        #584:#585     // mappedFeature:()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+  #425 = NameAndType        #207:#208     // isEnabled:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+  #426 = NameAndType        #211:#212     // getFeatureMask:()I
+  #427 = NameAndType        #213:#214     // setFeatureMask:(I)Lcom/fasterxml/jackson/core/JsonGenerator;
+  #428 = Utf8               java/lang/UnsupportedOperationException
+  #429 = Utf8               Generator of type %s does not support schema of type \'%s\'
+  #430 = Utf8               java/lang/Object
+  #431 = NameAndType        #586:#587     // getClass:()Ljava/lang/Class;
+  #432 = Class              #588          // java/lang/Class
+  #433 = NameAndType        #589:#590     // getName:()Ljava/lang/String;
+  #434 = Class              #591          // com/fasterxml/jackson/core/FormatSchema
+  #435 = NameAndType        #592:#590     // getSchemaType:()Ljava/lang/String;
+  #436 = NameAndType        #593:#594     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #437 = NameAndType        #169:#276     // "<init>":(Ljava/lang/String;)V
+  #438 = NameAndType        #167:#168     // _cfgPrettyPrinter:Lcom/fasterxml/jackson/core/PrettyPrinter;
+  #439 = NameAndType        #161:#162     // DEFAULT_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #440 = NameAndType        #265:#170     // writeStartArray:()V
+  #441 = NameAndType        #265:#268     // writeStartArray:(I)V
+  #442 = NameAndType        #273:#170     // writeStartObject:()V
+  #443 = NameAndType        #595:#596     // toString:(J)Ljava/lang/String;
+  #444 = NameAndType        #275:#276     // writeFieldName:(Ljava/lang/String;)V
+  #445 = Utf8               java/lang/IllegalArgumentException
+  #446 = Utf8               null array
+  #447 = NameAndType        #406:#407     // _verifyOffsets:(III)V
+  #448 = NameAndType        #265:#271     // writeStartArray:(Ljava/lang/Object;I)V
+  #449 = NameAndType        #319:#268     // writeNumber:(I)V
+  #450 = NameAndType        #272:#170     // writeEndArray:()V
+  #451 = NameAndType        #319:#279     // writeNumber:(J)V
+  #452 = NameAndType        #319:#323     // writeNumber:(D)V
+  #453 = NameAndType        #296:#276     // writeString:(Ljava/lang/String;)V
+  #454 = NameAndType        #405:#170     // _reportUnsupportedOperation:()V
+  #455 = Class              #597          // com/fasterxml/jackson/core/SerializableString
+  #456 = NameAndType        #598:#590     // getValue:()Ljava/lang/String;
+  #457 = NameAndType        #305:#276     // writeRaw:(Ljava/lang/String;)V
+  #458 = NameAndType        #309:#276     // writeRawValue:(Ljava/lang/String;)V
+  #459 = Class              #599          // com/fasterxml/jackson/core/Base64Variants
+  #460 = NameAndType        #600:#601     // getDefaultVariant:()Lcom/fasterxml/jackson/core/Base64Variant;
+  #461 = NameAndType        #310:#311     // writeBinary:(Lcom/fasterxml/jackson/core/Base64Variant;[BII)V
+  #462 = NameAndType        #310:#318     // writeBinary:(Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/InputStream;I)I
+  #463 = Utf8               java/lang/String
+  #464 = NameAndType        #169:#301     // "<init>":([CII)V
+  #465 = NameAndType        #319:#276     // writeNumber:(Ljava/lang/String;)V
+  #466 = NameAndType        #330:#170     // writeNull:()V
+  #467 = NameAndType        #310:#314     // writeBinary:([B)V
+  #468 = Utf8               com/fasterxml/jackson/core/JsonGenerationException
+  #469 = Utf8               java/lang/StringBuilder
+  #470 = Utf8               No native support for writing embedded objects of type
+  #471 = NameAndType        #602:#603     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #472 = NameAndType        #595:#590     // toString:()Ljava/lang/String;
+  #473 = NameAndType        #169:#604     // "<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+  #474 = Utf8               No native support for writing Object Ids
+  #475 = Utf8               No native support for writing Type Ids
+  #476 = Class              #605          // com/fasterxml/jackson/core/type/WritableTypeId
+  #477 = NameAndType        #280:#190     // id:Ljava/lang/Object;
+  #478 = NameAndType        #347:#348     // valueShape:Lcom/fasterxml/jackson/core/JsonToken;
+  #479 = NameAndType        #258:#257     // canWriteTypeId:()Z
+  #480 = NameAndType        #606:#206     // wrapperWritten:Z
+  #481 = NameAndType        #336:#188     // writeTypeId:(Ljava/lang/Object;)V
+  #482 = NameAndType        #607:#608     // valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+  #483 = NameAndType        #609:#344     // include:Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+  #484 = Class              #581          // com/fasterxml/jackson/core/JsonToken
+  #485 = NameAndType        #610:#348     // START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+  #486 = NameAndType        #611:#257     // requiresObjectContext:()Z
+  #487 = NameAndType        #612:#344     // WRAPPER_ARRAY:Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+  #488 = NameAndType        #613:#287     // $SwitchMap$com$fasterxml$jackson$core$type$WritableTypeId$Inclusion:[I
+  #489 = NameAndType        #614:#212     // ordinal:()I
+  #490 = NameAndType        #270:#190     // forValue:Ljava/lang/Object;
+  #491 = NameAndType        #273:#188     // writeStartObject:(Ljava/lang/Object;)V
+  #492 = NameAndType        #615:#340     // asProperty:Ljava/lang/String;
+  #493 = NameAndType        #365:#366     // writeStringField:(Ljava/lang/String;Ljava/lang/String;)V
+  #494 = NameAndType        #616:#348     // START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+  #495 = NameAndType        #274:#170     // writeEndObject:()V
+  #496 = NameAndType        #355:#188     // writeObject:(Ljava/lang/Object;)V
+  #497 = NameAndType        #328:#329     // writeBoolean:(Z)V
+  #498 = NameAndType        #319:#320     // writeNumber:(S)V
+  #499 = NameAndType        #319:#322     // writeNumber:(Ljava/math/BigInteger;)V
+  #500 = NameAndType        #319:#324     // writeNumber:(F)V
+  #501 = NameAndType        #319:#325     // writeNumber:(Ljava/math/BigDecimal;)V
+  #502 = NameAndType        #383:#382     // writeObjectField:(Ljava/lang/String;Ljava/lang/Object;)V
+  #503 = Class              #617          // com/fasterxml/jackson/core/JsonParser
+  #504 = NameAndType        #618:#619     // currentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+  #505 = NameAndType        #280:#212     // id:()I
+  #506 = Utf8               No current event to copy
+  #507 = NameAndType        #402:#276     // _reportError:(Ljava/lang/String;)V
+  #508 = NameAndType        #620:#590     // getCurrentName:()Ljava/lang/String;
+  #509 = NameAndType        #621:#257     // hasTextCharacters:()Z
+  #510 = NameAndType        #622:#623     // getTextCharacters:()[C
+  #511 = NameAndType        #624:#212     // getTextOffset:()I
+  #512 = NameAndType        #625:#212     // getTextLength:()I
+  #513 = NameAndType        #296:#301     // writeString:([CII)V
+  #514 = NameAndType        #626:#590     // getText:()Ljava/lang/String;
+  #515 = NameAndType        #627:#628     // getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #516 = NameAndType        #629:#390     // INT:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #517 = NameAndType        #630:#212     // getIntValue:()I
+  #518 = NameAndType        #631:#390     // BIG_INTEGER:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #519 = NameAndType        #632:#633     // getBigIntegerValue:()Ljava/math/BigInteger;
+  #520 = NameAndType        #634:#635     // getLongValue:()J
+  #521 = NameAndType        #636:#390     // BIG_DECIMAL:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #522 = NameAndType        #637:#638     // getDecimalValue:()Ljava/math/BigDecimal;
+  #523 = NameAndType        #639:#390     // FLOAT:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #524 = NameAndType        #640:#641     // getFloatValue:()F
+  #525 = NameAndType        #642:#643     // getDoubleValue:()D
+  #526 = NameAndType        #644:#185     // getEmbeddedObject:()Ljava/lang/Object;
+  #527 = Utf8               java/lang/IllegalStateException
+  #528 = Utf8               Internal error: unknown current token,
+  #529 = NameAndType        #602:#645     // append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #530 = NameAndType        #646:#619     // nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+  #531 = NameAndType        #397:#386     // _copyCurrentContents:(Lcom/fasterxml/jackson/core/JsonParser;)V
+  #532 = NameAndType        #385:#386     // copyCurrentEvent:(Lcom/fasterxml/jackson/core/JsonParser;)V
+  #533 = Class              #647          // com/fasterxml/jackson/core/util/VersionUtil
+  #534 = NameAndType        #648:#170     // throwInternal:()V
+  #535 = Utf8               Operation not supported by generator of type
+  #536 = Utf8               invalid argument(s) (offset=%d, length=%d) for input array of %d element
+  #537 = NameAndType        #607:#649     // valueOf:(I)Ljava/lang/Integer;
+  #538 = Utf8               java/lang/Number
+  #539 = Utf8               java/lang/Integer
+  #540 = NameAndType        #650:#212     // intValue:()I
+  #541 = Utf8               java/lang/Long
+  #542 = NameAndType        #651:#635     // longValue:()J
+  #543 = Utf8               java/lang/Double
+  #544 = NameAndType        #652:#643     // doubleValue:()D
+  #545 = Utf8               java/lang/Float
+  #546 = NameAndType        #653:#641     // floatValue:()F
+  #547 = Utf8               java/lang/Short
+  #548 = NameAndType        #654:#655     // shortValue:()S
+  #549 = Utf8               java/lang/Byte
+  #550 = NameAndType        #656:#657     // byteValue:()B
+  #551 = Utf8               java/math/BigInteger
+  #552 = Utf8               java/math/BigDecimal
+  #553 = Utf8               java/util/concurrent/atomic/AtomicInteger
+  #554 = NameAndType        #658:#212     // get:()I
+  #555 = Utf8               java/util/concurrent/atomic/AtomicLong
+  #556 = NameAndType        #658:#635     // get:()J
+  #557 = Utf8               java/lang/Boolean
+  #558 = NameAndType        #659:#257     // booleanValue:()Z
+  #559 = Utf8               java/util/concurrent/atomic/AtomicBoolean
+  #560 = NameAndType        #658:#257     // get:()Z
+  #561 = Utf8               No ObjectCodec defined for the generator, can only serialize simple wrapper types (type passed
+  #562 = Utf8               )
+  #563 = Class              #660          // com/fasterxml/jackson/core/StreamWriteCapability
+  #564 = NameAndType        #220:#661     // values:()[Lcom/fasterxml/jackson/core/StreamWriteCapability;
+  #565 = Class              #662          // com/fasterxml/jackson/core/util/JacksonFeatureSet
+  #566 = NameAndType        #663:#664     // fromDefaults:([Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #567 = NameAndType        #665:#666     // CAN_WRITE_FORMATTED_NUMBERS:Lcom/fasterxml/jackson/core/StreamWriteCapability;
+  #568 = NameAndType        #667:#668     // with:(Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #569 = NameAndType        #165:#162     // DEFAULT_TEXTUAL_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #570 = NameAndType        #669:#666     // CAN_WRITE_BINARY_NATIVELY:Lcom/fasterxml/jackson/core/StreamWriteCapability;
+  #571 = NameAndType        #166:#162     // DEFAULT_BINARY_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #572 = Utf8               com/fasterxml/jackson/core/JsonGenerator
+  #573 = Utf8               java/io/Closeable
+  #574 = Utf8               java/io/Flushable
+  #575 = Utf8               com/fasterxml/jackson/core/Versioned
+  #576 = Utf8               com/fasterxml/jackson/core/JsonGenerator$1
+  #577 = Utf8               com/fasterxml/jackson/core/JsonGenerator$Feature
+  #578 = Utf8               com/fasterxml/jackson/core/JsonStreamContext
+  #579 = Utf8               java/io/IOException
+  #580 = Utf8               com/fasterxml/jackson/core/type/WritableTypeId$Inclusion
+  #581 = Utf8               com/fasterxml/jackson/core/JsonToken
+  #582 = Utf8               com/fasterxml/jackson/core/JsonParser$NumberType
+  #583 = Utf8               com/fasterxml/jackson/core/StreamWriteFeature
+  #584 = Utf8               mappedFeature
+  #585 = Utf8               ()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+  #586 = Utf8               getClass
+  #587 = Utf8               ()Ljava/lang/Class;
+  #588 = Utf8               java/lang/Class
+  #589 = Utf8               getName
+  #590 = Utf8               ()Ljava/lang/String;
+  #591 = Utf8               com/fasterxml/jackson/core/FormatSchema
+  #592 = Utf8               getSchemaType
+  #593 = Utf8               format
+  #594 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #595 = Utf8               toString
+  #596 = Utf8               (J)Ljava/lang/String;
+  #597 = Utf8               com/fasterxml/jackson/core/SerializableString
+  #598 = Utf8               getValue
+  #599 = Utf8               com/fasterxml/jackson/core/Base64Variants
+  #600 = Utf8               getDefaultVariant
+  #601 = Utf8               ()Lcom/fasterxml/jackson/core/Base64Variant;
+  #602 = Utf8               append
+  #603 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #604 = Utf8               (Ljava/lang/String;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+  #605 = Utf8               com/fasterxml/jackson/core/type/WritableTypeId
+  #606 = Utf8               wrapperWritten
+  #607 = Utf8               valueOf
+  #608 = Utf8               (Ljava/lang/Object;)Ljava/lang/String;
+  #609 = Utf8               include
+  #610 = Utf8               START_OBJECT
+  #611 = Utf8               requiresObjectContext
+  #612 = Utf8               WRAPPER_ARRAY
+  #613 = Utf8               $SwitchMap$com$fasterxml$jackson$core$type$WritableTypeId$Inclusion
+  #614 = Utf8               ordinal
+  #615 = Utf8               asProperty
+  #616 = Utf8               START_ARRAY
+  #617 = Utf8               com/fasterxml/jackson/core/JsonParser
+  #618 = Utf8               currentToken
+  #619 = Utf8               ()Lcom/fasterxml/jackson/core/JsonToken;
+  #620 = Utf8               getCurrentName
+  #621 = Utf8               hasTextCharacters
+  #622 = Utf8               getTextCharacters
+  #623 = Utf8               ()[C
+  #624 = Utf8               getTextOffset
+  #625 = Utf8               getTextLength
+  #626 = Utf8               getText
+  #627 = Utf8               getNumberType
+  #628 = Utf8               ()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #629 = Utf8               INT
+  #630 = Utf8               getIntValue
+  #631 = Utf8               BIG_INTEGER
+  #632 = Utf8               getBigIntegerValue
+  #633 = Utf8               ()Ljava/math/BigInteger;
+  #634 = Utf8               getLongValue
+  #635 = Utf8               ()J
+  #636 = Utf8               BIG_DECIMAL
+  #637 = Utf8               getDecimalValue
+  #638 = Utf8               ()Ljava/math/BigDecimal;
+  #639 = Utf8               FLOAT
+  #640 = Utf8               getFloatValue
+  #641 = Utf8               ()F
+  #642 = Utf8               getDoubleValue
+  #643 = Utf8               ()D
+  #644 = Utf8               getEmbeddedObject
+  #645 = Utf8               (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #646 = Utf8               nextToken
+  #647 = Utf8               com/fasterxml/jackson/core/util/VersionUtil
+  #648 = Utf8               throwInternal
+  #649 = Utf8               (I)Ljava/lang/Integer;
+  #650 = Utf8               intValue
+  #651 = Utf8               longValue
+  #652 = Utf8               doubleValue
+  #653 = Utf8               floatValue
+  #654 = Utf8               shortValue
+  #655 = Utf8               ()S
+  #656 = Utf8               byteValue
+  #657 = Utf8               ()B
+  #658 = Utf8               get
+  #659 = Utf8               booleanValue
+  #660 = Utf8               com/fasterxml/jackson/core/StreamWriteCapability
+  #661 = Utf8               ()[Lcom/fasterxml/jackson/core/StreamWriteCapability;
+  #662 = Utf8               com/fasterxml/jackson/core/util/JacksonFeatureSet
+  #663 = Utf8               fromDefaults
+  #664 = Utf8               ([Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #665 = Utf8               CAN_WRITE_FORMATTED_NUMBERS
+  #666 = Utf8               Lcom/fasterxml/jackson/core/StreamWriteCapability;
+  #667 = Utf8               with
+  #668 = Utf8               (Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+  #669 = Utf8               CAN_WRITE_BINARY_NATIVELY
+{
+  protected static final com.fasterxml.jackson.core.util.JacksonFeatureSet<com.fasterxml.jackson.core.StreamWriteCapability> DEFAULT_WRITE_CAPABILITIES;
+    descriptor: Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+    flags: (0x001c) ACC_PROTECTED, ACC_STATIC, ACC_FINAL
+    Signature: #164                         // Lcom/fasterxml/jackson/core/util/JacksonFeatureSet<Lcom/fasterxml/jackson/core/StreamWriteCapability;>;
+
+  protected static final com.fasterxml.jackson.core.util.JacksonFeatureSet<com.fasterxml.jackson.core.StreamWriteCapability> DEFAULT_TEXTUAL_WRITE_CAPABILITIES;
+    descriptor: Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+    flags: (0x001c) ACC_PROTECTED, ACC_STATIC, ACC_FINAL
+    Signature: #164                         // Lcom/fasterxml/jackson/core/util/JacksonFeatureSet<Lcom/fasterxml/jackson/core/StreamWriteCapability;>;
+
+  protected static final com.fasterxml.jackson.core.util.JacksonFeatureSet<com.fasterxml.jackson.core.StreamWriteCapability> DEFAULT_BINARY_WRITE_CAPABILITIES;
+    descriptor: Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+    flags: (0x001c) ACC_PROTECTED, ACC_STATIC, ACC_FINAL
+    Signature: #164                         // Lcom/fasterxml/jackson/core/util/JacksonFeatureSet<Lcom/fasterxml/jackson/core/StreamWriteCapability;>;
+
+  protected com.fasterxml.jackson.core.PrettyPrinter _cfgPrettyPrinter;
+    descriptor: Lcom/fasterxml/jackson/core/PrettyPrinter;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected com.fasterxml.jackson.core.JsonGenerator();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #2                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 297: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public abstract com.fasterxml.jackson.core.JsonGenerator setCodec(com.fasterxml.jackson.core.ObjectCodec);
+    descriptor: (Lcom/fasterxml/jackson/core/ObjectCodec;)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public abstract com.fasterxml.jackson.core.ObjectCodec getCodec();
+    descriptor: ()Lcom/fasterxml/jackson/core/ObjectCodec;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public abstract com.fasterxml.jackson.core.Version version();
+    descriptor: ()Lcom/fasterxml/jackson/core/Version;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public abstract com.fasterxml.jackson.core.JsonStreamContext getOutputContext();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonStreamContext;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public java.lang.Object getOutputTarget();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 360: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public java.lang.Object currentValue();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #3                  // Method getCurrentValue:()Ljava/lang/Object;
+         4: areturn
+      LineNumberTable:
+        line 380: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public void assignCurrentValue(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #4                  // Method setCurrentValue:(Ljava/lang/Object;)V
+         5: return
+      LineNumberTable:
+        line 395: 0
+        line 396: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       6     1     v   Ljava/lang/Object;
+
+  public java.lang.Object getCurrentValue();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=1
+         0: aload_0
+         1: invokevirtual #5                  // Method getOutputContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+         4: astore_1
+         5: aload_1
+         6: ifnonnull     13
+         9: aconst_null
+        10: goto          17
+        13: aload_1
+        14: invokevirtual #6                  // Method com/fasterxml/jackson/core/JsonStreamContext.getCurrentValue:()Ljava/lang/Object;
+        17: areturn
+      LineNumberTable:
+        line 406: 0
+        line 407: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            5      13     1  ctxt   Lcom/fasterxml/jackson/core/JsonStreamContext;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class com/fasterxml/jackson/core/JsonStreamContext ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Object ]
+
+  public void setCurrentValue(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: invokevirtual #5                  // Method getOutputContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+         4: astore_2
+         5: aload_2
+         6: ifnull        14
+         9: aload_2
+        10: aload_1
+        11: invokevirtual #7                  // Method com/fasterxml/jackson/core/JsonStreamContext.setCurrentValue:(Ljava/lang/Object;)V
+        14: return
+      LineNumberTable:
+        line 418: 0
+        line 419: 5
+        line 420: 9
+        line 422: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      15     1     v   Ljava/lang/Object;
+            5      10     2  ctxt   Lcom/fasterxml/jackson/core/JsonStreamContext;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 14
+          locals = [ class com/fasterxml/jackson/core/JsonStreamContext ]
+
+  public abstract com.fasterxml.jackson.core.JsonGenerator enable(com.fasterxml.jackson.core.JsonGenerator$Feature);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public abstract com.fasterxml.jackson.core.JsonGenerator disable(com.fasterxml.jackson.core.JsonGenerator$Feature);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public final com.fasterxml.jackson.core.JsonGenerator configure(com.fasterxml.jackson.core.JsonGenerator$Feature, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=3, args_size=3
+         0: iload_2
+         1: ifeq          13
+         4: aload_0
+         5: aload_1
+         6: invokevirtual #8                  // Method enable:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+         9: pop
+        10: goto          19
+        13: aload_0
+        14: aload_1
+        15: invokevirtual #9                  // Method disable:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/core/JsonGenerator;
+        18: pop
+        19: aload_0
+        20: areturn
+      LineNumberTable:
+        line 460: 0
+        line 461: 19
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      21     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      21     1     f   Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+            0      21     2 state   Z
+      StackMapTable: number_of_entries = 2
+        frame_type = 13 /* same */
+        frame_type = 5 /* same */
+
+  public abstract boolean isEnabled(com.fasterxml.jackson.core.JsonGenerator$Feature);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public boolean isEnabled(com.fasterxml.jackson.core.StreamWriteFeature);
+    descriptor: (Lcom/fasterxml/jackson/core/StreamWriteFeature;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #10                 // Method com/fasterxml/jackson/core/StreamWriteFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+         5: invokevirtual #11                 // Method isEnabled:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+         8: ireturn
+      LineNumberTable:
+        line 485: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       9     1     f   Lcom/fasterxml/jackson/core/StreamWriteFeature;
+
+  public abstract int getFeatureMask();
+    descriptor: ()I
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public abstract com.fasterxml.jackson.core.JsonGenerator setFeatureMask(int);
+    descriptor: (I)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #217()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.core.JsonGenerator overrideStdFeatures(int, int);
+    descriptor: (II)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=5, args_size=3
+         0: aload_0
+         1: invokevirtual #12                 // Method getFeatureMask:()I
+         4: istore_3
+         5: iload_3
+         6: iload_2
+         7: iconst_m1
+         8: ixor
+         9: iand
+        10: iload_1
+        11: iload_2
+        12: iand
+        13: ior
+        14: istore        4
+        16: aload_0
+        17: iload         4
+        19: invokevirtual #13                 // Method setFeatureMask:(I)Lcom/fasterxml/jackson/core/JsonGenerator;
+        22: areturn
+      LineNumberTable:
+        line 531: 0
+        line 532: 5
+        line 533: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      23     1 values   I
+            0      23     2  mask   I
+            5      18     3 oldState   I
+           16       7     4 newState   I
+
+  public int getFormatFeatures();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 545: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public com.fasterxml.jackson.core.JsonGenerator overrideFormatFeatures(int, int);
+    descriptor: (II)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aload_0
+         1: areturn
+      LineNumberTable:
+        line 567: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       2     1 values   I
+            0       2     2  mask   I
+
+  public void setSchema(com.fasterxml.jackson.core.FormatSchema);
+    descriptor: (Lcom/fasterxml/jackson/core/FormatSchema;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=2, args_size=2
+         0: new           #14                 // class java/lang/UnsupportedOperationException
+         3: dup
+         4: ldc           #15                 // String Generator of type %s does not support schema of type \'%s\'
+         6: iconst_2
+         7: anewarray     #16                 // class java/lang/Object
+        10: dup
+        11: iconst_0
+        12: aload_0
+        13: invokevirtual #17                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        16: invokevirtual #18                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        19: aastore
+        20: dup
+        21: iconst_1
+        22: aload_1
+        23: invokeinterface #19,  1           // InterfaceMethod com/fasterxml/jackson/core/FormatSchema.getSchemaType:()Ljava/lang/String;
+        28: aastore
+        29: invokestatic  #20                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        32: invokespecial #21                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+        35: athrow
+      LineNumberTable:
+        line 592: 0
+        line 594: 13
+        line 592: 29
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      36     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      36     1 schema   Lcom/fasterxml/jackson/core/FormatSchema;
+
+  public com.fasterxml.jackson.core.FormatSchema getSchema();
+    descriptor: ()Lcom/fasterxml/jackson/core/FormatSchema;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 603: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public com.fasterxml.jackson.core.JsonGenerator setPrettyPrinter(com.fasterxml.jackson.core.PrettyPrinter);
+    descriptor: (Lcom/fasterxml/jackson/core/PrettyPrinter;)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #22                 // Field _cfgPrettyPrinter:Lcom/fasterxml/jackson/core/PrettyPrinter;
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 625: 0
+        line 626: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       7     1    pp   Lcom/fasterxml/jackson/core/PrettyPrinter;
+
+  public com.fasterxml.jackson.core.PrettyPrinter getPrettyPrinter();
+    descriptor: ()Lcom/fasterxml/jackson/core/PrettyPrinter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #22                 // Field _cfgPrettyPrinter:Lcom/fasterxml/jackson/core/PrettyPrinter;
+         4: areturn
+      LineNumberTable:
+        line 636: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public abstract com.fasterxml.jackson.core.JsonGenerator useDefaultPrettyPrinter();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public com.fasterxml.jackson.core.JsonGenerator setHighestNonEscapedChar(int);
+    descriptor: (I)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_0
+         1: areturn
+      LineNumberTable:
+        line 671: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       2     1 charCode   I
+
+  public int getHighestEscapedChar();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 685: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public com.fasterxml.jackson.core.io.CharacterEscapes getCharacterEscapes();
+    descriptor: ()Lcom/fasterxml/jackson/core/io/CharacterEscapes;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 693: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public com.fasterxml.jackson.core.JsonGenerator setCharacterEscapes(com.fasterxml.jackson.core.io.CharacterEscapes);
+    descriptor: (Lcom/fasterxml/jackson/core/io/CharacterEscapes;)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_0
+         1: areturn
+      LineNumberTable:
+        line 705: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       2     1   esc   Lcom/fasterxml/jackson/core/io/CharacterEscapes;
+
+  public com.fasterxml.jackson.core.JsonGenerator setRootValueSeparator(com.fasterxml.jackson.core.SerializableString);
+    descriptor: (Lcom/fasterxml/jackson/core/SerializableString;)Lcom/fasterxml/jackson/core/JsonGenerator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: new           #14                 // class java/lang/UnsupportedOperationException
+         3: dup
+         4: invokespecial #23                 // Method java/lang/UnsupportedOperationException."<init>":()V
+         7: athrow
+      LineNumberTable:
+        line 719: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       8     1   sep   Lcom/fasterxml/jackson/core/SerializableString;
+
+  public int getOutputBuffered();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_m1
+         1: ireturn
+      LineNumberTable:
+        line 747: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public boolean canUseSchema(com.fasterxml.jackson.core.FormatSchema);
+    descriptor: (Lcom/fasterxml/jackson/core/FormatSchema;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 764: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       2     1 schema   Lcom/fasterxml/jackson/core/FormatSchema;
+
+  public boolean canWriteObjectId();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 784: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public boolean canWriteTypeId();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 804: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public boolean canWriteBinaryNatively();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 821: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public boolean canOmitFields();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_1
+         1: ireturn
+      LineNumberTable:
+        line 834: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public boolean canWriteFormattedNumbers();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 853: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  public com.fasterxml.jackson.core.util.JacksonFeatureSet<com.fasterxml.jackson.core.StreamWriteCapability> getWriteCapabilities();
+    descriptor: ()Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: getstatic     #24                 // Field DEFAULT_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+         3: areturn
+      LineNumberTable:
+        line 864: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+    Signature: #264                         // ()Lcom/fasterxml/jackson/core/util/JacksonFeatureSet<Lcom/fasterxml/jackson/core/StreamWriteCapability;>;
+
+  public abstract void writeStartArray() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeStartArray(int) throws java.io.IOException;
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_0
+         1: invokevirtual #25                 // Method writeStartArray:()V
+         4: return
+      LineNumberTable:
+        line 910: 0
+        line 911: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       5     1  size   I
+    Exceptions:
+      throws java.io.IOException
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #217()
+        java.lang.Deprecated
+
+  public void writeStartArray(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokevirtual #25                 // Method writeStartArray:()V
+         4: aload_0
+         5: aload_1
+         6: invokevirtual #4                  // Method setCurrentValue:(Ljava/lang/Object;)V
+         9: return
+      LineNumberTable:
+        line 927: 0
+        line 928: 4
+        line 929: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      10     1 forValue   Ljava/lang/Object;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeStartArray(java.lang.Object, int) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: iload_2
+         2: invokevirtual #26                 // Method writeStartArray:(I)V
+         5: aload_0
+         6: aload_1
+         7: invokevirtual #4                  // Method setCurrentValue:(Ljava/lang/Object;)V
+        10: return
+      LineNumberTable:
+        line 950: 0
+        line 951: 5
+        line 952: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 forValue   Ljava/lang/Object;
+            0      11     2  size   I
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeEndArray() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeStartObject() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeStartObject(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokevirtual #27                 // Method writeStartObject:()V
+         4: aload_0
+         5: aload_1
+         6: invokevirtual #4                  // Method setCurrentValue:(Ljava/lang/Object;)V
+         9: return
+      LineNumberTable:
+        line 1001: 0
+        line 1002: 4
+        line 1003: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      10     1 forValue   Ljava/lang/Object;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeStartObject(java.lang.Object, int) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: invokevirtual #27                 // Method writeStartObject:()V
+         4: aload_0
+         5: aload_1
+         6: invokevirtual #4                  // Method setCurrentValue:(Ljava/lang/Object;)V
+         9: return
+      LineNumberTable:
+        line 1032: 0
+        line 1033: 4
+        line 1034: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      10     1 forValue   Ljava/lang/Object;
+            0      10     2  size   I
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeEndObject() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeFieldName(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeFieldName(com.fasterxml.jackson.core.SerializableString) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/SerializableString;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeFieldId(long) throws java.io.IOException;
+    descriptor: (J)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: lload_1
+         2: invokestatic  #28                 // Method java/lang/Long.toString:(J)Ljava/lang/String;
+         5: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         8: return
+      LineNumberTable:
+        line 1101: 0
+        line 1102: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       9     1    id   J
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeArray(int[], int, int) throws java.io.IOException;
+    descriptor: ([III)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=6, args_size=4
+         0: aload_1
+         1: ifnonnull     14
+         4: new           #30                 // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #31                 // String null array
+        10: invokespecial #32                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: aload_1
+        16: arraylength
+        17: iload_2
+        18: iload_3
+        19: invokevirtual #33                 // Method _verifyOffsets:(III)V
+        22: aload_0
+        23: aload_1
+        24: iload_3
+        25: invokevirtual #34                 // Method writeStartArray:(Ljava/lang/Object;I)V
+        28: iload_2
+        29: istore        4
+        31: iload_2
+        32: iload_3
+        33: iadd
+        34: istore        5
+        36: iload         4
+        38: iload         5
+        40: if_icmpge     57
+        43: aload_0
+        44: aload_1
+        45: iload         4
+        47: iaload
+        48: invokevirtual #35                 // Method writeNumber:(I)V
+        51: iinc          4, 1
+        54: goto          36
+        57: aload_0
+        58: invokevirtual #36                 // Method writeEndArray:()V
+        61: return
+      LineNumberTable:
+        line 1126: 0
+        line 1127: 4
+        line 1129: 14
+        line 1130: 22
+        line 1131: 28
+        line 1132: 43
+        line 1131: 51
+        line 1134: 57
+        line 1135: 61
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           31      26     4     i   I
+           36      21     5   end   I
+            0      62     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      62     1 array   [I
+            0      62     2 offset   I
+            0      62     3 length   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 14 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 21
+          locals = [ int, int ]
+        frame_type = 249 /* chop */
+          offset_delta = 20
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeArray(long[], int, int) throws java.io.IOException;
+    descriptor: ([JII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=6, args_size=4
+         0: aload_1
+         1: ifnonnull     14
+         4: new           #30                 // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #31                 // String null array
+        10: invokespecial #32                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: aload_1
+        16: arraylength
+        17: iload_2
+        18: iload_3
+        19: invokevirtual #33                 // Method _verifyOffsets:(III)V
+        22: aload_0
+        23: aload_1
+        24: iload_3
+        25: invokevirtual #34                 // Method writeStartArray:(Ljava/lang/Object;I)V
+        28: iload_2
+        29: istore        4
+        31: iload_2
+        32: iload_3
+        33: iadd
+        34: istore        5
+        36: iload         4
+        38: iload         5
+        40: if_icmpge     57
+        43: aload_0
+        44: aload_1
+        45: iload         4
+        47: laload
+        48: invokevirtual #37                 // Method writeNumber:(J)V
+        51: iinc          4, 1
+        54: goto          36
+        57: aload_0
+        58: invokevirtual #36                 // Method writeEndArray:()V
+        61: return
+      LineNumberTable:
+        line 1153: 0
+        line 1154: 4
+        line 1156: 14
+        line 1157: 22
+        line 1158: 28
+        line 1159: 43
+        line 1158: 51
+        line 1161: 57
+        line 1162: 61
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           31      26     4     i   I
+           36      21     5   end   I
+            0      62     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      62     1 array   [J
+            0      62     2 offset   I
+            0      62     3 length   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 14 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 21
+          locals = [ int, int ]
+        frame_type = 249 /* chop */
+          offset_delta = 20
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeArray(double[], int, int) throws java.io.IOException;
+    descriptor: ([DII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=6, args_size=4
+         0: aload_1
+         1: ifnonnull     14
+         4: new           #30                 // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #31                 // String null array
+        10: invokespecial #32                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: aload_1
+        16: arraylength
+        17: iload_2
+        18: iload_3
+        19: invokevirtual #33                 // Method _verifyOffsets:(III)V
+        22: aload_0
+        23: aload_1
+        24: iload_3
+        25: invokevirtual #34                 // Method writeStartArray:(Ljava/lang/Object;I)V
+        28: iload_2
+        29: istore        4
+        31: iload_2
+        32: iload_3
+        33: iadd
+        34: istore        5
+        36: iload         4
+        38: iload         5
+        40: if_icmpge     57
+        43: aload_0
+        44: aload_1
+        45: iload         4
+        47: daload
+        48: invokevirtual #38                 // Method writeNumber:(D)V
+        51: iinc          4, 1
+        54: goto          36
+        57: aload_0
+        58: invokevirtual #36                 // Method writeEndArray:()V
+        61: return
+      LineNumberTable:
+        line 1180: 0
+        line 1181: 4
+        line 1183: 14
+        line 1184: 22
+        line 1185: 28
+        line 1186: 43
+        line 1185: 51
+        line 1188: 57
+        line 1189: 61
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           31      26     4     i   I
+           36      21     5   end   I
+            0      62     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      62     1 array   [D
+            0      62     2 offset   I
+            0      62     3 length   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 14 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 21
+          locals = [ int, int ]
+        frame_type = 249 /* chop */
+          offset_delta = 20
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeArray(java.lang.String[], int, int) throws java.io.IOException;
+    descriptor: ([Ljava/lang/String;II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=6, args_size=4
+         0: aload_1
+         1: ifnonnull     14
+         4: new           #30                 // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #31                 // String null array
+        10: invokespecial #32                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: aload_1
+        16: arraylength
+        17: iload_2
+        18: iload_3
+        19: invokevirtual #33                 // Method _verifyOffsets:(III)V
+        22: aload_0
+        23: aload_1
+        24: iload_3
+        25: invokevirtual #34                 // Method writeStartArray:(Ljava/lang/Object;I)V
+        28: iload_2
+        29: istore        4
+        31: iload_2
+        32: iload_3
+        33: iadd
+        34: istore        5
+        36: iload         4
+        38: iload         5
+        40: if_icmpge     57
+        43: aload_0
+        44: aload_1
+        45: iload         4
+        47: aaload
+        48: invokevirtual #39                 // Method writeString:(Ljava/lang/String;)V
+        51: iinc          4, 1
+        54: goto          36
+        57: aload_0
+        58: invokevirtual #36                 // Method writeEndArray:()V
+        61: return
+      LineNumberTable:
+        line 1207: 0
+        line 1208: 4
+        line 1210: 14
+        line 1211: 22
+        line 1212: 28
+        line 1213: 43
+        line 1212: 51
+        line 1215: 57
+        line 1216: 61
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           31      26     4     i   I
+           36      21     5   end   I
+            0      62     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      62     1 array   [Ljava/lang/String;
+            0      62     2 offset   I
+            0      62     3 length   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 14 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 21
+          locals = [ int, int ]
+        frame_type = 249 /* chop */
+          offset_delta = 20
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeString(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeString(java.io.Reader, int) throws java.io.IOException;
+    descriptor: (Ljava/io/Reader;I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: aload_0
+         1: invokevirtual #40                 // Method _reportUnsupportedOperation:()V
+         4: return
+      LineNumberTable:
+        line 1263: 0
+        line 1264: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       5     1 reader   Ljava/io/Reader;
+            0       5     2   len   I
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeString(char[], int, int) throws java.io.IOException;
+    descriptor: ([CII)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeString(com.fasterxml.jackson.core.SerializableString) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/SerializableString;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeRawUTF8String(byte[], int, int) throws java.io.IOException;
+    descriptor: ([BII)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeUTF8String(byte[], int, int) throws java.io.IOException;
+    descriptor: ([BII)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeRaw(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeRaw(java.lang.String, int, int) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;II)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeRaw(char[], int, int) throws java.io.IOException;
+    descriptor: ([CII)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeRaw(char) throws java.io.IOException;
+    descriptor: (C)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeRaw(com.fasterxml.jackson.core.SerializableString) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/SerializableString;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokeinterface #41,  1           // InterfaceMethod com/fasterxml/jackson/core/SerializableString.getValue:()Ljava/lang/String;
+         7: invokevirtual #42                 // Method writeRaw:(Ljava/lang/String;)V
+        10: return
+      LineNumberTable:
+        line 1461: 0
+        line 1462: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1   raw   Lcom/fasterxml/jackson/core/SerializableString;
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeRawValue(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeRawValue(java.lang.String, int, int) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;II)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeRawValue(char[], int, int) throws java.io.IOException;
+    descriptor: ([CII)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeRawValue(com.fasterxml.jackson.core.SerializableString) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/SerializableString;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokeinterface #41,  1           // InterfaceMethod com/fasterxml/jackson/core/SerializableString.getValue:()Ljava/lang/String;
+         7: invokevirtual #43                 // Method writeRawValue:(Ljava/lang/String;)V
+        10: return
+      LineNumberTable:
+        line 1496: 0
+        line 1497: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1   raw   Lcom/fasterxml/jackson/core/SerializableString;
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeBinary(com.fasterxml.jackson.core.Base64Variant, byte[], int, int) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/Base64Variant;[BII)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeBinary(byte[], int, int) throws java.io.IOException;
+    descriptor: ([BII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=4
+         0: aload_0
+         1: invokestatic  #44                 // Method com/fasterxml/jackson/core/Base64Variants.getDefaultVariant:()Lcom/fasterxml/jackson/core/Base64Variant;
+         4: aload_1
+         5: iload_2
+         6: iload_3
+         7: invokevirtual #45                 // Method writeBinary:(Lcom/fasterxml/jackson/core/Base64Variant;[BII)V
+        10: return
+      LineNumberTable:
+        line 1542: 0
+        line 1543: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1  data   [B
+            0      11     2 offset   I
+            0      11     3   len   I
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeBinary(byte[]) throws java.io.IOException;
+    descriptor: ([B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=2, args_size=2
+         0: aload_0
+         1: invokestatic  #44                 // Method com/fasterxml/jackson/core/Base64Variants.getDefaultVariant:()Lcom/fasterxml/jackson/core/Base64Variant;
+         4: aload_1
+         5: iconst_0
+         6: aload_1
+         7: arraylength
+         8: invokevirtual #45                 // Method writeBinary:(Lcom/fasterxml/jackson/core/Base64Variant;[BII)V
+        11: return
+      LineNumberTable:
+        line 1557: 0
+        line 1558: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      12     1  data   [B
+    Exceptions:
+      throws java.io.IOException
+
+  public int writeBinary(java.io.InputStream, int) throws java.io.IOException;
+    descriptor: (Ljava/io/InputStream;I)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: invokestatic  #44                 // Method com/fasterxml/jackson/core/Base64Variants.getDefaultVariant:()Lcom/fasterxml/jackson/core/Base64Variant;
+         4: aload_1
+         5: iload_2
+         6: invokevirtual #46                 // Method writeBinary:(Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/InputStream;I)I
+         9: ireturn
+      LineNumberTable:
+        line 1580: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      10     1  data   Ljava/io/InputStream;
+            0      10     2 dataLength   I
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract int writeBinary(com.fasterxml.jackson.core.Base64Variant, java.io.InputStream, int) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/InputStream;I)I
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumber(short) throws java.io.IOException;
+    descriptor: (S)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #35                 // Method writeNumber:(I)V
+         5: return
+      LineNumberTable:
+        line 1628: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       6     1     v   S
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeNumber(int) throws java.io.IOException;
+    descriptor: (I)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeNumber(long) throws java.io.IOException;
+    descriptor: (J)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeNumber(java.math.BigInteger) throws java.io.IOException;
+    descriptor: (Ljava/math/BigInteger;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeNumber(double) throws java.io.IOException;
+    descriptor: (D)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeNumber(float) throws java.io.IOException;
+    descriptor: (F)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeNumber(java.math.BigDecimal) throws java.io.IOException;
+    descriptor: (Ljava/math/BigDecimal;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeNumber(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumber(char[], int, int) throws java.io.IOException;
+    descriptor: ([CII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=4, args_size=4
+         0: aload_0
+         1: new           #47                 // class java/lang/String
+         4: dup
+         5: aload_1
+         6: iload_2
+         7: iload_3
+         8: invokespecial #48                 // Method java/lang/String."<init>":([CII)V
+        11: invokevirtual #49                 // Method writeNumber:(Ljava/lang/String;)V
+        14: return
+      LineNumberTable:
+        line 1755: 0
+        line 1756: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      15     1 encodedValueBuffer   [C
+            0      15     2 offset   I
+            0      15     3   len   I
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeBoolean(boolean) throws java.io.IOException;
+    descriptor: (Z)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeNull() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeEmbeddedObject(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     9
+         4: aload_0
+         5: invokevirtual #50                 // Method writeNull:()V
+         8: return
+         9: aload_1
+        10: instanceof    #51                 // class "[B"
+        13: ifeq          28
+        16: aload_0
+        17: aload_1
+        18: checkcast     #51                 // class "[B"
+        21: checkcast     #51                 // class "[B"
+        24: invokevirtual #52                 // Method writeBinary:([B)V
+        27: return
+        28: new           #53                 // class com/fasterxml/jackson/core/JsonGenerationException
+        31: dup
+        32: new           #54                 // class java/lang/StringBuilder
+        35: dup
+        36: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+        39: ldc           #56                 // String No native support for writing embedded objects of type
+        41: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        44: aload_1
+        45: invokevirtual #17                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        48: invokevirtual #18                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        51: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        54: invokevirtual #58                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        57: aload_0
+        58: invokespecial #59                 // Method com/fasterxml/jackson/core/JsonGenerationException."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+        61: athrow
+      LineNumberTable:
+        line 1808: 0
+        line 1809: 4
+        line 1810: 8
+        line 1812: 9
+        line 1813: 16
+        line 1814: 27
+        line 1816: 28
+        line 1817: 45
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      62     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      62     1 object   Ljava/lang/Object;
+      StackMapTable: number_of_entries = 2
+        frame_type = 9 /* same */
+        frame_type = 18 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeObjectId(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: new           #53                 // class com/fasterxml/jackson/core/JsonGenerationException
+         3: dup
+         4: ldc           #60                 // String No native support for writing Object Ids
+         6: aload_0
+         7: invokespecial #59                 // Method com/fasterxml/jackson/core/JsonGenerationException."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+        10: athrow
+      LineNumberTable:
+        line 1846: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1    id   Ljava/lang/Object;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeObjectRef(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: new           #53                 // class com/fasterxml/jackson/core/JsonGenerationException
+         3: dup
+         4: ldc           #60                 // String No native support for writing Object Ids
+         6: aload_0
+         7: invokespecial #59                 // Method com/fasterxml/jackson/core/JsonGenerationException."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+        10: athrow
+      LineNumberTable:
+        line 1866: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 referenced   Ljava/lang/Object;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeTypeId(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: new           #53                 // class com/fasterxml/jackson/core/JsonGenerationException
+         3: dup
+         4: ldc           #61                 // String No native support for writing Type Ids
+         6: aload_0
+         7: invokespecial #59                 // Method com/fasterxml/jackson/core/JsonGenerationException."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+        10: athrow
+      LineNumberTable:
+        line 1888: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1    id   Ljava/lang/Object;
+    Exceptions:
+      throws java.io.IOException
+
+  public com.fasterxml.jackson.core.type.WritableTypeId writeTypePrefix(com.fasterxml.jackson.core.type.WritableTypeId) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=6, args_size=2
+         0: aload_1
+         1: getfield      #62                 // Field com/fasterxml/jackson/core/type/WritableTypeId.id:Ljava/lang/Object;
+         4: astore_2
+         5: aload_1
+         6: getfield      #63                 // Field com/fasterxml/jackson/core/type/WritableTypeId.valueShape:Lcom/fasterxml/jackson/core/JsonToken;
+         9: astore_3
+        10: aload_0
+        11: invokevirtual #64                 // Method canWriteTypeId:()Z
+        14: ifeq          30
+        17: aload_1
+        18: iconst_0
+        19: putfield      #65                 // Field com/fasterxml/jackson/core/type/WritableTypeId.wrapperWritten:Z
+        22: aload_0
+        23: aload_2
+        24: invokevirtual #66                 // Method writeTypeId:(Ljava/lang/Object;)V
+        27: goto          177
+        30: aload_2
+        31: instanceof    #47                 // class java/lang/String
+        34: ifeq          44
+        37: aload_2
+        38: checkcast     #47                 // class java/lang/String
+        41: goto          48
+        44: aload_2
+        45: invokestatic  #67                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+        48: astore        4
+        50: aload_1
+        51: iconst_1
+        52: putfield      #65                 // Field com/fasterxml/jackson/core/type/WritableTypeId.wrapperWritten:Z
+        55: aload_1
+        56: getfield      #68                 // Field com/fasterxml/jackson/core/type/WritableTypeId.include:Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+        59: astore        5
+        61: aload_3
+        62: getstatic     #69                 // Field com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+        65: if_acmpeq     86
+        68: aload         5
+        70: invokevirtual #70                 // Method com/fasterxml/jackson/core/type/WritableTypeId$Inclusion.requiresObjectContext:()Z
+        73: ifeq          86
+        76: aload_1
+        77: getstatic     #71                 // Field com/fasterxml/jackson/core/type/WritableTypeId$Inclusion.WRAPPER_ARRAY:Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+        80: dup
+        81: astore        5
+        83: putfield      #68                 // Field com/fasterxml/jackson/core/type/WritableTypeId.include:Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+        86: getstatic     #72                 // Field com/fasterxml/jackson/core/JsonGenerator$1.$SwitchMap$com$fasterxml$jackson$core$type$WritableTypeId$Inclusion:[I
+        89: aload         5
+        91: invokevirtual #73                 // Method com/fasterxml/jackson/core/type/WritableTypeId$Inclusion.ordinal:()I
+        94: iaload
+        95: tableswitch   { // 1 to 5
+                       1: 128
+                       2: 131
+                       3: 134
+                       4: 154
+                       5: 167
+                 default: 167
+            }
+       128: goto          177
+       131: goto          177
+       134: aload_0
+       135: aload_1
+       136: getfield      #74                 // Field com/fasterxml/jackson/core/type/WritableTypeId.forValue:Ljava/lang/Object;
+       139: invokevirtual #75                 // Method writeStartObject:(Ljava/lang/Object;)V
+       142: aload_0
+       143: aload_1
+       144: getfield      #76                 // Field com/fasterxml/jackson/core/type/WritableTypeId.asProperty:Ljava/lang/String;
+       147: aload         4
+       149: invokevirtual #77                 // Method writeStringField:(Ljava/lang/String;Ljava/lang/String;)V
+       152: aload_1
+       153: areturn
+       154: aload_0
+       155: invokevirtual #27                 // Method writeStartObject:()V
+       158: aload_0
+       159: aload         4
+       161: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+       164: goto          177
+       167: aload_0
+       168: invokevirtual #25                 // Method writeStartArray:()V
+       171: aload_0
+       172: aload         4
+       174: invokevirtual #39                 // Method writeString:(Ljava/lang/String;)V
+       177: aload_3
+       178: getstatic     #69                 // Field com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+       181: if_acmpne     195
+       184: aload_0
+       185: aload_1
+       186: getfield      #74                 // Field com/fasterxml/jackson/core/type/WritableTypeId.forValue:Ljava/lang/Object;
+       189: invokevirtual #75                 // Method writeStartObject:(Ljava/lang/Object;)V
+       192: goto          206
+       195: aload_3
+       196: getstatic     #78                 // Field com/fasterxml/jackson/core/JsonToken.START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+       199: if_acmpne     206
+       202: aload_0
+       203: invokevirtual #25                 // Method writeStartArray:()V
+       206: aload_1
+       207: areturn
+      LineNumberTable:
+        line 1917: 0
+        line 1919: 5
+        line 1920: 10
+        line 1921: 17
+        line 1923: 22
+        line 1927: 30
+        line 1928: 50
+        line 1930: 55
+        line 1932: 61
+        line 1933: 70
+        line 1934: 76
+        line 1937: 86
+        line 1940: 128
+        line 1944: 131
+        line 1949: 134
+        line 1950: 142
+        line 1951: 152
+        line 1955: 154
+        line 1956: 158
+        line 1957: 164
+        line 1960: 167
+        line 1961: 171
+        line 1965: 177
+        line 1966: 184
+        line 1967: 195
+        line 1969: 202
+        line 1971: 206
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           50     127     4 idStr   Ljava/lang/String;
+           61     116     5  incl   Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+            0     208     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     208     1 typeIdDef   Lcom/fasterxml/jackson/core/type/WritableTypeId;
+            5     203     2    id   Ljava/lang/Object;
+           10     198     3 valueShape   Lcom/fasterxml/jackson/core/JsonToken;
+      StackMapTable: number_of_entries = 12
+        frame_type = 253 /* append */
+          offset_delta = 30
+          locals = [ class java/lang/Object, class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 13 /* same */
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 253 /* append */
+          offset_delta = 37
+          locals = [ class java/lang/String, class com/fasterxml/jackson/core/type/WritableTypeId$Inclusion ]
+        frame_type = 41 /* same */
+        frame_type = 2 /* same */
+        frame_type = 2 /* same */
+        frame_type = 19 /* same */
+        frame_type = 12 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 9
+        frame_type = 17 /* same */
+        frame_type = 10 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public com.fasterxml.jackson.core.type.WritableTypeId writeTypeSuffix(com.fasterxml.jackson.core.type.WritableTypeId) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/type/WritableTypeId;)Lcom/fasterxml/jackson/core/type/WritableTypeId;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=5, args_size=2
+         0: aload_1
+         1: getfield      #63                 // Field com/fasterxml/jackson/core/type/WritableTypeId.valueShape:Lcom/fasterxml/jackson/core/JsonToken;
+         4: astore_2
+         5: aload_2
+         6: getstatic     #69                 // Field com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+         9: if_acmpne     19
+        12: aload_0
+        13: invokevirtual #79                 // Method writeEndObject:()V
+        16: goto          30
+        19: aload_2
+        20: getstatic     #78                 // Field com/fasterxml/jackson/core/JsonToken.START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+        23: if_acmpne     30
+        26: aload_0
+        27: invokevirtual #36                 // Method writeEndArray:()V
+        30: aload_1
+        31: getfield      #65                 // Field com/fasterxml/jackson/core/type/WritableTypeId.wrapperWritten:Z
+        34: ifeq          136
+        37: getstatic     #72                 // Field com/fasterxml/jackson/core/JsonGenerator$1.$SwitchMap$com$fasterxml$jackson$core$type$WritableTypeId$Inclusion:[I
+        40: aload_1
+        41: getfield      #68                 // Field com/fasterxml/jackson/core/type/WritableTypeId.include:Lcom/fasterxml/jackson/core/type/WritableTypeId$Inclusion;
+        44: invokevirtual #73                 // Method com/fasterxml/jackson/core/type/WritableTypeId$Inclusion.ordinal:()I
+        47: iaload
+        48: tableswitch   { // 1 to 5
+                       1: 91
+                       2: 129
+                       3: 129
+                       4: 132
+                       5: 84
+                 default: 132
+            }
+        84: aload_0
+        85: invokevirtual #36                 // Method writeEndArray:()V
+        88: goto          136
+        91: aload_1
+        92: getfield      #62                 // Field com/fasterxml/jackson/core/type/WritableTypeId.id:Ljava/lang/Object;
+        95: astore_3
+        96: aload_3
+        97: instanceof    #47                 // class java/lang/String
+       100: ifeq          110
+       103: aload_3
+       104: checkcast     #47                 // class java/lang/String
+       107: goto          114
+       110: aload_3
+       111: invokestatic  #67                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+       114: astore        4
+       116: aload_0
+       117: aload_1
+       118: getfield      #76                 // Field com/fasterxml/jackson/core/type/WritableTypeId.asProperty:Ljava/lang/String;
+       121: aload         4
+       123: invokevirtual #77                 // Method writeStringField:(Ljava/lang/String;Ljava/lang/String;)V
+       126: goto          136
+       129: goto          136
+       132: aload_0
+       133: invokevirtual #79                 // Method writeEndObject:()V
+       136: aload_1
+       137: areturn
+      LineNumberTable:
+        line 1993: 0
+        line 1995: 5
+        line 1996: 12
+        line 1997: 19
+        line 1998: 26
+        line 2001: 30
+        line 2002: 37
+        line 2004: 84
+        line 2005: 88
+        line 2009: 91
+        line 2010: 96
+        line 2011: 116
+        line 2013: 126
+        line 2017: 129
+        line 2020: 132
+        line 2024: 136
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           96      30     3    id   Ljava/lang/Object;
+          116      10     4 idStr   Ljava/lang/String;
+            0     138     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     138     1 typeIdDef   Lcom/fasterxml/jackson/core/type/WritableTypeId;
+            5     133     2 valueShape   Lcom/fasterxml/jackson/core/JsonToken;
+      StackMapTable: number_of_entries = 9
+        frame_type = 252 /* append */
+          offset_delta = 19
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 10 /* same */
+        frame_type = 53 /* same */
+        frame_type = 6 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 18
+          locals = [ class java/lang/Object ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 250 /* chop */
+          offset_delta = 14
+        frame_type = 2 /* same */
+        frame_type = 3 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void writePOJO(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #80                 // Method writeObject:(Ljava/lang/Object;)V
+         5: return
+      LineNumberTable:
+        line 2052: 0
+        line 2053: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       6     1  pojo   Ljava/lang/Object;
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeObject(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void writeTree(com.fasterxml.jackson.core.TreeNode) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/TreeNode;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeBinaryField(java.lang.String, byte[]) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;[B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: aload_2
+         7: invokevirtual #52                 // Method writeBinary:([B)V
+        10: return
+      LineNumberTable:
+        line 2107: 0
+        line 2108: 5
+        line 2109: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2  data   [B
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeBooleanField(java.lang.String, boolean) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: iload_2
+         7: invokevirtual #81                 // Method writeBoolean:(Z)V
+        10: return
+      LineNumberTable:
+        line 2126: 0
+        line 2127: 5
+        line 2128: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   Z
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNullField(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: invokevirtual #50                 // Method writeNull:()V
+         9: return
+      LineNumberTable:
+        line 2144: 0
+        line 2145: 5
+        line 2146: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      10     1 fieldName   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeStringField(java.lang.String, java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: aload_2
+         7: invokevirtual #39                 // Method writeString:(Ljava/lang/String;)V
+        10: return
+      LineNumberTable:
+        line 2163: 0
+        line 2164: 5
+        line 2165: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumberField(java.lang.String, short) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;S)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: iload_2
+         7: invokevirtual #82                 // Method writeNumber:(S)V
+        10: return
+      LineNumberTable:
+        line 2184: 0
+        line 2185: 5
+        line 2186: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   S
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumberField(java.lang.String, int) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: iload_2
+         7: invokevirtual #35                 // Method writeNumber:(I)V
+        10: return
+      LineNumberTable:
+        line 2203: 0
+        line 2204: 5
+        line 2205: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   I
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumberField(java.lang.String, long) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;J)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: lload_2
+         7: invokevirtual #37                 // Method writeNumber:(J)V
+        10: return
+      LineNumberTable:
+        line 2222: 0
+        line 2223: 5
+        line 2224: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   J
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumberField(java.lang.String, java.math.BigInteger) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/math/BigInteger;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: aload_2
+         7: invokevirtual #83                 // Method writeNumber:(Ljava/math/BigInteger;)V
+        10: return
+      LineNumberTable:
+        line 2243: 0
+        line 2244: 5
+        line 2245: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   Ljava/math/BigInteger;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumberField(java.lang.String, float) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;F)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: fload_2
+         7: invokevirtual #84                 // Method writeNumber:(F)V
+        10: return
+      LineNumberTable:
+        line 2262: 0
+        line 2263: 5
+        line 2264: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   F
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumberField(java.lang.String, double) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;D)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: dload_2
+         7: invokevirtual #38                 // Method writeNumber:(D)V
+        10: return
+      LineNumberTable:
+        line 2281: 0
+        line 2282: 5
+        line 2283: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   D
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeNumberField(java.lang.String, java.math.BigDecimal) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/math/BigDecimal;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: aload_2
+         7: invokevirtual #85                 // Method writeNumber:(Ljava/math/BigDecimal;)V
+        10: return
+      LineNumberTable:
+        line 2301: 0
+        line 2302: 5
+        line 2303: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2 value   Ljava/math/BigDecimal;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeArrayFieldStart(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: invokevirtual #25                 // Method writeStartArray:()V
+         9: return
+      LineNumberTable:
+        line 2324: 0
+        line 2325: 5
+        line 2326: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      10     1 fieldName   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeObjectFieldStart(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: invokevirtual #27                 // Method writeStartObject:()V
+         9: return
+      LineNumberTable:
+        line 2347: 0
+        line 2348: 5
+        line 2349: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      10     1 fieldName   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writePOJOField(java.lang.String, java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokevirtual #86                 // Method writeObjectField:(Ljava/lang/String;Ljava/lang/Object;)V
+         6: return
+      LineNumberTable:
+        line 2370: 0
+        line 2371: 6
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       7     1 fieldName   Ljava/lang/String;
+            0       7     2  pojo   Ljava/lang/Object;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeObjectField(java.lang.String, java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+         5: aload_0
+         6: aload_2
+         7: invokevirtual #80                 // Method writeObject:(Ljava/lang/Object;)V
+        10: return
+      LineNumberTable:
+        line 2384: 0
+        line 2385: 5
+        line 2386: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      11     1 fieldName   Ljava/lang/String;
+            0      11     2  pojo   Ljava/lang/Object;
+    Exceptions:
+      throws java.io.IOException
+
+  public void writeOmittedField(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=2, args_size=2
+         0: return
+      LineNumberTable:
+        line 2404: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0       1     1 fieldName   Ljava/lang/String;
+    Exceptions:
+      throws java.io.IOException
+
+  public void copyCurrentEvent(com.fasterxml.jackson.core.JsonParser) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/JsonParser;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=5, args_size=2
+         0: aload_1
+         1: invokevirtual #87                 // Method com/fasterxml/jackson/core/JsonParser.currentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+         4: astore_2
+         5: aload_2
+         6: ifnonnull     13
+         9: iconst_m1
+        10: goto          17
+        13: aload_2
+        14: invokevirtual #88                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+        17: istore_3
+        18: iload_3
+        19: tableswitch   { // -1 to 12
+                      -1: 88
+                       0: 317
+                       1: 97
+                       2: 104
+                       3: 111
+                       4: 118
+                       5: 125
+                       6: 136
+                       7: 173
+                       8: 228
+                       9: 283
+                      10: 291
+                      11: 299
+                      12: 306
+                 default: 317
+            }
+        88: aload_0
+        89: ldc           #89                 // String No current event to copy
+        91: invokevirtual #90                 // Method _reportError:(Ljava/lang/String;)V
+        94: goto          344
+        97: aload_0
+        98: invokevirtual #27                 // Method writeStartObject:()V
+       101: goto          344
+       104: aload_0
+       105: invokevirtual #79                 // Method writeEndObject:()V
+       108: goto          344
+       111: aload_0
+       112: invokevirtual #25                 // Method writeStartArray:()V
+       115: goto          344
+       118: aload_0
+       119: invokevirtual #36                 // Method writeEndArray:()V
+       122: goto          344
+       125: aload_0
+       126: aload_1
+       127: invokevirtual #91                 // Method com/fasterxml/jackson/core/JsonParser.getCurrentName:()Ljava/lang/String;
+       130: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+       133: goto          344
+       136: aload_1
+       137: invokevirtual #92                 // Method com/fasterxml/jackson/core/JsonParser.hasTextCharacters:()Z
+       140: ifeq          162
+       143: aload_0
+       144: aload_1
+       145: invokevirtual #93                 // Method com/fasterxml/jackson/core/JsonParser.getTextCharacters:()[C
+       148: aload_1
+       149: invokevirtual #94                 // Method com/fasterxml/jackson/core/JsonParser.getTextOffset:()I
+       152: aload_1
+       153: invokevirtual #95                 // Method com/fasterxml/jackson/core/JsonParser.getTextLength:()I
+       156: invokevirtual #96                 // Method writeString:([CII)V
+       159: goto          344
+       162: aload_0
+       163: aload_1
+       164: invokevirtual #97                 // Method com/fasterxml/jackson/core/JsonParser.getText:()Ljava/lang/String;
+       167: invokevirtual #39                 // Method writeString:(Ljava/lang/String;)V
+       170: goto          344
+       173: aload_1
+       174: invokevirtual #98                 // Method com/fasterxml/jackson/core/JsonParser.getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       177: astore        4
+       179: aload         4
+       181: getstatic     #99                 // Field com/fasterxml/jackson/core/JsonParser$NumberType.INT:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       184: if_acmpne     198
+       187: aload_0
+       188: aload_1
+       189: invokevirtual #100                // Method com/fasterxml/jackson/core/JsonParser.getIntValue:()I
+       192: invokevirtual #35                 // Method writeNumber:(I)V
+       195: goto          344
+       198: aload         4
+       200: getstatic     #101                // Field com/fasterxml/jackson/core/JsonParser$NumberType.BIG_INTEGER:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       203: if_acmpne     217
+       206: aload_0
+       207: aload_1
+       208: invokevirtual #102                // Method com/fasterxml/jackson/core/JsonParser.getBigIntegerValue:()Ljava/math/BigInteger;
+       211: invokevirtual #83                 // Method writeNumber:(Ljava/math/BigInteger;)V
+       214: goto          344
+       217: aload_0
+       218: aload_1
+       219: invokevirtual #103                // Method com/fasterxml/jackson/core/JsonParser.getLongValue:()J
+       222: invokevirtual #37                 // Method writeNumber:(J)V
+       225: goto          344
+       228: aload_1
+       229: invokevirtual #98                 // Method com/fasterxml/jackson/core/JsonParser.getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       232: astore        4
+       234: aload         4
+       236: getstatic     #104                // Field com/fasterxml/jackson/core/JsonParser$NumberType.BIG_DECIMAL:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       239: if_acmpne     253
+       242: aload_0
+       243: aload_1
+       244: invokevirtual #105                // Method com/fasterxml/jackson/core/JsonParser.getDecimalValue:()Ljava/math/BigDecimal;
+       247: invokevirtual #85                 // Method writeNumber:(Ljava/math/BigDecimal;)V
+       250: goto          344
+       253: aload         4
+       255: getstatic     #106                // Field com/fasterxml/jackson/core/JsonParser$NumberType.FLOAT:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       258: if_acmpne     272
+       261: aload_0
+       262: aload_1
+       263: invokevirtual #107                // Method com/fasterxml/jackson/core/JsonParser.getFloatValue:()F
+       266: invokevirtual #84                 // Method writeNumber:(F)V
+       269: goto          344
+       272: aload_0
+       273: aload_1
+       274: invokevirtual #108                // Method com/fasterxml/jackson/core/JsonParser.getDoubleValue:()D
+       277: invokevirtual #38                 // Method writeNumber:(D)V
+       280: goto          344
+       283: aload_0
+       284: iconst_1
+       285: invokevirtual #81                 // Method writeBoolean:(Z)V
+       288: goto          344
+       291: aload_0
+       292: iconst_0
+       293: invokevirtual #81                 // Method writeBoolean:(Z)V
+       296: goto          344
+       299: aload_0
+       300: invokevirtual #50                 // Method writeNull:()V
+       303: goto          344
+       306: aload_0
+       307: aload_1
+       308: invokevirtual #109                // Method com/fasterxml/jackson/core/JsonParser.getEmbeddedObject:()Ljava/lang/Object;
+       311: invokevirtual #80                 // Method writeObject:(Ljava/lang/Object;)V
+       314: goto          344
+       317: new           #110                // class java/lang/IllegalStateException
+       320: dup
+       321: new           #54                 // class java/lang/StringBuilder
+       324: dup
+       325: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+       328: ldc           #111                // String Internal error: unknown current token,
+       330: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       333: aload_2
+       334: invokevirtual #112                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       337: invokevirtual #58                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       340: invokespecial #113                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       343: athrow
+       344: return
+      LineNumberTable:
+        line 2429: 0
+        line 2430: 5
+        line 2431: 18
+        line 2433: 88
+        line 2434: 94
+        line 2436: 97
+        line 2437: 101
+        line 2439: 104
+        line 2440: 108
+        line 2442: 111
+        line 2443: 115
+        line 2445: 118
+        line 2446: 122
+        line 2448: 125
+        line 2449: 133
+        line 2451: 136
+        line 2452: 143
+        line 2454: 162
+        line 2456: 170
+        line 2459: 173
+        line 2460: 179
+        line 2461: 187
+        line 2462: 198
+        line 2463: 206
+        line 2465: 217
+        line 2467: 225
+        line 2471: 228
+        line 2472: 234
+        line 2473: 242
+        line 2474: 253
+        line 2475: 261
+        line 2477: 272
+        line 2479: 280
+        line 2482: 283
+        line 2483: 288
+        line 2485: 291
+        line 2486: 296
+        line 2488: 299
+        line 2489: 303
+        line 2491: 306
+        line 2492: 314
+        line 2494: 317
+        line 2496: 344
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          179      49     4     n   Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+          234      49     4     n   Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+            0     345     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     345     1     p   Lcom/fasterxml/jackson/core/JsonParser;
+            5     340     2     t   Lcom/fasterxml/jackson/core/JsonToken;
+           18     327     3 token   I
+      StackMapTable: number_of_entries = 22
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 70
+          locals = [ int ]
+        frame_type = 8 /* same */
+        frame_type = 6 /* same */
+        frame_type = 6 /* same */
+        frame_type = 6 /* same */
+        frame_type = 6 /* same */
+        frame_type = 10 /* same */
+        frame_type = 25 /* same */
+        frame_type = 10 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ class com/fasterxml/jackson/core/JsonParser$NumberType ]
+        frame_type = 18 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 10
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ class com/fasterxml/jackson/core/JsonParser$NumberType ]
+        frame_type = 18 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 10
+        frame_type = 7 /* same */
+        frame_type = 7 /* same */
+        frame_type = 6 /* same */
+        frame_type = 10 /* same */
+        frame_type = 26 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void copyCurrentStructure(com.fasterxml.jackson.core.JsonParser) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/JsonParser;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=4, args_size=2
+         0: aload_1
+         1: invokevirtual #87                 // Method com/fasterxml/jackson/core/JsonParser.currentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+         4: astore_2
+         5: aload_2
+         6: ifnonnull     13
+         9: iconst_m1
+        10: goto          17
+        13: aload_2
+        14: invokevirtual #88                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+        17: istore_3
+        18: iload_3
+        19: iconst_5
+        20: if_icmpne     49
+        23: aload_0
+        24: aload_1
+        25: invokevirtual #91                 // Method com/fasterxml/jackson/core/JsonParser.getCurrentName:()Ljava/lang/String;
+        28: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+        31: aload_1
+        32: invokevirtual #114                // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+        35: astore_2
+        36: aload_2
+        37: ifnonnull     44
+        40: iconst_m1
+        41: goto          48
+        44: aload_2
+        45: invokevirtual #88                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+        48: istore_3
+        49: iload_3
+        50: lookupswitch  { // 2
+                       1: 76
+                       3: 86
+                 default: 96
+            }
+        76: aload_0
+        77: invokevirtual #27                 // Method writeStartObject:()V
+        80: aload_0
+        81: aload_1
+        82: invokevirtual #115                // Method _copyCurrentContents:(Lcom/fasterxml/jackson/core/JsonParser;)V
+        85: return
+        86: aload_0
+        87: invokevirtual #25                 // Method writeStartArray:()V
+        90: aload_0
+        91: aload_1
+        92: invokevirtual #115                // Method _copyCurrentContents:(Lcom/fasterxml/jackson/core/JsonParser;)V
+        95: return
+        96: aload_0
+        97: aload_1
+        98: invokevirtual #116                // Method copyCurrentEvent:(Lcom/fasterxml/jackson/core/JsonParser;)V
+       101: return
+      LineNumberTable:
+        line 2535: 0
+        line 2537: 5
+        line 2538: 18
+        line 2539: 23
+        line 2540: 31
+        line 2541: 36
+        line 2544: 49
+        line 2546: 76
+        line 2547: 80
+        line 2548: 85
+        line 2550: 86
+        line 2551: 90
+        line 2552: 95
+        line 2555: 96
+        line 2557: 101
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     102     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     102     1     p   Lcom/fasterxml/jackson/core/JsonParser;
+            5      97     2     t   Lcom/fasterxml/jackson/core/JsonToken;
+           18      84     3    id   I
+      StackMapTable: number_of_entries = 8
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 26
+          locals = [ int ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 0 /* same */
+        frame_type = 26 /* same */
+        frame_type = 9 /* same */
+        frame_type = 9 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  protected void _copyCurrentContents(com.fasterxml.jackson.core.JsonParser) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/JsonParser;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=4, locals=5, args_size=2
+         0: iconst_1
+         1: istore_2
+         2: aload_1
+         3: invokevirtual #114                // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+         6: dup
+         7: astore_3
+         8: ifnull        339
+        11: aload_3
+        12: invokevirtual #88                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+        15: tableswitch   { // 1 to 12
+                       1: 97
+                       2: 119
+                       3: 87
+                       4: 107
+                       5: 76
+                       6: 131
+                       7: 168
+                       8: 223
+                       9: 278
+                      10: 286
+                      11: 294
+                      12: 301
+                 default: 312
+            }
+        76: aload_0
+        77: aload_1
+        78: invokevirtual #91                 // Method com/fasterxml/jackson/core/JsonParser.getCurrentName:()Ljava/lang/String;
+        81: invokevirtual #29                 // Method writeFieldName:(Ljava/lang/String;)V
+        84: goto          2
+        87: aload_0
+        88: invokevirtual #25                 // Method writeStartArray:()V
+        91: iinc          2, 1
+        94: goto          2
+        97: aload_0
+        98: invokevirtual #27                 // Method writeStartObject:()V
+       101: iinc          2, 1
+       104: goto          2
+       107: aload_0
+       108: invokevirtual #36                 // Method writeEndArray:()V
+       111: iinc          2, -1
+       114: iload_2
+       115: ifne          2
+       118: return
+       119: aload_0
+       120: invokevirtual #79                 // Method writeEndObject:()V
+       123: iinc          2, -1
+       126: iload_2
+       127: ifne          2
+       130: return
+       131: aload_1
+       132: invokevirtual #92                 // Method com/fasterxml/jackson/core/JsonParser.hasTextCharacters:()Z
+       135: ifeq          157
+       138: aload_0
+       139: aload_1
+       140: invokevirtual #93                 // Method com/fasterxml/jackson/core/JsonParser.getTextCharacters:()[C
+       143: aload_1
+       144: invokevirtual #94                 // Method com/fasterxml/jackson/core/JsonParser.getTextOffset:()I
+       147: aload_1
+       148: invokevirtual #95                 // Method com/fasterxml/jackson/core/JsonParser.getTextLength:()I
+       151: invokevirtual #96                 // Method writeString:([CII)V
+       154: goto          2
+       157: aload_0
+       158: aload_1
+       159: invokevirtual #97                 // Method com/fasterxml/jackson/core/JsonParser.getText:()Ljava/lang/String;
+       162: invokevirtual #39                 // Method writeString:(Ljava/lang/String;)V
+       165: goto          2
+       168: aload_1
+       169: invokevirtual #98                 // Method com/fasterxml/jackson/core/JsonParser.getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       172: astore        4
+       174: aload         4
+       176: getstatic     #99                 // Field com/fasterxml/jackson/core/JsonParser$NumberType.INT:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       179: if_acmpne     193
+       182: aload_0
+       183: aload_1
+       184: invokevirtual #100                // Method com/fasterxml/jackson/core/JsonParser.getIntValue:()I
+       187: invokevirtual #35                 // Method writeNumber:(I)V
+       190: goto          2
+       193: aload         4
+       195: getstatic     #101                // Field com/fasterxml/jackson/core/JsonParser$NumberType.BIG_INTEGER:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       198: if_acmpne     212
+       201: aload_0
+       202: aload_1
+       203: invokevirtual #102                // Method com/fasterxml/jackson/core/JsonParser.getBigIntegerValue:()Ljava/math/BigInteger;
+       206: invokevirtual #83                 // Method writeNumber:(Ljava/math/BigInteger;)V
+       209: goto          2
+       212: aload_0
+       213: aload_1
+       214: invokevirtual #103                // Method com/fasterxml/jackson/core/JsonParser.getLongValue:()J
+       217: invokevirtual #37                 // Method writeNumber:(J)V
+       220: goto          2
+       223: aload_1
+       224: invokevirtual #98                 // Method com/fasterxml/jackson/core/JsonParser.getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       227: astore        4
+       229: aload         4
+       231: getstatic     #104                // Field com/fasterxml/jackson/core/JsonParser$NumberType.BIG_DECIMAL:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       234: if_acmpne     248
+       237: aload_0
+       238: aload_1
+       239: invokevirtual #105                // Method com/fasterxml/jackson/core/JsonParser.getDecimalValue:()Ljava/math/BigDecimal;
+       242: invokevirtual #85                 // Method writeNumber:(Ljava/math/BigDecimal;)V
+       245: goto          2
+       248: aload         4
+       250: getstatic     #106                // Field com/fasterxml/jackson/core/JsonParser$NumberType.FLOAT:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+       253: if_acmpne     267
+       256: aload_0
+       257: aload_1
+       258: invokevirtual #107                // Method com/fasterxml/jackson/core/JsonParser.getFloatValue:()F
+       261: invokevirtual #84                 // Method writeNumber:(F)V
+       264: goto          2
+       267: aload_0
+       268: aload_1
+       269: invokevirtual #108                // Method com/fasterxml/jackson/core/JsonParser.getDoubleValue:()D
+       272: invokevirtual #38                 // Method writeNumber:(D)V
+       275: goto          2
+       278: aload_0
+       279: iconst_1
+       280: invokevirtual #81                 // Method writeBoolean:(Z)V
+       283: goto          2
+       286: aload_0
+       287: iconst_0
+       288: invokevirtual #81                 // Method writeBoolean:(Z)V
+       291: goto          2
+       294: aload_0
+       295: invokevirtual #50                 // Method writeNull:()V
+       298: goto          2
+       301: aload_0
+       302: aload_1
+       303: invokevirtual #109                // Method com/fasterxml/jackson/core/JsonParser.getEmbeddedObject:()Ljava/lang/Object;
+       306: invokevirtual #80                 // Method writeObject:(Ljava/lang/Object;)V
+       309: goto          2
+       312: new           #110                // class java/lang/IllegalStateException
+       315: dup
+       316: new           #54                 // class java/lang/StringBuilder
+       319: dup
+       320: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+       323: ldc           #111                // String Internal error: unknown current token,
+       325: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       328: aload_3
+       329: invokevirtual #112                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       332: invokevirtual #58                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       335: invokespecial #113                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       338: athrow
+       339: return
+      LineNumberTable:
+        line 2562: 0
+        line 2566: 2
+        line 2567: 11
+        line 2569: 76
+        line 2570: 84
+        line 2573: 87
+        line 2574: 91
+        line 2575: 94
+        line 2578: 97
+        line 2579: 101
+        line 2580: 104
+        line 2583: 107
+        line 2584: 111
+        line 2585: 118
+        line 2589: 119
+        line 2590: 123
+        line 2591: 130
+        line 2596: 131
+        line 2597: 138
+        line 2599: 157
+        line 2601: 165
+        line 2604: 168
+        line 2605: 174
+        line 2606: 182
+        line 2607: 193
+        line 2608: 201
+        line 2610: 212
+        line 2612: 220
+        line 2616: 223
+        line 2617: 229
+        line 2618: 237
+        line 2619: 248
+        line 2620: 256
+        line 2622: 267
+        line 2624: 275
+        line 2627: 278
+        line 2628: 283
+        line 2630: 286
+        line 2631: 291
+        line 2633: 294
+        line 2634: 298
+        line 2636: 301
+        line 2637: 309
+        line 2639: 312
+        line 2642: 339
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          174      49     4     n   Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+          229      49     4     n   Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+            0     340     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     340     1     p   Lcom/fasterxml/jackson/core/JsonParser;
+            2     338     2 depth   I
+            8     332     3     t   Lcom/fasterxml/jackson/core/JsonToken;
+      StackMapTable: number_of_entries = 20
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 73
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 10 /* same */
+        frame_type = 9 /* same */
+        frame_type = 9 /* same */
+        frame_type = 11 /* same */
+        frame_type = 11 /* same */
+        frame_type = 25 /* same */
+        frame_type = 10 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ class com/fasterxml/jackson/core/JsonParser$NumberType ]
+        frame_type = 18 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 10
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ class com/fasterxml/jackson/core/JsonParser$NumberType ]
+        frame_type = 18 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 10
+        frame_type = 7 /* same */
+        frame_type = 7 /* same */
+        frame_type = 6 /* same */
+        frame_type = 10 /* same */
+        frame_type = 26 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract void flush() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  public abstract boolean isClosed();
+    descriptor: ()Z
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public abstract void close() throws java.io.IOException;
+    descriptor: ()V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+
+  protected void _reportError(java.lang.String) throws com.fasterxml.jackson.core.JsonGenerationException;
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=4, locals=2, args_size=2
+         0: new           #53                 // class com/fasterxml/jackson/core/JsonGenerationException
+         3: dup
+         4: aload_1
+         5: aload_0
+         6: invokespecial #59                 // Method com/fasterxml/jackson/core/JsonGenerationException."<init>":(Ljava/lang/String;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+         9: athrow
+      LineNumberTable:
+        line 2710: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      10     1   msg   Ljava/lang/String;
+    Exceptions:
+      throws com.fasterxml.jackson.core.JsonGenerationException
+
+  protected final void _throwInternal();
+    descriptor: ()V
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=0, locals=1, args_size=1
+         0: invokestatic  #117                // Method com/fasterxml/jackson/core/util/VersionUtil.throwInternal:()V
+         3: return
+      LineNumberTable:
+        line 2713: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  protected void _reportUnsupportedOperation();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=4, locals=1, args_size=1
+         0: new           #14                 // class java/lang/UnsupportedOperationException
+         3: dup
+         4: new           #54                 // class java/lang/StringBuilder
+         7: dup
+         8: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+        11: ldc           #118                // String Operation not supported by generator of type
+        13: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        16: aload_0
+        17: invokevirtual #17                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        20: invokevirtual #18                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        23: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        26: invokevirtual #58                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        29: invokespecial #21                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+        32: athrow
+      LineNumberTable:
+        line 2716: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      33     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+
+  protected final void _verifyOffsets(int, int, int);
+    descriptor: (III)V
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=7, locals=4, args_size=4
+         0: iload_2
+         1: iflt          11
+         4: iload_2
+         5: iload_3
+         6: iadd
+         7: iload_1
+         8: if_icmple     49
+        11: new           #30                 // class java/lang/IllegalArgumentException
+        14: dup
+        15: ldc           #119                // String invalid argument(s) (offset=%d, length=%d) for input array of %d element
+        17: iconst_3
+        18: anewarray     #16                 // class java/lang/Object
+        21: dup
+        22: iconst_0
+        23: iload_2
+        24: invokestatic  #120                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        27: aastore
+        28: dup
+        29: iconst_1
+        30: iload_3
+        31: invokestatic  #120                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        34: aastore
+        35: dup
+        36: iconst_2
+        37: iload_1
+        38: invokestatic  #120                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        41: aastore
+        42: invokestatic  #20                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        45: invokespecial #32                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        48: athrow
+        49: return
+      LineNumberTable:
+        line 2722: 0
+        line 2723: 11
+        line 2725: 24
+        line 2723: 42
+        line 2727: 49
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      50     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      50     1 arrayLength   I
+            0      50     2 offset   I
+            0      50     3 length   I
+      StackMapTable: number_of_entries = 2
+        frame_type = 11 /* same */
+        frame_type = 37 /* same */
+
+  protected void _writeSimpleObject(java.lang.Object) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=4, locals=3, args_size=2
+         0: aload_1
+         1: ifnonnull     9
+         4: aload_0
+         5: invokevirtual #50                 // Method writeNull:()V
+         8: return
+         9: aload_1
+        10: instanceof    #47                 // class java/lang/String
+        13: ifeq          25
+        16: aload_0
+        17: aload_1
+        18: checkcast     #47                 // class java/lang/String
+        21: invokevirtual #39                 // Method writeString:(Ljava/lang/String;)V
+        24: return
+        25: aload_1
+        26: instanceof    #121                // class java/lang/Number
+        29: ifeq          207
+        32: aload_1
+        33: checkcast     #121                // class java/lang/Number
+        36: astore_2
+        37: aload_2
+        38: instanceof    #122                // class java/lang/Integer
+        41: ifeq          53
+        44: aload_0
+        45: aload_2
+        46: invokevirtual #123                // Method java/lang/Number.intValue:()I
+        49: invokevirtual #35                 // Method writeNumber:(I)V
+        52: return
+        53: aload_2
+        54: instanceof    #124                // class java/lang/Long
+        57: ifeq          69
+        60: aload_0
+        61: aload_2
+        62: invokevirtual #125                // Method java/lang/Number.longValue:()J
+        65: invokevirtual #37                 // Method writeNumber:(J)V
+        68: return
+        69: aload_2
+        70: instanceof    #126                // class java/lang/Double
+        73: ifeq          85
+        76: aload_0
+        77: aload_2
+        78: invokevirtual #127                // Method java/lang/Number.doubleValue:()D
+        81: invokevirtual #38                 // Method writeNumber:(D)V
+        84: return
+        85: aload_2
+        86: instanceof    #128                // class java/lang/Float
+        89: ifeq          101
+        92: aload_0
+        93: aload_2
+        94: invokevirtual #129                // Method java/lang/Number.floatValue:()F
+        97: invokevirtual #84                 // Method writeNumber:(F)V
+       100: return
+       101: aload_2
+       102: instanceof    #130                // class java/lang/Short
+       105: ifeq          117
+       108: aload_0
+       109: aload_2
+       110: invokevirtual #131                // Method java/lang/Number.shortValue:()S
+       113: invokevirtual #82                 // Method writeNumber:(S)V
+       116: return
+       117: aload_2
+       118: instanceof    #132                // class java/lang/Byte
+       121: ifeq          134
+       124: aload_0
+       125: aload_2
+       126: invokevirtual #133                // Method java/lang/Number.byteValue:()B
+       129: i2s
+       130: invokevirtual #82                 // Method writeNumber:(S)V
+       133: return
+       134: aload_2
+       135: instanceof    #134                // class java/math/BigInteger
+       138: ifeq          150
+       141: aload_0
+       142: aload_2
+       143: checkcast     #134                // class java/math/BigInteger
+       146: invokevirtual #83                 // Method writeNumber:(Ljava/math/BigInteger;)V
+       149: return
+       150: aload_2
+       151: instanceof    #135                // class java/math/BigDecimal
+       154: ifeq          166
+       157: aload_0
+       158: aload_2
+       159: checkcast     #135                // class java/math/BigDecimal
+       162: invokevirtual #85                 // Method writeNumber:(Ljava/math/BigDecimal;)V
+       165: return
+       166: aload_2
+       167: instanceof    #136                // class java/util/concurrent/atomic/AtomicInteger
+       170: ifeq          185
+       173: aload_0
+       174: aload_2
+       175: checkcast     #136                // class java/util/concurrent/atomic/AtomicInteger
+       178: invokevirtual #137                // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+       181: invokevirtual #35                 // Method writeNumber:(I)V
+       184: return
+       185: aload_2
+       186: instanceof    #138                // class java/util/concurrent/atomic/AtomicLong
+       189: ifeq          204
+       192: aload_0
+       193: aload_2
+       194: checkcast     #138                // class java/util/concurrent/atomic/AtomicLong
+       197: invokevirtual #139                // Method java/util/concurrent/atomic/AtomicLong.get:()J
+       200: invokevirtual #37                 // Method writeNumber:(J)V
+       203: return
+       204: goto          264
+       207: aload_1
+       208: instanceof    #51                 // class "[B"
+       211: ifeq          226
+       214: aload_0
+       215: aload_1
+       216: checkcast     #51                 // class "[B"
+       219: checkcast     #51                 // class "[B"
+       222: invokevirtual #52                 // Method writeBinary:([B)V
+       225: return
+       226: aload_1
+       227: instanceof    #140                // class java/lang/Boolean
+       230: ifeq          245
+       233: aload_0
+       234: aload_1
+       235: checkcast     #140                // class java/lang/Boolean
+       238: invokevirtual #141                // Method java/lang/Boolean.booleanValue:()Z
+       241: invokevirtual #81                 // Method writeBoolean:(Z)V
+       244: return
+       245: aload_1
+       246: instanceof    #142                // class java/util/concurrent/atomic/AtomicBoolean
+       249: ifeq          264
+       252: aload_0
+       253: aload_1
+       254: checkcast     #142                // class java/util/concurrent/atomic/AtomicBoolean
+       257: invokevirtual #143                // Method java/util/concurrent/atomic/AtomicBoolean.get:()Z
+       260: invokevirtual #81                 // Method writeBoolean:(Z)V
+       263: return
+       264: new           #110                // class java/lang/IllegalStateException
+       267: dup
+       268: new           #54                 // class java/lang/StringBuilder
+       271: dup
+       272: invokespecial #55                 // Method java/lang/StringBuilder."<init>":()V
+       275: ldc           #144                // String No ObjectCodec defined for the generator, can only serialize simple wrapper types (type passed
+       277: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       280: aload_1
+       281: invokevirtual #17                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       284: invokevirtual #18                 // Method java/lang/Class.getName:()Ljava/lang/String;
+       287: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       290: ldc           #145                // String )
+       292: invokevirtual #57                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       295: invokevirtual #58                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       298: invokespecial #113                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       301: athrow
+      LineNumberTable:
+        line 2744: 0
+        line 2745: 4
+        line 2746: 8
+        line 2748: 9
+        line 2749: 16
+        line 2750: 24
+        line 2752: 25
+        line 2753: 32
+        line 2754: 37
+        line 2755: 44
+        line 2756: 52
+        line 2757: 53
+        line 2758: 60
+        line 2759: 68
+        line 2760: 69
+        line 2761: 76
+        line 2762: 84
+        line 2763: 85
+        line 2764: 92
+        line 2765: 100
+        line 2766: 101
+        line 2767: 108
+        line 2768: 116
+        line 2769: 117
+        line 2770: 124
+        line 2771: 133
+        line 2772: 134
+        line 2773: 141
+        line 2774: 149
+        line 2775: 150
+        line 2776: 157
+        line 2777: 165
+        line 2780: 166
+        line 2781: 173
+        line 2782: 184
+        line 2783: 185
+        line 2784: 192
+        line 2785: 203
+        line 2787: 204
+        line 2788: 214
+        line 2789: 225
+        line 2790: 226
+        line 2791: 233
+        line 2792: 244
+        line 2793: 245
+        line 2794: 252
+        line 2795: 263
+        line 2797: 264
+        line 2798: 281
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           37     167     2     n   Ljava/lang/Number;
+            0     302     0  this   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0     302     1 value   Ljava/lang/Object;
+      StackMapTable: number_of_entries = 16
+        frame_type = 9 /* same */
+        frame_type = 15 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 27
+          locals = [ class java/lang/Number ]
+        frame_type = 15 /* same */
+        frame_type = 15 /* same */
+        frame_type = 15 /* same */
+        frame_type = 15 /* same */
+        frame_type = 16 /* same */
+        frame_type = 15 /* same */
+        frame_type = 15 /* same */
+        frame_type = 18 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 18
+        frame_type = 2 /* same */
+        frame_type = 18 /* same */
+        frame_type = 18 /* same */
+        frame_type = 18 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: invokestatic  #146                // Method com/fasterxml/jackson/core/StreamWriteCapability.values:()[Lcom/fasterxml/jackson/core/StreamWriteCapability;
+         3: invokestatic  #147                // Method com/fasterxml/jackson/core/util/JacksonFeatureSet.fromDefaults:([Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+         6: putstatic     #24                 // Field DEFAULT_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+         9: getstatic     #24                 // Field DEFAULT_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+        12: getstatic     #148                // Field com/fasterxml/jackson/core/StreamWriteCapability.CAN_WRITE_FORMATTED_NUMBERS:Lcom/fasterxml/jackson/core/StreamWriteCapability;
+        15: invokevirtual #149                // Method com/fasterxml/jackson/core/util/JacksonFeatureSet.with:(Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+        18: putstatic     #150                // Field DEFAULT_TEXTUAL_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+        21: getstatic     #24                 // Field DEFAULT_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+        24: getstatic     #151                // Field com/fasterxml/jackson/core/StreamWriteCapability.CAN_WRITE_BINARY_NATIVELY:Lcom/fasterxml/jackson/core/StreamWriteCapability;
+        27: invokevirtual #149                // Method com/fasterxml/jackson/core/util/JacksonFeatureSet.with:(Lcom/fasterxml/jackson/core/util/JacksonFeature;)Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+        30: putstatic     #152                // Field DEFAULT_BINARY_WRITE_CAPABILITIES:Lcom/fasterxml/jackson/core/util/JacksonFeatureSet;
+        33: return
+      LineNumberTable:
+        line 41: 0
+        line 49: 9
+        line 50: 15
+        line 58: 21
+        line 59: 27
+        line 58: 33
+}
+SourceFile: "JsonGenerator.java"
+InnerClasses:
+  static #157;                            // class com/fasterxml/jackson/core/JsonGenerator$1
+  public static final #160= #159 of #153; // Feature=class com/fasterxml/jackson/core/JsonGenerator$Feature of class com/fasterxml/jackson/core/JsonGenerator
+  public static final #343= #342 of #476; // Inclusion=class com/fasterxml/jackson/core/type/WritableTypeId$Inclusion of class com/fasterxml/jackson/core/type/WritableTypeId
+  public static final #389= #388 of #503; // NumberType=class com/fasterxml/jackson/core/JsonParser$NumberType of class com/fasterxml/jackson/core/JsonParser

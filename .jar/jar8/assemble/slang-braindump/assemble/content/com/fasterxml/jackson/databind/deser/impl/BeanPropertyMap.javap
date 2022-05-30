@@ -1,0 +1,3039 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.class
+  Last modified May 29, 2022; size 20304 bytes
+  SHA-256 checksum a87c810b5ebc40e752f83559f8b84ec5f3b7324bcb097e9f4a243d077e4051e5
+  Compiled from "BeanPropertyMap.java"
+public class com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap extends java.lang.Object implements java.lang.Iterable<com.fasterxml.jackson.databind.deser.SettableBeanProperty>, java.io.Serializable
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #21                         // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+  super_class: #24                        // java/lang/Object
+  interfaces: 2, fields: 10, methods: 37, attributes: 3
+Constant pool:
+    #1 = Methodref          #24.#323      // java/lang/Object."<init>":()V
+    #2 = Fieldref           #21.#324      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._caseInsensitive:Z
+    #3 = InterfaceMethodref #325.#326     // java/util/Collection.size:()I
+    #4 = Class              #327          // com/fasterxml/jackson/databind/deser/SettableBeanProperty
+    #5 = InterfaceMethodref #325.#328     // java/util/Collection.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+    #6 = Class              #129          // "[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;"
+    #7 = Fieldref           #21.#329      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    #8 = Fieldref           #21.#330      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._aliasDefs:Ljava/util/Map;
+    #9 = Fieldref           #21.#331      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._locale:Ljava/util/Locale;
+   #10 = Methodref          #21.#332      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._buildAliasMapping:(Ljava/util/Map;ZLjava/util/Locale;)Ljava/util/Map;
+   #11 = Fieldref           #21.#333      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._aliasMapping:Ljava/util/Map;
+   #12 = Methodref          #21.#334      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.init:(Ljava/util/Collection;)V
+   #13 = Methodref          #335.#336     // java/util/Locale.getDefault:()Ljava/util/Locale;
+   #14 = Methodref          #21.#337      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap."<init>":(ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+   #15 = Fieldref           #21.#338      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._hashMask:I
+   #16 = Fieldref           #21.#339      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._size:I
+   #17 = Fieldref           #21.#340      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._spillCount:I
+   #18 = Fieldref           #21.#341      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._hashArea:[Ljava/lang/Object;
+   #19 = Methodref          #342.#343     // java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+   #20 = Methodref          #342.#344     // java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+   #21 = Class              #345          // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+   #22 = Methodref          #21.#346      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap."<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Z)V
+   #23 = Methodref          #21.#347      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.findSize:(I)I
+   #24 = Class              #348          // java/lang/Object
+   #25 = InterfaceMethodref #325.#349     // java/util/Collection.iterator:()Ljava/util/Iterator;
+   #26 = InterfaceMethodref #350.#351     // java/util/Iterator.hasNext:()Z
+   #27 = InterfaceMethodref #350.#352     // java/util/Iterator.next:()Ljava/lang/Object;
+   #28 = Methodref          #21.#353      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.getPropertyName:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Ljava/lang/String;
+   #29 = Methodref          #21.#354      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._hashCode:(Ljava/lang/String;)I
+   #30 = Methodref          #355.#356     // com/fasterxml/jackson/databind/cfg/MapperConfig.getLocale:()Ljava/util/Locale;
+   #31 = Fieldref           #357.#358     // com/fasterxml/jackson/databind/MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES:Lcom/fasterxml/jackson/databind/MapperFeature;
+   #32 = Methodref          #355.#359     // com/fasterxml/jackson/databind/cfg/MapperConfig.isEnabled:(Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+   #33 = Methodref          #21.#360      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap."<init>":(ZLjava/util/Collection;Ljava/util/Map;)V
+   #34 = Methodref          #4.#361       // com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+   #35 = Methodref          #68.#362      // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #36 = Methodref          #21.#363      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._findFromOrdered:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)I
+   #37 = Methodref          #21.#364      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap."<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;II)V
+   #38 = Methodref          #21.#365      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap."<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Ljava/lang/String;I)V
+   #39 = Methodref          #4.#366       // com/fasterxml/jackson/databind/deser/SettableBeanProperty.assignIndex:(I)V
+   #40 = Fieldref           #367.#368     // com/fasterxml/jackson/databind/util/NameTransformer.NOP:Lcom/fasterxml/jackson/databind/util/NameTransformer;
+   #41 = Class              #369          // java/util/ArrayList
+   #42 = Methodref          #41.#370      // java/util/ArrayList."<init>":(I)V
+   #43 = Methodref          #41.#371      // java/util/ArrayList.add:(Ljava/lang/Object;)Z
+   #44 = Methodref          #21.#372      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._rename:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+   #45 = Methodref          #21.#373      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.withoutProperties:(Ljava/util/Collection;Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+   #46 = InterfaceMethodref #325.#374     // java/util/Collection.isEmpty:()Z
+   #47 = Methodref          #375.#376     // com/fasterxml/jackson/databind/util/IgnorePropertiesUtil.shouldIgnore:(Ljava/lang/Object;Ljava/util/Collection;Ljava/util/Collection;)Z
+   #48 = Class              #377          // java/util/NoSuchElementException
+   #49 = Class              #378          // java/lang/StringBuilder
+   #50 = Methodref          #49.#323      // java/lang/StringBuilder."<init>":()V
+   #51 = String             #379          // No entry \'
+   #52 = Methodref          #49.#380      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #53 = String             #381          // \' found, can\'t replace
+   #54 = Methodref          #49.#382      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #55 = Methodref          #48.#383      // java/util/NoSuchElementException."<init>":(Ljava/lang/String;)V
+   #56 = String             #384          // \' found, can\'t remove
+   #57 = InterfaceMethodref #385.#374     // java/util/Map.isEmpty:()Z
+   #58 = Methodref          #21.#386      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._properties:()Ljava/util/List;
+   #59 = InterfaceMethodref #109.#349     // java/util/List.iterator:()Ljava/util/Iterator;
+   #60 = Methodref          #68.#387      // java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+   #61 = Methodref          #4.#388       // com/fasterxml/jackson/databind/deser/SettableBeanProperty.getPropertyIndex:()I
+   #62 = Class              #389          // java/lang/IllegalArgumentException
+   #63 = String             #390          // Cannot pass null property name
+   #64 = Methodref          #62.#383      // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+   #65 = Methodref          #68.#391      // java/lang/String.hashCode:()I
+   #66 = Methodref          #21.#392      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._find2:(Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+   #67 = InterfaceMethodref #385.#393     // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #68 = Class              #394          // java/lang/String
+   #69 = Methodref          #21.#395      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._findWithAlias:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+   #70 = Methodref          #21.#396      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap._find2ViaAlias:(Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+   #71 = Methodref          #21.#397      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.find:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+   #72 = Methodref          #4.#398       // com/fasterxml/jackson/databind/deser/SettableBeanProperty.deserializeAndSet:(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;Ljava/lang/Object;)V
+   #73 = Class              #399          // java/lang/Exception
+   #74 = Methodref          #21.#400      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.wrapAndThrow:(Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;Lcom/fasterxml/jackson/databind/DeserializationContext;)V
+   #75 = String             #401          // Properties=[
+   #76 = Methodref          #21.#349      // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.iterator:()Ljava/util/Iterator;
+   #77 = String             #402          // ,
+   #78 = Methodref          #49.#403      // java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+   #79 = Methodref          #4.#404       // com/fasterxml/jackson/databind/deser/SettableBeanProperty.getType:()Lcom/fasterxml/jackson/databind/JavaType;
+   #80 = Methodref          #49.#405      // java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+   #81 = String             #406          // (aliases:
+   #82 = String             #407          // )
+   #83 = Methodref          #367.#408     // com/fasterxml/jackson/databind/util/NameTransformer.transform:(Ljava/lang/String;)Ljava/lang/String;
+   #84 = Methodref          #4.#409       // com/fasterxml/jackson/databind/deser/SettableBeanProperty.withSimpleName:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+   #85 = Methodref          #4.#410       // com/fasterxml/jackson/databind/deser/SettableBeanProperty.getValueDeserializer:()Lcom/fasterxml/jackson/databind/JsonDeserializer;
+   #86 = Methodref          #411.#412     // com/fasterxml/jackson/databind/JsonDeserializer.unwrappingDeserializer:(Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/JsonDeserializer;
+   #87 = Methodref          #4.#413       // com/fasterxml/jackson/databind/deser/SettableBeanProperty.withValueDeserializer:(Lcom/fasterxml/jackson/databind/JsonDeserializer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+   #88 = Class              #414          // java/lang/reflect/InvocationTargetException
+   #89 = Methodref          #415.#416     // java/lang/Throwable.getCause:()Ljava/lang/Throwable;
+   #90 = Methodref          #417.#418     // com/fasterxml/jackson/databind/util/ClassUtil.throwIfError:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+   #91 = Fieldref           #419.#420     // com/fasterxml/jackson/databind/DeserializationFeature.WRAP_EXCEPTIONS:Lcom/fasterxml/jackson/databind/DeserializationFeature;
+   #92 = Methodref          #421.#422     // com/fasterxml/jackson/databind/DeserializationContext.isEnabled:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+   #93 = Class              #423          // java/io/IOException
+   #94 = Class              #424          // com/fasterxml/jackson/core/JacksonException
+   #95 = Methodref          #417.#425     // com/fasterxml/jackson/databind/util/ClassUtil.throwIfRTE:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+   #96 = Methodref          #426.#427     // com/fasterxml/jackson/databind/JsonMappingException.wrapWithPath:(Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonMappingException;
+   #97 = Class              #428          // java/lang/IllegalStateException
+   #98 = String             #429          // Illegal state: property \'
+   #99 = String             #430          // \' missing from _propsInOrder
+  #100 = Methodref          #97.#383      // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+  #101 = Methodref          #431.#432     // java/util/Collections.emptyMap:()Ljava/util/Map;
+  #102 = Class              #433          // java/util/HashMap
+  #103 = Methodref          #102.#323     // java/util/HashMap."<init>":()V
+  #104 = InterfaceMethodref #385.#434     // java/util/Map.entrySet:()Ljava/util/Set;
+  #105 = InterfaceMethodref #435.#349     // java/util/Set.iterator:()Ljava/util/Iterator;
+  #106 = Class              #436          // java/util/Map$Entry
+  #107 = InterfaceMethodref #106.#437     // java/util/Map$Entry.getKey:()Ljava/lang/Object;
+  #108 = InterfaceMethodref #106.#438     // java/util/Map$Entry.getValue:()Ljava/lang/Object;
+  #109 = Class              #439          // java/util/List
+  #110 = Class              #440          // com/fasterxml/jackson/databind/PropertyName
+  #111 = Methodref          #110.#441     // com/fasterxml/jackson/databind/PropertyName.getSimpleName:()Ljava/lang/String;
+  #112 = InterfaceMethodref #385.#442     // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #113 = Class              #443          // java/lang/Iterable
+  #114 = Class              #444          // java/io/Serializable
+  #115 = Utf8               serialVersionUID
+  #116 = Utf8               J
+  #117 = Utf8               ConstantValue
+  #118 = Long               2l
+  #120 = Utf8               _caseInsensitive
+  #121 = Utf8               Z
+  #122 = Utf8               _hashMask
+  #123 = Utf8               I
+  #124 = Utf8               _size
+  #125 = Utf8               _spillCount
+  #126 = Utf8               _hashArea
+  #127 = Utf8               [Ljava/lang/Object;
+  #128 = Utf8               _propsInOrder
+  #129 = Utf8               [Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #130 = Utf8               _aliasDefs
+  #131 = Utf8               Ljava/util/Map;
+  #132 = Utf8               Signature
+  #133 = Utf8               Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+  #134 = Utf8               _aliasMapping
+  #135 = Utf8               Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+  #136 = Utf8               _locale
+  #137 = Utf8               Ljava/util/Locale;
+  #138 = Utf8               <init>
+  #139 = Utf8               (ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+  #140 = Utf8               Code
+  #141 = Utf8               LineNumberTable
+  #142 = Utf8               LocalVariableTable
+  #143 = Utf8               this
+  #144 = Utf8               Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #145 = Utf8               caseInsensitive
+  #146 = Utf8               props
+  #147 = Utf8               Ljava/util/Collection;
+  #148 = Utf8               aliasDefs
+  #149 = Utf8               locale
+  #150 = Utf8               LocalVariableTypeTable
+  #151 = Utf8               Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+  #152 = Utf8               (ZLjava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;Ljava/util/Locale;)V
+  #153 = Utf8               (ZLjava/util/Collection;Ljava/util/Map;)V
+  #154 = Utf8               Deprecated
+  #155 = Utf8               (ZLjava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;)V
+  #156 = Utf8               RuntimeVisibleAnnotations
+  #157 = Utf8               Ljava/lang/Deprecated;
+  #158 = Utf8               (Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;II)V
+  #159 = Utf8               src
+  #160 = Utf8               newProp
+  #161 = Utf8               Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #162 = Utf8               hashIndex
+  #163 = Utf8               orderedIndex
+  #164 = Utf8               (Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Ljava/lang/String;I)V
+  #165 = Utf8               key
+  #166 = Utf8               Ljava/lang/String;
+  #167 = Utf8               slot
+  #168 = Utf8               last
+  #169 = Utf8               hashSize
+  #170 = Utf8               ix
+  #171 = Utf8               StackMapTable
+  #172 = Class              #345          // com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+  #173 = Class              #327          // com/fasterxml/jackson/databind/deser/SettableBeanProperty
+  #174 = Class              #394          // java/lang/String
+  #175 = Utf8               (Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Z)V
+  #176 = Utf8               base
+  #177 = Utf8               withCaseInsensitivity
+  #178 = Utf8               (Z)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #179 = Utf8               state
+  #180 = Utf8               init
+  #181 = Utf8               (Ljava/util/Collection;)V
+  #182 = Utf8               prop
+  #183 = Utf8               alloc
+  #184 = Utf8               hashed
+  #185 = Utf8               spillCount
+  #186 = Class              #445          // java/util/Collection
+  #187 = Class              #127          // "[Ljava/lang/Object;"
+  #188 = Class              #446          // java/util/Iterator
+  #189 = Utf8               (Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;)V
+  #190 = Utf8               findSize
+  #191 = Utf8               (I)I
+  #192 = Utf8               size
+  #193 = Utf8               needed
+  #194 = Utf8               result
+  #195 = Utf8               construct
+  #196 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Ljava/util/Collection;Ljava/util/Map;Z)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #197 = Utf8               config
+  #198 = Utf8               Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+  #199 = Utf8               aliasMapping
+  #200 = Utf8               Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+  #201 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;Z)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #202 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Ljava/util/Collection;Ljava/util/Map;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #203 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #204 = Utf8               (Ljava/util/Collection;ZLjava/util/Map;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #205 = Utf8               (Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;ZLjava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #206 = Utf8               withProperty
+  #207 = Utf8               (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #208 = Utf8               i
+  #209 = Utf8               end
+  #210 = Utf8               assignIndexes
+  #211 = Utf8               ()Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #212 = Utf8               index
+  #213 = Utf8               renameAll
+  #214 = Utf8               (Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #215 = Utf8               transformer
+  #216 = Utf8               Lcom/fasterxml/jackson/databind/util/NameTransformer;
+  #217 = Utf8               len
+  #218 = Utf8               newProps
+  #219 = Utf8               Ljava/util/ArrayList;
+  #220 = Utf8               Ljava/util/ArrayList<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+  #221 = Class              #369          // java/util/ArrayList
+  #222 = Utf8               withoutProperties
+  #223 = Utf8               (Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #224 = Utf8               toExclude
+  #225 = Utf8               Ljava/util/Collection<Ljava/lang/String;>;
+  #226 = Utf8               (Ljava/util/Collection<Ljava/lang/String;>;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #227 = Utf8               (Ljava/util/Collection;Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #228 = Utf8               toInclude
+  #229 = Utf8               (Ljava/util/Collection<Ljava/lang/String;>;Ljava/util/Collection<Ljava/lang/String;>;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #230 = Utf8               replace
+  #231 = Utf8               (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)V
+  #232 = Utf8               origProp
+  #233 = Utf8               remove
+  #234 = Utf8               (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)V
+  #235 = Utf8               propToRm
+  #236 = Utf8               found
+  #237 = Utf8               ()I
+  #238 = Utf8               isCaseInsensitive
+  #239 = Utf8               ()Z
+  #240 = Utf8               hasAliases
+  #241 = Utf8               iterator
+  #242 = Utf8               ()Ljava/util/Iterator;
+  #243 = Utf8               ()Ljava/util/Iterator<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+  #244 = Utf8               _properties
+  #245 = Utf8               ()Ljava/util/List;
+  #246 = Utf8               p
+  #247 = Utf8               ()Ljava/util/List<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+  #248 = Utf8               getPropertiesInInsertionOrder
+  #249 = Utf8               ()[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #250 = Utf8               getPropertyName
+  #251 = Utf8               (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Ljava/lang/String;
+  #252 = Utf8               find
+  #253 = Utf8               (I)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #254 = Utf8               (Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #255 = Utf8               match
+  #256 = Utf8               Ljava/lang/Object;
+  #257 = Class              #348          // java/lang/Object
+  #258 = Utf8               _find2
+  #259 = Utf8               (Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #260 = Utf8               _findWithAlias
+  #261 = Utf8               keyFromAlias
+  #262 = Utf8               _find2ViaAlias
+  #263 = Utf8               findDeserializeAndSet
+  #264 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;Ljava/lang/Object;Ljava/lang/String;)Z
+  #265 = Utf8               e
+  #266 = Utf8               Ljava/lang/Exception;
+  #267 = Utf8               Lcom/fasterxml/jackson/core/JsonParser;
+  #268 = Utf8               ctxt
+  #269 = Utf8               Lcom/fasterxml/jackson/databind/DeserializationContext;
+  #270 = Utf8               bean
+  #271 = Class              #399          // java/lang/Exception
+  #272 = Utf8               Exceptions
+  #273 = Utf8               toString
+  #274 = Utf8               ()Ljava/lang/String;
+  #275 = Utf8               sb
+  #276 = Utf8               Ljava/lang/StringBuilder;
+  #277 = Utf8               count
+  #278 = Utf8               it
+  #279 = Utf8               Ljava/util/Iterator;
+  #280 = Utf8               Ljava/util/Iterator<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+  #281 = Class              #378          // java/lang/StringBuilder
+  #282 = Utf8               _rename
+  #283 = Utf8               (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #284 = Utf8               newDeser
+  #285 = Utf8               Lcom/fasterxml/jackson/databind/JsonDeserializer;
+  #286 = Utf8               xf
+  #287 = Utf8               newName
+  #288 = Utf8               deser
+  #289 = Utf8               Lcom/fasterxml/jackson/databind/JsonDeserializer<Ljava/lang/Object;>;
+  #290 = Utf8               Lcom/fasterxml/jackson/databind/JsonDeserializer<*>;
+  #291 = Class              #447          // com/fasterxml/jackson/databind/JsonDeserializer
+  #292 = Utf8               wrapAndThrow
+  #293 = Utf8               (Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;Lcom/fasterxml/jackson/databind/DeserializationContext;)V
+  #294 = Utf8               t
+  #295 = Utf8               Ljava/lang/Throwable;
+  #296 = Utf8               fieldName
+  #297 = Utf8               wrap
+  #298 = Utf8               _findFromOrdered
+  #299 = Utf8               (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)I
+  #300 = Utf8               _hashCode
+  #301 = Utf8               (Ljava/lang/String;)I
+  #302 = Utf8               _buildAliasMapping
+  #303 = Utf8               (Ljava/util/Map;ZLjava/util/Locale;)Ljava/util/Map;
+  #304 = Utf8               mapped
+  #305 = Utf8               pn
+  #306 = Utf8               Lcom/fasterxml/jackson/databind/PropertyName;
+  #307 = Utf8               entry
+  #308 = Utf8               Entry
+  #309 = Utf8               InnerClasses
+  #310 = Utf8               Ljava/util/Map$Entry;
+  #311 = Utf8               defs
+  #312 = Utf8               loc
+  #313 = Utf8               aliases
+  #314 = Utf8               Ljava/util/Map$Entry<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+  #315 = Class              #448          // java/util/Map
+  #316 = Class              #436          // java/util/Map$Entry
+  #317 = Class              #440          // com/fasterxml/jackson/databind/PropertyName
+  #318 = Class              #449          // java/util/Locale
+  #319 = Utf8               (Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;ZLjava/util/Locale;)Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+  #320 = Utf8               Ljava/lang/Object;Ljava/lang/Iterable<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/io/Serializable;
+  #321 = Utf8               SourceFile
+  #322 = Utf8               BeanPropertyMap.java
+  #323 = NameAndType        #138:#450     // "<init>":()V
+  #324 = NameAndType        #120:#121     // _caseInsensitive:Z
+  #325 = Class              #445          // java/util/Collection
+  #326 = NameAndType        #192:#237     // size:()I
+  #327 = Utf8               com/fasterxml/jackson/databind/deser/SettableBeanProperty
+  #328 = NameAndType        #451:#452     // toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+  #329 = NameAndType        #128:#129     // _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #330 = NameAndType        #130:#131     // _aliasDefs:Ljava/util/Map;
+  #331 = NameAndType        #136:#137     // _locale:Ljava/util/Locale;
+  #332 = NameAndType        #302:#303     // _buildAliasMapping:(Ljava/util/Map;ZLjava/util/Locale;)Ljava/util/Map;
+  #333 = NameAndType        #134:#131     // _aliasMapping:Ljava/util/Map;
+  #334 = NameAndType        #180:#181     // init:(Ljava/util/Collection;)V
+  #335 = Class              #449          // java/util/Locale
+  #336 = NameAndType        #453:#454     // getDefault:()Ljava/util/Locale;
+  #337 = NameAndType        #138:#139     // "<init>":(ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+  #338 = NameAndType        #122:#123     // _hashMask:I
+  #339 = NameAndType        #124:#123     // _size:I
+  #340 = NameAndType        #125:#123     // _spillCount:I
+  #341 = NameAndType        #126:#127     // _hashArea:[Ljava/lang/Object;
+  #342 = Class              #455          // java/util/Arrays
+  #343 = NameAndType        #456:#457     // copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+  #344 = NameAndType        #458:#459     // asList:([Ljava/lang/Object;)Ljava/util/List;
+  #345 = Utf8               com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+  #346 = NameAndType        #138:#175     // "<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Z)V
+  #347 = NameAndType        #190:#191     // findSize:(I)I
+  #348 = Utf8               java/lang/Object
+  #349 = NameAndType        #241:#242     // iterator:()Ljava/util/Iterator;
+  #350 = Class              #446          // java/util/Iterator
+  #351 = NameAndType        #460:#239     // hasNext:()Z
+  #352 = NameAndType        #461:#462     // next:()Ljava/lang/Object;
+  #353 = NameAndType        #250:#251     // getPropertyName:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Ljava/lang/String;
+  #354 = NameAndType        #300:#301     // _hashCode:(Ljava/lang/String;)I
+  #355 = Class              #463          // com/fasterxml/jackson/databind/cfg/MapperConfig
+  #356 = NameAndType        #464:#454     // getLocale:()Ljava/util/Locale;
+  #357 = Class              #465          // com/fasterxml/jackson/databind/MapperFeature
+  #358 = NameAndType        #466:#467     // ACCEPT_CASE_INSENSITIVE_PROPERTIES:Lcom/fasterxml/jackson/databind/MapperFeature;
+  #359 = NameAndType        #468:#469     // isEnabled:(Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+  #360 = NameAndType        #138:#153     // "<init>":(ZLjava/util/Collection;Ljava/util/Map;)V
+  #361 = NameAndType        #470:#274     // getName:()Ljava/lang/String;
+  #362 = NameAndType        #471:#472     // equals:(Ljava/lang/Object;)Z
+  #363 = NameAndType        #298:#299     // _findFromOrdered:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)I
+  #364 = NameAndType        #138:#158     // "<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;II)V
+  #365 = NameAndType        #138:#164     // "<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Ljava/lang/String;I)V
+  #366 = NameAndType        #473:#474     // assignIndex:(I)V
+  #367 = Class              #475          // com/fasterxml/jackson/databind/util/NameTransformer
+  #368 = NameAndType        #476:#216     // NOP:Lcom/fasterxml/jackson/databind/util/NameTransformer;
+  #369 = Utf8               java/util/ArrayList
+  #370 = NameAndType        #138:#474     // "<init>":(I)V
+  #371 = NameAndType        #477:#472     // add:(Ljava/lang/Object;)Z
+  #372 = NameAndType        #282:#283     // _rename:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #373 = NameAndType        #222:#227     // withoutProperties:(Ljava/util/Collection;Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+  #374 = NameAndType        #478:#239     // isEmpty:()Z
+  #375 = Class              #479          // com/fasterxml/jackson/databind/util/IgnorePropertiesUtil
+  #376 = NameAndType        #480:#481     // shouldIgnore:(Ljava/lang/Object;Ljava/util/Collection;Ljava/util/Collection;)Z
+  #377 = Utf8               java/util/NoSuchElementException
+  #378 = Utf8               java/lang/StringBuilder
+  #379 = Utf8               No entry \'
+  #380 = NameAndType        #482:#483     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #381 = Utf8               \' found, can\'t replace
+  #382 = NameAndType        #273:#274     // toString:()Ljava/lang/String;
+  #383 = NameAndType        #138:#484     // "<init>":(Ljava/lang/String;)V
+  #384 = Utf8               \' found, can\'t remove
+  #385 = Class              #448          // java/util/Map
+  #386 = NameAndType        #244:#245     // _properties:()Ljava/util/List;
+  #387 = NameAndType        #485:#486     // toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+  #388 = NameAndType        #487:#237     // getPropertyIndex:()I
+  #389 = Utf8               java/lang/IllegalArgumentException
+  #390 = Utf8               Cannot pass null property name
+  #391 = NameAndType        #488:#237     // hashCode:()I
+  #392 = NameAndType        #258:#259     // _find2:(Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #393 = NameAndType        #489:#490     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #394 = Utf8               java/lang/String
+  #395 = NameAndType        #260:#254     // _findWithAlias:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #396 = NameAndType        #262:#259     // _find2ViaAlias:(Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #397 = NameAndType        #252:#254     // find:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #398 = NameAndType        #491:#492     // deserializeAndSet:(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;Ljava/lang/Object;)V
+  #399 = Utf8               java/lang/Exception
+  #400 = NameAndType        #292:#293     // wrapAndThrow:(Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;Lcom/fasterxml/jackson/databind/DeserializationContext;)V
+  #401 = Utf8               Properties=[
+  #402 = Utf8               ,
+  #403 = NameAndType        #482:#493     // append:(C)Ljava/lang/StringBuilder;
+  #404 = NameAndType        #494:#495     // getType:()Lcom/fasterxml/jackson/databind/JavaType;
+  #405 = NameAndType        #482:#496     // append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #406 = Utf8               (aliases:
+  #407 = Utf8               )
+  #408 = NameAndType        #497:#498     // transform:(Ljava/lang/String;)Ljava/lang/String;
+  #409 = NameAndType        #499:#254     // withSimpleName:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #410 = NameAndType        #500:#501     // getValueDeserializer:()Lcom/fasterxml/jackson/databind/JsonDeserializer;
+  #411 = Class              #447          // com/fasterxml/jackson/databind/JsonDeserializer
+  #412 = NameAndType        #502:#503     // unwrappingDeserializer:(Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/JsonDeserializer;
+  #413 = NameAndType        #504:#505     // withValueDeserializer:(Lcom/fasterxml/jackson/databind/JsonDeserializer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #414 = Utf8               java/lang/reflect/InvocationTargetException
+  #415 = Class              #506          // java/lang/Throwable
+  #416 = NameAndType        #507:#508     // getCause:()Ljava/lang/Throwable;
+  #417 = Class              #509          // com/fasterxml/jackson/databind/util/ClassUtil
+  #418 = NameAndType        #510:#511     // throwIfError:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+  #419 = Class              #512          // com/fasterxml/jackson/databind/DeserializationFeature
+  #420 = NameAndType        #513:#514     // WRAP_EXCEPTIONS:Lcom/fasterxml/jackson/databind/DeserializationFeature;
+  #421 = Class              #515          // com/fasterxml/jackson/databind/DeserializationContext
+  #422 = NameAndType        #468:#516     // isEnabled:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+  #423 = Utf8               java/io/IOException
+  #424 = Utf8               com/fasterxml/jackson/core/JacksonException
+  #425 = NameAndType        #517:#511     // throwIfRTE:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+  #426 = Class              #518          // com/fasterxml/jackson/databind/JsonMappingException
+  #427 = NameAndType        #519:#520     // wrapWithPath:(Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonMappingException;
+  #428 = Utf8               java/lang/IllegalStateException
+  #429 = Utf8               Illegal state: property \'
+  #430 = Utf8               \' missing from _propsInOrder
+  #431 = Class              #521          // java/util/Collections
+  #432 = NameAndType        #522:#523     // emptyMap:()Ljava/util/Map;
+  #433 = Utf8               java/util/HashMap
+  #434 = NameAndType        #524:#525     // entrySet:()Ljava/util/Set;
+  #435 = Class              #526          // java/util/Set
+  #436 = Utf8               java/util/Map$Entry
+  #437 = NameAndType        #527:#462     // getKey:()Ljava/lang/Object;
+  #438 = NameAndType        #528:#462     // getValue:()Ljava/lang/Object;
+  #439 = Utf8               java/util/List
+  #440 = Utf8               com/fasterxml/jackson/databind/PropertyName
+  #441 = NameAndType        #529:#274     // getSimpleName:()Ljava/lang/String;
+  #442 = NameAndType        #530:#531     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #443 = Utf8               java/lang/Iterable
+  #444 = Utf8               java/io/Serializable
+  #445 = Utf8               java/util/Collection
+  #446 = Utf8               java/util/Iterator
+  #447 = Utf8               com/fasterxml/jackson/databind/JsonDeserializer
+  #448 = Utf8               java/util/Map
+  #449 = Utf8               java/util/Locale
+  #450 = Utf8               ()V
+  #451 = Utf8               toArray
+  #452 = Utf8               ([Ljava/lang/Object;)[Ljava/lang/Object;
+  #453 = Utf8               getDefault
+  #454 = Utf8               ()Ljava/util/Locale;
+  #455 = Utf8               java/util/Arrays
+  #456 = Utf8               copyOf
+  #457 = Utf8               ([Ljava/lang/Object;I)[Ljava/lang/Object;
+  #458 = Utf8               asList
+  #459 = Utf8               ([Ljava/lang/Object;)Ljava/util/List;
+  #460 = Utf8               hasNext
+  #461 = Utf8               next
+  #462 = Utf8               ()Ljava/lang/Object;
+  #463 = Utf8               com/fasterxml/jackson/databind/cfg/MapperConfig
+  #464 = Utf8               getLocale
+  #465 = Utf8               com/fasterxml/jackson/databind/MapperFeature
+  #466 = Utf8               ACCEPT_CASE_INSENSITIVE_PROPERTIES
+  #467 = Utf8               Lcom/fasterxml/jackson/databind/MapperFeature;
+  #468 = Utf8               isEnabled
+  #469 = Utf8               (Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+  #470 = Utf8               getName
+  #471 = Utf8               equals
+  #472 = Utf8               (Ljava/lang/Object;)Z
+  #473 = Utf8               assignIndex
+  #474 = Utf8               (I)V
+  #475 = Utf8               com/fasterxml/jackson/databind/util/NameTransformer
+  #476 = Utf8               NOP
+  #477 = Utf8               add
+  #478 = Utf8               isEmpty
+  #479 = Utf8               com/fasterxml/jackson/databind/util/IgnorePropertiesUtil
+  #480 = Utf8               shouldIgnore
+  #481 = Utf8               (Ljava/lang/Object;Ljava/util/Collection;Ljava/util/Collection;)Z
+  #482 = Utf8               append
+  #483 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #484 = Utf8               (Ljava/lang/String;)V
+  #485 = Utf8               toLowerCase
+  #486 = Utf8               (Ljava/util/Locale;)Ljava/lang/String;
+  #487 = Utf8               getPropertyIndex
+  #488 = Utf8               hashCode
+  #489 = Utf8               get
+  #490 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #491 = Utf8               deserializeAndSet
+  #492 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;Ljava/lang/Object;)V
+  #493 = Utf8               (C)Ljava/lang/StringBuilder;
+  #494 = Utf8               getType
+  #495 = Utf8               ()Lcom/fasterxml/jackson/databind/JavaType;
+  #496 = Utf8               (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #497 = Utf8               transform
+  #498 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #499 = Utf8               withSimpleName
+  #500 = Utf8               getValueDeserializer
+  #501 = Utf8               ()Lcom/fasterxml/jackson/databind/JsonDeserializer;
+  #502 = Utf8               unwrappingDeserializer
+  #503 = Utf8               (Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/JsonDeserializer;
+  #504 = Utf8               withValueDeserializer
+  #505 = Utf8               (Lcom/fasterxml/jackson/databind/JsonDeserializer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+  #506 = Utf8               java/lang/Throwable
+  #507 = Utf8               getCause
+  #508 = Utf8               ()Ljava/lang/Throwable;
+  #509 = Utf8               com/fasterxml/jackson/databind/util/ClassUtil
+  #510 = Utf8               throwIfError
+  #511 = Utf8               (Ljava/lang/Throwable;)Ljava/lang/Throwable;
+  #512 = Utf8               com/fasterxml/jackson/databind/DeserializationFeature
+  #513 = Utf8               WRAP_EXCEPTIONS
+  #514 = Utf8               Lcom/fasterxml/jackson/databind/DeserializationFeature;
+  #515 = Utf8               com/fasterxml/jackson/databind/DeserializationContext
+  #516 = Utf8               (Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+  #517 = Utf8               throwIfRTE
+  #518 = Utf8               com/fasterxml/jackson/databind/JsonMappingException
+  #519 = Utf8               wrapWithPath
+  #520 = Utf8               (Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonMappingException;
+  #521 = Utf8               java/util/Collections
+  #522 = Utf8               emptyMap
+  #523 = Utf8               ()Ljava/util/Map;
+  #524 = Utf8               entrySet
+  #525 = Utf8               ()Ljava/util/Set;
+  #526 = Utf8               java/util/Set
+  #527 = Utf8               getKey
+  #528 = Utf8               getValue
+  #529 = Utf8               getSimpleName
+  #530 = Utf8               put
+  #531 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+{
+  private static final long serialVersionUID;
+    descriptor: J
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: long 2l
+
+  protected final boolean _caseInsensitive;
+    descriptor: Z
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  private int _hashMask;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int _size;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private int _spillCount;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.Object[] _hashArea;
+    descriptor: [Ljava/lang/Object;
+    flags: (0x0002) ACC_PRIVATE
+
+  private final com.fasterxml.jackson.databind.deser.SettableBeanProperty[] _propsInOrder;
+    descriptor: [Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.util.Map<java.lang.String, java.util.List<com.fasterxml.jackson.databind.PropertyName>> _aliasDefs;
+    descriptor: Ljava/util/Map;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #133                         // Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+
+  private final java.util.Map<java.lang.String, java.lang.String> _aliasMapping;
+    descriptor: Ljava/util/Map;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #135                         // Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+
+  private final java.util.Locale _locale;
+    descriptor: Ljava/util/Locale;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  public com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap(boolean, java.util.Collection<com.fasterxml.jackson.databind.deser.SettableBeanProperty>, java.util.Map<java.lang.String, java.util.List<com.fasterxml.jackson.databind.PropertyName>>, java.util.Locale);
+    descriptor: (ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iload_1
+         6: putfield      #2                  // Field _caseInsensitive:Z
+         9: aload_0
+        10: aload_2
+        11: aload_2
+        12: invokeinterface #3,  1            // InterfaceMethod java/util/Collection.size:()I
+        17: anewarray     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        20: invokeinterface #5,  2            // InterfaceMethod java/util/Collection.toArray:([Ljava/lang/Object;)[Ljava/lang/Object;
+        25: checkcast     #6                  // class "[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;"
+        28: putfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        31: aload_0
+        32: aload_3
+        33: putfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        36: aload_0
+        37: aload         4
+        39: putfield      #9                  // Field _locale:Ljava/util/Locale;
+        42: aload_0
+        43: aload_0
+        44: aload_3
+        45: iload_1
+        46: aload         4
+        48: invokespecial #10                 // Method _buildAliasMapping:(Ljava/util/Map;ZLjava/util/Locale;)Ljava/util/Map;
+        51: putfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+        54: aload_0
+        55: aload_2
+        56: invokevirtual #12                 // Method init:(Ljava/util/Collection;)V
+        59: return
+      LineNumberTable:
+        line 98: 0
+        line 99: 4
+        line 100: 9
+        line 101: 31
+        line 102: 36
+        line 103: 42
+        line 104: 54
+        line 106: 59
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      60     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      60     1 caseInsensitive   Z
+            0      60     2 props   Ljava/util/Collection;
+            0      60     3 aliasDefs   Ljava/util/Map;
+            0      60     4 locale   Ljava/util/Locale;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      60     2 props   Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+            0      60     3 aliasDefs   Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+    Signature: #152                         // (ZLjava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;Ljava/util/Locale;)V
+
+  public com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap(boolean, java.util.Collection<com.fasterxml.jackson.databind.deser.SettableBeanProperty>, java.util.Map<java.lang.String, java.util.List<com.fasterxml.jackson.databind.PropertyName>>);
+    descriptor: (ZLjava/util/Collection;Ljava/util/Map;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=4
+         0: aload_0
+         1: iload_1
+         2: aload_2
+         3: aload_3
+         4: invokestatic  #13                 // Method java/util/Locale.getDefault:()Ljava/util/Locale;
+         7: invokespecial #14                 // Method "<init>":(ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+        10: return
+      LineNumberTable:
+        line 114: 0
+        line 115: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      11     1 caseInsensitive   Z
+            0      11     2 props   Ljava/util/Collection;
+            0      11     3 aliasDefs   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      11     2 props   Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+            0      11     3 aliasDefs   Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+    Deprecated: true
+    Signature: #155                         // (ZLjava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;)V
+    RuntimeVisibleAnnotations:
+      0: #157()
+        java.lang.Deprecated
+
+  private com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap(com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap, com.fasterxml.jackson.databind.deser.SettableBeanProperty, int, int);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;II)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=5, args_size=5
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: getfield      #2                  // Field _caseInsensitive:Z
+         9: putfield      #2                  // Field _caseInsensitive:Z
+        12: aload_0
+        13: aload_1
+        14: getfield      #9                  // Field _locale:Ljava/util/Locale;
+        17: putfield      #9                  // Field _locale:Ljava/util/Locale;
+        20: aload_0
+        21: aload_1
+        22: getfield      #15                 // Field _hashMask:I
+        25: putfield      #15                 // Field _hashMask:I
+        28: aload_0
+        29: aload_1
+        30: getfield      #16                 // Field _size:I
+        33: putfield      #16                 // Field _size:I
+        36: aload_0
+        37: aload_1
+        38: getfield      #17                 // Field _spillCount:I
+        41: putfield      #17                 // Field _spillCount:I
+        44: aload_0
+        45: aload_1
+        46: getfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        49: putfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        52: aload_0
+        53: aload_1
+        54: getfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+        57: putfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+        60: aload_0
+        61: aload_1
+        62: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        65: aload_1
+        66: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        69: arraylength
+        70: invokestatic  #19                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+        73: putfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        76: aload_0
+        77: aload_1
+        78: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        81: aload_1
+        82: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        85: arraylength
+        86: invokestatic  #19                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+        89: checkcast     #6                  // class "[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;"
+        92: putfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        95: aload_0
+        96: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        99: iload_3
+       100: aload_2
+       101: aastore
+       102: aload_0
+       103: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+       106: iload         4
+       108: aload_2
+       109: aastore
+       110: return
+      LineNumberTable:
+        line 123: 0
+        line 125: 4
+        line 126: 12
+        line 127: 20
+        line 128: 28
+        line 129: 36
+        line 130: 44
+        line 131: 52
+        line 134: 60
+        line 135: 76
+        line 136: 95
+        line 137: 102
+        line 138: 110
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     111     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     111     1   src   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     111     2 newProp   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            0     111     3 hashIndex   I
+            0     111     4 orderedIndex   I
+
+  private com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap(com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap, com.fasterxml.jackson.databind.deser.SettableBeanProperty, java.lang.String, int);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Ljava/lang/String;I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=8, args_size=5
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: getfield      #2                  // Field _caseInsensitive:Z
+         9: putfield      #2                  // Field _caseInsensitive:Z
+        12: aload_0
+        13: aload_1
+        14: getfield      #9                  // Field _locale:Ljava/util/Locale;
+        17: putfield      #9                  // Field _locale:Ljava/util/Locale;
+        20: aload_0
+        21: aload_1
+        22: getfield      #15                 // Field _hashMask:I
+        25: putfield      #15                 // Field _hashMask:I
+        28: aload_0
+        29: aload_1
+        30: getfield      #16                 // Field _size:I
+        33: putfield      #16                 // Field _size:I
+        36: aload_0
+        37: aload_1
+        38: getfield      #17                 // Field _spillCount:I
+        41: putfield      #17                 // Field _spillCount:I
+        44: aload_0
+        45: aload_1
+        46: getfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        49: putfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        52: aload_0
+        53: aload_1
+        54: getfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+        57: putfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+        60: aload_0
+        61: aload_1
+        62: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        65: aload_1
+        66: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        69: arraylength
+        70: invokestatic  #19                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+        73: putfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        76: aload_1
+        77: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        80: arraylength
+        81: istore        5
+        83: aload_0
+        84: aload_1
+        85: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        88: iload         5
+        90: iconst_1
+        91: iadd
+        92: invokestatic  #19                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+        95: checkcast     #6                  // class "[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;"
+        98: putfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+       101: aload_0
+       102: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+       105: iload         5
+       107: aload_2
+       108: aastore
+       109: aload_0
+       110: getfield      #15                 // Field _hashMask:I
+       113: iconst_1
+       114: iadd
+       115: istore        6
+       117: iload         4
+       119: iconst_1
+       120: ishl
+       121: istore        7
+       123: aload_0
+       124: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       127: iload         7
+       129: aaload
+       130: ifnull        208
+       133: iload         6
+       135: iload         4
+       137: iconst_1
+       138: ishr
+       139: iadd
+       140: iconst_1
+       141: ishl
+       142: istore        7
+       144: aload_0
+       145: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       148: iload         7
+       150: aaload
+       151: ifnull        208
+       154: iload         6
+       156: iload         6
+       158: iconst_1
+       159: ishr
+       160: iadd
+       161: iconst_1
+       162: ishl
+       163: aload_0
+       164: getfield      #17                 // Field _spillCount:I
+       167: iadd
+       168: istore        7
+       170: aload_0
+       171: dup
+       172: getfield      #17                 // Field _spillCount:I
+       175: iconst_2
+       176: iadd
+       177: putfield      #17                 // Field _spillCount:I
+       180: iload         7
+       182: aload_0
+       183: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       186: arraylength
+       187: if_icmplt     208
+       190: aload_0
+       191: aload_0
+       192: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       195: aload_0
+       196: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       199: arraylength
+       200: iconst_4
+       201: iadd
+       202: invokestatic  #19                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+       205: putfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       208: aload_0
+       209: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       212: iload         7
+       214: aload_3
+       215: aastore
+       216: aload_0
+       217: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       220: iload         7
+       222: iconst_1
+       223: iadd
+       224: aload_2
+       225: aastore
+       226: return
+      LineNumberTable:
+        line 146: 0
+        line 148: 4
+        line 149: 12
+        line 150: 20
+        line 151: 28
+        line 152: 36
+        line 153: 44
+        line 154: 52
+        line 157: 60
+        line 158: 76
+        line 160: 83
+        line 161: 101
+        line 163: 109
+        line 164: 117
+        line 167: 123
+        line 169: 133
+        line 170: 144
+        line 172: 154
+        line 173: 170
+        line 174: 180
+        line 175: 190
+        line 179: 208
+        line 180: 216
+        line 181: 226
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     227     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     227     1   src   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     227     2 newProp   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            0     227     3   key   Ljava/lang/String;
+            0     227     4  slot   I
+           83     144     5  last   I
+          117     110     6 hashSize   I
+          123     104     7    ix   I
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 208
+          locals = [ class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap, class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap, class com/fasterxml/jackson/databind/deser/SettableBeanProperty, class java/lang/String, int, int, int, int ]
+          stack = []
+
+  protected com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap(com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap, boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Z)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iload_2
+         6: putfield      #2                  // Field _caseInsensitive:Z
+         9: aload_0
+        10: aload_1
+        11: getfield      #9                  // Field _locale:Ljava/util/Locale;
+        14: putfield      #9                  // Field _locale:Ljava/util/Locale;
+        17: aload_0
+        18: aload_1
+        19: getfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        22: putfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        25: aload_0
+        26: aload_1
+        27: getfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+        30: putfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+        33: aload_0
+        34: aload_1
+        35: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        38: aload_1
+        39: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        42: arraylength
+        43: invokestatic  #19                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+        46: checkcast     #6                  // class "[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;"
+        49: putfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        52: aload_0
+        53: aload_0
+        54: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        57: invokestatic  #20                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+        60: invokevirtual #12                 // Method init:(Ljava/util/Collection;)V
+        63: return
+      LineNumberTable:
+        line 187: 0
+        line 188: 4
+        line 189: 9
+        line 190: 17
+        line 191: 25
+        line 194: 33
+        line 195: 52
+        line 196: 63
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      64     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      64     1  base   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      64     2 caseInsensitive   Z
+
+  public com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap withCaseInsensitivity(boolean);
+    descriptor: (Z)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _caseInsensitive:Z
+         4: iload_1
+         5: if_icmpne     10
+         8: aload_0
+         9: areturn
+        10: new           #21                 // class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+        13: dup
+        14: aload_0
+        15: iload_1
+        16: invokespecial #22                 // Method "<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Z)V
+        19: areturn
+      LineNumberTable:
+        line 206: 0
+        line 207: 8
+        line 209: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      20     1 state   Z
+      StackMapTable: number_of_entries = 1
+        frame_type = 10 /* same */
+
+  protected void init(java.util.Collection<com.fasterxml.jackson.databind.deser.SettableBeanProperty>);
+    descriptor: (Ljava/util/Collection;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=11, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokeinterface #3,  1            // InterfaceMethod java/util/Collection.size:()I
+         7: putfield      #16                 // Field _size:I
+        10: aload_0
+        11: getfield      #16                 // Field _size:I
+        14: invokestatic  #23                 // Method findSize:(I)I
+        17: istore_2
+        18: aload_0
+        19: iload_2
+        20: iconst_1
+        21: isub
+        22: putfield      #15                 // Field _hashMask:I
+        25: iload_2
+        26: iload_2
+        27: iconst_1
+        28: ishr
+        29: iadd
+        30: iconst_2
+        31: imul
+        32: istore_3
+        33: iload_3
+        34: anewarray     #24                 // class java/lang/Object
+        37: astore        4
+        39: iconst_0
+        40: istore        5
+        42: aload_1
+        43: invokeinterface #25,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+        48: astore        6
+        50: aload         6
+        52: invokeinterface #26,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        57: ifeq          182
+        60: aload         6
+        62: invokeinterface #27,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        67: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        70: astore        7
+        72: aload         7
+        74: ifnonnull     80
+        77: goto          50
+        80: aload_0
+        81: aload         7
+        83: invokevirtual #28                 // Method getPropertyName:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Ljava/lang/String;
+        86: astore        8
+        88: aload_0
+        89: aload         8
+        91: invokespecial #29                 // Method _hashCode:(Ljava/lang/String;)I
+        94: istore        9
+        96: iload         9
+        98: iconst_1
+        99: ishl
+       100: istore        10
+       102: aload         4
+       104: iload         10
+       106: aaload
+       107: ifnull        163
+       110: iload_2
+       111: iload         9
+       113: iconst_1
+       114: ishr
+       115: iadd
+       116: iconst_1
+       117: ishl
+       118: istore        10
+       120: aload         4
+       122: iload         10
+       124: aaload
+       125: ifnull        163
+       128: iload_2
+       129: iload_2
+       130: iconst_1
+       131: ishr
+       132: iadd
+       133: iconst_1
+       134: ishl
+       135: iload         5
+       137: iadd
+       138: istore        10
+       140: iinc          5, 2
+       143: iload         10
+       145: aload         4
+       147: arraylength
+       148: if_icmplt     163
+       151: aload         4
+       153: aload         4
+       155: arraylength
+       156: iconst_4
+       157: iadd
+       158: invokestatic  #19                 // Method java/util/Arrays.copyOf:([Ljava/lang/Object;I)[Ljava/lang/Object;
+       161: astore        4
+       163: aload         4
+       165: iload         10
+       167: aload         8
+       169: aastore
+       170: aload         4
+       172: iload         10
+       174: iconst_1
+       175: iadd
+       176: aload         7
+       178: aastore
+       179: goto          50
+       182: aload_0
+       183: aload         4
+       185: putfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       188: aload_0
+       189: iload         5
+       191: putfield      #17                 // Field _spillCount:I
+       194: return
+      LineNumberTable:
+        line 214: 0
+        line 217: 10
+        line 218: 18
+        line 221: 25
+        line 222: 33
+        line 223: 39
+        line 225: 42
+        line 227: 72
+        line 228: 77
+        line 231: 80
+        line 232: 88
+        line 233: 96
+        line 236: 102
+        line 238: 110
+        line 239: 120
+        line 241: 128
+        line 242: 140
+        line 243: 143
+        line 244: 151
+        line 248: 163
+        line 249: 170
+        line 252: 179
+        line 253: 182
+        line 254: 188
+        line 255: 194
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           88      91     8   key   Ljava/lang/String;
+           96      83     9  slot   I
+          102      77    10    ix   I
+           72     107     7  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            0     195     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     195     1 props   Ljava/util/Collection;
+           18     177     2 hashSize   I
+           33     162     3 alloc   I
+           39     156     4 hashed   [Ljava/lang/Object;
+           42     153     5 spillCount   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     195     1 props   Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+      StackMapTable: number_of_entries = 4
+        frame_type = 255 /* full_frame */
+          offset_delta = 50
+          locals = [ class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap, class java/util/Collection, int, int, class "[Ljava/lang/Object;", int, class java/util/Iterator ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 29
+          locals = [ class com/fasterxml/jackson/databind/deser/SettableBeanProperty ]
+        frame_type = 254 /* append */
+          offset_delta = 82
+          locals = [ class java/lang/String, int, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 18
+          locals = [ class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap, class java/util/Collection, int, int, class "[Ljava/lang/Object;", int ]
+          stack = []
+    Signature: #189                         // (Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;)V
+
+  private static final int findSize(int);
+    descriptor: (I)I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=3, args_size=1
+         0: iload_0
+         1: iconst_5
+         2: if_icmpgt     8
+         5: bipush        8
+         7: ireturn
+         8: iload_0
+         9: bipush        12
+        11: if_icmpgt     17
+        14: bipush        16
+        16: ireturn
+        17: iload_0
+        18: iload_0
+        19: iconst_2
+        20: ishr
+        21: iadd
+        22: istore_1
+        23: bipush        32
+        25: istore_2
+        26: iload_2
+        27: iload_1
+        28: if_icmpge     38
+        31: iload_2
+        32: iload_2
+        33: iadd
+        34: istore_2
+        35: goto          26
+        38: iload_2
+        39: ireturn
+      LineNumberTable:
+        line 259: 0
+        line 260: 5
+        line 262: 8
+        line 263: 14
+        line 265: 17
+        line 266: 23
+        line 267: 26
+        line 268: 31
+        line 270: 38
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      40     0  size   I
+           23      17     1 needed   I
+           26      14     2 result   I
+      StackMapTable: number_of_entries = 4
+        frame_type = 8 /* same */
+        frame_type = 8 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 8
+          locals = [ int, int ]
+        frame_type = 11 /* same */
+
+  public static com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap construct(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, java.util.Collection<com.fasterxml.jackson.databind.deser.SettableBeanProperty>, java.util.Map<java.lang.String, java.util.List<com.fasterxml.jackson.databind.PropertyName>>, boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Ljava/util/Collection;Ljava/util/Map;Z)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=4, args_size=4
+         0: new           #21                 // class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+         3: dup
+         4: iload_3
+         5: aload_1
+         6: aload_2
+         7: aload_0
+         8: invokevirtual #30                 // Method com/fasterxml/jackson/databind/cfg/MapperConfig.getLocale:()Ljava/util/Locale;
+        11: invokespecial #14                 // Method "<init>":(ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+        14: areturn
+      LineNumberTable:
+        line 280: 0
+        line 282: 8
+        line 280: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0      15     1 props   Ljava/util/Collection;
+            0      15     2 aliasMapping   Ljava/util/Map;
+            0      15     3 caseInsensitive   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+            0      15     1 props   Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+            0      15     2 aliasMapping   Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+    Signature: #201                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;Z)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+
+  public static com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap construct(com.fasterxml.jackson.databind.cfg.MapperConfig<?>, java.util.Collection<com.fasterxml.jackson.databind.deser.SettableBeanProperty>, java.util.Map<java.lang.String, java.util.List<com.fasterxml.jackson.databind.PropertyName>>);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/MapperConfig;Ljava/util/Collection;Ljava/util/Map;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=3, args_size=3
+         0: new           #21                 // class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+         3: dup
+         4: aload_0
+         5: getstatic     #31                 // Field com/fasterxml/jackson/databind/MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES:Lcom/fasterxml/jackson/databind/MapperFeature;
+         8: invokevirtual #32                 // Method com/fasterxml/jackson/databind/cfg/MapperConfig.isEnabled:(Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+        11: aload_1
+        12: aload_2
+        13: aload_0
+        14: invokevirtual #30                 // Method com/fasterxml/jackson/databind/cfg/MapperConfig.getLocale:()Ljava/util/Locale;
+        17: invokespecial #14                 // Method "<init>":(ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+        20: areturn
+      LineNumberTable:
+        line 293: 0
+        line 295: 14
+        line 293: 20
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      21     0 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig;
+            0      21     1 props   Ljava/util/Collection;
+            0      21     2 aliasMapping   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      21     0 config   Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;
+            0      21     1 props   Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+            0      21     2 aliasMapping   Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+    Deprecated: true
+    Signature: #203                         // (Lcom/fasterxml/jackson/databind/cfg/MapperConfig<*>;Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    RuntimeVisibleAnnotations:
+      0: #157()
+        java.lang.Deprecated
+
+  public static com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap construct(java.util.Collection<com.fasterxml.jackson.databind.deser.SettableBeanProperty>, boolean, java.util.Map<java.lang.String, java.util.List<com.fasterxml.jackson.databind.PropertyName>>);
+    descriptor: (Ljava/util/Collection;ZLjava/util/Map;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=3, args_size=3
+         0: new           #21                 // class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+         3: dup
+         4: iload_1
+         5: aload_0
+         6: aload_2
+         7: invokespecial #33                 // Method "<init>":(ZLjava/util/Collection;Ljava/util/Map;)V
+        10: areturn
+      LineNumberTable:
+        line 304: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0 props   Ljava/util/Collection;
+            0      11     1 caseInsensitive   Z
+            0      11     2 aliasMapping   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0 props   Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+            0      11     2 aliasMapping   Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+    Deprecated: true
+    Signature: #205                         // (Ljava/util/Collection<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;ZLjava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    RuntimeVisibleAnnotations:
+      0: #157()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap withProperty(com.fasterxml.jackson.databind.deser.SettableBeanProperty);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=6, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #28                 // Method getPropertyName:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Ljava/lang/String;
+         5: astore_2
+         6: iconst_1
+         7: istore_3
+         8: aload_0
+         9: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        12: arraylength
+        13: istore        4
+        15: iload_3
+        16: iload         4
+        18: if_icmpge     72
+        21: aload_0
+        22: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        25: iload_3
+        26: aaload
+        27: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        30: astore        5
+        32: aload         5
+        34: ifnull        66
+        37: aload         5
+        39: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+        42: aload_2
+        43: invokevirtual #35                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        46: ifeq          66
+        49: new           #21                 // class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+        52: dup
+        53: aload_0
+        54: aload_1
+        55: iload_3
+        56: aload_0
+        57: aload         5
+        59: invokespecial #36                 // Method _findFromOrdered:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)I
+        62: invokespecial #37                 // Method "<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;II)V
+        65: areturn
+        66: iinc          3, 2
+        69: goto          15
+        72: aload_0
+        73: aload_2
+        74: invokespecial #29                 // Method _hashCode:(Ljava/lang/String;)I
+        77: istore_3
+        78: new           #21                 // class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+        81: dup
+        82: aload_0
+        83: aload_1
+        84: aload_2
+        85: iload_3
+        86: invokespecial #38                 // Method "<init>":(Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Ljava/lang/String;I)V
+        89: areturn
+      LineNumberTable:
+        line 317: 0
+        line 319: 6
+        line 320: 21
+        line 321: 32
+        line 322: 49
+        line 319: 66
+        line 326: 72
+        line 328: 78
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           32      34     5  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            8      64     3     i   I
+           15      57     4   end   I
+            0      90     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      90     1 newProp   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            6      84     2   key   Ljava/lang/String;
+           78      12     3  slot   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 254 /* append */
+          offset_delta = 15
+          locals = [ class java/lang/String, int, int ]
+        frame_type = 50 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 5
+
+  public com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap assignIndexes();
+    descriptor: ()Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=5, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: iconst_1
+         3: istore_2
+         4: aload_0
+         5: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+         8: arraylength
+         9: istore_3
+        10: iload_2
+        11: iload_3
+        12: if_icmpge     46
+        15: aload_0
+        16: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        19: iload_2
+        20: aaload
+        21: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        24: astore        4
+        26: aload         4
+        28: ifnull        40
+        31: aload         4
+        33: iload_1
+        34: iinc          1, 1
+        37: invokevirtual #39                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.assignIndex:(I)V
+        40: iinc          2, 2
+        43: goto          10
+        46: aload_0
+        47: areturn
+      LineNumberTable:
+        line 334: 0
+        line 335: 2
+        line 336: 15
+        line 337: 26
+        line 338: 31
+        line 335: 40
+        line 341: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26      14     4  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            4      42     2     i   I
+           10      36     3   end   I
+            0      48     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            2      46     1 index   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 254 /* append */
+          offset_delta = 10
+          locals = [ int, int, int ]
+        frame_type = 29 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 5
+
+  public com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap renameAll(com.fasterxml.jackson.databind.util.NameTransformer);
+    descriptor: (Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=6, args_size=2
+         0: aload_1
+         1: ifnull        11
+         4: aload_1
+         5: getstatic     #40                 // Field com/fasterxml/jackson/databind/util/NameTransformer.NOP:Lcom/fasterxml/jackson/databind/util/NameTransformer;
+         8: if_acmpne     13
+        11: aload_0
+        12: areturn
+        13: aload_0
+        14: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        17: arraylength
+        18: istore_2
+        19: new           #41                 // class java/util/ArrayList
+        22: dup
+        23: iload_2
+        24: invokespecial #42                 // Method java/util/ArrayList."<init>":(I)V
+        27: astore_3
+        28: iconst_0
+        29: istore        4
+        31: iload         4
+        33: iload_2
+        34: if_icmpge     79
+        37: aload_0
+        38: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        41: iload         4
+        43: aaload
+        44: astore        5
+        46: aload         5
+        48: ifnonnull     61
+        51: aload_3
+        52: aload         5
+        54: invokevirtual #43                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        57: pop
+        58: goto          73
+        61: aload_3
+        62: aload_0
+        63: aload         5
+        65: aload_1
+        66: invokevirtual #44                 // Method _rename:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        69: invokevirtual #43                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        72: pop
+        73: iinc          4, 1
+        76: goto          31
+        79: new           #21                 // class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+        82: dup
+        83: aload_0
+        84: getfield      #2                  // Field _caseInsensitive:Z
+        87: aload_3
+        88: aload_0
+        89: getfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        92: aload_0
+        93: getfield      #9                  // Field _locale:Ljava/util/Locale;
+        96: invokespecial #14                 // Method "<init>":(ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+        99: areturn
+      LineNumberTable:
+        line 350: 0
+        line 351: 11
+        line 354: 13
+        line 355: 19
+        line 357: 28
+        line 358: 37
+        line 361: 46
+        line 362: 51
+        line 363: 58
+        line 365: 61
+        line 357: 73
+        line 369: 79
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           46      27     5  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+           31      48     4     i   I
+            0     100     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     100     1 transformer   Lcom/fasterxml/jackson/databind/util/NameTransformer;
+           19      81     2   len   I
+           28      72     3 newProps   Ljava/util/ArrayList;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           28      72     3 newProps   Ljava/util/ArrayList<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+      StackMapTable: number_of_entries = 6
+        frame_type = 11 /* same */
+        frame_type = 1 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 17
+          locals = [ int, class java/util/ArrayList, int ]
+        frame_type = 252 /* append */
+          offset_delta = 29
+          locals = [ class com/fasterxml/jackson/databind/deser/SettableBeanProperty ]
+        frame_type = 250 /* chop */
+          offset_delta = 11
+        frame_type = 250 /* chop */
+          offset_delta = 5
+
+  public com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap withoutProperties(java.util.Collection<java.lang.String>);
+    descriptor: (Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: aconst_null
+         3: invokevirtual #45                 // Method withoutProperties:(Ljava/util/Collection;Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+         6: areturn
+      LineNumberTable:
+        line 387: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0       7     1 toExclude   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       7     1 toExclude   Ljava/util/Collection<Ljava/lang/String;>;
+    Signature: #226                         // (Ljava/util/Collection<Ljava/lang/String;>;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+
+  public com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap withoutProperties(java.util.Collection<java.lang.String>, java.util.Collection<java.lang.String>);
+    descriptor: (Ljava/util/Collection;Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=7, args_size=3
+         0: aload_1
+         1: ifnull        13
+         4: aload_1
+         5: invokeinterface #46,  1           // InterfaceMethod java/util/Collection.isEmpty:()Z
+        10: ifeq          19
+        13: aload_2
+        14: ifnonnull     19
+        17: aload_0
+        18: areturn
+        19: aload_0
+        20: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        23: arraylength
+        24: istore_3
+        25: new           #41                 // class java/util/ArrayList
+        28: dup
+        29: iload_3
+        30: invokespecial #42                 // Method java/util/ArrayList."<init>":(I)V
+        33: astore        4
+        35: iconst_0
+        36: istore        5
+        38: iload         5
+        40: iload_3
+        41: if_icmpge     85
+        44: aload_0
+        45: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        48: iload         5
+        50: aaload
+        51: astore        6
+        53: aload         6
+        55: ifnull        79
+        58: aload         6
+        60: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+        63: aload_1
+        64: aload_2
+        65: invokestatic  #47                 // Method com/fasterxml/jackson/databind/util/IgnorePropertiesUtil.shouldIgnore:(Ljava/lang/Object;Ljava/util/Collection;Ljava/util/Collection;)Z
+        68: ifne          79
+        71: aload         4
+        73: aload         6
+        75: invokevirtual #43                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        78: pop
+        79: iinc          5, 1
+        82: goto          38
+        85: new           #21                 // class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap
+        88: dup
+        89: aload_0
+        90: getfield      #2                  // Field _caseInsensitive:Z
+        93: aload         4
+        95: aload_0
+        96: getfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+        99: aload_0
+       100: getfield      #9                  // Field _locale:Ljava/util/Locale;
+       103: invokespecial #14                 // Method "<init>":(ZLjava/util/Collection;Ljava/util/Map;Ljava/util/Locale;)V
+       106: areturn
+      LineNumberTable:
+        line 400: 0
+        line 401: 17
+        line 403: 19
+        line 404: 25
+        line 406: 35
+        line 407: 44
+        line 411: 53
+        line 412: 58
+        line 413: 71
+        line 406: 79
+        line 418: 85
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           53      26     6  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+           38      47     5     i   I
+            0     107     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     107     1 toExclude   Ljava/util/Collection;
+            0     107     2 toInclude   Ljava/util/Collection;
+           25      82     3   len   I
+           35      72     4 newProps   Ljava/util/ArrayList;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     107     1 toExclude   Ljava/util/Collection<Ljava/lang/String;>;
+            0     107     2 toInclude   Ljava/util/Collection<Ljava/lang/String;>;
+           35      72     4 newProps   Ljava/util/ArrayList<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+      StackMapTable: number_of_entries = 5
+        frame_type = 13 /* same */
+        frame_type = 5 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 18
+          locals = [ int, class java/util/ArrayList, int ]
+        frame_type = 40 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+    Signature: #229                         // (Ljava/util/Collection<Ljava/lang/String;>;Ljava/util/Collection<Ljava/lang/String;>;)Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+
+  public void replace(com.fasterxml.jackson.databind.deser.SettableBeanProperty, com.fasterxml.jackson.databind.deser.SettableBeanProperty);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=5, args_size=3
+         0: iconst_1
+         1: istore_3
+         2: aload_0
+         3: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+         6: arraylength
+         7: istore        4
+         9: iload_3
+        10: iload         4
+        12: if_icmplt     50
+        15: new           #48                 // class java/util/NoSuchElementException
+        18: dup
+        19: new           #49                 // class java/lang/StringBuilder
+        22: dup
+        23: invokespecial #50                 // Method java/lang/StringBuilder."<init>":()V
+        26: ldc           #51                 // String No entry \'
+        28: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        31: aload_1
+        32: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+        35: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        38: ldc           #53                 // String \' found, can\'t replace
+        40: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        43: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        46: invokespecial #55                 // Method java/util/NoSuchElementException."<init>":(Ljava/lang/String;)V
+        49: athrow
+        50: aload_0
+        51: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        54: iload_3
+        55: aaload
+        56: aload_1
+        57: if_acmpne     70
+        60: aload_0
+        61: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        64: iload_3
+        65: aload_2
+        66: aastore
+        67: goto          76
+        70: iinc          3, 2
+        73: goto          9
+        76: aload_0
+        77: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        80: aload_0
+        81: aload_1
+        82: invokespecial #36                 // Method _findFromOrdered:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)I
+        85: aload_2
+        86: aastore
+        87: return
+      LineNumberTable:
+        line 430: 0
+        line 431: 2
+        line 434: 9
+        line 435: 15
+        line 437: 50
+        line 438: 60
+        line 439: 67
+        line 433: 70
+        line 442: 76
+        line 443: 87
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      88     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      88     1 origProp   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            0      88     2 newProp   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            2      86     3     i   I
+            9      79     4   end   I
+      StackMapTable: number_of_entries = 4
+        frame_type = 253 /* append */
+          offset_delta = 9
+          locals = [ int, int ]
+        frame_type = 40 /* same */
+        frame_type = 19 /* same */
+        frame_type = 5 /* same */
+
+  public void remove(com.fasterxml.jackson.databind.deser.SettableBeanProperty);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=8, args_size=2
+         0: new           #41                 // class java/util/ArrayList
+         3: dup
+         4: aload_0
+         5: getfield      #16                 // Field _size:I
+         8: invokespecial #42                 // Method java/util/ArrayList."<init>":(I)V
+        11: astore_2
+        12: aload_0
+        13: aload_1
+        14: invokevirtual #28                 // Method getPropertyName:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Ljava/lang/String;
+        17: astore_3
+        18: iconst_0
+        19: istore        4
+        21: iconst_1
+        22: istore        5
+        24: aload_0
+        25: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        28: arraylength
+        29: istore        6
+        31: iload         5
+        33: iload         6
+        35: if_icmpge     111
+        38: aload_0
+        39: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        42: iload         5
+        44: aaload
+        45: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        48: astore        7
+        50: aload         7
+        52: ifnonnull     58
+        55: goto          105
+        58: iload         4
+        60: ifne          98
+        63: aload_3
+        64: aload_0
+        65: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        68: iload         5
+        70: iconst_1
+        71: isub
+        72: aaload
+        73: invokevirtual #35                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        76: istore        4
+        78: iload         4
+        80: ifeq          98
+        83: aload_0
+        84: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        87: aload_0
+        88: aload         7
+        90: invokespecial #36                 // Method _findFromOrdered:(Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)I
+        93: aconst_null
+        94: aastore
+        95: goto          105
+        98: aload_2
+        99: aload         7
+       101: invokevirtual #43                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+       104: pop
+       105: iinc          5, 2
+       108: goto          31
+       111: iload         4
+       113: ifne          151
+       116: new           #48                 // class java/util/NoSuchElementException
+       119: dup
+       120: new           #49                 // class java/lang/StringBuilder
+       123: dup
+       124: invokespecial #50                 // Method java/lang/StringBuilder."<init>":()V
+       127: ldc           #51                 // String No entry \'
+       129: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       132: aload_1
+       133: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+       136: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       139: ldc           #56                 // String \' found, can\'t remove
+       141: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       144: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       147: invokespecial #55                 // Method java/util/NoSuchElementException."<init>":(Ljava/lang/String;)V
+       150: athrow
+       151: aload_0
+       152: aload_2
+       153: invokevirtual #12                 // Method init:(Ljava/util/Collection;)V
+       156: return
+      LineNumberTable:
+        line 451: 0
+        line 452: 12
+        line 453: 18
+        line 455: 21
+        line 456: 38
+        line 457: 50
+        line 458: 55
+        line 460: 58
+        line 463: 63
+        line 464: 78
+        line 466: 83
+        line 467: 95
+        line 470: 98
+        line 455: 105
+        line 472: 111
+        line 473: 116
+        line 475: 151
+        line 476: 156
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           50      55     7  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+           24      87     5     i   I
+           31      80     6   end   I
+            0     157     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     157     1 propToRm   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+           12     145     2 props   Ljava/util/ArrayList;
+           18     139     3   key   Ljava/lang/String;
+           21     136     4 found   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           12     145     2 props   Ljava/util/ArrayList<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+      StackMapTable: number_of_entries = 6
+        frame_type = 255 /* full_frame */
+          offset_delta = 31
+          locals = [ class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap, class com/fasterxml/jackson/databind/deser/SettableBeanProperty, class java/util/ArrayList, class java/lang/String, int, int, int ]
+          stack = []
+        frame_type = 252 /* append */
+          offset_delta = 26
+          locals = [ class com/fasterxml/jackson/databind/deser/SettableBeanProperty ]
+        frame_type = 39 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 6
+        frame_type = 249 /* chop */
+          offset_delta = 5
+        frame_type = 39 /* same */
+
+  public int size();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #16                 // Field _size:I
+         4: ireturn
+      LineNumberTable:
+        line 484: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+
+  public boolean isCaseInsensitive();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #2                  // Field _caseInsensitive:Z
+         4: ireturn
+      LineNumberTable:
+        line 490: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+
+  public boolean hasAliases();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+         4: invokeinterface #57,  1           // InterfaceMethod java/util/Map.isEmpty:()Z
+         9: ifne          16
+        12: iconst_1
+        13: goto          17
+        16: iconst_0
+        17: ireturn
+      LineNumberTable:
+        line 497: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+      StackMapTable: number_of_entries = 2
+        frame_type = 16 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public java.util.Iterator<com.fasterxml.jackson.databind.deser.SettableBeanProperty> iterator();
+    descriptor: ()Ljava/util/Iterator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #58                 // Method _properties:()Ljava/util/List;
+         4: invokeinterface #59,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+         9: areturn
+      LineNumberTable:
+        line 505: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+    Signature: #243                         // ()Ljava/util/Iterator<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+
+  private java.util.List<com.fasterxml.jackson.databind.deser.SettableBeanProperty> _properties();
+    descriptor: ()Ljava/util/List;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=5, args_size=1
+         0: new           #41                 // class java/util/ArrayList
+         3: dup
+         4: aload_0
+         5: getfield      #16                 // Field _size:I
+         8: invokespecial #42                 // Method java/util/ArrayList."<init>":(I)V
+        11: astore_1
+        12: iconst_1
+        13: istore_2
+        14: aload_0
+        15: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        18: arraylength
+        19: istore_3
+        20: iload_2
+        21: iload_3
+        22: if_icmpge     54
+        25: aload_0
+        26: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        29: iload_2
+        30: aaload
+        31: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        34: astore        4
+        36: aload         4
+        38: ifnull        48
+        41: aload_1
+        42: aload         4
+        44: invokevirtual #43                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        47: pop
+        48: iinc          2, 2
+        51: goto          20
+        54: aload_1
+        55: areturn
+      LineNumberTable:
+        line 509: 0
+        line 510: 12
+        line 511: 25
+        line 512: 36
+        line 513: 41
+        line 510: 48
+        line 516: 54
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           36      12     4  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+           14      40     2     i   I
+           20      34     3   end   I
+            0      56     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+           12      44     1     p   Ljava/util/ArrayList;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           12      44     1     p   Ljava/util/ArrayList<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+      StackMapTable: number_of_entries = 3
+        frame_type = 254 /* append */
+          offset_delta = 20
+          locals = [ class java/util/ArrayList, int, int ]
+        frame_type = 27 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 5
+    Signature: #247                         // ()Ljava/util/List<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+
+  public com.fasterxml.jackson.databind.deser.SettableBeanProperty[] getPropertiesInInsertionOrder();
+    descriptor: ()[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+         4: areturn
+      LineNumberTable:
+        line 528: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+
+  protected final java.lang.String getPropertyName(com.fasterxml.jackson.databind.deser.SettableBeanProperty);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)Ljava/lang/String;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _caseInsensitive:Z
+         4: ifeq          21
+         7: aload_1
+         8: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+        11: aload_0
+        12: getfield      #9                  // Field _locale:Ljava/util/Locale;
+        15: invokevirtual #60                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+        18: goto          25
+        21: aload_1
+        22: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+        25: areturn
+      LineNumberTable:
+        line 534: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      26     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      26     1  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+      StackMapTable: number_of_entries = 2
+        frame_type = 21 /* same */
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+
+  public com.fasterxml.jackson.databind.deser.SettableBeanProperty find(int);
+    descriptor: (I)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=5, args_size=2
+         0: iconst_1
+         1: istore_2
+         2: aload_0
+         3: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+         6: arraylength
+         7: istore_3
+         8: iload_2
+         9: iload_3
+        10: if_icmpge     47
+        13: aload_0
+        14: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        17: iload_2
+        18: aaload
+        19: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        22: astore        4
+        24: aload         4
+        26: ifnull        41
+        29: iload_1
+        30: aload         4
+        32: invokevirtual #61                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getPropertyIndex:()I
+        35: if_icmpne     41
+        38: aload         4
+        40: areturn
+        41: iinc          2, 2
+        44: goto          8
+        47: aconst_null
+        48: areturn
+      LineNumberTable:
+        line 550: 0
+        line 551: 13
+        line 552: 24
+        line 553: 38
+        line 550: 41
+        line 556: 47
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           24      17     4  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            2      45     2     i   I
+            8      39     3   end   I
+            0      49     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      49     1 index   I
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 8
+          locals = [ int, int ]
+        frame_type = 32 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 5
+
+  public com.fasterxml.jackson.databind.deser.SettableBeanProperty find(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=5, args_size=2
+         0: aload_1
+         1: ifnonnull     14
+         4: new           #62                 // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #63                 // String Cannot pass null property name
+        10: invokespecial #64                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: getfield      #2                  // Field _caseInsensitive:Z
+        18: ifeq          30
+        21: aload_1
+        22: aload_0
+        23: getfield      #9                  // Field _locale:Ljava/util/Locale;
+        26: invokevirtual #60                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+        29: astore_1
+        30: aload_1
+        31: invokevirtual #65                 // Method java/lang/String.hashCode:()I
+        34: aload_0
+        35: getfield      #15                 // Field _hashMask:I
+        38: iand
+        39: istore_2
+        40: iload_2
+        41: iconst_1
+        42: ishl
+        43: istore_3
+        44: aload_0
+        45: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        48: iload_3
+        49: aaload
+        50: astore        4
+        52: aload         4
+        54: aload_1
+        55: if_acmpeq     67
+        58: aload_1
+        59: aload         4
+        61: invokevirtual #35                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        64: ifeq          79
+        67: aload_0
+        68: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        71: iload_3
+        72: iconst_1
+        73: iadd
+        74: aaload
+        75: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        78: areturn
+        79: aload_0
+        80: aload_1
+        81: iload_2
+        82: aload         4
+        84: invokespecial #66                 // Method _find2:(Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        87: areturn
+      LineNumberTable:
+        line 561: 0
+        line 562: 4
+        line 564: 14
+        line 565: 21
+        line 569: 30
+        line 573: 40
+        line 574: 44
+        line 575: 52
+        line 576: 67
+        line 578: 79
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      88     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      88     1   key   Ljava/lang/String;
+           40      48     2  slot   I
+           44      44     3    ix   I
+           52      36     4 match   Ljava/lang/Object;
+      StackMapTable: number_of_entries = 4
+        frame_type = 14 /* same */
+        frame_type = 15 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 36
+          locals = [ int, int, class java/lang/Object ]
+        frame_type = 11 /* same */
+
+  private final com.fasterxml.jackson.databind.deser.SettableBeanProperty _find2(java.lang.String, int, java.lang.Object);
+    descriptor: (Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Code:
+      stack=3, locals=8, args_size=4
+         0: aload_3
+         1: ifnonnull     22
+         4: aload_0
+         5: aload_0
+         6: getfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+         9: aload_1
+        10: invokeinterface #67,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        15: checkcast     #68                 // class java/lang/String
+        18: invokespecial #69                 // Method _findWithAlias:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        21: areturn
+        22: aload_0
+        23: getfield      #15                 // Field _hashMask:I
+        26: iconst_1
+        27: iadd
+        28: istore        4
+        30: iload         4
+        32: iload_2
+        33: iconst_1
+        34: ishr
+        35: iadd
+        36: iconst_1
+        37: ishl
+        38: istore        5
+        40: aload_0
+        41: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        44: iload         5
+        46: aaload
+        47: astore_3
+        48: aload_1
+        49: aload_3
+        50: invokevirtual #35                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        53: ifeq          69
+        56: aload_0
+        57: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        60: iload         5
+        62: iconst_1
+        63: iadd
+        64: aaload
+        65: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        68: areturn
+        69: aload_3
+        70: ifnull        140
+        73: iload         4
+        75: iload         4
+        77: iconst_1
+        78: ishr
+        79: iadd
+        80: iconst_1
+        81: ishl
+        82: istore        6
+        84: iload         6
+        86: aload_0
+        87: getfield      #17                 // Field _spillCount:I
+        90: iadd
+        91: istore        7
+        93: iload         6
+        95: iload         7
+        97: if_icmpge     140
+       100: aload_0
+       101: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       104: iload         6
+       106: aaload
+       107: astore_3
+       108: aload_3
+       109: aload_1
+       110: if_acmpeq     121
+       113: aload_1
+       114: aload_3
+       115: invokevirtual #35                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       118: ifeq          134
+       121: aload_0
+       122: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       125: iload         6
+       127: iconst_1
+       128: iadd
+       129: aaload
+       130: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+       133: areturn
+       134: iinc          6, 2
+       137: goto          93
+       140: aload_0
+       141: aload_0
+       142: getfield      #11                 // Field _aliasMapping:Ljava/util/Map;
+       145: aload_1
+       146: invokeinterface #67,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       151: checkcast     #68                 // class java/lang/String
+       154: invokespecial #69                 // Method _findWithAlias:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+       157: areturn
+      LineNumberTable:
+        line 583: 0
+        line 585: 4
+        line 588: 22
+        line 589: 30
+        line 590: 40
+        line 591: 48
+        line 592: 56
+        line 594: 69
+        line 595: 73
+        line 596: 84
+        line 597: 100
+        line 598: 108
+        line 599: 121
+        line 596: 134
+        line 604: 140
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           93      47     7   end   I
+           84      56     6     i   I
+            0     158     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     158     1   key   Ljava/lang/String;
+            0     158     2  slot   I
+            0     158     3 match   Ljava/lang/Object;
+           30     128     4 hashSize   I
+           40     118     5    ix   I
+      StackMapTable: number_of_entries = 6
+        frame_type = 22 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 46
+          locals = [ int, int ]
+        frame_type = 253 /* append */
+          offset_delta = 23
+          locals = [ int, int ]
+        frame_type = 27 /* same */
+        frame_type = 12 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 5
+
+  private com.fasterxml.jackson.databind.deser.SettableBeanProperty _findWithAlias(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=5, args_size=2
+         0: aload_1
+         1: ifnonnull     6
+         4: aconst_null
+         5: areturn
+         6: aload_0
+         7: aload_1
+         8: invokespecial #29                 // Method _hashCode:(Ljava/lang/String;)I
+        11: istore_2
+        12: iload_2
+        13: iconst_1
+        14: ishl
+        15: istore_3
+        16: aload_0
+        17: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        20: iload_3
+        21: aaload
+        22: astore        4
+        24: aload_1
+        25: aload         4
+        27: invokevirtual #35                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        30: ifeq          45
+        33: aload_0
+        34: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        37: iload_3
+        38: iconst_1
+        39: iadd
+        40: aaload
+        41: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        44: areturn
+        45: aload         4
+        47: ifnonnull     52
+        50: aconst_null
+        51: areturn
+        52: aload_0
+        53: aload_1
+        54: iload_2
+        55: aload         4
+        57: invokespecial #70                 // Method _find2ViaAlias:(Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        60: areturn
+      LineNumberTable:
+        line 609: 0
+        line 610: 4
+        line 614: 6
+        line 615: 12
+        line 616: 16
+        line 617: 24
+        line 618: 33
+        line 620: 45
+        line 621: 50
+        line 623: 52
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      61     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      61     1 keyFromAlias   Ljava/lang/String;
+           12      49     2  slot   I
+           16      45     3    ix   I
+           24      37     4 match   Ljava/lang/Object;
+      StackMapTable: number_of_entries = 3
+        frame_type = 6 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 38
+          locals = [ int, int, class java/lang/Object ]
+        frame_type = 6 /* same */
+
+  private com.fasterxml.jackson.databind.deser.SettableBeanProperty _find2ViaAlias(java.lang.String, int, java.lang.Object);
+    descriptor: (Ljava/lang/String;ILjava/lang/Object;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=8, args_size=4
+         0: aload_0
+         1: getfield      #15                 // Field _hashMask:I
+         4: iconst_1
+         5: iadd
+         6: istore        4
+         8: iload         4
+        10: iload_2
+        11: iconst_1
+        12: ishr
+        13: iadd
+        14: iconst_1
+        15: ishl
+        16: istore        5
+        18: aload_0
+        19: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        22: iload         5
+        24: aaload
+        25: astore_3
+        26: aload_1
+        27: aload_3
+        28: invokevirtual #35                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        31: ifeq          47
+        34: aload_0
+        35: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        38: iload         5
+        40: iconst_1
+        41: iadd
+        42: aaload
+        43: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        46: areturn
+        47: aload_3
+        48: ifnull        118
+        51: iload         4
+        53: iload         4
+        55: iconst_1
+        56: ishr
+        57: iadd
+        58: iconst_1
+        59: ishl
+        60: istore        6
+        62: iload         6
+        64: aload_0
+        65: getfield      #17                 // Field _spillCount:I
+        68: iadd
+        69: istore        7
+        71: iload         6
+        73: iload         7
+        75: if_icmpge     118
+        78: aload_0
+        79: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+        82: iload         6
+        84: aaload
+        85: astore_3
+        86: aload_3
+        87: aload_1
+        88: if_acmpeq     99
+        91: aload_1
+        92: aload_3
+        93: invokevirtual #35                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        96: ifeq          112
+        99: aload_0
+       100: getfield      #18                 // Field _hashArea:[Ljava/lang/Object;
+       103: iload         6
+       105: iconst_1
+       106: iadd
+       107: aaload
+       108: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+       111: areturn
+       112: iinc          6, 2
+       115: goto          71
+       118: aconst_null
+       119: areturn
+      LineNumberTable:
+        line 629: 0
+        line 630: 8
+        line 631: 18
+        line 632: 26
+        line 633: 34
+        line 635: 47
+        line 636: 51
+        line 637: 62
+        line 638: 78
+        line 639: 86
+        line 640: 99
+        line 637: 112
+        line 644: 118
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           71      47     7   end   I
+           62      56     6     i   I
+            0     120     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     120     1   key   Ljava/lang/String;
+            0     120     2  slot   I
+            0     120     3 match   Ljava/lang/Object;
+            8     112     4 hashSize   I
+           18     102     5    ix   I
+      StackMapTable: number_of_entries = 5
+        frame_type = 253 /* append */
+          offset_delta = 47
+          locals = [ int, int ]
+        frame_type = 253 /* append */
+          offset_delta = 23
+          locals = [ int, int ]
+        frame_type = 27 /* same */
+        frame_type = 12 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 5
+
+  public boolean findDeserializeAndSet(com.fasterxml.jackson.core.JsonParser, com.fasterxml.jackson.databind.DeserializationContext, java.lang.Object, java.lang.String) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;Ljava/lang/Object;Ljava/lang/String;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=7, args_size=5
+         0: aload_0
+         1: aload         4
+         3: invokevirtual #71                 // Method find:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+         6: astore        5
+         8: aload         5
+        10: ifnonnull     15
+        13: iconst_0
+        14: ireturn
+        15: aload         5
+        17: aload_1
+        18: aload_2
+        19: aload_3
+        20: invokevirtual #72                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.deserializeAndSet:(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;Ljava/lang/Object;)V
+        23: goto          38
+        26: astore        6
+        28: aload_0
+        29: aload         6
+        31: aload_3
+        32: aload         4
+        34: aload_2
+        35: invokevirtual #74                 // Method wrapAndThrow:(Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;Lcom/fasterxml/jackson/databind/DeserializationContext;)V
+        38: iconst_1
+        39: ireturn
+      Exception table:
+         from    to  target type
+            15    23    26   Class java/lang/Exception
+      LineNumberTable:
+        line 665: 0
+        line 666: 8
+        line 667: 13
+        line 670: 15
+        line 673: 23
+        line 671: 26
+        line 672: 28
+        line 674: 38
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           28      10     6     e   Ljava/lang/Exception;
+            0      40     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      40     1     p   Lcom/fasterxml/jackson/core/JsonParser;
+            0      40     2  ctxt   Lcom/fasterxml/jackson/databind/DeserializationContext;
+            0      40     3  bean   Ljava/lang/Object;
+            0      40     4   key   Ljava/lang/String;
+            8      32     5  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 15
+          locals = [ class com/fasterxml/jackson/databind/deser/SettableBeanProperty ]
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 11 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.String toString();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=5, args_size=1
+         0: new           #49                 // class java/lang/StringBuilder
+         3: dup
+         4: invokespecial #50                 // Method java/lang/StringBuilder."<init>":()V
+         7: astore_1
+         8: aload_1
+         9: ldc           #75                 // String Properties=[
+        11: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        14: pop
+        15: iconst_0
+        16: istore_2
+        17: aload_0
+        18: invokevirtual #76                 // Method iterator:()Ljava/util/Iterator;
+        21: astore_3
+        22: aload_3
+        23: invokeinterface #26,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        28: ifeq          93
+        31: aload_3
+        32: invokeinterface #27,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        37: checkcast     #4                  // class com/fasterxml/jackson/databind/deser/SettableBeanProperty
+        40: astore        4
+        42: iload_2
+        43: iinc          2, 1
+        46: ifle          56
+        49: aload_1
+        50: ldc           #77                 // String ,
+        52: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        55: pop
+        56: aload_1
+        57: aload         4
+        59: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+        62: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        65: pop
+        66: aload_1
+        67: bipush        40
+        69: invokevirtual #78                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        72: pop
+        73: aload_1
+        74: aload         4
+        76: invokevirtual #79                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getType:()Lcom/fasterxml/jackson/databind/JavaType;
+        79: invokevirtual #80                 // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        82: pop
+        83: aload_1
+        84: bipush        41
+        86: invokevirtual #78                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        89: pop
+        90: goto          22
+        93: aload_1
+        94: bipush        93
+        96: invokevirtual #78                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        99: pop
+       100: aload_0
+       101: getfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+       104: invokeinterface #57,  1           // InterfaceMethod java/util/Map.isEmpty:()Z
+       109: ifne          135
+       112: aload_1
+       113: ldc           #81                 // String (aliases:
+       115: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       118: pop
+       119: aload_1
+       120: aload_0
+       121: getfield      #8                  // Field _aliasDefs:Ljava/util/Map;
+       124: invokevirtual #80                 // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       127: pop
+       128: aload_1
+       129: ldc           #82                 // String )
+       131: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       134: pop
+       135: aload_1
+       136: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       139: areturn
+      LineNumberTable:
+        line 686: 0
+        line 687: 8
+        line 688: 15
+        line 690: 17
+        line 691: 22
+        line 692: 31
+        line 693: 42
+        line 694: 49
+        line 696: 56
+        line 697: 66
+        line 698: 73
+        line 699: 83
+        line 700: 90
+        line 701: 93
+        line 702: 100
+        line 703: 112
+        line 704: 119
+        line 705: 128
+        line 707: 135
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           42      48     4  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            0     140     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            8     132     1    sb   Ljava/lang/StringBuilder;
+           17     123     2 count   I
+           22     118     3    it   Ljava/util/Iterator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           22     118     3    it   Ljava/util/Iterator<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;
+      StackMapTable: number_of_entries = 4
+        frame_type = 254 /* append */
+          offset_delta = 22
+          locals = [ class java/lang/StringBuilder, int, class java/util/Iterator ]
+        frame_type = 252 /* append */
+          offset_delta = 33
+          locals = [ class com/fasterxml/jackson/databind/deser/SettableBeanProperty ]
+        frame_type = 250 /* chop */
+          offset_delta = 36
+        frame_type = 41 /* same */
+
+  protected com.fasterxml.jackson.databind.deser.SettableBeanProperty _rename(com.fasterxml.jackson.databind.deser.SettableBeanProperty, com.fasterxml.jackson.databind.util.NameTransformer);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=6, args_size=3
+         0: aload_1
+         1: ifnonnull     6
+         4: aload_1
+         5: areturn
+         6: aload_2
+         7: aload_1
+         8: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+        11: invokevirtual #83                 // Method com/fasterxml/jackson/databind/util/NameTransformer.transform:(Ljava/lang/String;)Ljava/lang/String;
+        14: astore_3
+        15: aload_1
+        16: aload_3
+        17: invokevirtual #84                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.withSimpleName:(Ljava/lang/String;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        20: astore_1
+        21: aload_1
+        22: invokevirtual #85                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getValueDeserializer:()Lcom/fasterxml/jackson/databind/JsonDeserializer;
+        25: astore        4
+        27: aload         4
+        29: ifnull        54
+        32: aload         4
+        34: aload_2
+        35: invokevirtual #86                 // Method com/fasterxml/jackson/databind/JsonDeserializer.unwrappingDeserializer:(Lcom/fasterxml/jackson/databind/util/NameTransformer;)Lcom/fasterxml/jackson/databind/JsonDeserializer;
+        38: astore        5
+        40: aload         5
+        42: aload         4
+        44: if_acmpeq     54
+        47: aload_1
+        48: aload         5
+        50: invokevirtual #87                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.withValueDeserializer:(Lcom/fasterxml/jackson/databind/JsonDeserializer;)Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        53: astore_1
+        54: aload_1
+        55: areturn
+      LineNumberTable:
+        line 718: 0
+        line 719: 4
+        line 721: 6
+        line 722: 15
+        line 723: 21
+        line 724: 27
+        line 726: 32
+        line 727: 35
+        line 728: 40
+        line 729: 47
+        line 732: 54
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           40      14     5 newDeser   Lcom/fasterxml/jackson/databind/JsonDeserializer;
+            0      56     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      56     1  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+            0      56     2    xf   Lcom/fasterxml/jackson/databind/util/NameTransformer;
+           15      41     3 newName   Ljava/lang/String;
+           27      29     4 deser   Lcom/fasterxml/jackson/databind/JsonDeserializer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           40      14     5 newDeser   Lcom/fasterxml/jackson/databind/JsonDeserializer<Ljava/lang/Object;>;
+           27      29     4 deser   Lcom/fasterxml/jackson/databind/JsonDeserializer<*>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 6 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 47
+          locals = [ class java/lang/String, class com/fasterxml/jackson/databind/JsonDeserializer ]
+
+  protected void wrapAndThrow(java.lang.Throwable, java.lang.Object, java.lang.String, com.fasterxml.jackson.databind.DeserializationContext) throws java.io.IOException;
+    descriptor: (Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;Lcom/fasterxml/jackson/databind/DeserializationContext;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=6, args_size=5
+         0: aload_1
+         1: instanceof    #88                 // class java/lang/reflect/InvocationTargetException
+         4: ifeq          22
+         7: aload_1
+         8: invokevirtual #89                 // Method java/lang/Throwable.getCause:()Ljava/lang/Throwable;
+        11: ifnull        22
+        14: aload_1
+        15: invokevirtual #89                 // Method java/lang/Throwable.getCause:()Ljava/lang/Throwable;
+        18: astore_1
+        19: goto          0
+        22: aload_1
+        23: invokestatic  #90                 // Method com/fasterxml/jackson/databind/util/ClassUtil.throwIfError:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+        26: pop
+        27: aload         4
+        29: ifnull        43
+        32: aload         4
+        34: getstatic     #91                 // Field com/fasterxml/jackson/databind/DeserializationFeature.WRAP_EXCEPTIONS:Lcom/fasterxml/jackson/databind/DeserializationFeature;
+        37: invokevirtual #92                 // Method com/fasterxml/jackson/databind/DeserializationContext.isEnabled:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+        40: ifeq          47
+        43: iconst_1
+        44: goto          48
+        47: iconst_0
+        48: istore        5
+        50: aload_1
+        51: instanceof    #93                 // class java/io/IOException
+        54: ifeq          74
+        57: iload         5
+        59: ifeq          69
+        62: aload_1
+        63: instanceof    #94                 // class com/fasterxml/jackson/core/JacksonException
+        66: ifne          84
+        69: aload_1
+        70: checkcast     #93                 // class java/io/IOException
+        73: athrow
+        74: iload         5
+        76: ifne          84
+        79: aload_1
+        80: invokestatic  #95                 // Method com/fasterxml/jackson/databind/util/ClassUtil.throwIfRTE:(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+        83: pop
+        84: aload_1
+        85: aload_2
+        86: aload_3
+        87: invokestatic  #96                 // Method com/fasterxml/jackson/databind/JsonMappingException.wrapWithPath:(Ljava/lang/Throwable;Ljava/lang/Object;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/JsonMappingException;
+        90: athrow
+      LineNumberTable:
+        line 739: 0
+        line 740: 14
+        line 743: 22
+        line 745: 27
+        line 747: 50
+        line 748: 57
+        line 749: 69
+        line 751: 74
+        line 752: 79
+        line 754: 84
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      91     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      91     1     t   Ljava/lang/Throwable;
+            0      91     2  bean   Ljava/lang/Object;
+            0      91     3 fieldName   Ljava/lang/String;
+            0      91     4  ctxt   Lcom/fasterxml/jackson/databind/DeserializationContext;
+           50      41     5  wrap   Z
+      StackMapTable: number_of_entries = 8
+        frame_type = 0 /* same */
+        frame_type = 21 /* same */
+        frame_type = 20 /* same */
+        frame_type = 3 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 20
+          locals = [ int ]
+        frame_type = 4 /* same */
+        frame_type = 9 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  private final int _findFromOrdered(com.fasterxml.jackson.databind.deser.SettableBeanProperty);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;)I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Code:
+      stack=4, locals=4, args_size=2
+         0: iconst_0
+         1: istore_2
+         2: aload_0
+         3: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+         6: arraylength
+         7: istore_3
+         8: iload_2
+         9: iload_3
+        10: if_icmpge     31
+        13: aload_0
+        14: getfield      #7                  // Field _propsInOrder:[Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+        17: iload_2
+        18: aaload
+        19: aload_1
+        20: if_acmpne     25
+        23: iload_2
+        24: ireturn
+        25: iinc          2, 1
+        28: goto          8
+        31: new           #97                 // class java/lang/IllegalStateException
+        34: dup
+        35: new           #49                 // class java/lang/StringBuilder
+        38: dup
+        39: invokespecial #50                 // Method java/lang/StringBuilder."<init>":()V
+        42: ldc           #98                 // String Illegal state: property \'
+        44: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        47: aload_1
+        48: invokevirtual #34                 // Method com/fasterxml/jackson/databind/deser/SettableBeanProperty.getName:()Ljava/lang/String;
+        51: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        54: ldc           #99                 // String \' missing from _propsInOrder
+        56: invokevirtual #52                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        59: invokevirtual #54                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        62: invokespecial #100                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        65: athrow
+      LineNumberTable:
+        line 793: 0
+        line 794: 13
+        line 795: 23
+        line 793: 25
+        line 798: 31
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            2      29     2     i   I
+            8      23     3   end   I
+            0      66     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      66     1  prop   Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 8
+          locals = [ int, int ]
+        frame_type = 16 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 5
+
+  private final int _hashCode(java.lang.String);
+    descriptor: (Ljava/lang/String;)I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: invokevirtual #65                 // Method java/lang/String.hashCode:()I
+         4: aload_0
+         5: getfield      #15                 // Field _hashMask:I
+         8: iand
+         9: ireturn
+      LineNumberTable:
+        line 812: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0      10     1   key   Ljava/lang/String;
+
+  private java.util.Map<java.lang.String, java.lang.String> _buildAliasMapping(java.util.Map<java.lang.String, java.util.List<com.fasterxml.jackson.databind.PropertyName>>, boolean, java.util.Locale);
+    descriptor: (Ljava/util/Map;ZLjava/util/Locale;)Ljava/util/Map;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=11, args_size=4
+         0: aload_1
+         1: ifnull        13
+         4: aload_1
+         5: invokeinterface #57,  1           // InterfaceMethod java/util/Map.isEmpty:()Z
+        10: ifeq          17
+        13: invokestatic  #101                // Method java/util/Collections.emptyMap:()Ljava/util/Map;
+        16: areturn
+        17: new           #102                // class java/util/HashMap
+        20: dup
+        21: invokespecial #103                // Method java/util/HashMap."<init>":()V
+        24: astore        4
+        26: aload_1
+        27: invokeinterface #104,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+        32: invokeinterface #105,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        37: astore        5
+        39: aload         5
+        41: invokeinterface #26,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        46: ifeq          161
+        49: aload         5
+        51: invokeinterface #27,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        56: checkcast     #106                // class java/util/Map$Entry
+        59: astore        6
+        61: aload         6
+        63: invokeinterface #107,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        68: checkcast     #68                 // class java/lang/String
+        71: astore        7
+        73: iload_2
+        74: ifeq          85
+        77: aload         7
+        79: aload_3
+        80: invokevirtual #60                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+        83: astore        7
+        85: aload         6
+        87: invokeinterface #108,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        92: checkcast     #109                // class java/util/List
+        95: invokeinterface #59,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       100: astore        8
+       102: aload         8
+       104: invokeinterface #26,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+       109: ifeq          158
+       112: aload         8
+       114: invokeinterface #27,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       119: checkcast     #110                // class com/fasterxml/jackson/databind/PropertyName
+       122: astore        9
+       124: aload         9
+       126: invokevirtual #111                // Method com/fasterxml/jackson/databind/PropertyName.getSimpleName:()Ljava/lang/String;
+       129: astore        10
+       131: iload_2
+       132: ifeq          143
+       135: aload         10
+       137: aload_3
+       138: invokevirtual #60                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+       141: astore        10
+       143: aload         4
+       145: aload         10
+       147: aload         7
+       149: invokeinterface #112,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       154: pop
+       155: goto          102
+       158: goto          39
+       161: aload         4
+       163: areturn
+      LineNumberTable:
+        line 819: 0
+        line 820: 13
+        line 822: 17
+        line 823: 26
+        line 824: 61
+        line 825: 73
+        line 826: 77
+        line 828: 85
+        line 829: 124
+        line 830: 131
+        line 831: 135
+        line 833: 143
+        line 834: 155
+        line 835: 158
+        line 836: 161
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          131      24    10 mapped   Ljava/lang/String;
+          124      31     9    pn   Lcom/fasterxml/jackson/databind/PropertyName;
+           73      85     7   key   Ljava/lang/String;
+           61      97     6 entry   Ljava/util/Map$Entry;
+            0     164     0  this   Lcom/fasterxml/jackson/databind/deser/impl/BeanPropertyMap;
+            0     164     1  defs   Ljava/util/Map;
+            0     164     2 caseInsensitive   Z
+            0     164     3   loc   Ljava/util/Locale;
+           26     138     4 aliases   Ljava/util/Map;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+           61      97     6 entry   Ljava/util/Map$Entry<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+            0     164     1  defs   Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;
+           26     138     4 aliases   Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+      StackMapTable: number_of_entries = 8
+        frame_type = 13 /* same */
+        frame_type = 3 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 21
+          locals = [ class java/util/Map, class java/util/Iterator ]
+        frame_type = 253 /* append */
+          offset_delta = 45
+          locals = [ class java/util/Map$Entry, class java/lang/String ]
+        frame_type = 252 /* append */
+          offset_delta = 16
+          locals = [ class java/util/Iterator ]
+        frame_type = 253 /* append */
+          offset_delta = 40
+          locals = [ class com/fasterxml/jackson/databind/PropertyName, class java/lang/String ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 14
+          locals = [ class com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap, class java/util/Map, int, class java/util/Locale, class java/util/Map, class java/util/Iterator ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 2
+    Signature: #319                         // (Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Lcom/fasterxml/jackson/databind/PropertyName;>;>;ZLjava/util/Locale;)Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;
+}
+Signature: #320                         // Ljava/lang/Object;Ljava/lang/Iterable<Lcom/fasterxml/jackson/databind/deser/SettableBeanProperty;>;Ljava/io/Serializable;
+SourceFile: "BeanPropertyMap.java"
+InnerClasses:
+  public static #308= #106 of #385;       // Entry=class java/util/Map$Entry of class java/util/Map

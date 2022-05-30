@@ -1,0 +1,2967 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/databind/cfg/MapperBuilder.class
+  Last modified May 29, 2022; size 33911 bytes
+  SHA-256 checksum 6022b0b63c721b68129f2f614ecbb8ce43b8bc98bfb89f70daac261048e4e18d
+  Compiled from "MapperBuilder.java"
+public abstract class com.fasterxml.jackson.databind.cfg.MapperBuilder<M extends com.fasterxml.jackson.databind.ObjectMapper, B extends com.fasterxml.jackson.databind.cfg.MapperBuilder<M, B>> extends java.lang.Object
+  minor version: 0
+  major version: 52
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #94                         // com/fasterxml/jackson/databind/cfg/MapperBuilder
+  super_class: #95                        // java/lang/Object
+  interfaces: 0, fields: 1, methods: 79, attributes: 3
+Constant pool:
+    #1 = Methodref          #95.#420      // java/lang/Object."<init>":()V
+    #2 = Fieldref           #94.#421      // com/fasterxml/jackson/databind/cfg/MapperBuilder._mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+    #3 = Methodref          #422.#423     // com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+    #4 = Methodref          #422.#424     // com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+    #5 = Methodref          #422.#425     // com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+    #6 = Methodref          #422.#426     // com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/core/JsonParser$Feature;)Z
+    #7 = Methodref          #422.#427     // com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+    #8 = Methodref          #422.#428     // com/fasterxml/jackson/databind/ObjectMapper.tokenStreamFactory:()Lcom/fasterxml/jackson/core/JsonFactory;
+    #9 = Methodref          #422.#429     // com/fasterxml/jackson/databind/ObjectMapper.enable:([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #10 = Methodref          #94.#430      // com/fasterxml/jackson/databind/cfg/MapperBuilder._this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+   #11 = Methodref          #422.#431     // com/fasterxml/jackson/databind/ObjectMapper.disable:([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #12 = Methodref          #422.#432     // com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/databind/MapperFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #13 = Methodref          #422.#433     // com/fasterxml/jackson/databind/ObjectMapper.enable:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #14 = Methodref          #422.#434     // com/fasterxml/jackson/databind/ObjectMapper.disable:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #15 = Methodref          #422.#435     // com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/databind/SerializationFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #16 = Methodref          #422.#436     // com/fasterxml/jackson/databind/ObjectMapper.enable:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #17 = Methodref          #422.#437     // com/fasterxml/jackson/databind/ObjectMapper.disable:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #18 = Methodref          #422.#438     // com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/databind/DeserializationFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #19 = Methodref          #422.#439     // com/fasterxml/jackson/databind/ObjectMapper.enable:([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #20 = Methodref          #422.#440     // com/fasterxml/jackson/databind/ObjectMapper.disable:([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #21 = Methodref          #422.#441     // com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #22 = Methodref          #422.#442     // com/fasterxml/jackson/databind/ObjectMapper.enable:([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #23 = Methodref          #422.#443     // com/fasterxml/jackson/databind/ObjectMapper.disable:([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #24 = Methodref          #422.#444     // com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #25 = Class              #446          // com/fasterxml/jackson/core/JsonParser$Feature
+   #26 = Methodref          #447.#448     // com/fasterxml/jackson/core/StreamReadFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonParser$Feature;
+   #27 = Class              #450          // com/fasterxml/jackson/core/JsonGenerator$Feature
+   #28 = Methodref          #451.#452     // com/fasterxml/jackson/core/StreamWriteFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+   #29 = Methodref          #422.#453     // com/fasterxml/jackson/databind/ObjectMapper.configOverride:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MutableConfigOverride;
+   #30 = InterfaceMethodref #454.#455     // java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+   #31 = Methodref          #422.#456     // com/fasterxml/jackson/databind/ObjectMapper.coercionConfigFor:(Lcom/fasterxml/jackson/databind/type/LogicalType;)Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+   #32 = Methodref          #422.#457     // com/fasterxml/jackson/databind/ObjectMapper.coercionConfigFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+   #33 = Methodref          #422.#458     // com/fasterxml/jackson/databind/ObjectMapper.coercionConfigDefaults:()Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+   #34 = Methodref          #422.#459     // com/fasterxml/jackson/databind/ObjectMapper.registerModule:(Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #35 = Methodref          #94.#460      // com/fasterxml/jackson/databind/cfg/MapperBuilder.addModule:(Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+   #36 = InterfaceMethodref #461.#462     // java/lang/Iterable.iterator:()Ljava/util/Iterator;
+   #37 = InterfaceMethodref #463.#464     // java/util/Iterator.hasNext:()Z
+   #38 = InterfaceMethodref #463.#465     // java/util/Iterator.next:()Ljava/lang/Object;
+   #39 = Class              #466          // com/fasterxml/jackson/databind/Module
+   #40 = Methodref          #94.#467      // com/fasterxml/jackson/databind/cfg/MapperBuilder.findModules:(Ljava/lang/ClassLoader;)Ljava/util/List;
+   #41 = Class              #468          // java/util/ArrayList
+   #42 = Methodref          #41.#420      // java/util/ArrayList."<init>":()V
+   #43 = Methodref          #94.#469      // com/fasterxml/jackson/databind/cfg/MapperBuilder.secureGetServiceLoader:(Ljava/lang/Class;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader;
+   #44 = Methodref          #52.#462      // java/util/ServiceLoader.iterator:()Ljava/util/Iterator;
+   #45 = Methodref          #41.#470      // java/util/ArrayList.add:(Ljava/lang/Object;)Z
+   #46 = Methodref          #471.#472     // java/lang/System.getSecurityManager:()Ljava/lang/SecurityManager;
+   #47 = Methodref          #52.#473      // java/util/ServiceLoader.load:(Ljava/lang/Class;)Ljava/util/ServiceLoader;
+   #48 = Methodref          #52.#474      // java/util/ServiceLoader.load:(Ljava/lang/Class;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader;
+   #49 = Class              #475          // com/fasterxml/jackson/databind/cfg/MapperBuilder$1
+   #50 = Methodref          #49.#476      // com/fasterxml/jackson/databind/cfg/MapperBuilder$1."<init>":(Ljava/lang/ClassLoader;Ljava/lang/Class;)V
+   #51 = Methodref          #477.#478     // java/security/AccessController.doPrivileged:(Ljava/security/PrivilegedAction;)Ljava/lang/Object;
+   #52 = Class              #479          // java/util/ServiceLoader
+   #53 = Methodref          #94.#480      // com/fasterxml/jackson/databind/cfg/MapperBuilder.findModules:()Ljava/util/List;
+   #54 = Methodref          #94.#481      // com/fasterxml/jackson/databind/cfg/MapperBuilder.addModules:(Ljava/lang/Iterable;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+   #55 = Methodref          #422.#482     // com/fasterxml/jackson/databind/ObjectMapper.setAnnotationIntrospector:(Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #56 = Methodref          #422.#483     // com/fasterxml/jackson/databind/ObjectMapper.setDefaultAttributes:(Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #57 = Methodref          #422.#484     // com/fasterxml/jackson/databind/ObjectMapper.setTypeFactory:(Lcom/fasterxml/jackson/databind/type/TypeFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #58 = Methodref          #422.#485     // com/fasterxml/jackson/databind/ObjectMapper.setSubtypeResolver:(Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #59 = Methodref          #422.#486     // com/fasterxml/jackson/databind/ObjectMapper.setVisibility:(Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #60 = Methodref          #422.#487     // com/fasterxml/jackson/databind/ObjectMapper.setVisibility:(Lcom/fasterxml/jackson/annotation/PropertyAccessor;Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #61 = Methodref          #422.#488     // com/fasterxml/jackson/databind/ObjectMapper.setHandlerInstantiator:(Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;)Ljava/lang/Object;
+   #62 = Methodref          #422.#489     // com/fasterxml/jackson/databind/ObjectMapper.setPropertyNamingStrategy:(Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #63 = Class              #491          // com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy$Provider
+   #64 = Methodref          #63.#420      // com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy$Provider."<init>":()V
+   #65 = Methodref          #422.#492     // com/fasterxml/jackson/databind/ObjectMapper.setAccessorNaming:(Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #66 = Methodref          #422.#493     // com/fasterxml/jackson/databind/ObjectMapper.setSerializerFactory:(Lcom/fasterxml/jackson/databind/ser/SerializerFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #67 = Methodref          #422.#494     // com/fasterxml/jackson/databind/ObjectMapper.setFilterProvider:(Lcom/fasterxml/jackson/databind/ser/FilterProvider;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #68 = Methodref          #422.#495     // com/fasterxml/jackson/databind/ObjectMapper.setDefaultPrettyPrinter:(Lcom/fasterxml/jackson/core/PrettyPrinter;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #69 = Methodref          #422.#496     // com/fasterxml/jackson/databind/ObjectMapper.setInjectableValues:(Lcom/fasterxml/jackson/databind/InjectableValues;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #70 = Methodref          #422.#497     // com/fasterxml/jackson/databind/ObjectMapper.setNodeFactory:(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #71 = Methodref          #422.#498     // com/fasterxml/jackson/databind/ObjectMapper.setConstructorDetector:(Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #72 = Methodref          #422.#499     // com/fasterxml/jackson/databind/ObjectMapper.addHandler:(Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #73 = Methodref          #422.#500     // com/fasterxml/jackson/databind/ObjectMapper.clearProblemHandlers:()Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #74 = Methodref          #422.#501     // com/fasterxml/jackson/databind/ObjectMapper.setDefaultSetterInfo:(Lcom/fasterxml/jackson/annotation/JsonSetter$Value;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #75 = Methodref          #422.#502     // com/fasterxml/jackson/databind/ObjectMapper.setDefaultMergeable:(Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #76 = Methodref          #422.#503     // com/fasterxml/jackson/databind/ObjectMapper.setDefaultLeniency:(Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #77 = Methodref          #422.#504     // com/fasterxml/jackson/databind/ObjectMapper.setDateFormat:(Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #78 = Methodref          #422.#505     // com/fasterxml/jackson/databind/ObjectMapper.setTimeZone:(Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #79 = Methodref          #422.#506     // com/fasterxml/jackson/databind/ObjectMapper.setLocale:(Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #80 = Methodref          #422.#507     // com/fasterxml/jackson/databind/ObjectMapper.setBase64Variant:(Lcom/fasterxml/jackson/core/Base64Variant;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #81 = Methodref          #422.#508     // com/fasterxml/jackson/databind/ObjectMapper.setSerializationInclusion:(Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #82 = Methodref          #422.#509     // com/fasterxml/jackson/databind/ObjectMapper.setDefaultPropertyInclusion:(Lcom/fasterxml/jackson/annotation/JsonInclude$Value;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #83 = Methodref          #422.#510     // com/fasterxml/jackson/databind/ObjectMapper.addMixIn:(Ljava/lang/Class;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #84 = Methodref          #422.#511     // com/fasterxml/jackson/databind/ObjectMapper.registerSubtypes:([Ljava/lang/Class;)V
+   #85 = Methodref          #422.#512     // com/fasterxml/jackson/databind/ObjectMapper.registerSubtypes:([Lcom/fasterxml/jackson/databind/jsontype/NamedType;)V
+   #86 = Methodref          #422.#513     // com/fasterxml/jackson/databind/ObjectMapper.registerSubtypes:(Ljava/util/Collection;)V
+   #87 = Methodref          #422.#514     // com/fasterxml/jackson/databind/ObjectMapper.setPolymorphicTypeValidator:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #88 = Methodref          #422.#515     // com/fasterxml/jackson/databind/ObjectMapper.activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #89 = Methodref          #422.#516     // com/fasterxml/jackson/databind/ObjectMapper.activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #90 = Methodref          #422.#517     // com/fasterxml/jackson/databind/ObjectMapper.activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #91 = Methodref          #422.#518     // com/fasterxml/jackson/databind/ObjectMapper.activateDefaultTypingAsProperty:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #92 = Methodref          #422.#519     // com/fasterxml/jackson/databind/ObjectMapper.deactivateDefaultTyping:()Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #93 = Methodref          #422.#520     // com/fasterxml/jackson/databind/ObjectMapper.setDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #94 = Class              #521          // com/fasterxml/jackson/databind/cfg/MapperBuilder
+   #95 = Class              #522          // java/lang/Object
+   #96 = Utf8               InnerClasses
+   #97 = Utf8               _mapper
+   #98 = Utf8               Lcom/fasterxml/jackson/databind/ObjectMapper;
+   #99 = Utf8               Signature
+  #100 = Utf8               TM;
+  #101 = Utf8               <init>
+  #102 = Utf8               (Lcom/fasterxml/jackson/databind/ObjectMapper;)V
+  #103 = Utf8               Code
+  #104 = Utf8               LineNumberTable
+  #105 = Utf8               LocalVariableTable
+  #106 = Utf8               this
+  #107 = Utf8               Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #108 = Utf8               mapper
+  #109 = Utf8               LocalVariableTypeTable
+  #110 = Utf8               Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+  #111 = Utf8               (TM;)V
+  #112 = Utf8               build
+  #113 = Utf8               ()Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #114 = Utf8               ()TM;
+  #115 = Utf8               isEnabled
+  #116 = Utf8               (Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+  #117 = Utf8               f
+  #118 = Utf8               Lcom/fasterxml/jackson/databind/MapperFeature;
+  #119 = Utf8               (Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+  #120 = Utf8               Lcom/fasterxml/jackson/databind/DeserializationFeature;
+  #121 = Utf8               (Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+  #122 = Utf8               Lcom/fasterxml/jackson/databind/SerializationFeature;
+  #123 = Utf8               Feature
+  #124 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser$Feature;)Z
+  #125 = Utf8               Lcom/fasterxml/jackson/core/JsonParser$Feature;
+  #126 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+  #127 = Utf8               Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+  #128 = Utf8               streamFactory
+  #129 = Utf8               ()Lcom/fasterxml/jackson/core/TokenStreamFactory;
+  #130 = Utf8               enable
+  #131 = Utf8               ([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #132 = Utf8               features
+  #133 = Utf8               [Lcom/fasterxml/jackson/databind/MapperFeature;
+  #134 = Utf8               ([Lcom/fasterxml/jackson/databind/MapperFeature;)TB;
+  #135 = Utf8               disable
+  #136 = Utf8               configure
+  #137 = Utf8               (Lcom/fasterxml/jackson/databind/MapperFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #138 = Utf8               feature
+  #139 = Utf8               state
+  #140 = Utf8               Z
+  #141 = Utf8               (Lcom/fasterxml/jackson/databind/MapperFeature;Z)TB;
+  #142 = Utf8               ([Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #143 = Utf8               [Lcom/fasterxml/jackson/databind/SerializationFeature;
+  #144 = Utf8               StackMapTable
+  #145 = Class              #143          // "[Lcom/fasterxml/jackson/databind/SerializationFeature;"
+  #146 = Utf8               ([Lcom/fasterxml/jackson/databind/SerializationFeature;)TB;
+  #147 = Utf8               (Lcom/fasterxml/jackson/databind/SerializationFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #148 = Utf8               (Lcom/fasterxml/jackson/databind/SerializationFeature;Z)TB;
+  #149 = Utf8               ([Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #150 = Utf8               [Lcom/fasterxml/jackson/databind/DeserializationFeature;
+  #151 = Class              #150          // "[Lcom/fasterxml/jackson/databind/DeserializationFeature;"
+  #152 = Utf8               ([Lcom/fasterxml/jackson/databind/DeserializationFeature;)TB;
+  #153 = Utf8               (Lcom/fasterxml/jackson/databind/DeserializationFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #154 = Utf8               (Lcom/fasterxml/jackson/databind/DeserializationFeature;Z)TB;
+  #155 = Utf8               ([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #156 = Utf8               [Lcom/fasterxml/jackson/core/JsonParser$Feature;
+  #157 = Utf8               ([Lcom/fasterxml/jackson/core/JsonParser$Feature;)TB;
+  #158 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #159 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)TB;
+  #160 = Utf8               ([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #161 = Utf8               [Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+  #162 = Utf8               ([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)TB;
+  #163 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #164 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)TB;
+  #165 = Utf8               ([Lcom/fasterxml/jackson/core/StreamReadFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #166 = Utf8               Lcom/fasterxml/jackson/core/StreamReadFeature;
+  #167 = Utf8               [Lcom/fasterxml/jackson/core/StreamReadFeature;
+  #168 = Class              #167          // "[Lcom/fasterxml/jackson/core/StreamReadFeature;"
+  #169 = Utf8               ([Lcom/fasterxml/jackson/core/StreamReadFeature;)TB;
+  #170 = Utf8               (Lcom/fasterxml/jackson/core/StreamReadFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #171 = Utf8               (Lcom/fasterxml/jackson/core/StreamReadFeature;Z)TB;
+  #172 = Utf8               ([Lcom/fasterxml/jackson/core/StreamWriteFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #173 = Utf8               Lcom/fasterxml/jackson/core/StreamWriteFeature;
+  #174 = Utf8               [Lcom/fasterxml/jackson/core/StreamWriteFeature;
+  #175 = Class              #174          // "[Lcom/fasterxml/jackson/core/StreamWriteFeature;"
+  #176 = Utf8               ([Lcom/fasterxml/jackson/core/StreamWriteFeature;)TB;
+  #177 = Utf8               (Lcom/fasterxml/jackson/core/StreamWriteFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #178 = Utf8               (Lcom/fasterxml/jackson/core/StreamWriteFeature;Z)TB;
+  #179 = Utf8               withConfigOverride
+  #180 = Utf8               (Ljava/lang/Class;Ljava/util/function/Consumer;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #181 = Utf8               forType
+  #182 = Utf8               Ljava/lang/Class;
+  #183 = Utf8               handler
+  #184 = Utf8               Ljava/util/function/Consumer;
+  #185 = Utf8               Ljava/lang/Class<*>;
+  #186 = Utf8               Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableConfigOverride;>;
+  #187 = Utf8               (Ljava/lang/Class<*>;Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableConfigOverride;>;)TB;
+  #188 = Utf8               withCoercionConfig
+  #189 = Utf8               (Lcom/fasterxml/jackson/databind/type/LogicalType;Ljava/util/function/Consumer;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #190 = Utf8               Lcom/fasterxml/jackson/databind/type/LogicalType;
+  #191 = Utf8               Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;
+  #192 = Utf8               (Lcom/fasterxml/jackson/databind/type/LogicalType;Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;)TB;
+  #193 = Utf8               (Ljava/lang/Class<*>;Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;)TB;
+  #194 = Utf8               withCoercionConfigDefaults
+  #195 = Utf8               (Ljava/util/function/Consumer;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #196 = Utf8               (Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;)TB;
+  #197 = Utf8               addModule
+  #198 = Utf8               (Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #199 = Utf8               module
+  #200 = Utf8               Lcom/fasterxml/jackson/databind/Module;
+  #201 = Utf8               (Lcom/fasterxml/jackson/databind/Module;)TB;
+  #202 = Utf8               addModules
+  #203 = Utf8               ([Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #204 = Utf8               modules
+  #205 = Utf8               [Lcom/fasterxml/jackson/databind/Module;
+  #206 = Class              #205          // "[Lcom/fasterxml/jackson/databind/Module;"
+  #207 = Utf8               ([Lcom/fasterxml/jackson/databind/Module;)TB;
+  #208 = Utf8               (Ljava/lang/Iterable;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #209 = Utf8               Ljava/lang/Iterable;
+  #210 = Utf8               Ljava/lang/Iterable<+Lcom/fasterxml/jackson/databind/Module;>;
+  #211 = Class              #523          // java/util/Iterator
+  #212 = Utf8               (Ljava/lang/Iterable<+Lcom/fasterxml/jackson/databind/Module;>;)TB;
+  #213 = Utf8               findModules
+  #214 = Utf8               ()Ljava/util/List;
+  #215 = Utf8               ()Ljava/util/List<Lcom/fasterxml/jackson/databind/Module;>;
+  #216 = Utf8               (Ljava/lang/ClassLoader;)Ljava/util/List;
+  #217 = Utf8               classLoader
+  #218 = Utf8               Ljava/lang/ClassLoader;
+  #219 = Utf8               Ljava/util/ArrayList;
+  #220 = Utf8               loader
+  #221 = Utf8               Ljava/util/ServiceLoader;
+  #222 = Utf8               Ljava/util/ArrayList<Lcom/fasterxml/jackson/databind/Module;>;
+  #223 = Utf8               Ljava/util/ServiceLoader<Lcom/fasterxml/jackson/databind/Module;>;
+  #224 = Class              #468          // java/util/ArrayList
+  #225 = Class              #479          // java/util/ServiceLoader
+  #226 = Utf8               (Ljava/lang/ClassLoader;)Ljava/util/List<Lcom/fasterxml/jackson/databind/Module;>;
+  #227 = Utf8               secureGetServiceLoader
+  #228 = Utf8               (Ljava/lang/Class;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader;
+  #229 = Utf8               clazz
+  #230 = Utf8               sm
+  #231 = Utf8               Ljava/lang/SecurityManager;
+  #232 = Utf8               Ljava/lang/Class<TT;>;
+  #233 = Class              #524          // java/lang/SecurityManager
+  #234 = Utf8               <T:Ljava/lang/Object;>(Ljava/lang/Class<TT;>;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader<TT;>;
+  #235 = Utf8               findAndAddModules
+  #236 = Utf8               ()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #237 = Utf8               ()TB;
+  #238 = Utf8               annotationIntrospector
+  #239 = Utf8               (Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #240 = Utf8               intr
+  #241 = Utf8               Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+  #242 = Utf8               (Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)TB;
+  #243 = Utf8               defaultAttributes
+  #244 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #245 = Utf8               attrs
+  #246 = Utf8               Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;
+  #247 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;)TB;
+  #248 = Utf8               typeFactory
+  #249 = Utf8               (Lcom/fasterxml/jackson/databind/type/TypeFactory;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #250 = Utf8               Lcom/fasterxml/jackson/databind/type/TypeFactory;
+  #251 = Utf8               (Lcom/fasterxml/jackson/databind/type/TypeFactory;)TB;
+  #252 = Utf8               subtypeResolver
+  #253 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #254 = Utf8               r
+  #255 = Utf8               Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;
+  #256 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;)TB;
+  #257 = Utf8               visibility
+  #258 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #259 = Utf8               vc
+  #260 = Utf8               Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;
+  #261 = Utf8               Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;
+  #262 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;)TB;
+  #263 = Class              #526          // com/fasterxml/jackson/annotation/JsonAutoDetect$Visibility
+  #264 = Utf8               Visibility
+  #265 = Utf8               (Lcom/fasterxml/jackson/annotation/PropertyAccessor;Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #266 = Utf8               forMethod
+  #267 = Utf8               Lcom/fasterxml/jackson/annotation/PropertyAccessor;
+  #268 = Utf8               Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;
+  #269 = Utf8               (Lcom/fasterxml/jackson/annotation/PropertyAccessor;Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;)TB;
+  #270 = Utf8               handlerInstantiator
+  #271 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #272 = Utf8               hi
+  #273 = Utf8               Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;
+  #274 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;)TB;
+  #275 = Utf8               propertyNamingStrategy
+  #276 = Utf8               (Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #277 = Utf8               s
+  #278 = Utf8               Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;
+  #279 = Utf8               (Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;)TB;
+  #280 = Utf8               accessorNaming
+  #281 = Class              #528          // com/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider
+  #282 = Utf8               Provider
+  #283 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #284 = Utf8               Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;
+  #285 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;)TB;
+  #286 = Utf8               serializerFactory
+  #287 = Utf8               (Lcom/fasterxml/jackson/databind/ser/SerializerFactory;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #288 = Utf8               Lcom/fasterxml/jackson/databind/ser/SerializerFactory;
+  #289 = Utf8               (Lcom/fasterxml/jackson/databind/ser/SerializerFactory;)TB;
+  #290 = Utf8               filterProvider
+  #291 = Utf8               (Lcom/fasterxml/jackson/databind/ser/FilterProvider;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #292 = Utf8               prov
+  #293 = Utf8               Lcom/fasterxml/jackson/databind/ser/FilterProvider;
+  #294 = Utf8               (Lcom/fasterxml/jackson/databind/ser/FilterProvider;)TB;
+  #295 = Utf8               defaultPrettyPrinter
+  #296 = Utf8               (Lcom/fasterxml/jackson/core/PrettyPrinter;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #297 = Utf8               pp
+  #298 = Utf8               Lcom/fasterxml/jackson/core/PrettyPrinter;
+  #299 = Utf8               (Lcom/fasterxml/jackson/core/PrettyPrinter;)TB;
+  #300 = Utf8               injectableValues
+  #301 = Utf8               (Lcom/fasterxml/jackson/databind/InjectableValues;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #302 = Utf8               v
+  #303 = Utf8               Lcom/fasterxml/jackson/databind/InjectableValues;
+  #304 = Utf8               (Lcom/fasterxml/jackson/databind/InjectableValues;)TB;
+  #305 = Utf8               nodeFactory
+  #306 = Utf8               (Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #307 = Utf8               Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+  #308 = Utf8               (Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)TB;
+  #309 = Utf8               constructorDetector
+  #310 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #311 = Utf8               cd
+  #312 = Utf8               Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;
+  #313 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;)TB;
+  #314 = Utf8               addHandler
+  #315 = Utf8               (Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #316 = Utf8               h
+  #317 = Utf8               Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;
+  #318 = Utf8               (Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;)TB;
+  #319 = Utf8               clearProblemHandlers
+  #320 = Utf8               defaultSetterInfo
+  #321 = Class              #530          // com/fasterxml/jackson/annotation/JsonSetter$Value
+  #322 = Utf8               Value
+  #323 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonSetter$Value;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #324 = Utf8               Lcom/fasterxml/jackson/annotation/JsonSetter$Value;
+  #325 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonSetter$Value;)TB;
+  #326 = Utf8               defaultMergeable
+  #327 = Utf8               (Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #328 = Utf8               b
+  #329 = Utf8               Ljava/lang/Boolean;
+  #330 = Utf8               (Ljava/lang/Boolean;)TB;
+  #331 = Utf8               defaultLeniency
+  #332 = Utf8               defaultDateFormat
+  #333 = Utf8               (Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #334 = Utf8               df
+  #335 = Utf8               Ljava/text/DateFormat;
+  #336 = Utf8               (Ljava/text/DateFormat;)TB;
+  #337 = Utf8               defaultTimeZone
+  #338 = Utf8               (Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #339 = Utf8               tz
+  #340 = Utf8               Ljava/util/TimeZone;
+  #341 = Utf8               (Ljava/util/TimeZone;)TB;
+  #342 = Utf8               defaultLocale
+  #343 = Utf8               (Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #344 = Utf8               locale
+  #345 = Utf8               Ljava/util/Locale;
+  #346 = Utf8               (Ljava/util/Locale;)TB;
+  #347 = Utf8               defaultBase64Variant
+  #348 = Utf8               (Lcom/fasterxml/jackson/core/Base64Variant;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #349 = Utf8               Lcom/fasterxml/jackson/core/Base64Variant;
+  #350 = Utf8               (Lcom/fasterxml/jackson/core/Base64Variant;)TB;
+  #351 = Utf8               serializationInclusion
+  #352 = Class              #532          // com/fasterxml/jackson/annotation/JsonInclude$Include
+  #353 = Utf8               Include
+  #354 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #355 = Utf8               incl
+  #356 = Utf8               Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+  #357 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)TB;
+  #358 = Utf8               defaultPropertyInclusion
+  #359 = Class              #533          // com/fasterxml/jackson/annotation/JsonInclude$Value
+  #360 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonInclude$Value;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #361 = Utf8               Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+  #362 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonInclude$Value;)TB;
+  #363 = Utf8               addMixIn
+  #364 = Utf8               (Ljava/lang/Class;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #365 = Utf8               target
+  #366 = Utf8               mixinSource
+  #367 = Utf8               (Ljava/lang/Class<*>;Ljava/lang/Class<*>;)TB;
+  #368 = Utf8               removeMixIn
+  #369 = Utf8               (Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #370 = Utf8               (Ljava/lang/Class<*>;)TB;
+  #371 = Utf8               registerSubtypes
+  #372 = Utf8               ([Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #373 = Utf8               subtypes
+  #374 = Utf8               [Ljava/lang/Class;
+  #375 = Utf8               [Ljava/lang/Class<*>;
+  #376 = Utf8               ([Ljava/lang/Class<*>;)TB;
+  #377 = Utf8               ([Lcom/fasterxml/jackson/databind/jsontype/NamedType;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #378 = Utf8               [Lcom/fasterxml/jackson/databind/jsontype/NamedType;
+  #379 = Utf8               ([Lcom/fasterxml/jackson/databind/jsontype/NamedType;)TB;
+  #380 = Utf8               (Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #381 = Utf8               Ljava/util/Collection;
+  #382 = Utf8               Ljava/util/Collection<Ljava/lang/Class<*>;>;
+  #383 = Utf8               (Ljava/util/Collection<Ljava/lang/Class<*>;>;)TB;
+  #384 = Utf8               polymorphicTypeValidator
+  #385 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #386 = Utf8               ptv
+  #387 = Utf8               Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;
+  #388 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)TB;
+  #389 = Utf8               activateDefaultTyping
+  #390 = Utf8               subtypeValidator
+  #391 = Class              #534          // com/fasterxml/jackson/databind/ObjectMapper$DefaultTyping
+  #392 = Utf8               DefaultTyping
+  #393 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #394 = Utf8               dti
+  #395 = Utf8               Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;
+  #396 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;)TB;
+  #397 = Class              #536          // com/fasterxml/jackson/annotation/JsonTypeInfo$As
+  #398 = Utf8               As
+  #399 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #400 = Utf8               applicability
+  #401 = Utf8               includeAs
+  #402 = Utf8               Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;
+  #403 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;)TB;
+  #404 = Utf8               activateDefaultTypingAsProperty
+  #405 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #406 = Utf8               propertyName
+  #407 = Utf8               Ljava/lang/String;
+  #408 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Ljava/lang/String;)TB;
+  #409 = Utf8               deactivateDefaultTyping
+  #410 = Utf8               setDefaultTyping
+  #411 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #412 = Utf8               typer
+  #413 = Utf8               Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;
+  #414 = Utf8               Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;
+  #415 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;)TB;
+  #416 = Utf8               _this
+  #417 = Utf8               <M:Lcom/fasterxml/jackson/databind/ObjectMapper;B:Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;>Ljava/lang/Object;
+  #418 = Utf8               SourceFile
+  #419 = Utf8               MapperBuilder.java
+  #420 = NameAndType        #101:#537     // "<init>":()V
+  #421 = NameAndType        #97:#98       // _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #422 = Class              #538          // com/fasterxml/jackson/databind/ObjectMapper
+  #423 = NameAndType        #115:#116     // isEnabled:(Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+  #424 = NameAndType        #115:#119     // isEnabled:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+  #425 = NameAndType        #115:#121     // isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+  #426 = NameAndType        #115:#124     // isEnabled:(Lcom/fasterxml/jackson/core/JsonParser$Feature;)Z
+  #427 = NameAndType        #115:#126     // isEnabled:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+  #428 = NameAndType        #539:#540     // tokenStreamFactory:()Lcom/fasterxml/jackson/core/JsonFactory;
+  #429 = NameAndType        #130:#541     // enable:([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #430 = NameAndType        #416:#236     // _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #431 = NameAndType        #135:#541     // disable:([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #432 = NameAndType        #136:#542     // configure:(Lcom/fasterxml/jackson/databind/MapperFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #433 = NameAndType        #130:#543     // enable:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #434 = NameAndType        #135:#543     // disable:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #435 = NameAndType        #136:#544     // configure:(Lcom/fasterxml/jackson/databind/SerializationFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #436 = NameAndType        #130:#545     // enable:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #437 = NameAndType        #135:#545     // disable:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #438 = NameAndType        #136:#546     // configure:(Lcom/fasterxml/jackson/databind/DeserializationFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #439 = NameAndType        #130:#547     // enable:([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #440 = NameAndType        #135:#547     // disable:([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #441 = NameAndType        #136:#548     // configure:(Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #442 = NameAndType        #130:#549     // enable:([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #443 = NameAndType        #135:#549     // disable:([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #444 = NameAndType        #136:#550     // configure:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #445 = Class              #551          // com/fasterxml/jackson/core/JsonParser
+  #446 = Utf8               com/fasterxml/jackson/core/JsonParser$Feature
+  #447 = Class              #552          // com/fasterxml/jackson/core/StreamReadFeature
+  #448 = NameAndType        #553:#554     // mappedFeature:()Lcom/fasterxml/jackson/core/JsonParser$Feature;
+  #449 = Class              #555          // com/fasterxml/jackson/core/JsonGenerator
+  #450 = Utf8               com/fasterxml/jackson/core/JsonGenerator$Feature
+  #451 = Class              #556          // com/fasterxml/jackson/core/StreamWriteFeature
+  #452 = NameAndType        #553:#557     // mappedFeature:()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+  #453 = NameAndType        #558:#559     // configOverride:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MutableConfigOverride;
+  #454 = Class              #560          // java/util/function/Consumer
+  #455 = NameAndType        #561:#562     // accept:(Ljava/lang/Object;)V
+  #456 = NameAndType        #563:#564     // coercionConfigFor:(Lcom/fasterxml/jackson/databind/type/LogicalType;)Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+  #457 = NameAndType        #563:#565     // coercionConfigFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+  #458 = NameAndType        #566:#567     // coercionConfigDefaults:()Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+  #459 = NameAndType        #568:#569     // registerModule:(Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #460 = NameAndType        #197:#198     // addModule:(Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #461 = Class              #570          // java/lang/Iterable
+  #462 = NameAndType        #571:#572     // iterator:()Ljava/util/Iterator;
+  #463 = Class              #523          // java/util/Iterator
+  #464 = NameAndType        #573:#574     // hasNext:()Z
+  #465 = NameAndType        #575:#576     // next:()Ljava/lang/Object;
+  #466 = Utf8               com/fasterxml/jackson/databind/Module
+  #467 = NameAndType        #213:#216     // findModules:(Ljava/lang/ClassLoader;)Ljava/util/List;
+  #468 = Utf8               java/util/ArrayList
+  #469 = NameAndType        #227:#228     // secureGetServiceLoader:(Ljava/lang/Class;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader;
+  #470 = NameAndType        #577:#578     // add:(Ljava/lang/Object;)Z
+  #471 = Class              #579          // java/lang/System
+  #472 = NameAndType        #580:#581     // getSecurityManager:()Ljava/lang/SecurityManager;
+  #473 = NameAndType        #582:#583     // load:(Ljava/lang/Class;)Ljava/util/ServiceLoader;
+  #474 = NameAndType        #582:#228     // load:(Ljava/lang/Class;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader;
+  #475 = Utf8               com/fasterxml/jackson/databind/cfg/MapperBuilder$1
+  #476 = NameAndType        #101:#584     // "<init>":(Ljava/lang/ClassLoader;Ljava/lang/Class;)V
+  #477 = Class              #585          // java/security/AccessController
+  #478 = NameAndType        #586:#587     // doPrivileged:(Ljava/security/PrivilegedAction;)Ljava/lang/Object;
+  #479 = Utf8               java/util/ServiceLoader
+  #480 = NameAndType        #213:#214     // findModules:()Ljava/util/List;
+  #481 = NameAndType        #202:#208     // addModules:(Ljava/lang/Iterable;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+  #482 = NameAndType        #588:#589     // setAnnotationIntrospector:(Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #483 = NameAndType        #590:#591     // setDefaultAttributes:(Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #484 = NameAndType        #592:#593     // setTypeFactory:(Lcom/fasterxml/jackson/databind/type/TypeFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #485 = NameAndType        #594:#595     // setSubtypeResolver:(Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #486 = NameAndType        #596:#597     // setVisibility:(Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #487 = NameAndType        #596:#598     // setVisibility:(Lcom/fasterxml/jackson/annotation/PropertyAccessor;Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #488 = NameAndType        #599:#600     // setHandlerInstantiator:(Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;)Ljava/lang/Object;
+  #489 = NameAndType        #601:#602     // setPropertyNamingStrategy:(Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #490 = Class              #603          // com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy
+  #491 = Utf8               com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy$Provider
+  #492 = NameAndType        #604:#605     // setAccessorNaming:(Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #493 = NameAndType        #606:#607     // setSerializerFactory:(Lcom/fasterxml/jackson/databind/ser/SerializerFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #494 = NameAndType        #608:#609     // setFilterProvider:(Lcom/fasterxml/jackson/databind/ser/FilterProvider;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #495 = NameAndType        #610:#611     // setDefaultPrettyPrinter:(Lcom/fasterxml/jackson/core/PrettyPrinter;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #496 = NameAndType        #612:#613     // setInjectableValues:(Lcom/fasterxml/jackson/databind/InjectableValues;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #497 = NameAndType        #614:#615     // setNodeFactory:(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #498 = NameAndType        #616:#617     // setConstructorDetector:(Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #499 = NameAndType        #314:#618     // addHandler:(Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #500 = NameAndType        #319:#113     // clearProblemHandlers:()Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #501 = NameAndType        #619:#620     // setDefaultSetterInfo:(Lcom/fasterxml/jackson/annotation/JsonSetter$Value;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #502 = NameAndType        #621:#622     // setDefaultMergeable:(Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #503 = NameAndType        #623:#622     // setDefaultLeniency:(Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #504 = NameAndType        #624:#625     // setDateFormat:(Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #505 = NameAndType        #626:#627     // setTimeZone:(Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #506 = NameAndType        #628:#629     // setLocale:(Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #507 = NameAndType        #630:#631     // setBase64Variant:(Lcom/fasterxml/jackson/core/Base64Variant;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #508 = NameAndType        #632:#633     // setSerializationInclusion:(Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #509 = NameAndType        #634:#635     // setDefaultPropertyInclusion:(Lcom/fasterxml/jackson/annotation/JsonInclude$Value;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #510 = NameAndType        #363:#636     // addMixIn:(Ljava/lang/Class;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #511 = NameAndType        #371:#637     // registerSubtypes:([Ljava/lang/Class;)V
+  #512 = NameAndType        #371:#638     // registerSubtypes:([Lcom/fasterxml/jackson/databind/jsontype/NamedType;)V
+  #513 = NameAndType        #371:#639     // registerSubtypes:(Ljava/util/Collection;)V
+  #514 = NameAndType        #640:#641     // setPolymorphicTypeValidator:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #515 = NameAndType        #389:#641     // activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #516 = NameAndType        #389:#642     // activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #517 = NameAndType        #389:#643     // activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #518 = NameAndType        #404:#644     // activateDefaultTypingAsProperty:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #519 = NameAndType        #409:#113     // deactivateDefaultTyping:()Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #520 = NameAndType        #410:#645     // setDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #521 = Utf8               com/fasterxml/jackson/databind/cfg/MapperBuilder
+  #522 = Utf8               java/lang/Object
+  #523 = Utf8               java/util/Iterator
+  #524 = Utf8               java/lang/SecurityManager
+  #525 = Class              #646          // com/fasterxml/jackson/annotation/JsonAutoDetect
+  #526 = Utf8               com/fasterxml/jackson/annotation/JsonAutoDetect$Visibility
+  #527 = Class              #647          // com/fasterxml/jackson/databind/introspect/AccessorNamingStrategy
+  #528 = Utf8               com/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider
+  #529 = Class              #648          // com/fasterxml/jackson/annotation/JsonSetter
+  #530 = Utf8               com/fasterxml/jackson/annotation/JsonSetter$Value
+  #531 = Class              #649          // com/fasterxml/jackson/annotation/JsonInclude
+  #532 = Utf8               com/fasterxml/jackson/annotation/JsonInclude$Include
+  #533 = Utf8               com/fasterxml/jackson/annotation/JsonInclude$Value
+  #534 = Utf8               com/fasterxml/jackson/databind/ObjectMapper$DefaultTyping
+  #535 = Class              #650          // com/fasterxml/jackson/annotation/JsonTypeInfo
+  #536 = Utf8               com/fasterxml/jackson/annotation/JsonTypeInfo$As
+  #537 = Utf8               ()V
+  #538 = Utf8               com/fasterxml/jackson/databind/ObjectMapper
+  #539 = Utf8               tokenStreamFactory
+  #540 = Utf8               ()Lcom/fasterxml/jackson/core/JsonFactory;
+  #541 = Utf8               ([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #542 = Utf8               (Lcom/fasterxml/jackson/databind/MapperFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #543 = Utf8               (Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #544 = Utf8               (Lcom/fasterxml/jackson/databind/SerializationFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #545 = Utf8               (Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #546 = Utf8               (Lcom/fasterxml/jackson/databind/DeserializationFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #547 = Utf8               ([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #548 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #549 = Utf8               ([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #550 = Utf8               (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #551 = Utf8               com/fasterxml/jackson/core/JsonParser
+  #552 = Utf8               com/fasterxml/jackson/core/StreamReadFeature
+  #553 = Utf8               mappedFeature
+  #554 = Utf8               ()Lcom/fasterxml/jackson/core/JsonParser$Feature;
+  #555 = Utf8               com/fasterxml/jackson/core/JsonGenerator
+  #556 = Utf8               com/fasterxml/jackson/core/StreamWriteFeature
+  #557 = Utf8               ()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+  #558 = Utf8               configOverride
+  #559 = Utf8               (Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MutableConfigOverride;
+  #560 = Utf8               java/util/function/Consumer
+  #561 = Utf8               accept
+  #562 = Utf8               (Ljava/lang/Object;)V
+  #563 = Utf8               coercionConfigFor
+  #564 = Utf8               (Lcom/fasterxml/jackson/databind/type/LogicalType;)Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+  #565 = Utf8               (Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+  #566 = Utf8               coercionConfigDefaults
+  #567 = Utf8               ()Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+  #568 = Utf8               registerModule
+  #569 = Utf8               (Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #570 = Utf8               java/lang/Iterable
+  #571 = Utf8               iterator
+  #572 = Utf8               ()Ljava/util/Iterator;
+  #573 = Utf8               hasNext
+  #574 = Utf8               ()Z
+  #575 = Utf8               next
+  #576 = Utf8               ()Ljava/lang/Object;
+  #577 = Utf8               add
+  #578 = Utf8               (Ljava/lang/Object;)Z
+  #579 = Utf8               java/lang/System
+  #580 = Utf8               getSecurityManager
+  #581 = Utf8               ()Ljava/lang/SecurityManager;
+  #582 = Utf8               load
+  #583 = Utf8               (Ljava/lang/Class;)Ljava/util/ServiceLoader;
+  #584 = Utf8               (Ljava/lang/ClassLoader;Ljava/lang/Class;)V
+  #585 = Utf8               java/security/AccessController
+  #586 = Utf8               doPrivileged
+  #587 = Utf8               (Ljava/security/PrivilegedAction;)Ljava/lang/Object;
+  #588 = Utf8               setAnnotationIntrospector
+  #589 = Utf8               (Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #590 = Utf8               setDefaultAttributes
+  #591 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #592 = Utf8               setTypeFactory
+  #593 = Utf8               (Lcom/fasterxml/jackson/databind/type/TypeFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #594 = Utf8               setSubtypeResolver
+  #595 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #596 = Utf8               setVisibility
+  #597 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #598 = Utf8               (Lcom/fasterxml/jackson/annotation/PropertyAccessor;Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #599 = Utf8               setHandlerInstantiator
+  #600 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;)Ljava/lang/Object;
+  #601 = Utf8               setPropertyNamingStrategy
+  #602 = Utf8               (Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #603 = Utf8               com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy
+  #604 = Utf8               setAccessorNaming
+  #605 = Utf8               (Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #606 = Utf8               setSerializerFactory
+  #607 = Utf8               (Lcom/fasterxml/jackson/databind/ser/SerializerFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #608 = Utf8               setFilterProvider
+  #609 = Utf8               (Lcom/fasterxml/jackson/databind/ser/FilterProvider;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #610 = Utf8               setDefaultPrettyPrinter
+  #611 = Utf8               (Lcom/fasterxml/jackson/core/PrettyPrinter;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #612 = Utf8               setInjectableValues
+  #613 = Utf8               (Lcom/fasterxml/jackson/databind/InjectableValues;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #614 = Utf8               setNodeFactory
+  #615 = Utf8               (Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #616 = Utf8               setConstructorDetector
+  #617 = Utf8               (Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #618 = Utf8               (Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #619 = Utf8               setDefaultSetterInfo
+  #620 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonSetter$Value;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #621 = Utf8               setDefaultMergeable
+  #622 = Utf8               (Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #623 = Utf8               setDefaultLeniency
+  #624 = Utf8               setDateFormat
+  #625 = Utf8               (Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #626 = Utf8               setTimeZone
+  #627 = Utf8               (Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #628 = Utf8               setLocale
+  #629 = Utf8               (Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #630 = Utf8               setBase64Variant
+  #631 = Utf8               (Lcom/fasterxml/jackson/core/Base64Variant;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #632 = Utf8               setSerializationInclusion
+  #633 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #634 = Utf8               setDefaultPropertyInclusion
+  #635 = Utf8               (Lcom/fasterxml/jackson/annotation/JsonInclude$Value;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #636 = Utf8               (Ljava/lang/Class;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #637 = Utf8               ([Ljava/lang/Class;)V
+  #638 = Utf8               ([Lcom/fasterxml/jackson/databind/jsontype/NamedType;)V
+  #639 = Utf8               (Ljava/util/Collection;)V
+  #640 = Utf8               setPolymorphicTypeValidator
+  #641 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #642 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #643 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #644 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #645 = Utf8               (Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+  #646 = Utf8               com/fasterxml/jackson/annotation/JsonAutoDetect
+  #647 = Utf8               com/fasterxml/jackson/databind/introspect/AccessorNamingStrategy
+  #648 = Utf8               com/fasterxml/jackson/annotation/JsonSetter
+  #649 = Utf8               com/fasterxml/jackson/annotation/JsonInclude
+  #650 = Utf8               com/fasterxml/jackson/annotation/JsonTypeInfo
+{
+  protected final M _mapper;
+    descriptor: Lcom/fasterxml/jackson/databind/ObjectMapper;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Signature: #100                         // TM;
+
+  protected com.fasterxml.jackson.databind.cfg.MapperBuilder(M);
+    descriptor: (Lcom/fasterxml/jackson/databind/ObjectMapper;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: return
+      LineNumberTable:
+        line 50: 0
+        line 51: 4
+        line 52: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      10     1 mapper   Lcom/fasterxml/jackson/databind/ObjectMapper;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      10     1 mapper   TM;
+    Signature: #111                         // (TM;)V
+
+  public M build();
+    descriptor: ()Lcom/fasterxml/jackson/databind/ObjectMapper;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: areturn
+      LineNumberTable:
+        line 62: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #114                         // ()TM;
+
+  public boolean isEnabled(com.fasterxml.jackson.databind.MapperFeature);
+    descriptor: (Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #3                  // Method com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/databind/MapperFeature;)Z
+         8: ireturn
+      LineNumberTable:
+        line 72: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0       9     1     f   Lcom/fasterxml/jackson/databind/MapperFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+
+  public boolean isEnabled(com.fasterxml.jackson.databind.DeserializationFeature);
+    descriptor: (Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #4                  // Method com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Z
+         8: ireturn
+      LineNumberTable:
+        line 75: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0       9     1     f   Lcom/fasterxml/jackson/databind/DeserializationFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+
+  public boolean isEnabled(com.fasterxml.jackson.databind.SerializationFeature);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #5                  // Method com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+         8: ireturn
+      LineNumberTable:
+        line 78: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0       9     1     f   Lcom/fasterxml/jackson/databind/SerializationFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+
+  public boolean isEnabled(com.fasterxml.jackson.core.JsonParser$Feature);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonParser$Feature;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #6                  // Method com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/core/JsonParser$Feature;)Z
+         8: ireturn
+      LineNumberTable:
+        line 82: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0       9     1     f   Lcom/fasterxml/jackson/core/JsonParser$Feature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+
+  public boolean isEnabled(com.fasterxml.jackson.core.JsonGenerator$Feature);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #7                  // Method com/fasterxml/jackson/databind/ObjectMapper.isEnabled:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Z
+         8: ireturn
+      LineNumberTable:
+        line 85: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0       9     1     f   Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+
+  public com.fasterxml.jackson.core.TokenStreamFactory streamFactory();
+    descriptor: ()Lcom/fasterxml/jackson/core/TokenStreamFactory;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: invokevirtual #8                  // Method com/fasterxml/jackson/databind/ObjectMapper.tokenStreamFactory:()Lcom/fasterxml/jackson/core/JsonFactory;
+         7: areturn
+      LineNumberTable:
+        line 95: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+
+  public B enable(com.fasterxml.jackson.databind.MapperFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #9                  // Method com/fasterxml/jackson/databind/ObjectMapper.enable:([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 106: 0
+        line 107: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 features   [Lcom/fasterxml/jackson/databind/MapperFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #134                         // ([Lcom/fasterxml/jackson/databind/MapperFeature;)TB;
+
+  public B disable(com.fasterxml.jackson.databind.MapperFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #11                 // Method com/fasterxml/jackson/databind/ObjectMapper.disable:([Lcom/fasterxml/jackson/databind/MapperFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 112: 0
+        line 113: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 features   [Lcom/fasterxml/jackson/databind/MapperFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #134                         // ([Lcom/fasterxml/jackson/databind/MapperFeature;)TB;
+
+  public B configure(com.fasterxml.jackson.databind.MapperFeature, boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/MapperFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: iload_2
+         6: invokevirtual #12                 // Method com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/databind/MapperFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 118: 0
+        line 119: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 feature   Lcom/fasterxml/jackson/databind/MapperFeature;
+            0      15     2 state   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #141                         // (Lcom/fasterxml/jackson/databind/MapperFeature;Z)TB;
+
+  public B enable(com.fasterxml.jackson.databind.SerializationFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     36
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        24: aload         5
+        26: invokevirtual #13                 // Method com/fasterxml/jackson/databind/ObjectMapper.enable:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        29: pop
+        30: iinc          4, 1
+        33: goto          8
+        36: aload_0
+        37: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        40: areturn
+      LineNumberTable:
+        line 123: 0
+        line 124: 20
+        line 123: 30
+        line 126: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      10     5     f   Lcom/fasterxml/jackson/databind/SerializationFeature;
+            0      41     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      41     1 features   [Lcom/fasterxml/jackson/databind/SerializationFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/databind/SerializationFeature;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 27
+    Signature: #146                         // ([Lcom/fasterxml/jackson/databind/SerializationFeature;)TB;
+
+  public B disable(com.fasterxml.jackson.databind.SerializationFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     36
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        24: aload         5
+        26: invokevirtual #14                 // Method com/fasterxml/jackson/databind/ObjectMapper.disable:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        29: pop
+        30: iinc          4, 1
+        33: goto          8
+        36: aload_0
+        37: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        40: areturn
+      LineNumberTable:
+        line 130: 0
+        line 131: 20
+        line 130: 30
+        line 133: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      10     5     f   Lcom/fasterxml/jackson/databind/SerializationFeature;
+            0      41     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      41     1 features   [Lcom/fasterxml/jackson/databind/SerializationFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/databind/SerializationFeature;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 27
+    Signature: #146                         // ([Lcom/fasterxml/jackson/databind/SerializationFeature;)TB;
+
+  public B configure(com.fasterxml.jackson.databind.SerializationFeature, boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializationFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: iload_2
+         6: invokevirtual #15                 // Method com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/databind/SerializationFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 137: 0
+        line 138: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 feature   Lcom/fasterxml/jackson/databind/SerializationFeature;
+            0      15     2 state   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #148                         // (Lcom/fasterxml/jackson/databind/SerializationFeature;Z)TB;
+
+  public B enable(com.fasterxml.jackson.databind.DeserializationFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     36
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        24: aload         5
+        26: invokevirtual #16                 // Method com/fasterxml/jackson/databind/ObjectMapper.enable:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        29: pop
+        30: iinc          4, 1
+        33: goto          8
+        36: aload_0
+        37: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        40: areturn
+      LineNumberTable:
+        line 142: 0
+        line 143: 20
+        line 142: 30
+        line 145: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      10     5     f   Lcom/fasterxml/jackson/databind/DeserializationFeature;
+            0      41     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      41     1 features   [Lcom/fasterxml/jackson/databind/DeserializationFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/databind/DeserializationFeature;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 27
+    Signature: #152                         // ([Lcom/fasterxml/jackson/databind/DeserializationFeature;)TB;
+
+  public B disable(com.fasterxml.jackson.databind.DeserializationFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     36
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        24: aload         5
+        26: invokevirtual #17                 // Method com/fasterxml/jackson/databind/ObjectMapper.disable:(Lcom/fasterxml/jackson/databind/DeserializationFeature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        29: pop
+        30: iinc          4, 1
+        33: goto          8
+        36: aload_0
+        37: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        40: areturn
+      LineNumberTable:
+        line 149: 0
+        line 150: 20
+        line 149: 30
+        line 152: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      10     5     f   Lcom/fasterxml/jackson/databind/DeserializationFeature;
+            0      41     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      41     1 features   [Lcom/fasterxml/jackson/databind/DeserializationFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/databind/DeserializationFeature;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 27
+    Signature: #152                         // ([Lcom/fasterxml/jackson/databind/DeserializationFeature;)TB;
+
+  public B configure(com.fasterxml.jackson.databind.DeserializationFeature, boolean);
+    descriptor: (Lcom/fasterxml/jackson/databind/DeserializationFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: iload_2
+         6: invokevirtual #18                 // Method com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/databind/DeserializationFeature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 156: 0
+        line 157: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 feature   Lcom/fasterxml/jackson/databind/DeserializationFeature;
+            0      15     2 state   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #154                         // (Lcom/fasterxml/jackson/databind/DeserializationFeature;Z)TB;
+
+  public B enable(com.fasterxml.jackson.core.JsonParser$Feature...);
+    descriptor: ([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #19                 // Method com/fasterxml/jackson/databind/ObjectMapper.enable:([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 167: 0
+        line 168: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 features   [Lcom/fasterxml/jackson/core/JsonParser$Feature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #157                         // ([Lcom/fasterxml/jackson/core/JsonParser$Feature;)TB;
+
+  public B disable(com.fasterxml.jackson.core.JsonParser$Feature...);
+    descriptor: ([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #20                 // Method com/fasterxml/jackson/databind/ObjectMapper.disable:([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 172: 0
+        line 173: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 features   [Lcom/fasterxml/jackson/core/JsonParser$Feature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #157                         // ([Lcom/fasterxml/jackson/core/JsonParser$Feature;)TB;
+
+  public B configure(com.fasterxml.jackson.core.JsonParser$Feature, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: iload_2
+         6: invokevirtual #21                 // Method com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 177: 0
+        line 178: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 feature   Lcom/fasterxml/jackson/core/JsonParser$Feature;
+            0      15     2 state   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #159                         // (Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)TB;
+
+  public B enable(com.fasterxml.jackson.core.JsonGenerator$Feature...);
+    descriptor: ([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #22                 // Method com/fasterxml/jackson/databind/ObjectMapper.enable:([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 182: 0
+        line 183: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 features   [Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #162                         // ([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)TB;
+
+  public B disable(com.fasterxml.jackson.core.JsonGenerator$Feature...);
+    descriptor: ([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #23                 // Method com/fasterxml/jackson/databind/ObjectMapper.disable:([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 187: 0
+        line 188: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 features   [Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #162                         // ([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)TB;
+
+  public B configure(com.fasterxml.jackson.core.JsonGenerator$Feature, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: iload_2
+         6: invokevirtual #24                 // Method com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 192: 0
+        line 193: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 feature   Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+            0      15     2 state   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #164                         // (Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)TB;
+
+  public B enable(com.fasterxml.jackson.core.StreamReadFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/core/StreamReadFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=5, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     46
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        24: iconst_1
+        25: anewarray     #25                 // class com/fasterxml/jackson/core/JsonParser$Feature
+        28: dup
+        29: iconst_0
+        30: aload         5
+        32: invokevirtual #26                 // Method com/fasterxml/jackson/core/StreamReadFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonParser$Feature;
+        35: aastore
+        36: invokevirtual #19                 // Method com/fasterxml/jackson/databind/ObjectMapper.enable:([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        39: pop
+        40: iinc          4, 1
+        43: goto          8
+        46: aload_0
+        47: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        50: areturn
+      LineNumberTable:
+        line 203: 0
+        line 204: 20
+        line 203: 40
+        line 206: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      20     5     f   Lcom/fasterxml/jackson/core/StreamReadFeature;
+            0      51     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      51     1 features   [Lcom/fasterxml/jackson/core/StreamReadFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      51     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/core/StreamReadFeature;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 37
+    Signature: #169                         // ([Lcom/fasterxml/jackson/core/StreamReadFeature;)TB;
+
+  public B disable(com.fasterxml.jackson.core.StreamReadFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/core/StreamReadFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=5, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     46
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        24: iconst_1
+        25: anewarray     #25                 // class com/fasterxml/jackson/core/JsonParser$Feature
+        28: dup
+        29: iconst_0
+        30: aload         5
+        32: invokevirtual #26                 // Method com/fasterxml/jackson/core/StreamReadFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonParser$Feature;
+        35: aastore
+        36: invokevirtual #20                 // Method com/fasterxml/jackson/databind/ObjectMapper.disable:([Lcom/fasterxml/jackson/core/JsonParser$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        39: pop
+        40: iinc          4, 1
+        43: goto          8
+        46: aload_0
+        47: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        50: areturn
+      LineNumberTable:
+        line 210: 0
+        line 211: 20
+        line 210: 40
+        line 213: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      20     5     f   Lcom/fasterxml/jackson/core/StreamReadFeature;
+            0      51     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      51     1 features   [Lcom/fasterxml/jackson/core/StreamReadFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      51     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/core/StreamReadFeature;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 37
+    Signature: #169                         // ([Lcom/fasterxml/jackson/core/StreamReadFeature;)TB;
+
+  public B configure(com.fasterxml.jackson.core.StreamReadFeature, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/StreamReadFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #26                 // Method com/fasterxml/jackson/core/StreamReadFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonParser$Feature;
+         8: iload_2
+         9: invokevirtual #21                 // Method com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/core/JsonParser$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        12: pop
+        13: aload_0
+        14: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        17: areturn
+      LineNumberTable:
+        line 217: 0
+        line 218: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      18     1 feature   Lcom/fasterxml/jackson/core/StreamReadFeature;
+            0      18     2 state   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #171                         // (Lcom/fasterxml/jackson/core/StreamReadFeature;Z)TB;
+
+  public B enable(com.fasterxml.jackson.core.StreamWriteFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/core/StreamWriteFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=5, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     46
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        24: iconst_1
+        25: anewarray     #27                 // class com/fasterxml/jackson/core/JsonGenerator$Feature
+        28: dup
+        29: iconst_0
+        30: aload         5
+        32: invokevirtual #28                 // Method com/fasterxml/jackson/core/StreamWriteFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+        35: aastore
+        36: invokevirtual #22                 // Method com/fasterxml/jackson/databind/ObjectMapper.enable:([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        39: pop
+        40: iinc          4, 1
+        43: goto          8
+        46: aload_0
+        47: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        50: areturn
+      LineNumberTable:
+        line 222: 0
+        line 223: 20
+        line 222: 40
+        line 225: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      20     5     f   Lcom/fasterxml/jackson/core/StreamWriteFeature;
+            0      51     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      51     1 features   [Lcom/fasterxml/jackson/core/StreamWriteFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      51     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/core/StreamWriteFeature;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 37
+    Signature: #176                         // ([Lcom/fasterxml/jackson/core/StreamWriteFeature;)TB;
+
+  public B disable(com.fasterxml.jackson.core.StreamWriteFeature...);
+    descriptor: ([Lcom/fasterxml/jackson/core/StreamWriteFeature;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=5, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     46
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        24: iconst_1
+        25: anewarray     #27                 // class com/fasterxml/jackson/core/JsonGenerator$Feature
+        28: dup
+        29: iconst_0
+        30: aload         5
+        32: invokevirtual #28                 // Method com/fasterxml/jackson/core/StreamWriteFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+        35: aastore
+        36: invokevirtual #23                 // Method com/fasterxml/jackson/databind/ObjectMapper.disable:([Lcom/fasterxml/jackson/core/JsonGenerator$Feature;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        39: pop
+        40: iinc          4, 1
+        43: goto          8
+        46: aload_0
+        47: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        50: areturn
+      LineNumberTable:
+        line 229: 0
+        line 230: 20
+        line 229: 40
+        line 232: 46
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      20     5     f   Lcom/fasterxml/jackson/core/StreamWriteFeature;
+            0      51     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      51     1 features   [Lcom/fasterxml/jackson/core/StreamWriteFeature;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      51     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/core/StreamWriteFeature;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 37
+    Signature: #176                         // ([Lcom/fasterxml/jackson/core/StreamWriteFeature;)TB;
+
+  public B configure(com.fasterxml.jackson.core.StreamWriteFeature, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/StreamWriteFeature;Z)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #28                 // Method com/fasterxml/jackson/core/StreamWriteFeature.mappedFeature:()Lcom/fasterxml/jackson/core/JsonGenerator$Feature;
+         8: iload_2
+         9: invokevirtual #24                 // Method com/fasterxml/jackson/databind/ObjectMapper.configure:(Lcom/fasterxml/jackson/core/JsonGenerator$Feature;Z)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        12: pop
+        13: aload_0
+        14: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        17: areturn
+      LineNumberTable:
+        line 236: 0
+        line 237: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      18     1 feature   Lcom/fasterxml/jackson/core/StreamWriteFeature;
+            0      18     2 state   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #178                         // (Lcom/fasterxml/jackson/core/StreamWriteFeature;Z)TB;
+
+  public B withConfigOverride(java.lang.Class<?>, java.util.function.Consumer<com.fasterxml.jackson.databind.cfg.MutableConfigOverride>);
+    descriptor: (Ljava/lang/Class;Ljava/util/function/Consumer;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_2
+         1: aload_0
+         2: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         5: aload_1
+         6: invokevirtual #29                 // Method com/fasterxml/jackson/databind/ObjectMapper.configOverride:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MutableConfigOverride;
+         9: invokeinterface #30,  2           // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+        14: aload_0
+        15: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        18: areturn
+      LineNumberTable:
+        line 258: 0
+        line 259: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      19     1 forType   Ljava/lang/Class;
+            0      19     2 handler   Ljava/util/function/Consumer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      19     1 forType   Ljava/lang/Class<*>;
+            0      19     2 handler   Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableConfigOverride;>;
+    Signature: #187                         // (Ljava/lang/Class<*>;Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableConfigOverride;>;)TB;
+
+  public B withCoercionConfig(com.fasterxml.jackson.databind.type.LogicalType, java.util.function.Consumer<com.fasterxml.jackson.databind.cfg.MutableCoercionConfig>);
+    descriptor: (Lcom/fasterxml/jackson/databind/type/LogicalType;Ljava/util/function/Consumer;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_2
+         1: aload_0
+         2: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         5: aload_1
+         6: invokevirtual #31                 // Method com/fasterxml/jackson/databind/ObjectMapper.coercionConfigFor:(Lcom/fasterxml/jackson/databind/type/LogicalType;)Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+         9: invokeinterface #30,  2           // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+        14: aload_0
+        15: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        18: areturn
+      LineNumberTable:
+        line 286: 0
+        line 287: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      19     1 forType   Lcom/fasterxml/jackson/databind/type/LogicalType;
+            0      19     2 handler   Ljava/util/function/Consumer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      19     2 handler   Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;
+    Signature: #192                         // (Lcom/fasterxml/jackson/databind/type/LogicalType;Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;)TB;
+
+  public B withCoercionConfig(java.lang.Class<?>, java.util.function.Consumer<com.fasterxml.jackson.databind.cfg.MutableCoercionConfig>);
+    descriptor: (Ljava/lang/Class;Ljava/util/function/Consumer;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_2
+         1: aload_0
+         2: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         5: aload_1
+         6: invokevirtual #32                 // Method com/fasterxml/jackson/databind/ObjectMapper.coercionConfigFor:(Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+         9: invokeinterface #30,  2           // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+        14: aload_0
+        15: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        18: areturn
+      LineNumberTable:
+        line 298: 0
+        line 299: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      19     1 forType   Ljava/lang/Class;
+            0      19     2 handler   Ljava/util/function/Consumer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      19     1 forType   Ljava/lang/Class<*>;
+            0      19     2 handler   Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;
+    Signature: #193                         // (Ljava/lang/Class<*>;Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;)TB;
+
+  public B withCoercionConfigDefaults(java.util.function.Consumer<com.fasterxml.jackson.databind.cfg.MutableCoercionConfig>);
+    descriptor: (Ljava/util/function/Consumer;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: aload_0
+         2: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         5: invokevirtual #33                 // Method com/fasterxml/jackson/databind/ObjectMapper.coercionConfigDefaults:()Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;
+         8: invokeinterface #30,  2           // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+        13: aload_0
+        14: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        17: areturn
+      LineNumberTable:
+        line 308: 0
+        line 309: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      18     1 handler   Ljava/util/function/Consumer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      18     1 handler   Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;
+    Signature: #196                         // (Ljava/util/function/Consumer<Lcom/fasterxml/jackson/databind/cfg/MutableCoercionConfig;>;)TB;
+
+  public B addModule(com.fasterxml.jackson.databind.Module);
+    descriptor: (Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #34                 // Method com/fasterxml/jackson/databind/ObjectMapper.registerModule:(Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 327: 0
+        line 328: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 module   Lcom/fasterxml/jackson/databind/Module;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #201                         // (Lcom/fasterxml/jackson/databind/Module;)TB;
+
+  public B addModules(com.fasterxml.jackson.databind.Module...);
+    descriptor: ([Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     33
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: aload         5
+        23: invokevirtual #35                 // Method addModule:(Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        26: pop
+        27: iinc          4, 1
+        30: goto          8
+        33: aload_0
+        34: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        37: areturn
+      LineNumberTable:
+        line 333: 0
+        line 334: 20
+        line 333: 27
+        line 336: 33
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20       7     5 module   Lcom/fasterxml/jackson/databind/Module;
+            0      38     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      38     1 modules   [Lcom/fasterxml/jackson/databind/Module;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      38     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lcom/fasterxml/jackson/databind/Module;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 24
+    Signature: #207                         // ([Lcom/fasterxml/jackson/databind/Module;)TB;
+
+  public B addModules(java.lang.Iterable<? extends com.fasterxml.jackson.databind.Module>);
+    descriptor: (Ljava/lang/Iterable;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=4, args_size=2
+         0: aload_1
+         1: invokeinterface #36,  1           // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+         6: astore_2
+         7: aload_2
+         8: invokeinterface #37,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        13: ifeq          35
+        16: aload_2
+        17: invokeinterface #38,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        22: checkcast     #39                 // class com/fasterxml/jackson/databind/Module
+        25: astore_3
+        26: aload_0
+        27: aload_3
+        28: invokevirtual #35                 // Method addModule:(Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        31: pop
+        32: goto          7
+        35: aload_0
+        36: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        39: areturn
+      LineNumberTable:
+        line 341: 0
+        line 342: 26
+        line 343: 32
+        line 344: 35
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26       6     3 module   Lcom/fasterxml/jackson/databind/Module;
+            0      40     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      40     1 modules   Ljava/lang/Iterable;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      40     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      40     1 modules   Ljava/lang/Iterable<+Lcom/fasterxml/jackson/databind/Module;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 7
+          locals = [ class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 27
+    Signature: #212                         // (Ljava/lang/Iterable<+Lcom/fasterxml/jackson/databind/Module;>;)TB;
+
+  public static java.util.List<com.fasterxml.jackson.databind.Module> findModules();
+    descriptor: ()Ljava/util/List;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: aconst_null
+         1: invokestatic  #40                 // Method findModules:(Ljava/lang/ClassLoader;)Ljava/util/List;
+         4: areturn
+      LineNumberTable:
+        line 355: 0
+    Signature: #215                         // ()Ljava/util/List<Lcom/fasterxml/jackson/databind/Module;>;
+
+  public static java.util.List<com.fasterxml.jackson.databind.Module> findModules(java.lang.ClassLoader);
+    descriptor: (Ljava/lang/ClassLoader;)Ljava/util/List;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=5, args_size=1
+         0: new           #41                 // class java/util/ArrayList
+         3: dup
+         4: invokespecial #42                 // Method java/util/ArrayList."<init>":()V
+         7: astore_1
+         8: ldc           #39                 // class com/fasterxml/jackson/databind/Module
+        10: aload_0
+        11: invokestatic  #43                 // Method secureGetServiceLoader:(Ljava/lang/Class;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader;
+        14: astore_2
+        15: aload_2
+        16: invokevirtual #44                 // Method java/util/ServiceLoader.iterator:()Ljava/util/Iterator;
+        19: astore_3
+        20: aload_3
+        21: invokeinterface #37,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        26: ifeq          50
+        29: aload_3
+        30: invokeinterface #38,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        35: checkcast     #39                 // class com/fasterxml/jackson/databind/Module
+        38: astore        4
+        40: aload_1
+        41: aload         4
+        43: invokevirtual #45                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        46: pop
+        47: goto          20
+        50: aload_1
+        51: areturn
+      LineNumberTable:
+        line 367: 0
+        line 368: 8
+        line 369: 15
+        line 370: 40
+        line 371: 47
+        line 372: 50
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           40       7     4 module   Lcom/fasterxml/jackson/databind/Module;
+            0      52     0 classLoader   Ljava/lang/ClassLoader;
+            8      44     1 modules   Ljava/util/ArrayList;
+           15      37     2 loader   Ljava/util/ServiceLoader;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            8      44     1 modules   Ljava/util/ArrayList<Lcom/fasterxml/jackson/databind/Module;>;
+           15      37     2 loader   Ljava/util/ServiceLoader<Lcom/fasterxml/jackson/databind/Module;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 20
+          locals = [ class java/util/ArrayList, class java/util/ServiceLoader, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 29
+    Signature: #226                         // (Ljava/lang/ClassLoader;)Ljava/util/List<Lcom/fasterxml/jackson/databind/Module;>;
+
+  private static <T extends java.lang.Object> java.util.ServiceLoader<T> secureGetServiceLoader(java.lang.Class<T>, java.lang.ClassLoader);
+    descriptor: (Ljava/lang/Class;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=4, locals=3, args_size=2
+         0: invokestatic  #46                 // Method java/lang/System.getSecurityManager:()Ljava/lang/SecurityManager;
+         3: astore_2
+         4: aload_2
+         5: ifnonnull     25
+         8: aload_1
+         9: ifnonnull     19
+        12: aload_0
+        13: invokestatic  #47                 // Method java/util/ServiceLoader.load:(Ljava/lang/Class;)Ljava/util/ServiceLoader;
+        16: goto          24
+        19: aload_0
+        20: aload_1
+        21: invokestatic  #48                 // Method java/util/ServiceLoader.load:(Ljava/lang/Class;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader;
+        24: areturn
+        25: new           #49                 // class com/fasterxml/jackson/databind/cfg/MapperBuilder$1
+        28: dup
+        29: aload_1
+        30: aload_0
+        31: invokespecial #50                 // Method com/fasterxml/jackson/databind/cfg/MapperBuilder$1."<init>":(Ljava/lang/ClassLoader;Ljava/lang/Class;)V
+        34: invokestatic  #51                 // Method java/security/AccessController.doPrivileged:(Ljava/security/PrivilegedAction;)Ljava/lang/Object;
+        37: checkcast     #52                 // class java/util/ServiceLoader
+        40: areturn
+      LineNumberTable:
+        line 376: 0
+        line 377: 4
+        line 378: 8
+        line 379: 13
+        line 378: 24
+        line 381: 25
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0 clazz   Ljava/lang/Class;
+            0      41     1 classLoader   Ljava/lang/ClassLoader;
+            4      37     2    sm   Ljava/lang/SecurityManager;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0 clazz   Ljava/lang/Class<TT;>;
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 19
+          locals = [ class java/lang/SecurityManager ]
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/util/ServiceLoader ]
+        frame_type = 0 /* same */
+    Signature: #234                         // <T:Ljava/lang/Object;>(Ljava/lang/Class<TT;>;Ljava/lang/ClassLoader;)Ljava/util/ServiceLoader<TT;>;
+
+  public B findAndAddModules();
+    descriptor: ()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #53                 // Method findModules:()Ljava/util/List;
+         4: invokevirtual #54                 // Method addModules:(Ljava/lang/Iterable;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+         7: areturn
+      LineNumberTable:
+        line 401: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #237                         // ()TB;
+
+  public B annotationIntrospector(com.fasterxml.jackson.databind.AnnotationIntrospector);
+    descriptor: (Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #55                 // Method com/fasterxml/jackson/databind/ObjectMapper.setAnnotationIntrospector:(Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 421: 0
+        line 422: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1  intr   Lcom/fasterxml/jackson/databind/AnnotationIntrospector;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #242                         // (Lcom/fasterxml/jackson/databind/AnnotationIntrospector;)TB;
+
+  public B defaultAttributes(com.fasterxml.jackson.databind.cfg.ContextAttributes);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #56                 // Method com/fasterxml/jackson/databind/ObjectMapper.setDefaultAttributes:(Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 438: 0
+        line 439: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 attrs   Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #247                         // (Lcom/fasterxml/jackson/databind/cfg/ContextAttributes;)TB;
+
+  public B typeFactory(com.fasterxml.jackson.databind.type.TypeFactory);
+    descriptor: (Lcom/fasterxml/jackson/databind/type/TypeFactory;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #57                 // Method com/fasterxml/jackson/databind/ObjectMapper.setTypeFactory:(Lcom/fasterxml/jackson/databind/type/TypeFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 449: 0
+        line 450: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     f   Lcom/fasterxml/jackson/databind/type/TypeFactory;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #251                         // (Lcom/fasterxml/jackson/databind/type/TypeFactory;)TB;
+
+  public B subtypeResolver(com.fasterxml.jackson.databind.jsontype.SubtypeResolver);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #58                 // Method com/fasterxml/jackson/databind/ObjectMapper.setSubtypeResolver:(Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 454: 0
+        line 455: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     r   Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #256                         // (Lcom/fasterxml/jackson/databind/jsontype/SubtypeResolver;)TB;
+
+  public B visibility(com.fasterxml.jackson.databind.introspect.VisibilityChecker<?>);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #59                 // Method com/fasterxml/jackson/databind/ObjectMapper.setVisibility:(Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 459: 0
+        line 460: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1    vc   Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      14     1    vc   Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;
+    Signature: #262                         // (Lcom/fasterxml/jackson/databind/introspect/VisibilityChecker<*>;)TB;
+
+  public B visibility(com.fasterxml.jackson.annotation.PropertyAccessor, com.fasterxml.jackson.annotation.JsonAutoDetect$Visibility);
+    descriptor: (Lcom/fasterxml/jackson/annotation/PropertyAccessor;Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: aload_2
+         6: invokevirtual #60                 // Method com/fasterxml/jackson/databind/ObjectMapper.setVisibility:(Lcom/fasterxml/jackson/annotation/PropertyAccessor;Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 464: 0
+        line 465: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 forMethod   Lcom/fasterxml/jackson/annotation/PropertyAccessor;
+            0      15     2 visibility   Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #269                         // (Lcom/fasterxml/jackson/annotation/PropertyAccessor;Lcom/fasterxml/jackson/annotation/JsonAutoDetect$Visibility;)TB;
+
+  public B handlerInstantiator(com.fasterxml.jackson.databind.cfg.HandlerInstantiator);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #61                 // Method com/fasterxml/jackson/databind/ObjectMapper.setHandlerInstantiator:(Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;)Ljava/lang/Object;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 478: 0
+        line 479: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1    hi   Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #274                         // (Lcom/fasterxml/jackson/databind/cfg/HandlerInstantiator;)TB;
+
+  public B propertyNamingStrategy(com.fasterxml.jackson.databind.PropertyNamingStrategy);
+    descriptor: (Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #62                 // Method com/fasterxml/jackson/databind/ObjectMapper.setPropertyNamingStrategy:(Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 491: 0
+        line 492: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     s   Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #279                         // (Lcom/fasterxml/jackson/databind/PropertyNamingStrategy;)TB;
+
+  public B accessorNaming(com.fasterxml.jackson.databind.introspect.AccessorNamingStrategy$Provider);
+    descriptor: (Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_1
+         1: ifnonnull     12
+         4: new           #63                 // class com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy$Provider
+         7: dup
+         8: invokespecial #64                 // Method com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy$Provider."<init>":()V
+        11: astore_1
+        12: aload_0
+        13: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+        16: aload_1
+        17: invokevirtual #65                 // Method com/fasterxml/jackson/databind/ObjectMapper.setAccessorNaming:(Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        20: pop
+        21: aload_0
+        22: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        25: areturn
+      LineNumberTable:
+        line 506: 0
+        line 507: 4
+        line 509: 12
+        line 510: 21
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      26     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      26     1     s   Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      26     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+      StackMapTable: number_of_entries = 1
+        frame_type = 12 /* same */
+    Signature: #285                         // (Lcom/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider;)TB;
+
+  public B serializerFactory(com.fasterxml.jackson.databind.ser.SerializerFactory);
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/SerializerFactory;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #66                 // Method com/fasterxml/jackson/databind/ObjectMapper.setSerializerFactory:(Lcom/fasterxml/jackson/databind/ser/SerializerFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 520: 0
+        line 521: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     f   Lcom/fasterxml/jackson/databind/ser/SerializerFactory;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #289                         // (Lcom/fasterxml/jackson/databind/ser/SerializerFactory;)TB;
+
+  public B filterProvider(com.fasterxml.jackson.databind.ser.FilterProvider);
+    descriptor: (Lcom/fasterxml/jackson/databind/ser/FilterProvider;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #67                 // Method com/fasterxml/jackson/databind/ObjectMapper.setFilterProvider:(Lcom/fasterxml/jackson/databind/ser/FilterProvider;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 533: 0
+        line 534: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1  prov   Lcom/fasterxml/jackson/databind/ser/FilterProvider;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #294                         // (Lcom/fasterxml/jackson/databind/ser/FilterProvider;)TB;
+
+  public B defaultPrettyPrinter(com.fasterxml.jackson.core.PrettyPrinter);
+    descriptor: (Lcom/fasterxml/jackson/core/PrettyPrinter;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #68                 // Method com/fasterxml/jackson/databind/ObjectMapper.setDefaultPrettyPrinter:(Lcom/fasterxml/jackson/core/PrettyPrinter;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 538: 0
+        line 539: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1    pp   Lcom/fasterxml/jackson/core/PrettyPrinter;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #299                         // (Lcom/fasterxml/jackson/core/PrettyPrinter;)TB;
+
+  public B injectableValues(com.fasterxml.jackson.databind.InjectableValues);
+    descriptor: (Lcom/fasterxml/jackson/databind/InjectableValues;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #69                 // Method com/fasterxml/jackson/databind/ObjectMapper.setInjectableValues:(Lcom/fasterxml/jackson/databind/InjectableValues;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 549: 0
+        line 550: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     v   Lcom/fasterxml/jackson/databind/InjectableValues;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #304                         // (Lcom/fasterxml/jackson/databind/InjectableValues;)TB;
+
+  public B nodeFactory(com.fasterxml.jackson.databind.node.JsonNodeFactory);
+    descriptor: (Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #70                 // Method com/fasterxml/jackson/databind/ObjectMapper.setNodeFactory:(Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 554: 0
+        line 555: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     f   Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #308                         // (Lcom/fasterxml/jackson/databind/node/JsonNodeFactory;)TB;
+
+  public B constructorDetector(com.fasterxml.jackson.databind.cfg.ConstructorDetector);
+    descriptor: (Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #71                 // Method com/fasterxml/jackson/databind/ObjectMapper.setConstructorDetector:(Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 567: 0
+        line 568: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1    cd   Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #313                         // (Lcom/fasterxml/jackson/databind/cfg/ConstructorDetector;)TB;
+
+  public B addHandler(com.fasterxml.jackson.databind.deser.DeserializationProblemHandler);
+    descriptor: (Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #72                 // Method com/fasterxml/jackson/databind/ObjectMapper.addHandler:(Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 577: 0
+        line 578: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     h   Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #318                         // (Lcom/fasterxml/jackson/databind/deser/DeserializationProblemHandler;)TB;
+
+  public B clearProblemHandlers();
+    descriptor: ()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: invokevirtual #73                 // Method com/fasterxml/jackson/databind/ObjectMapper.clearProblemHandlers:()Lcom/fasterxml/jackson/databind/ObjectMapper;
+         7: pop
+         8: aload_0
+         9: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        12: areturn
+      LineNumberTable:
+        line 586: 0
+        line 587: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #237                         // ()TB;
+
+  public B defaultSetterInfo(com.fasterxml.jackson.annotation.JsonSetter$Value);
+    descriptor: (Lcom/fasterxml/jackson/annotation/JsonSetter$Value;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #74                 // Method com/fasterxml/jackson/databind/ObjectMapper.setDefaultSetterInfo:(Lcom/fasterxml/jackson/annotation/JsonSetter$Value;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 597: 0
+        line 598: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     v   Lcom/fasterxml/jackson/annotation/JsonSetter$Value;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #325                         // (Lcom/fasterxml/jackson/annotation/JsonSetter$Value;)TB;
+
+  public B defaultMergeable(java.lang.Boolean);
+    descriptor: (Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #75                 // Method com/fasterxml/jackson/databind/ObjectMapper.setDefaultMergeable:(Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 607: 0
+        line 608: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     b   Ljava/lang/Boolean;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #330                         // (Ljava/lang/Boolean;)TB;
+
+  public B defaultLeniency(java.lang.Boolean);
+    descriptor: (Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #76                 // Method com/fasterxml/jackson/databind/ObjectMapper.setDefaultLeniency:(Ljava/lang/Boolean;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 617: 0
+        line 618: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     b   Ljava/lang/Boolean;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #330                         // (Ljava/lang/Boolean;)TB;
+
+  public B defaultDateFormat(java.text.DateFormat);
+    descriptor: (Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #77                 // Method com/fasterxml/jackson/databind/ObjectMapper.setDateFormat:(Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 634: 0
+        line 635: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1    df   Ljava/text/DateFormat;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #336                         // (Ljava/text/DateFormat;)TB;
+
+  public B defaultTimeZone(java.util.TimeZone);
+    descriptor: (Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #78                 // Method com/fasterxml/jackson/databind/ObjectMapper.setTimeZone:(Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 643: 0
+        line 644: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1    tz   Ljava/util/TimeZone;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #341                         // (Ljava/util/TimeZone;)TB;
+
+  public B defaultLocale(java.util.Locale);
+    descriptor: (Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #79                 // Method com/fasterxml/jackson/databind/ObjectMapper.setLocale:(Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 652: 0
+        line 653: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 locale   Ljava/util/Locale;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #346                         // (Ljava/util/Locale;)TB;
+
+  public B defaultBase64Variant(com.fasterxml.jackson.core.Base64Variant);
+    descriptor: (Lcom/fasterxml/jackson/core/Base64Variant;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #80                 // Method com/fasterxml/jackson/databind/ObjectMapper.setBase64Variant:(Lcom/fasterxml/jackson/core/Base64Variant;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 671: 0
+        line 672: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1     v   Lcom/fasterxml/jackson/core/Base64Variant;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #350                         // (Lcom/fasterxml/jackson/core/Base64Variant;)TB;
+
+  public B serializationInclusion(com.fasterxml.jackson.annotation.JsonInclude$Include);
+    descriptor: (Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #81                 // Method com/fasterxml/jackson/databind/ObjectMapper.setSerializationInclusion:(Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 683: 0
+        line 684: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1  incl   Lcom/fasterxml/jackson/annotation/JsonInclude$Include;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #357                         // (Lcom/fasterxml/jackson/annotation/JsonInclude$Include;)TB;
+
+  public B defaultPropertyInclusion(com.fasterxml.jackson.annotation.JsonInclude$Value);
+    descriptor: (Lcom/fasterxml/jackson/annotation/JsonInclude$Value;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #82                 // Method com/fasterxml/jackson/databind/ObjectMapper.setDefaultPropertyInclusion:(Lcom/fasterxml/jackson/annotation/JsonInclude$Value;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 697: 0
+        line 698: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1  incl   Lcom/fasterxml/jackson/annotation/JsonInclude$Value;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #362                         // (Lcom/fasterxml/jackson/annotation/JsonInclude$Value;)TB;
+
+  public B addMixIn(java.lang.Class<?>, java.lang.Class<?>);
+    descriptor: (Ljava/lang/Class;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: aload_2
+         6: invokevirtual #83                 // Method com/fasterxml/jackson/databind/ObjectMapper.addMixIn:(Ljava/lang/Class;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 729: 0
+        line 730: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 target   Ljava/lang/Class;
+            0      15     2 mixinSource   Ljava/lang/Class;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      15     1 target   Ljava/lang/Class<*>;
+            0      15     2 mixinSource   Ljava/lang/Class<*>;
+    Signature: #367                         // (Ljava/lang/Class<*>;Ljava/lang/Class<*>;)TB;
+
+  public B removeMixIn(java.lang.Class<?>);
+    descriptor: (Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: aconst_null
+         6: invokevirtual #83                 // Method com/fasterxml/jackson/databind/ObjectMapper.addMixIn:(Ljava/lang/Class;Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 750: 0
+        line 751: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 target   Ljava/lang/Class;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      15     1 target   Ljava/lang/Class<*>;
+    Signature: #370                         // (Ljava/lang/Class<*>;)TB;
+
+  public B registerSubtypes(java.lang.Class<?>...);
+    descriptor: ([Ljava/lang/Class;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #84                 // Method com/fasterxml/jackson/databind/ObjectMapper.registerSubtypes:([Ljava/lang/Class;)V
+         8: aload_0
+         9: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        12: areturn
+      LineNumberTable:
+        line 761: 0
+        line 762: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      13     1 subtypes   [Ljava/lang/Class;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      13     1 subtypes   [Ljava/lang/Class<*>;
+    Signature: #376                         // ([Ljava/lang/Class<*>;)TB;
+
+  public B registerSubtypes(com.fasterxml.jackson.databind.jsontype.NamedType...);
+    descriptor: ([Lcom/fasterxml/jackson/databind/jsontype/NamedType;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #85                 // Method com/fasterxml/jackson/databind/ObjectMapper.registerSubtypes:([Lcom/fasterxml/jackson/databind/jsontype/NamedType;)V
+         8: aload_0
+         9: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        12: areturn
+      LineNumberTable:
+        line 766: 0
+        line 767: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      13     1 subtypes   [Lcom/fasterxml/jackson/databind/jsontype/NamedType;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #379                         // ([Lcom/fasterxml/jackson/databind/jsontype/NamedType;)TB;
+
+  public B registerSubtypes(java.util.Collection<java.lang.Class<?>>);
+    descriptor: (Ljava/util/Collection;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #86                 // Method com/fasterxml/jackson/databind/ObjectMapper.registerSubtypes:(Ljava/util/Collection;)V
+         8: aload_0
+         9: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        12: areturn
+      LineNumberTable:
+        line 771: 0
+        line 772: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      13     1 subtypes   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      13     1 subtypes   Ljava/util/Collection<Ljava/lang/Class<*>;>;
+    Signature: #383                         // (Ljava/util/Collection<Ljava/lang/Class<*>;>;)TB;
+
+  public B polymorphicTypeValidator(com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #87                 // Method com/fasterxml/jackson/databind/ObjectMapper.setPolymorphicTypeValidator:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 789: 0
+        line 790: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1   ptv   Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #388                         // (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)TB;
+
+  public B activateDefaultTyping(com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #88                 // Method com/fasterxml/jackson/databind/ObjectMapper.activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 809: 0
+        line 810: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 subtypeValidator   Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #388                         // (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;)TB;
+
+  public B activateDefaultTyping(com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator, com.fasterxml.jackson.databind.ObjectMapper$DefaultTyping);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: aload_2
+         6: invokevirtual #89                 // Method com/fasterxml/jackson/databind/ObjectMapper.activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         9: pop
+        10: aload_0
+        11: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        14: areturn
+      LineNumberTable:
+        line 824: 0
+        line 825: 10
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      15     1 subtypeValidator   Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;
+            0      15     2   dti   Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #396                         // (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;)TB;
+
+  public B activateDefaultTyping(com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator, com.fasterxml.jackson.databind.ObjectMapper$DefaultTyping, com.fasterxml.jackson.annotation.JsonTypeInfo$As);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: aload_2
+         6: aload_3
+         7: invokevirtual #90                 // Method com/fasterxml/jackson/databind/ObjectMapper.activateDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        10: pop
+        11: aload_0
+        12: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        15: areturn
+      LineNumberTable:
+        line 846: 0
+        line 847: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      16     1 subtypeValidator   Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;
+            0      16     2 applicability   Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;
+            0      16     3 includeAs   Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #403                         // (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Lcom/fasterxml/jackson/annotation/JsonTypeInfo$As;)TB;
+
+  public B activateDefaultTypingAsProperty(com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator, com.fasterxml.jackson.databind.ObjectMapper$DefaultTyping, java.lang.String);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: aload_2
+         6: aload_3
+         7: invokevirtual #91                 // Method com/fasterxml/jackson/databind/ObjectMapper.activateDefaultTypingAsProperty:(Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Ljava/lang/String;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+        10: pop
+        11: aload_0
+        12: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        15: areturn
+      LineNumberTable:
+        line 864: 0
+        line 865: 11
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      16     1 subtypeValidator   Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;
+            0      16     2 applicability   Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;
+            0      16     3 propertyName   Ljava/lang/String;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #408                         // (Lcom/fasterxml/jackson/databind/jsontype/PolymorphicTypeValidator;Lcom/fasterxml/jackson/databind/ObjectMapper$DefaultTyping;Ljava/lang/String;)TB;
+
+  public B deactivateDefaultTyping();
+    descriptor: ()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: invokevirtual #92                 // Method com/fasterxml/jackson/databind/ObjectMapper.deactivateDefaultTyping:()Lcom/fasterxml/jackson/databind/ObjectMapper;
+         7: pop
+         8: aload_0
+         9: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        12: areturn
+      LineNumberTable:
+        line 875: 0
+        line 876: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #237                         // ()TB;
+
+  public B setDefaultTyping(com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder<?>);
+    descriptor: (Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;)Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _mapper:Lcom/fasterxml/jackson/databind/ObjectMapper;
+         4: aload_1
+         5: invokevirtual #93                 // Method com/fasterxml/jackson/databind/ObjectMapper.setDefaultTyping:(Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;)Lcom/fasterxml/jackson/databind/ObjectMapper;
+         8: pop
+         9: aload_0
+        10: invokevirtual #10                 // Method _this:()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+        13: areturn
+      LineNumberTable:
+        line 897: 0
+        line 898: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+            0      14     1 typer   Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+            0      14     1 typer   Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;
+    Signature: #415                         // (Lcom/fasterxml/jackson/databind/jsontype/TypeResolverBuilder<*>;)TB;
+
+  protected final B _this();
+    descriptor: ()Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: areturn
+      LineNumberTable:
+        line 909: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;
+    Signature: #237                         // ()TB;
+}
+Signature: #417                         // <M:Lcom/fasterxml/jackson/databind/ObjectMapper;B:Lcom/fasterxml/jackson/databind/cfg/MapperBuilder<TM;TB;>;>Ljava/lang/Object;
+SourceFile: "MapperBuilder.java"
+InnerClasses:
+  static #49;                             // class com/fasterxml/jackson/databind/cfg/MapperBuilder$1
+  public static final #123= #25 of #445;  // Feature=class com/fasterxml/jackson/core/JsonParser$Feature of class com/fasterxml/jackson/core/JsonParser
+  public static final #123= #27 of #449;  // Feature=class com/fasterxml/jackson/core/JsonGenerator$Feature of class com/fasterxml/jackson/core/JsonGenerator
+  public static final #264= #263 of #525; // Visibility=class com/fasterxml/jackson/annotation/JsonAutoDetect$Visibility of class com/fasterxml/jackson/annotation/JsonAutoDetect
+  public static abstract #282= #281 of #527; // Provider=class com/fasterxml/jackson/databind/introspect/AccessorNamingStrategy$Provider of class com/fasterxml/jackson/databind/introspect/AccessorNamingStrategy
+  public static #322= #321 of #529;       // Value=class com/fasterxml/jackson/annotation/JsonSetter$Value of class com/fasterxml/jackson/annotation/JsonSetter
+  public static final #353= #352 of #531; // Include=class com/fasterxml/jackson/annotation/JsonInclude$Include of class com/fasterxml/jackson/annotation/JsonInclude
+  public static #322= #359 of #531;       // Value=class com/fasterxml/jackson/annotation/JsonInclude$Value of class com/fasterxml/jackson/annotation/JsonInclude
+  public static final #392= #391 of #422; // DefaultTyping=class com/fasterxml/jackson/databind/ObjectMapper$DefaultTyping of class com/fasterxml/jackson/databind/ObjectMapper
+  public static final #398= #397 of #535; // As=class com/fasterxml/jackson/annotation/JsonTypeInfo$As of class com/fasterxml/jackson/annotation/JsonTypeInfo
+  public static #282= #63 of #490;        // Provider=class com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy$Provider of class com/fasterxml/jackson/databind/introspect/DefaultAccessorNamingStrategy

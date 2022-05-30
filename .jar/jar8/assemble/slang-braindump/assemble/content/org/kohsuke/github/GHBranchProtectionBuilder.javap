@@ -1,0 +1,1236 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/org/kohsuke/github/GHBranchProtectionBuilder.class
+  Last modified May 29, 2022; size 8835 bytes
+  SHA-256 checksum c0f47dec16e3b6364c8643bc255f857f4fd3dd159598f4b1fda4a7c5caced925
+  Compiled from "GHBranchProtectionBuilder.java"
+public class org.kohsuke.github.GHBranchProtectionBuilder
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #69                         // org/kohsuke/github/GHBranchProtectionBuilder
+  super_class: #70                        // java/lang/Object
+  interfaces: 0, fields: 5, methods: 29, attributes: 3
+Constant pool:
+    #1 = Methodref          #70.#167      // java/lang/Object."<init>":()V
+    #2 = Fieldref           #69.#168      // org/kohsuke/github/GHBranchProtectionBuilder.branch:Lorg/kohsuke/github/GHBranch;
+    #3 = Methodref          #69.#169      // org/kohsuke/github/GHBranchProtectionBuilder.getStatusChecks:()Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+    #4 = Fieldref           #63.#170      // org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks.contexts:Ljava/util/List;
+    #5 = InterfaceMethodref #171.#172     // java/util/List.addAll:(Ljava/util/Collection;)Z
+    #6 = Methodref          #173.#174     // java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+    #7 = Methodref          #69.#175      // org/kohsuke/github/GHBranchProtectionBuilder.addRequiredChecks:(Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    #8 = Methodref          #69.#176      // org/kohsuke/github/GHBranchProtectionBuilder.dismissStaleReviews:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    #9 = Methodref          #69.#177      // org/kohsuke/github/GHBranchProtectionBuilder.getPrReviews:()Ljava/util/Map;
+   #10 = String             #178          // dismiss_stale_reviews
+   #11 = Methodref          #179.#180     // java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+   #12 = InterfaceMethodref #181.#182     // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+   #13 = Methodref          #69.#183      // org/kohsuke/github/GHBranchProtectionBuilder.requester:()Lorg/kohsuke/github/Requester;
+   #14 = String             #184          // PUT
+   #15 = Methodref          #16.#185      // org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #16 = Class              #186          // org/kohsuke/github/Requester
+   #17 = String             #187          // required_status_checks
+   #18 = Fieldref           #69.#188      // org/kohsuke/github/GHBranchProtectionBuilder.statusChecks:Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+   #19 = Methodref          #16.#189      // org/kohsuke/github/Requester.withNullable:(Ljava/lang/String;Ljava/lang/Object;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #20 = String             #190          // required_pull_request_reviews
+   #21 = Fieldref           #69.#191      // org/kohsuke/github/GHBranchProtectionBuilder.prReviews:Ljava/util/Map;
+   #22 = String             #83           // restrictions
+   #23 = Fieldref           #69.#192      // org/kohsuke/github/GHBranchProtectionBuilder.restrictions:Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+   #24 = String             #193          // enforce_admins
+   #25 = Fieldref           #69.#194      // org/kohsuke/github/GHBranchProtectionBuilder.enforceAdmins:Z
+   #26 = Methodref          #195.#196     // org/kohsuke/github/GHBranch.getProtectionUrl:()Ljava/net/URL;
+   #27 = Methodref          #197.#198     // java/net/URL.toString:()Ljava/lang/String;
+   #28 = Class              #199          // java/lang/String
+   #29 = Methodref          #16.#200      // org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #30 = Class              #201          // org/kohsuke/github/GHBranchProtection
+   #31 = Methodref          #16.#202      // org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+   #32 = Methodref          #69.#203      // org/kohsuke/github/GHBranchProtectionBuilder.includeAdmins:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #33 = String             #204          // required_approving_review_count
+   #34 = Methodref          #205.#206     // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #35 = Methodref          #69.#207      // org/kohsuke/github/GHBranchProtectionBuilder.requireBranchIsUpToDate:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #36 = Fieldref           #63.#208      // org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks.strict:Z
+   #37 = Methodref          #69.#209      // org/kohsuke/github/GHBranchProtectionBuilder.requireCodeOwnReviews:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #38 = String             #210          // require_code_owner_reviews
+   #39 = String             #211          // dismissal_restrictions
+   #40 = InterfaceMethodref #181.#212     // java/util/Map.containsKey:(Ljava/lang/Object;)Z
+   #41 = Class              #213          // org/kohsuke/github/GHBranchProtectionBuilder$Restrictions
+   #42 = Methodref          #41.#214      // org/kohsuke/github/GHBranchProtectionBuilder$Restrictions."<init>":(Lorg/kohsuke/github/GHBranchProtectionBuilder$1;)V
+   #43 = Methodref          #69.#215      // org/kohsuke/github/GHBranchProtectionBuilder.getRestrictions:()Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+   #44 = InterfaceMethodref #216.#217     // java/util/Collection.iterator:()Ljava/util/Iterator;
+   #45 = InterfaceMethodref #126.#218     // java/util/Iterator.hasNext:()Z
+   #46 = InterfaceMethodref #126.#219     // java/util/Iterator.next:()Ljava/lang/Object;
+   #47 = Class              #220          // org/kohsuke/github/GHTeam
+   #48 = Methodref          #69.#221      // org/kohsuke/github/GHBranchProtectionBuilder.teamPushAccess:([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #49 = Methodref          #41.#222      // org/kohsuke/github/GHBranchProtectionBuilder$Restrictions.access$100:(Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+   #50 = Methodref          #47.#223      // org/kohsuke/github/GHTeam.getSlug:()Ljava/lang/String;
+   #51 = InterfaceMethodref #224.#225     // java/util/Set.add:(Ljava/lang/Object;)Z
+   #52 = Methodref          #69.#226      // org/kohsuke/github/GHBranchProtectionBuilder.teamReviewDismissals:([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #53 = Methodref          #69.#227      // org/kohsuke/github/GHBranchProtectionBuilder.addReviewRestriction:(Ljava/lang/String;Z)V
+   #54 = Class              #228          // org/kohsuke/github/GHUser
+   #55 = Methodref          #69.#229      // org/kohsuke/github/GHBranchProtectionBuilder.userPushAccess:([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #56 = Methodref          #41.#230      // org/kohsuke/github/GHBranchProtectionBuilder$Restrictions.access$200:(Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+   #57 = Methodref          #54.#231      // org/kohsuke/github/GHUser.getLogin:()Ljava/lang/String;
+   #58 = Methodref          #69.#232      // org/kohsuke/github/GHBranchProtectionBuilder.userReviewDismissals:([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #59 = Methodref          #69.#233      // org/kohsuke/github/GHBranchProtectionBuilder.restrictReviewDismissals:()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #60 = InterfaceMethodref #181.#234     // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #61 = Class              #235          // java/util/HashMap
+   #62 = Methodref          #61.#167      // java/util/HashMap."<init>":()V
+   #63 = Class              #236          // org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks
+   #64 = Methodref          #63.#214      // org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks."<init>":(Lorg/kohsuke/github/GHBranchProtectionBuilder$1;)V
+   #65 = Methodref          #195.#237     // org/kohsuke/github/GHBranch.root:()Lorg/kohsuke/github/GitHub;
+   #66 = Methodref          #238.#239     // org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+   #67 = Fieldref           #240.#241     // org/kohsuke/github/internal/Previews.LUKE_CAGE:Lorg/kohsuke/github/internal/Previews;
+   #68 = Methodref          #16.#242      // org/kohsuke/github/Requester.withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+   #69 = Class              #243          // org/kohsuke/github/GHBranchProtectionBuilder
+   #70 = Class              #244          // java/lang/Object
+   #71 = Class              #245          // org/kohsuke/github/GHBranchProtectionBuilder$1
+   #72 = Utf8               InnerClasses
+   #73 = Utf8               StatusChecks
+   #74 = Utf8               Restrictions
+   #75 = Utf8               branch
+   #76 = Utf8               Lorg/kohsuke/github/GHBranch;
+   #77 = Utf8               enforceAdmins
+   #78 = Utf8               Z
+   #79 = Utf8               prReviews
+   #80 = Utf8               Ljava/util/Map;
+   #81 = Utf8               Signature
+   #82 = Utf8               Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;
+   #83 = Utf8               restrictions
+   #84 = Utf8               Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+   #85 = Utf8               statusChecks
+   #86 = Utf8               Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+   #87 = Utf8               <init>
+   #88 = Utf8               (Lorg/kohsuke/github/GHBranch;)V
+   #89 = Utf8               Code
+   #90 = Utf8               LineNumberTable
+   #91 = Utf8               LocalVariableTable
+   #92 = Utf8               this
+   #93 = Utf8               Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #94 = Utf8               addRequiredChecks
+   #95 = Utf8               (Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+   #96 = Utf8               checks
+   #97 = Utf8               Ljava/util/Collection;
+   #98 = Utf8               LocalVariableTypeTable
+   #99 = Utf8               Ljava/util/Collection<Ljava/lang/String;>;
+  #100 = Utf8               (Ljava/util/Collection<Ljava/lang/String;>;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #101 = Utf8               ([Ljava/lang/String;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #102 = Utf8               [Ljava/lang/String;
+  #103 = Utf8               dismissStaleReviews
+  #104 = Utf8               ()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #105 = Utf8               (Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #106 = Utf8               v
+  #107 = Utf8               enable
+  #108 = Utf8               ()Lorg/kohsuke/github/GHBranchProtection;
+  #109 = Utf8               Exceptions
+  #110 = Class              #246          // java/io/IOException
+  #111 = Utf8               includeAdmins
+  #112 = Utf8               requiredReviewers
+  #113 = Utf8               (I)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #114 = Utf8               I
+  #115 = Utf8               requireBranchIsUpToDate
+  #116 = Utf8               requireCodeOwnReviews
+  #117 = Utf8               requireReviews
+  #118 = Utf8               restrictReviewDismissals
+  #119 = Utf8               StackMapTable
+  #120 = Utf8               restrictPushAccess
+  #121 = Utf8               teamPushAccess
+  #122 = Utf8               team
+  #123 = Utf8               Lorg/kohsuke/github/GHTeam;
+  #124 = Utf8               teams
+  #125 = Utf8               Ljava/util/Collection<Lorg/kohsuke/github/GHTeam;>;
+  #126 = Class              #247          // java/util/Iterator
+  #127 = Utf8               (Ljava/util/Collection<Lorg/kohsuke/github/GHTeam;>;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #128 = Utf8               ([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #129 = Utf8               [Lorg/kohsuke/github/GHTeam;
+  #130 = Class              #129          // "[Lorg/kohsuke/github/GHTeam;"
+  #131 = Utf8               teamReviewDismissals
+  #132 = Utf8               userPushAccess
+  #133 = Utf8               user
+  #134 = Utf8               Lorg/kohsuke/github/GHUser;
+  #135 = Utf8               users
+  #136 = Utf8               Ljava/util/Collection<Lorg/kohsuke/github/GHUser;>;
+  #137 = Utf8               (Ljava/util/Collection<Lorg/kohsuke/github/GHUser;>;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #138 = Utf8               ([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #139 = Utf8               [Lorg/kohsuke/github/GHUser;
+  #140 = Class              #139          // "[Lorg/kohsuke/github/GHUser;"
+  #141 = Utf8               userReviewDismissals
+  #142 = Utf8               addReviewRestriction
+  #143 = Utf8               (Ljava/lang/String;Z)V
+  #144 = Utf8               restriction
+  #145 = Utf8               Ljava/lang/String;
+  #146 = Utf8               isTeam
+  #147 = Utf8               getPrReviews
+  #148 = Utf8               ()Ljava/util/Map;
+  #149 = Utf8               ()Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;
+  #150 = Utf8               getRestrictions
+  #151 = Utf8               ()Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+  #152 = Utf8               getStatusChecks
+  #153 = Utf8               ()Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+  #154 = Utf8               requester
+  #155 = Utf8               ()Lorg/kohsuke/github/Requester;
+  #156 = Utf8               SourceFile
+  #157 = Utf8               GHBranchProtectionBuilder.java
+  #158 = Utf8               RuntimeInvisibleAnnotations
+  #159 = Utf8               Ledu/umd/cs/findbugs/annotations/SuppressFBWarnings;
+  #160 = Utf8               value
+  #161 = Utf8               UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD
+  #162 = Utf8               UWF_UNWRITTEN_FIELD
+  #163 = Utf8               NP_UNWRITTEN_FIELD
+  #164 = Utf8               URF_UNREAD_FIELD
+  #165 = Utf8               justification
+  #166 = Utf8               JSON API
+  #167 = NameAndType        #87:#248      // "<init>":()V
+  #168 = NameAndType        #75:#76       // branch:Lorg/kohsuke/github/GHBranch;
+  #169 = NameAndType        #152:#153     // getStatusChecks:()Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+  #170 = NameAndType        #249:#250     // contexts:Ljava/util/List;
+  #171 = Class              #251          // java/util/List
+  #172 = NameAndType        #252:#253     // addAll:(Ljava/util/Collection;)Z
+  #173 = Class              #254          // java/util/Arrays
+  #174 = NameAndType        #255:#256     // asList:([Ljava/lang/Object;)Ljava/util/List;
+  #175 = NameAndType        #94:#95       // addRequiredChecks:(Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #176 = NameAndType        #103:#105     // dismissStaleReviews:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #177 = NameAndType        #147:#148     // getPrReviews:()Ljava/util/Map;
+  #178 = Utf8               dismiss_stale_reviews
+  #179 = Class              #257          // java/lang/Boolean
+  #180 = NameAndType        #258:#259     // valueOf:(Z)Ljava/lang/Boolean;
+  #181 = Class              #260          // java/util/Map
+  #182 = NameAndType        #261:#262     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #183 = NameAndType        #154:#155     // requester:()Lorg/kohsuke/github/Requester;
+  #184 = Utf8               PUT
+  #185 = NameAndType        #263:#266     // method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #186 = Utf8               org/kohsuke/github/Requester
+  #187 = Utf8               required_status_checks
+  #188 = NameAndType        #85:#86       // statusChecks:Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+  #189 = NameAndType        #267:#268     // withNullable:(Ljava/lang/String;Ljava/lang/Object;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #190 = Utf8               required_pull_request_reviews
+  #191 = NameAndType        #79:#80       // prReviews:Ljava/util/Map;
+  #192 = NameAndType        #83:#84       // restrictions:Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+  #193 = Utf8               enforce_admins
+  #194 = NameAndType        #77:#78       // enforceAdmins:Z
+  #195 = Class              #269          // org/kohsuke/github/GHBranch
+  #196 = NameAndType        #270:#271     // getProtectionUrl:()Ljava/net/URL;
+  #197 = Class              #272          // java/net/URL
+  #198 = NameAndType        #273:#274     // toString:()Ljava/lang/String;
+  #199 = Utf8               java/lang/String
+  #200 = NameAndType        #275:#276     // withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #201 = Utf8               org/kohsuke/github/GHBranchProtection
+  #202 = NameAndType        #277:#278     // fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+  #203 = NameAndType        #111:#105     // includeAdmins:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #204 = Utf8               required_approving_review_count
+  #205 = Class              #279          // java/lang/Integer
+  #206 = NameAndType        #258:#280     // valueOf:(I)Ljava/lang/Integer;
+  #207 = NameAndType        #115:#105     // requireBranchIsUpToDate:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #208 = NameAndType        #281:#78      // strict:Z
+  #209 = NameAndType        #116:#105     // requireCodeOwnReviews:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #210 = Utf8               require_code_owner_reviews
+  #211 = Utf8               dismissal_restrictions
+  #212 = NameAndType        #282:#283     // containsKey:(Ljava/lang/Object;)Z
+  #213 = Utf8               org/kohsuke/github/GHBranchProtectionBuilder$Restrictions
+  #214 = NameAndType        #87:#284      // "<init>":(Lorg/kohsuke/github/GHBranchProtectionBuilder$1;)V
+  #215 = NameAndType        #150:#151     // getRestrictions:()Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+  #216 = Class              #285          // java/util/Collection
+  #217 = NameAndType        #286:#287     // iterator:()Ljava/util/Iterator;
+  #218 = NameAndType        #288:#289     // hasNext:()Z
+  #219 = NameAndType        #290:#291     // next:()Ljava/lang/Object;
+  #220 = Utf8               org/kohsuke/github/GHTeam
+  #221 = NameAndType        #121:#128     // teamPushAccess:([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #222 = NameAndType        #292:#293     // access$100:(Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+  #223 = NameAndType        #294:#274     // getSlug:()Ljava/lang/String;
+  #224 = Class              #295          // java/util/Set
+  #225 = NameAndType        #296:#283     // add:(Ljava/lang/Object;)Z
+  #226 = NameAndType        #131:#128     // teamReviewDismissals:([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #227 = NameAndType        #142:#143     // addReviewRestriction:(Ljava/lang/String;Z)V
+  #228 = Utf8               org/kohsuke/github/GHUser
+  #229 = NameAndType        #132:#138     // userPushAccess:([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #230 = NameAndType        #297:#293     // access$200:(Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+  #231 = NameAndType        #298:#274     // getLogin:()Ljava/lang/String;
+  #232 = NameAndType        #141:#138     // userReviewDismissals:([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #233 = NameAndType        #118:#104     // restrictReviewDismissals:()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+  #234 = NameAndType        #299:#300     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #235 = Utf8               java/util/HashMap
+  #236 = Utf8               org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks
+  #237 = NameAndType        #301:#302     // root:()Lorg/kohsuke/github/GitHub;
+  #238 = Class              #303          // org/kohsuke/github/GitHub
+  #239 = NameAndType        #304:#155     // createRequest:()Lorg/kohsuke/github/Requester;
+  #240 = Class              #305          // org/kohsuke/github/internal/Previews
+  #241 = NameAndType        #306:#307     // LUKE_CAGE:Lorg/kohsuke/github/internal/Previews;
+  #242 = NameAndType        #308:#309     // withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #243 = Utf8               org/kohsuke/github/GHBranchProtectionBuilder
+  #244 = Utf8               java/lang/Object
+  #245 = Utf8               org/kohsuke/github/GHBranchProtectionBuilder$1
+  #246 = Utf8               java/io/IOException
+  #247 = Utf8               java/util/Iterator
+  #248 = Utf8               ()V
+  #249 = Utf8               contexts
+  #250 = Utf8               Ljava/util/List;
+  #251 = Utf8               java/util/List
+  #252 = Utf8               addAll
+  #253 = Utf8               (Ljava/util/Collection;)Z
+  #254 = Utf8               java/util/Arrays
+  #255 = Utf8               asList
+  #256 = Utf8               ([Ljava/lang/Object;)Ljava/util/List;
+  #257 = Utf8               java/lang/Boolean
+  #258 = Utf8               valueOf
+  #259 = Utf8               (Z)Ljava/lang/Boolean;
+  #260 = Utf8               java/util/Map
+  #261 = Utf8               put
+  #262 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #263 = Utf8               method
+  #264 = Class              #311          // org/kohsuke/github/GitHubRequest$Builder
+  #265 = Utf8               Builder
+  #266 = Utf8               (Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #267 = Utf8               withNullable
+  #268 = Utf8               (Ljava/lang/String;Ljava/lang/Object;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #269 = Utf8               org/kohsuke/github/GHBranch
+  #270 = Utf8               getProtectionUrl
+  #271 = Utf8               ()Ljava/net/URL;
+  #272 = Utf8               java/net/URL
+  #273 = Utf8               toString
+  #274 = Utf8               ()Ljava/lang/String;
+  #275 = Utf8               withUrlPath
+  #276 = Utf8               (Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #277 = Utf8               fetch
+  #278 = Utf8               (Ljava/lang/Class;)Ljava/lang/Object;
+  #279 = Utf8               java/lang/Integer
+  #280 = Utf8               (I)Ljava/lang/Integer;
+  #281 = Utf8               strict
+  #282 = Utf8               containsKey
+  #283 = Utf8               (Ljava/lang/Object;)Z
+  #284 = Utf8               (Lorg/kohsuke/github/GHBranchProtectionBuilder$1;)V
+  #285 = Utf8               java/util/Collection
+  #286 = Utf8               iterator
+  #287 = Utf8               ()Ljava/util/Iterator;
+  #288 = Utf8               hasNext
+  #289 = Utf8               ()Z
+  #290 = Utf8               next
+  #291 = Utf8               ()Ljava/lang/Object;
+  #292 = Utf8               access$100
+  #293 = Utf8               (Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+  #294 = Utf8               getSlug
+  #295 = Utf8               java/util/Set
+  #296 = Utf8               add
+  #297 = Utf8               access$200
+  #298 = Utf8               getLogin
+  #299 = Utf8               get
+  #300 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #301 = Utf8               root
+  #302 = Utf8               ()Lorg/kohsuke/github/GitHub;
+  #303 = Utf8               org/kohsuke/github/GitHub
+  #304 = Utf8               createRequest
+  #305 = Utf8               org/kohsuke/github/internal/Previews
+  #306 = Utf8               LUKE_CAGE
+  #307 = Utf8               Lorg/kohsuke/github/internal/Previews;
+  #308 = Utf8               withPreview
+  #309 = Utf8               (Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+  #310 = Class              #312          // org/kohsuke/github/GitHubRequest
+  #311 = Utf8               org/kohsuke/github/GitHubRequest$Builder
+  #312 = Utf8               org/kohsuke/github/GitHubRequest
+{
+  private final org.kohsuke.github.GHBranch branch;
+    descriptor: Lorg/kohsuke/github/GHBranch;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private boolean enforceAdmins;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.util.Map<java.lang.String, java.lang.Object> prReviews;
+    descriptor: Ljava/util/Map;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #82                          // Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;
+
+  private org.kohsuke.github.GHBranchProtectionBuilder$Restrictions restrictions;
+    descriptor: Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.kohsuke.github.GHBranchProtectionBuilder$StatusChecks statusChecks;
+    descriptor: Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+    flags: (0x0002) ACC_PRIVATE
+
+  org.kohsuke.github.GHBranchProtectionBuilder(org.kohsuke.github.GHBranch);
+    descriptor: (Lorg/kohsuke/github/GHBranch;)V
+    flags: (0x0000)
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #2                  // Field branch:Lorg/kohsuke/github/GHBranch;
+         9: return
+      LineNumberTable:
+        line 34: 0
+        line 35: 4
+        line 36: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      10     1 branch   Lorg/kohsuke/github/GHBranch;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder addRequiredChecks(java.util.Collection<java.lang.String>);
+    descriptor: (Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #3                  // Method getStatusChecks:()Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+         4: getfield      #4                  // Field org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks.contexts:Ljava/util/List;
+         7: aload_1
+         8: invokeinterface #5,  2            // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+        13: pop
+        14: aload_0
+        15: areturn
+      LineNumberTable:
+        line 46: 0
+        line 47: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      16     1 checks   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      16     1 checks   Ljava/util/Collection<Ljava/lang/String;>;
+    Signature: #100                         // (Ljava/util/Collection<Ljava/lang/String;>;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder addRequiredChecks(java.lang.String...);
+    descriptor: ([Ljava/lang/String;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #6                  // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+         5: invokevirtual #7                  // Method addRequiredChecks:(Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+         8: pop
+         9: aload_0
+        10: areturn
+      LineNumberTable:
+        line 58: 0
+        line 59: 9
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      11     1 checks   [Ljava/lang/String;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder dismissStaleReviews();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: invokevirtual #8                  // Method dismissStaleReviews:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+         5: areturn
+      LineNumberTable:
+        line 68: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder dismissStaleReviews(boolean);
+    descriptor: (Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #9                  // Method getPrReviews:()Ljava/util/Map;
+         4: ldc           #10                 // String dismiss_stale_reviews
+         6: iload_1
+         7: invokestatic  #11                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        10: invokeinterface #12,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        15: pop
+        16: aload_0
+        17: areturn
+      LineNumberTable:
+        line 79: 0
+        line 80: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      18     1     v   Z
+
+  public org.kohsuke.github.GHBranchProtection enable() throws java.io.IOException;
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtection;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #13                 // Method requester:()Lorg/kohsuke/github/Requester;
+         4: ldc           #14                 // String PUT
+         6: invokevirtual #15                 // Method org/kohsuke/github/Requester.method:(Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+         9: checkcast     #16                 // class org/kohsuke/github/Requester
+        12: ldc           #17                 // String required_status_checks
+        14: aload_0
+        15: getfield      #18                 // Field statusChecks:Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+        18: invokevirtual #19                 // Method org/kohsuke/github/Requester.withNullable:(Ljava/lang/String;Ljava/lang/Object;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        21: checkcast     #16                 // class org/kohsuke/github/Requester
+        24: ldc           #20                 // String required_pull_request_reviews
+        26: aload_0
+        27: getfield      #21                 // Field prReviews:Ljava/util/Map;
+        30: invokevirtual #19                 // Method org/kohsuke/github/Requester.withNullable:(Ljava/lang/String;Ljava/lang/Object;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        33: checkcast     #16                 // class org/kohsuke/github/Requester
+        36: ldc           #22                 // String restrictions
+        38: aload_0
+        39: getfield      #23                 // Field restrictions:Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+        42: invokevirtual #19                 // Method org/kohsuke/github/Requester.withNullable:(Ljava/lang/String;Ljava/lang/Object;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        45: checkcast     #16                 // class org/kohsuke/github/Requester
+        48: ldc           #24                 // String enforce_admins
+        50: aload_0
+        51: getfield      #25                 // Field enforceAdmins:Z
+        54: invokestatic  #11                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        57: invokevirtual #19                 // Method org/kohsuke/github/Requester.withNullable:(Ljava/lang/String;Ljava/lang/Object;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        60: checkcast     #16                 // class org/kohsuke/github/Requester
+        63: aload_0
+        64: getfield      #2                  // Field branch:Lorg/kohsuke/github/GHBranch;
+        67: invokevirtual #26                 // Method org/kohsuke/github/GHBranch.getProtectionUrl:()Ljava/net/URL;
+        70: invokevirtual #27                 // Method java/net/URL.toString:()Ljava/lang/String;
+        73: iconst_0
+        74: anewarray     #28                 // class java/lang/String
+        77: invokevirtual #29                 // Method org/kohsuke/github/Requester.withUrlPath:(Ljava/lang/String;[Ljava/lang/String;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        80: checkcast     #16                 // class org/kohsuke/github/Requester
+        83: ldc           #30                 // class org/kohsuke/github/GHBranchProtection
+        85: invokevirtual #31                 // Method org/kohsuke/github/Requester.fetch:(Ljava/lang/Class;)Ljava/lang/Object;
+        88: checkcast     #30                 // class org/kohsuke/github/GHBranchProtection
+        91: areturn
+      LineNumberTable:
+        line 91: 0
+        line 92: 18
+        line 93: 30
+        line 94: 42
+        line 95: 54
+        line 96: 67
+        line 97: 85
+        line 91: 91
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      92     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    Exceptions:
+      throws java.io.IOException
+
+  public org.kohsuke.github.GHBranchProtectionBuilder includeAdmins();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: invokevirtual #32                 // Method includeAdmins:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+         5: areturn
+      LineNumberTable:
+        line 106: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder includeAdmins(boolean);
+    descriptor: (Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #25                 // Field enforceAdmins:Z
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 117: 0
+        line 118: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0       7     1     v   Z
+
+  public org.kohsuke.github.GHBranchProtectionBuilder requiredReviewers(int);
+    descriptor: (I)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #9                  // Method getPrReviews:()Ljava/util/Map;
+         4: ldc           #33                 // String required_approving_review_count
+         6: iload_1
+         7: invokestatic  #34                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        10: invokeinterface #12,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        15: pop
+        16: aload_0
+        17: areturn
+      LineNumberTable:
+        line 129: 0
+        line 130: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      18     1     v   I
+
+  public org.kohsuke.github.GHBranchProtectionBuilder requireBranchIsUpToDate();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: invokevirtual #35                 // Method requireBranchIsUpToDate:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+         5: areturn
+      LineNumberTable:
+        line 139: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder requireBranchIsUpToDate(boolean);
+    descriptor: (Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #3                  // Method getStatusChecks:()Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+         4: iload_1
+         5: putfield      #36                 // Field org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks.strict:Z
+         8: aload_0
+         9: areturn
+      LineNumberTable:
+        line 150: 0
+        line 151: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      10     1     v   Z
+
+  public org.kohsuke.github.GHBranchProtectionBuilder requireCodeOwnReviews();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: invokevirtual #37                 // Method requireCodeOwnReviews:(Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+         5: areturn
+      LineNumberTable:
+        line 160: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder requireCodeOwnReviews(boolean);
+    descriptor: (Z)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #9                  // Method getPrReviews:()Ljava/util/Map;
+         4: ldc           #38                 // String require_code_owner_reviews
+         6: iload_1
+         7: invokestatic  #11                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        10: invokeinterface #12,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        15: pop
+        16: aload_0
+        17: areturn
+      LineNumberTable:
+        line 171: 0
+        line 172: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      18     1     v   Z
+
+  public org.kohsuke.github.GHBranchProtectionBuilder requireReviews();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #9                  // Method getPrReviews:()Ljava/util/Map;
+         4: pop
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 181: 0
+        line 182: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder restrictReviewDismissals();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #9                  // Method getPrReviews:()Ljava/util/Map;
+         4: pop
+         5: aload_0
+         6: getfield      #21                 // Field prReviews:Ljava/util/Map;
+         9: ldc           #39                 // String dismissal_restrictions
+        11: invokeinterface #40,  2           // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        16: ifne          39
+        19: aload_0
+        20: getfield      #21                 // Field prReviews:Ljava/util/Map;
+        23: ldc           #39                 // String dismissal_restrictions
+        25: new           #41                 // class org/kohsuke/github/GHBranchProtectionBuilder$Restrictions
+        28: dup
+        29: aconst_null
+        30: invokespecial #42                 // Method org/kohsuke/github/GHBranchProtectionBuilder$Restrictions."<init>":(Lorg/kohsuke/github/GHBranchProtectionBuilder$1;)V
+        33: invokeinterface #12,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        38: pop
+        39: aload_0
+        40: areturn
+      LineNumberTable:
+        line 191: 0
+        line 193: 5
+        line 194: 19
+        line 197: 39
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+      StackMapTable: number_of_entries = 1
+        frame_type = 39 /* same */
+
+  public org.kohsuke.github.GHBranchProtectionBuilder restrictPushAccess();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #43                 // Method getRestrictions:()Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+         4: pop
+         5: aload_0
+         6: areturn
+      LineNumberTable:
+        line 206: 0
+        line 207: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder teamPushAccess(java.util.Collection<org.kohsuke.github.GHTeam>);
+    descriptor: (Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=2
+         0: aload_1
+         1: invokeinterface #44,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+         6: astore_2
+         7: aload_2
+         8: invokeinterface #45,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        13: ifeq          42
+        16: aload_2
+        17: invokeinterface #46,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        22: checkcast     #47                 // class org/kohsuke/github/GHTeam
+        25: astore_3
+        26: aload_0
+        27: iconst_1
+        28: anewarray     #47                 // class org/kohsuke/github/GHTeam
+        31: dup
+        32: iconst_0
+        33: aload_3
+        34: aastore
+        35: invokevirtual #48                 // Method teamPushAccess:([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+        38: pop
+        39: goto          7
+        42: aload_0
+        43: areturn
+      LineNumberTable:
+        line 218: 0
+        line 219: 26
+        line 220: 39
+        line 221: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26      13     3  team   Lorg/kohsuke/github/GHTeam;
+            0      44     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      44     1 teams   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      44     1 teams   Ljava/util/Collection<Lorg/kohsuke/github/GHTeam;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 7
+          locals = [ class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 34
+    Signature: #127                         // (Ljava/util/Collection<Lorg/kohsuke/github/GHTeam;>;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder teamPushAccess(org.kohsuke.github.GHTeam...);
+    descriptor: ([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     44
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: invokespecial #43                 // Method getRestrictions:()Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+        24: invokestatic  #49                 // Method org/kohsuke/github/GHBranchProtectionBuilder$Restrictions.access$100:(Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+        27: aload         5
+        29: invokevirtual #50                 // Method org/kohsuke/github/GHTeam.getSlug:()Ljava/lang/String;
+        32: invokeinterface #51,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        37: pop
+        38: iinc          4, 1
+        41: goto          8
+        44: aload_0
+        45: areturn
+      LineNumberTable:
+        line 232: 0
+        line 233: 20
+        line 232: 38
+        line 235: 44
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      18     5  team   Lorg/kohsuke/github/GHTeam;
+            0      46     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      46     1 teams   [Lorg/kohsuke/github/GHTeam;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lorg/kohsuke/github/GHTeam;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 35
+
+  public org.kohsuke.github.GHBranchProtectionBuilder teamReviewDismissals(java.util.Collection<org.kohsuke.github.GHTeam>);
+    descriptor: (Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=2
+         0: aload_1
+         1: invokeinterface #44,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+         6: astore_2
+         7: aload_2
+         8: invokeinterface #45,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        13: ifeq          42
+        16: aload_2
+        17: invokeinterface #46,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        22: checkcast     #47                 // class org/kohsuke/github/GHTeam
+        25: astore_3
+        26: aload_0
+        27: iconst_1
+        28: anewarray     #47                 // class org/kohsuke/github/GHTeam
+        31: dup
+        32: iconst_0
+        33: aload_3
+        34: aastore
+        35: invokevirtual #52                 // Method teamReviewDismissals:([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+        38: pop
+        39: goto          7
+        42: aload_0
+        43: areturn
+      LineNumberTable:
+        line 246: 0
+        line 247: 26
+        line 248: 39
+        line 249: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26      13     3  team   Lorg/kohsuke/github/GHTeam;
+            0      44     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      44     1 teams   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      44     1 teams   Ljava/util/Collection<Lorg/kohsuke/github/GHTeam;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 7
+          locals = [ class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 34
+    Signature: #127                         // (Ljava/util/Collection<Lorg/kohsuke/github/GHTeam;>;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder teamReviewDismissals(org.kohsuke.github.GHTeam...);
+    descriptor: ([Lorg/kohsuke/github/GHTeam;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=3, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     36
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: aload         5
+        23: invokevirtual #50                 // Method org/kohsuke/github/GHTeam.getSlug:()Ljava/lang/String;
+        26: iconst_1
+        27: invokespecial #53                 // Method addReviewRestriction:(Ljava/lang/String;Z)V
+        30: iinc          4, 1
+        33: goto          8
+        36: aload_0
+        37: areturn
+      LineNumberTable:
+        line 260: 0
+        line 261: 20
+        line 260: 30
+        line 263: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      10     5  team   Lorg/kohsuke/github/GHTeam;
+            0      38     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      38     1 teams   [Lorg/kohsuke/github/GHTeam;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lorg/kohsuke/github/GHTeam;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 27
+
+  public org.kohsuke.github.GHBranchProtectionBuilder userPushAccess(java.util.Collection<org.kohsuke.github.GHUser>);
+    descriptor: (Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=2
+         0: aload_1
+         1: invokeinterface #44,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+         6: astore_2
+         7: aload_2
+         8: invokeinterface #45,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        13: ifeq          42
+        16: aload_2
+        17: invokeinterface #46,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        22: checkcast     #54                 // class org/kohsuke/github/GHUser
+        25: astore_3
+        26: aload_0
+        27: iconst_1
+        28: anewarray     #54                 // class org/kohsuke/github/GHUser
+        31: dup
+        32: iconst_0
+        33: aload_3
+        34: aastore
+        35: invokevirtual #55                 // Method userPushAccess:([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+        38: pop
+        39: goto          7
+        42: aload_0
+        43: areturn
+      LineNumberTable:
+        line 274: 0
+        line 275: 26
+        line 276: 39
+        line 277: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26      13     3  user   Lorg/kohsuke/github/GHUser;
+            0      44     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      44     1 users   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      44     1 users   Ljava/util/Collection<Lorg/kohsuke/github/GHUser;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 7
+          locals = [ class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 34
+    Signature: #137                         // (Ljava/util/Collection<Lorg/kohsuke/github/GHUser;>;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder userPushAccess(org.kohsuke.github.GHUser...);
+    descriptor: ([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=2, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     44
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: invokespecial #43                 // Method getRestrictions:()Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+        24: invokestatic  #56                 // Method org/kohsuke/github/GHBranchProtectionBuilder$Restrictions.access$200:(Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+        27: aload         5
+        29: invokevirtual #57                 // Method org/kohsuke/github/GHUser.getLogin:()Ljava/lang/String;
+        32: invokeinterface #51,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        37: pop
+        38: iinc          4, 1
+        41: goto          8
+        44: aload_0
+        45: areturn
+      LineNumberTable:
+        line 288: 0
+        line 289: 20
+        line 288: 38
+        line 291: 44
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      18     5  user   Lorg/kohsuke/github/GHUser;
+            0      46     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      46     1 users   [Lorg/kohsuke/github/GHUser;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lorg/kohsuke/github/GHUser;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 35
+
+  public org.kohsuke.github.GHBranchProtectionBuilder userReviewDismissals(java.util.Collection<org.kohsuke.github.GHUser>);
+    descriptor: (Ljava/util/Collection;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=2
+         0: aload_1
+         1: invokeinterface #44,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+         6: astore_2
+         7: aload_2
+         8: invokeinterface #45,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        13: ifeq          42
+        16: aload_2
+        17: invokeinterface #46,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        22: checkcast     #54                 // class org/kohsuke/github/GHUser
+        25: astore_3
+        26: aload_0
+        27: iconst_1
+        28: anewarray     #54                 // class org/kohsuke/github/GHUser
+        31: dup
+        32: iconst_0
+        33: aload_3
+        34: aastore
+        35: invokevirtual #58                 // Method userReviewDismissals:([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+        38: pop
+        39: goto          7
+        42: aload_0
+        43: areturn
+      LineNumberTable:
+        line 302: 0
+        line 303: 26
+        line 304: 39
+        line 305: 42
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26      13     3  team   Lorg/kohsuke/github/GHUser;
+            0      44     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      44     1 users   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      44     1 users   Ljava/util/Collection<Lorg/kohsuke/github/GHUser;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 7
+          locals = [ class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 34
+    Signature: #137                         // (Ljava/util/Collection<Lorg/kohsuke/github/GHUser;>;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+
+  public org.kohsuke.github.GHBranchProtectionBuilder userReviewDismissals(org.kohsuke.github.GHUser...);
+    descriptor: ([Lorg/kohsuke/github/GHUser;)Lorg/kohsuke/github/GHBranchProtectionBuilder;
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=3, locals=6, args_size=2
+         0: aload_1
+         1: astore_2
+         2: aload_2
+         3: arraylength
+         4: istore_3
+         5: iconst_0
+         6: istore        4
+         8: iload         4
+        10: iload_3
+        11: if_icmpge     36
+        14: aload_2
+        15: iload         4
+        17: aaload
+        18: astore        5
+        20: aload_0
+        21: aload         5
+        23: invokevirtual #57                 // Method org/kohsuke/github/GHUser.getLogin:()Ljava/lang/String;
+        26: iconst_0
+        27: invokespecial #53                 // Method addReviewRestriction:(Ljava/lang/String;Z)V
+        30: iinc          4, 1
+        33: goto          8
+        36: aload_0
+        37: areturn
+      LineNumberTable:
+        line 316: 0
+        line 317: 20
+        line 316: 30
+        line 319: 36
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           20      10     5  user   Lorg/kohsuke/github/GHUser;
+            0      38     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      38     1 users   [Lorg/kohsuke/github/GHUser;
+      StackMapTable: number_of_entries = 2
+        frame_type = 254 /* append */
+          offset_delta = 8
+          locals = [ class "[Lorg/kohsuke/github/GHUser;", int, int ]
+        frame_type = 248 /* chop */
+          offset_delta = 27
+
+  private void addReviewRestriction(java.lang.String, boolean);
+    descriptor: (Ljava/lang/String;Z)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=4, args_size=3
+         0: aload_0
+         1: invokevirtual #59                 // Method restrictReviewDismissals:()Lorg/kohsuke/github/GHBranchProtectionBuilder;
+         4: pop
+         5: aload_0
+         6: getfield      #21                 // Field prReviews:Ljava/util/Map;
+         9: ldc           #39                 // String dismissal_restrictions
+        11: invokeinterface #60,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        16: checkcast     #41                 // class org/kohsuke/github/GHBranchProtectionBuilder$Restrictions
+        19: astore_3
+        20: iload_2
+        21: ifeq          38
+        24: aload_3
+        25: invokestatic  #49                 // Method org/kohsuke/github/GHBranchProtectionBuilder$Restrictions.access$100:(Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+        28: aload_1
+        29: invokeinterface #51,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        34: pop
+        35: goto          49
+        38: aload_3
+        39: invokestatic  #56                 // Method org/kohsuke/github/GHBranchProtectionBuilder$Restrictions.access$200:(Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;)Ljava/util/Set;
+        42: aload_1
+        43: invokeinterface #51,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        48: pop
+        49: return
+      LineNumberTable:
+        line 323: 0
+        line 324: 5
+        line 326: 20
+        line 327: 24
+        line 329: 38
+        line 331: 49
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      50     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+            0      50     1 restriction   Ljava/lang/String;
+            0      50     2 isTeam   Z
+           20      30     3 restrictions   Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 38
+          locals = [ class org/kohsuke/github/GHBranchProtectionBuilder$Restrictions ]
+        frame_type = 10 /* same */
+
+  private java.util.Map<java.lang.String, java.lang.Object> getPrReviews();
+    descriptor: ()Ljava/util/Map;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #21                 // Field prReviews:Ljava/util/Map;
+         4: ifnonnull     18
+         7: aload_0
+         8: new           #61                 // class java/util/HashMap
+        11: dup
+        12: invokespecial #62                 // Method java/util/HashMap."<init>":()V
+        15: putfield      #21                 // Field prReviews:Ljava/util/Map;
+        18: aload_0
+        19: getfield      #21                 // Field prReviews:Ljava/util/Map;
+        22: areturn
+      LineNumberTable:
+        line 334: 0
+        line 335: 7
+        line 337: 18
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+      StackMapTable: number_of_entries = 1
+        frame_type = 18 /* same */
+    Signature: #149                         // ()Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;
+
+  private org.kohsuke.github.GHBranchProtectionBuilder$Restrictions getRestrictions();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #23                 // Field restrictions:Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+         4: ifnonnull     19
+         7: aload_0
+         8: new           #41                 // class org/kohsuke/github/GHBranchProtectionBuilder$Restrictions
+        11: dup
+        12: aconst_null
+        13: invokespecial #42                 // Method org/kohsuke/github/GHBranchProtectionBuilder$Restrictions."<init>":(Lorg/kohsuke/github/GHBranchProtectionBuilder$1;)V
+        16: putfield      #23                 // Field restrictions:Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+        19: aload_0
+        20: getfield      #23                 // Field restrictions:Lorg/kohsuke/github/GHBranchProtectionBuilder$Restrictions;
+        23: areturn
+      LineNumberTable:
+        line 341: 0
+        line 342: 7
+        line 344: 19
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+      StackMapTable: number_of_entries = 1
+        frame_type = 19 /* same */
+
+  private org.kohsuke.github.GHBranchProtectionBuilder$StatusChecks getStatusChecks();
+    descriptor: ()Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field statusChecks:Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+         4: ifnonnull     19
+         7: aload_0
+         8: new           #63                 // class org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks
+        11: dup
+        12: aconst_null
+        13: invokespecial #64                 // Method org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks."<init>":(Lorg/kohsuke/github/GHBranchProtectionBuilder$1;)V
+        16: putfield      #18                 // Field statusChecks:Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+        19: aload_0
+        20: getfield      #18                 // Field statusChecks:Lorg/kohsuke/github/GHBranchProtectionBuilder$StatusChecks;
+        23: areturn
+      LineNumberTable:
+        line 348: 0
+        line 349: 7
+        line 351: 19
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+      StackMapTable: number_of_entries = 1
+        frame_type = 19 /* same */
+
+  private org.kohsuke.github.Requester requester();
+    descriptor: ()Lorg/kohsuke/github/Requester;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #2                  // Field branch:Lorg/kohsuke/github/GHBranch;
+         4: invokevirtual #65                 // Method org/kohsuke/github/GHBranch.root:()Lorg/kohsuke/github/GitHub;
+         7: invokevirtual #66                 // Method org/kohsuke/github/GitHub.createRequest:()Lorg/kohsuke/github/Requester;
+        10: getstatic     #67                 // Field org/kohsuke/github/internal/Previews.LUKE_CAGE:Lorg/kohsuke/github/internal/Previews;
+        13: invokevirtual #68                 // Method org/kohsuke/github/Requester.withPreview:(Lorg/kohsuke/github/internal/Previews;)Lorg/kohsuke/github/GitHubRequest$Builder;
+        16: checkcast     #16                 // class org/kohsuke/github/Requester
+        19: areturn
+      LineNumberTable:
+        line 355: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lorg/kohsuke/github/GHBranchProtectionBuilder;
+}
+SourceFile: "GHBranchProtectionBuilder.java"
+RuntimeInvisibleAnnotations:
+  0: #159(#160=[s#161,s#162,s#163,s#164],#165=s#166)
+    edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+      value=["UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD","UWF_UNWRITTEN_FIELD","NP_UNWRITTEN_FIELD","URF_UNREAD_FIELD"]
+      justification="JSON API"
+    )
+InnerClasses:
+  static #71;                             // class org/kohsuke/github/GHBranchProtectionBuilder$1
+  private static #73= #63 of #69;         // StatusChecks=class org/kohsuke/github/GHBranchProtectionBuilder$StatusChecks of class org/kohsuke/github/GHBranchProtectionBuilder
+  private static #74= #41 of #69;         // Restrictions=class org/kohsuke/github/GHBranchProtectionBuilder$Restrictions of class org/kohsuke/github/GHBranchProtectionBuilder
+  static #265= #264 of #310;              // Builder=class org/kohsuke/github/GitHubRequest$Builder of class org/kohsuke/github/GitHubRequest

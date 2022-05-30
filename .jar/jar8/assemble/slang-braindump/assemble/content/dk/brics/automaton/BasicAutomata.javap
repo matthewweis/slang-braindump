@@ -1,0 +1,2288 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar8/assemble/slang-braindump/assemble/content/dk/brics/automaton/BasicAutomata.class
+  Last modified May 29, 2022; size 9516 bytes
+  SHA-256 checksum e10028c21c9a109dfc9f186d22fbfece5eaeedc45a4edb55cd96436d65c7e610
+  Compiled from "BasicAutomata.java"
+public final class dk.brics.automaton.BasicAutomata
+  minor version: 0
+  major version: 52
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #105                        // dk/brics/automaton/BasicAutomata
+  super_class: #106                       // java/lang/Object
+  interfaces: 0, fields: 1, methods: 25, attributes: 1
+Constant pool:
+    #1 = Methodref          #106.#160     // java/lang/Object."<init>":()V
+    #2 = Class              #161          // dk/brics/automaton/Automaton
+    #3 = Methodref          #2.#160       // dk/brics/automaton/Automaton."<init>":()V
+    #4 = Class              #162          // dk/brics/automaton/State
+    #5 = Methodref          #4.#160       // dk/brics/automaton/State."<init>":()V
+    #6 = Fieldref           #2.#163       // dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+    #7 = Fieldref           #2.#164       // dk/brics/automaton/Automaton.deterministic:Z
+    #8 = String             #165          //
+    #9 = Fieldref           #2.#166       // dk/brics/automaton/Automaton.singleton:Ljava/lang/String;
+   #10 = Fieldref           #4.#167       // dk/brics/automaton/State.accept:Z
+   #11 = Fieldref           #4.#168       // dk/brics/automaton/State.transitions:Ljava/util/Set;
+   #12 = Class              #169          // dk/brics/automaton/Transition
+   #13 = Fieldref           #12.#170      // dk/brics/automaton/Transition.MIN_VALUE:I
+   #14 = Fieldref           #12.#171      // dk/brics/automaton/Transition.MAX_VALUE:I
+   #15 = Methodref          #12.#172      // dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+   #16 = InterfaceMethodref #155.#173     // java/util/Set.add:(Ljava/lang/Object;)Z
+   #17 = Methodref          #105.#174     // dk/brics/automaton/BasicAutomata.makeCharRange:(II)Ldk/brics/automaton/Automaton;
+   #18 = Methodref          #175.#176     // java/lang/Character.toString:(I)Ljava/lang/String;
+   #19 = Methodref          #105.#177     // dk/brics/automaton/BasicAutomata.makeChar:(I)Ldk/brics/automaton/Automaton;
+   #20 = Methodref          #125.#178     // java/lang/String.length:()I
+   #21 = Methodref          #125.#179     // java/lang/String.charAt:(I)C
+   #22 = Methodref          #180.#181     // dk/brics/automaton/StringUnionOperations.cpCount:(Ljava/lang/String;)I
+   #23 = Methodref          #180.#182     // dk/brics/automaton/StringUnionOperations.cpAt:(Ljava/lang/String;I)I
+   #24 = Methodref          #12.#183      // dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+   #25 = Methodref          #2.#184       // dk/brics/automaton/Automaton.reduce:()V
+   #26 = Methodref          #4.#185       // dk/brics/automaton/State.setAccept:(Z)V
+   #27 = Methodref          #105.#186     // dk/brics/automaton/BasicAutomata.anyOfRightLength:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+   #28 = Methodref          #4.#187       // dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+   #29 = InterfaceMethodref #130.#173     // java/util/Collection.add:(Ljava/lang/Object;)Z
+   #30 = Methodref          #105.#188     // dk/brics/automaton/BasicAutomata.atLeast:(Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+   #31 = Methodref          #105.#189     // dk/brics/automaton/BasicAutomata.atMost:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+   #32 = Methodref          #105.#190     // dk/brics/automaton/BasicAutomata.between:(Ljava/lang/String;Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+   #33 = Methodref          #100.#176     // java/lang/Integer.toString:(I)Ljava/lang/String;
+   #34 = Class              #191          // java/lang/IllegalArgumentException
+   #35 = Methodref          #34.#160      // java/lang/IllegalArgumentException."<init>":()V
+   #36 = Class              #192          // java/lang/StringBuilder
+   #37 = Methodref          #36.#160      // java/lang/StringBuilder."<init>":()V
+   #38 = Methodref          #36.#193      // java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+   #39 = Methodref          #36.#194      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #40 = Methodref          #36.#195      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #41 = Class              #196          // java/util/ArrayList
+   #42 = Methodref          #41.#160      // java/util/ArrayList."<init>":()V
+   #43 = InterfaceMethodref #130.#197     // java/util/Collection.iterator:()Ljava/util/Iterator;
+   #44 = InterfaceMethodref #139.#198     // java/util/Iterator.hasNext:()Z
+   #45 = InterfaceMethodref #139.#199     // java/util/Iterator.next:()Ljava/lang/Object;
+   #46 = Class              #200          // dk/brics/automaton/StatePair
+   #47 = Methodref          #46.#201      // dk/brics/automaton/StatePair."<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+   #48 = Methodref          #41.#173      // java/util/ArrayList.add:(Ljava/lang/Object;)Z
+   #49 = Methodref          #2.#202       // dk/brics/automaton/Automaton.addEpsilons:(Ljava/util/Collection;)V
+   #50 = Methodref          #2.#203       // dk/brics/automaton/Automaton.checkMinimizeAlways:()V
+   #51 = Methodref          #105.#204     // dk/brics/automaton/BasicAutomata.makeEmpty:()Ldk/brics/automaton/Automaton;
+   #52 = Fieldref           #180.#205     // dk/brics/automaton/StringUnionOperations.LEXICOGRAPHIC_ORDER:Ljava/util/Comparator;
+   #53 = Methodref          #206.#207     // java/util/Arrays.sort:([Ljava/lang/Object;Ljava/util/Comparator;)V
+   #54 = Methodref          #180.#208     // dk/brics/automaton/StringUnionOperations.build:([Ljava/lang/CharSequence;)Ldk/brics/automaton/State;
+   #55 = Methodref          #2.#209       // dk/brics/automaton/Automaton.setInitialState:(Ldk/brics/automaton/State;)V
+   #56 = Methodref          #2.#210       // dk/brics/automaton/Automaton.setDeterministic:(Z)V
+   #57 = Methodref          #2.#211       // dk/brics/automaton/Automaton.recomputeHashCode:()V
+   #58 = String             #212          // 0*(0|
+   #59 = String             #213          // [0-9]{1,
+   #60 = Methodref          #36.#214      // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+   #61 = String             #215          // }|
+   #62 = Methodref          #125.#216     // java/lang/String.substring:(I)Ljava/lang/String;
+   #63 = Methodref          #105.#217     // dk/brics/automaton/BasicAutomata.maxInteger:(Ljava/lang/String;ILjava/lang/StringBuilder;)V
+   #64 = String             #218          // )
+   #65 = Class              #219          // dk/brics/automaton/RegExp
+   #66 = Methodref          #65.#220      // dk/brics/automaton/RegExp."<init>":(Ljava/lang/String;)V
+   #67 = Methodref          #65.#221      // dk/brics/automaton/RegExp.toAutomaton:()Ldk/brics/automaton/Automaton;
+   #68 = Methodref          #2.#222       // dk/brics/automaton/Automaton.minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+   #69 = String             #223          // [0-
+   #70 = String             #224          // ][0-9]{
+   #71 = String             #225          // 0*
+   #72 = Methodref          #105.#226     // dk/brics/automaton/BasicAutomata.minInteger:(Ljava/lang/String;ILjava/lang/StringBuilder;)V
+   #73 = String             #227          // [0-9]*
+   #74 = String             #228          // [
+   #75 = String             #229          // -9][0-9]{
+   #76 = String             #230          // [ \t\n\r]*[-+]?0*([0-9]{0,
+   #77 = String             #231          // }|((([0-9]\\.*){0,
+   #78 = String             #232          // })&@\\.@)0*)[ \t\n\r]*
+   #79 = String             #233          // [ \t\n\r]*[-+]?[0-9]+(\\.[0-9]{0,
+   #80 = String             #234          // }0*)?[ \t\n\r]*
+   #81 = Methodref          #36.#178      // java/lang/StringBuilder.length:()I
+   #82 = String             #235          // 0
+   #83 = Methodref          #2.#177       // dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+   #84 = Methodref          #2.#236       // dk/brics/automaton/Automaton.optional:()Ldk/brics/automaton/Automaton;
+   #85 = Fieldref           #105.#237     // dk/brics/automaton/BasicAutomata.ws:Ldk/brics/automaton/Automaton;
+   #86 = Methodref          #2.#238       // dk/brics/automaton/Automaton.repeat:()Ldk/brics/automaton/Automaton;
+   #87 = Methodref          #2.#239       // dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+   #88 = Methodref          #2.#240       // dk/brics/automaton/Automaton.makeString:(Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+   #89 = Methodref          #125.#241     // java/lang/String.indexOf:(II)I
+   #90 = Methodref          #125.#242     // java/lang/String.substring:(II)Ljava/lang/String;
+   #91 = Methodref          #2.#243       // dk/brics/automaton/Automaton.repeat:(I)Ldk/brics/automaton/Automaton;
+   #92 = Class              #244          // java/util/HashSet
+   #93 = Methodref          #92.#160      // java/util/HashSet."<init>":()V
+   #94 = Methodref          #100.#245     // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+   #95 = InterfaceMethodref #155.#246     // java/util/Set.contains:(Ljava/lang/Object;)Z
+   #96 = Methodref          #180.#247     // dk/brics/automaton/StringUnionOperations.cpSubstring:(Ljava/lang/String;II)Ljava/lang/String;
+   #97 = Methodref          #125.#248     // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #98 = InterfaceMethodref #155.#249     // java/util/Set.size:()I
+   #99 = InterfaceMethodref #155.#197     // java/util/Set.iterator:()Ljava/util/Iterator;
+  #100 = Class              #250          // java/lang/Integer
+  #101 = Methodref          #100.#251     // java/lang/Integer.intValue:()I
+  #102 = Methodref          #206.#252     // java/util/Arrays.sort:([I)V
+  #103 = String             #253          //  \t\n\r
+  #104 = Methodref          #2.#254       // dk/brics/automaton/Automaton.makeCharSet:(Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+  #105 = Class              #255          // dk/brics/automaton/BasicAutomata
+  #106 = Class              #256          // java/lang/Object
+  #107 = Utf8               ws
+  #108 = Utf8               Ldk/brics/automaton/Automaton;
+  #109 = Utf8               <init>
+  #110 = Utf8               ()V
+  #111 = Utf8               Code
+  #112 = Utf8               LineNumberTable
+  #113 = Utf8               makeEmpty
+  #114 = Utf8               ()Ldk/brics/automaton/Automaton;
+  #115 = Utf8               makeEmptyString
+  #116 = Utf8               makeAnyString
+  #117 = Utf8               makeAnyChar
+  #118 = Utf8               makeChar
+  #119 = Utf8               (I)Ldk/brics/automaton/Automaton;
+  #120 = Utf8               makeCharRange
+  #121 = Utf8               (II)Ldk/brics/automaton/Automaton;
+  #122 = Utf8               StackMapTable
+  #123 = Utf8               makeCharSet
+  #124 = Utf8               (Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+  #125 = Class              #257          // java/lang/String
+  #126 = Utf8               anyOfRightLength
+  #127 = Utf8               (Ljava/lang/String;II)Ldk/brics/automaton/State;
+  #128 = Utf8               atLeast
+  #129 = Utf8               (Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+  #130 = Class              #258          // java/util/Collection
+  #131 = Utf8               Signature
+  #132 = Utf8               (Ljava/lang/String;IILjava/util/Collection<Ldk/brics/automaton/State;>;Z)Ldk/brics/automaton/State;
+  #133 = Utf8               atMost
+  #134 = Utf8               between
+  #135 = Utf8               (Ljava/lang/String;Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+  #136 = Utf8               (Ljava/lang/String;Ljava/lang/String;IILjava/util/Collection<Ldk/brics/automaton/State;>;Z)Ldk/brics/automaton/State;
+  #137 = Utf8               makeInterval
+  #138 = Utf8               (III)Ldk/brics/automaton/Automaton;
+  #139 = Class              #259          // java/util/Iterator
+  #140 = Utf8               Exceptions
+  #141 = Utf8               makeString
+  #142 = Utf8               makeStringUnion
+  #143 = Utf8               ([Ljava/lang/CharSequence;)Ldk/brics/automaton/Automaton;
+  #144 = Utf8               makeMaxInteger
+  #145 = Utf8               maxInteger
+  #146 = Utf8               (Ljava/lang/String;ILjava/lang/StringBuilder;)V
+  #147 = Utf8               makeMinInteger
+  #148 = Utf8               minInteger
+  #149 = Utf8               makeTotalDigits
+  #150 = Utf8               makeFractionDigits
+  #151 = Utf8               makeIntegerValue
+  #152 = Utf8               makeDecimalValue
+  #153 = Utf8               makeStringMatcher
+  #154 = Class              #260          // "[Ldk/brics/automaton/State;"
+  #155 = Class              #261          // java/util/Set
+  #156 = Class              #262          // "[I"
+  #157 = Utf8               <clinit>
+  #158 = Utf8               SourceFile
+  #159 = Utf8               BasicAutomata.java
+  #160 = NameAndType        #109:#110     // "<init>":()V
+  #161 = Utf8               dk/brics/automaton/Automaton
+  #162 = Utf8               dk/brics/automaton/State
+  #163 = NameAndType        #263:#264     // initial:Ldk/brics/automaton/State;
+  #164 = NameAndType        #265:#266     // deterministic:Z
+  #165 = Utf8
+  #166 = NameAndType        #267:#268     // singleton:Ljava/lang/String;
+  #167 = NameAndType        #269:#266     // accept:Z
+  #168 = NameAndType        #270:#271     // transitions:Ljava/util/Set;
+  #169 = Utf8               dk/brics/automaton/Transition
+  #170 = NameAndType        #272:#273     // MIN_VALUE:I
+  #171 = NameAndType        #274:#273     // MAX_VALUE:I
+  #172 = NameAndType        #109:#275     // "<init>":(IILdk/brics/automaton/State;)V
+  #173 = NameAndType        #276:#277     // add:(Ljava/lang/Object;)Z
+  #174 = NameAndType        #120:#121     // makeCharRange:(II)Ldk/brics/automaton/Automaton;
+  #175 = Class              #278          // java/lang/Character
+  #176 = NameAndType        #279:#280     // toString:(I)Ljava/lang/String;
+  #177 = NameAndType        #118:#119     // makeChar:(I)Ldk/brics/automaton/Automaton;
+  #178 = NameAndType        #281:#282     // length:()I
+  #179 = NameAndType        #283:#284     // charAt:(I)C
+  #180 = Class              #285          // dk/brics/automaton/StringUnionOperations
+  #181 = NameAndType        #286:#287     // cpCount:(Ljava/lang/String;)I
+  #182 = NameAndType        #288:#289     // cpAt:(Ljava/lang/String;I)I
+  #183 = NameAndType        #109:#290     // "<init>":(ILdk/brics/automaton/State;)V
+  #184 = NameAndType        #291:#110     // reduce:()V
+  #185 = NameAndType        #292:#293     // setAccept:(Z)V
+  #186 = NameAndType        #126:#127     // anyOfRightLength:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+  #187 = NameAndType        #294:#295     // addTransition:(Ldk/brics/automaton/Transition;)V
+  #188 = NameAndType        #128:#129     // atLeast:(Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+  #189 = NameAndType        #133:#127     // atMost:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+  #190 = NameAndType        #134:#135     // between:(Ljava/lang/String;Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+  #191 = Utf8               java/lang/IllegalArgumentException
+  #192 = Utf8               java/lang/StringBuilder
+  #193 = NameAndType        #296:#297     // append:(C)Ljava/lang/StringBuilder;
+  #194 = NameAndType        #296:#298     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #195 = NameAndType        #279:#299     // toString:()Ljava/lang/String;
+  #196 = Utf8               java/util/ArrayList
+  #197 = NameAndType        #300:#301     // iterator:()Ljava/util/Iterator;
+  #198 = NameAndType        #302:#303     // hasNext:()Z
+  #199 = NameAndType        #304:#305     // next:()Ljava/lang/Object;
+  #200 = Utf8               dk/brics/automaton/StatePair
+  #201 = NameAndType        #109:#306     // "<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+  #202 = NameAndType        #307:#308     // addEpsilons:(Ljava/util/Collection;)V
+  #203 = NameAndType        #309:#110     // checkMinimizeAlways:()V
+  #204 = NameAndType        #113:#114     // makeEmpty:()Ldk/brics/automaton/Automaton;
+  #205 = NameAndType        #310:#311     // LEXICOGRAPHIC_ORDER:Ljava/util/Comparator;
+  #206 = Class              #312          // java/util/Arrays
+  #207 = NameAndType        #313:#314     // sort:([Ljava/lang/Object;Ljava/util/Comparator;)V
+  #208 = NameAndType        #315:#316     // build:([Ljava/lang/CharSequence;)Ldk/brics/automaton/State;
+  #209 = NameAndType        #317:#318     // setInitialState:(Ldk/brics/automaton/State;)V
+  #210 = NameAndType        #319:#293     // setDeterministic:(Z)V
+  #211 = NameAndType        #320:#110     // recomputeHashCode:()V
+  #212 = Utf8               0*(0|
+  #213 = Utf8               [0-9]{1,
+  #214 = NameAndType        #296:#321     // append:(I)Ljava/lang/StringBuilder;
+  #215 = Utf8               }|
+  #216 = NameAndType        #322:#280     // substring:(I)Ljava/lang/String;
+  #217 = NameAndType        #145:#146     // maxInteger:(Ljava/lang/String;ILjava/lang/StringBuilder;)V
+  #218 = Utf8               )
+  #219 = Utf8               dk/brics/automaton/RegExp
+  #220 = NameAndType        #109:#323     // "<init>":(Ljava/lang/String;)V
+  #221 = NameAndType        #324:#114     // toAutomaton:()Ldk/brics/automaton/Automaton;
+  #222 = NameAndType        #325:#326     // minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+  #223 = Utf8               [0-
+  #224 = Utf8               ][0-9]{
+  #225 = Utf8               0*
+  #226 = NameAndType        #148:#146     // minInteger:(Ljava/lang/String;ILjava/lang/StringBuilder;)V
+  #227 = Utf8               [0-9]*
+  #228 = Utf8               [
+  #229 = Utf8               -9][0-9]{
+  #230 = Utf8               [ \t\n\r]*[-+]?0*([0-9]{0,
+  #231 = Utf8               }|((([0-9]\\.*){0,
+  #232 = Utf8               })&@\\.@)0*)[ \t\n\r]*
+  #233 = Utf8               [ \t\n\r]*[-+]?[0-9]+(\\.[0-9]{0,
+  #234 = Utf8               }0*)?[ \t\n\r]*
+  #235 = Utf8               0
+  #236 = NameAndType        #327:#114     // optional:()Ldk/brics/automaton/Automaton;
+  #237 = NameAndType        #107:#108     // ws:Ldk/brics/automaton/Automaton;
+  #238 = NameAndType        #328:#114     // repeat:()Ldk/brics/automaton/Automaton;
+  #239 = NameAndType        #329:#326     // concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+  #240 = NameAndType        #141:#124     // makeString:(Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+  #241 = NameAndType        #330:#331     // indexOf:(II)I
+  #242 = NameAndType        #322:#332     // substring:(II)Ljava/lang/String;
+  #243 = NameAndType        #328:#119     // repeat:(I)Ldk/brics/automaton/Automaton;
+  #244 = Utf8               java/util/HashSet
+  #245 = NameAndType        #333:#334     // valueOf:(I)Ljava/lang/Integer;
+  #246 = NameAndType        #335:#277     // contains:(Ljava/lang/Object;)Z
+  #247 = NameAndType        #336:#337     // cpSubstring:(Ljava/lang/String;II)Ljava/lang/String;
+  #248 = NameAndType        #338:#277     // equals:(Ljava/lang/Object;)Z
+  #249 = NameAndType        #339:#282     // size:()I
+  #250 = Utf8               java/lang/Integer
+  #251 = NameAndType        #340:#282     // intValue:()I
+  #252 = NameAndType        #313:#341     // sort:([I)V
+  #253 = Utf8                \t\n\r
+  #254 = NameAndType        #123:#124     // makeCharSet:(Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+  #255 = Utf8               dk/brics/automaton/BasicAutomata
+  #256 = Utf8               java/lang/Object
+  #257 = Utf8               java/lang/String
+  #258 = Utf8               java/util/Collection
+  #259 = Utf8               java/util/Iterator
+  #260 = Utf8               [Ldk/brics/automaton/State;
+  #261 = Utf8               java/util/Set
+  #262 = Utf8               [I
+  #263 = Utf8               initial
+  #264 = Utf8               Ldk/brics/automaton/State;
+  #265 = Utf8               deterministic
+  #266 = Utf8               Z
+  #267 = Utf8               singleton
+  #268 = Utf8               Ljava/lang/String;
+  #269 = Utf8               accept
+  #270 = Utf8               transitions
+  #271 = Utf8               Ljava/util/Set;
+  #272 = Utf8               MIN_VALUE
+  #273 = Utf8               I
+  #274 = Utf8               MAX_VALUE
+  #275 = Utf8               (IILdk/brics/automaton/State;)V
+  #276 = Utf8               add
+  #277 = Utf8               (Ljava/lang/Object;)Z
+  #278 = Utf8               java/lang/Character
+  #279 = Utf8               toString
+  #280 = Utf8               (I)Ljava/lang/String;
+  #281 = Utf8               length
+  #282 = Utf8               ()I
+  #283 = Utf8               charAt
+  #284 = Utf8               (I)C
+  #285 = Utf8               dk/brics/automaton/StringUnionOperations
+  #286 = Utf8               cpCount
+  #287 = Utf8               (Ljava/lang/String;)I
+  #288 = Utf8               cpAt
+  #289 = Utf8               (Ljava/lang/String;I)I
+  #290 = Utf8               (ILdk/brics/automaton/State;)V
+  #291 = Utf8               reduce
+  #292 = Utf8               setAccept
+  #293 = Utf8               (Z)V
+  #294 = Utf8               addTransition
+  #295 = Utf8               (Ldk/brics/automaton/Transition;)V
+  #296 = Utf8               append
+  #297 = Utf8               (C)Ljava/lang/StringBuilder;
+  #298 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #299 = Utf8               ()Ljava/lang/String;
+  #300 = Utf8               iterator
+  #301 = Utf8               ()Ljava/util/Iterator;
+  #302 = Utf8               hasNext
+  #303 = Utf8               ()Z
+  #304 = Utf8               next
+  #305 = Utf8               ()Ljava/lang/Object;
+  #306 = Utf8               (Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+  #307 = Utf8               addEpsilons
+  #308 = Utf8               (Ljava/util/Collection;)V
+  #309 = Utf8               checkMinimizeAlways
+  #310 = Utf8               LEXICOGRAPHIC_ORDER
+  #311 = Utf8               Ljava/util/Comparator;
+  #312 = Utf8               java/util/Arrays
+  #313 = Utf8               sort
+  #314 = Utf8               ([Ljava/lang/Object;Ljava/util/Comparator;)V
+  #315 = Utf8               build
+  #316 = Utf8               ([Ljava/lang/CharSequence;)Ldk/brics/automaton/State;
+  #317 = Utf8               setInitialState
+  #318 = Utf8               (Ldk/brics/automaton/State;)V
+  #319 = Utf8               setDeterministic
+  #320 = Utf8               recomputeHashCode
+  #321 = Utf8               (I)Ljava/lang/StringBuilder;
+  #322 = Utf8               substring
+  #323 = Utf8               (Ljava/lang/String;)V
+  #324 = Utf8               toAutomaton
+  #325 = Utf8               minimize
+  #326 = Utf8               (Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+  #327 = Utf8               optional
+  #328 = Utf8               repeat
+  #329 = Utf8               concatenate
+  #330 = Utf8               indexOf
+  #331 = Utf8               (II)I
+  #332 = Utf8               (II)Ljava/lang/String;
+  #333 = Utf8               valueOf
+  #334 = Utf8               (I)Ljava/lang/Integer;
+  #335 = Utf8               contains
+  #336 = Utf8               cpSubstring
+  #337 = Utf8               (Ljava/lang/String;II)Ljava/lang/String;
+  #338 = Utf8               equals
+  #339 = Utf8               size
+  #340 = Utf8               intValue
+  #341 = Utf8               ([I)V
+{
+  public static dk.brics.automaton.Automaton ws;
+    descriptor: Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  private dk.brics.automaton.BasicAutomata();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 47: 0
+
+  public static dk.brics.automaton.Automaton makeEmpty();
+    descriptor: ()Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=0
+         0: new           #2                  // class dk/brics/automaton/Automaton
+         3: dup
+         4: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+         7: astore_0
+         8: aload_0
+         9: new           #4                  // class dk/brics/automaton/State
+        12: dup
+        13: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+        16: putfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+        19: aload_0
+        20: iconst_1
+        21: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+        24: aload_0
+        25: areturn
+      LineNumberTable:
+        line 53: 0
+        line 54: 8
+        line 55: 19
+        line 56: 24
+
+  public static dk.brics.automaton.Automaton makeEmptyString();
+    descriptor: ()Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=0
+         0: new           #2                  // class dk/brics/automaton/Automaton
+         3: dup
+         4: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+         7: astore_0
+         8: aload_0
+         9: ldc           #8                  // String
+        11: putfield      #9                  // Field dk/brics/automaton/Automaton.singleton:Ljava/lang/String;
+        14: aload_0
+        15: iconst_1
+        16: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+        19: aload_0
+        20: areturn
+      LineNumberTable:
+        line 63: 0
+        line 64: 8
+        line 65: 14
+        line 66: 19
+
+  public static dk.brics.automaton.Automaton makeAnyString();
+    descriptor: ()Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=2, args_size=0
+         0: new           #2                  // class dk/brics/automaton/Automaton
+         3: dup
+         4: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+         7: astore_0
+         8: new           #4                  // class dk/brics/automaton/State
+        11: dup
+        12: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+        15: astore_1
+        16: aload_0
+        17: aload_1
+        18: putfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+        21: aload_1
+        22: iconst_1
+        23: putfield      #10                 // Field dk/brics/automaton/State.accept:Z
+        26: aload_1
+        27: getfield      #11                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+        30: new           #12                 // class dk/brics/automaton/Transition
+        33: dup
+        34: getstatic     #13                 // Field dk/brics/automaton/Transition.MIN_VALUE:I
+        37: getstatic     #14                 // Field dk/brics/automaton/Transition.MAX_VALUE:I
+        40: aload_1
+        41: invokespecial #15                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+        44: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        49: pop
+        50: aload_0
+        51: iconst_1
+        52: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+        55: aload_0
+        56: areturn
+      LineNumberTable:
+        line 73: 0
+        line 74: 8
+        line 75: 16
+        line 76: 21
+        line 77: 26
+        line 78: 50
+        line 79: 55
+
+  public static dk.brics.automaton.Automaton makeAnyChar();
+    descriptor: ()Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #13                 // Field dk/brics/automaton/Transition.MIN_VALUE:I
+         3: getstatic     #14                 // Field dk/brics/automaton/Transition.MAX_VALUE:I
+         6: invokestatic  #17                 // Method makeCharRange:(II)Ldk/brics/automaton/Automaton;
+         9: areturn
+      LineNumberTable:
+        line 86: 0
+
+  public static dk.brics.automaton.Automaton makeChar(int);
+    descriptor: (I)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: new           #2                  // class dk/brics/automaton/Automaton
+         3: dup
+         4: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+         7: astore_1
+         8: aload_1
+         9: iload_0
+        10: invokestatic  #18                 // Method java/lang/Character.toString:(I)Ljava/lang/String;
+        13: putfield      #9                  // Field dk/brics/automaton/Automaton.singleton:Ljava/lang/String;
+        16: aload_1
+        17: iconst_1
+        18: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+        21: aload_1
+        22: areturn
+      LineNumberTable:
+        line 93: 0
+        line 94: 8
+        line 95: 16
+        line 96: 21
+
+  public static dk.brics.automaton.Automaton makeCharRange(int, int);
+    descriptor: (II)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=5, args_size=2
+         0: iload_0
+         1: iload_1
+         2: if_icmpne     10
+         5: iload_0
+         6: invokestatic  #19                 // Method makeChar:(I)Ldk/brics/automaton/Automaton;
+         9: areturn
+        10: new           #2                  // class dk/brics/automaton/Automaton
+        13: dup
+        14: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+        17: astore_2
+        18: new           #4                  // class dk/brics/automaton/State
+        21: dup
+        22: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+        25: astore_3
+        26: new           #4                  // class dk/brics/automaton/State
+        29: dup
+        30: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+        33: astore        4
+        35: aload_2
+        36: aload_3
+        37: putfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+        40: aload         4
+        42: iconst_1
+        43: putfield      #10                 // Field dk/brics/automaton/State.accept:Z
+        46: iload_0
+        47: iload_1
+        48: if_icmpgt     72
+        51: aload_3
+        52: getfield      #11                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+        55: new           #12                 // class dk/brics/automaton/Transition
+        58: dup
+        59: iload_0
+        60: iload_1
+        61: aload         4
+        63: invokespecial #15                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+        66: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        71: pop
+        72: aload_2
+        73: iconst_1
+        74: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+        77: aload_2
+        78: areturn
+      LineNumberTable:
+        line 104: 0
+        line 105: 5
+        line 106: 10
+        line 107: 18
+        line 108: 26
+        line 109: 35
+        line 110: 40
+        line 111: 46
+        line 112: 51
+        line 113: 72
+        line 114: 77
+      StackMapTable: number_of_entries = 2
+        frame_type = 10 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 61
+          locals = [ class dk/brics/automaton/Automaton, class dk/brics/automaton/State, class dk/brics/automaton/State ]
+
+  public static dk.brics.automaton.Automaton makeCharSet(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=6, args_size=1
+         0: aload_0
+         1: invokevirtual #20                 // Method java/lang/String.length:()I
+         4: iconst_1
+         5: if_icmpne     17
+         8: aload_0
+         9: iconst_0
+        10: invokevirtual #21                 // Method java/lang/String.charAt:(I)C
+        13: invokestatic  #19                 // Method makeChar:(I)Ldk/brics/automaton/Automaton;
+        16: areturn
+        17: new           #2                  // class dk/brics/automaton/Automaton
+        20: dup
+        21: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+        24: astore_1
+        25: new           #4                  // class dk/brics/automaton/State
+        28: dup
+        29: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+        32: astore_2
+        33: new           #4                  // class dk/brics/automaton/State
+        36: dup
+        37: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+        40: astore_3
+        41: aload_1
+        42: aload_2
+        43: putfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+        46: aload_3
+        47: iconst_1
+        48: putfield      #10                 // Field dk/brics/automaton/State.accept:Z
+        51: aload_0
+        52: invokestatic  #22                 // Method dk/brics/automaton/StringUnionOperations.cpCount:(Ljava/lang/String;)I
+        55: istore        4
+        57: iconst_0
+        58: istore        5
+        60: iload         5
+        62: iload         4
+        64: if_icmpge     97
+        67: aload_2
+        68: getfield      #11                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+        71: new           #12                 // class dk/brics/automaton/Transition
+        74: dup
+        75: aload_0
+        76: iload         5
+        78: invokestatic  #23                 // Method dk/brics/automaton/StringUnionOperations.cpAt:(Ljava/lang/String;I)I
+        81: aload_3
+        82: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+        85: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        90: pop
+        91: iinc          5, 1
+        94: goto          60
+        97: aload_1
+        98: iconst_1
+        99: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+       102: aload_1
+       103: invokevirtual #25                 // Method dk/brics/automaton/Automaton.reduce:()V
+       106: aload_1
+       107: areturn
+      LineNumberTable:
+        line 121: 0
+        line 122: 8
+        line 123: 17
+        line 124: 25
+        line 125: 33
+        line 126: 41
+        line 127: 46
+        line 128: 51
+        line 129: 57
+        line 130: 67
+        line 129: 91
+        line 131: 97
+        line 132: 102
+        line 133: 106
+      StackMapTable: number_of_entries = 3
+        frame_type = 17 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 42
+          locals = [ class java/lang/String, class dk/brics/automaton/Automaton, class dk/brics/automaton/State, class dk/brics/automaton/State, int, int ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 36
+
+  private static dk.brics.automaton.State anyOfRightLength(java.lang.String, int, int);
+    descriptor: (Ljava/lang/String;II)Ldk/brics/automaton/State;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=9, locals=4, args_size=3
+         0: new           #4                  // class dk/brics/automaton/State
+         3: dup
+         4: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+         7: astore_3
+         8: iload_1
+         9: iload_2
+        10: if_icmpne     21
+        13: aload_3
+        14: iconst_1
+        15: invokevirtual #26                 // Method dk/brics/automaton/State.setAccept:(Z)V
+        18: goto          44
+        21: aload_3
+        22: new           #12                 // class dk/brics/automaton/Transition
+        25: dup
+        26: bipush        48
+        28: bipush        57
+        30: aload_0
+        31: iload_1
+        32: iload_2
+        33: iconst_1
+        34: iadd
+        35: invokestatic  #27                 // Method anyOfRightLength:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+        38: invokespecial #15                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+        41: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+        44: aload_3
+        45: areturn
+      LineNumberTable:
+        line 141: 0
+        line 142: 8
+        line 143: 13
+        line 145: 21
+        line 146: 44
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class dk/brics/automaton/State ]
+        frame_type = 22 /* same */
+
+  private static dk.brics.automaton.State atLeast(java.lang.String, int, int, java.util.Collection<dk.brics.automaton.State>, boolean);
+    descriptor: (Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=10, locals=7, args_size=5
+         0: new           #4                  // class dk/brics/automaton/State
+         3: dup
+         4: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+         7: astore        5
+         9: iload_1
+        10: iload_2
+        11: if_icmpne     23
+        14: aload         5
+        16: iconst_1
+        17: invokevirtual #26                 // Method dk/brics/automaton/State.setAccept:(Z)V
+        20: goto          117
+        23: iload         4
+        25: ifeq          37
+        28: aload_3
+        29: aload         5
+        31: invokeinterface #29,  2           // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+        36: pop
+        37: aload_0
+        38: iload_2
+        39: invokestatic  #23                 // Method dk/brics/automaton/StringUnionOperations.cpAt:(Ljava/lang/String;I)I
+        42: istore        6
+        44: aload         5
+        46: new           #12                 // class dk/brics/automaton/Transition
+        49: dup
+        50: iload         6
+        52: aload_0
+        53: iload_1
+        54: iload_2
+        55: iconst_1
+        56: iadd
+        57: aload_3
+        58: iload         4
+        60: ifeq          74
+        63: iload         6
+        65: bipush        48
+        67: if_icmpne     74
+        70: iconst_1
+        71: goto          75
+        74: iconst_0
+        75: invokestatic  #30                 // Method atLeast:(Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+        78: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+        81: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+        84: iload         6
+        86: bipush        57
+        88: if_icmpge     117
+        91: aload         5
+        93: new           #12                 // class dk/brics/automaton/Transition
+        96: dup
+        97: iload         6
+        99: iconst_1
+       100: iadd
+       101: bipush        57
+       103: aload_0
+       104: iload_1
+       105: iload_2
+       106: iconst_1
+       107: iadd
+       108: invokestatic  #27                 // Method anyOfRightLength:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+       111: invokespecial #15                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+       114: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+       117: aload         5
+       119: areturn
+      LineNumberTable:
+        line 154: 0
+        line 155: 9
+        line 156: 14
+        line 158: 23
+        line 159: 28
+        line 160: 37
+        line 161: 44
+        line 162: 84
+        line 163: 91
+        line 165: 117
+      StackMapTable: number_of_entries = 5
+        frame_type = 252 /* append */
+          offset_delta = 23
+          locals = [ class dk/brics/automaton/State ]
+        frame_type = 13 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 36
+          locals = [ class java/lang/String, int, int, class java/util/Collection, int, class dk/brics/automaton/State, int ]
+          stack = [ class dk/brics/automaton/State, uninitialized 46, uninitialized 46, int, class java/lang/String, int, int, class java/util/Collection ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/lang/String, int, int, class java/util/Collection, int, class dk/brics/automaton/State, int ]
+          stack = [ class dk/brics/automaton/State, uninitialized 46, uninitialized 46, int, class java/lang/String, int, int, class java/util/Collection, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 41
+    Signature: #132                         // (Ljava/lang/String;IILjava/util/Collection<Ldk/brics/automaton/State;>;Z)Ldk/brics/automaton/State;
+
+  private static dk.brics.automaton.State atMost(java.lang.String, int, int);
+    descriptor: (Ljava/lang/String;II)Ldk/brics/automaton/State;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=9, locals=5, args_size=3
+         0: new           #4                  // class dk/brics/automaton/State
+         3: dup
+         4: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+         7: astore_3
+         8: iload_1
+         9: iload_2
+        10: if_icmpne     21
+        13: aload_3
+        14: iconst_1
+        15: invokevirtual #26                 // Method dk/brics/automaton/State.setAccept:(Z)V
+        18: goto          81
+        21: aload_0
+        22: iload_2
+        23: invokestatic  #23                 // Method dk/brics/automaton/StringUnionOperations.cpAt:(Ljava/lang/String;I)I
+        26: istore        4
+        28: aload_3
+        29: new           #12                 // class dk/brics/automaton/Transition
+        32: dup
+        33: iload         4
+        35: aload_0
+        36: iload_1
+        37: iload_2
+        38: iconst_1
+        39: iadd
+        40: invokestatic  #31                 // Method atMost:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+        43: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+        46: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+        49: iload         4
+        51: bipush        48
+        53: if_icmple     81
+        56: aload_3
+        57: new           #12                 // class dk/brics/automaton/Transition
+        60: dup
+        61: bipush        48
+        63: iload         4
+        65: iconst_1
+        66: isub
+        67: aload_0
+        68: iload_1
+        69: iload_2
+        70: iconst_1
+        71: iadd
+        72: invokestatic  #27                 // Method anyOfRightLength:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+        75: invokespecial #15                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+        78: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+        81: aload_3
+        82: areturn
+      LineNumberTable:
+        line 173: 0
+        line 174: 8
+        line 175: 13
+        line 177: 21
+        line 178: 28
+        line 179: 49
+        line 180: 56
+        line 182: 81
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class dk/brics/automaton/State ]
+        frame_type = 59 /* same */
+
+  private static dk.brics.automaton.State between(java.lang.String, java.lang.String, int, int, java.util.Collection<dk.brics.automaton.State>, boolean);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=11, locals=9, args_size=6
+         0: new           #4                  // class dk/brics/automaton/State
+         3: dup
+         4: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+         7: astore        6
+         9: iload_2
+        10: iload_3
+        11: if_icmpne     23
+        14: aload         6
+        16: iconst_1
+        17: invokevirtual #26                 // Method dk/brics/automaton/State.setAccept:(Z)V
+        20: goto          204
+        23: iload         5
+        25: ifeq          38
+        28: aload         4
+        30: aload         6
+        32: invokeinterface #29,  2           // InterfaceMethod java/util/Collection.add:(Ljava/lang/Object;)Z
+        37: pop
+        38: aload_0
+        39: iload_3
+        40: invokestatic  #23                 // Method dk/brics/automaton/StringUnionOperations.cpAt:(Ljava/lang/String;I)I
+        43: istore        7
+        45: aload_1
+        46: iload_3
+        47: invokestatic  #23                 // Method dk/brics/automaton/StringUnionOperations.cpAt:(Ljava/lang/String;I)I
+        50: istore        8
+        52: iload         7
+        54: iload         8
+        56: if_icmpne     104
+        59: aload         6
+        61: new           #12                 // class dk/brics/automaton/Transition
+        64: dup
+        65: iload         7
+        67: aload_0
+        68: aload_1
+        69: iload_2
+        70: iload_3
+        71: iconst_1
+        72: iadd
+        73: aload         4
+        75: iload         5
+        77: ifeq          91
+        80: iload         7
+        82: bipush        48
+        84: if_icmpne     91
+        87: iconst_1
+        88: goto          92
+        91: iconst_0
+        92: invokestatic  #32                 // Method between:(Ljava/lang/String;Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+        95: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+        98: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+       101: goto          204
+       104: aload         6
+       106: new           #12                 // class dk/brics/automaton/Transition
+       109: dup
+       110: iload         7
+       112: aload_0
+       113: iload_2
+       114: iload_3
+       115: iconst_1
+       116: iadd
+       117: aload         4
+       119: iload         5
+       121: ifeq          135
+       124: iload         7
+       126: bipush        48
+       128: if_icmpne     135
+       131: iconst_1
+       132: goto          136
+       135: iconst_0
+       136: invokestatic  #30                 // Method atLeast:(Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+       139: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+       142: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+       145: aload         6
+       147: new           #12                 // class dk/brics/automaton/Transition
+       150: dup
+       151: iload         8
+       153: aload_1
+       154: iload_2
+       155: iload_3
+       156: iconst_1
+       157: iadd
+       158: invokestatic  #31                 // Method atMost:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+       161: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+       164: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+       167: iload         7
+       169: iconst_1
+       170: iadd
+       171: iload         8
+       173: if_icmpge     204
+       176: aload         6
+       178: new           #12                 // class dk/brics/automaton/Transition
+       181: dup
+       182: iload         7
+       184: iconst_1
+       185: iadd
+       186: iload         8
+       188: iconst_1
+       189: isub
+       190: aload_0
+       191: iload_2
+       192: iload_3
+       193: iconst_1
+       194: iadd
+       195: invokestatic  #27                 // Method anyOfRightLength:(Ljava/lang/String;II)Ldk/brics/automaton/State;
+       198: invokespecial #15                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+       201: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+       204: aload         6
+       206: areturn
+      LineNumberTable:
+        line 191: 0
+        line 192: 9
+        line 193: 14
+        line 195: 23
+        line 196: 28
+        line 197: 38
+        line 198: 45
+        line 199: 52
+        line 200: 59
+        line 202: 104
+        line 203: 145
+        line 204: 167
+        line 205: 176
+        line 208: 204
+      StackMapTable: number_of_entries = 8
+        frame_type = 252 /* append */
+          offset_delta = 23
+          locals = [ class dk/brics/automaton/State ]
+        frame_type = 14 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 52
+          locals = [ class java/lang/String, class java/lang/String, int, int, class java/util/Collection, int, class dk/brics/automaton/State, int, int ]
+          stack = [ class dk/brics/automaton/State, uninitialized 61, uninitialized 61, int, class java/lang/String, class java/lang/String, int, int, class java/util/Collection ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/lang/String, class java/lang/String, int, int, class java/util/Collection, int, class dk/brics/automaton/State, int, int ]
+          stack = [ class dk/brics/automaton/State, uninitialized 61, uninitialized 61, int, class java/lang/String, class java/lang/String, int, int, class java/util/Collection, int ]
+        frame_type = 11 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class java/lang/String, class java/lang/String, int, int, class java/util/Collection, int, class dk/brics/automaton/State, int, int ]
+          stack = [ class dk/brics/automaton/State, uninitialized 106, uninitialized 106, int, class java/lang/String, int, int, class java/util/Collection ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/lang/String, class java/lang/String, int, int, class java/util/Collection, int, class dk/brics/automaton/State, int, int ]
+          stack = [ class dk/brics/automaton/State, uninitialized 106, uninitialized 106, int, class java/lang/String, int, int, class java/util/Collection, int ]
+        frame_type = 249 /* chop */
+          offset_delta = 67
+    Signature: #136                         // (Ljava/lang/String;Ljava/lang/String;IILjava/util/Collection<Ldk/brics/automaton/State;>;Z)Ldk/brics/automaton/State;
+
+  public static dk.brics.automaton.Automaton makeInterval(int, int, int) throws java.lang.IllegalArgumentException;
+    descriptor: (III)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=7, locals=13, args_size=3
+         0: new           #2                  // class dk/brics/automaton/Automaton
+         3: dup
+         4: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+         7: astore_3
+         8: iload_0
+         9: invokestatic  #33                 // Method java/lang/Integer.toString:(I)Ljava/lang/String;
+        12: astore        4
+        14: iload_1
+        15: invokestatic  #33                 // Method java/lang/Integer.toString:(I)Ljava/lang/String;
+        18: astore        5
+        20: iload_0
+        21: iload_1
+        22: if_icmpgt     38
+        25: iload_2
+        26: ifle          46
+        29: aload         5
+        31: invokevirtual #20                 // Method java/lang/String.length:()I
+        34: iload_2
+        35: if_icmple     46
+        38: new           #34                 // class java/lang/IllegalArgumentException
+        41: dup
+        42: invokespecial #35                 // Method java/lang/IllegalArgumentException."<init>":()V
+        45: athrow
+        46: iload_2
+        47: ifle          56
+        50: iload_2
+        51: istore        6
+        53: goto          63
+        56: aload         5
+        58: invokevirtual #20                 // Method java/lang/String.length:()I
+        61: istore        6
+        63: new           #36                 // class java/lang/StringBuilder
+        66: dup
+        67: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+        70: astore        7
+        72: aload         4
+        74: invokevirtual #20                 // Method java/lang/String.length:()I
+        77: istore        8
+        79: iload         8
+        81: iload         6
+        83: if_icmpge     100
+        86: aload         7
+        88: bipush        48
+        90: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        93: pop
+        94: iinc          8, 1
+        97: goto          79
+       100: aload         7
+       102: aload         4
+       104: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       107: pop
+       108: aload         7
+       110: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       113: astore        4
+       115: new           #36                 // class java/lang/StringBuilder
+       118: dup
+       119: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+       122: astore        8
+       124: aload         5
+       126: invokevirtual #20                 // Method java/lang/String.length:()I
+       129: istore        9
+       131: iload         9
+       133: iload         6
+       135: if_icmpge     152
+       138: aload         8
+       140: bipush        48
+       142: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+       145: pop
+       146: iinc          9, 1
+       149: goto          131
+       152: aload         8
+       154: aload         5
+       156: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       159: pop
+       160: aload         8
+       162: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       165: astore        5
+       167: new           #41                 // class java/util/ArrayList
+       170: dup
+       171: invokespecial #42                 // Method java/util/ArrayList."<init>":()V
+       174: astore        9
+       176: aload_3
+       177: aload         4
+       179: aload         5
+       181: aload         4
+       183: invokevirtual #20                 // Method java/lang/String.length:()I
+       186: iconst_0
+       187: aload         9
+       189: iload_2
+       190: ifgt          197
+       193: iconst_1
+       194: goto          198
+       197: iconst_0
+       198: invokestatic  #32                 // Method between:(Ljava/lang/String;Ljava/lang/String;IILjava/util/Collection;Z)Ldk/brics/automaton/State;
+       201: putfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+       204: iload_2
+       205: ifgt          313
+       208: new           #41                 // class java/util/ArrayList
+       211: dup
+       212: invokespecial #42                 // Method java/util/ArrayList."<init>":()V
+       215: astore        10
+       217: aload         9
+       219: invokeinterface #43,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+       224: astore        11
+       226: aload         11
+       228: invokeinterface #44,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+       233: ifeq          279
+       236: aload         11
+       238: invokeinterface #45,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       243: checkcast     #4                  // class dk/brics/automaton/State
+       246: astore        12
+       248: aload_3
+       249: getfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+       252: aload         12
+       254: if_acmpeq     276
+       257: aload         10
+       259: new           #46                 // class dk/brics/automaton/StatePair
+       262: dup
+       263: aload_3
+       264: getfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+       267: aload         12
+       269: invokespecial #47                 // Method dk/brics/automaton/StatePair."<init>":(Ldk/brics/automaton/State;Ldk/brics/automaton/State;)V
+       272: invokevirtual #48                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+       275: pop
+       276: goto          226
+       279: aload_3
+       280: aload         10
+       282: invokevirtual #49                 // Method dk/brics/automaton/Automaton.addEpsilons:(Ljava/util/Collection;)V
+       285: aload_3
+       286: getfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+       289: new           #12                 // class dk/brics/automaton/Transition
+       292: dup
+       293: bipush        48
+       295: aload_3
+       296: getfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+       299: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+       302: invokevirtual #28                 // Method dk/brics/automaton/State.addTransition:(Ldk/brics/automaton/Transition;)V
+       305: aload_3
+       306: iconst_0
+       307: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+       310: goto          318
+       313: aload_3
+       314: iconst_1
+       315: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+       318: aload_3
+       319: invokevirtual #50                 // Method dk/brics/automaton/Automaton.checkMinimizeAlways:()V
+       322: aload_3
+       323: areturn
+      LineNumberTable:
+        line 223: 0
+        line 224: 8
+        line 225: 14
+        line 226: 20
+        line 227: 38
+        line 229: 46
+        line 230: 50
+        line 232: 56
+        line 233: 63
+        line 234: 72
+        line 235: 86
+        line 234: 94
+        line 236: 100
+        line 237: 108
+        line 238: 115
+        line 239: 124
+        line 240: 138
+        line 239: 146
+        line 241: 152
+        line 242: 160
+        line 243: 167
+        line 244: 176
+        line 245: 204
+        line 246: 208
+        line 247: 217
+        line 248: 248
+        line 249: 257
+        line 248: 276
+        line 250: 279
+        line 251: 285
+        line 252: 305
+        line 253: 310
+        line 254: 313
+        line 255: 318
+        line 256: 322
+      StackMapTable: number_of_entries = 15
+        frame_type = 254 /* append */
+          offset_delta = 38
+          locals = [ class dk/brics/automaton/Automaton, class java/lang/String, class java/lang/String ]
+        frame_type = 7 /* same */
+        frame_type = 9 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 6
+          locals = [ int ]
+        frame_type = 253 /* append */
+          offset_delta = 15
+          locals = [ class java/lang/StringBuilder, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 20
+        frame_type = 253 /* append */
+          offset_delta = 30
+          locals = [ class java/lang/StringBuilder, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 20
+        frame_type = 255 /* full_frame */
+          offset_delta = 44
+          locals = [ int, int, int, class dk/brics/automaton/Automaton, class java/lang/String, class java/lang/String, int, class java/lang/StringBuilder, class java/lang/StringBuilder, class java/util/Collection ]
+          stack = [ class dk/brics/automaton/Automaton, class java/lang/String, class java/lang/String, int, int, class java/util/Collection ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ int, int, int, class dk/brics/automaton/Automaton, class java/lang/String, class java/lang/String, int, class java/lang/StringBuilder, class java/lang/StringBuilder, class java/util/Collection ]
+          stack = [ class dk/brics/automaton/Automaton, class java/lang/String, class java/lang/String, int, int, class java/util/Collection, int ]
+        frame_type = 253 /* append */
+          offset_delta = 27
+          locals = [ class java/util/ArrayList, class java/util/Iterator ]
+        frame_type = 49 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 250 /* chop */
+          offset_delta = 33
+        frame_type = 4 /* same */
+    Exceptions:
+      throws java.lang.IllegalArgumentException
+
+  public static dk.brics.automaton.Automaton makeString(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: new           #2                  // class dk/brics/automaton/Automaton
+         3: dup
+         4: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+         7: astore_1
+         8: aload_1
+         9: aload_0
+        10: putfield      #9                  // Field dk/brics/automaton/Automaton.singleton:Ljava/lang/String;
+        13: aload_1
+        14: iconst_1
+        15: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+        18: aload_1
+        19: areturn
+      LineNumberTable:
+        line 263: 0
+        line 264: 8
+        line 265: 13
+        line 266: 18
+
+  public static dk.brics.automaton.Automaton makeStringUnion(java.lang.CharSequence...);
+    descriptor: ([Ljava/lang/CharSequence;)Ldk/brics/automaton/Automaton;
+    flags: (0x0089) ACC_PUBLIC, ACC_STATIC, ACC_VARARGS
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: arraylength
+         2: ifne          9
+         5: invokestatic  #51                 // Method makeEmpty:()Ldk/brics/automaton/Automaton;
+         8: areturn
+         9: aload_0
+        10: getstatic     #52                 // Field dk/brics/automaton/StringUnionOperations.LEXICOGRAPHIC_ORDER:Ljava/util/Comparator;
+        13: invokestatic  #53                 // Method java/util/Arrays.sort:([Ljava/lang/Object;Ljava/util/Comparator;)V
+        16: new           #2                  // class dk/brics/automaton/Automaton
+        19: dup
+        20: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+        23: astore_1
+        24: aload_1
+        25: aload_0
+        26: invokestatic  #54                 // Method dk/brics/automaton/StringUnionOperations.build:([Ljava/lang/CharSequence;)Ldk/brics/automaton/State;
+        29: invokevirtual #55                 // Method dk/brics/automaton/Automaton.setInitialState:(Ldk/brics/automaton/State;)V
+        32: aload_1
+        33: iconst_1
+        34: invokevirtual #56                 // Method dk/brics/automaton/Automaton.setDeterministic:(Z)V
+        37: aload_1
+        38: invokevirtual #25                 // Method dk/brics/automaton/Automaton.reduce:()V
+        41: aload_1
+        42: invokevirtual #57                 // Method dk/brics/automaton/Automaton.recomputeHashCode:()V
+        45: aload_1
+        46: areturn
+      LineNumberTable:
+        line 276: 0
+        line 277: 5
+        line 278: 9
+        line 279: 16
+        line 280: 24
+        line 281: 32
+        line 282: 37
+        line 283: 41
+        line 284: 45
+      StackMapTable: number_of_entries = 1
+        frame_type = 9 /* same */
+
+  public static dk.brics.automaton.Automaton makeMaxInteger(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: iload_1
+         3: aload_0
+         4: invokevirtual #20                 // Method java/lang/String.length:()I
+         7: if_icmpge     26
+        10: aload_0
+        11: iload_1
+        12: invokevirtual #21                 // Method java/lang/String.charAt:(I)C
+        15: bipush        48
+        17: if_icmpne     26
+        20: iinc          1, 1
+        23: goto          2
+        26: new           #36                 // class java/lang/StringBuilder
+        29: dup
+        30: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+        33: astore_2
+        34: aload_2
+        35: ldc           #58                 // String 0*(0|
+        37: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        40: pop
+        41: iload_1
+        42: aload_0
+        43: invokevirtual #20                 // Method java/lang/String.length:()I
+        46: if_icmpge     72
+        49: aload_2
+        50: ldc           #59                 // String [0-9]{1,
+        52: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        55: aload_0
+        56: invokevirtual #20                 // Method java/lang/String.length:()I
+        59: iload_1
+        60: isub
+        61: iconst_1
+        62: isub
+        63: invokevirtual #60                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        66: ldc           #61                 // String }|
+        68: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        71: pop
+        72: aload_0
+        73: iload_1
+        74: invokevirtual #62                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+        77: iconst_0
+        78: aload_2
+        79: invokestatic  #63                 // Method maxInteger:(Ljava/lang/String;ILjava/lang/StringBuilder;)V
+        82: aload_2
+        83: ldc           #64                 // String )
+        85: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        88: pop
+        89: new           #65                 // class dk/brics/automaton/RegExp
+        92: dup
+        93: aload_2
+        94: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        97: invokespecial #66                 // Method dk/brics/automaton/RegExp."<init>":(Ljava/lang/String;)V
+       100: invokevirtual #67                 // Method dk/brics/automaton/RegExp.toAutomaton:()Ldk/brics/automaton/Automaton;
+       103: invokestatic  #68                 // Method dk/brics/automaton/Automaton.minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       106: areturn
+      LineNumberTable:
+        line 293: 0
+        line 294: 2
+        line 295: 20
+        line 296: 26
+        line 297: 34
+        line 298: 41
+        line 299: 49
+        line 300: 72
+        line 301: 82
+        line 302: 89
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 23 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 45
+          locals = [ class java/lang/StringBuilder ]
+
+  private static void maxInteger(java.lang.String, int, java.lang.StringBuilder);
+    descriptor: (Ljava/lang/String;ILjava/lang/StringBuilder;)V
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=4, args_size=3
+         0: aload_2
+         1: bipush        40
+         3: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+         6: pop
+         7: iload_1
+         8: aload_0
+         9: invokevirtual #20                 // Method java/lang/String.length:()I
+        12: if_icmpge     76
+        15: aload_0
+        16: iload_1
+        17: invokevirtual #21                 // Method java/lang/String.charAt:(I)C
+        20: istore_3
+        21: iload_3
+        22: bipush        48
+        24: if_icmpeq     62
+        27: aload_2
+        28: ldc           #69                 // String [0-
+        30: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        33: iload_3
+        34: iconst_1
+        35: isub
+        36: i2c
+        37: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        40: ldc           #70                 // String ][0-9]{
+        42: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        45: aload_0
+        46: invokevirtual #20                 // Method java/lang/String.length:()I
+        49: iload_1
+        50: isub
+        51: iconst_1
+        52: isub
+        53: invokevirtual #60                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        56: ldc           #61                 // String }|
+        58: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        61: pop
+        62: aload_2
+        63: iload_3
+        64: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        67: pop
+        68: aload_0
+        69: iload_1
+        70: iconst_1
+        71: iadd
+        72: aload_2
+        73: invokestatic  #63                 // Method maxInteger:(Ljava/lang/String;ILjava/lang/StringBuilder;)V
+        76: aload_2
+        77: bipush        41
+        79: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        82: pop
+        83: return
+      LineNumberTable:
+        line 306: 0
+        line 307: 7
+        line 308: 15
+        line 309: 21
+        line 310: 27
+        line 311: 62
+        line 312: 68
+        line 314: 76
+        line 315: 83
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 62
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 13
+
+  public static dk.brics.automaton.Automaton makeMinInteger(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: iload_1
+         3: iconst_1
+         4: iadd
+         5: aload_0
+         6: invokevirtual #20                 // Method java/lang/String.length:()I
+         9: if_icmpge     28
+        12: aload_0
+        13: iload_1
+        14: invokevirtual #21                 // Method java/lang/String.charAt:(I)C
+        17: bipush        48
+        19: if_icmpne     28
+        22: iinc          1, 1
+        25: goto          2
+        28: new           #36                 // class java/lang/StringBuilder
+        31: dup
+        32: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+        35: astore_2
+        36: aload_2
+        37: ldc           #71                 // String 0*
+        39: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        42: pop
+        43: aload_0
+        44: iload_1
+        45: invokevirtual #62                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+        48: iconst_0
+        49: aload_2
+        50: invokestatic  #72                 // Method minInteger:(Ljava/lang/String;ILjava/lang/StringBuilder;)V
+        53: aload_2
+        54: ldc           #73                 // String [0-9]*
+        56: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        59: pop
+        60: new           #65                 // class dk/brics/automaton/RegExp
+        63: dup
+        64: aload_2
+        65: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        68: invokespecial #66                 // Method dk/brics/automaton/RegExp."<init>":(Ljava/lang/String;)V
+        71: invokevirtual #67                 // Method dk/brics/automaton/RegExp.toAutomaton:()Ldk/brics/automaton/Automaton;
+        74: invokestatic  #68                 // Method dk/brics/automaton/Automaton.minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+        77: areturn
+      LineNumberTable:
+        line 323: 0
+        line 324: 2
+        line 325: 22
+        line 326: 28
+        line 327: 36
+        line 328: 43
+        line 329: 53
+        line 330: 60
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 25 /* same */
+
+  private static void minInteger(java.lang.String, int, java.lang.StringBuilder);
+    descriptor: (Ljava/lang/String;ILjava/lang/StringBuilder;)V
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=3, locals=4, args_size=3
+         0: aload_2
+         1: bipush        40
+         3: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+         6: pop
+         7: iload_1
+         8: aload_0
+         9: invokevirtual #20                 // Method java/lang/String.length:()I
+        12: if_icmpge     76
+        15: aload_0
+        16: iload_1
+        17: invokevirtual #21                 // Method java/lang/String.charAt:(I)C
+        20: istore_3
+        21: iload_3
+        22: bipush        57
+        24: if_icmpeq     62
+        27: aload_2
+        28: ldc           #74                 // String [
+        30: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        33: iload_3
+        34: iconst_1
+        35: iadd
+        36: i2c
+        37: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        40: ldc           #75                 // String -9][0-9]{
+        42: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        45: aload_0
+        46: invokevirtual #20                 // Method java/lang/String.length:()I
+        49: iload_1
+        50: isub
+        51: iconst_1
+        52: isub
+        53: invokevirtual #60                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        56: ldc           #61                 // String }|
+        58: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        61: pop
+        62: aload_2
+        63: iload_3
+        64: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        67: pop
+        68: aload_0
+        69: iload_1
+        70: iconst_1
+        71: iadd
+        72: aload_2
+        73: invokestatic  #72                 // Method minInteger:(Ljava/lang/String;ILjava/lang/StringBuilder;)V
+        76: aload_2
+        77: bipush        41
+        79: invokevirtual #38                 // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        82: pop
+        83: return
+      LineNumberTable:
+        line 334: 0
+        line 335: 7
+        line 336: 15
+        line 337: 21
+        line 338: 27
+        line 339: 62
+        line 340: 68
+        line 342: 76
+        line 343: 83
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 62
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 13
+
+  public static dk.brics.automaton.Automaton makeTotalDigits(int);
+    descriptor: (I)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: new           #65                 // class dk/brics/automaton/RegExp
+         3: dup
+         4: new           #36                 // class java/lang/StringBuilder
+         7: dup
+         8: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+        11: ldc           #76                 // String [ \t\n\r]*[-+]?0*([0-9]{0,
+        13: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        16: iload_0
+        17: invokevirtual #60                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        20: ldc           #77                 // String }|((([0-9]\\.*){0,
+        22: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        25: iload_0
+        26: invokevirtual #60                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        29: ldc           #78                 // String })&@\\.@)0*)[ \t\n\r]*
+        31: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        34: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        37: invokespecial #66                 // Method dk/brics/automaton/RegExp."<init>":(Ljava/lang/String;)V
+        40: invokevirtual #67                 // Method dk/brics/automaton/RegExp.toAutomaton:()Ldk/brics/automaton/Automaton;
+        43: invokestatic  #68                 // Method dk/brics/automaton/Automaton.minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+        46: areturn
+      LineNumberTable:
+        line 352: 0
+
+  public static dk.brics.automaton.Automaton makeFractionDigits(int);
+    descriptor: (I)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: new           #65                 // class dk/brics/automaton/RegExp
+         3: dup
+         4: new           #36                 // class java/lang/StringBuilder
+         7: dup
+         8: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+        11: ldc           #79                 // String [ \t\n\r]*[-+]?[0-9]+(\\.[0-9]{0,
+        13: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        16: iload_0
+        17: invokevirtual #60                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        20: ldc           #80                 // String }0*)?[ \t\n\r]*
+        22: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        25: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        28: invokespecial #66                 // Method dk/brics/automaton/RegExp."<init>":(Ljava/lang/String;)V
+        31: invokevirtual #67                 // Method dk/brics/automaton/RegExp.toAutomaton:()Ldk/brics/automaton/Automaton;
+        34: invokestatic  #68                 // Method dk/brics/automaton/Automaton.minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+        37: areturn
+      LineNumberTable:
+        line 362: 0
+
+  public static dk.brics.automaton.Automaton makeIntegerValue(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=5, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: iconst_0
+         3: istore_2
+         4: iload_2
+         5: aload_0
+         6: invokevirtual #20                 // Method java/lang/String.length:()I
+         9: if_icmpge     47
+        12: aload_0
+        13: iload_2
+        14: invokevirtual #21                 // Method java/lang/String.charAt:(I)C
+        17: istore_3
+        18: iload_3
+        19: bipush        45
+        21: if_icmpne     26
+        24: iconst_1
+        25: istore_1
+        26: iload_3
+        27: bipush        49
+        29: if_icmplt     41
+        32: iload_3
+        33: bipush        57
+        35: if_icmpgt     41
+        38: goto          47
+        41: iinc          2, 1
+        44: goto          4
+        47: new           #36                 // class java/lang/StringBuilder
+        50: dup
+        51: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+        54: astore_3
+        55: aload_3
+        56: aload_0
+        57: iload_2
+        58: invokevirtual #62                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+        61: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        64: pop
+        65: aload_3
+        66: invokevirtual #81                 // Method java/lang/StringBuilder.length:()I
+        69: ifne          79
+        72: aload_3
+        73: ldc           #82                 // String 0
+        75: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        78: pop
+        79: iload_1
+        80: ifeq          93
+        83: bipush        45
+        85: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+        88: astore        4
+        90: goto          103
+        93: bipush        43
+        95: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+        98: invokevirtual #84                 // Method dk/brics/automaton/Automaton.optional:()Ldk/brics/automaton/Automaton;
+       101: astore        4
+       103: getstatic     #85                 // Field ws:Ldk/brics/automaton/Automaton;
+       106: aload         4
+       108: bipush        48
+       110: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+       113: invokevirtual #86                 // Method dk/brics/automaton/Automaton.repeat:()Ldk/brics/automaton/Automaton;
+       116: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       119: aload_3
+       120: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       123: invokestatic  #88                 // Method dk/brics/automaton/Automaton.makeString:(Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+       126: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       129: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       132: getstatic     #85                 // Field ws:Ldk/brics/automaton/Automaton;
+       135: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       138: invokestatic  #68                 // Method dk/brics/automaton/Automaton.minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       141: areturn
+      LineNumberTable:
+        line 371: 0
+        line 372: 2
+        line 373: 4
+        line 374: 12
+        line 375: 18
+        line 376: 24
+        line 377: 26
+        line 378: 38
+        line 379: 41
+        line 380: 44
+        line 381: 47
+        line 382: 55
+        line 383: 65
+        line 384: 72
+        line 386: 79
+        line 387: 83
+        line 389: 93
+        line 391: 103
+      StackMapTable: number_of_entries = 7
+        frame_type = 253 /* append */
+          offset_delta = 4
+          locals = [ int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ int ]
+        frame_type = 14 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 252 /* append */
+          offset_delta = 31
+          locals = [ class java/lang/StringBuilder ]
+        frame_type = 13 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 9
+          locals = [ class dk/brics/automaton/Automaton ]
+
+  public static dk.brics.automaton.Automaton makeDecimalValue(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=8, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: iconst_0
+         3: istore_2
+         4: iload_2
+         5: aload_0
+         6: invokevirtual #20                 // Method java/lang/String.length:()I
+         9: if_icmpge     53
+        12: aload_0
+        13: iload_2
+        14: invokevirtual #21                 // Method java/lang/String.charAt:(I)C
+        17: istore_3
+        18: iload_3
+        19: bipush        45
+        21: if_icmpne     26
+        24: iconst_1
+        25: istore_1
+        26: iload_3
+        27: bipush        49
+        29: if_icmplt     38
+        32: iload_3
+        33: bipush        57
+        35: if_icmple     53
+        38: iload_3
+        39: bipush        46
+        41: if_icmpne     47
+        44: goto          53
+        47: iinc          2, 1
+        50: goto          4
+        53: new           #36                 // class java/lang/StringBuilder
+        56: dup
+        57: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+        60: astore_3
+        61: new           #36                 // class java/lang/StringBuilder
+        64: dup
+        65: invokespecial #37                 // Method java/lang/StringBuilder."<init>":()V
+        68: astore        4
+        70: aload_0
+        71: bipush        46
+        73: iload_2
+        74: invokevirtual #89                 // Method java/lang/String.indexOf:(II)I
+        77: istore        5
+        79: iload         5
+        81: iconst_m1
+        82: if_icmpne     98
+        85: aload_3
+        86: aload_0
+        87: iload_2
+        88: invokevirtual #62                 // Method java/lang/String.substring:(I)Ljava/lang/String;
+        91: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        94: pop
+        95: goto          170
+        98: aload_3
+        99: aload_0
+       100: iload_2
+       101: iload         5
+       103: invokevirtual #90                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+       106: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       109: pop
+       110: aload_0
+       111: invokevirtual #20                 // Method java/lang/String.length:()I
+       114: iconst_1
+       115: isub
+       116: istore_2
+       117: iload_2
+       118: iload         5
+       120: if_icmple     153
+       123: aload_0
+       124: iload_2
+       125: invokevirtual #21                 // Method java/lang/String.charAt:(I)C
+       128: istore        6
+       130: iload         6
+       132: bipush        49
+       134: if_icmplt     147
+       137: iload         6
+       139: bipush        57
+       141: if_icmpgt     147
+       144: goto          153
+       147: iinc          2, -1
+       150: goto          117
+       153: aload         4
+       155: aload_0
+       156: iload         5
+       158: iconst_1
+       159: iadd
+       160: iload_2
+       161: iconst_1
+       162: iadd
+       163: invokevirtual #90                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+       166: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       169: pop
+       170: aload_3
+       171: invokevirtual #81                 // Method java/lang/StringBuilder.length:()I
+       174: ifne          184
+       177: aload_3
+       178: ldc           #82                 // String 0
+       180: invokevirtual #39                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       183: pop
+       184: iload_1
+       185: ifeq          198
+       188: bipush        45
+       190: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+       193: astore        6
+       195: goto          208
+       198: bipush        43
+       200: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+       203: invokevirtual #84                 // Method dk/brics/automaton/Automaton.optional:()Ldk/brics/automaton/Automaton;
+       206: astore        6
+       208: aload         4
+       210: invokevirtual #81                 // Method java/lang/StringBuilder.length:()I
+       213: ifne          241
+       216: bipush        46
+       218: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+       221: bipush        48
+       223: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+       226: iconst_1
+       227: invokevirtual #91                 // Method dk/brics/automaton/Automaton.repeat:(I)Ldk/brics/automaton/Automaton;
+       230: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       233: invokevirtual #84                 // Method dk/brics/automaton/Automaton.optional:()Ldk/brics/automaton/Automaton;
+       236: astore        7
+       238: goto          270
+       241: bipush        46
+       243: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+       246: aload         4
+       248: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       251: invokestatic  #88                 // Method dk/brics/automaton/Automaton.makeString:(Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+       254: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       257: bipush        48
+       259: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+       262: invokevirtual #86                 // Method dk/brics/automaton/Automaton.repeat:()Ldk/brics/automaton/Automaton;
+       265: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       268: astore        7
+       270: getstatic     #85                 // Field ws:Ldk/brics/automaton/Automaton;
+       273: aload         6
+       275: bipush        48
+       277: invokestatic  #83                 // Method dk/brics/automaton/Automaton.makeChar:(I)Ldk/brics/automaton/Automaton;
+       280: invokevirtual #86                 // Method dk/brics/automaton/Automaton.repeat:()Ldk/brics/automaton/Automaton;
+       283: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       286: aload_3
+       287: invokevirtual #40                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       290: invokestatic  #88                 // Method dk/brics/automaton/Automaton.makeString:(Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+       293: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       296: aload         7
+       298: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       301: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       304: getstatic     #85                 // Field ws:Ldk/brics/automaton/Automaton;
+       307: invokevirtual #87                 // Method dk/brics/automaton/Automaton.concatenate:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       310: invokestatic  #68                 // Method dk/brics/automaton/Automaton.minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+       313: areturn
+      LineNumberTable:
+        line 400: 0
+        line 401: 2
+        line 402: 4
+        line 403: 12
+        line 404: 18
+        line 405: 24
+        line 406: 26
+        line 407: 44
+        line 408: 47
+        line 409: 50
+        line 410: 53
+        line 411: 61
+        line 412: 70
+        line 413: 79
+        line 414: 85
+        line 416: 98
+        line 417: 110
+        line 418: 117
+        line 419: 123
+        line 420: 130
+        line 421: 144
+        line 422: 147
+        line 423: 150
+        line 424: 153
+        line 426: 170
+        line 427: 177
+        line 429: 184
+        line 430: 188
+        line 432: 198
+        line 434: 208
+        line 435: 216
+        line 437: 241
+        line 439: 270
+      StackMapTable: number_of_entries = 15
+        frame_type = 253 /* append */
+          offset_delta = 4
+          locals = [ int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ int ]
+        frame_type = 11 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 254 /* append */
+          offset_delta = 44
+          locals = [ class java/lang/StringBuilder, class java/lang/StringBuilder, int ]
+        frame_type = 18 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 29
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 16 /* same */
+        frame_type = 13 /* same */
+        frame_type = 13 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 9
+          locals = [ class dk/brics/automaton/Automaton ]
+        frame_type = 32 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 28
+          locals = [ class dk/brics/automaton/Automaton ]
+
+  public static dk.brics.automaton.Automaton makeStringMatcher(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=7, locals=13, args_size=1
+         0: new           #2                  // class dk/brics/automaton/Automaton
+         3: dup
+         4: invokespecial #3                  // Method dk/brics/automaton/Automaton."<init>":()V
+         7: astore_1
+         8: aload_0
+         9: invokevirtual #20                 // Method java/lang/String.length:()I
+        12: iconst_1
+        13: iadd
+        14: anewarray     #4                  // class dk/brics/automaton/State
+        17: astore_2
+        18: aload_2
+        19: iconst_0
+        20: aload_1
+        21: getfield      #6                  // Field dk/brics/automaton/Automaton.initial:Ldk/brics/automaton/State;
+        24: aastore
+        25: iconst_0
+        26: istore_3
+        27: iload_3
+        28: aload_0
+        29: invokevirtual #20                 // Method java/lang/String.length:()I
+        32: if_icmpge     53
+        35: aload_2
+        36: iload_3
+        37: iconst_1
+        38: iadd
+        39: new           #4                  // class dk/brics/automaton/State
+        42: dup
+        43: invokespecial #5                  // Method dk/brics/automaton/State."<init>":()V
+        46: aastore
+        47: iinc          3, 1
+        50: goto          27
+        53: aload_2
+        54: aload_0
+        55: invokevirtual #20                 // Method java/lang/String.length:()I
+        58: aaload
+        59: astore_3
+        60: aload_3
+        61: iconst_1
+        62: putfield      #10                 // Field dk/brics/automaton/State.accept:Z
+        65: aload_3
+        66: getfield      #11                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+        69: new           #12                 // class dk/brics/automaton/Transition
+        72: dup
+        73: getstatic     #13                 // Field dk/brics/automaton/Transition.MIN_VALUE:I
+        76: getstatic     #14                 // Field dk/brics/automaton/Transition.MAX_VALUE:I
+        79: aload_3
+        80: invokespecial #15                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+        83: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+        88: pop
+        89: aload_0
+        90: invokestatic  #22                 // Method dk/brics/automaton/StringUnionOperations.cpCount:(Ljava/lang/String;)I
+        93: istore        4
+        95: iconst_0
+        96: istore        5
+        98: iload         5
+       100: iload         4
+       102: if_icmpge     455
+       105: new           #92                 // class java/util/HashSet
+       108: dup
+       109: invokespecial #93                 // Method java/util/HashSet."<init>":()V
+       112: astore        6
+       114: aload_0
+       115: iload         5
+       117: invokestatic  #23                 // Method dk/brics/automaton/StringUnionOperations.cpAt:(Ljava/lang/String;I)I
+       120: istore        7
+       122: aload_2
+       123: iload         5
+       125: aaload
+       126: getfield      #11                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+       129: new           #12                 // class dk/brics/automaton/Transition
+       132: dup
+       133: iload         7
+       135: aload_2
+       136: iload         5
+       138: iconst_1
+       139: iadd
+       140: aaload
+       141: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+       144: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       149: pop
+       150: aload         6
+       152: iload         7
+       154: invokestatic  #94                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       157: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       162: pop
+       163: iload         5
+       165: istore        8
+       167: iload         8
+       169: iconst_1
+       170: if_icmplt     271
+       173: aload_0
+       174: iload         8
+       176: iconst_1
+       177: isub
+       178: invokestatic  #23                 // Method dk/brics/automaton/StringUnionOperations.cpAt:(Ljava/lang/String;I)I
+       181: istore        9
+       183: aload         6
+       185: iload         9
+       187: invokestatic  #94                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       190: invokeinterface #95,  2           // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+       195: ifne          265
+       198: aload_0
+       199: iconst_0
+       200: iload         8
+       202: iconst_1
+       203: isub
+       204: invokestatic  #96                 // Method dk/brics/automaton/StringUnionOperations.cpSubstring:(Ljava/lang/String;II)Ljava/lang/String;
+       207: aload_0
+       208: iload         5
+       210: iload         8
+       212: isub
+       213: iconst_1
+       214: iadd
+       215: iload         5
+       217: invokestatic  #96                 // Method dk/brics/automaton/StringUnionOperations.cpSubstring:(Ljava/lang/String;II)Ljava/lang/String;
+       220: invokevirtual #97                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       223: ifeq          265
+       226: aload_2
+       227: iload         5
+       229: aaload
+       230: getfield      #11                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+       233: new           #12                 // class dk/brics/automaton/Transition
+       236: dup
+       237: iload         9
+       239: aload_2
+       240: iload         8
+       242: aaload
+       243: invokespecial #24                 // Method dk/brics/automaton/Transition."<init>":(ILdk/brics/automaton/State;)V
+       246: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       251: pop
+       252: aload         6
+       254: iload         9
+       256: invokestatic  #94                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       259: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       264: pop
+       265: iinc          8, -1
+       268: goto          167
+       271: aload         6
+       273: invokeinterface #98,  1           // InterfaceMethod java/util/Set.size:()I
+       278: newarray       int
+       280: astore        8
+       282: iconst_0
+       283: istore        9
+       285: aload         6
+       287: invokeinterface #99,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+       292: astore        10
+       294: aload         10
+       296: invokeinterface #44,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+       301: ifeq          332
+       304: aload         10
+       306: invokeinterface #45,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       311: checkcast     #100                // class java/lang/Integer
+       314: invokevirtual #101                // Method java/lang/Integer.intValue:()I
+       317: istore        11
+       319: aload         8
+       321: iload         9
+       323: iinc          9, 1
+       326: iload         11
+       328: iastore
+       329: goto          294
+       332: aload         8
+       334: invokestatic  #102                // Method java/util/Arrays.sort:([I)V
+       337: getstatic     #13                 // Field dk/brics/automaton/Transition.MIN_VALUE:I
+       340: istore        10
+       342: iconst_0
+       343: istore        11
+       345: iload         10
+       347: getstatic     #14                 // Field dk/brics/automaton/Transition.MAX_VALUE:I
+       350: if_icmpgt     449
+       353: iload         11
+       355: aload         8
+       357: arraylength
+       358: if_icmpge     380
+       361: aload         8
+       363: iload         11
+       365: iaload
+       366: iload         10
+       368: if_icmpne     380
+       371: iinc          11, 1
+       374: iinc          10, 1
+       377: goto          353
+       380: iload         10
+       382: getstatic     #14                 // Field dk/brics/automaton/Transition.MAX_VALUE:I
+       385: if_icmpgt     345
+       388: getstatic     #14                 // Field dk/brics/automaton/Transition.MAX_VALUE:I
+       391: istore        12
+       393: iload         11
+       395: aload         8
+       397: arraylength
+       398: if_icmpge     413
+       401: aload         8
+       403: iload         11
+       405: iaload
+       406: iconst_1
+       407: isub
+       408: istore        12
+       410: iinc          11, 1
+       413: aload_2
+       414: iload         5
+       416: aaload
+       417: getfield      #11                 // Field dk/brics/automaton/State.transitions:Ljava/util/Set;
+       420: new           #12                 // class dk/brics/automaton/Transition
+       423: dup
+       424: iload         10
+       426: iload         12
+       428: aload_2
+       429: iconst_0
+       430: aaload
+       431: invokespecial #15                 // Method dk/brics/automaton/Transition."<init>":(IILdk/brics/automaton/State;)V
+       434: invokeinterface #16,  2           // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       439: pop
+       440: iload         12
+       442: iconst_2
+       443: iadd
+       444: istore        10
+       446: goto          345
+       449: iinc          5, 1
+       452: goto          98
+       455: aload_1
+       456: iconst_1
+       457: putfield      #7                  // Field dk/brics/automaton/Automaton.deterministic:Z
+       460: aload_1
+       461: areturn
+      LineNumberTable:
+        line 446: 0
+        line 447: 8
+        line 448: 18
+        line 449: 25
+        line 450: 35
+        line 449: 47
+        line 451: 53
+        line 452: 60
+        line 453: 65
+        line 454: 89
+        line 455: 95
+        line 456: 105
+        line 457: 114
+        line 458: 122
+        line 459: 150
+        line 460: 163
+        line 461: 173
+        line 462: 183
+        line 463: 226
+        line 464: 252
+        line 460: 265
+        line 467: 271
+        line 468: 282
+        line 469: 285
+        line 470: 319
+        line 471: 332
+        line 472: 337
+        line 473: 342
+        line 474: 345
+        line 475: 353
+        line 476: 371
+        line 477: 374
+        line 479: 380
+        line 480: 388
+        line 481: 393
+        line 482: 401
+        line 483: 410
+        line 485: 413
+        line 486: 440
+        line 487: 446
+        line 455: 449
+        line 490: 455
+        line 491: 460
+      StackMapTable: number_of_entries = 14
+        frame_type = 254 /* append */
+          offset_delta = 27
+          locals = [ class dk/brics/automaton/Automaton, class "[Ldk/brics/automaton/State;", int ]
+        frame_type = 250 /* chop */
+          offset_delta = 25
+        frame_type = 254 /* append */
+          offset_delta = 44
+          locals = [ class dk/brics/automaton/State, int, int ]
+        frame_type = 254 /* append */
+          offset_delta = 68
+          locals = [ class java/util/Set, int, int ]
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 97
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 254 /* append */
+          offset_delta = 22
+          locals = [ class "[I", int, class java/util/Iterator ]
+        frame_type = 250 /* chop */
+          offset_delta = 37
+        frame_type = 253 /* append */
+          offset_delta = 12
+          locals = [ int, int ]
+        frame_type = 7 /* same */
+        frame_type = 26 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 32
+          locals = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 35
+          locals = [ class java/lang/String, class dk/brics/automaton/Automaton, class "[Ldk/brics/automaton/State;", class dk/brics/automaton/State, int, int ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 5
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: ldc           #103                // String  \t\n\r
+         2: invokestatic  #104                // Method dk/brics/automaton/Automaton.makeCharSet:(Ljava/lang/String;)Ldk/brics/automaton/Automaton;
+         5: invokevirtual #86                 // Method dk/brics/automaton/Automaton.repeat:()Ldk/brics/automaton/Automaton;
+         8: invokestatic  #68                 // Method dk/brics/automaton/Automaton.minimize:(Ldk/brics/automaton/Automaton;)Ldk/brics/automaton/Automaton;
+        11: putstatic     #85                 // Field ws:Ldk/brics/automaton/Automaton;
+        14: return
+      LineNumberTable:
+        line 45: 0
+}
+SourceFile: "BasicAutomata.java"

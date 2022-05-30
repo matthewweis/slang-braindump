@@ -1,0 +1,983 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.class
+  Last modified May 29, 2022; size 9983 bytes
+  SHA-256 checksum b2a1a835de83f284e0a73a6a6099308057d5dae7e7f5296d602f8ca07a29362b
+  Compiled from "DateTimeSerializerBase.java"
+public abstract class com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBase<T extends java.lang.Object> extends com.fasterxml.jackson.databind.ser.std.StdScalarSerializer<T> implements com.fasterxml.jackson.databind.ser.ContextualSerializer
+  minor version: 0
+  major version: 52
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #69                         // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase
+  super_class: #70                        // com/fasterxml/jackson/databind/ser/std/StdScalarSerializer
+  interfaces: 1, fields: 3, methods: 11, attributes: 3
+Constant pool:
+    #1 = Methodref          #70.#183      // com/fasterxml/jackson/databind/ser/std/StdScalarSerializer."<init>":(Ljava/lang/Class;)V
+    #2 = Fieldref           #69.#184      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase._useTimestamp:Ljava/lang/Boolean;
+    #3 = Fieldref           #69.#185      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase._customFormat:Ljava/text/DateFormat;
+    #4 = Class              #186          // java/util/concurrent/atomic/AtomicReference
+    #5 = Methodref          #4.#187       // java/util/concurrent/atomic/AtomicReference."<init>":()V
+    #6 = Fieldref           #69.#188      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase._reusedCustomFormat:Ljava/util/concurrent/atomic/AtomicReference;
+    #7 = Methodref          #69.#189      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.handledType:()Ljava/lang/Class;
+    #8 = Methodref          #69.#190      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.findFormatOverrides:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+    #9 = Methodref          #119.#191     // com/fasterxml/jackson/annotation/JsonFormat$Value.getShape:()Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+   #10 = Methodref          #124.#192     // com/fasterxml/jackson/annotation/JsonFormat$Shape.isNumeric:()Z
+   #11 = Fieldref           #193.#194     // java/lang/Boolean.TRUE:Ljava/lang/Boolean;
+   #12 = Methodref          #69.#195      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.withFormat:(Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+   #13 = Methodref          #119.#196     // com/fasterxml/jackson/annotation/JsonFormat$Value.hasPattern:()Z
+   #14 = Methodref          #119.#197     // com/fasterxml/jackson/annotation/JsonFormat$Value.hasLocale:()Z
+   #15 = Methodref          #119.#198     // com/fasterxml/jackson/annotation/JsonFormat$Value.getLocale:()Ljava/util/Locale;
+   #16 = Methodref          #199.#198     // com/fasterxml/jackson/databind/SerializerProvider.getLocale:()Ljava/util/Locale;
+   #17 = Class              #200          // java/text/SimpleDateFormat
+   #18 = Methodref          #119.#201     // com/fasterxml/jackson/annotation/JsonFormat$Value.getPattern:()Ljava/lang/String;
+   #19 = Methodref          #17.#202      // java/text/SimpleDateFormat."<init>":(Ljava/lang/String;Ljava/util/Locale;)V
+   #20 = Methodref          #119.#203     // com/fasterxml/jackson/annotation/JsonFormat$Value.hasTimeZone:()Z
+   #21 = Methodref          #119.#204     // com/fasterxml/jackson/annotation/JsonFormat$Value.getTimeZone:()Ljava/util/TimeZone;
+   #22 = Methodref          #199.#204     // com/fasterxml/jackson/databind/SerializerProvider.getTimeZone:()Ljava/util/TimeZone;
+   #23 = Methodref          #17.#205      // java/text/SimpleDateFormat.setTimeZone:(Ljava/util/TimeZone;)V
+   #24 = Fieldref           #193.#206     // java/lang/Boolean.FALSE:Ljava/lang/Boolean;
+   #25 = Fieldref           #124.#207     // com/fasterxml/jackson/annotation/JsonFormat$Shape.STRING:Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+   #26 = Methodref          #199.#208     // com/fasterxml/jackson/databind/SerializerProvider.getConfig:()Lcom/fasterxml/jackson/databind/SerializationConfig;
+   #27 = Methodref          #209.#210     // com/fasterxml/jackson/databind/SerializationConfig.getDateFormat:()Ljava/text/DateFormat;
+   #28 = Class              #211          // com/fasterxml/jackson/databind/util/StdDateFormat
+   #29 = Methodref          #28.#212      // com/fasterxml/jackson/databind/util/StdDateFormat.withLocale:(Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+   #30 = Methodref          #28.#213      // com/fasterxml/jackson/databind/util/StdDateFormat.withTimeZone:(Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+   #31 = String             #214          // Configured `DateFormat` (%s) not a `SimpleDateFormat`; cannot configure `Locale` or `TimeZone`
+   #32 = Class              #215          // java/lang/Object
+   #33 = Methodref          #32.#216      // java/lang/Object.getClass:()Ljava/lang/Class;
+   #34 = Methodref          #217.#218     // java/lang/Class.getName:()Ljava/lang/String;
+   #35 = Methodref          #219.#220     // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+   #36 = Methodref          #199.#221     // com/fasterxml/jackson/databind/SerializerProvider.reportBadDefinition:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;
+   #37 = Methodref          #17.#222      // java/text/SimpleDateFormat.toPattern:()Ljava/lang/String;
+   #38 = Methodref          #17.#223      // java/text/SimpleDateFormat.clone:()Ljava/lang/Object;
+   #39 = Methodref          #17.#204      // java/text/SimpleDateFormat.getTimeZone:()Ljava/util/TimeZone;
+   #40 = Methodref          #32.#224      // java/lang/Object.equals:(Ljava/lang/Object;)Z
+   #41 = Methodref          #69.#225      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase._asTimestamp:(Lcom/fasterxml/jackson/databind/SerializerProvider;)Z
+   #42 = String             #226          // number
+   #43 = String             #227          // string
+   #44 = Methodref          #69.#228      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.createSchemaNode:(Ljava/lang/String;Z)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+   #45 = InterfaceMethodref #229.#230     // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper.getProvider:()Lcom/fasterxml/jackson/databind/SerializerProvider;
+   #46 = Methodref          #69.#231      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase._acceptJsonFormatVisitor:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Z)V
+   #47 = Methodref          #193.#232     // java/lang/Boolean.booleanValue:()Z
+   #48 = Fieldref           #233.#234     // com/fasterxml/jackson/databind/SerializationFeature.WRITE_DATES_AS_TIMESTAMPS:Lcom/fasterxml/jackson/databind/SerializationFeature;
+   #49 = Methodref          #199.#235     // com/fasterxml/jackson/databind/SerializerProvider.isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+   #50 = Class              #236          // java/lang/IllegalArgumentException
+   #51 = Class              #237          // java/lang/StringBuilder
+   #52 = Methodref          #51.#187      // java/lang/StringBuilder."<init>":()V
+   #53 = String             #238          // Null SerializerProvider passed for
+   #54 = Methodref          #51.#239      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #55 = Methodref          #51.#240      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #56 = Methodref          #50.#241      // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+   #57 = Fieldref           #242.#243     // com/fasterxml/jackson/core/JsonParser$NumberType.LONG:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+   #58 = Fieldref           #244.#245     // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat.UTC_MILLISEC:Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;
+   #59 = Methodref          #69.#246      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.visitIntFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/core/JsonParser$NumberType;Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;)V
+   #60 = Fieldref           #244.#247     // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat.DATE_TIME:Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;
+   #61 = Methodref          #69.#248      // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.visitStringFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;)V
+   #62 = Methodref          #199.#249     // com/fasterxml/jackson/databind/SerializerProvider.defaultSerializeDateValue:(Ljava/util/Date;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+   #63 = Methodref          #4.#250       // java/util/concurrent/atomic/AtomicReference.getAndSet:(Ljava/lang/Object;)Ljava/lang/Object;
+   #64 = Class              #251          // java/text/DateFormat
+   #65 = Methodref          #64.#223      // java/text/DateFormat.clone:()Ljava/lang/Object;
+   #66 = Methodref          #64.#252      // java/text/DateFormat.format:(Ljava/util/Date;)Ljava/lang/String;
+   #67 = Methodref          #253.#254     // com/fasterxml/jackson/core/JsonGenerator.writeString:(Ljava/lang/String;)V
+   #68 = Methodref          #4.#255       // java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+   #69 = Class              #256          // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase
+   #70 = Class              #257          // com/fasterxml/jackson/databind/ser/std/StdScalarSerializer
+   #71 = Class              #258          // com/fasterxml/jackson/databind/ser/ContextualSerializer
+   #72 = Utf8               _useTimestamp
+   #73 = Utf8               Ljava/lang/Boolean;
+   #74 = Utf8               _customFormat
+   #75 = Utf8               Ljava/text/DateFormat;
+   #76 = Utf8               _reusedCustomFormat
+   #77 = Utf8               Ljava/util/concurrent/atomic/AtomicReference;
+   #78 = Utf8               Signature
+   #79 = Utf8               Ljava/util/concurrent/atomic/AtomicReference<Ljava/text/DateFormat;>;
+   #80 = Utf8               <init>
+   #81 = Utf8               (Ljava/lang/Class;Ljava/lang/Boolean;Ljava/text/DateFormat;)V
+   #82 = Utf8               Code
+   #83 = Utf8               LineNumberTable
+   #84 = Utf8               LocalVariableTable
+   #85 = Utf8               this
+   #86 = Utf8               Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+   #87 = Utf8               type
+   #88 = Utf8               Ljava/lang/Class;
+   #89 = Utf8               useTimestamp
+   #90 = Utf8               customFormat
+   #91 = Utf8               LocalVariableTypeTable
+   #92 = Utf8               Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+   #93 = Utf8               Ljava/lang/Class<TT;>;
+   #94 = Utf8               StackMapTable
+   #95 = Class              #256          // com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase
+   #96 = Class              #259          // java/lang/Class
+   #97 = Class              #260          // java/lang/Boolean
+   #98 = Class              #251          // java/text/DateFormat
+   #99 = Class              #186          // java/util/concurrent/atomic/AtomicReference
+  #100 = Utf8               (Ljava/lang/Class<TT;>;Ljava/lang/Boolean;Ljava/text/DateFormat;)V
+  #101 = Utf8               withFormat
+  #102 = Utf8               (Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+  #103 = Utf8               (Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+  #104 = Utf8               createContextual
+  #105 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+  #106 = Utf8               loc
+  #107 = Utf8               Ljava/util/Locale;
+  #108 = Utf8               df
+  #109 = Utf8               Ljava/text/SimpleDateFormat;
+  #110 = Utf8               tz
+  #111 = Utf8               Ljava/util/TimeZone;
+  #112 = Utf8               std
+  #113 = Utf8               Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+  #114 = Utf8               serializers
+  #115 = Utf8               Lcom/fasterxml/jackson/databind/SerializerProvider;
+  #116 = Utf8               property
+  #117 = Utf8               Lcom/fasterxml/jackson/databind/BeanProperty;
+  #118 = Utf8               format
+  #119 = Class              #262          // com/fasterxml/jackson/annotation/JsonFormat$Value
+  #120 = Utf8               Value
+  #121 = Utf8               InnerClasses
+  #122 = Utf8               Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #123 = Utf8               shape
+  #124 = Class              #263          // com/fasterxml/jackson/annotation/JsonFormat$Shape
+  #125 = Utf8               Shape
+  #126 = Utf8               Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+  #127 = Utf8               hasLocale
+  #128 = Utf8               Z
+  #129 = Utf8               hasTZ
+  #130 = Utf8               asString
+  #131 = Utf8               df0
+  #132 = Utf8               newTz
+  #133 = Utf8               changeTZ
+  #134 = Class              #262          // com/fasterxml/jackson/annotation/JsonFormat$Value
+  #135 = Class              #263          // com/fasterxml/jackson/annotation/JsonFormat$Shape
+  #136 = Class              #264          // java/util/Locale
+  #137 = Class              #200          // java/text/SimpleDateFormat
+  #138 = Class              #265          // java/util/TimeZone
+  #139 = Class              #211          // com/fasterxml/jackson/databind/util/StdDateFormat
+  #140 = Utf8               Exceptions
+  #141 = Class              #266          // com/fasterxml/jackson/databind/JsonMappingException
+  #142 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+  #143 = Utf8               isEmpty
+  #144 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+  #145 = Utf8               value
+  #146 = Utf8               Ljava/lang/Object;
+  #147 = Utf8               TT;
+  #148 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;TT;)Z
+  #149 = Utf8               _timestamp
+  #150 = Utf8               (Ljava/lang/Object;)J
+  #151 = Utf8               (TT;)J
+  #152 = Utf8               getSchema
+  #153 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/reflect/Type;)Lcom/fasterxml/jackson/databind/JsonNode;
+  #154 = Utf8               typeHint
+  #155 = Utf8               Ljava/lang/reflect/Type;
+  #156 = Class              #267          // com/fasterxml/jackson/databind/SerializerProvider
+  #157 = Class              #268          // java/lang/reflect/Type
+  #158 = Class              #269          // java/lang/String
+  #159 = Utf8               acceptJsonFormatVisitor
+  #160 = Utf8               (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;)V
+  #161 = Utf8               visitor
+  #162 = Utf8               Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;
+  #163 = Utf8               Lcom/fasterxml/jackson/databind/JavaType;
+  #164 = Utf8               serialize
+  #165 = Utf8               (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #166 = Class              #270          // java/io/IOException
+  #167 = Utf8               (TT;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #168 = Utf8               _asTimestamp
+  #169 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;)Z
+  #170 = Utf8               _acceptJsonFormatVisitor
+  #171 = Utf8               (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Z)V
+  #172 = Utf8               asNumber
+  #173 = Utf8               _serializeAsString
+  #174 = Utf8               (Ljava/util/Date;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+  #175 = Utf8               Ljava/util/Date;
+  #176 = Utf8               g
+  #177 = Utf8               Lcom/fasterxml/jackson/core/JsonGenerator;
+  #178 = Utf8               provider
+  #179 = Utf8               f
+  #180 = Utf8               <T:Ljava/lang/Object;>Lcom/fasterxml/jackson/databind/ser/std/StdScalarSerializer<TT;>;Lcom/fasterxml/jackson/databind/ser/ContextualSerializer;
+  #181 = Utf8               SourceFile
+  #182 = Utf8               DateTimeSerializerBase.java
+  #183 = NameAndType        #80:#271      // "<init>":(Ljava/lang/Class;)V
+  #184 = NameAndType        #72:#73       // _useTimestamp:Ljava/lang/Boolean;
+  #185 = NameAndType        #74:#75       // _customFormat:Ljava/text/DateFormat;
+  #186 = Utf8               java/util/concurrent/atomic/AtomicReference
+  #187 = NameAndType        #80:#272      // "<init>":()V
+  #188 = NameAndType        #76:#77       // _reusedCustomFormat:Ljava/util/concurrent/atomic/AtomicReference;
+  #189 = NameAndType        #273:#274     // handledType:()Ljava/lang/Class;
+  #190 = NameAndType        #275:#276     // findFormatOverrides:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #191 = NameAndType        #277:#278     // getShape:()Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+  #192 = NameAndType        #279:#280     // isNumeric:()Z
+  #193 = Class              #260          // java/lang/Boolean
+  #194 = NameAndType        #281:#73      // TRUE:Ljava/lang/Boolean;
+  #195 = NameAndType        #101:#102     // withFormat:(Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+  #196 = NameAndType        #282:#280     // hasPattern:()Z
+  #197 = NameAndType        #127:#280     // hasLocale:()Z
+  #198 = NameAndType        #283:#284     // getLocale:()Ljava/util/Locale;
+  #199 = Class              #267          // com/fasterxml/jackson/databind/SerializerProvider
+  #200 = Utf8               java/text/SimpleDateFormat
+  #201 = NameAndType        #285:#286     // getPattern:()Ljava/lang/String;
+  #202 = NameAndType        #80:#287      // "<init>":(Ljava/lang/String;Ljava/util/Locale;)V
+  #203 = NameAndType        #288:#280     // hasTimeZone:()Z
+  #204 = NameAndType        #289:#290     // getTimeZone:()Ljava/util/TimeZone;
+  #205 = NameAndType        #291:#292     // setTimeZone:(Ljava/util/TimeZone;)V
+  #206 = NameAndType        #293:#73      // FALSE:Ljava/lang/Boolean;
+  #207 = NameAndType        #294:#126     // STRING:Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+  #208 = NameAndType        #295:#296     // getConfig:()Lcom/fasterxml/jackson/databind/SerializationConfig;
+  #209 = Class              #297          // com/fasterxml/jackson/databind/SerializationConfig
+  #210 = NameAndType        #298:#299     // getDateFormat:()Ljava/text/DateFormat;
+  #211 = Utf8               com/fasterxml/jackson/databind/util/StdDateFormat
+  #212 = NameAndType        #300:#301     // withLocale:(Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+  #213 = NameAndType        #302:#303     // withTimeZone:(Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+  #214 = Utf8               Configured `DateFormat` (%s) not a `SimpleDateFormat`; cannot configure `Locale` or `TimeZone`
+  #215 = Utf8               java/lang/Object
+  #216 = NameAndType        #304:#274     // getClass:()Ljava/lang/Class;
+  #217 = Class              #259          // java/lang/Class
+  #218 = NameAndType        #305:#286     // getName:()Ljava/lang/String;
+  #219 = Class              #269          // java/lang/String
+  #220 = NameAndType        #118:#306     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #221 = NameAndType        #307:#308     // reportBadDefinition:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;
+  #222 = NameAndType        #309:#286     // toPattern:()Ljava/lang/String;
+  #223 = NameAndType        #310:#311     // clone:()Ljava/lang/Object;
+  #224 = NameAndType        #312:#313     // equals:(Ljava/lang/Object;)Z
+  #225 = NameAndType        #168:#169     // _asTimestamp:(Lcom/fasterxml/jackson/databind/SerializerProvider;)Z
+  #226 = Utf8               number
+  #227 = Utf8               string
+  #228 = NameAndType        #314:#315     // createSchemaNode:(Ljava/lang/String;Z)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+  #229 = Class              #316          // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper
+  #230 = NameAndType        #317:#318     // getProvider:()Lcom/fasterxml/jackson/databind/SerializerProvider;
+  #231 = NameAndType        #170:#171     // _acceptJsonFormatVisitor:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Z)V
+  #232 = NameAndType        #319:#280     // booleanValue:()Z
+  #233 = Class              #320          // com/fasterxml/jackson/databind/SerializationFeature
+  #234 = NameAndType        #321:#322     // WRITE_DATES_AS_TIMESTAMPS:Lcom/fasterxml/jackson/databind/SerializationFeature;
+  #235 = NameAndType        #323:#324     // isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+  #236 = Utf8               java/lang/IllegalArgumentException
+  #237 = Utf8               java/lang/StringBuilder
+  #238 = Utf8               Null SerializerProvider passed for
+  #239 = NameAndType        #325:#326     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #240 = NameAndType        #327:#286     // toString:()Ljava/lang/String;
+  #241 = NameAndType        #80:#328      // "<init>":(Ljava/lang/String;)V
+  #242 = Class              #330          // com/fasterxml/jackson/core/JsonParser$NumberType
+  #243 = NameAndType        #332:#333     // LONG:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #244 = Class              #334          // com/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat
+  #245 = NameAndType        #335:#336     // UTC_MILLISEC:Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;
+  #246 = NameAndType        #337:#338     // visitIntFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/core/JsonParser$NumberType;Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;)V
+  #247 = NameAndType        #339:#336     // DATE_TIME:Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;
+  #248 = NameAndType        #340:#341     // visitStringFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;)V
+  #249 = NameAndType        #342:#343     // defaultSerializeDateValue:(Ljava/util/Date;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+  #250 = NameAndType        #344:#345     // getAndSet:(Ljava/lang/Object;)Ljava/lang/Object;
+  #251 = Utf8               java/text/DateFormat
+  #252 = NameAndType        #118:#346     // format:(Ljava/util/Date;)Ljava/lang/String;
+  #253 = Class              #347          // com/fasterxml/jackson/core/JsonGenerator
+  #254 = NameAndType        #348:#328     // writeString:(Ljava/lang/String;)V
+  #255 = NameAndType        #349:#350     // compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #256 = Utf8               com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase
+  #257 = Utf8               com/fasterxml/jackson/databind/ser/std/StdScalarSerializer
+  #258 = Utf8               com/fasterxml/jackson/databind/ser/ContextualSerializer
+  #259 = Utf8               java/lang/Class
+  #260 = Utf8               java/lang/Boolean
+  #261 = Class              #351          // com/fasterxml/jackson/annotation/JsonFormat
+  #262 = Utf8               com/fasterxml/jackson/annotation/JsonFormat$Value
+  #263 = Utf8               com/fasterxml/jackson/annotation/JsonFormat$Shape
+  #264 = Utf8               java/util/Locale
+  #265 = Utf8               java/util/TimeZone
+  #266 = Utf8               com/fasterxml/jackson/databind/JsonMappingException
+  #267 = Utf8               com/fasterxml/jackson/databind/SerializerProvider
+  #268 = Utf8               java/lang/reflect/Type
+  #269 = Utf8               java/lang/String
+  #270 = Utf8               java/io/IOException
+  #271 = Utf8               (Ljava/lang/Class;)V
+  #272 = Utf8               ()V
+  #273 = Utf8               handledType
+  #274 = Utf8               ()Ljava/lang/Class;
+  #275 = Utf8               findFormatOverrides
+  #276 = Utf8               (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+  #277 = Utf8               getShape
+  #278 = Utf8               ()Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+  #279 = Utf8               isNumeric
+  #280 = Utf8               ()Z
+  #281 = Utf8               TRUE
+  #282 = Utf8               hasPattern
+  #283 = Utf8               getLocale
+  #284 = Utf8               ()Ljava/util/Locale;
+  #285 = Utf8               getPattern
+  #286 = Utf8               ()Ljava/lang/String;
+  #287 = Utf8               (Ljava/lang/String;Ljava/util/Locale;)V
+  #288 = Utf8               hasTimeZone
+  #289 = Utf8               getTimeZone
+  #290 = Utf8               ()Ljava/util/TimeZone;
+  #291 = Utf8               setTimeZone
+  #292 = Utf8               (Ljava/util/TimeZone;)V
+  #293 = Utf8               FALSE
+  #294 = Utf8               STRING
+  #295 = Utf8               getConfig
+  #296 = Utf8               ()Lcom/fasterxml/jackson/databind/SerializationConfig;
+  #297 = Utf8               com/fasterxml/jackson/databind/SerializationConfig
+  #298 = Utf8               getDateFormat
+  #299 = Utf8               ()Ljava/text/DateFormat;
+  #300 = Utf8               withLocale
+  #301 = Utf8               (Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+  #302 = Utf8               withTimeZone
+  #303 = Utf8               (Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+  #304 = Utf8               getClass
+  #305 = Utf8               getName
+  #306 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #307 = Utf8               reportBadDefinition
+  #308 = Utf8               (Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;
+  #309 = Utf8               toPattern
+  #310 = Utf8               clone
+  #311 = Utf8               ()Ljava/lang/Object;
+  #312 = Utf8               equals
+  #313 = Utf8               (Ljava/lang/Object;)Z
+  #314 = Utf8               createSchemaNode
+  #315 = Utf8               (Ljava/lang/String;Z)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+  #316 = Utf8               com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper
+  #317 = Utf8               getProvider
+  #318 = Utf8               ()Lcom/fasterxml/jackson/databind/SerializerProvider;
+  #319 = Utf8               booleanValue
+  #320 = Utf8               com/fasterxml/jackson/databind/SerializationFeature
+  #321 = Utf8               WRITE_DATES_AS_TIMESTAMPS
+  #322 = Utf8               Lcom/fasterxml/jackson/databind/SerializationFeature;
+  #323 = Utf8               isEnabled
+  #324 = Utf8               (Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+  #325 = Utf8               append
+  #326 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #327 = Utf8               toString
+  #328 = Utf8               (Ljava/lang/String;)V
+  #329 = Class              #352          // com/fasterxml/jackson/core/JsonParser
+  #330 = Utf8               com/fasterxml/jackson/core/JsonParser$NumberType
+  #331 = Utf8               NumberType
+  #332 = Utf8               LONG
+  #333 = Utf8               Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #334 = Utf8               com/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat
+  #335 = Utf8               UTC_MILLISEC
+  #336 = Utf8               Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;
+  #337 = Utf8               visitIntFormat
+  #338 = Utf8               (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/core/JsonParser$NumberType;Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;)V
+  #339 = Utf8               DATE_TIME
+  #340 = Utf8               visitStringFormat
+  #341 = Utf8               (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;)V
+  #342 = Utf8               defaultSerializeDateValue
+  #343 = Utf8               (Ljava/util/Date;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+  #344 = Utf8               getAndSet
+  #345 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #346 = Utf8               (Ljava/util/Date;)Ljava/lang/String;
+  #347 = Utf8               com/fasterxml/jackson/core/JsonGenerator
+  #348 = Utf8               writeString
+  #349 = Utf8               compareAndSet
+  #350 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Z
+  #351 = Utf8               com/fasterxml/jackson/annotation/JsonFormat
+  #352 = Utf8               com/fasterxml/jackson/core/JsonParser
+{
+  protected final java.lang.Boolean _useTimestamp;
+    descriptor: Ljava/lang/Boolean;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final java.text.DateFormat _customFormat;
+    descriptor: Ljava/text/DateFormat;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  protected final java.util.concurrent.atomic.AtomicReference<java.text.DateFormat> _reusedCustomFormat;
+    descriptor: Ljava/util/concurrent/atomic/AtomicReference;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Signature: #79                          // Ljava/util/concurrent/atomic/AtomicReference<Ljava/text/DateFormat;>;
+
+  protected com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBase(java.lang.Class<T>, java.lang.Boolean, java.text.DateFormat);
+    descriptor: (Ljava/lang/Class;Ljava/lang/Boolean;Ljava/text/DateFormat;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: invokespecial #1                  // Method com/fasterxml/jackson/databind/ser/std/StdScalarSerializer."<init>":(Ljava/lang/Class;)V
+         5: aload_0
+         6: aload_2
+         7: putfield      #2                  // Field _useTimestamp:Ljava/lang/Boolean;
+        10: aload_0
+        11: aload_3
+        12: putfield      #3                  // Field _customFormat:Ljava/text/DateFormat;
+        15: aload_0
+        16: aload_3
+        17: ifnonnull     24
+        20: aconst_null
+        21: goto          31
+        24: new           #4                  // class java/util/concurrent/atomic/AtomicReference
+        27: dup
+        28: invokespecial #5                  // Method java/util/concurrent/atomic/AtomicReference."<init>":()V
+        31: putfield      #6                  // Field _reusedCustomFormat:Ljava/util/concurrent/atomic/AtomicReference;
+        34: return
+      LineNumberTable:
+        line 53: 0
+        line 54: 5
+        line 55: 10
+        line 56: 15
+        line 57: 34
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      35     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+            0      35     1  type   Ljava/lang/Class;
+            0      35     2 useTimestamp   Ljava/lang/Boolean;
+            0      35     3 customFormat   Ljava/text/DateFormat;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      35     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+            0      35     1  type   Ljava/lang/Class<TT;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 24
+          locals = [ class com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase, class java/lang/Class, class java/lang/Boolean, class java/text/DateFormat ]
+          stack = [ class com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = [ class com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase, class java/lang/Class, class java/lang/Boolean, class java/text/DateFormat ]
+          stack = [ class com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase, class java/util/concurrent/atomic/AtomicReference ]
+    Signature: #100                         // (Ljava/lang/Class<TT;>;Ljava/lang/Boolean;Ljava/text/DateFormat;)V
+
+  public abstract com.fasterxml.jackson.databind.ser.std.DateTimeSerializerBase<T> withFormat(java.lang.Boolean, java.text.DateFormat);
+    descriptor: (Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Signature: #103                         // (Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+
+  public com.fasterxml.jackson.databind.JsonSerializer<?> createContextual(com.fasterxml.jackson.databind.SerializerProvider, com.fasterxml.jackson.databind.BeanProperty) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=12, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_0
+         4: invokevirtual #7                  // Method handledType:()Ljava/lang/Class;
+         7: invokevirtual #8                  // Method findFormatOverrides:(Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;Ljava/lang/Class;)Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+        10: astore_3
+        11: aload_3
+        12: ifnonnull     17
+        15: aload_0
+        16: areturn
+        17: aload_3
+        18: invokevirtual #9                  // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getShape:()Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+        21: astore        4
+        23: aload         4
+        25: invokevirtual #10                 // Method com/fasterxml/jackson/annotation/JsonFormat$Shape.isNumeric:()Z
+        28: ifeq          40
+        31: aload_0
+        32: getstatic     #11                 // Field java/lang/Boolean.TRUE:Ljava/lang/Boolean;
+        35: aconst_null
+        36: invokevirtual #12                 // Method withFormat:(Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+        39: areturn
+        40: aload_3
+        41: invokevirtual #13                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.hasPattern:()Z
+        44: ifeq          119
+        47: aload_3
+        48: invokevirtual #14                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.hasLocale:()Z
+        51: ifeq          61
+        54: aload_3
+        55: invokevirtual #15                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getLocale:()Ljava/util/Locale;
+        58: goto          65
+        61: aload_1
+        62: invokevirtual #16                 // Method com/fasterxml/jackson/databind/SerializerProvider.getLocale:()Ljava/util/Locale;
+        65: astore        5
+        67: new           #17                 // class java/text/SimpleDateFormat
+        70: dup
+        71: aload_3
+        72: invokevirtual #18                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getPattern:()Ljava/lang/String;
+        75: aload         5
+        77: invokespecial #19                 // Method java/text/SimpleDateFormat."<init>":(Ljava/lang/String;Ljava/util/Locale;)V
+        80: astore        6
+        82: aload_3
+        83: invokevirtual #20                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.hasTimeZone:()Z
+        86: ifeq          96
+        89: aload_3
+        90: invokevirtual #21                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getTimeZone:()Ljava/util/TimeZone;
+        93: goto          100
+        96: aload_1
+        97: invokevirtual #22                 // Method com/fasterxml/jackson/databind/SerializerProvider.getTimeZone:()Ljava/util/TimeZone;
+       100: astore        7
+       102: aload         6
+       104: aload         7
+       106: invokevirtual #23                 // Method java/text/SimpleDateFormat.setTimeZone:(Ljava/util/TimeZone;)V
+       109: aload_0
+       110: getstatic     #24                 // Field java/lang/Boolean.FALSE:Ljava/lang/Boolean;
+       113: aload         6
+       115: invokevirtual #12                 // Method withFormat:(Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+       118: areturn
+       119: aload_3
+       120: invokevirtual #14                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.hasLocale:()Z
+       123: istore        5
+       125: aload_3
+       126: invokevirtual #20                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.hasTimeZone:()Z
+       129: istore        6
+       131: aload         4
+       133: getstatic     #25                 // Field com/fasterxml/jackson/annotation/JsonFormat$Shape.STRING:Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+       136: if_acmpne     143
+       139: iconst_1
+       140: goto          144
+       143: iconst_0
+       144: istore        7
+       146: iload         5
+       148: ifne          163
+       151: iload         6
+       153: ifne          163
+       156: iload         7
+       158: ifne          163
+       161: aload_0
+       162: areturn
+       163: aload_1
+       164: invokevirtual #26                 // Method com/fasterxml/jackson/databind/SerializerProvider.getConfig:()Lcom/fasterxml/jackson/databind/SerializationConfig;
+       167: invokevirtual #27                 // Method com/fasterxml/jackson/databind/SerializationConfig.getDateFormat:()Ljava/text/DateFormat;
+       170: astore        8
+       172: aload         8
+       174: instanceof    #28                 // class com/fasterxml/jackson/databind/util/StdDateFormat
+       177: ifeq          233
+       180: aload         8
+       182: checkcast     #28                 // class com/fasterxml/jackson/databind/util/StdDateFormat
+       185: astore        9
+       187: aload_3
+       188: invokevirtual #14                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.hasLocale:()Z
+       191: ifeq          205
+       194: aload         9
+       196: aload_3
+       197: invokevirtual #15                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getLocale:()Ljava/util/Locale;
+       200: invokevirtual #29                 // Method com/fasterxml/jackson/databind/util/StdDateFormat.withLocale:(Ljava/util/Locale;)Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+       203: astore        9
+       205: aload_3
+       206: invokevirtual #20                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.hasTimeZone:()Z
+       209: ifeq          223
+       212: aload         9
+       214: aload_3
+       215: invokevirtual #21                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getTimeZone:()Ljava/util/TimeZone;
+       218: invokevirtual #30                 // Method com/fasterxml/jackson/databind/util/StdDateFormat.withTimeZone:(Ljava/util/TimeZone;)Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+       221: astore        9
+       223: aload_0
+       224: getstatic     #24                 // Field java/lang/Boolean.FALSE:Ljava/lang/Boolean;
+       227: aload         9
+       229: invokevirtual #12                 // Method withFormat:(Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+       232: areturn
+       233: aload         8
+       235: instanceof    #17                 // class java/text/SimpleDateFormat
+       238: ifne          270
+       241: aload_1
+       242: aload_0
+       243: invokevirtual #7                  // Method handledType:()Ljava/lang/Class;
+       246: ldc           #31                 // String Configured `DateFormat` (%s) not a `SimpleDateFormat`; cannot configure `Locale` or `TimeZone`
+       248: iconst_1
+       249: anewarray     #32                 // class java/lang/Object
+       252: dup
+       253: iconst_0
+       254: aload         8
+       256: invokevirtual #33                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       259: invokevirtual #34                 // Method java/lang/Class.getName:()Ljava/lang/String;
+       262: aastore
+       263: invokestatic  #35                 // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       266: invokevirtual #36                 // Method com/fasterxml/jackson/databind/SerializerProvider.reportBadDefinition:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;
+       269: pop
+       270: aload         8
+       272: checkcast     #17                 // class java/text/SimpleDateFormat
+       275: astore        9
+       277: iload         5
+       279: ifeq          303
+       282: new           #17                 // class java/text/SimpleDateFormat
+       285: dup
+       286: aload         9
+       288: invokevirtual #37                 // Method java/text/SimpleDateFormat.toPattern:()Ljava/lang/String;
+       291: aload_3
+       292: invokevirtual #15                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getLocale:()Ljava/util/Locale;
+       295: invokespecial #19                 // Method java/text/SimpleDateFormat."<init>":(Ljava/lang/String;Ljava/util/Locale;)V
+       298: astore        9
+       300: goto          313
+       303: aload         9
+       305: invokevirtual #38                 // Method java/text/SimpleDateFormat.clone:()Ljava/lang/Object;
+       308: checkcast     #17                 // class java/text/SimpleDateFormat
+       311: astore        9
+       313: aload_3
+       314: invokevirtual #21                 // Method com/fasterxml/jackson/annotation/JsonFormat$Value.getTimeZone:()Ljava/util/TimeZone;
+       317: astore        10
+       319: aload         10
+       321: ifnull        341
+       324: aload         10
+       326: aload         9
+       328: invokevirtual #39                 // Method java/text/SimpleDateFormat.getTimeZone:()Ljava/util/TimeZone;
+       331: invokevirtual #40                 // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+       334: ifne          341
+       337: iconst_1
+       338: goto          342
+       341: iconst_0
+       342: istore        11
+       344: iload         11
+       346: ifeq          356
+       349: aload         9
+       351: aload         10
+       353: invokevirtual #23                 // Method java/text/SimpleDateFormat.setTimeZone:(Ljava/util/TimeZone;)V
+       356: aload_0
+       357: getstatic     #24                 // Field java/lang/Boolean.FALSE:Ljava/lang/Boolean;
+       360: aload         9
+       362: invokevirtual #12                 // Method withFormat:(Ljava/lang/Boolean;Ljava/text/DateFormat;)Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+       365: areturn
+      LineNumberTable:
+        line 67: 0
+        line 68: 11
+        line 69: 15
+        line 72: 17
+        line 73: 23
+        line 74: 31
+        line 79: 40
+        line 80: 47
+        line 81: 55
+        line 82: 62
+        line 83: 67
+        line 84: 82
+        line 85: 97
+        line 86: 102
+        line 87: 109
+        line 91: 119
+        line 92: 125
+        line 93: 131
+        line 95: 146
+        line 96: 161
+        line 99: 163
+        line 101: 172
+        line 102: 180
+        line 103: 187
+        line 104: 194
+        line 106: 205
+        line 107: 212
+        line 109: 223
+        line 115: 233
+        line 116: 241
+        line 118: 256
+        line 116: 263
+        line 120: 270
+        line 121: 277
+        line 123: 282
+        line 125: 303
+        line 127: 313
+        line 128: 319
+        line 129: 344
+        line 130: 349
+        line 132: 356
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           67      52     5   loc   Ljava/util/Locale;
+           82      37     6    df   Ljava/text/SimpleDateFormat;
+          102      17     7    tz   Ljava/util/TimeZone;
+          187      46     9   std   Lcom/fasterxml/jackson/databind/util/StdDateFormat;
+            0     366     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+            0     366     1 serializers   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0     366     2 property   Lcom/fasterxml/jackson/databind/BeanProperty;
+           11     355     3 format   Lcom/fasterxml/jackson/annotation/JsonFormat$Value;
+           23     343     4 shape   Lcom/fasterxml/jackson/annotation/JsonFormat$Shape;
+          125     241     5 hasLocale   Z
+          131     235     6 hasTZ   Z
+          146     220     7 asString   Z
+          172     194     8   df0   Ljava/text/DateFormat;
+          277      89     9    df   Ljava/text/SimpleDateFormat;
+          319      47    10 newTz   Ljava/util/TimeZone;
+          344      22    11 changeTZ   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     366     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+      StackMapTable: number_of_entries = 19
+        frame_type = 252 /* append */
+          offset_delta = 17
+          locals = [ class com/fasterxml/jackson/annotation/JsonFormat$Value ]
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ class com/fasterxml/jackson/annotation/JsonFormat$Shape ]
+        frame_type = 20 /* same */
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/util/Locale ]
+        frame_type = 253 /* append */
+          offset_delta = 30
+          locals = [ class java/util/Locale, class java/text/SimpleDateFormat ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/util/TimeZone ]
+        frame_type = 249 /* chop */
+          offset_delta = 18
+        frame_type = 253 /* append */
+          offset_delta = 23
+          locals = [ int, int ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 18
+          locals = [ int ]
+        frame_type = 253 /* append */
+          offset_delta = 41
+          locals = [ class java/text/DateFormat, class com/fasterxml/jackson/databind/util/StdDateFormat ]
+        frame_type = 17 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 9
+        frame_type = 36 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 32
+          locals = [ class java/text/SimpleDateFormat ]
+        frame_type = 9 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 27
+          locals = [ class java/util/TimeZone ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ int ]
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+    Signature: #142                         // (Lcom/fasterxml/jackson/databind/SerializerProvider;Lcom/fasterxml/jackson/databind/BeanProperty;)Lcom/fasterxml/jackson/databind/JsonSerializer<*>;
+
+  public boolean isEmpty(com.fasterxml.jackson.databind.SerializerProvider, T);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=3
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 146: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+            0       2     1 serializers   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0       2     2 value   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+            0       2     2 value   TT;
+    Signature: #148                         // (Lcom/fasterxml/jackson/databind/SerializerProvider;TT;)Z
+
+  protected abstract long _timestamp(T);
+    descriptor: (Ljava/lang/Object;)J
+    flags: (0x0404) ACC_PROTECTED, ACC_ABSTRACT
+    Signature: #151                         // (TT;)J
+
+  public com.fasterxml.jackson.databind.JsonNode getSchema(com.fasterxml.jackson.databind.SerializerProvider, java.lang.reflect.Type);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;Ljava/lang/reflect/Type;)Lcom/fasterxml/jackson/databind/JsonNode;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_0
+         2: aload_1
+         3: invokevirtual #41                 // Method _asTimestamp:(Lcom/fasterxml/jackson/databind/SerializerProvider;)Z
+         6: ifeq          14
+         9: ldc           #42                 // String number
+        11: goto          16
+        14: ldc           #43                 // String string
+        16: iconst_1
+        17: invokevirtual #44                 // Method createSchemaNode:(Ljava/lang/String;Z)Lcom/fasterxml/jackson/databind/node/ObjectNode;
+        20: areturn
+      LineNumberTable:
+        line 154: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      21     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+            0      21     1 serializers   Lcom/fasterxml/jackson/databind/SerializerProvider;
+            0      21     2 typeHint   Ljava/lang/reflect/Type;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      21     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 78 /* same_locals_1_stack_item */
+          stack = [ class com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase, class com/fasterxml/jackson/databind/SerializerProvider, class java/lang/reflect/Type ]
+          stack = [ class com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase, class java/lang/String ]
+
+  public void acceptJsonFormatVisitor(com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper, com.fasterxml.jackson.databind.JavaType) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_0
+         4: aload_1
+         5: invokeinterface #45,  1           // InterfaceMethod com/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper.getProvider:()Lcom/fasterxml/jackson/databind/SerializerProvider;
+        10: invokevirtual #41                 // Method _asTimestamp:(Lcom/fasterxml/jackson/databind/SerializerProvider;)Z
+        13: invokevirtual #46                 // Method _acceptJsonFormatVisitor:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Z)V
+        16: return
+      LineNumberTable:
+        line 160: 0
+        line 161: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+            0      17     1 visitor   Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;
+            0      17     2 typeHint   Lcom/fasterxml/jackson/databind/JavaType;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+
+  public abstract void serialize(T, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    Exceptions:
+      throws java.io.IOException
+    Signature: #167                         // (TT;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+
+  protected boolean _asTimestamp(com.fasterxml.jackson.databind.SerializerProvider);
+    descriptor: (Lcom/fasterxml/jackson/databind/SerializerProvider;)Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #2                  // Field _useTimestamp:Ljava/lang/Boolean;
+         4: ifnull        15
+         7: aload_0
+         8: getfield      #2                  // Field _useTimestamp:Ljava/lang/Boolean;
+        11: invokevirtual #47                 // Method java/lang/Boolean.booleanValue:()Z
+        14: ireturn
+        15: aload_0
+        16: getfield      #3                  // Field _customFormat:Ljava/text/DateFormat;
+        19: ifnonnull     67
+        22: aload_1
+        23: ifnull        34
+        26: aload_1
+        27: getstatic     #48                 // Field com/fasterxml/jackson/databind/SerializationFeature.WRITE_DATES_AS_TIMESTAMPS:Lcom/fasterxml/jackson/databind/SerializationFeature;
+        30: invokevirtual #49                 // Method com/fasterxml/jackson/databind/SerializerProvider.isEnabled:(Lcom/fasterxml/jackson/databind/SerializationFeature;)Z
+        33: ireturn
+        34: new           #50                 // class java/lang/IllegalArgumentException
+        37: dup
+        38: new           #51                 // class java/lang/StringBuilder
+        41: dup
+        42: invokespecial #52                 // Method java/lang/StringBuilder."<init>":()V
+        45: ldc           #53                 // String Null SerializerProvider passed for
+        47: invokevirtual #54                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        50: aload_0
+        51: invokevirtual #7                  // Method handledType:()Ljava/lang/Class;
+        54: invokevirtual #34                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        57: invokevirtual #54                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        60: invokevirtual #55                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        63: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        66: athrow
+        67: iconst_0
+        68: ireturn
+      LineNumberTable:
+        line 181: 0
+        line 182: 7
+        line 184: 15
+        line 185: 22
+        line 186: 26
+        line 189: 34
+        line 191: 67
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      69     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+            0      69     1 serializers   Lcom/fasterxml/jackson/databind/SerializerProvider;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      69     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+      StackMapTable: number_of_entries = 3
+        frame_type = 15 /* same */
+        frame_type = 18 /* same */
+        frame_type = 32 /* same */
+
+  protected void _acceptJsonFormatVisitor(com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper, com.fasterxml.jackson.databind.JavaType, boolean) throws com.fasterxml.jackson.databind.JsonMappingException;
+    descriptor: (Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Z)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=5, locals=4, args_size=4
+         0: iload_3
+         1: ifeq          19
+         4: aload_0
+         5: aload_1
+         6: aload_2
+         7: getstatic     #57                 // Field com/fasterxml/jackson/core/JsonParser$NumberType.LONG:Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+        10: getstatic     #58                 // Field com/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat.UTC_MILLISEC:Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;
+        13: invokevirtual #59                 // Method visitIntFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/core/JsonParser$NumberType;Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;)V
+        16: goto          28
+        19: aload_0
+        20: aload_1
+        21: aload_2
+        22: getstatic     #60                 // Field com/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat.DATE_TIME:Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;
+        25: invokevirtual #61                 // Method visitStringFormat:(Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;Lcom/fasterxml/jackson/databind/JavaType;Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonValueFormat;)V
+        28: return
+      LineNumberTable:
+        line 197: 0
+        line 198: 4
+        line 201: 19
+        line 203: 28
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      29     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+            0      29     1 visitor   Lcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitorWrapper;
+            0      29     2 typeHint   Lcom/fasterxml/jackson/databind/JavaType;
+            0      29     3 asNumber   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      29     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 19 /* same */
+        frame_type = 8 /* same */
+    Exceptions:
+      throws com.fasterxml.jackson.databind.JsonMappingException
+
+  protected void _serializeAsString(java.util.Date, com.fasterxml.jackson.core.JsonGenerator, com.fasterxml.jackson.databind.SerializerProvider) throws java.io.IOException;
+    descriptor: (Ljava/util/Date;Lcom/fasterxml/jackson/core/JsonGenerator;Lcom/fasterxml/jackson/databind/SerializerProvider;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=5, args_size=4
+         0: aload_0
+         1: getfield      #3                  // Field _customFormat:Ljava/text/DateFormat;
+         4: ifnonnull     14
+         7: aload_3
+         8: aload_1
+         9: aload_2
+        10: invokevirtual #62                 // Method com/fasterxml/jackson/databind/SerializerProvider.defaultSerializeDateValue:(Ljava/util/Date;Lcom/fasterxml/jackson/core/JsonGenerator;)V
+        13: return
+        14: aload_0
+        15: getfield      #6                  // Field _reusedCustomFormat:Ljava/util/concurrent/atomic/AtomicReference;
+        18: aconst_null
+        19: invokevirtual #63                 // Method java/util/concurrent/atomic/AtomicReference.getAndSet:(Ljava/lang/Object;)Ljava/lang/Object;
+        22: checkcast     #64                 // class java/text/DateFormat
+        25: astore        4
+        27: aload         4
+        29: ifnonnull     44
+        32: aload_0
+        33: getfield      #3                  // Field _customFormat:Ljava/text/DateFormat;
+        36: invokevirtual #65                 // Method java/text/DateFormat.clone:()Ljava/lang/Object;
+        39: checkcast     #64                 // class java/text/DateFormat
+        42: astore        4
+        44: aload_2
+        45: aload         4
+        47: aload_1
+        48: invokevirtual #66                 // Method java/text/DateFormat.format:(Ljava/util/Date;)Ljava/lang/String;
+        51: invokevirtual #67                 // Method com/fasterxml/jackson/core/JsonGenerator.writeString:(Ljava/lang/String;)V
+        54: aload_0
+        55: getfield      #6                  // Field _reusedCustomFormat:Ljava/util/concurrent/atomic/AtomicReference;
+        58: aconst_null
+        59: aload         4
+        61: invokevirtual #68                 // Method java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        64: pop
+        65: return
+      LineNumberTable:
+        line 210: 0
+        line 211: 7
+        line 212: 13
+        line 222: 14
+        line 223: 27
+        line 224: 32
+        line 226: 44
+        line 227: 54
+        line 228: 65
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      66     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase;
+            0      66     1 value   Ljava/util/Date;
+            0      66     2     g   Lcom/fasterxml/jackson/core/JsonGenerator;
+            0      66     3 provider   Lcom/fasterxml/jackson/databind/SerializerProvider;
+           27      39     4     f   Ljava/text/DateFormat;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      66     0  this   Lcom/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase<TT;>;
+      StackMapTable: number_of_entries = 2
+        frame_type = 14 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 29
+          locals = [ class java/text/DateFormat ]
+    Exceptions:
+      throws java.io.IOException
+}
+Signature: #180                         // <T:Ljava/lang/Object;>Lcom/fasterxml/jackson/databind/ser/std/StdScalarSerializer<TT;>;Lcom/fasterxml/jackson/databind/ser/ContextualSerializer;
+SourceFile: "DateTimeSerializerBase.java"
+InnerClasses:
+  public static #120= #119 of #261;       // Value=class com/fasterxml/jackson/annotation/JsonFormat$Value of class com/fasterxml/jackson/annotation/JsonFormat
+  public static final #125= #124 of #261; // Shape=class com/fasterxml/jackson/annotation/JsonFormat$Shape of class com/fasterxml/jackson/annotation/JsonFormat
+  public static final #331= #242 of #329; // NumberType=class com/fasterxml/jackson/core/JsonParser$NumberType of class com/fasterxml/jackson/core/JsonParser

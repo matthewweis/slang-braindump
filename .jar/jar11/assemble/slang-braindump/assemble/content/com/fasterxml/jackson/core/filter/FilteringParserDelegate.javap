@@ -1,0 +1,3500 @@
+Classfile /Users/mw/Projects/slang-braindump/.jar/jar11/assemble/slang-braindump/assemble/content/com/fasterxml/jackson/core/filter/FilteringParserDelegate.class
+  Last modified May 29, 2022; size 15561 bytes
+  SHA-256 checksum 22de8bbcbcc5ddf926961c0db62c5008c44bbfac79e5ff58ac43f04b01c175f8
+  Compiled from "FilteringParserDelegate.java"
+public class com.fasterxml.jackson.core.filter.FilteringParserDelegate extends com.fasterxml.jackson.core.util.JsonParserDelegate
+  minor version: 0
+  major version: 50
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #95                         // com/fasterxml/jackson/core/filter/FilteringParserDelegate
+  super_class: #96                        // com/fasterxml/jackson/core/util/JsonParserDelegate
+  interfaces: 0, fields: 9, methods: 58, attributes: 2
+Constant pool:
+    #1 = Class              #246          // com/fasterxml/jackson/core/JsonTokenId
+    #2 = Fieldref           #102.#247     // com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+    #3 = Fieldref           #102.#248     // com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.ONLY_INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+    #4 = Methodref          #95.#249      // com/fasterxml/jackson/core/filter/FilteringParserDelegate."<init>":(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/core/filter/TokenFilter;Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;Z)V
+    #5 = Methodref          #96.#250      // com/fasterxml/jackson/core/util/JsonParserDelegate."<init>":(Lcom/fasterxml/jackson/core/JsonParser;)V
+    #6 = Fieldref           #95.#251      // com/fasterxml/jackson/core/filter/FilteringParserDelegate.rootFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+    #7 = Fieldref           #95.#252      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+    #8 = Methodref          #253.#254     // com/fasterxml/jackson/core/filter/TokenFilterContext.createRootContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+    #9 = Fieldref           #95.#255      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+   #10 = Fieldref           #95.#256      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+   #11 = Fieldref           #95.#257      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._allowMultipleMatches:Z
+   #12 = Fieldref           #95.#258      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._matchCount:I
+   #13 = Fieldref           #95.#259      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._currToken:Lcom/fasterxml/jackson/core/JsonToken;
+   #14 = Methodref          #95.#260      // com/fasterxml/jackson/core/filter/FilteringParserDelegate.currentTokenId:()I
+   #15 = Methodref          #261.#262     // com/fasterxml/jackson/core/JsonToken.id:()I
+   #16 = Fieldref           #261.#263     // com/fasterxml/jackson/core/JsonToken.START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+   #17 = Fieldref           #261.#264     // com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+   #18 = Fieldref           #95.#265      // com/fasterxml/jackson/core/filter/FilteringParserDelegate.delegate:Lcom/fasterxml/jackson/core/JsonParser;
+   #19 = Methodref          #266.#267     // com/fasterxml/jackson/core/JsonParser.getCurrentLocation:()Lcom/fasterxml/jackson/core/JsonLocation;
+   #20 = Methodref          #95.#268      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._filterContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+   #21 = Methodref          #269.#270     // com/fasterxml/jackson/core/JsonStreamContext.getParent:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+   #22 = Methodref          #269.#271     // com/fasterxml/jackson/core/JsonStreamContext.getCurrentName:()Ljava/lang/String;
+   #23 = Fieldref           #95.#272      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._lastClearedToken:Lcom/fasterxml/jackson/core/JsonToken;
+   #24 = Class              #273          // java/lang/UnsupportedOperationException
+   #25 = String             #274          // Can not currently override name during filtering read
+   #26 = Methodref          #24.#275      // java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+   #27 = Fieldref           #95.#276      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+   #28 = Methodref          #261.#277     // com/fasterxml/jackson/core/JsonToken.isScalarValue:()Z
+   #29 = Methodref          #253.#278     // com/fasterxml/jackson/core/filter/TokenFilterContext.isStartHandled:()Z
+   #30 = Fieldref           #279.#280     // com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+   #31 = Methodref          #253.#281     // com/fasterxml/jackson/core/filter/TokenFilterContext.nextTokenToRead:()Lcom/fasterxml/jackson/core/JsonToken;
+   #32 = Methodref          #253.#282     // com/fasterxml/jackson/core/filter/TokenFilterContext.inArray:()Z
+   #33 = Methodref          #266.#283     // com/fasterxml/jackson/core/JsonParser.getCurrentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+   #34 = Methodref          #266.#284     // com/fasterxml/jackson/core/JsonParser.currentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+   #35 = Fieldref           #261.#285     // com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+   #36 = Methodref          #253.#286     // com/fasterxml/jackson/core/filter/TokenFilterContext.findChildOf:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+   #37 = String             #287          // Unexpected problem: chain of filtered context broken
+   #38 = Methodref          #95.#288      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._constructError:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/JsonParseException;
+   #39 = Methodref          #266.#289     // com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+   #40 = Methodref          #253.#290     // com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+   #41 = Methodref          #266.#291     // com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+   #42 = Methodref          #253.#292     // com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+   #43 = Methodref          #279.#293     // com/fasterxml/jackson/core/filter/TokenFilter.filterStartArray:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+   #44 = Fieldref           #102.#294     // com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_NON_NULL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+   #45 = Methodref          #95.#295      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._nextTokenWithBuffering:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+   #46 = Methodref          #253.#296     // com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+   #47 = Methodref          #279.#297     // com/fasterxml/jackson/core/filter/TokenFilter.filterStartObject:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+   #48 = Methodref          #253.#298     // com/fasterxml/jackson/core/filter/TokenFilterContext.getFilter:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+   #49 = Methodref          #279.#299     // com/fasterxml/jackson/core/filter/TokenFilter.filterFinishArray:()V
+   #50 = Methodref          #253.#300     // com/fasterxml/jackson/core/filter/TokenFilterContext.getParent:()Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+   #51 = Methodref          #266.#271     // com/fasterxml/jackson/core/JsonParser.getCurrentName:()Ljava/lang/String;
+   #52 = Methodref          #253.#301     // com/fasterxml/jackson/core/filter/TokenFilterContext.setFieldName:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+   #53 = Methodref          #279.#302     // com/fasterxml/jackson/core/filter/TokenFilter.includeProperty:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+   #54 = Methodref          #95.#303      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._verifyAllowedMatches:()Z
+   #55 = Methodref          #279.#304     // com/fasterxml/jackson/core/filter/TokenFilter.includeValue:(Lcom/fasterxml/jackson/core/JsonParser;)Z
+   #56 = Methodref          #95.#305      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._nextToken2:()Lcom/fasterxml/jackson/core/JsonToken;
+   #57 = Methodref          #95.#306      // com/fasterxml/jackson/core/filter/FilteringParserDelegate._nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+   #58 = String             #307          // Internal error: failed to locate expected buffered tokens
+   #59 = Methodref          #95.#289      // com/fasterxml/jackson/core/filter/FilteringParserDelegate.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+   #60 = Methodref          #261.#308     // com/fasterxml/jackson/core/JsonToken.isStructStart:()Z
+   #61 = Methodref          #261.#309     // com/fasterxml/jackson/core/JsonToken.isStructEnd:()Z
+   #62 = Methodref          #95.#310      // com/fasterxml/jackson/core/filter/FilteringParserDelegate.currentName:()Ljava/lang/String;
+   #63 = Methodref          #266.#311     // com/fasterxml/jackson/core/JsonParser.getText:()Ljava/lang/String;
+   #64 = Methodref          #266.#312     // com/fasterxml/jackson/core/JsonParser.hasTextCharacters:()Z
+   #65 = Methodref          #313.#314     // java/lang/String.toCharArray:()[C
+   #66 = Methodref          #266.#315     // com/fasterxml/jackson/core/JsonParser.getTextCharacters:()[C
+   #67 = Methodref          #313.#316     // java/lang/String.length:()I
+   #68 = Methodref          #266.#317     // com/fasterxml/jackson/core/JsonParser.getTextLength:()I
+   #69 = Methodref          #266.#318     // com/fasterxml/jackson/core/JsonParser.getTextOffset:()I
+   #70 = Methodref          #266.#319     // com/fasterxml/jackson/core/JsonParser.getBigIntegerValue:()Ljava/math/BigInteger;
+   #71 = Methodref          #266.#320     // com/fasterxml/jackson/core/JsonParser.getBooleanValue:()Z
+   #72 = Methodref          #266.#321     // com/fasterxml/jackson/core/JsonParser.getByteValue:()B
+   #73 = Methodref          #266.#322     // com/fasterxml/jackson/core/JsonParser.getShortValue:()S
+   #74 = Methodref          #266.#323     // com/fasterxml/jackson/core/JsonParser.getDecimalValue:()Ljava/math/BigDecimal;
+   #75 = Methodref          #266.#324     // com/fasterxml/jackson/core/JsonParser.getDoubleValue:()D
+   #76 = Methodref          #266.#325     // com/fasterxml/jackson/core/JsonParser.getFloatValue:()F
+   #77 = Methodref          #266.#326     // com/fasterxml/jackson/core/JsonParser.getIntValue:()I
+   #78 = Methodref          #266.#327     // com/fasterxml/jackson/core/JsonParser.getLongValue:()J
+   #79 = Methodref          #266.#328     // com/fasterxml/jackson/core/JsonParser.getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+   #80 = Methodref          #266.#329     // com/fasterxml/jackson/core/JsonParser.getNumberValue:()Ljava/lang/Number;
+   #81 = Methodref          #266.#330     // com/fasterxml/jackson/core/JsonParser.getValueAsInt:()I
+   #82 = Methodref          #266.#331     // com/fasterxml/jackson/core/JsonParser.getValueAsInt:(I)I
+   #83 = Methodref          #266.#332     // com/fasterxml/jackson/core/JsonParser.getValueAsLong:()J
+   #84 = Methodref          #266.#333     // com/fasterxml/jackson/core/JsonParser.getValueAsLong:(J)J
+   #85 = Methodref          #266.#334     // com/fasterxml/jackson/core/JsonParser.getValueAsDouble:()D
+   #86 = Methodref          #266.#335     // com/fasterxml/jackson/core/JsonParser.getValueAsDouble:(D)D
+   #87 = Methodref          #266.#336     // com/fasterxml/jackson/core/JsonParser.getValueAsBoolean:()Z
+   #88 = Methodref          #266.#337     // com/fasterxml/jackson/core/JsonParser.getValueAsBoolean:(Z)Z
+   #89 = Methodref          #266.#338     // com/fasterxml/jackson/core/JsonParser.getValueAsString:()Ljava/lang/String;
+   #90 = Methodref          #266.#339     // com/fasterxml/jackson/core/JsonParser.getValueAsString:(Ljava/lang/String;)Ljava/lang/String;
+   #91 = Methodref          #266.#340     // com/fasterxml/jackson/core/JsonParser.getEmbeddedObject:()Ljava/lang/Object;
+   #92 = Methodref          #266.#341     // com/fasterxml/jackson/core/JsonParser.getBinaryValue:(Lcom/fasterxml/jackson/core/Base64Variant;)[B
+   #93 = Methodref          #266.#342     // com/fasterxml/jackson/core/JsonParser.readBinaryValue:(Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/OutputStream;)I
+   #94 = Methodref          #266.#343     // com/fasterxml/jackson/core/JsonParser.getTokenLocation:()Lcom/fasterxml/jackson/core/JsonLocation;
+   #95 = Class              #344          // com/fasterxml/jackson/core/filter/FilteringParserDelegate
+   #96 = Class              #345          // com/fasterxml/jackson/core/util/JsonParserDelegate
+   #97 = Utf8               rootFilter
+   #98 = Utf8               Lcom/fasterxml/jackson/core/filter/TokenFilter;
+   #99 = Utf8               _allowMultipleMatches
+  #100 = Utf8               Z
+  #101 = Utf8               _inclusion
+  #102 = Class              #346          // com/fasterxml/jackson/core/filter/TokenFilter$Inclusion
+  #103 = Utf8               Inclusion
+  #104 = Utf8               InnerClasses
+  #105 = Utf8               Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+  #106 = Utf8               _currToken
+  #107 = Utf8               Lcom/fasterxml/jackson/core/JsonToken;
+  #108 = Utf8               _lastClearedToken
+  #109 = Utf8               _headContext
+  #110 = Utf8               Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #111 = Utf8               _exposedContext
+  #112 = Utf8               _itemFilter
+  #113 = Utf8               _matchCount
+  #114 = Utf8               I
+  #115 = Utf8               <init>
+  #116 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/core/filter/TokenFilter;ZZ)V
+  #117 = Utf8               Code
+  #118 = Utf8               LineNumberTable
+  #119 = Utf8               LocalVariableTable
+  #120 = Utf8               this
+  #121 = Utf8               Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+  #122 = Utf8               p
+  #123 = Utf8               Lcom/fasterxml/jackson/core/JsonParser;
+  #124 = Utf8               f
+  #125 = Utf8               includePath
+  #126 = Utf8               allowMultipleMatches
+  #127 = Utf8               StackMapTable
+  #128 = Class              #347          // com/fasterxml/jackson/core/JsonParser
+  #129 = Class              #348          // com/fasterxml/jackson/core/filter/TokenFilter
+  #130 = Class              #346          // com/fasterxml/jackson/core/filter/TokenFilter$Inclusion
+  #131 = Utf8               Deprecated
+  #132 = Utf8               RuntimeVisibleAnnotations
+  #133 = Utf8               Ljava/lang/Deprecated;
+  #134 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/core/filter/TokenFilter;Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;Z)V
+  #135 = Utf8               inclusion
+  #136 = Utf8               getFilter
+  #137 = Utf8               ()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #138 = Utf8               getMatchCount
+  #139 = Utf8               ()I
+  #140 = Utf8               getCurrentToken
+  #141 = Utf8               ()Lcom/fasterxml/jackson/core/JsonToken;
+  #142 = Utf8               currentToken
+  #143 = Utf8               getCurrentTokenId
+  #144 = Utf8               currentTokenId
+  #145 = Utf8               t
+  #146 = Class              #349          // com/fasterxml/jackson/core/JsonToken
+  #147 = Utf8               hasCurrentToken
+  #148 = Utf8               ()Z
+  #149 = Utf8               hasTokenId
+  #150 = Utf8               (I)Z
+  #151 = Utf8               id
+  #152 = Utf8               hasToken
+  #153 = Utf8               (Lcom/fasterxml/jackson/core/JsonToken;)Z
+  #154 = Utf8               isExpectedStartArrayToken
+  #155 = Utf8               isExpectedStartObjectToken
+  #156 = Utf8               getCurrentLocation
+  #157 = Utf8               ()Lcom/fasterxml/jackson/core/JsonLocation;
+  #158 = Utf8               getParsingContext
+  #159 = Utf8               ()Lcom/fasterxml/jackson/core/JsonStreamContext;
+  #160 = Utf8               getCurrentName
+  #161 = Utf8               ()Ljava/lang/String;
+  #162 = Utf8               parent
+  #163 = Utf8               Lcom/fasterxml/jackson/core/JsonStreamContext;
+  #164 = Utf8               ctxt
+  #165 = Class              #350          // com/fasterxml/jackson/core/JsonStreamContext
+  #166 = Class              #351          // java/lang/String
+  #167 = Utf8               Exceptions
+  #168 = Class              #352          // java/io/IOException
+  #169 = Utf8               currentName
+  #170 = Utf8               clearCurrentToken
+  #171 = Utf8               ()V
+  #172 = Utf8               getLastClearedToken
+  #173 = Utf8               overrideCurrentName
+  #174 = Utf8               (Ljava/lang/String;)V
+  #175 = Utf8               name
+  #176 = Utf8               Ljava/lang/String;
+  #177 = Utf8               nextToken
+  #178 = Utf8               returnEnd
+  #179 = Class              #353          // com/fasterxml/jackson/core/filter/TokenFilterContext
+  #180 = Utf8               _nextToken2
+  #181 = Utf8               _nextTokenWithBuffering
+  #182 = Utf8               (Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+  #183 = Utf8               gotEnd
+  #184 = Utf8               buffRoot
+  #185 = Utf8               _nextBuffered
+  #186 = Utf8               _verifyAllowedMatches
+  #187 = Utf8               nextValue
+  #188 = Utf8               skipChildren
+  #189 = Utf8               ()Lcom/fasterxml/jackson/core/JsonParser;
+  #190 = Utf8               open
+  #191 = Utf8               getText
+  #192 = Utf8               hasTextCharacters
+  #193 = Utf8               getTextCharacters
+  #194 = Utf8               ()[C
+  #195 = Utf8               getTextLength
+  #196 = Utf8               getTextOffset
+  #197 = Utf8               getBigIntegerValue
+  #198 = Utf8               ()Ljava/math/BigInteger;
+  #199 = Utf8               getBooleanValue
+  #200 = Utf8               getByteValue
+  #201 = Utf8               ()B
+  #202 = Utf8               getShortValue
+  #203 = Utf8               ()S
+  #204 = Utf8               getDecimalValue
+  #205 = Utf8               ()Ljava/math/BigDecimal;
+  #206 = Utf8               getDoubleValue
+  #207 = Utf8               ()D
+  #208 = Utf8               getFloatValue
+  #209 = Utf8               ()F
+  #210 = Utf8               getIntValue
+  #211 = Utf8               getLongValue
+  #212 = Utf8               ()J
+  #213 = Utf8               getNumberType
+  #214 = Class              #354          // com/fasterxml/jackson/core/JsonParser$NumberType
+  #215 = Utf8               NumberType
+  #216 = Utf8               ()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #217 = Utf8               getNumberValue
+  #218 = Utf8               ()Ljava/lang/Number;
+  #219 = Utf8               getValueAsInt
+  #220 = Utf8               (I)I
+  #221 = Utf8               defaultValue
+  #222 = Utf8               getValueAsLong
+  #223 = Utf8               (J)J
+  #224 = Utf8               J
+  #225 = Utf8               getValueAsDouble
+  #226 = Utf8               (D)D
+  #227 = Utf8               D
+  #228 = Utf8               getValueAsBoolean
+  #229 = Utf8               (Z)Z
+  #230 = Utf8               getValueAsString
+  #231 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #232 = Utf8               getEmbeddedObject
+  #233 = Utf8               ()Ljava/lang/Object;
+  #234 = Utf8               getBinaryValue
+  #235 = Utf8               (Lcom/fasterxml/jackson/core/Base64Variant;)[B
+  #236 = Utf8               b64variant
+  #237 = Utf8               Lcom/fasterxml/jackson/core/Base64Variant;
+  #238 = Utf8               readBinaryValue
+  #239 = Utf8               (Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/OutputStream;)I
+  #240 = Utf8               out
+  #241 = Utf8               Ljava/io/OutputStream;
+  #242 = Utf8               getTokenLocation
+  #243 = Utf8               _filterContext
+  #244 = Utf8               SourceFile
+  #245 = Utf8               FilteringParserDelegate.java
+  #246 = Utf8               com/fasterxml/jackson/core/JsonTokenId
+  #247 = NameAndType        #355:#105     // INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+  #248 = NameAndType        #356:#105     // ONLY_INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+  #249 = NameAndType        #115:#134     // "<init>":(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/core/filter/TokenFilter;Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;Z)V
+  #250 = NameAndType        #115:#357     // "<init>":(Lcom/fasterxml/jackson/core/JsonParser;)V
+  #251 = NameAndType        #97:#98       // rootFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #252 = NameAndType        #112:#98      // _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #253 = Class              #353          // com/fasterxml/jackson/core/filter/TokenFilterContext
+  #254 = NameAndType        #358:#359     // createRootContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #255 = NameAndType        #109:#110     // _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #256 = NameAndType        #101:#105     // _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+  #257 = NameAndType        #99:#100      // _allowMultipleMatches:Z
+  #258 = NameAndType        #113:#114     // _matchCount:I
+  #259 = NameAndType        #106:#107     // _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+  #260 = NameAndType        #144:#139     // currentTokenId:()I
+  #261 = Class              #349          // com/fasterxml/jackson/core/JsonToken
+  #262 = NameAndType        #151:#139     // id:()I
+  #263 = NameAndType        #360:#107     // START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+  #264 = NameAndType        #361:#107     // START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+  #265 = NameAndType        #362:#123     // delegate:Lcom/fasterxml/jackson/core/JsonParser;
+  #266 = Class              #347          // com/fasterxml/jackson/core/JsonParser
+  #267 = NameAndType        #156:#157     // getCurrentLocation:()Lcom/fasterxml/jackson/core/JsonLocation;
+  #268 = NameAndType        #243:#159     // _filterContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+  #269 = Class              #350          // com/fasterxml/jackson/core/JsonStreamContext
+  #270 = NameAndType        #363:#159     // getParent:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+  #271 = NameAndType        #160:#161     // getCurrentName:()Ljava/lang/String;
+  #272 = NameAndType        #108:#107     // _lastClearedToken:Lcom/fasterxml/jackson/core/JsonToken;
+  #273 = Utf8               java/lang/UnsupportedOperationException
+  #274 = Utf8               Can not currently override name during filtering read
+  #275 = NameAndType        #115:#174     // "<init>":(Ljava/lang/String;)V
+  #276 = NameAndType        #111:#110     // _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #277 = NameAndType        #364:#148     // isScalarValue:()Z
+  #278 = NameAndType        #365:#148     // isStartHandled:()Z
+  #279 = Class              #348          // com/fasterxml/jackson/core/filter/TokenFilter
+  #280 = NameAndType        #366:#98      // INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #281 = NameAndType        #367:#141     // nextTokenToRead:()Lcom/fasterxml/jackson/core/JsonToken;
+  #282 = NameAndType        #368:#148     // inArray:()Z
+  #283 = NameAndType        #140:#141     // getCurrentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+  #284 = NameAndType        #142:#141     // currentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+  #285 = NameAndType        #369:#107     // FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+  #286 = NameAndType        #370:#371     // findChildOf:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #287 = Utf8               Unexpected problem: chain of filtered context broken
+  #288 = NameAndType        #372:#373     // _constructError:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/JsonParseException;
+  #289 = NameAndType        #177:#141     // nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+  #290 = NameAndType        #374:#375     // createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #291 = NameAndType        #188:#189     // skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+  #292 = NameAndType        #376:#377     // checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #293 = NameAndType        #378:#137     // filterStartArray:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #294 = NameAndType        #379:#105     // INCLUDE_NON_NULL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+  #295 = NameAndType        #181:#182     // _nextTokenWithBuffering:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+  #296 = NameAndType        #380:#375     // createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #297 = NameAndType        #381:#137     // filterStartObject:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #298 = NameAndType        #136:#137     // getFilter:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #299 = NameAndType        #382:#171     // filterFinishArray:()V
+  #300 = NameAndType        #363:#383     // getParent:()Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #301 = NameAndType        #384:#385     // setFieldName:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #302 = NameAndType        #386:#385     // includeProperty:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #303 = NameAndType        #186:#148     // _verifyAllowedMatches:()Z
+  #304 = NameAndType        #387:#388     // includeValue:(Lcom/fasterxml/jackson/core/JsonParser;)Z
+  #305 = NameAndType        #180:#141     // _nextToken2:()Lcom/fasterxml/jackson/core/JsonToken;
+  #306 = NameAndType        #185:#182     // _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+  #307 = Utf8               Internal error: failed to locate expected buffered tokens
+  #308 = NameAndType        #389:#148     // isStructStart:()Z
+  #309 = NameAndType        #390:#148     // isStructEnd:()Z
+  #310 = NameAndType        #169:#161     // currentName:()Ljava/lang/String;
+  #311 = NameAndType        #191:#161     // getText:()Ljava/lang/String;
+  #312 = NameAndType        #192:#148     // hasTextCharacters:()Z
+  #313 = Class              #351          // java/lang/String
+  #314 = NameAndType        #391:#194     // toCharArray:()[C
+  #315 = NameAndType        #193:#194     // getTextCharacters:()[C
+  #316 = NameAndType        #392:#139     // length:()I
+  #317 = NameAndType        #195:#139     // getTextLength:()I
+  #318 = NameAndType        #196:#139     // getTextOffset:()I
+  #319 = NameAndType        #197:#198     // getBigIntegerValue:()Ljava/math/BigInteger;
+  #320 = NameAndType        #199:#148     // getBooleanValue:()Z
+  #321 = NameAndType        #200:#201     // getByteValue:()B
+  #322 = NameAndType        #202:#203     // getShortValue:()S
+  #323 = NameAndType        #204:#205     // getDecimalValue:()Ljava/math/BigDecimal;
+  #324 = NameAndType        #206:#207     // getDoubleValue:()D
+  #325 = NameAndType        #208:#209     // getFloatValue:()F
+  #326 = NameAndType        #210:#139     // getIntValue:()I
+  #327 = NameAndType        #211:#212     // getLongValue:()J
+  #328 = NameAndType        #213:#216     // getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+  #329 = NameAndType        #217:#218     // getNumberValue:()Ljava/lang/Number;
+  #330 = NameAndType        #219:#139     // getValueAsInt:()I
+  #331 = NameAndType        #219:#220     // getValueAsInt:(I)I
+  #332 = NameAndType        #222:#212     // getValueAsLong:()J
+  #333 = NameAndType        #222:#223     // getValueAsLong:(J)J
+  #334 = NameAndType        #225:#207     // getValueAsDouble:()D
+  #335 = NameAndType        #225:#226     // getValueAsDouble:(D)D
+  #336 = NameAndType        #228:#148     // getValueAsBoolean:()Z
+  #337 = NameAndType        #228:#229     // getValueAsBoolean:(Z)Z
+  #338 = NameAndType        #230:#161     // getValueAsString:()Ljava/lang/String;
+  #339 = NameAndType        #230:#231     // getValueAsString:(Ljava/lang/String;)Ljava/lang/String;
+  #340 = NameAndType        #232:#233     // getEmbeddedObject:()Ljava/lang/Object;
+  #341 = NameAndType        #234:#235     // getBinaryValue:(Lcom/fasterxml/jackson/core/Base64Variant;)[B
+  #342 = NameAndType        #238:#239     // readBinaryValue:(Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/OutputStream;)I
+  #343 = NameAndType        #242:#157     // getTokenLocation:()Lcom/fasterxml/jackson/core/JsonLocation;
+  #344 = Utf8               com/fasterxml/jackson/core/filter/FilteringParserDelegate
+  #345 = Utf8               com/fasterxml/jackson/core/util/JsonParserDelegate
+  #346 = Utf8               com/fasterxml/jackson/core/filter/TokenFilter$Inclusion
+  #347 = Utf8               com/fasterxml/jackson/core/JsonParser
+  #348 = Utf8               com/fasterxml/jackson/core/filter/TokenFilter
+  #349 = Utf8               com/fasterxml/jackson/core/JsonToken
+  #350 = Utf8               com/fasterxml/jackson/core/JsonStreamContext
+  #351 = Utf8               java/lang/String
+  #352 = Utf8               java/io/IOException
+  #353 = Utf8               com/fasterxml/jackson/core/filter/TokenFilterContext
+  #354 = Utf8               com/fasterxml/jackson/core/JsonParser$NumberType
+  #355 = Utf8               INCLUDE_ALL_AND_PATH
+  #356 = Utf8               ONLY_INCLUDE_ALL
+  #357 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser;)V
+  #358 = Utf8               createRootContext
+  #359 = Utf8               (Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #360 = Utf8               START_ARRAY
+  #361 = Utf8               START_OBJECT
+  #362 = Utf8               delegate
+  #363 = Utf8               getParent
+  #364 = Utf8               isScalarValue
+  #365 = Utf8               isStartHandled
+  #366 = Utf8               INCLUDE_ALL
+  #367 = Utf8               nextTokenToRead
+  #368 = Utf8               inArray
+  #369 = Utf8               FIELD_NAME
+  #370 = Utf8               findChildOf
+  #371 = Utf8               (Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #372 = Utf8               _constructError
+  #373 = Utf8               (Ljava/lang/String;)Lcom/fasterxml/jackson/core/JsonParseException;
+  #374 = Utf8               createChildArrayContext
+  #375 = Utf8               (Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #376 = Utf8               checkValue
+  #377 = Utf8               (Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #378 = Utf8               filterStartArray
+  #379 = Utf8               INCLUDE_NON_NULL
+  #380 = Utf8               createChildObjectContext
+  #381 = Utf8               filterStartObject
+  #382 = Utf8               filterFinishArray
+  #383 = Utf8               ()Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+  #384 = Utf8               setFieldName
+  #385 = Utf8               (Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+  #386 = Utf8               includeProperty
+  #387 = Utf8               includeValue
+  #388 = Utf8               (Lcom/fasterxml/jackson/core/JsonParser;)Z
+  #389 = Utf8               isStructStart
+  #390 = Utf8               isStructEnd
+  #391 = Utf8               toCharArray
+  #392 = Utf8               length
+{
+  protected com.fasterxml.jackson.core.filter.TokenFilter rootFilter;
+    descriptor: Lcom/fasterxml/jackson/core/filter/TokenFilter;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected boolean _allowMultipleMatches;
+    descriptor: Z
+    flags: (0x0004) ACC_PROTECTED
+
+  protected com.fasterxml.jackson.core.filter.TokenFilter$Inclusion _inclusion;
+    descriptor: Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected com.fasterxml.jackson.core.JsonToken _currToken;
+    descriptor: Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected com.fasterxml.jackson.core.JsonToken _lastClearedToken;
+    descriptor: Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected com.fasterxml.jackson.core.filter.TokenFilterContext _headContext;
+    descriptor: Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected com.fasterxml.jackson.core.filter.TokenFilterContext _exposedContext;
+    descriptor: Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected com.fasterxml.jackson.core.filter.TokenFilter _itemFilter;
+    descriptor: Lcom/fasterxml/jackson/core/filter/TokenFilter;
+    flags: (0x0004) ACC_PROTECTED
+
+  protected int _matchCount;
+    descriptor: I
+    flags: (0x0004) ACC_PROTECTED
+
+  public com.fasterxml.jackson.core.filter.FilteringParserDelegate(com.fasterxml.jackson.core.JsonParser, com.fasterxml.jackson.core.filter.TokenFilter, boolean, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/core/filter/TokenFilter;ZZ)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: iload_3
+         4: ifeq          13
+         7: getstatic     #2                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+        10: goto          16
+        13: getstatic     #3                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.ONLY_INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+        16: iload         4
+        18: invokespecial #4                  // Method "<init>":(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/core/filter/TokenFilter;Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;Z)V
+        21: return
+      LineNumberTable:
+        line 108: 0
+        line 109: 21
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0      22     1     p   Lcom/fasterxml/jackson/core/JsonParser;
+            0      22     2     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+            0      22     3 includePath   Z
+            0      22     4 allowMultipleMatches   Z
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 13
+          locals = [ this, class com/fasterxml/jackson/core/JsonParser, class com/fasterxml/jackson/core/filter/TokenFilter, int, int ]
+          stack = [ this, class com/fasterxml/jackson/core/JsonParser, class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ this, class com/fasterxml/jackson/core/JsonParser, class com/fasterxml/jackson/core/filter/TokenFilter, int, int ]
+          stack = [ this, class com/fasterxml/jackson/core/JsonParser, class com/fasterxml/jackson/core/filter/TokenFilter, class com/fasterxml/jackson/core/filter/TokenFilter$Inclusion ]
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #133()
+        java.lang.Deprecated
+
+  public com.fasterxml.jackson.core.filter.FilteringParserDelegate(com.fasterxml.jackson.core.JsonParser, com.fasterxml.jackson.core.filter.TokenFilter, com.fasterxml.jackson.core.filter.TokenFilter$Inclusion, boolean);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/core/filter/TokenFilter;Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=5, args_size=5
+         0: aload_0
+         1: aload_1
+         2: invokespecial #5                  // Method com/fasterxml/jackson/core/util/JsonParserDelegate."<init>":(Lcom/fasterxml/jackson/core/JsonParser;)V
+         5: aload_0
+         6: aload_2
+         7: putfield      #6                  // Field rootFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        10: aload_0
+        11: aload_2
+        12: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        15: aload_0
+        16: aload_2
+        17: invokestatic  #8                  // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createRootContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        20: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        23: aload_0
+        24: aload_3
+        25: putfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+        28: aload_0
+        29: iload         4
+        31: putfield      #11                 // Field _allowMultipleMatches:Z
+        34: return
+      LineNumberTable:
+        line 120: 0
+        line 121: 5
+        line 123: 10
+        line 124: 15
+        line 125: 23
+        line 126: 28
+        line 127: 34
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      35     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0      35     1     p   Lcom/fasterxml/jackson/core/JsonParser;
+            0      35     2     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+            0      35     3 inclusion   Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+            0      35     4 allowMultipleMatches   Z
+
+  public com.fasterxml.jackson.core.filter.TokenFilter getFilter();
+    descriptor: ()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #6                  // Field rootFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+         4: areturn
+      LineNumberTable:
+        line 135: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+
+  public int getMatchCount();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #12                 // Field _matchCount:I
+         4: ireturn
+      LineNumberTable:
+        line 144: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+
+  public com.fasterxml.jackson.core.JsonToken getCurrentToken();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: areturn
+      LineNumberTable:
+        line 153: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+
+  public com.fasterxml.jackson.core.JsonToken currentToken();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: areturn
+      LineNumberTable:
+        line 154: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+
+  public final int getCurrentTokenId();
+    descriptor: ()I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #14                 // Method currentTokenId:()I
+         4: ireturn
+      LineNumberTable:
+        line 158: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #133()
+        java.lang.Deprecated
+
+  public final int currentTokenId();
+    descriptor: ()I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=1, locals=2, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: astore_1
+         5: aload_1
+         6: ifnonnull     13
+         9: iconst_0
+        10: goto          17
+        13: aload_1
+        14: invokevirtual #15                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+        17: ireturn
+      LineNumberTable:
+        line 161: 0
+        line 162: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            5      13     1     t   Lcom/fasterxml/jackson/core/JsonToken;
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public boolean hasCurrentToken();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: ifnull        11
+         7: iconst_1
+         8: goto          12
+        11: iconst_0
+        12: ireturn
+      LineNumberTable:
+        line 165: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 2
+        frame_type = 11 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public boolean hasTokenId(int);
+    descriptor: (I)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: astore_2
+         5: aload_2
+         6: ifnonnull     20
+         9: iconst_0
+        10: iload_1
+        11: if_icmpne     18
+        14: iconst_1
+        15: goto          19
+        18: iconst_0
+        19: ireturn
+        20: aload_2
+        21: invokevirtual #15                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+        24: iload_1
+        25: if_icmpne     32
+        28: iconst_1
+        29: goto          33
+        32: iconst_0
+        33: ireturn
+      LineNumberTable:
+        line 167: 0
+        line 168: 5
+        line 169: 9
+        line 171: 20
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      34     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0      34     1    id   I
+            5      29     2     t   Lcom/fasterxml/jackson/core/JsonToken;
+      StackMapTable: number_of_entries = 5
+        frame_type = 252 /* append */
+          offset_delta = 18
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 0 /* same */
+        frame_type = 11 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public final boolean hasToken(com.fasterxml.jackson.core.JsonToken);
+    descriptor: (Lcom/fasterxml/jackson/core/JsonToken;)Z
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: aload_1
+         5: if_acmpne     12
+         8: iconst_1
+         9: goto          13
+        12: iconst_0
+        13: ireturn
+      LineNumberTable:
+        line 175: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0      14     1     t   Lcom/fasterxml/jackson/core/JsonToken;
+      StackMapTable: number_of_entries = 2
+        frame_type = 12 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public boolean isExpectedStartArrayToken();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #16                 // Field com/fasterxml/jackson/core/JsonToken.START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     14
+        10: iconst_1
+        11: goto          15
+        14: iconst_0
+        15: ireturn
+      LineNumberTable:
+        line 178: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 2
+        frame_type = 14 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public boolean isExpectedStartObjectToken();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #17                 // Field com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     14
+        10: iconst_1
+        11: goto          15
+        14: iconst_0
+        15: ireturn
+      LineNumberTable:
+        line 179: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 2
+        frame_type = 14 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public com.fasterxml.jackson.core.JsonLocation getCurrentLocation();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonLocation;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #19                 // Method com/fasterxml/jackson/core/JsonParser.getCurrentLocation:()Lcom/fasterxml/jackson/core/JsonLocation;
+         7: areturn
+      LineNumberTable:
+        line 181: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+
+  public com.fasterxml.jackson.core.JsonStreamContext getParsingContext();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonStreamContext;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #20                 // Method _filterContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+         4: areturn
+      LineNumberTable:
+        line 185: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+
+  public java.lang.String getCurrentName() throws java.io.IOException;
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: invokevirtual #20                 // Method _filterContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+         4: astore_1
+         5: aload_0
+         6: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         9: getstatic     #17                 // Field com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+        12: if_acmpeq     25
+        15: aload_0
+        16: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        19: getstatic     #16                 // Field com/fasterxml/jackson/core/JsonToken.START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+        22: if_acmpne     43
+        25: aload_1
+        26: invokevirtual #21                 // Method com/fasterxml/jackson/core/JsonStreamContext.getParent:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+        29: astore_2
+        30: aload_2
+        31: ifnonnull     38
+        34: aconst_null
+        35: goto          42
+        38: aload_2
+        39: invokevirtual #22                 // Method com/fasterxml/jackson/core/JsonStreamContext.getCurrentName:()Ljava/lang/String;
+        42: areturn
+        43: aload_1
+        44: invokevirtual #22                 // Method com/fasterxml/jackson/core/JsonStreamContext.getCurrentName:()Ljava/lang/String;
+        47: areturn
+      LineNumberTable:
+        line 191: 0
+        line 192: 5
+        line 193: 25
+        line 194: 30
+        line 196: 43
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           30      13     2 parent   Lcom/fasterxml/jackson/core/JsonStreamContext;
+            0      48     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            5      43     1  ctxt   Lcom/fasterxml/jackson/core/JsonStreamContext;
+      StackMapTable: number_of_entries = 4
+        frame_type = 252 /* append */
+          offset_delta = 25
+          locals = [ class com/fasterxml/jackson/core/JsonStreamContext ]
+        frame_type = 252 /* append */
+          offset_delta = 12
+          locals = [ class com/fasterxml/jackson/core/JsonStreamContext ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 250 /* chop */
+          offset_delta = 0
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.String currentName() throws java.io.IOException;
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: invokevirtual #20                 // Method _filterContext:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+         4: astore_1
+         5: aload_0
+         6: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         9: getstatic     #17                 // Field com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+        12: if_acmpeq     25
+        15: aload_0
+        16: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        19: getstatic     #16                 // Field com/fasterxml/jackson/core/JsonToken.START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+        22: if_acmpne     43
+        25: aload_1
+        26: invokevirtual #21                 // Method com/fasterxml/jackson/core/JsonStreamContext.getParent:()Lcom/fasterxml/jackson/core/JsonStreamContext;
+        29: astore_2
+        30: aload_2
+        31: ifnonnull     38
+        34: aconst_null
+        35: goto          42
+        38: aload_2
+        39: invokevirtual #22                 // Method com/fasterxml/jackson/core/JsonStreamContext.getCurrentName:()Ljava/lang/String;
+        42: areturn
+        43: aload_1
+        44: invokevirtual #22                 // Method com/fasterxml/jackson/core/JsonStreamContext.getCurrentName:()Ljava/lang/String;
+        47: areturn
+      LineNumberTable:
+        line 202: 0
+        line 203: 5
+        line 204: 25
+        line 205: 30
+        line 207: 43
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           30      13     2 parent   Lcom/fasterxml/jackson/core/JsonStreamContext;
+            0      48     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            5      43     1  ctxt   Lcom/fasterxml/jackson/core/JsonStreamContext;
+      StackMapTable: number_of_entries = 4
+        frame_type = 252 /* append */
+          offset_delta = 25
+          locals = [ class com/fasterxml/jackson/core/JsonStreamContext ]
+        frame_type = 252 /* append */
+          offset_delta = 12
+          locals = [ class com/fasterxml/jackson/core/JsonStreamContext ]
+        frame_type = 67 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 250 /* chop */
+          offset_delta = 0
+    Exceptions:
+      throws java.io.IOException
+
+  public void clearCurrentToken();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: ifnull        20
+         7: aload_0
+         8: aload_0
+         9: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        12: putfield      #23                 // Field _lastClearedToken:Lcom/fasterxml/jackson/core/JsonToken;
+        15: aload_0
+        16: aconst_null
+        17: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        20: return
+      LineNumberTable:
+        line 218: 0
+        line 219: 7
+        line 220: 15
+        line 222: 20
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      21     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 1
+        frame_type = 20 /* same */
+
+  public com.fasterxml.jackson.core.JsonToken getLastClearedToken();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #23                 // Field _lastClearedToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: areturn
+      LineNumberTable:
+        line 225: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+
+  public void overrideCurrentName(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: new           #24                 // class java/lang/UnsupportedOperationException
+         3: dup
+         4: ldc           #25                 // String Can not currently override name during filtering read
+         6: invokespecial #26                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+         9: athrow
+      LineNumberTable:
+        line 232: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0      10     1  name   Ljava/lang/String;
+
+  public com.fasterxml.jackson.core.JsonToken nextToken() throws java.io.IOException;
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=5, args_size=1
+         0: aload_0
+         1: getfield      #11                 // Field _allowMultipleMatches:Z
+         4: ifne          68
+         7: aload_0
+         8: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        11: ifnull        68
+        14: aload_0
+        15: getfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        18: ifnonnull     68
+        21: aload_0
+        22: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        25: invokevirtual #28                 // Method com/fasterxml/jackson/core/JsonToken.isScalarValue:()Z
+        28: ifeq          68
+        31: aload_0
+        32: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        35: invokevirtual #29                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.isStartHandled:()Z
+        38: ifne          68
+        41: aload_0
+        42: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+        45: getstatic     #3                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.ONLY_INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+        48: if_acmpne     68
+        51: aload_0
+        52: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        55: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        58: if_acmpne     68
+        61: aload_0
+        62: aconst_null
+        63: dup_x1
+        64: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        67: areturn
+        68: aload_0
+        69: getfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        72: astore_1
+        73: aload_1
+        74: ifnull        178
+        77: aload_1
+        78: invokevirtual #31                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.nextTokenToRead:()Lcom/fasterxml/jackson/core/JsonToken;
+        81: astore_2
+        82: aload_2
+        83: ifnull        93
+        86: aload_0
+        87: aload_2
+        88: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        91: aload_2
+        92: areturn
+        93: aload_1
+        94: aload_0
+        95: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        98: if_acmpne     150
+       101: aload_0
+       102: aconst_null
+       103: putfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       106: aload_1
+       107: invokevirtual #32                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.inArray:()Z
+       110: ifeq          128
+       113: aload_0
+       114: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       117: invokevirtual #33                 // Method com/fasterxml/jackson/core/JsonParser.getCurrentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       120: astore_2
+       121: aload_0
+       122: aload_2
+       123: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       126: aload_2
+       127: areturn
+       128: aload_0
+       129: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       132: invokevirtual #34                 // Method com/fasterxml/jackson/core/JsonParser.currentToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       135: astore_2
+       136: aload_2
+       137: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+       140: if_acmpeq     178
+       143: aload_0
+       144: aload_2
+       145: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       148: aload_2
+       149: areturn
+       150: aload_0
+       151: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       154: aload_1
+       155: invokevirtual #36                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.findChildOf:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       158: astore_1
+       159: aload_0
+       160: aload_1
+       161: putfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       164: aload_1
+       165: ifnonnull     175
+       168: aload_0
+       169: ldc           #37                 // String Unexpected problem: chain of filtered context broken
+       171: invokevirtual #38                 // Method _constructError:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/JsonParseException;
+       174: athrow
+       175: goto          77
+       178: aload_0
+       179: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       182: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       185: astore_2
+       186: aload_2
+       187: ifnonnull     197
+       190: aload_0
+       191: aload_2
+       192: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       195: aload_2
+       196: areturn
+       197: aload_2
+       198: invokevirtual #15                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+       201: tableswitch   { // 1 to 5
+                       1: 428
+                       2: 620
+                       3: 236
+                       4: 620
+                       5: 689
+                 default: 862
+            }
+       236: aload_0
+       237: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       240: astore_3
+       241: aload_3
+       242: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       245: if_acmpne     268
+       248: aload_0
+       249: aload_0
+       250: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       253: aload_3
+       254: iconst_1
+       255: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       258: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       261: aload_0
+       262: aload_2
+       263: dup_x1
+       264: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       267: areturn
+       268: aload_3
+       269: ifnonnull     283
+       272: aload_0
+       273: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       276: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       279: pop
+       280: goto          930
+       283: aload_0
+       284: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       287: aload_3
+       288: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       291: astore_3
+       292: aload_3
+       293: ifnonnull     307
+       296: aload_0
+       297: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       300: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       303: pop
+       304: goto          930
+       307: aload_3
+       308: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       311: if_acmpeq     319
+       314: aload_3
+       315: invokevirtual #43                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterStartArray:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       318: astore_3
+       319: aload_0
+       320: aload_3
+       321: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       324: aload_3
+       325: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       328: if_acmpne     351
+       331: aload_0
+       332: aload_0
+       333: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       336: aload_3
+       337: iconst_1
+       338: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       341: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       344: aload_0
+       345: aload_2
+       346: dup_x1
+       347: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       350: areturn
+       351: aload_3
+       352: ifnull        385
+       355: aload_0
+       356: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       359: getstatic     #44                 // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_NON_NULL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       362: if_acmpne     385
+       365: aload_0
+       366: aload_0
+       367: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       370: aload_3
+       371: iconst_1
+       372: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       375: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       378: aload_0
+       379: aload_2
+       380: dup_x1
+       381: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       384: areturn
+       385: aload_0
+       386: aload_0
+       387: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       390: aload_3
+       391: iconst_0
+       392: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       395: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       398: aload_0
+       399: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       402: getstatic     #2                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       405: if_acmpne     930
+       408: aload_0
+       409: aload_0
+       410: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       413: invokevirtual #45                 // Method _nextTokenWithBuffering:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       416: astore_2
+       417: aload_2
+       418: ifnull        930
+       421: aload_0
+       422: aload_2
+       423: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       426: aload_2
+       427: areturn
+       428: aload_0
+       429: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       432: astore_3
+       433: aload_3
+       434: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       437: if_acmpne     460
+       440: aload_0
+       441: aload_0
+       442: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       445: aload_3
+       446: iconst_1
+       447: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       450: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       453: aload_0
+       454: aload_2
+       455: dup_x1
+       456: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       459: areturn
+       460: aload_3
+       461: ifnonnull     475
+       464: aload_0
+       465: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       468: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       471: pop
+       472: goto          930
+       475: aload_0
+       476: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       479: aload_3
+       480: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       483: astore_3
+       484: aload_3
+       485: ifnonnull     499
+       488: aload_0
+       489: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       492: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       495: pop
+       496: goto          930
+       499: aload_3
+       500: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       503: if_acmpeq     511
+       506: aload_3
+       507: invokevirtual #47                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterStartObject:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       510: astore_3
+       511: aload_0
+       512: aload_3
+       513: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       516: aload_3
+       517: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       520: if_acmpne     543
+       523: aload_0
+       524: aload_0
+       525: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       528: aload_3
+       529: iconst_1
+       530: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       533: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       536: aload_0
+       537: aload_2
+       538: dup_x1
+       539: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       542: areturn
+       543: aload_3
+       544: ifnull        577
+       547: aload_0
+       548: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       551: getstatic     #44                 // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_NON_NULL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       554: if_acmpne     577
+       557: aload_0
+       558: aload_0
+       559: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       562: aload_3
+       563: iconst_1
+       564: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       567: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       570: aload_0
+       571: aload_2
+       572: dup_x1
+       573: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       576: areturn
+       577: aload_0
+       578: aload_0
+       579: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       582: aload_3
+       583: iconst_0
+       584: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       587: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       590: aload_0
+       591: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       594: getstatic     #2                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       597: if_acmpne     930
+       600: aload_0
+       601: aload_0
+       602: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       605: invokevirtual #45                 // Method _nextTokenWithBuffering:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       608: astore_2
+       609: aload_2
+       610: ifnull        930
+       613: aload_0
+       614: aload_2
+       615: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       618: aload_2
+       619: areturn
+       620: aload_0
+       621: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       624: invokevirtual #29                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.isStartHandled:()Z
+       627: istore        4
+       629: aload_0
+       630: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       633: invokevirtual #48                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getFilter:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       636: astore_3
+       637: aload_3
+       638: ifnull        652
+       641: aload_3
+       642: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       645: if_acmpeq     652
+       648: aload_3
+       649: invokevirtual #49                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterFinishArray:()V
+       652: aload_0
+       653: aload_0
+       654: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       657: invokevirtual #50                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getParent:()Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       660: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       663: aload_0
+       664: aload_0
+       665: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       668: invokevirtual #48                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getFilter:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       671: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       674: iload         4
+       676: ifeq          686
+       679: aload_0
+       680: aload_2
+       681: dup_x1
+       682: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       685: areturn
+       686: goto          930
+       689: aload_0
+       690: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       693: invokevirtual #51                 // Method com/fasterxml/jackson/core/JsonParser.getCurrentName:()Ljava/lang/String;
+       696: astore        4
+       698: aload_0
+       699: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       702: aload         4
+       704: invokevirtual #52                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.setFieldName:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       707: astore_3
+       708: aload_3
+       709: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       712: if_acmpne     727
+       715: aload_0
+       716: aload_3
+       717: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       720: aload_0
+       721: aload_2
+       722: dup_x1
+       723: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       726: areturn
+       727: aload_3
+       728: ifnonnull     750
+       731: aload_0
+       732: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       735: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       738: pop
+       739: aload_0
+       740: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       743: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       746: pop
+       747: goto          930
+       750: aload_3
+       751: aload         4
+       753: invokevirtual #53                 // Method com/fasterxml/jackson/core/filter/TokenFilter.includeProperty:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       756: astore_3
+       757: aload_3
+       758: ifnonnull     780
+       761: aload_0
+       762: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       765: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       768: pop
+       769: aload_0
+       770: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       773: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       776: pop
+       777: goto          930
+       780: aload_0
+       781: aload_3
+       782: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       785: aload_3
+       786: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       789: if_acmpne     832
+       792: aload_0
+       793: invokespecial #54                 // Method _verifyAllowedMatches:()Z
+       796: ifeq          816
+       799: aload_0
+       800: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       803: getstatic     #2                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       806: if_acmpne     832
+       809: aload_0
+       810: aload_2
+       811: dup_x1
+       812: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       815: areturn
+       816: aload_0
+       817: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       820: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       823: pop
+       824: aload_0
+       825: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       828: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       831: pop
+       832: aload_0
+       833: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       836: getstatic     #3                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.ONLY_INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       839: if_acmpeq     930
+       842: aload_0
+       843: aload_0
+       844: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       847: invokevirtual #45                 // Method _nextTokenWithBuffering:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       850: astore_2
+       851: aload_2
+       852: ifnull        930
+       855: aload_0
+       856: aload_2
+       857: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       860: aload_2
+       861: areturn
+       862: aload_0
+       863: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       866: astore_3
+       867: aload_3
+       868: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       871: if_acmpne     881
+       874: aload_0
+       875: aload_2
+       876: dup_x1
+       877: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       880: areturn
+       881: aload_3
+       882: ifnull        930
+       885: aload_0
+       886: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       889: aload_3
+       890: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       893: astore_3
+       894: aload_3
+       895: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       898: if_acmpeq     916
+       901: aload_3
+       902: ifnull        930
+       905: aload_3
+       906: aload_0
+       907: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       910: invokevirtual #55                 // Method com/fasterxml/jackson/core/filter/TokenFilter.includeValue:(Lcom/fasterxml/jackson/core/JsonParser;)Z
+       913: ifeq          930
+       916: aload_0
+       917: invokespecial #54                 // Method _verifyAllowedMatches:()Z
+       920: ifeq          930
+       923: aload_0
+       924: aload_2
+       925: dup_x1
+       926: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       929: areturn
+       930: aload_0
+       931: invokevirtual #56                 // Method _nextToken2:()Lcom/fasterxml/jackson/core/JsonToken;
+       934: areturn
+      LineNumberTable:
+        line 252: 0
+        line 255: 21
+        line 258: 61
+        line 262: 68
+        line 264: 73
+        line 266: 77
+        line 267: 82
+        line 268: 86
+        line 269: 91
+        line 272: 93
+        line 273: 101
+        line 274: 106
+        line 275: 113
+        line 278: 121
+        line 279: 126
+        line 285: 128
+        line 286: 136
+        line 287: 143
+        line 288: 148
+        line 293: 150
+        line 294: 159
+        line 295: 164
+        line 296: 168
+        line 298: 175
+        line 302: 178
+        line 303: 186
+        line 305: 190
+        line 306: 195
+        line 312: 197
+        line 314: 236
+        line 315: 241
+        line 316: 248
+        line 317: 261
+        line 319: 268
+        line 320: 272
+        line 321: 280
+        line 324: 283
+        line 325: 292
+        line 326: 296
+        line 327: 304
+        line 329: 307
+        line 330: 314
+        line 332: 319
+        line 333: 324
+        line 334: 331
+        line 335: 344
+        line 336: 351
+        line 338: 365
+        line 339: 378
+        line 341: 385
+        line 344: 398
+        line 345: 408
+        line 346: 417
+        line 347: 421
+        line 348: 426
+        line 354: 428
+        line 355: 433
+        line 356: 440
+        line 357: 453
+        line 359: 460
+        line 360: 464
+        line 361: 472
+        line 364: 475
+        line 365: 484
+        line 366: 488
+        line 367: 496
+        line 369: 499
+        line 370: 506
+        line 372: 511
+        line 373: 516
+        line 374: 523
+        line 375: 536
+        line 376: 543
+        line 378: 557
+        line 379: 570
+        line 381: 577
+        line 383: 590
+        line 384: 600
+        line 385: 609
+        line 386: 613
+        line 387: 618
+        line 397: 620
+        line 398: 629
+        line 399: 637
+        line 400: 648
+        line 402: 652
+        line 403: 663
+        line 404: 674
+        line 405: 679
+        line 408: 686
+        line 412: 689
+        line 414: 698
+        line 415: 708
+        line 416: 715
+        line 417: 720
+        line 419: 727
+        line 420: 731
+        line 421: 739
+        line 422: 747
+        line 424: 750
+        line 425: 757
+        line 426: 761
+        line 427: 769
+        line 428: 777
+        line 430: 780
+        line 431: 785
+        line 432: 792
+        line 433: 799
+        line 434: 809
+        line 437: 816
+        line 438: 824
+        line 441: 832
+        line 442: 842
+        line 443: 851
+        line 444: 855
+        line 445: 860
+        line 452: 862
+        line 453: 867
+        line 454: 874
+        line 456: 881
+        line 457: 885
+        line 458: 894
+        line 459: 910
+        line 460: 916
+        line 461: 923
+        line 470: 930
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           82      93     2     t   Lcom/fasterxml/jackson/core/JsonToken;
+          241     187     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          433     187     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          629      57     4 returnEnd   Z
+          637      52     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          698     164     4  name   Ljava/lang/String;
+          708     154     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+            0     935     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+           73     862     1  ctxt   Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+          186     749     2     t   Lcom/fasterxml/jackson/core/JsonToken;
+          867      68     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+      StackMapTable: number_of_entries = 35
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 68
+        frame_type = 252 /* append */
+          offset_delta = 8
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilterContext ]
+        frame_type = 252 /* append */
+          offset_delta = 15
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 34 /* same */
+        frame_type = 21 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 24
+        frame_type = 2 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 18
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 38 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 31
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 14 /* same */
+        frame_type = 23 /* same */
+        frame_type = 11 /* same */
+        frame_type = 31 /* same */
+        frame_type = 33 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 42
+        frame_type = 252 /* append */
+          offset_delta = 31
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 14 /* same */
+        frame_type = 23 /* same */
+        frame_type = 11 /* same */
+        frame_type = 31 /* same */
+        frame_type = 33 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 42
+        frame_type = 253 /* append */
+          offset_delta = 31
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 33
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 253 /* append */
+          offset_delta = 37
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter, class java/lang/String ]
+        frame_type = 22 /* same */
+        frame_type = 29 /* same */
+        frame_type = 35 /* same */
+        frame_type = 15 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 29
+        frame_type = 252 /* append */
+          offset_delta = 18
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 34 /* same */
+        frame_type = 13 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  protected final com.fasterxml.jackson.core.JsonToken _nextToken2() throws java.io.IOException;
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=4, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+         7: astore_1
+         8: aload_1
+         9: ifnonnull     19
+        12: aload_0
+        13: aload_1
+        14: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        17: aload_1
+        18: areturn
+        19: aload_1
+        20: invokevirtual #15                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+        23: tableswitch   { // 1 to 5
+                       1: 248
+                       2: 440
+                       3: 56
+                       4: 440
+                       5: 507
+                 default: 683
+            }
+        56: aload_0
+        57: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        60: astore_2
+        61: aload_2
+        62: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        65: if_acmpne     88
+        68: aload_0
+        69: aload_0
+        70: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        73: aload_2
+        74: iconst_1
+        75: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        78: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        81: aload_0
+        82: aload_1
+        83: dup_x1
+        84: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        87: areturn
+        88: aload_2
+        89: ifnonnull     103
+        92: aload_0
+        93: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        96: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+        99: pop
+       100: goto          0
+       103: aload_0
+       104: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       107: aload_2
+       108: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       111: astore_2
+       112: aload_2
+       113: ifnonnull     127
+       116: aload_0
+       117: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       120: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       123: pop
+       124: goto          0
+       127: aload_2
+       128: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       131: if_acmpeq     139
+       134: aload_2
+       135: invokevirtual #43                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterStartArray:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       138: astore_2
+       139: aload_0
+       140: aload_2
+       141: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       144: aload_2
+       145: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       148: if_acmpne     171
+       151: aload_0
+       152: aload_0
+       153: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       156: aload_2
+       157: iconst_1
+       158: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       161: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       164: aload_0
+       165: aload_1
+       166: dup_x1
+       167: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       170: areturn
+       171: aload_2
+       172: ifnull        205
+       175: aload_0
+       176: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       179: getstatic     #44                 // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_NON_NULL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       182: if_acmpne     205
+       185: aload_0
+       186: aload_0
+       187: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       190: aload_2
+       191: iconst_1
+       192: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       195: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       198: aload_0
+       199: aload_1
+       200: dup_x1
+       201: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       204: areturn
+       205: aload_0
+       206: aload_0
+       207: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       210: aload_2
+       211: iconst_0
+       212: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       215: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       218: aload_0
+       219: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       222: getstatic     #2                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       225: if_acmpne     0
+       228: aload_0
+       229: aload_0
+       230: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       233: invokevirtual #45                 // Method _nextTokenWithBuffering:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       236: astore_1
+       237: aload_1
+       238: ifnull        0
+       241: aload_0
+       242: aload_1
+       243: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       246: aload_1
+       247: areturn
+       248: aload_0
+       249: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       252: astore_2
+       253: aload_2
+       254: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       257: if_acmpne     280
+       260: aload_0
+       261: aload_0
+       262: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       265: aload_2
+       266: iconst_1
+       267: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       270: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       273: aload_0
+       274: aload_1
+       275: dup_x1
+       276: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       279: areturn
+       280: aload_2
+       281: ifnonnull     295
+       284: aload_0
+       285: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       288: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       291: pop
+       292: goto          0
+       295: aload_0
+       296: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       299: aload_2
+       300: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       303: astore_2
+       304: aload_2
+       305: ifnonnull     319
+       308: aload_0
+       309: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       312: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       315: pop
+       316: goto          0
+       319: aload_2
+       320: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       323: if_acmpeq     331
+       326: aload_2
+       327: invokevirtual #47                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterStartObject:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       330: astore_2
+       331: aload_0
+       332: aload_2
+       333: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       336: aload_2
+       337: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       340: if_acmpne     363
+       343: aload_0
+       344: aload_0
+       345: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       348: aload_2
+       349: iconst_1
+       350: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       353: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       356: aload_0
+       357: aload_1
+       358: dup_x1
+       359: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       362: areturn
+       363: aload_2
+       364: ifnull        397
+       367: aload_0
+       368: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       371: getstatic     #44                 // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_NON_NULL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       374: if_acmpne     397
+       377: aload_0
+       378: aload_0
+       379: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       382: aload_2
+       383: iconst_1
+       384: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       387: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       390: aload_0
+       391: aload_1
+       392: dup_x1
+       393: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       396: areturn
+       397: aload_0
+       398: aload_0
+       399: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       402: aload_2
+       403: iconst_0
+       404: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       407: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       410: aload_0
+       411: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       414: getstatic     #2                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       417: if_acmpne     0
+       420: aload_0
+       421: aload_0
+       422: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       425: invokevirtual #45                 // Method _nextTokenWithBuffering:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       428: astore_1
+       429: aload_1
+       430: ifnull        0
+       433: aload_0
+       434: aload_1
+       435: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       438: aload_1
+       439: areturn
+       440: aload_0
+       441: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       444: invokevirtual #29                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.isStartHandled:()Z
+       447: istore_3
+       448: aload_0
+       449: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       452: invokevirtual #48                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getFilter:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       455: astore_2
+       456: aload_2
+       457: ifnull        471
+       460: aload_2
+       461: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       464: if_acmpeq     471
+       467: aload_2
+       468: invokevirtual #49                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterFinishArray:()V
+       471: aload_0
+       472: aload_0
+       473: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       476: invokevirtual #50                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getParent:()Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       479: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       482: aload_0
+       483: aload_0
+       484: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       487: invokevirtual #48                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getFilter:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       490: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       493: iload_3
+       494: ifeq          504
+       497: aload_0
+       498: aload_1
+       499: dup_x1
+       500: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       503: areturn
+       504: goto          0
+       507: aload_0
+       508: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       511: invokevirtual #51                 // Method com/fasterxml/jackson/core/JsonParser.getCurrentName:()Ljava/lang/String;
+       514: astore_3
+       515: aload_0
+       516: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       519: aload_3
+       520: invokevirtual #52                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.setFieldName:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       523: astore_2
+       524: aload_2
+       525: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       528: if_acmpne     543
+       531: aload_0
+       532: aload_2
+       533: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       536: aload_0
+       537: aload_1
+       538: dup_x1
+       539: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       542: areturn
+       543: aload_2
+       544: ifnonnull     566
+       547: aload_0
+       548: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       551: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       554: pop
+       555: aload_0
+       556: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       559: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       562: pop
+       563: goto          0
+       566: aload_2
+       567: aload_3
+       568: invokevirtual #53                 // Method com/fasterxml/jackson/core/filter/TokenFilter.includeProperty:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       571: astore_2
+       572: aload_2
+       573: ifnonnull     595
+       576: aload_0
+       577: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       580: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       583: pop
+       584: aload_0
+       585: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       588: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       591: pop
+       592: goto          0
+       595: aload_0
+       596: aload_2
+       597: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       600: aload_2
+       601: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       604: if_acmpne     650
+       607: aload_0
+       608: invokespecial #54                 // Method _verifyAllowedMatches:()Z
+       611: ifeq          631
+       614: aload_0
+       615: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       618: getstatic     #2                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_ALL_AND_PATH:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       621: if_acmpne     0
+       624: aload_0
+       625: aload_1
+       626: dup_x1
+       627: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       630: areturn
+       631: aload_0
+       632: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       635: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       638: pop
+       639: aload_0
+       640: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       643: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       646: pop
+       647: goto          0
+       650: aload_0
+       651: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       654: getstatic     #3                  // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.ONLY_INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       657: if_acmpeq     680
+       660: aload_0
+       661: aload_0
+       662: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       665: invokevirtual #45                 // Method _nextTokenWithBuffering:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       668: astore_1
+       669: aload_1
+       670: ifnull        680
+       673: aload_0
+       674: aload_1
+       675: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       678: aload_1
+       679: areturn
+       680: goto          0
+       683: aload_0
+       684: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       687: astore_2
+       688: aload_2
+       689: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       692: if_acmpne     702
+       695: aload_0
+       696: aload_1
+       697: dup_x1
+       698: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       701: areturn
+       702: aload_2
+       703: ifnull        751
+       706: aload_0
+       707: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       710: aload_2
+       711: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       714: astore_2
+       715: aload_2
+       716: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       719: if_acmpeq     737
+       722: aload_2
+       723: ifnull        751
+       726: aload_2
+       727: aload_0
+       728: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       731: invokevirtual #55                 // Method com/fasterxml/jackson/core/filter/TokenFilter.includeValue:(Lcom/fasterxml/jackson/core/JsonParser;)Z
+       734: ifeq          751
+       737: aload_0
+       738: invokespecial #54                 // Method _verifyAllowedMatches:()Z
+       741: ifeq          751
+       744: aload_0
+       745: aload_1
+       746: dup_x1
+       747: putfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+       750: areturn
+       751: goto          0
+      LineNumberTable:
+        line 481: 0
+        line 482: 8
+        line 483: 12
+        line 484: 17
+        line 488: 19
+        line 490: 56
+        line 491: 61
+        line 492: 68
+        line 493: 81
+        line 495: 88
+        line 496: 92
+        line 497: 100
+        line 500: 103
+        line 501: 112
+        line 502: 116
+        line 503: 124
+        line 505: 127
+        line 506: 134
+        line 508: 139
+        line 509: 144
+        line 510: 151
+        line 511: 164
+        line 512: 171
+        line 513: 185
+        line 514: 198
+        line 516: 205
+        line 518: 218
+        line 519: 228
+        line 520: 237
+        line 521: 241
+        line 522: 246
+        line 528: 248
+        line 529: 253
+        line 530: 260
+        line 531: 273
+        line 533: 280
+        line 534: 284
+        line 535: 292
+        line 538: 295
+        line 539: 304
+        line 540: 308
+        line 541: 316
+        line 543: 319
+        line 544: 326
+        line 546: 331
+        line 547: 336
+        line 548: 343
+        line 549: 356
+        line 550: 363
+        line 551: 377
+        line 552: 390
+        line 554: 397
+        line 555: 410
+        line 556: 420
+        line 557: 429
+        line 558: 433
+        line 559: 438
+        line 567: 440
+        line 568: 448
+        line 569: 456
+        line 570: 467
+        line 572: 471
+        line 573: 482
+        line 574: 493
+        line 575: 497
+        line 578: 504
+        line 582: 507
+        line 583: 515
+        line 584: 524
+        line 585: 531
+        line 586: 536
+        line 588: 543
+        line 589: 547
+        line 590: 555
+        line 591: 563
+        line 593: 566
+        line 594: 572
+        line 595: 576
+        line 596: 584
+        line 597: 592
+        line 599: 595
+        line 600: 600
+        line 601: 607
+        line 602: 614
+        line 603: 624
+        line 606: 631
+        line 607: 639
+        line 609: 647
+        line 611: 650
+        line 612: 660
+        line 613: 669
+        line 614: 673
+        line 615: 678
+        line 619: 680
+        line 622: 683
+        line 623: 688
+        line 624: 695
+        line 626: 702
+        line 627: 706
+        line 628: 715
+        line 629: 731
+        line 630: 737
+        line 631: 744
+        line 638: 751
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           61     187     2     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          253     187     2     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          448      56     3 returnEnd   Z
+          456      51     2     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          515     165     3  name   Ljava/lang/String;
+          524     159     2     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+            8     743     1     t   Lcom/fasterxml/jackson/core/JsonToken;
+          688      63     2     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+            0     754     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 30
+        frame_type = 0 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 18
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 36 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 31
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 14 /* same */
+        frame_type = 23 /* same */
+        frame_type = 11 /* same */
+        frame_type = 31 /* same */
+        frame_type = 33 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 42
+        frame_type = 252 /* append */
+          offset_delta = 31
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 14 /* same */
+        frame_type = 23 /* same */
+        frame_type = 11 /* same */
+        frame_type = 31 /* same */
+        frame_type = 33 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 42
+        frame_type = 253 /* append */
+          offset_delta = 30
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 32
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 253 /* append */
+          offset_delta = 35
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter, class java/lang/String ]
+        frame_type = 22 /* same */
+        frame_type = 28 /* same */
+        frame_type = 35 /* same */
+        frame_type = 18 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 29
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 252 /* append */
+          offset_delta = 18
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 34 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 13
+    Exceptions:
+      throws java.io.IOException
+
+  protected final com.fasterxml.jackson.core.JsonToken _nextTokenWithBuffering(com.fasterxml.jackson.core.filter.TokenFilterContext) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Code:
+      stack=4, locals=6, args_size=2
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+         7: astore_2
+         8: aload_2
+         9: ifnonnull     14
+        12: aload_2
+        13: areturn
+        14: aload_2
+        15: invokevirtual #15                 // Method com/fasterxml/jackson/core/JsonToken.id:()I
+        18: tableswitch   { // 1 to 5
+                       1: 171
+                       2: 329
+                       3: 52
+                       4: 329
+                       5: 421
+                 default: 552
+            }
+        52: aload_0
+        53: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        56: aload_0
+        57: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        60: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        63: astore_3
+        64: aload_3
+        65: ifnonnull     79
+        68: aload_0
+        69: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        72: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+        75: pop
+        76: goto          0
+        79: aload_3
+        80: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        83: if_acmpeq     91
+        86: aload_3
+        87: invokevirtual #43                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterStartArray:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        90: astore_3
+        91: aload_0
+        92: aload_3
+        93: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+        96: aload_3
+        97: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       100: if_acmpne     122
+       103: aload_0
+       104: aload_0
+       105: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       108: aload_3
+       109: iconst_1
+       110: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       113: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       116: aload_0
+       117: aload_1
+       118: invokespecial #57                 // Method _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       121: areturn
+       122: aload_3
+       123: ifnull        155
+       126: aload_0
+       127: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       130: getstatic     #44                 // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_NON_NULL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       133: if_acmpne     155
+       136: aload_0
+       137: aload_0
+       138: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       141: aload_3
+       142: iconst_1
+       143: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       146: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       149: aload_0
+       150: aload_1
+       151: invokespecial #57                 // Method _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       154: areturn
+       155: aload_0
+       156: aload_0
+       157: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       160: aload_3
+       161: iconst_0
+       162: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       165: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       168: goto          0
+       171: aload_0
+       172: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       175: astore_3
+       176: aload_3
+       177: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       180: if_acmpne     198
+       183: aload_0
+       184: aload_0
+       185: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       188: aload_3
+       189: iconst_1
+       190: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       193: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       196: aload_2
+       197: areturn
+       198: aload_3
+       199: ifnonnull     213
+       202: aload_0
+       203: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       206: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       209: pop
+       210: goto          0
+       213: aload_0
+       214: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       217: aload_3
+       218: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       221: astore_3
+       222: aload_3
+       223: ifnonnull     237
+       226: aload_0
+       227: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       230: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       233: pop
+       234: goto          0
+       237: aload_3
+       238: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       241: if_acmpeq     249
+       244: aload_3
+       245: invokevirtual #47                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterStartObject:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       248: astore_3
+       249: aload_0
+       250: aload_3
+       251: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       254: aload_3
+       255: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       258: if_acmpne     280
+       261: aload_0
+       262: aload_0
+       263: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       266: aload_3
+       267: iconst_1
+       268: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       271: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       274: aload_0
+       275: aload_1
+       276: invokespecial #57                 // Method _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       279: areturn
+       280: aload_3
+       281: ifnull        313
+       284: aload_0
+       285: getfield      #10                 // Field _inclusion:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       288: getstatic     #44                 // Field com/fasterxml/jackson/core/filter/TokenFilter$Inclusion.INCLUDE_NON_NULL:Lcom/fasterxml/jackson/core/filter/TokenFilter$Inclusion;
+       291: if_acmpne     313
+       294: aload_0
+       295: aload_0
+       296: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       299: aload_3
+       300: iconst_1
+       301: invokevirtual #40                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildArrayContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       304: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       307: aload_0
+       308: aload_1
+       309: invokespecial #57                 // Method _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       312: areturn
+       313: aload_0
+       314: aload_0
+       315: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       318: aload_3
+       319: iconst_0
+       320: invokevirtual #46                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.createChildObjectContext:(Lcom/fasterxml/jackson/core/filter/TokenFilter;Z)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       323: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       326: goto          0
+       329: aload_0
+       330: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       333: invokevirtual #48                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getFilter:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       336: astore_3
+       337: aload_3
+       338: ifnull        352
+       341: aload_3
+       342: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       345: if_acmpeq     352
+       348: aload_3
+       349: invokevirtual #49                 // Method com/fasterxml/jackson/core/filter/TokenFilter.filterFinishArray:()V
+       352: aload_0
+       353: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       356: aload_1
+       357: if_acmpne     364
+       360: iconst_1
+       361: goto          365
+       364: iconst_0
+       365: istore        4
+       367: iload         4
+       369: ifeq          386
+       372: aload_0
+       373: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       376: invokevirtual #29                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.isStartHandled:()Z
+       379: ifeq          386
+       382: iconst_1
+       383: goto          387
+       386: iconst_0
+       387: istore        5
+       389: aload_0
+       390: aload_0
+       391: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       394: invokevirtual #50                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getParent:()Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       397: putfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       400: aload_0
+       401: aload_0
+       402: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       405: invokevirtual #48                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.getFilter:()Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       408: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       411: iload         5
+       413: ifeq          418
+       416: aload_2
+       417: areturn
+       418: goto          0
+       421: aload_0
+       422: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       425: invokevirtual #51                 // Method com/fasterxml/jackson/core/JsonParser.getCurrentName:()Ljava/lang/String;
+       428: astore        4
+       430: aload_0
+       431: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       434: aload         4
+       436: invokevirtual #52                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.setFieldName:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       439: astore_3
+       440: aload_3
+       441: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       444: if_acmpne     458
+       447: aload_0
+       448: aload_3
+       449: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       452: aload_0
+       453: aload_1
+       454: invokespecial #57                 // Method _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       457: areturn
+       458: aload_3
+       459: ifnonnull     481
+       462: aload_0
+       463: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       466: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       469: pop
+       470: aload_0
+       471: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       474: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       477: pop
+       478: goto          0
+       481: aload_3
+       482: aload         4
+       484: invokevirtual #53                 // Method com/fasterxml/jackson/core/filter/TokenFilter.includeProperty:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       487: astore_3
+       488: aload_3
+       489: ifnonnull     511
+       492: aload_0
+       493: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       496: invokevirtual #39                 // Method com/fasterxml/jackson/core/JsonParser.nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+       499: pop
+       500: aload_0
+       501: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       504: invokevirtual #41                 // Method com/fasterxml/jackson/core/JsonParser.skipChildren:()Lcom/fasterxml/jackson/core/JsonParser;
+       507: pop
+       508: goto          0
+       511: aload_0
+       512: aload_3
+       513: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       516: aload_3
+       517: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       520: if_acmpne     549
+       523: aload_0
+       524: invokespecial #54                 // Method _verifyAllowedMatches:()Z
+       527: ifeq          536
+       530: aload_0
+       531: aload_1
+       532: invokespecial #57                 // Method _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       535: areturn
+       536: aload_0
+       537: aload_0
+       538: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       541: aload         4
+       543: invokevirtual #52                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.setFieldName:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       546: putfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       549: goto          0
+       552: aload_0
+       553: getfield      #7                  // Field _itemFilter:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       556: astore_3
+       557: aload_3
+       558: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       561: if_acmpne     570
+       564: aload_0
+       565: aload_1
+       566: invokespecial #57                 // Method _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       569: areturn
+       570: aload_3
+       571: ifnull        0
+       574: aload_0
+       575: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+       578: aload_3
+       579: invokevirtual #42                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.checkValue:(Lcom/fasterxml/jackson/core/filter/TokenFilter;)Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       582: astore_3
+       583: aload_3
+       584: getstatic     #30                 // Field com/fasterxml/jackson/core/filter/TokenFilter.INCLUDE_ALL:Lcom/fasterxml/jackson/core/filter/TokenFilter;
+       587: if_acmpeq     605
+       590: aload_3
+       591: ifnull        0
+       594: aload_3
+       595: aload_0
+       596: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+       599: invokevirtual #55                 // Method com/fasterxml/jackson/core/filter/TokenFilter.includeValue:(Lcom/fasterxml/jackson/core/JsonParser;)Z
+       602: ifeq          0
+       605: aload_0
+       606: invokespecial #54                 // Method _verifyAllowedMatches:()Z
+       609: ifeq          0
+       612: aload_0
+       613: aload_1
+       614: invokespecial #57                 // Method _nextBuffered:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+       617: areturn
+      LineNumberTable:
+        line 647: 0
+        line 648: 8
+        line 649: 12
+        line 657: 14
+        line 659: 52
+        line 660: 64
+        line 661: 68
+        line 662: 76
+        line 664: 79
+        line 665: 86
+        line 667: 91
+        line 668: 96
+        line 669: 103
+        line 670: 116
+        line 671: 122
+        line 673: 136
+        line 674: 149
+        line 676: 155
+        line 677: 168
+        line 680: 171
+        line 681: 176
+        line 682: 183
+        line 683: 196
+        line 685: 198
+        line 686: 202
+        line 687: 210
+        line 690: 213
+        line 691: 222
+        line 692: 226
+        line 693: 234
+        line 695: 237
+        line 696: 244
+        line 698: 249
+        line 699: 254
+        line 700: 261
+        line 701: 274
+        line 702: 280
+        line 704: 294
+        line 705: 307
+        line 707: 313
+        line 708: 326
+        line 715: 329
+        line 716: 337
+        line 717: 348
+        line 719: 352
+        line 720: 367
+        line 722: 389
+        line 723: 400
+        line 725: 411
+        line 726: 416
+        line 729: 418
+        line 733: 421
+        line 734: 430
+        line 735: 440
+        line 736: 447
+        line 737: 452
+        line 739: 458
+        line 740: 462
+        line 741: 470
+        line 742: 478
+        line 744: 481
+        line 745: 488
+        line 746: 492
+        line 747: 500
+        line 748: 508
+        line 750: 511
+        line 751: 516
+        line 752: 523
+        line 753: 530
+        line 757: 536
+        line 761: 549
+        line 764: 552
+        line 765: 557
+        line 766: 564
+        line 768: 570
+        line 769: 574
+        line 770: 583
+        line 771: 599
+        line 772: 605
+        line 773: 612
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           64     107     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          176     153     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          367      51     4 gotEnd   Z
+          389      29     5 returnEnd   Z
+          337      84     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+          430     119     4  name   Ljava/lang/String;
+          440     112     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+            8     610     2     t   Lcom/fasterxml/jackson/core/JsonToken;
+          557      61     3     f   Lcom/fasterxml/jackson/core/filter/TokenFilter;
+            0     618     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0     618     1 buffRoot   Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+      StackMapTable: number_of_entries = 30
+        frame_type = 0 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 37 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 26
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 11 /* same */
+        frame_type = 30 /* same */
+        frame_type = 32 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 15
+        frame_type = 252 /* append */
+          offset_delta = 26
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 14 /* same */
+        frame_type = 23 /* same */
+        frame_type = 11 /* same */
+        frame_type = 30 /* same */
+        frame_type = 32 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 15
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 11 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 20
+          locals = [ int ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 30
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 253 /* append */
+          offset_delta = 36
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter, class java/lang/String ]
+        frame_type = 22 /* same */
+        frame_type = 29 /* same */
+        frame_type = 24 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 12
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 252 /* append */
+          offset_delta = 17
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilter ]
+        frame_type = 34 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  private com.fasterxml.jackson.core.JsonToken _nextBuffered(com.fasterxml.jackson.core.filter.TokenFilterContext) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=4, args_size=2
+         0: aload_0
+         1: aload_1
+         2: putfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+         5: aload_1
+         6: astore_2
+         7: aload_2
+         8: invokevirtual #31                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.nextTokenToRead:()Lcom/fasterxml/jackson/core/JsonToken;
+        11: astore_3
+        12: aload_3
+        13: ifnull        18
+        16: aload_3
+        17: areturn
+        18: aload_2
+        19: aload_0
+        20: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        23: if_acmpne     33
+        26: aload_0
+        27: ldc           #58                 // String Internal error: failed to locate expected buffered tokens
+        29: invokevirtual #38                 // Method _constructError:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/JsonParseException;
+        32: athrow
+        33: aload_0
+        34: getfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        37: aload_2
+        38: invokevirtual #36                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.findChildOf:(Lcom/fasterxml/jackson/core/filter/TokenFilterContext;)Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        41: astore_2
+        42: aload_0
+        43: aload_2
+        44: putfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        47: aload_2
+        48: ifnonnull     58
+        51: aload_0
+        52: ldc           #37                 // String Unexpected problem: chain of filtered context broken
+        54: invokevirtual #38                 // Method _constructError:(Ljava/lang/String;)Lcom/fasterxml/jackson/core/JsonParseException;
+        57: athrow
+        58: aload_0
+        59: getfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        62: invokevirtual #31                 // Method com/fasterxml/jackson/core/filter/TokenFilterContext.nextTokenToRead:()Lcom/fasterxml/jackson/core/JsonToken;
+        65: astore_3
+        66: aload_3
+        67: ifnull        18
+        70: aload_3
+        71: areturn
+      LineNumberTable:
+        line 785: 0
+        line 786: 5
+        line 787: 7
+        line 788: 12
+        line 789: 16
+        line 793: 18
+        line 794: 26
+        line 801: 33
+        line 802: 42
+        line 803: 47
+        line 804: 51
+        line 806: 58
+        line 807: 66
+        line 808: 70
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      72     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0      72     1 buffRoot   Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+            7      65     2  ctxt   Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+           12      60     3     t   Lcom/fasterxml/jackson/core/JsonToken;
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 18
+          locals = [ class com/fasterxml/jackson/core/filter/TokenFilterContext, class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 14 /* same */
+        frame_type = 24 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  private final boolean _verifyAllowedMatches() throws java.io.IOException;
+    descriptor: ()Z
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #12                 // Field _matchCount:I
+         4: ifeq          14
+         7: aload_0
+         8: getfield      #11                 // Field _allowMultipleMatches:Z
+        11: ifeq          26
+        14: aload_0
+        15: dup
+        16: getfield      #12                 // Field _matchCount:I
+        19: iconst_1
+        20: iadd
+        21: putfield      #12                 // Field _matchCount:I
+        24: iconst_1
+        25: ireturn
+        26: iconst_0
+        27: ireturn
+      LineNumberTable:
+        line 814: 0
+        line 815: 14
+        line 816: 24
+        line 818: 26
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      28     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 2
+        frame_type = 14 /* same */
+        frame_type = 11 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public com.fasterxml.jackson.core.JsonToken nextValue() throws java.io.IOException;
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonToken;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: invokevirtual #59                 // Method nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+         4: astore_1
+         5: aload_1
+         6: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+         9: if_acmpne     17
+        12: aload_0
+        13: invokevirtual #59                 // Method nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+        16: astore_1
+        17: aload_1
+        18: areturn
+      LineNumberTable:
+        line 824: 0
+        line 825: 5
+        line 826: 12
+        line 828: 17
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            5      14     1     t   Lcom/fasterxml/jackson/core/JsonToken;
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 17
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+    Exceptions:
+      throws java.io.IOException
+
+  public com.fasterxml.jackson.core.JsonParser skipChildren() throws java.io.IOException;
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonParser;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #17                 // Field com/fasterxml/jackson/core/JsonToken.START_OBJECT:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpeq     22
+        10: aload_0
+        11: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+        14: getstatic     #16                 // Field com/fasterxml/jackson/core/JsonToken.START_ARRAY:Lcom/fasterxml/jackson/core/JsonToken;
+        17: if_acmpeq     22
+        20: aload_0
+        21: areturn
+        22: iconst_1
+        23: istore_1
+        24: aload_0
+        25: invokevirtual #59                 // Method nextToken:()Lcom/fasterxml/jackson/core/JsonToken;
+        28: astore_2
+        29: aload_2
+        30: ifnonnull     35
+        33: aload_0
+        34: areturn
+        35: aload_2
+        36: invokevirtual #60                 // Method com/fasterxml/jackson/core/JsonToken.isStructStart:()Z
+        39: ifeq          48
+        42: iinc          1, 1
+        45: goto          64
+        48: aload_2
+        49: invokevirtual #61                 // Method com/fasterxml/jackson/core/JsonToken.isStructEnd:()Z
+        52: ifeq          64
+        55: iinc          1, -1
+        58: iload_1
+        59: ifne          64
+        62: aload_0
+        63: areturn
+        64: goto          24
+      LineNumberTable:
+        line 839: 0
+        line 841: 20
+        line 843: 22
+        line 848: 24
+        line 849: 29
+        line 850: 33
+        line 852: 35
+        line 853: 42
+        line 854: 48
+        line 855: 55
+        line 856: 62
+        line 859: 64
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           29      35     2     t   Lcom/fasterxml/jackson/core/JsonToken;
+            0      67     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+           24      43     1  open   I
+      StackMapTable: number_of_entries = 5
+        frame_type = 22 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 1
+          locals = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 10
+          locals = [ class com/fasterxml/jackson/core/JsonToken ]
+        frame_type = 12 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 15
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.String getText() throws java.io.IOException;
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     15
+        10: aload_0
+        11: invokevirtual #62                 // Method currentName:()Ljava/lang/String;
+        14: areturn
+        15: aload_0
+        16: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        19: invokevirtual #63                 // Method com/fasterxml/jackson/core/JsonParser.getText:()Ljava/lang/String;
+        22: areturn
+      LineNumberTable:
+        line 872: 0
+        line 873: 10
+        line 875: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 1
+        frame_type = 15 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean hasTextCharacters();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     12
+        10: iconst_0
+        11: ireturn
+        12: aload_0
+        13: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        16: invokevirtual #64                 // Method com/fasterxml/jackson/core/JsonParser.hasTextCharacters:()Z
+        19: ireturn
+      LineNumberTable:
+        line 879: 0
+        line 880: 10
+        line 882: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 1
+        frame_type = 12 /* same */
+
+  public char[] getTextCharacters() throws java.io.IOException;
+    descriptor: ()[C
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     18
+        10: aload_0
+        11: invokevirtual #62                 // Method currentName:()Ljava/lang/String;
+        14: invokevirtual #65                 // Method java/lang/String.toCharArray:()[C
+        17: areturn
+        18: aload_0
+        19: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        22: invokevirtual #66                 // Method com/fasterxml/jackson/core/JsonParser.getTextCharacters:()[C
+        25: areturn
+      LineNumberTable:
+        line 888: 0
+        line 889: 10
+        line 891: 18
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      26     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 1
+        frame_type = 18 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public int getTextLength() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     18
+        10: aload_0
+        11: invokevirtual #62                 // Method currentName:()Ljava/lang/String;
+        14: invokevirtual #67                 // Method java/lang/String.length:()I
+        17: ireturn
+        18: aload_0
+        19: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        22: invokevirtual #68                 // Method com/fasterxml/jackson/core/JsonParser.getTextLength:()I
+        25: ireturn
+      LineNumberTable:
+        line 895: 0
+        line 896: 10
+        line 898: 18
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      26     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 1
+        frame_type = 18 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public int getTextOffset() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     12
+        10: iconst_0
+        11: ireturn
+        12: aload_0
+        13: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        16: invokevirtual #69                 // Method com/fasterxml/jackson/core/JsonParser.getTextOffset:()I
+        19: ireturn
+      LineNumberTable:
+        line 901: 0
+        line 902: 10
+        line 904: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 1
+        frame_type = 12 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public java.math.BigInteger getBigIntegerValue() throws java.io.IOException;
+    descriptor: ()Ljava/math/BigInteger;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #70                 // Method com/fasterxml/jackson/core/JsonParser.getBigIntegerValue:()Ljava/math/BigInteger;
+         7: areturn
+      LineNumberTable:
+        line 914: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean getBooleanValue() throws java.io.IOException;
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #71                 // Method com/fasterxml/jackson/core/JsonParser.getBooleanValue:()Z
+         7: ireturn
+      LineNumberTable:
+        line 917: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public byte getByteValue() throws java.io.IOException;
+    descriptor: ()B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #72                 // Method com/fasterxml/jackson/core/JsonParser.getByteValue:()B
+         7: ireturn
+      LineNumberTable:
+        line 920: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public short getShortValue() throws java.io.IOException;
+    descriptor: ()S
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #73                 // Method com/fasterxml/jackson/core/JsonParser.getShortValue:()S
+         7: ireturn
+      LineNumberTable:
+        line 923: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public java.math.BigDecimal getDecimalValue() throws java.io.IOException;
+    descriptor: ()Ljava/math/BigDecimal;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #74                 // Method com/fasterxml/jackson/core/JsonParser.getDecimalValue:()Ljava/math/BigDecimal;
+         7: areturn
+      LineNumberTable:
+        line 926: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public double getDoubleValue() throws java.io.IOException;
+    descriptor: ()D
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #75                 // Method com/fasterxml/jackson/core/JsonParser.getDoubleValue:()D
+         7: dreturn
+      LineNumberTable:
+        line 929: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public float getFloatValue() throws java.io.IOException;
+    descriptor: ()F
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #76                 // Method com/fasterxml/jackson/core/JsonParser.getFloatValue:()F
+         7: freturn
+      LineNumberTable:
+        line 932: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public int getIntValue() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #77                 // Method com/fasterxml/jackson/core/JsonParser.getIntValue:()I
+         7: ireturn
+      LineNumberTable:
+        line 935: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public long getLongValue() throws java.io.IOException;
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #78                 // Method com/fasterxml/jackson/core/JsonParser.getLongValue:()J
+         7: lreturn
+      LineNumberTable:
+        line 938: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public com.fasterxml.jackson.core.JsonParser$NumberType getNumberType() throws java.io.IOException;
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #79                 // Method com/fasterxml/jackson/core/JsonParser.getNumberType:()Lcom/fasterxml/jackson/core/JsonParser$NumberType;
+         7: areturn
+      LineNumberTable:
+        line 941: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.Number getNumberValue() throws java.io.IOException;
+    descriptor: ()Ljava/lang/Number;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #80                 // Method com/fasterxml/jackson/core/JsonParser.getNumberValue:()Ljava/lang/Number;
+         7: areturn
+      LineNumberTable:
+        line 944: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public int getValueAsInt() throws java.io.IOException;
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #81                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsInt:()I
+         7: ireturn
+      LineNumberTable:
+        line 952: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public int getValueAsInt(int) throws java.io.IOException;
+    descriptor: (I)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: iload_1
+         5: invokevirtual #82                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsInt:(I)I
+         8: ireturn
+      LineNumberTable:
+        line 953: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0       9     1 defaultValue   I
+    Exceptions:
+      throws java.io.IOException
+
+  public long getValueAsLong() throws java.io.IOException;
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #83                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsLong:()J
+         7: lreturn
+      LineNumberTable:
+        line 954: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public long getValueAsLong(long) throws java.io.IOException;
+    descriptor: (J)J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: lload_1
+         5: invokevirtual #84                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsLong:(J)J
+         8: lreturn
+      LineNumberTable:
+        line 955: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0       9     1 defaultValue   J
+    Exceptions:
+      throws java.io.IOException
+
+  public double getValueAsDouble() throws java.io.IOException;
+    descriptor: ()D
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #85                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsDouble:()D
+         7: dreturn
+      LineNumberTable:
+        line 956: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public double getValueAsDouble(double) throws java.io.IOException;
+    descriptor: (D)D
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: dload_1
+         5: invokevirtual #86                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsDouble:(D)D
+         8: dreturn
+      LineNumberTable:
+        line 957: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0       9     1 defaultValue   D
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean getValueAsBoolean() throws java.io.IOException;
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #87                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsBoolean:()Z
+         7: ireturn
+      LineNumberTable:
+        line 958: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public boolean getValueAsBoolean(boolean) throws java.io.IOException;
+    descriptor: (Z)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: iload_1
+         5: invokevirtual #88                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsBoolean:(Z)Z
+         8: ireturn
+      LineNumberTable:
+        line 959: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0       9     1 defaultValue   Z
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.String getValueAsString() throws java.io.IOException;
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     15
+        10: aload_0
+        11: invokevirtual #62                 // Method currentName:()Ljava/lang/String;
+        14: areturn
+        15: aload_0
+        16: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        19: invokevirtual #89                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsString:()Ljava/lang/String;
+        22: areturn
+      LineNumberTable:
+        line 962: 0
+        line 963: 10
+        line 965: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 1
+        frame_type = 15 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.String getValueAsString(java.lang.String) throws java.io.IOException;
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #13                 // Field _currToken:Lcom/fasterxml/jackson/core/JsonToken;
+         4: getstatic     #35                 // Field com/fasterxml/jackson/core/JsonToken.FIELD_NAME:Lcom/fasterxml/jackson/core/JsonToken;
+         7: if_acmpne     15
+        10: aload_0
+        11: invokevirtual #62                 // Method currentName:()Ljava/lang/String;
+        14: areturn
+        15: aload_0
+        16: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+        19: aload_1
+        20: invokevirtual #90                 // Method com/fasterxml/jackson/core/JsonParser.getValueAsString:(Ljava/lang/String;)Ljava/lang/String;
+        23: areturn
+      LineNumberTable:
+        line 968: 0
+        line 969: 10
+        line 971: 15
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0      24     1 defaultValue   Ljava/lang/String;
+      StackMapTable: number_of_entries = 1
+        frame_type = 15 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public java.lang.Object getEmbeddedObject() throws java.io.IOException;
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #91                 // Method com/fasterxml/jackson/core/JsonParser.getEmbeddedObject:()Ljava/lang/Object;
+         7: areturn
+      LineNumberTable:
+        line 980: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+    Exceptions:
+      throws java.io.IOException
+
+  public byte[] getBinaryValue(com.fasterxml.jackson.core.Base64Variant) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/Base64Variant;)[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: aload_1
+         5: invokevirtual #92                 // Method com/fasterxml/jackson/core/JsonParser.getBinaryValue:(Lcom/fasterxml/jackson/core/Base64Variant;)[B
+         8: areturn
+      LineNumberTable:
+        line 981: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0       9     1 b64variant   Lcom/fasterxml/jackson/core/Base64Variant;
+    Exceptions:
+      throws java.io.IOException
+
+  public int readBinaryValue(com.fasterxml.jackson.core.Base64Variant, java.io.OutputStream) throws java.io.IOException;
+    descriptor: (Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/OutputStream;)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: aload_1
+         5: aload_2
+         6: invokevirtual #93                 // Method com/fasterxml/jackson/core/JsonParser.readBinaryValue:(Lcom/fasterxml/jackson/core/Base64Variant;Ljava/io/OutputStream;)I
+         9: ireturn
+      LineNumberTable:
+        line 982: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+            0      10     1 b64variant   Lcom/fasterxml/jackson/core/Base64Variant;
+            0      10     2   out   Ljava/io/OutputStream;
+    Exceptions:
+      throws java.io.IOException
+
+  public com.fasterxml.jackson.core.JsonLocation getTokenLocation();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonLocation;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #18                 // Field delegate:Lcom/fasterxml/jackson/core/JsonParser;
+         4: invokevirtual #94                 // Method com/fasterxml/jackson/core/JsonParser.getTokenLocation:()Lcom/fasterxml/jackson/core/JsonLocation;
+         7: areturn
+      LineNumberTable:
+        line 983: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+
+  protected com.fasterxml.jackson.core.JsonStreamContext _filterContext();
+    descriptor: ()Lcom/fasterxml/jackson/core/JsonStreamContext;
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+         4: ifnull        12
+         7: aload_0
+         8: getfield      #27                 // Field _exposedContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        11: areturn
+        12: aload_0
+        13: getfield      #9                  // Field _headContext:Lcom/fasterxml/jackson/core/filter/TokenFilterContext;
+        16: areturn
+      LineNumberTable:
+        line 992: 0
+        line 993: 7
+        line 995: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0  this   Lcom/fasterxml/jackson/core/filter/FilteringParserDelegate;
+      StackMapTable: number_of_entries = 1
+        frame_type = 12 /* same */
+}
+SourceFile: "FilteringParserDelegate.java"
+InnerClasses:
+  public static final #103= #102 of #279; // Inclusion=class com/fasterxml/jackson/core/filter/TokenFilter$Inclusion of class com/fasterxml/jackson/core/filter/TokenFilter
+  public static final #215= #214 of #266; // NumberType=class com/fasterxml/jackson/core/JsonParser$NumberType of class com/fasterxml/jackson/core/JsonParser

@@ -1,4 +1,4 @@
-// #Sireum
+// #Sireum #Logika
 
 package puzzlers
 
@@ -29,20 +29,27 @@ object Sets {
   val w7: ZS = v7 ++ v7
 
   @pure def set(values: ZS): SZ = {
-    return Set(values)
+    Contract(
+      Requires(Set.Elements.unique(values)),
+      Ensures(∀(values.indices)(i => Set.Elements.contain(Set.elementsOf(Res), values(i))))
+    )
+    assert(Set.Elements.unique(values))
+    val result = Set(values)
+    assert(∀(values.indices)(i => Set.Elements.contain(Set.elementsOf(result), values(i))))
+    return result
   }
 
-  @pure def safe_set(values: ZS): SZ = {
+  @strictpure def safe_set(values: ZS): SZ = {
     return Set.empty[Z] ++ values
   }
 
   @pure def assert_equals(expected: SZ, actual: SZ): Unit = {
+    Contract(Requires(expected == actual), Ensures(expected == actual))
     assert(expected == actual)
-    assert(actual == expected)
   }
 
   @pure def assert_not_equals(expected: SZ, actual: SZ): Unit = {
+    Contract(Requires(expected != actual), Ensures(expected != actual))
     assert(expected != actual)
-    assert(actual != expected)
   }
 }

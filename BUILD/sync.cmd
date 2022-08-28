@@ -102,6 +102,15 @@ def initModule(mod: Os.Path): Os.Path = {
   return mod
 }
 
+/*
+ * Runs a proc from project's home directory. Cmd file must be in BUILD subdirectory.
+ */
+def run(proc: ISZ[String]): Os.Proc.Result = {
+  assert((home / "BUILD" / "SHELLSHOCK").exists)
+  val prefix: ISZ[String] = if (Os.kind == Os.Kind.Win) ISZ("cmd", "/c") else ISZ[String]()
+  return Os.proc(prefix ++ proc).at(home).console.runCheck()
+}
+
 val idea: Os.Path = home / ".idea"
 val out: Os.Path = home / "out"
 val lib: Os.Path = initModule(home / "lib") // init module files (even though we treat as lib)
@@ -130,6 +139,8 @@ modules.foreach((shortName: String) => {
 val projectDotCmd = bin / "project.cmd"
 val content = projectCmdST(modules).render
 
+// clean
+
 idea.removeAll()
 out.removeAll()
 bin.removeAll()
@@ -137,17 +148,8 @@ bin.removeAll()
 projectDotCmd.writeOver(content)
 projectDotCmd.chmodAll(string"+x") // must occur AFTER writeOver for perms to stick
 
-/*
- * Runs a proc from project's home directory. Cmd file must be in BUILD subdirectory.
- */
-def run(proc: ISZ[String]): Os.Proc.Result = {
-  assert((home / "BUILD" / "SHELLSHOCK").exists)
-  val prefix: ISZ[String] = if (Os.kind == Os.Kind.Win) ISZ("cmd", "/c") else ISZ[String]()
-  return Os.proc(prefix ++ proc).at(home).console.runCheck()
-}
+// compile
+run(ISZ("sireum", "proyek", "compile", "."))
 
-// delete all gitignored files (locally and from the remote repo)
-def shred(): Unit = {
-  // todo win impl
-  run(ISZ("""sh""", """ls-files: git ls-files -c --ignored --exclude-standard | sed 's/.*/\"&\"/' | xargs git rm -r --cached"""))
-}
+// ive regen
+run(ISZ("sireum", "proyek", "ive", "."))

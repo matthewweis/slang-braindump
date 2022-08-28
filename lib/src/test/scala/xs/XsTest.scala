@@ -1,8 +1,8 @@
 package xs
 
 import org.sireum._
-import xs.Xs._
-import xs.Xs.fp
+import lib.Xs._
+import lib.Xs.fp
 
 class XsTest extends test.TestSuite {
 
@@ -95,7 +95,7 @@ class XsTest extends test.TestSuite {
     "Pipe" - {
       // "map reduce"
       * - {
-        val actual = Xs.pipe
+        val actual = lib.Xs.pipe
           .wrap.array(z"0" to z"20" by z"2")
           .ops.map(fp.swap(cmath.divide)(z"2"))
           .sink.reduce(z"0", math.sum)

@@ -1,9 +1,9 @@
 // #Sireum
 
-package xs
+package lib
 
 import org.sireum._
-import xs.Xs._
+import lib.Xs._
 
 object Xs {
 
